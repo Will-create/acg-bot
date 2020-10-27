@@ -1,0 +1,20 @@
+.bg-select{background: rgb(175, 240, 137) !important; }
+.text-xs{font-size: 9px !important; color:red; padding:5px 0 !important; }
+.text-sm{font-size: 11px !important; color:red; padding:5px 0 !important; }
+.no-p h2 {
+    margin-bottom: 0em;
+}
+span.helper-text.red-text {
+    color: red;
+    font-size: smaller;
+}
+.iti.iti--allow-dropdown {
+    width: 100%;
+}
+.aide-icon{
+    font-size: 21px;
+    padding-right: 13px;
+}
+.font-20{
+    font-size: 20px;
+}
