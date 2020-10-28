@@ -14,7 +14,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Auth::routes();
-Route::get('/',                                             'NavigationController@accueil')->name('accueil');
+
+
+Route::prefix('74uAExW4d')->group(function () {
+    Route::get('/',                                             'AdminNavigationController@accueil')->name('accueil');
+
+});
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

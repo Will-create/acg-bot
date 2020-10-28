@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class RegisterController extends Controller
 {
@@ -50,9 +51,11 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'nom'                       => ['required', 'string', 'max:255'],
+            'prenom'                    => ['required', 'string', 'max:255'],
+            'tel'                       => ['required','digits_between:8,13'],
+            'email'                     => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password'                  =>['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
 
@@ -64,10 +67,19 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+            return User::create([
+                'nom' => $data['nom'],
+                'prenom' => $data['prenom'],
+                'tel' => $data['tel'],
+                'role_id' => 1,
+                'titre'                 => 'Administrateur',
+                'actif'                 => true,
+                'unite_id'              => 1,
+                'ville'             => 'Ouagadougou',
+                'role_id' => 1,
+                'email' => $data['email'],
+                'uuid' => Str::uuid(),
+                'password' => Hash::make($data['password']),
         ]);
     }
 }

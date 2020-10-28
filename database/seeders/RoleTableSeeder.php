@@ -15,12 +15,27 @@ class RoleTableSeeder extends Seeder
     public function run()
     {
         $roles = ['Agent d’une Unité', 'Chef d’Unité', 'Coordonnateur National', 'Coordonnateur Régional', 'Administrateur Général'];
-        foreach ($roles as  $role) {
-            Role::create([
-                'uuid'          => Str::uuid(),
-                'designation'   => $role
-            ]);
-        }
+
+        Role::create([
+            'uuid'          => Str::uuid(),
+            'designation'   => 'Administrateur Général'
+        ]);
+        Role::create([
+            'uuid'          => Str::uuid(),
+            'designation'   => 'Agent d’une Unité'
+        ]);
+        Role::create([
+            'uuid'          => Str::uuid(),
+            'designation'   => 'Coordonnateur Régional'
+        ]);
+        Role::create([
+            'uuid'          => Str::uuid(),
+            'designation'   => 'Coordonnateur National'
+        ]);
+        Role::create([
+            'uuid'          => Str::uuid(),
+            'designation'   => 'Chef d’Unité'
+        ]);
 
     }
 }
