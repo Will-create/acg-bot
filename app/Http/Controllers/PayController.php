@@ -14,7 +14,8 @@ class PayController extends Controller
      */
     public function index()
     {
-        //
+        $pays=Pay::all();
+        return view('pages.backOffice.pays.index', compact('pays'));
     }
 
     /**
@@ -24,7 +25,7 @@ class PayController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.backOffice.pays.form');
     }
 
     /**

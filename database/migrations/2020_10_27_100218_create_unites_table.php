@@ -15,10 +15,10 @@ class CreateUnitesTable extends Migration
     {
         Schema::create('unites', function (Blueprint $table) {
             $table->id();
-            $table->string('desigantion', 255);
+            $table->string('designation', 255);
             $table->string('uuid');
             $table->foreignId('ville_id');
-            $table->foreignId('pays');
+            $table->foreignId('pays_id');
             $table->foreignId('responsable_id');
             $table->string('type');
             $table->string('tel');
@@ -37,6 +37,7 @@ class CreateUnitesTable extends Migration
      *
      * @return void
      */
+    
     public function down()
     {
         Schema::dropIfExists('unites');

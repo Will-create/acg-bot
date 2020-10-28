@@ -20,3 +20,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/pays', [App\Http\Controllers\PayController::class, 'index'])->name('pays.index');
+Route::get('/pays/Ajouter', [App\Http\Controllers\PayController::class, 'create'])->name('pays.create');
+Route::get('/pays/Ajouter', [App\Http\Controllers\PayController::class, 'create'])->name('pays.create');
+
+
+Route::resource('unites',      App\Http\Controllers\UniteController::class); 

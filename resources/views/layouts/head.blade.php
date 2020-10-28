@@ -1,7 +1,7 @@
 <!-- FAVICON -->
         <link rel="shortcut icon" type="image/x-icon" href="{{URL::asset('assets/images/brand/favicon.ico')}}" />
         <!-- TITLE -->
-        <title>PayMass Faso</title>
+        <title>Criminalité</title>
         <!-- BOOTSTRAP CSS -->
         <link href="{{URL::asset('assets/plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" />
         <!-- STYLE CSS -->

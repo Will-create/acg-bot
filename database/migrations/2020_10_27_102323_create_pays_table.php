@@ -17,6 +17,7 @@ class CreatePaysTable extends Migration
             $table->id();
             $table->string('uuid');
             $table->string('nom');
+            $table->string('icone');
             $table->timestamps();
         });
     }
