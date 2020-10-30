@@ -35,7 +35,8 @@ class UserTableSeeder extends Seeder
                 'email'                 => $faker->safeEmail,
                 'tel'                   => $faker->phoneNumber,
                 'password'              => Hash::make('00000000'),
-                'ville'                 => $faker->city,
+                'ville_id'              => $faker->numberBetween($min = 1, $max = 5),
+                'pay_id'                => $faker->numberBetween($min = 1, $max = 2),
                 'uuid'                  => Str::uuid(),
             ]);
         }

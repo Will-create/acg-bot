@@ -7,6 +7,9 @@
                         </a><!-- LOGO -->
                     </div>
                     <ul class="side-menu">
+                        <li>
+                            <h3>{{Auth::user()->role->designation}}</h3>
+                        </li>
                         <li class="slide">
                         <a class="side-menu__item"  href="">
                             <i class="mdi mdi-home aide-icon"  ></i>

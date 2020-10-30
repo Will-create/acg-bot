@@ -40,7 +40,6 @@
 				<!-- PAGE-HEADER END -->
 @endsection
 @section('content')
-@include('partials._notification')
 
 
 				<!-- ROW-1 OPEN -->

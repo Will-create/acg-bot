@@ -66,11 +66,16 @@
 
                     <div class="form-group">
                         <label class="form-label" for="organisation">Pays <strong class="text-danger">*</strong></label>
-                        <select name="ville" id="" class="form-control custom-select select2">
+                        <select name="pay_id" id="" class="form-control custom-select select2">
+                            @if (Auth::user()->role->designation == 'Chef d’Unité' || Auth::user()->role->designation == 'Coordonnateur National')
+                        <option value="{{$pays->id}}" selected  > {{$pays->nom}}</option>
+                            @else
                             <option value="" selected disabled> Sélectionner</option>
                             @foreach ($pays as $pay)
                         <option value="{{$pay->id}}">{{$pay->nom}}</option>
                             @endforeach
+
+                            @endif
                         </select>
                         @error('organisation')
                         <span class="helper-text red-text">
@@ -78,14 +83,18 @@
                         </span>
                         @enderror
                     </div>
+
                     <div class="form-group">
                         <label class="form-label" for="organisation">Role <strong class="text-danger">*</strong></label>
                         <select name="role_id" id="" class="form-control custom-select select2">
+                            @if (Auth::user()->role->designation == 'Chef d’Unité' || Auth::user()->role->designation == 'Coordonnateur Régional' || Auth::user()->role->designation == 'Coordonnateur National')
+                        <option value="{{$roles->id}}" selected> {{$roles->designation}}</option>
+                            @else
                             <option value="" selected disabled> Sélectionner</option>
-
                             @foreach ($roles as $role)
                         <option value="{{$role->id}}">{{$role->designation}}</option>
                             @endforeach
+                            @endif
                         </select>
                         @error('organisation')
                         <span class="helper-text red-text">
@@ -114,6 +123,21 @@
                         @enderror
                     </div>
                     <div class="form-group">
+                        <label class="form-label" for="organisation">Ville <strong class="text-danger">*</strong></label>
+                        <select name="ville_id" id="" class="form-control custom-select select2">
+                            <option value="" selected disabled> Sélectionner</option>
+                            @foreach ($villes as $ville)
+                        <option value="{{$ville->id}}">{{$ville->nom}}</option>
+                            @endforeach
+                        </select>
+                        @error('organisation')
+                        <span class="helper-text red-text">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
+
+                    {{-- <div class="form-group @if (Auth::user()->role->designation == 'Chef d’Unité') d-none @endif">
                         <label class="form-label" for="nom">Fonction <strong class="text-danger">*</strong></label>
                         <input type="text" class="form-control" name="titre" placeholder="Fonction" id="titre"  value="{{old('titre')}}" required>
                         @error('titre')
@@ -121,10 +145,9 @@
                             <strong>{{ $message }}</strong>
                         </span>
                         @enderror
-                    </div>
+                    </div> --}}
 
-                    @if (Auth::user()->role->designation != 'Administrateur Général')
-
+                    @if (Auth::user()->role->designation != 'Administrateur Général' && Auth::user()->role->designation != 'Coordonnateur Régional' )
                     <div class="form-group">
                         <label class="form-label" for="organisation">Unité <strong class="text-danger">*</strong></label>
                         <select name="unite_id" id="" class="form-control custom-select select2">
