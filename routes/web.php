@@ -15,18 +15,22 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
+Route::get('/',function(){
+  return redirect()->route('accueil');
+});
+
 
 Route::prefix('74uAExW4d')->group(function () {
     Route::get('/',                                             'AdminNavigationController@accueil')->name('accueil');
+   
+    Route::get('/home','UniteController@index')->name('home');
+
+    Route::get('/pays','PayController@index')->name('pays.index');
+    
+
+
+    Route::resource('unites', 'UniteController'); 
 
 });
 
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::get('/pays', [App\Http\Controllers\PayController::class, 'index'])->name('pays.index');
-Route::get('/pays/Ajouter', [App\Http\Controllers\PayController::class, 'create'])->name('pays.create');
-Route::get('/pays/Ajouter', [App\Http\Controllers\PayController::class, 'create'])->name('pays.create');
-
-
-Route::resource('unites',      App\Http\Controllers\UniteController::class); 

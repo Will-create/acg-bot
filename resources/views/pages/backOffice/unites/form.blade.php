@@ -14,6 +14,7 @@
 							
 						<form action="{{route('unites.store')}}" method="post" enctype="multipart/form-data">
 									@csrf
+									{{method_field('POST')}}
 									<div class="row">
 										<div class="col-md-6">
 								
@@ -85,7 +86,7 @@
 												   @foreach($responsables as $responsable)
 											
 													<option class="text-muted" value={{$responsable->id}}>
-														<span class="avatar avatar-md brround cover-image" >{{$responsable->name}}</span>
+														<span class="avatar avatar-md brround cover-image" >{{$responsable->nom}}</span>
 													</option>
 													@endforeach
 												</select>

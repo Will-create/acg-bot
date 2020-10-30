@@ -37,7 +37,7 @@ class PaysTableSeeder extends Seeder
                 foreach($pays as $pay){
                     Pay::create(['nom'=>$pay[0],
                                 'uuid'=>Str::uuid(),
-                                'icone'=>'assets/images/flags/'.$pay[1].'.svg'
+                                'icone'=>'74uAExW4d/assets/images/flags/'.$pay[1].'.svg'
                                 ]);
                 }
     }

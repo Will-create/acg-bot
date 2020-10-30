@@ -71,6 +71,12 @@
                                 <span class="side-menu__label">Crimes</span>
                             </a>
                         </li>
+                        <li class="slide">
+                        <a class="side-menu__item"  href="{{route('unites.index')}}">
+                                <i class="zmdi zmdi-money aide-icon" style="padding-right: 26px;"></i>
+                                <span class="side-menu__label">Unités</span>
+                            </a>
+                        </li>
                         <li>
                             <h3>Configurations</h3>
                         </li>

@@ -3,7 +3,7 @@
             <div class="page-header">
 			
 				<div class="ml-auto pageheader-btn">
-                <a href="{{route('pays.create')}}" class="btn btn-secondary btn-icon text-white">
+                <a href="#" class="btn btn-secondary btn-icon text-white">
 						<span>
 							<i class="fe fe-plus"></i>
 						</span> Ajouter un pays

@@ -13,6 +13,7 @@ class VilleTableSeeder extends Seeder
      *
      * @return void
      */
+    
     public function run()
     {
         $villes=[

@@ -19,7 +19,7 @@
 				<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
 					<div class="card">
 						<div class="card-header">
-							<h3 class="card-title">Top Selling Products</h3>
+							<h3 class="card-title">Liste des Unités</h3>
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
@@ -29,7 +29,7 @@
 											<th>Unité/pays</th>
 											<th>Type</th>
 											<th>Adresse</th>
-											<th>Responsable</th>
+											
 											<th>Actions</th>
 										</tr>
 									</thead>
@@ -37,7 +37,7 @@
                                         @foreach ($unites as $unite)
                                         <tr>
 											<td>
-												<img src="{{asset('storage').'/'.$unite->logo}}" alt="img" class="h-7 w-7">
+												<img src="{{asset('storage').'/'.$unite->logo}}" alt="img" class="h-7 w-7" style="border-radius: 100%">
 												<p class="d-inline-block align-middle mb-0 ml-1">
                                                 <a href="" class="d-inline-block align-middle mb-0 product-name text-dark font-weight-semibold">{{$unite->designation}}</a>
 													<br>
@@ -48,12 +48,13 @@
 											</td>
                                            <td>{{$unite->type}}</td>
                                            <td class="font-weight-semibold fs-15">{{$unite->adresse}}</td>
-                                        <td><span class="badge badge-danger-light badge-md"></span></td>
+                                        
 											<td>
-                                            <a class="btn btn-sm btn-success" href="{{route('unites.show',['unite'=>$unite->uuid])}}">Voir</a>
+                                                <div class="row">
+                                                    <a data-toggle="tooltip" data-original-title="Voir" class="btn btn-sm btn-default m-1 mb-xl-0" href="{{route('unites.show',['unite'=>$unite->uuid])}}"><i class="fa fa-eye"></i></a>
 
 
-                                                <a class="btn btn-sm btn-warning" href="{{route('unites.update',['unite'=>$unite->uuid])}}">Modifier</a>
+                                                <a data-toggle="tooltip" data-original-title="Modifier" class="btn btn-sm btn-default m-1 mb-xl-0" href="{{route('unites.edit',['unite'=>$unite->uuid])}}"><i class="fa fa-pencil"></i></a>
 
 
                                                 
@@ -61,11 +62,13 @@
                                                 @csrf
                                                 {{method_field('DELETE')}}
                                             
-                                                    <input class="btn btn-sm btn-danger"  type="submit" value="Supprimer">
+                                                    <button data-toggle="tooltip" data-original-title="Supprimer" class="btn btn-sm btn-default m-1 mb-xl-0"  type="submit"><i class="fa fa-trash-o"></i></button>
                                                 </form>
+                                                </div>
+                                            
 											</td>
 										</tr>
-                                            
+											
                                         @endforeach
 										
                     				</tbody>

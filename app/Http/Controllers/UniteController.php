@@ -7,6 +7,7 @@ use App\Models\Pay;
 use App\Models\Ville;
 use App\Models\User;
 use Illuminate\Support\Str;
+use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
 
 class UniteController extends Controller
@@ -31,7 +32,7 @@ class UniteController extends Controller
     
     public function create()
     {
-        $pays=Pay::where('id',2)->orderBy('nom', 'asc')->get();
+        $pays=Pay::orderBy('nom', 'asc')->get();
         $villes=Ville::orderBy('pays_id', 'asc')->get();
         $responsables=User::all();
 
@@ -55,32 +56,46 @@ class UniteController extends Controller
             'responsable_id'=>['required','integer'],
             'lat'=> ['required','string','max:255','min:8'],
             'long'=> ['required','string','max:255','min:8'],
-            'logo'=> ['required','image',],
-            'photo_couverture'=> ['required','image'], 
+            'logo'=> ['image','required'],
+            'photo_couverture'=> ['image','required'], 
             'pays_id'=> ['required','integer'],
             'ville_id'=> ['required','integer'],
            
           ]);
 
+
+          $unite= new Unite;
+       
+
          
-          $logoPath=request('logo')->store('uploads','public');
-          $photoPath=request('photo_couverture')->store('uploads','public');
-  
-          $unité=Unite::create([
-            'designation' => $data['designation'],
-            'type'=> $data['type'],
-            'tel'=> $data['tel'],
-            'adresse'=> $data['adresse'],
-            'responsable_id'=> $data['responsable_id'],
-            'lat'=> $data['lat'],
-            'long'=> $data['long'],
-            'pays_id'=> $data['pays_id'],
-            'ville_id'=> $data['ville_id'],
-            'logo'=>$logoPath,
-            'photo_couverture'=>$photoPath,
-            'uuid'=>Str::uuid()
-          ]);
-        
+          if($request->hasFile('logo')){
+            
+            $file = $request->file('logo');
+            $timestamp = str_replace([' ', ':'], '-', Carbon::now()->toDateTimeString()); 
+            $name = $timestamp. '-' .$file->getClientOriginalName();
+            $logoPath=request('logo')->storeAs('logo_uploads',$name,'public');
+            $unite->logo = $logoPath;    
+         }
+         if($request->hasFile('photo_couverture')){
+            $file = $request->file('photo_couverture');
+            $timestamp = str_replace([' ', ':'], '-', Carbon::now()->toDateTimeString()); 
+            $name = $timestamp. '-' .$file->getClientOriginalName();
+            $photoPath=request('photo_couverture')->storeAs('photo_uploads',$name,'public');
+            $unite->photo_couverture = $photoPath;
+             }
+
+          $unite->designation=$data['designation'];
+          $unite->type=$data['type'];
+          $unite->tel=$data['tel'];
+          $unite->adresse=$data['adresse'];
+          $unite->responsable_id=$data['responsable_id'];
+          $unite->lat=$data['lat'];
+          $unite->long=$data['long'];
+          $unite->pays_id =$data['pays_id'];
+          $unite->ville_id=$data['ville_id'];
+          $unite->uuid=Str::uuid();
+          $unite->save();
+          
           return redirect()->route('unites.index');
     }
 
@@ -91,7 +106,7 @@ class UniteController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Unite $unite)
-    {
+    {  
         return view('pages.backOffice.unites.show', compact('unite'));
     }
 
@@ -103,7 +118,11 @@ class UniteController extends Controller
      */
     public function edit(Unite $unite)
     {
-        return view('pages.backOffice.unites.edit');
+        $pays=Pay::orderBy('nom', 'asc')->get();
+        $villes=Ville::orderBy('pays_id', 'asc')->get();
+        $responsables=User::all();
+
+        return view('pages.backOffice.unites.edit',compact('unite','responsables','pays','villes'));
     }
 
     /**
@@ -116,7 +135,62 @@ class UniteController extends Controller
     public function update(Request $request, Unite $unite)
     {
         
+        $data=request()->validate([
+            'designation'=> ['required','string','max:255','min:3'],
+            'type'=> ['required','string','max:255','min:3'],
+            'tel'=> ['required','string','max:255','min:3'],
+            'adresse'=> ['required','string','max:255','min:3'],
+            'responsable_id'=>['required','integer'],
+            'lat'=> ['required','string','max:255','min:8'],
+            'long'=> ['required','string','max:255','min:8'],
+            'logo'=> ['image',],
+            'photo_couverture'=> ['image'], 
+            'pays_id'=> ['required','integer'],
+            'ville_id'=> ['required','integer'],
+           
+          ]);
+    
+       
+
+         if($request->hasFile('logo')){
+            
+            $file = $request->file('logo');
+            $timestamp = str_replace([' ', ':'], '-', Carbon::now()->toDateTimeString()); 
+            $name = $timestamp. '-' .$file->getClientOriginalName();
+            $logoPath=request('logo')->storeAs('logo_uploads',$name,'public');
+            $unite->logo = $logoPath;
+            
+          
+              
+         }
+         if($request->hasFile('photo_couverture')){
+            $file = $request->file('photo_couverture');
+            $timestamp = str_replace([' ', ':'], '-', Carbon::now()->toDateTimeString()); 
+            $name = $timestamp. '-' .$file->getClientOriginalName();
+            $photoPath=request('photo_couverture')->storeAs('photo_uploads',$name,'public');
+            $unite->photo_couverture = $photoPath;
+             }
+          
+
+         
+          
+          $unite->designation=$data['designation'];
+          $unite->type=$data['type'];
+          $unite->tel=$data['tel'];
+          $unite->adresse=$data['adresse'];
+          $unite->responsable_id=$data['responsable_id'];
+          $unite->lat=$data['lat'];
+          $unite->long=$data['long'];
+          $unite->pays_id =$data['pays_id'];
+          $unite->ville_id=$data['ville_id'];
+          $unite->uuid=Str::uuid();
+             $unite->save(); 
+         
+         
+          
+          return redirect()->route('unites.index');
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -127,7 +201,7 @@ class UniteController extends Controller
     public function destroy(Request $request, Unite $unite)
     {
         $unite->delete();
-        $request->flash('message','Unité supprimée avec succès');
-        return redirect()->route('unites.index');
+        
+        return redirect()->route('unites.index')->with('message','Unité supprimée avec succès');
     }
 }
