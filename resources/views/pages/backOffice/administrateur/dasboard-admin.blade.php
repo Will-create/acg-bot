@@ -11,7 +11,7 @@
 							<div class="row mb-1">
 								<div class="col">
 									<p class="mb-1">Utilisateurs</p>
-									<h3 class="mb-0 number-font">96</h3>
+									<h3 class="mb-0 number-font">{{count($utilisateurs)}}</h3>
 								</div>
 								<div class="col-auto mb-0">
 									<div class="dash-icon text-orange">
@@ -79,9 +79,74 @@
 					</div>
 				</div>
 			</div>
-			<!-- Row-1 End -->
- 
-			<!-- ROW-5 END -->
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="wideget-user text-center">
+                                <div class="wideget-user-desc">
+                                    <div class="wideget-user-img">
+                                        <img class="" src="http://localhost:5000/assets/images/user.png" alt="img">
+                                    </div>
+                                    <div class="user-wrap">
+                                    <h4 class="mb-1">{{Auth::user()->nom. ' '. Auth::user()->prenom}}</h4>
+                                    <h6 class=" mb-4"> <i class="fa fa-envelope"> </i> {{Auth::user()->email}} </h6>
+                                    <h6 class="text-muted mb-4"> Adminsitrateur Général de la plateforme</h6>
+                                    <a href="#" class="btn btn-primary mt-1 mb-1 btn-sm"> <i class="zmdi zmdi-eye text-white"></i> Voir le profil</a>
+
+
+                                    {{-- <a href="http://localhost:5000/utilisateurs/9fb2ae90-f991-46c2-a03e-037039442b45/edit" class="btn btn-primary mt-1 mb-1 btn-sm"> <i class="zmdi zmdi-edit text-white"></i>  Editer le profile </a> --}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+				<div class="col-sm-12 col-md-12 col-lg-8 col-xl-8">
+					<div class="card">
+						<div class="card-header">
+							<h3 class="card-title">Les coordonnateurs nationaux</h3>
+						</div>
+						<div class="card-body">
+							<div class="table-responsive">
+								<table class="table table-bordered table-hover text-nowrap mb-0">
+									<thead>
+										<tr>
+											<th>Pays</th>
+											<th>Nom</th>
+											<th>Prenom</th>
+											<th>tel</th>
+											<th>Status</th>
+										</tr>
+									</thead>
+									<tbody>
+                                       @forelse ($coordonateurs as $coordonateur)
+
+
+										<tr>
+											<td>
+												<img src="http://localhost:5003/assets/images/users/3.jpg" alt="profile-user" class="brround  avatar-sm w-32 mr-2">
+												{{$coordonateur->pay->nom}}
+											</td>
+                                        <td>{{$coordonateur->nom}}</td>
+                                        <td>{{$coordonateur->prenom}}</td>
+                                        <td>{{$coordonateur->tel}}</td>
+											<td>
+												<button type="button" class="badge {{$coordonateur->actif ? 'badge-success':'badge-danger'}} ">{{$coordonateur->actif ? 'Ativé':'Désactivé'}}</button>
+											</td>
+										</tr>
+                                        @empty
+                                        aucune donné
+                                       @endforelse
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
 @endsection
 @section('js')
 		<!-- INTERNAL CHARTJS CHART JS -->
