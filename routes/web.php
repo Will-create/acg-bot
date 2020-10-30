@@ -22,6 +22,10 @@ Auth::routes();
 
 // Route::prefix('74uAExW4d')->group(function () {
     Route::get('/',                                             'AdminNavigationController@accueil')->name('accueil');
+    Route::resource('utilisateurs',                             'UtilisateursController');
+    Route::get('utilisateurs/gerer/{utilisateur}',              'UtilisateursController@gerer')->name('gerer-utilisateur');
+    Route::resource('crimes',                                   'CrimeController');
+    Route::resource('espace_vegetal',                           'EspeceVegetalController');
 
     Route::get('/home','UniteController@index')->name('home');
 

@@ -9,6 +9,9 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
+    public function getRouteKeyName(){
+        return 'uuid';
+    }
     use HasFactory, Notifiable;
 
     /**
@@ -44,6 +47,14 @@ class User extends Authenticatable
     }
     public function role()
     {
-        return $this->hasOne(Role::class);
+        return $this->hasOne(Role::class, 'id', 'role_id');
+    }
+    public function unite()
+    {
+        return $this->belongsTo(Unite::class);
+    }
+    public function ville()
+    {
+        return $this->belongsTo(Ville::class, 'id', 'ville');
     }
 }

@@ -26,11 +26,18 @@
 
     <div class="page">
         <div class="page-main">
-            {{-- @if (Auth::user()->role_id == 1 ) --}}
+            @if (Auth::user()->role->designation == 'Administrateur Général')
             @include('layouts.aside-menu-admin')
-             {{-- @else --}}
-            {{-- @include('layouts.aside-menu') --}}
-            {{-- @endif --}}
+             @elseif(Auth::user()->role->designation == 'Coordonnateur Régional')
+            @include('layouts.aside-menu-coodonnateur-regional')
+             @elseif(Auth::user()->role->designation == 'Coordonnateur National')
+            @include('layouts.aside-menu-coodonnateur-national')
+             @elseif(Auth::user()->role->designation == 'Chef d’Unité')
+            @include('layouts.aside-menu-agent-unite')
+             @elseif(Auth::user()->role->designation == 'Agent d’une Unité')
+            @include('layouts.aside-menu-chef-unite')
+
+            @endif
             @include('layouts.header')
             <br>
             <div class="app-content">
