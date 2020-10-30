@@ -15,22 +15,22 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/',function(){
-  return redirect()->route('accueil');
-});
+// Route::get('/',function(){
+//   return redirect()->route('accueil');
+// });
 
 
-Route::prefix('74uAExW4d')->group(function () {
+// Route::prefix('74uAExW4d')->group(function () {
     Route::get('/',                                             'AdminNavigationController@accueil')->name('accueil');
-   
+
     Route::get('/home','UniteController@index')->name('home');
 
     Route::get('/pays','PayController@index')->name('pays.index');
-    
 
 
-    Route::resource('unites', 'UniteController'); 
 
-});
+    Route::resource('unites', 'UniteController');
+
+// });
 
 

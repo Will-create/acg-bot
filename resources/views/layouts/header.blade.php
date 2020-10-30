@@ -1,5 +1,5 @@
 <!-- App-Header -->
-                <div class="app-header header">
+<div class="app-header header">
                     <div class="container-fluid">
                         <div class="d-flex">
                             <a class="header-brand d-md-none" href="{{url('/' . $page='index')}}">

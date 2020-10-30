@@ -11,7 +11,6 @@ class AdminNavigationController extends Controller
     }
 
     public function accueil() {
-        
         return view('pages.backOffice.administrateur.dasboard');
     }
 }
