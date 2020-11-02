@@ -20,9 +20,10 @@ class CreateUnitesTable extends Migration
             $table->foreignId('ville_id');
             $table->foreignId('pays_id');
             $table->foreignId('responsable_id');
-            $table->string('type');
+            $table->foreignId('type_id');
             $table->string('tel');
-            $table->string('adresse');
+            $table->string('tel2')->nullable();
+            $table->text('adresse');
             $table->string('lat')->nullable();
             $table->string('long')->nullable();
             $table->mediumText('logo')->nullable();

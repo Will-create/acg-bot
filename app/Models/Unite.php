@@ -29,10 +29,13 @@ class Unite extends Model
     }
 
     public function pays(){
-        return $this->belongsTo('App\Models\Pay', 'id');
+        return $this->belongsTo('App\Models\Pay','pays_id', 'id');
     }
     public function ville(){
-        return $this->belongsTo('App\Models\Ville', 'id');
+        return $this->belongsTo('App\Models\Ville', 'ville_id', 'id');
+    }
+    public function type(){
+        return $this->belongsTo('App\Models\Type','type_id','id');
     }
     
     public function responsable(){

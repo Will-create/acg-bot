@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->boolean('actif')->default(true);
             $table->string('titre')->nullable();
             $table->string('ville_id')->nulllable();
-            $table->string('pay_id')->nulllable();
+            $table->foreignId('pay_id')->nulllable();
             $table->string('email')->unique();
             $table->string('tel');
             $table->timestamp('email_verified_at')->nullable();

@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ville;
+use App\Models\Unite;
+use App\Models\Pay;
+use App\Models\User;
+use Illuminate\Support\Str;
+use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
 
 class VilleController extends Controller
@@ -14,17 +19,20 @@ class VilleController extends Controller
      */
     public function index()
     {
-        //
+        $unites=Unite::all();
+     
+        return view('pages.backOffice.unites.index',compact('unites'));
     }
+    
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        $pays=Pay::orderBy('nom', 'asc')->get();
+        $villes=Ville::orderBy('pays_id', 'asc')->get();
+        $responsables=User::all();
+
+
+        return view('pages.backOffice.unites.form',compact('villes','pays', 'responsables'));
     }
 
     /**
@@ -34,52 +42,160 @@ class VilleController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {   
+        $data=request()->validate([
+            'designation'=> ['required','string','max:255','min:3'],
+            'type'=> ['required','string','max:255','min:3'],
+            'tel'=> ['required','string','max:255','min:3'],
+            'adresse'=> ['required','string','max:255','min:3'],
+            'responsable_id'=>['required','integer'],
+            'lat'=> ['required','string','max:255','min:8'],
+            'long'=> ['required','string','max:255','min:8'],
+            'logo'=> ['image','required'],
+            'photo_couverture'=> ['image','required'], 
+            'pays_id'=> ['required','integer'],
+            'ville_id'=> ['required','integer'],
+           
+          ]);
+
+
+          $unite= new Unite;
+       
+
+         
+          if($request->hasFile('logo')){
+            
+            $file = $request->file('logo');
+            $timestamp = str_replace([' ', ':'], '-', Carbon::now()->toDateTimeString()); 
+            $name = $timestamp. '-' .$file->getClientOriginalName();
+            $logoPath=request('logo')->storeAs('logo_uploads',$name,'public');
+            $unite->logo = $logoPath;    
+         }
+         if($request->hasFile('photo_couverture')){
+            $file = $request->file('photo_couverture');
+            $timestamp = str_replace([' ', ':'], '-', Carbon::now()->toDateTimeString()); 
+            $name = $timestamp. '-' .$file->getClientOriginalName();
+            $photoPath=request('photo_couverture')->storeAs('photo_uploads',$name,'public');
+            $unite->photo_couverture = $photoPath;
+             }
+
+          $unite->designation=$data['designation'];
+          $unite->type=$data['type'];
+          $unite->tel=$data['tel'];
+          $unite->adresse=$data['adresse'];
+          $unite->responsable_id=$data['responsable_id'];
+          $unite->lat=$data['lat'];
+          $unite->long=$data['long'];
+          $unite->pays_id =$data['pays_id'];
+          $unite->ville_id=$data['ville_id'];
+          $unite->uuid=Str::uuid();
+          $unite->save();
+          $request->session()->flash('status', 'Unité ajoutée avec succès');
+          return redirect()->route('unites.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Ville  $ville
+     * @param  \App\Models\Unite  $unite
      * @return \Illuminate\Http\Response
      */
-    public function show(Ville $ville)
-    {
-        //
+    public function show(Unite $unite)
+    {  
+        return view('pages.backOffice.unites.show', compact('unite'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Ville  $ville
+     * @param  \App\Models\Unite  $unite
      * @return \Illuminate\Http\Response
      */
-    public function edit(Ville $ville)
+    public function edit(Unite $unite)
     {
-        //
+        $pays=Pay::orderBy('nom', 'asc')->get();
+        $villes=Ville::orderBy('pays_id', 'asc')->get();
+        $responsables=User::all();
+
+        return view('pages.backOffice.unites.edit',compact('unite','responsables','pays','villes'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Ville  $ville
+     * @param  \App\Models\Unite  $unite
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Ville $ville)
+    public function update(Request $request, Unite $unite)
     {
-        //
+        
+        $data=request()->validate([
+            'designation'=> ['required','string','max:255','min:3'],
+            'type'=> ['required','string','max:255','min:3'],
+            'tel'=> ['required','string','max:255','min:3'],
+            'adresse'=> ['required','string','max:255','min:3'],
+            'responsable_id'=>['required','integer'],
+            'lat'=> ['required','string','max:255','min:8'],
+            'long'=> ['required','string','max:255','min:8'],
+            'logo'=> ['image',],
+            'photo_couverture'=> ['image'], 
+            'pays_id'=> ['required','integer'],
+            'ville_id'=> ['required','integer'],
+           
+          ]);
+    
+       
+
+         if($request->hasFile('logo')){
+            
+            $file = $request->file('logo');
+            $timestamp = str_replace([' ', ':'], '-', Carbon::now()->toDateTimeString()); 
+            $name = $timestamp. '-' .$file->getClientOriginalName();
+            $logoPath=request('logo')->storeAs('logo_uploads',$name,'public');
+            $unite->logo = $logoPath;
+            
+          
+              
+         }
+         if($request->hasFile('photo_couverture')){
+            $file = $request->file('photo_couverture');
+            $timestamp = str_replace([' ', ':'], '-', Carbon::now()->toDateTimeString()); 
+            $name = $timestamp. '-' .$file->getClientOriginalName();
+            $photoPath=request('photo_couverture')->storeAs('photo_uploads',$name,'public');
+            $unite->photo_couverture = $photoPath;
+             }
+          
+
+         
+          
+          $unite->designation=$data['designation'];
+          $unite->type=$data['type'];
+          $unite->tel=$data['tel'];
+          $unite->adresse=$data['adresse'];
+          $unite->responsable_id=$data['responsable_id'];
+          $unite->lat=$data['lat'];
+          $unite->long=$data['long'];
+          $unite->pays_id =$data['pays_id'];
+          $unite->ville_id=$data['ville_id'];
+          $unite->uuid=Str::uuid();
+             $unite->save(); 
+         
+         $request->session()>flash('message','Unité  modifié avec succès!');
+          return redirect()->route('unites.index');
     }
+
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Ville  $ville
+     * @param  \App\Models\Unite  $unite
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Ville $ville)
+    public function destroy(Request $request, Unite $unite)
     {
-        //
+        $unite->delete();
+        
+        return redirect()->route('unites.index')->with('message','Unité supprimée avec succès');
     }
 }

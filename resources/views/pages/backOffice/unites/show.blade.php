@@ -65,24 +65,24 @@
                             <td><strong>Designation:</strong> {{$unite->designation}}</td>
                             </tr>
                             <tr>
-                            <td><strong>Type d'unite :</strong> {{$unite->type}}</td>
+                            <td><strong>Type d'unite :</strong> {{$unite->type->nom}}</td>
                             </tr>
                             <tr>
-                            <td><strong>Pays :</strong> {{$unite->pays->nom}}</td>
+                            <td><strong>Pays : </strong> {{$unite->pays->nom}}</td>
                             </tr>
                             <tr>
-                            <td><strong>Ville:</strong> {{$unite->ville->nom}}</td>
+                            <td><strong>Ville: </strong> {{$unite->ville->nom}}</td>
                             </tr>
                         </tbody>
                         <tbody class="col-lg-12 col-xl-6 p-0">
                             <tr>
-                            <td><strong>Adresse:</strong> {{$unite->adresse}}</td>
+                            <td><strong>Adresse: </strong> {{$unite->adresse}}</td>
                             </tr>
                             <tr>
-                                <td><strong>Téléphone:</strong>{{$unite->tel}}</td>
+                                <td><strong>Téléphone: </strong>{{$unite->tel}}</td>
                             </tr>
                             <tr>
-                            <td><strong>Responsable:</strong> {{$unite->responsable->nom}}</td>
+                            <td><strong>Responsable: </strong> {{$unite->responsable->nom}}</td>
                             </tr>
                             <tr>
                             <td><a href="{{route('unites.edit',['unite'=>$unite->uuid])}}" class="btn btn-primary">Modifier cette Unite</a></td>

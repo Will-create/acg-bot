@@ -6,6 +6,7 @@ use App\Models\Unite;
 use App\Models\Pay;
 use App\Models\Ville;
 use App\Models\User;
+use App\Models\Type;
 use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
@@ -20,6 +21,7 @@ class UniteController extends Controller
     public function index()
     {
         $unites=Unite::all();
+
      
         return view('pages.backOffice.unites.index',compact('unites'));
     }
@@ -32,13 +34,14 @@ class UniteController extends Controller
     
     public function create()
     {
-        $pays=Pay::orderBy('nom', 'asc')->get();
-        $villes=Ville::orderBy('pays_id', 'asc')->get();
+        $pays=Pay::where('id',auth()->user()->id)->orderBy('nom', 'asc')->get();
+        $villes=Ville::where('pays_id',$pays[0]->id)->orderBy('pays_id', 'asc')->get();
         $responsables=User::all();
+        $types=Type::all();
 
-
-        return view('pages.backOffice.unites.form',compact('villes','pays', 'responsables'));
+        return view('pages.backOffice.unites.form',compact('villes','pays', 'responsables','types'));
     }
+    
 
     /**
      * Store a newly created resource in storage.
@@ -50,7 +53,7 @@ class UniteController extends Controller
     {   
         $data=request()->validate([
             'designation'=> ['required','string','max:255','min:3'],
-            'type'=> ['required','string','max:255','min:3'],
+            'type_id'=> ['required','integer'],
             'tel'=> ['required','string','max:255','min:3'],
             'adresse'=> ['required','string','max:255','min:3'],
             'responsable_id'=>['required','integer'],
@@ -85,8 +88,9 @@ class UniteController extends Controller
              }
 
           $unite->designation=$data['designation'];
-          $unite->type=$data['type'];
+          $unite->type_id=$data['type_id'];
           $unite->tel=$data['tel'];
+    
           $unite->adresse=$data['adresse'];
           $unite->responsable_id=$data['responsable_id'];
           $unite->lat=$data['lat'];
@@ -97,6 +101,8 @@ class UniteController extends Controller
           $unite->save();
           
           return redirect()->route('unites.index');
+
+
     }
 
     /**
@@ -118,11 +124,11 @@ class UniteController extends Controller
      */
     public function edit(Unite $unite)
     {
-        $pays=Pay::orderBy('nom', 'asc')->get();
-        $villes=Ville::orderBy('pays_id', 'asc')->get();
+        $pays=Pay::where('id',auth()->user()->id)->orderBy('nom', 'asc')->get();
+        $villes=Ville::where('pays_id',$pays[0]->id)->orderBy('pays_id', 'asc')->get();
         $responsables=User::all();
-
-        return view('pages.backOffice.unites.edit',compact('unite','responsables','pays','villes'));
+        $types=Type::all();
+        return view('pages.backOffice.unites.edit',compact('unite','responsables','pays','villes','types'));
     }
 
     /**
@@ -134,21 +140,22 @@ class UniteController extends Controller
      */
     public function update(Request $request, Unite $unite)
     {
-        
         $data=request()->validate([
             'designation'=> ['required','string','max:255','min:3'],
-            'type'=> ['required','string','max:255','min:3'],
+            'type_id'=> ['required','integer'],
             'tel'=> ['required','string','max:255','min:3'],
             'adresse'=> ['required','string','max:255','min:3'],
             'responsable_id'=>['required','integer'],
-            'lat'=> ['required','string','max:255','min:8'],
-            'long'=> ['required','string','max:255','min:8'],
-            'logo'=> ['image',],
+            'lat'=> ['string','max:255','min:8'],
+            'long'=> ['string','max:255','min:8'],
+            'logo'=> ['image'],
             'photo_couverture'=> ['image'], 
             'pays_id'=> ['required','integer'],
             'ville_id'=> ['required','integer'],
            
           ]);
+
+
     
        
 
@@ -175,8 +182,9 @@ class UniteController extends Controller
          
           
           $unite->designation=$data['designation'];
-          $unite->type=$data['type'];
+          $unite->type=$data['type_id'];
           $unite->tel=$data['tel'];
+          
           $unite->adresse=$data['adresse'];
           $unite->responsable_id=$data['responsable_id'];
           $unite->lat=$data['lat'];

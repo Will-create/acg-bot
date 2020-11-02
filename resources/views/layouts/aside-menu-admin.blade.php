@@ -135,6 +135,3 @@
 
 
 
-				    </ul>
-				</aside>
-				<!--/APP-SIDEBAR-->
