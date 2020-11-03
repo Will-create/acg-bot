@@ -18,7 +18,7 @@
 @endsection
 @section('page-header')
                 <!-- PAGE-HEADER -->
-                @include('partials._notification')
+                
 				<div class="page-header">
 					<div>
 						<h1 class="page-title">Liste des unités de loi</h1>

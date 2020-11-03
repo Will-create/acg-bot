@@ -19,20 +19,17 @@ class VilleController extends Controller
      */
     public function index()
     {
-        $unites=Unite::all();
+        $villes=Ville::orderBy('pays_id','asc')->get();
      
-        return view('pages.backOffice.unites.index',compact('unites'));
+        return view('pages.backOffice.villes.index',compact('villes'));
     }
     
 
     public function create()
     {
         $pays=Pay::orderBy('nom', 'asc')->get();
-        $villes=Ville::orderBy('pays_id', 'asc')->get();
-        $responsables=User::all();
-
-
-        return view('pages.backOffice.unites.form',compact('villes','pays', 'responsables'));
+        
+        return view('pages.backOffice.villes.form',compact('pays'));
     }
 
     /**
@@ -44,65 +41,38 @@ class VilleController extends Controller
     public function store(Request $request)
     {   
         $data=request()->validate([
-            'designation'=> ['required','string','max:255','min:3'],
-            'type'=> ['required','string','max:255','min:3'],
-            'tel'=> ['required','string','max:255','min:3'],
-            'adresse'=> ['required','string','max:255','min:3'],
-            'responsable_id'=>['required','integer'],
-            'lat'=> ['required','string','max:255','min:8'],
-            'long'=> ['required','string','max:255','min:8'],
-            'logo'=> ['image','required'],
-            'photo_couverture'=> ['image','required'], 
+            'nom'=> ['required','string','max:255','min:3'],
             'pays_id'=> ['required','integer'],
-            'ville_id'=> ['required','integer'],
+            
            
           ]);
 
 
-          $unite= new Unite;
+          $ville= new Ville;
        
 
          
-          if($request->hasFile('logo')){
-            
-            $file = $request->file('logo');
-            $timestamp = str_replace([' ', ':'], '-', Carbon::now()->toDateTimeString()); 
-            $name = $timestamp. '-' .$file->getClientOriginalName();
-            $logoPath=request('logo')->storeAs('logo_uploads',$name,'public');
-            $unite->logo = $logoPath;    
-         }
-         if($request->hasFile('photo_couverture')){
-            $file = $request->file('photo_couverture');
-            $timestamp = str_replace([' ', ':'], '-', Carbon::now()->toDateTimeString()); 
-            $name = $timestamp. '-' .$file->getClientOriginalName();
-            $photoPath=request('photo_couverture')->storeAs('photo_uploads',$name,'public');
-            $unite->photo_couverture = $photoPath;
-             }
+          
 
-          $unite->designation=$data['designation'];
-          $unite->type=$data['type'];
-          $unite->tel=$data['tel'];
-          $unite->adresse=$data['adresse'];
-          $unite->responsable_id=$data['responsable_id'];
-          $unite->lat=$data['lat'];
-          $unite->long=$data['long'];
-          $unite->pays_id =$data['pays_id'];
-          $unite->ville_id=$data['ville_id'];
-          $unite->uuid=Str::uuid();
-          $unite->save();
-          $request->session()->flash('status', 'Unité ajoutée avec succès');
-          return redirect()->route('unites.index');
+          $ville->nom=$data['nom'];
+         
+          $ville->pays_id =$data['pays_id'];
+          
+          $ville->uuid=Str::uuid();
+          $ville->save();
+          $request->session()->flash('status', 'Ville ajoutée avec succès');
+          return redirect()->route('villes.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Unite  $unite
+     * @param  \App\Models\Ville  $ville
      * @return \Illuminate\Http\Response
      */
-    public function show(Unite $unite)
+    public function show(Ville $ville)
     {  
-        return view('pages.backOffice.unites.show', compact('unite'));
+        return view('pages.backOffice.villes.show', compact('ville'));
     }
 
     /**
@@ -111,13 +81,12 @@ class VilleController extends Controller
      * @param  \App\Models\Unite  $unite
      * @return \Illuminate\Http\Response
      */
-    public function edit(Unite $unite)
+    public function edit(Ville $ville)
     {
         $pays=Pay::orderBy('nom', 'asc')->get();
-        $villes=Ville::orderBy('pays_id', 'asc')->get();
-        $responsables=User::all();
+       
 
-        return view('pages.backOffice.unites.edit',compact('unite','responsables','pays','villes'));
+        return view('pages.backOffice.villes.edit',compact('ville','pays'));
     }
 
     /**
@@ -127,62 +96,32 @@ class VilleController extends Controller
      * @param  \App\Models\Unite  $unite
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Unite $unite)
+    public function update(Request $request, Ville $ville)
     {
         
         $data=request()->validate([
-            'designation'=> ['required','string','max:255','min:3'],
-            'type'=> ['required','string','max:255','min:3'],
-            'tel'=> ['required','string','max:255','min:3'],
-            'adresse'=> ['required','string','max:255','min:3'],
-            'responsable_id'=>['required','integer'],
-            'lat'=> ['required','string','max:255','min:8'],
-            'long'=> ['required','string','max:255','min:8'],
-            'logo'=> ['image',],
-            'photo_couverture'=> ['image'], 
+            'nom'=> ['required','string','max:255','min:3'],
             'pays_id'=> ['required','integer'],
-            'ville_id'=> ['required','integer'],
+            
            
           ]);
-    
+
+
+          
        
 
-         if($request->hasFile('logo')){
-            
-            $file = $request->file('logo');
-            $timestamp = str_replace([' ', ':'], '-', Carbon::now()->toDateTimeString()); 
-            $name = $timestamp. '-' .$file->getClientOriginalName();
-            $logoPath=request('logo')->storeAs('logo_uploads',$name,'public');
-            $unite->logo = $logoPath;
-            
-          
-              
-         }
-         if($request->hasFile('photo_couverture')){
-            $file = $request->file('photo_couverture');
-            $timestamp = str_replace([' ', ':'], '-', Carbon::now()->toDateTimeString()); 
-            $name = $timestamp. '-' .$file->getClientOriginalName();
-            $photoPath=request('photo_couverture')->storeAs('photo_uploads',$name,'public');
-            $unite->photo_couverture = $photoPath;
-             }
+         
           
 
+          $ville->nom=$data['nom'];
          
+          $ville->pays_id =$data['pays_id'];
           
-          $unite->designation=$data['designation'];
-          $unite->type=$data['type'];
-          $unite->tel=$data['tel'];
-          $unite->adresse=$data['adresse'];
-          $unite->responsable_id=$data['responsable_id'];
-          $unite->lat=$data['lat'];
-          $unite->long=$data['long'];
-          $unite->pays_id =$data['pays_id'];
-          $unite->ville_id=$data['ville_id'];
-          $unite->uuid=Str::uuid();
-             $unite->save(); 
-         
-         $request->session()>flash('message','Unité  modifié avec succès!');
-          return redirect()->route('unites.index');
+          $ville->uuid=Str::uuid();
+          $ville->save();
+          
+         $request->session()->flash('status','Ville  modifiée avec succès!');
+          return redirect()->route('villes.index');
     }
 
 
@@ -192,10 +131,10 @@ class VilleController extends Controller
      * @param  \App\Models\Unite  $unite
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, Unite $unite)
+    public function destroy(Request $request, Ville $ville)
     {
         $unite->delete();
         
-        return redirect()->route('unites.index')->with('message','Unité supprimée avec succès');
+        return redirect()->route('villes.index')->with('status','Ville supprimée avec succès');
     }
 }

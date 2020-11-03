@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('nom');
             $table->string('prenom');
             $table->foreignId('role_id');
-            $table->foreignId('unite_id');
+            $table->foreignId('unite_id')->nullable();
             $table->boolean('actif')->default(true);
             $table->string('titre')->nullable();
             $table->string('ville_id')->nulllable();

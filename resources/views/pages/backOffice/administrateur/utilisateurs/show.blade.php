@@ -118,8 +118,15 @@
                                                     <tr>
                                                     <td><strong>Role :</strong> {{$utilisateur->role->designation}}</td>
                                                     </tr>
+                                                    @if ($utilisateur->unite)
                                                     <tr>
-                                                    <td><strong>Unité :</strong> {{$utilisateur->unite->nom}}</td>
+                                                        <td><strong>Unité :</strong> {{$utilisateur->unite->nom}}</td>
+                                                        </tr>
+                                                    @else
+
+                                                    @endif
+                                                    <tr>
+                                                    <td><strong>Unité :</strong> Auncune unité </td>
                                                     </tr>
                                                 </tbody>
                                                 <tbody class="col-lg-12 col-xl-6 p-0">

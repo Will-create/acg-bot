@@ -25,16 +25,19 @@ Auth::routes();
     Route::resource('utilisateurs',                             'UtilisateursController');
     Route::get('utilisateurs/gerer/{utilisateur}',              'UtilisateursController@gerer')->name('gerer-utilisateur');
     Route::resource('crimes',                                   'CrimeController');
-    Route::resource('espace_vegetal',                           'EspeceVegetalController');
+    
 
     Route::get('/home','UniteController@index')->name('home');
 
     Route::get('/pays','PayController@index')->name('pays.index');
+    Route::get('/pays/{pay}','PayController@show')->name('pays.show');
 
 
 
     Route::resource('unites', 'UniteController');
-
+    Route::resource('villes', 'VilleController');
+    Route::resource('espece_animales', 'EspeceAnimalController');
+    Route::resource('espece_vegetales', 'EspeceVegetalController');
 // });
 
 

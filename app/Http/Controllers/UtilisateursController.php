@@ -8,6 +8,7 @@ use App\Models\Unite;
 use App\Models\User;
 use App\Models\Ville;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
@@ -25,7 +26,17 @@ class UtilisateursController extends Controller
      */
     public function index()
     {
-        $utilisateurs  = User::latest()->get();
+        if (Auth::user()->role->designation == 'Chef d’Unité') {
+            $utilisateurs  = User::where('role_id', Role::where('designation', 'Agent d’une Unité')->first()->id)->where('pay_id', Auth::user()->pay->id)->latest()->get();
+        }
+        elseif(Auth::user()->role->designation == 'Coordonnateur National'){
+            $role_id = Role::whereIn('designation', ['Chef d’Unité', 'Agent d’une Unité'])->pluck('id');
+            $utilisateurs  = User::where('pay_id', Auth::user()->pay->id)->whereIn('role_id', $role_id)->latest()->get();
+        }
+        else {
+            $utilisateurs  = User::latest()->get();
+        }
+
         return view('pages.backOffice.administrateur.utilisateurs.index', compact('utilisateurs'));
     }
 
@@ -36,10 +47,24 @@ class UtilisateursController extends Controller
      */
     public function create()
     {
-        $roles = Role::whereIn('designation', ['Coordonnateur Régional', 'Coordonnateur National'])->get();
         $unites = Unite::all();
         $villes = Ville::all();
         $pays = Pay::all();
+        if (Auth::user()->role->designation == 'Administrateur Général') {
+            $roles = Role::whereIn('designation', ['Coordonnateur Régional', 'Coordonnateur National'])->get();
+        }
+        elseif(Auth::user()->role->designation == 'Coordonnateur Régional'){
+            $roles = Role::where('designation', 'Coordonnateur National')->first();
+        }
+        elseif(Auth::user()->role->designation == 'Coordonnateur National'){
+            $roles = Role::where('designation', 'Chef d’Unité')->first();
+            $pays = Pay::where('nom', Auth::user()->pay->nom)->first();
+        }
+        elseif(Auth::user()->role->designation == 'Chef d’Unité'){
+            $roles = Role::where('designation', 'Agent d’une Unité')->first();
+            $pays = Pay::where('nom', Auth::user()->pay->nom)->first();
+        }
+
         return view('pages.backOffice.administrateur.utilisateurs.create', compact('roles', 'unites', 'villes', 'pays'));
     }
 
@@ -51,15 +76,16 @@ class UtilisateursController extends Controller
      */
     public function store(Request $request)
     {
-
         $data =   $request->validate([
             'nom'                       => ['required', 'string', 'max:255'],
             'prenom'                    => ['required', 'string', 'max:255'],
             'tel'                       => ['required', 'digits_between:8,13'],
             'email'                     => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'role_id'                   => ['required'],
+            'pay_id'                    => ['required'],
+            'ville_id'                  => ['required'],
             'unite_id'                  => ['nullable'],
-            'titre'                     => ['required'],
+            'titre'                     => ['nullable', 'string', 'max:100'],
             'profile_photo_path'        => ['nullable'],
         ]);
         $path = null;
@@ -75,8 +101,10 @@ class UtilisateursController extends Controller
             'tel'                       => $data['tel'],
             'email'                     => $data['email'],
             'role_id'                   => $data['role_id'],
-            'unite_id'                  => $data['unite_id'],
-            'titre'                     => $data['titre'],
+            'pay_id'                    => $data['pay_id'],
+            'ville_id'                  => $data['ville_id'],
+            'unite_id'                  => $request->unite_id,
+            'titre'                     => $request->titre,
             'password'                  => Hash::make('00000000'),
             'profile_photo_path'        => $path
         ]);

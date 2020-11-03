@@ -7,7 +7,9 @@
                     </a>
 				    </div>
 				    <ul class="side-menu">
-
+                        <li>
+                            <h3>{{Auth::user()->role->designation}}</h3>
+                        </li>
 				        <li class="slide">
                         <a class="side-menu__item" data-toggle=" " href="{{route('accueil')}}">
 				                <i class="mdi mdi-home aide-icon"></i>
@@ -47,8 +49,8 @@
                                 <span class="side-menu__label">Espèce Animal</span><i class="angle fa fa-angle-right"></i>
                             </a>
                             <ul class="slide-menu">
-                                <li><a class="slide-item" href="#"><span>Les espèce Animal</span></a></li>
-                                <li><a class="slide-item" href="#"><span>Ajouter un espèce animal </span></a></li>
+                                <li><a class="slide-item" href="{{route('espece_animales.index')}}"><span>Les espèce Animal</span></a></li>
+                                <li><a class="slide-item" href="{{route('espece_animales.create')}}"><span>Ajouter un espèce animal </span></a></li>
                             </ul>
                         </li>
                         <li class="slide">
@@ -57,8 +59,8 @@
                                 <span class="side-menu__label">Espèce végétal</span><i class="angle fa fa-angle-right"></i>
                             </a>
                             <ul class="slide-menu">
-                                <li><a class="slide-item" href="#"><span>Tous les espèces</span></a></li>
-                                <li><a class="slide-item" href="#"><span>Ajouter un espèce végétal </span></a></li>
+                                <li><a class="slide-item" href="{{route('espece_vegetales.index')}}"><span>Tous les espèces</span></a></li>
+                                <li><a class="slide-item" href="{{route('espece_vegetales.create')}}"><span>Ajouter un espèce végétal </span></a></li>
                             </ul>
                         </li>
 
@@ -109,7 +111,7 @@
                                 <span class="side-menu__label">Pays</span><i class="angle fa fa-angle-right"></i>
                             </a>
                             <ul class="slide-menu">
-                                <li><a class="slide-item" href="#"><span>Tous les pays</span></a></li>
+                                <li><a class="slide-item" href="{{route('pays.index')}}"><span>Tous les pays</span></a></li>
                                 <li><a class="slide-item" href="#"><span>Nouveau </span></a></li>
                             </ul>
                         </li>
@@ -119,8 +121,8 @@
                                 <span class="side-menu__label">Villes</span><i class="angle fa fa-angle-right"></i>
                             </a>
                             <ul class="slide-menu">
-                                <li><a class="slide-item" href="#"><span>Toutes les villes</span></a></li>
-                                <li><a class="slide-item" href="#"><span>Nouveau </span></a></li>
+                                <li><a class="slide-item" href="{{route('villes.index')}}"><span>Toutes les villes</span></a></li>
+                                <li><a class="slide-item" href="{{route('villes.create')}}"><span>Nouveau </span></a></li>
                             </ul>
                         </li>
                     </ul>

@@ -1,3 +1,4 @@
+
 @extends('layouts.master4')
 @section('css')
         <!-- INTERNAL SELECT2 CSS -->
@@ -17,20 +18,20 @@
 @endsection
 @section('page-header')
                 <!-- PAGE-HEADER -->
-                @include('partials._notification')
+                
 				<div class="page-header">
 					<div>
-						<h1 class="page-title">Liste des utilisateurs</h1>
+						<h1 class="page-title">Liste des Espèces Végétales</h1>
 						<ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{route('accueil')}}">Accueil</a></li>
-							<li class="breadcrumb-item active" aria-current="page">utilisateurs</li>
+							<li class="breadcrumb-item active" aria-current="page">Espèces Végétales</li>
 						</ol>
 					</div>
 					<div class="ml-auto pageheader-btn">
-                    <a class="btn btn-primary" href="{{route('utilisateurs.create')}}"  >  <span>
+                    <a class="btn btn-primary" href="{{route('espece_vegetales.create')}}">  <span>
                             <i class="fe fe-plus"></i>
                         </span>
-                        Ajouter un utilisateur</a>
+                        Ajouter une Espèce Végétale</a>
 
 
                     </button>
@@ -40,6 +41,7 @@
 				<!-- PAGE-HEADER END -->
 @endsection
 @section('content')
+@include('partials._notification')
 
 
 				<!-- ROW-1 OPEN -->
@@ -47,31 +49,31 @@
 					<div class="col-md-12 col-lg-12">
 						<div class="card">
 							<div class="card-header">
-								<h3 class="card-title">Liste des utilisateurs</h3>
+								<h3 class="card-title">Liste des Espèces Végétales</h3>
 							</div>
 							<div class="card-body">
 								<div class="table-responsive">
 									<table id="data-table1" class="table table-striped table-bordered text-nowrap w-100 table-sm">
 										<thead>
 											<tr>
+												<th class="wd-15p">Photo</th>
 												<th class="wd-15p">Nom</th>
-												<th class="wd-15p">Prénom</th>
-												<th class="wd-20p">Email</th>
-												<th class="wd-20p">Role</th>
-												<th class="wd-15p">Téléphone</th>
+												<th class="wd-15p">Famille</th>
+												<th class="wd-20p">Nom scientifique</th>
+												
                                                 {{-- <th>Actions</th> --}}
 											</tr>
 										</thead>
 										<tbody>
-                                            @foreach ($utilisateurs as $utilisateur)
+                                            @foreach ($especes as $espece)
 
 
 											<tr>
-												<td> <a class="text-dark" href="{{route('utilisateurs.show', $utilisateur)}}"> {{$utilisateur->nom}} </a></td>
-												<td> <a class="text-dark" href="{{route('utilisateurs.show', $utilisateur)}}">{{$utilisateur->prenom}} </a></td>
-												<td> <a class="text-dark" href="{{route('utilisateurs.show', $utilisateur)}}">{{$utilisateur->email}} </a></td>
-												<td> <a class="text-dark" href="{{route('utilisateurs.show', $utilisateur)}}">{{$utilisateur->role->designation}} </a></td>
-												<td> <a class="text-dark" href="{{route('utilisateurs.show', $utilisateur)}}">{{$utilisateur->tel}} </a></td>
+												<td> <a class="text-dark" href="{{route('espece_vegetales.show', $espece->uuid)}}"> <div class="col-auto"><span class="avatar brround avatar-md d-block cover-image" data-image-src="{{asset('storage').'/'.$espece->photo}}"></span></div> </a></td>
+												<td> <a class="text-dark" href="{{route('espece_vegetales.show', $espece->uuid)}}"> {{$espece->nom}} </a></td>
+												<td> <a class="text-dark" href="{{route('espece_vegetales.show', $espece->uuid)}}"> {{$espece->famille}} </a></td>
+												<td> <a class="text-dark" href="{{route('espece_vegetales.show', $espece->uuid)}}">{{$espece->nom_scientifique}}</a></td>
+												
                                             </tr>
                                             @endforeach
 

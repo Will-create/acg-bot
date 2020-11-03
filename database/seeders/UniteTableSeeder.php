@@ -40,8 +40,8 @@ class UniteTableSeeder extends Seeder
                 'long'                           =>rand(0,1).','.rand(800000,9000000),
                 'lat'                            =>rand(0,1).','.rand(800000,9000000),
                 'responsable_id'                 =>rand(1,$users->count()),
-                'logo'                           =>$faker->file($sourceDir= '/home/louisbertson/Desktop/criminalite/public/assets/images/users', $targetDir= '/home/louisbertson/Desktop/criminalite/public/logo_photos'),
-                'photo_couverture'               =>$faker->file($sourceDir= '/home/louisbertson/Desktop/criminalite/public/assets/images/users', $targetDir= '/home/louisbertson/Desktop/criminalite/public/cover_photos'),
+                'logo'                           =>$faker->file($sourceDir= '/home/louisbertson/Desktop/criminalite/public/assets/images/users', $targetDir= '/home/louisbertson/Desktop/criminalite/public/storage/logo_photos'),
+                'photo_couverture'               =>$faker->file($sourceDir= '/home/louisbertson/Desktop/criminalite/public/assets/images/users', $targetDir= '/home/louisbertson/Desktop/criminalite/public/storage/cover_photos'),
                 'uuid'                          =>Str::uuid()
             ]);
         }

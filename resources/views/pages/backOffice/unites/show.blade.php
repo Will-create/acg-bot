@@ -1,20 +1,30 @@
 @extends('layouts.master4')
+@section('page-header')
+                <!-- PAGE-HEADER -->
+                
+				<div class="page-header">
+					<div>
+                    <h1 class="page-title">{{$unite->designation}}</h1>
+						<ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{route('accueil')}}">Accueil</a></li>
+							<li class="breadcrumb-item active" aria-current="page">Unités</li>
+						</ol>
+					</div>
+					<div class="ml-auto pageheader-btn">
+                    <a class="btn btn-primary" href="{{route('unites.index')}}"  >  <span>
+                            <i class="fe fe-plus"></i>
+                        </span>
+                        Toutes les unités</a>
+
+
+                    </button>
+
+					</div>
+				</div>
+				<!-- PAGE-HEADER END -->
+@endsection
 @section('content')  
-<div class="page-header">
-    <div>
-    <h1 class="page-title">{{$unite->designation}}</h1>
-        
-    </div>
-    <div class="ml-auto pageheader-btn">
-        
-    
-            <span>
-                <i class="fa fa-location"></i>
-            </span> {{$unite->pays->nom}}
-       
-    </div>
-</div>
-<!-- ROW-5 -->
+
 <!-- ROW-2 -->
 <div class="row" style="height: auto">
     <div class="col-lg-4 col-md-12 col-sm-12 col-xl-3 mb-10" >
@@ -23,7 +33,7 @@
                 <h3 class="card-title">Photo de Couverture</h3>
             </div>
             <div class="card-body">
-            <img src="{{asset('storage').'/'.$unite->photo_couverture}}" style="min-width:100%; object-fit:cover; object-position: 50% 50%;" alt="" srcset="">
+            <img src="{{$unite->photo_couverture}}" style="min-width:100%; object-fit:cover; object-position: 50% 50%;" alt="" srcset="">
                 
             </div>
         </div>
@@ -32,7 +42,7 @@
                 <h3 class="card-title">Logo</h3>
             </div>
             <div class="card-body">
-            <img src="{{asset('storage').'/'.$unite->logo}}" style="min-width:100%; object-fit:cover; object-position: 50% 50%;" alt="" srcset="">
+            <img src="{{$unite->logo}}" style="min-width:100%; object-fit:cover; object-position: 50% 50%;" alt="" srcset="">
                 
             </div>
         </div>
@@ -84,9 +94,7 @@
                             <tr>
                             <td><strong>Responsable: </strong> {{$unite->responsable->nom}}</td>
                             </tr>
-                            <tr>
-                            <td><a href="{{route('unites.edit',['unite'=>$unite->uuid])}}" class="btn btn-primary">Modifier cette Unite</a></td>
-                            </tr>
+                            
                            
                         </tbody>
                     </table>
@@ -96,6 +104,25 @@
         </div>
     </div>
    </div>
+</div>
+<div class="modal-footer">
+    <form method="POST" action="{{route('unites.destroy',['unite'=>$unite->uuid])}}" onsubmit="return confirm('Voulez vous vraiment supprimer cette Unité?')">
+    {{ csrf_field() }}
+        @method('DELETE')
+        <button class="btn btn-danger">
+        Supprimer cette Unité
+        </button>
+    
+    </form>
+    
+    
+    <a href="{{route('unites.edit',['unite'=>$unite->uuid])}}" class="btn btn-primary">
+        Modifier cette Unite</a>
+
+<a href="{{ URL::previous() }}" class="btn btn-primary"> <span>
+        <i class="fe fe-close"></i>
+    </span> Retour</a>
+
 </div>
 
     

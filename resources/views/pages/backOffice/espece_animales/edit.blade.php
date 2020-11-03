@@ -21,17 +21,17 @@
                 @include('partials._notification')
 				<div class="page-header">
 					<div>
-						<h1 class="page-title">Liste des Villes</h1>
+						<h1 class="page-title">Liste des Espèces Animales</h1>
 						<ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{route('accueil')}}">Accueil</a></li>
-							<li class="breadcrumb-item active" aria-current="page">Nouveau</li>
+							<li class="breadcrumb-item active" aria-current="page">Modifier {{$espece->nom}}</li>
 						</ol>
 					</div>
 					<div class="ml-auto pageheader-btn">
-                    <a class="btn btn-primary" href="{{route('unites.index')}}"  >  <span>
+                    <a class="btn btn-primary" href="{{route('espece_animales.index')}}"  >  <span>
                             <i class="fe fe-list"></i>
                         </span>
-                        Toutes les villes</a>
+                        Toutes les Espèces Animales</a>
                     </button>
 
 					</div>
@@ -40,37 +40,64 @@
 @endsection
 @section('content')
 
-<form action="{{route('villes.store')}}" method="post" enctype="multipart/form-data">
+<form action="{{route('espece_animales.update',$espece->uuid)}}" method="post" enctype="multipart/form-data">
     @csrf
+    @method('PUT')
     <div class="card">
         <div class="card-body">
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
                         <label class="form-label" for="designation">Nom <strong class="text-danger">*</strong> </label>
-                        <input type="text" class="form-control" name="nom" placeholder="Nom" id="nom"  value="{{old('nom')}}" required>
+                        <input type="text" class="form-control" name="nom" placeholder="Nom" id="nom"  value="{{$espece->nom}}" required>
                         @error('nom')
+                        <span class="helper-text red-text">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="designation">Famille <strong class="text-danger">*</strong> </label>
+                        <input type="text" class="form-control" name="famille" placeholder="famille" id="famille"  value="{{$espece->famille}}" required>
+                        @error('famille')
                         <span class="helper-text red-text">
                             <strong>{{ $message }}</strong>
                         </span>
                         @enderror
 					</div>
                 </div>
+                
+                    
+                
                 <div class="col-md-6">
-					<div class="form-group">
-                        <label class="form-label" for="organisation">Pays <strong class="text-danger">*</strong></label>
-                        <select name="pays_id" id="" class="form-control custom-select select2">
-                            <option value="" selected > Sélectionner</option>
-                            @foreach ($pays as $pay)
-                        <option value="{{$pay->id}}">{{$pay->nom}}</option>
-                            @endforeach
-                        </select>
-                        @error('pays_id')
+					
+                        <div class="form-group">
+                            <label class="form-label" for="nom_scientifique">Nom Scientifique <strong class="text-danger">*</strong> </label>
+                            <input type="text" class="form-control" name="nom_scientifique" placeholder="Nom Scientifique" id="nom_scientifique"  value="{{$espece->nom_scientifique}}" required>
+                            @error('nom_scientifique')
+                            <span class="helper-text red-text">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                 
+                </div>
+                <div class="col-md-12">
+					
+                    <div class="card shadow">
+                        <div class="card-header">
+                            <h3 class="mb-0 card-title">Veuillez insérer une photo de de l'espèce</h3>
+                        </div>
+                        <div class="card-body">
+                            <input type="file" class="dropify" data-max-file-size="1M" name="photo" accept="" />
+                            @error('photo')
                         <span class="helper-text red-text">
                             <strong>{{ $message }}</strong>
                         </span>
                         @enderror
-					</div>
+                        </div>
+                    </div>
+                    
                     
 					
                     
@@ -82,7 +109,7 @@
     <div class="modal-footer">
         <button type="submit" class="btn btn-primary"> <span>
             <i class="fe fe-save"></i>
-        </span> Enregistrer</button>
+        </span> Mettre a jours</button>
 
     </div>
 </form>

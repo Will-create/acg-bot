@@ -69,7 +69,7 @@ class VilleTableSeeder extends Seeder
             Ville::create([
                 'nom'=>$ville[1],
                 'uuid'=>Str::uuid(),
-                'pays_id'=>$ville[2]
+                'pays_id'=>rand(1,16)
             ]);
         }
     }

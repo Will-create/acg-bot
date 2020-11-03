@@ -100,6 +100,7 @@ class UniteController extends Controller
           $unite->uuid=Str::uuid();
           $unite->save();
           
+          $request->session()->flash('status','Unité créée avec succès!!!');
           return redirect()->route('unites.index');
 
 
@@ -195,7 +196,7 @@ class UniteController extends Controller
              $unite->save(); 
          
          
-          
+          $request->session()->flash('status','Unité mise à jours avec succès!!!');
           return redirect()->route('unites.index');
     }
 
@@ -209,7 +210,7 @@ class UniteController extends Controller
     public function destroy(Request $request, Unite $unite)
     {
         $unite->delete();
-        
+        $request->session()->flash('warning','Unité supprimée avec succès!!!');
         return redirect()->route('unites.index')->with('message','Unité supprimée avec succès');
     }
 }

@@ -33,10 +33,9 @@
              @elseif(Auth::user()->role->designation == 'Coordonnateur National')
             @include('layouts.aside-menu-coodonnateur-national')
              @elseif(Auth::user()->role->designation == 'Chef d’Unité')
-            @include('layouts.aside-menu-agent-unite')
-             @elseif(Auth::user()->role->designation == 'Agent d’une Unité')
             @include('layouts.aside-menu-chef-unite')
-
+             @elseif(Auth::user()->role->designation == 'Agent d’une Unité')
+            @include('layouts.aside-menu-agent-unite')
             @endif
             @include('layouts.header')
             <br>

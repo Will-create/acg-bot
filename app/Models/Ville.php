@@ -14,8 +14,8 @@ class Ville extends Model
         return 'uuid';
     }
 
-    public function Pays(){
-        return $this->belongsTo('App\Models\Pay','id');
+    public function pays(){
+        return $this->belongsTo('App\Models\Pay','pays_id', 'id');
     }
     
 }
