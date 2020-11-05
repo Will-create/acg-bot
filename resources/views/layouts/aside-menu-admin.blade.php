@@ -15,11 +15,7 @@
 				                <i class="mdi mdi-home aide-icon"></i>
 				                <span class="side-menu__label">Tableau de board</span>
 				            </a>
-
 				        </li>
-
-
-
                         <li class="slide">
                             <a class="side-menu__item" data-toggle="slide" href="#">
 				                <i class="mdi mdi-account-multiple aide-icon"></i>
@@ -91,7 +87,7 @@
                                 <span class="side-menu__label">Nature des crimes</span><i class="angle fa fa-angle-right"></i>
                             </a>
                             <ul class="slide-menu">
-                                <li><a class="slide-item" href="#"><span>Nature des crimes</span></a></li>
+                            <li><a class="slide-item" href="{{route('nature_crimes.index')}}"><span>Nature des crimes</span></a></li>
                                 <li><a class="slide-item" href="#"><span>Nouveau </span></a></li>
                             </ul>
                         </li>

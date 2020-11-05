@@ -86,7 +86,7 @@
                             <div class="wideget-user text-center">
                                 <div class="wideget-user-desc">
                                     <div class="wideget-user-img">
-                                        <img class="" src="http://localhost:5000/assets/images/user.png" alt="img">
+                                    <img class="" src="{{asset('assets/images/user.png')}}" alt="img">
                                     </div>
                                     <div class="user-wrap">
                                     <h4 class="mb-1">{{Auth::user()->nom. ' '. Auth::user()->prenom}}</h4>
@@ -126,14 +126,14 @@
 
 										<tr>
 											<td>
-												<img src="http://localhost:5003/assets/images/users/3.jpg" alt="profile-user" class="brround  avatar-sm w-32 mr-2">
+                                            <img src="{{asset('assets/images/users/3.jpg')}}" alt="profile-user" class="brround  avatar-sm w-32 mr-2">
 												{{$coordonateur->pay->nom}}
 											</td>
                                         <td>{{$coordonateur->nom}}</td>
                                         <td>{{$coordonateur->prenom}}</td>
                                         <td>{{$coordonateur->tel}}</td>
 											<td>
-												<button type="button" class="badge {{$coordonateur->actif ? 'badge-success':'badge-danger'}} ">{{$coordonateur->actif ? 'Ativé':'Désactivé'}}</button>
+												<button type="button" class="badge {{$coordonateur->actif ? 'badge-success':'badge-danger'}}" style="border:none">{{$coordonateur->actif ? 'Ativé':'Désactivé'}}</button>
 											</td>
 										</tr>
                                         @empty

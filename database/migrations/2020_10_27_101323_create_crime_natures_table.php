@@ -17,6 +17,7 @@ class CreateCrimeNaturesTable extends Migration
             $table->id();
             $table->string('uuid');
             $table->string('nature');
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }
