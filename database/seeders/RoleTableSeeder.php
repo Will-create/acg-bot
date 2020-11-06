@@ -13,28 +13,58 @@ class RoleTableSeeder extends Seeder
      * @return void
      */
     public function run()
-    {
+    {  
         $roles = ['Agent d’une Unité', 'Chef d’Unité', 'Coordonnateur National', 'Coordonnateur Régional', 'Administrateur Général'];
-
+        Role::truncate();
         Role::create([
             'uuid'          => Str::uuid(),
-            'designation'   => 'Administrateur Général'
+            'designation'   => 'Administrateur Général',
+            'description'   => 'Le lorem ipsum est, en imprimerie, une suite de mots sans signification 
+                                utilisée à titre provisoire pour calibrer 
+                                une mise en page, le texte définitif venant 
+                                
+                                 
+                                '
         ]);
         Role::create([
             'uuid'          => Str::uuid(),
-            'designation'   => 'Agent d’une Unité'
+            'designation'   => 'Agent d’une Unité',
+            'description'   => 'Le lorem ipsum est, en imprimerie, une suite de mots sans signification 
+                                utilisée à titre provisoire pour calibrer 
+                                une mise en page, le texte définitif venant 
+                                
+                                 
+                                '
         ]);
         Role::create([
             'uuid'          => Str::uuid(),
-            'designation'   => 'Coordonnateur Régional'
+            'designation'   => 'Coordonnateur Régional',
+            'description'   => 'Le lorem ipsum est, en imprimerie, une suite de mots sans signification 
+                                utilisée à titre provisoire pour calibrer 
+                                une mise en page, le texte définitif venant 
+                                
+                                 
+                                '
         ]);
         Role::create([
             'uuid'          => Str::uuid(),
-            'designation'   => 'Coordonnateur National'
+            'designation'   => 'Coordonnateur National',
+            'description'   => 'Le lorem ipsum est, en imprimerie,  une suite de mots sans signification 
+                                utilisée à titre provisoire pour calibrer 
+                                une mise en page, le texte définitif venant 
+                                
+                                 
+                                '
         ]);
         Role::create([
             'uuid'          => Str::uuid(),
-            'designation'   => 'Chef d’Unité'
+            'designation'   => 'Chef d’Unité',
+            'description'   => 'Le lorem ipsum est, en imprimerie, une suite de mots sans signification 
+                                utilisée à titre provisoire pour calibrer 
+                                une mise en page, le texte définitif venant 
+                                
+                                 
+                                '
         ]);
 
     }

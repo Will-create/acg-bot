@@ -101,8 +101,8 @@
                                 <span class="side-menu__label">Roles</span><i class="angle fa fa-angle-right"></i>
                             </a>
                             <ul class="slide-menu">
-                                <li><a class="slide-item" href="#"><span>Roles</span></a></li>
-                                <li><a class="slide-item" href="#"><span>Nouveau </span></a></li>
+                                <li><a class="slide-item" href="{{route('roles.index')}}"><span>Roles</span></a></li>
+                                <li><a class="slide-item" href="{{route('roles.create')}}"><span>Nouveau </span></a></li>
                             </ul>
                         </li>
                         <li class="slide">
