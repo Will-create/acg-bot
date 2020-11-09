@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CrimeNature;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CrimeNatureController extends Controller
 {
@@ -14,7 +15,8 @@ class CrimeNatureController extends Controller
      */
     public function index()
     {
-        //
+        $naturesCrimes = CrimeNature::all();
+        return view('pages.backOffice.natureCrime.index', compact('naturesCrimes'));
     }
 
     /**
@@ -35,7 +37,20 @@ class CrimeNatureController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nature'            => 'required',
+            'description'       => 'nullable'
+        ]);
+
+        CrimeNature::create([
+                'nature'            => $request->nature,
+                'description'       => $request->description,
+                'uuid'              => Str::uuid(),
+
+        ]);
+
+        $request->session()->flash('status', 'Informations sauvégardées avec succès');
+        return redirect()->route('nature_crimes.index');
     }
 
     /**
@@ -67,9 +82,21 @@ class CrimeNatureController extends Controller
      * @param  \App\Models\CrimeNature  $crimeNature
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CrimeNature $crimeNature)
+    public function update(Request $request, CrimeNature $nature_crime)
     {
-        //
+        $request->validate([
+            'nature'            => 'required',
+            'description'       => 'nullable'
+        ]);
+
+        $nature_crime->update([
+                'nature'            => $request->nature,
+                'description'       => $request->description,
+
+        ]);
+
+        $request->session()->flash('status', 'Informations mises à jour avec succès');
+        return redirect()->route('nature_crimes.index');
     }
 
     /**
@@ -78,8 +105,10 @@ class CrimeNatureController extends Controller
      * @param  \App\Models\CrimeNature  $crimeNature
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CrimeNature $crimeNature)
+    public function destroy(CrimeNature $nature_crime, Request $request)
     {
-        //
+        $nature_crime->delete();
+        $request->session()->flash('warning', 'La donnéés a été bien supprimée');
+        return redirect()->route('nature_crimes.index');
     }
 }

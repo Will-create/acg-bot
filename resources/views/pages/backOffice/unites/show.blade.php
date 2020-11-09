@@ -1,4 +1,4 @@
-@extends('layouts.master4')
+@extends('layouts.masterCarte')
 @section('page-header')
                 <!-- PAGE-HEADER -->
                 
@@ -54,7 +54,7 @@
             </div>
             <div class="card-body">
                 
-            <iframe  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2755.259420560401!2d-1.4908392951184721!3d12.398619078278948!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xe2ebfa8b6c328fb%3A0x29de408f0ea86fc0!2sParc%20Bangr%20Weogo!5e0!3m2!1sfr!2sbf!4v1604034470503!5m2!1sfr!2sbf" width="800" height="510" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+            <div id="map"></div>
             </div>
         </div>
     </div>
@@ -124,6 +124,32 @@
     </span> Retour</a>
 
 </div>
+<input id="long" type="hidden" value="{{$unite->long}}">
+<input id="lat" type="hidden" value="{{$unite->lat}}">
 
+<script type="text/javascript">
+    // On initialise la latitude et la longitude de Paris (centre de la carte)
+    var lat =parseFloat(document.getElementById('lat').value) ;
+    var lon =parseFloat(document.getElementById('long').value);
+
+    var macarte = null;
+    // Fonction d'initialisation de la carte
+    function initMap() {
+        // Créer l'objet "macarte" et l'insèrer dans l'élément HTML qui a l'ID "map"
+        macarte = L.map('map').setView([lat, lon], 4);
+        // Leaflet ne récupère pas les cartes (tiles) sur un serveur par défaut. Nous devons lui préciser où nous souhaitons les récupérer. Ici, openstreetmap.fr
+        L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
+            // Il est toujours bien de laisser le lien vers la source des données
+            attribution: 'données © <a href="//osm.org/copyright">OpenStreetMap</a>/ODbL - rendu <a href="//openstreetmap.fr">OSM France</a>',
+            minZoom: 1,
+            maxZoom: 20
+        }).addTo(macarte);
+        var marker = L.marker([lat, lon]).addTo(macarte);
+    }
+    window.onload = function(){
+// Fonction d'initialisation qui s'exécute lorsque le DOM est chargé
+initMap(); 
+    };
+</script>
     
 @endsection

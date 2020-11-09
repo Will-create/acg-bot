@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class CrimeNature extends Model
 {
     use HasFactory;
-    protected $fillable=['uuid','nature'];
     public function getRouteKeyName(){
         return 'uuid';
     }
+    protected $fillable = ['uuid', 'nature', 'description'];
 }

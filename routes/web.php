@@ -26,7 +26,9 @@ Auth::routes();
     Route::resource('roles',                                    'RoleController');
     Route::get('utilisateurs/gerer/{utilisateur}',              'UtilisateursController@gerer')->name('gerer-utilisateur');
     Route::resource('crimes',                                   'CrimeController');
-    
+
+    Route::resource('espace_vegetal',                           'EspeceVegetalController');
+    Route::resource('nature_crimes',                            'CrimeNatureController');
 
     Route::get('/home','UniteController@index')->name('home');
 

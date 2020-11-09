@@ -114,7 +114,16 @@ class UniteController extends Controller
      */
     public function show(Unite $unite)
     {  
-        return view('pages.backOffice.unites.show', compact('unite'));
+
+
+        function openstreetmap_url($lon, $lat, $zoom=13) {
+            $url = 'https:⁄⁄www.openstreetmap.org/?mlat='.$lat.'&amp;mlon='.$lon.'#map='.$zoom.'/'.$lat.'/'.$lon;
+            return $url;
+        }
+
+        
+        $carte=openstreetmap_url($unite->long,$unite->lat);
+        return view('pages.backOffice.unites.show', compact('unite','carte'));
     }
 
     /**
