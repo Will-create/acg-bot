@@ -8,7 +8,12 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 
 class EspeceAnimalController extends Controller
-{/**
+{
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -16,14 +21,13 @@ class EspeceAnimalController extends Controller
     public function index()
     {
         $especes=EspeceAnimal::orderBy('nom','asc')->get();
-     
         return view('pages.backOffice.espece_animales.index',compact('especes'));
     }
-    
+
 
     public function create()
     {
-        
+
         return view('pages.backOffice.espece_animales.form');
     }
 
@@ -34,7 +38,7 @@ class EspeceAnimalController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
+    {
         $data=request()->validate([
             'nom'=> ['required','string','max:255','min:3'],
             'famille'=> ['required','string','max:255','min:3'],
@@ -42,39 +46,39 @@ class EspeceAnimalController extends Controller
             'photo'=> ['required','image'],
 
 
-            
-           
+
+
           ]);
 
 
           $espece= new EspeceAnimal;
-       
+
           if($request->hasFile('photo')){
-            
+
             $file = $request->file('photo');
-            $timestamp = str_replace([' ', ':'], '-', Carbon::now()->toDateTimeString()); 
+            $timestamp = str_replace([' ', ':'], '-', Carbon::now()->toDateTimeString());
             $name = $timestamp. '-' .$file->getClientOriginalName();
             $photoPath=request('photo')->storeAs('espece_animale_uploads',$name,'public');
             $espece->photo = $photoPath;
-         
+
         }
 
           $espece->nom=$data['nom'];
-         
+
           $espece->famille=$data['famille'];
           $espece->nom_scientifique=$data['nom_scientifique'];
-          
+
           $espece->uuid=Str::uuid();
           $espece->save();
           $request->session()->flash('status', 'Espèce Animale ajouté avec succès');
           return redirect()->route('espece_animales.index');
     }
 
-   
+
     public function show($uuid)
-    {  
+    {
         $espece=EspeceAnimal::where('uuid',$uuid)->first();
-       
+
         return view('pages.backOffice.espece_animales.show', compact('espece'));
     }
 
@@ -87,7 +91,7 @@ class EspeceAnimalController extends Controller
     public function edit($uuid)
     {
         $espece=EspeceAnimal::where('uuid',$uuid)->first();
-       
+
 
         return view('pages.backOffice.espece_animales.edit',compact('espece'));
     }
@@ -101,7 +105,7 @@ class EspeceAnimalController extends Controller
      */
     public function update(Request $request, $uuid)
     {
-        
+
         $data=request()->validate([
             'nom'=> ['required','string','max:255','min:3'],
             'famille'=> ['required','string','max:255','min:3'],
@@ -111,22 +115,22 @@ class EspeceAnimalController extends Controller
 
 
           $espece=EspeceAnimal::where('uuid',$uuid)->first();
-       
+
           if($request->hasFile('photo')){
-            
+
             $file = $request->file('photo');
-            $timestamp = str_replace([' ', ':'], '-', Carbon::now()->toDateTimeString()); 
+            $timestamp = str_replace([' ', ':'], '-', Carbon::now()->toDateTimeString());
             $name = $timestamp. '-' .$file->getClientOriginalName();
             $photoPath=request('photo')->storeAs('espece_animale_uploads',$name,'public');
             $espece->photo = $photoPath;
-         
+
         }
 
           $espece->nom=$data['nom'];
-         
+
           $espece->famille=$data['famille'];
           $espece->nom_scientifique=$data['nom_scientifique'];
-          
+
           $espece->uuid=Str::uuid();
           $espece->save();
           $request->session()->flash('status', 'Espèce Animale mise a jours avec succès');
@@ -145,7 +149,7 @@ class EspeceAnimalController extends Controller
     {
         $espece=EspeceAnimal::where('uuid',$uuid)->first();
         $espece->delete();
-        
+
         return redirect()->route('espece_animales.index')->with('status','EspeceAnimal supprimée avec succès');
     }
 }

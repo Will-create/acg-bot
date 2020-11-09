@@ -20,6 +20,9 @@ class DatabaseSeeder extends Seeder
         //$this->call(RoleTableSeeder::class);
         //$this->call(UserTableSeeder::class);
         $this->call(UniteTableSeeder::class);
+        $this->call(OrdreTableSeeder::class);
+        $this->call(EspaceVegetalTableSeeder::class);
+        $this->call(EspaceAnimaleTableSeeder::class);
 
     }
 }

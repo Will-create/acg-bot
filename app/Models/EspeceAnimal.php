@@ -13,8 +13,8 @@ class EspeceAnimal extends Model
         'nom',
         'uuid',
         'photo',
-        'famille'
-        
+        'famille',
+        'nom_scientifique'
     ];
 
     public function getRouteKeyName(){

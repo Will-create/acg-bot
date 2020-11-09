@@ -16,15 +16,26 @@ class CreateCrimeAuteursTable extends Migration
         Schema::create('crime_auteurs', function (Blueprint $table) {
             $table->id();
             $table->string('uuid');
-            $table->foreignId('crime_id');
-            $table->string('nom_complet');
-            $table->string('nationalite');
+            $table->unsignedBigInteger('crime_id');
+            $table->string('nom');
+            $table->string('prenom');
+            $table->text('adresse');
+            $table->string('pays');
+            $table->string('ville');
+            $table->enum('type', ['auteur', 'complice']);
             $table->integer('age');
-            $table->string('travail');
-            $table->boolean('alphabetise');
-            $table->text('affaire_judiciaire');
             $table->enum('genre', ['masculin', 'feminin']);
+            $table->string('education');
+            $table->boolean('voyageur_international');
+            $table->integer('Revenue');
+            $table->string('nationalite');
+            $table->string('travail');
+            $table->text('affaire_judiciaire');
             $table->timestamps();
+
+
+            $table->foreign('crime_id')->references('id')->on('crimes')->onDelete('restrict')
+            ->onUpdate('restrict');
         });
     }
 

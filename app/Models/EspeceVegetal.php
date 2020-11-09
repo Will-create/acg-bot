@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class EspeceVegetal extends Model
 {
     use HasFactory;
+    protected $fillable=[
+        'nom',
+        'uuid',
+        'photo',
+        'famille',
+        'nom_scientifique'
+    ];
 }

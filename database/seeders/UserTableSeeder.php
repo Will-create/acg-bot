@@ -31,7 +31,7 @@ class UserTableSeeder extends Seeder
                 'actif'                 => true,
                 'role_id'               => $role->id,
                 'unite_id'              => 1,
-                'profile_photo_path'    => $faker->file($sourceDir = '/home/louisbertson/Desktop/criminalite/public/assets/images/users', $targetDir = '/home/louisbertson/Desktop/criminalite/public/user_profile_photo', false),
+                'profile_photo_path'    => $faker->file($sourceDir = 'D:\Switch Maker\image', $targetDir = 'D:\Switch Maker\criminalite\storage\app\public\user_photo_profile', false),
                 'prenom'                => $faker->lastName,
                 'email'                 => $faker->safeEmail,
                 'tel'                   => $faker->phoneNumber,

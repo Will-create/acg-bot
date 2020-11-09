@@ -98,7 +98,7 @@
             // number type to use for placeholders
             placeholderNumberType: "MOBILE",
             // the countries at the top of the list. defaults to united states and united kingdom
-            preferredCountries: [ "bf", "gb" ],
+            preferredCountries: [ "us", "gb" ],
             // display the country dial code next to the selected flag so it's not part of the typed number
             separateDialCode: false,
             // specify the path to the libphonenumber script to enable validation/formatting

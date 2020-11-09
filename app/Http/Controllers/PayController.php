@@ -23,7 +23,7 @@ class PayController extends Controller
         return view('pages.backOffice.pays.list', compact('pays'));
     }
 
-   
+
     /**
      * Display the specified resource.
      *
@@ -36,5 +36,5 @@ class PayController extends Controller
         return view('pages.backOffice.pays.index', compact('pay','villes'));
     }
 
-    
+
 }

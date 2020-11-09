@@ -55,21 +55,13 @@
                         </span>
                         @enderror
                     </div>
-                    <div class="form-group">
-                        <label class="form-label" for="designation">Famille <strong class="text-danger">*</strong> </label>
-                        <input type="text" class="form-control" name="famille" placeholder="famille" id="famille"  value="{{old('famille')}}" required>
-                        @error('famille')
-                        <span class="helper-text red-text">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-					</div>
+
                 </div>
-                
-                    
-                
+
+
+
                 <div class="col-md-6">
-					
+
                         <div class="form-group">
                             <label class="form-label" for="nom_scientifique">Nom Scientifique <strong class="text-danger">*</strong> </label>
                             <input type="text" class="form-control" name="nom_scientifique" placeholder="Nom Scientifique" id="nom_scientifique"  value="{{old('nom_scientifique')}}" required>
@@ -79,10 +71,21 @@
                             </span>
                             @enderror
                         </div>
-                 
+
                 </div>
                 <div class="col-md-12">
-					
+                    <div class="form-group">
+                        <label class="form-label" for="designation">Famille <strong class="text-danger">*</strong> </label>
+                        <input type="text" class="form-control" name="famille" placeholder="famille" id="famille"  value="{{old('famille')}}" required>
+                        @error('famille')
+                        <span class="helper-text red-text">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
+                </div>
+                <div class="col-md-12">
+
                     <div class="card shadow">
                         <div class="card-header">
                             <h3 class="mb-0 card-title">Veuillez insérer une photo de de l'espèce</h3>
@@ -96,12 +99,12 @@
                         @enderror
                         </div>
                     </div>
-                    
-                    
-					
-                    
+
+
+
+
                 </div>
-                
+
             </div>
         </div>
     </div>

@@ -3,10 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\Crime;
+use App\Models\Pay;
+use App\Models\Unite;
 use Illuminate\Http\Request;
 
 class CrimeController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -24,7 +30,10 @@ class CrimeController extends Controller
      */
     public function create()
     {
-        //
+        $pays = Pay::all();
+        $unites = Unite::all();
+        return response()->json(['pays' => $pays, 'unites' => $unites]);
+        // return view('pages.backOffice.crimes.create', compact('pays', 'unites'));
     }
 
     /**

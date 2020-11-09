@@ -1,7 +1,7 @@
 @extends('layouts.masterCarte')
 @section('page-header')
                 <!-- PAGE-HEADER -->
-                
+
 				<div class="page-header">
 					<div>
                     <h1 class="page-title">{{$unite->designation}}</h1>
@@ -23,7 +23,7 @@
 				</div>
 				<!-- PAGE-HEADER END -->
 @endsection
-@section('content')  
+@section('content')
 
 <!-- ROW-2 -->
 <div class="row" style="height: auto">
@@ -94,12 +94,12 @@
                             <tr>
                             <td><strong>Responsable: </strong> {{$unite->responsable->nom}}</td>
                             </tr>
-                            
-                           
+
+
                         </tbody>
                     </table>
                 </div>
-                
+
             </div>
         </div>
     </div>
@@ -112,10 +112,10 @@
         <button class="btn btn-danger">
         Supprimer cette Unité
         </button>
-    
+
     </form>
-    
-    
+
+
     <a href="{{route('unites.edit',['unite'=>$unite->uuid])}}" class="btn btn-primary">
         Modifier cette Unite</a>
 
@@ -152,4 +152,5 @@ initMap();
     };
 </script>
     
+
 @endsection
