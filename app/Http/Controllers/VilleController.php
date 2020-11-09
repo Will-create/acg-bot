@@ -105,14 +105,6 @@ class VilleController extends Controller
             
            
           ]);
-
-
-          
-       
-
-         
-          
-
           $ville->nom=$data['nom'];
          
           $ville->pays_id =$data['pays_id'];

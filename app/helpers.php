@@ -32,6 +32,7 @@ if (!function_exists('promotion')) {
 //         return "(".substr($data, 0, 5).") ".substr($data, 5, 2)." ".substr($data,7, 2 )." ".substr($data,9, 2)." ".substr($data,11, 2);
 //     }
 // }
+
 if (!function_exists('formatel')) {
     function formatel   ($data)
     {
