@@ -41,7 +41,7 @@
             <!-- ROW-1 OPEN -->
             <div class="row">
                 <div class="col-lg-4">
-                   
+
                     <div class="card">
                         <div class="card-header">
                             <div class="float-left">
@@ -50,14 +50,13 @@
                             <div class="clearfix"></div>
                         </div>
                         <div class="card-body wideget-user-contact">
-                            
-                            
-                            <img src="{{asset('storage').'/'.$espece->photo}}" style="min-width:100%; object-fit:cover; object-position: 50% 50%;" alt="" srcset="">
+
+
+                            <img src="{{asset('storage/espece_animale_uploads/'.$espece->photo)}}" style="min-width:100%; object-fit:cover; object-position: 50% 50%;" alt="" srcset="">
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-8">
-
                     <div class="tab-content">
                         <div class="tab-pane active show" id="tab-51">
                             <div class="card">
@@ -77,7 +76,7 @@
                         </div>
 
                     </div>
-                    
+
                 </div><!-- COL-END -->
             </div>
             <div class="modal-footer">
@@ -87,17 +86,17 @@
                     <button class="btn btn-danger">
                     Supprimer cette Espèce Animale
                     </button>
-                
+
                 </form>
-                
-                
+
+
                 <a href="{{route('espece_animales.edit',$espece->uuid)}}" class="btn btn-primary">
                     Modifier cette Espèce Animale</a>
-            
+
             <a href="{{ URL::previous() }}" class="btn btn-primary"> <span>
                     <i class="fe fe-close"></i>
                 </span> Retour</a>
-            
+
             </div>
             <!-- ROW-1 CLOSED -->
 @endsection

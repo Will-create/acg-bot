@@ -18,7 +18,7 @@
 @endsection
 @section('page-header')
                 <!-- PAGE-HEADER -->
-                
+
 				<div class="page-header">
 					<div>
 						<h1 class="page-title">Liste des Espèces Végétales</h1>
@@ -32,8 +32,6 @@
                             <i class="fe fe-plus"></i>
                         </span>
                         Ajouter une Espèce Végétale</a>
-
-
                     </button>
 
 					</div>
@@ -60,7 +58,7 @@
 												<th class="wd-15p">Nom</th>
 												<th class="wd-15p">Famille</th>
 												<th class="wd-20p">Nom scientifique</th>
-												
+
                                                 {{-- <th>Actions</th> --}}
 											</tr>
 										</thead>
@@ -69,11 +67,11 @@
 
 
 											<tr>
-												<td> <a class="text-dark" href="{{route('espece_vegetales.show', $espece->uuid)}}"> <div class="col-auto"><span class="avatar brround avatar-md d-block cover-image" data-image-src="{{asset('storage').'/'.$espece->photo}}"></span></div> </a></td>
+												<td> <a class="text-dark" href="{{route('espece_vegetales.show', $espece->uuid)}}"> <div class="col-auto"><span class="avatar brround avatar-md d-block cover-image" data-image-src="{{asset('storage/espece_vegetal_uploads/'.$espece->photo)}}"></span></div> </a></td>
 												<td> <a class="text-dark" href="{{route('espece_vegetales.show', $espece->uuid)}}"> {{$espece->nom}} </a></td>
 												<td> <a class="text-dark" href="{{route('espece_vegetales.show', $espece->uuid)}}"> {{$espece->famille}} </a></td>
 												<td> <a class="text-dark" href="{{route('espece_vegetales.show', $espece->uuid)}}">{{$espece->nom_scientifique}}</a></td>
-												
+
                                             </tr>
                                             @endforeach
 

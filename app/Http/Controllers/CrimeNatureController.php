@@ -8,6 +8,10 @@ use Illuminate\Support\Str;
 
 class CrimeNatureController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *

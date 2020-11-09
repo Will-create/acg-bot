@@ -34,7 +34,16 @@
 		<script src="{{URL::asset('assets/plugins/scroll-bar/jquery.mCustomScrollbar.concat.min.js')}}"></script>
 
 
-		@yield('js')
+        {{-- @yield('js') --}}
+        	<!-- INTERNAL FORN WIZARD JS-->
+		<script src="{{URL::asset('assets/plugins/formwizard/jquery.smartWizard.js')}}"></script>
+		<script src="{{URL::asset('assets/plugins/formwizard/fromwizard.js')}}"></script>
+
+		<!-- INTERNAL ACCORDION-WIZARD FORM JS -->
+		<script src="{{URL::asset('assets/plugins/accordion-Wizard-Form/jquery.accordion-wizard.min.js')}}"></script>
+
+		<!--INTERNAL  ADVANCED FORM JS -->
+		<script src="{{URL::asset('assets/js/advancedform.js')}}"></script>
 		<!-- SIDEBAR JS -->
 		<script src="{{URL::asset('assets/plugins/sidebar/sidebar.js')}}"></script>
 		<!-- CUSTOM JS -->

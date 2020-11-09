@@ -1,7 +1,7 @@
 @extends('layouts.master4')
 @section('page-header')
                 <!-- PAGE-HEADER -->
-                
+
 				<div class="page-header">
 					<div>
                     <h1 class="page-title">{{$unite->designation}}</h1>
@@ -23,7 +23,7 @@
 				</div>
 				<!-- PAGE-HEADER END -->
 @endsection
-@section('content')  
+@section('content')
 
 <!-- ROW-2 -->
 <div class="row" style="height: auto">
@@ -33,8 +33,8 @@
                 <h3 class="card-title">Photo de Couverture</h3>
             </div>
             <div class="card-body">
-            <img src="{{$unite->photo_couverture}}" style="min-width:100%; object-fit:cover; object-position: 50% 50%;" alt="" srcset="">
-                
+            <img src="{{asset('storage/cover_photos/'. $unite->photo_couverture)}}" style="min-width:100%; object-fit:cover; object-position: 50% 50%;" alt="" srcset="">
+
             </div>
         </div>
         <div class="card">
@@ -42,8 +42,8 @@
                 <h3 class="card-title">Logo</h3>
             </div>
             <div class="card-body">
-            <img src="{{$unite->logo}}" style="min-width:100%; object-fit:cover; object-position: 50% 50%;" alt="" srcset="">
-                
+            <img src="{{asset('storage/logo_photos/' . $unite->logo)}}" style="min-width:100%; object-fit:cover; object-position: 50% 50%;" alt="" srcset="">
+
             </div>
         </div>
     </div>
@@ -53,7 +53,7 @@
                 <h3 class="card-title">Localisation</h3>
             </div>
             <div class="card-body">
-                
+
             <iframe  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2755.259420560401!2d-1.4908392951184721!3d12.398619078278948!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xe2ebfa8b6c328fb%3A0x29de408f0ea86fc0!2sParc%20Bangr%20Weogo!5e0!3m2!1sfr!2sbf!4v1604034470503!5m2!1sfr!2sbf" width="800" height="510" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
             </div>
         </div>
@@ -94,12 +94,12 @@
                             <tr>
                             <td><strong>Responsable: </strong> {{$unite->responsable->nom}}</td>
                             </tr>
-                            
-                           
+
+
                         </tbody>
                     </table>
                 </div>
-                
+
             </div>
         </div>
     </div>
@@ -112,10 +112,10 @@
         <button class="btn btn-danger">
         Supprimer cette Unité
         </button>
-    
+
     </form>
-    
-    
+
+
     <a href="{{route('unites.edit',['unite'=>$unite->uuid])}}" class="btn btn-primary">
         Modifier cette Unite</a>
 
@@ -125,5 +125,5 @@
 
 </div>
 
-    
+
 @endsection

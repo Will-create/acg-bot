@@ -18,9 +18,16 @@ class CreateEspeceVegetalsTable extends Migration
             $table->string('uuid');
             $table->string('nom');
             $table->string('famille');
+            $table->string('statut_uicn')->nullable();
+            $table->string('statut_cites')->nullable();
+            $table->unsignedBigInteger('ordre_id');
             $table->string('nom_scientifique')->nullable();
             $table->mediumText('photo')->nullable();
             $table->timestamps();
+
+
+            $table->foreign('ordre_id')->references('id')->on('ordres')->onDelete('restrict')
+            ->onUpdate('restrict');
         });
     }
 

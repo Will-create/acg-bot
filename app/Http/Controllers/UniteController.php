@@ -13,6 +13,10 @@ use Illuminate\Http\Request;
 
 class UniteController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -21,8 +25,6 @@ class UniteController extends Controller
     public function index()
     {
         $unites=Unite::all();
-
-     
         return view('pages.backOffice.unites.index',compact('unites'));
     }
 
@@ -31,17 +33,16 @@ class UniteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    
+
     public function create()
     {
         $pays=Pay::where('id',auth()->user()->id)->orderBy('nom', 'asc')->get();
         $villes=Ville::where('pays_id',$pays[0]->id)->orderBy('pays_id', 'asc')->get();
         $responsables=User::all();
-        $types=Type::all();
-
+        $types= Type::all();
         return view('pages.backOffice.unites.form',compact('villes','pays', 'responsables','types'));
     }
-    
+
 
     /**
      * Store a newly created resource in storage.
@@ -50,7 +51,7 @@ class UniteController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
+    {
         $data=request()->validate([
             'designation'=> ['required','string','max:255','min:3'],
             'type_id'=> ['required','integer'],
@@ -60,28 +61,28 @@ class UniteController extends Controller
             'lat'=> ['required','string','max:255','min:8'],
             'long'=> ['required','string','max:255','min:8'],
             'logo'=> ['image','required'],
-            'photo_couverture'=> ['image','required'], 
+            'photo_couverture'=> ['image','required'],
             'pays_id'=> ['required','integer'],
             'ville_id'=> ['required','integer'],
-           
+
           ]);
 
 
           $unite= new Unite;
-       
 
-         
+
+
           if($request->hasFile('logo')){
-            
+
             $file = $request->file('logo');
-            $timestamp = str_replace([' ', ':'], '-', Carbon::now()->toDateTimeString()); 
+            $timestamp = str_replace([' ', ':'], '-', Carbon::now()->toDateTimeString());
             $name = $timestamp. '-' .$file->getClientOriginalName();
             $logoPath=request('logo')->storeAs('logo_uploads',$name,'public');
-            $unite->logo = $logoPath;    
+            $unite->logo = $logoPath;
          }
          if($request->hasFile('photo_couverture')){
             $file = $request->file('photo_couverture');
-            $timestamp = str_replace([' ', ':'], '-', Carbon::now()->toDateTimeString()); 
+            $timestamp = str_replace([' ', ':'], '-', Carbon::now()->toDateTimeString());
             $name = $timestamp. '-' .$file->getClientOriginalName();
             $photoPath=request('photo_couverture')->storeAs('photo_uploads',$name,'public');
             $unite->photo_couverture = $photoPath;
@@ -90,7 +91,7 @@ class UniteController extends Controller
           $unite->designation=$data['designation'];
           $unite->type_id=$data['type_id'];
           $unite->tel=$data['tel'];
-    
+
           $unite->adresse=$data['adresse'];
           $unite->responsable_id=$data['responsable_id'];
           $unite->lat=$data['lat'];
@@ -99,7 +100,7 @@ class UniteController extends Controller
           $unite->ville_id=$data['ville_id'];
           $unite->uuid=Str::uuid();
           $unite->save();
-          
+
           $request->session()->flash('status','Unité créée avec succès!!!');
           return redirect()->route('unites.index');
 
@@ -113,7 +114,7 @@ class UniteController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Unite $unite)
-    {  
+    {
         return view('pages.backOffice.unites.show', compact('unite'));
     }
 
@@ -150,42 +151,42 @@ class UniteController extends Controller
             'lat'=> ['string','max:255','min:8'],
             'long'=> ['string','max:255','min:8'],
             'logo'=> ['image'],
-            'photo_couverture'=> ['image'], 
+            'photo_couverture'=> ['image'],
             'pays_id'=> ['required','integer'],
             'ville_id'=> ['required','integer'],
-           
+
           ]);
 
 
-    
-       
+
+
 
          if($request->hasFile('logo')){
-            
+
             $file = $request->file('logo');
-            $timestamp = str_replace([' ', ':'], '-', Carbon::now()->toDateTimeString()); 
+            $timestamp = str_replace([' ', ':'], '-', Carbon::now()->toDateTimeString());
             $name = $timestamp. '-' .$file->getClientOriginalName();
             $logoPath=request('logo')->storeAs('logo_uploads',$name,'public');
             $unite->logo = $logoPath;
-            
-          
-              
+
+
+
          }
          if($request->hasFile('photo_couverture')){
             $file = $request->file('photo_couverture');
-            $timestamp = str_replace([' ', ':'], '-', Carbon::now()->toDateTimeString()); 
+            $timestamp = str_replace([' ', ':'], '-', Carbon::now()->toDateTimeString());
             $name = $timestamp. '-' .$file->getClientOriginalName();
             $photoPath=request('photo_couverture')->storeAs('photo_uploads',$name,'public');
             $unite->photo_couverture = $photoPath;
              }
-          
 
-         
-          
+
+
+
           $unite->designation=$data['designation'];
           $unite->type=$data['type_id'];
           $unite->tel=$data['tel'];
-          
+
           $unite->adresse=$data['adresse'];
           $unite->responsable_id=$data['responsable_id'];
           $unite->lat=$data['lat'];
@@ -193,9 +194,9 @@ class UniteController extends Controller
           $unite->pays_id =$data['pays_id'];
           $unite->ville_id=$data['ville_id'];
           $unite->uuid=Str::uuid();
-             $unite->save(); 
-         
-         
+             $unite->save();
+
+
           $request->session()->flash('status','Unité mise à jours avec succès!!!');
           return redirect()->route('unites.index');
     }

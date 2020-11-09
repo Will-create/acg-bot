@@ -25,7 +25,15 @@
 		<link href="{{URL::asset('assets/css/icons.css')}}" rel="stylesheet" />
 
 
-		@yield('css')
+        {{-- @yield('css') --}}
+        		<!-- FORN WIZARD CSS -->
+		<link href="{{URL::asset('assets/plugins/formwizard/smart_wizard.css')}}" rel="stylesheet">
+		<link href="{{URL::asset('assets/plugins/formwizard/smart_wizard_theme_arrows.css')}}" rel="stylesheet">
+		<link href="{{URL::asset('assets/plugins/formwizard/smart_wizard_theme_circles.css')}}" rel="stylesheet">
+		<link href="{{URL::asset('assets/plugins/formwizard/smart_wizard_theme_dots.css')}}" rel="stylesheet">
+		<link href="{{URL::asset('assets/plugins/forn-wizard/css/demo.css')}}" rel="stylesheet">
+
+
 		<!-- SIDEBAR CSS -->
 		<link href="{{URL::asset('assets/plugins/sidebar/sidebar.css')}}" rel="stylesheet">
 

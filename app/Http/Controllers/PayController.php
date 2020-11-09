@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 
 class PayController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -19,7 +23,7 @@ class PayController extends Controller
         return view('pages.backOffice.pays.list', compact('pays'));
     }
 
-   
+
     /**
      * Display the specified resource.
      *
@@ -32,5 +36,5 @@ class PayController extends Controller
         return view('pages.backOffice.pays.index', compact('pay','villes'));
     }
 
-    
+
 }

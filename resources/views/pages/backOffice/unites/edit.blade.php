@@ -66,10 +66,10 @@
                         </span>
                         @enderror
                     </div>
-                   
-					
 
-                    <div class="form-group">
+
+
+                    <div class="form-group" style="margin-top: 25px">
                         <label class="form-label" for="organisation">Pays <strong class="text-danger">*</strong></label>
                         <select name="pays_id" id="" class="form-control custom-select select2">
                         <option value="{{$unite->pays->id}}" selected> {{$unite->pays->nom}}</option>
@@ -82,6 +82,7 @@
                             <strong>{{ $message }}</strong>
                         </span>
                         @enderror
+                        <br>
 					</div>
 					<div class="form-group">
                         <label class="form-label" for="organisation">Ville <strong class="text-danger">*</strong></label>
@@ -106,7 +107,7 @@
                         </span>
                         @enderror
 					</div>
-                    
+
                 </div>
                 <div class="col-md-6">
 					<div class="form-group">
@@ -126,7 +127,7 @@
                     </div>
                     <div class="form-group">
                         <label class="form-label" for="adresse">Adresse complete<strong class="text-danger">*</strong></label>
-                        <textarea class="form-control" rows="4" name="adresse" id="adresse"   required> {{$unite->adresse}}</textarea>
+                        <textarea class="form-control" rows="5" name="adresse" id="adresse"   required> {{$unite->adresse}}</textarea>
                         @error('adresse')
                         <span class="helper-text red-text">
                             <strong>{{ $message }}</strong>

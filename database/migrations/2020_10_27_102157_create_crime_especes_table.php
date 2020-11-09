@@ -16,10 +16,12 @@ class CreateCrimeEspecesTable extends Migration
         Schema::create('crime_especes', function (Blueprint $table) {
             $table->id();
             $table->string('uuid');
-            $table->foreignId('crime_id');
-            $table->foreignId('espece_id');
+            $table->unsignedBigInteger('crime_id');
             $table->string('espece');
             $table->timestamps();
+
+            $table->foreign('crime_id')->references('id')->on('crimes')->onDelete('restrict')
+            ->onUpdate('restrict');
         });
     }
 

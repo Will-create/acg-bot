@@ -8,6 +8,10 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 class EspeceVegetalController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -16,14 +20,14 @@ class EspeceVegetalController extends Controller
     public function index()
     {
         $especes=EspeceVegetal::orderBy('nom','asc')->get();
-     
+
         return view('pages.backOffice.espece_vegetales.index',compact('especes'));
     }
-    
+
 
     public function create()
     {
-        
+
         return view('pages.backOffice.espece_vegetales.form');
     }
 
@@ -34,7 +38,7 @@ class EspeceVegetalController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
+    {
         $data=request()->validate([
             'nom'=> ['required','string','max:255','min:3'],
             'famille'=> ['required','string','max:255','min:3'],
@@ -42,39 +46,39 @@ class EspeceVegetalController extends Controller
             'photo'=> ['required','image'],
 
 
-            
-           
+
+
           ]);
 
 
           $espece= new EspeceVegetal;
-       
+
           if($request->hasFile('photo')){
-            
+
             $file = $request->file('photo');
-            $timestamp = str_replace([' ', ':'], '-', Carbon::now()->toDateTimeString()); 
+            $timestamp = str_replace([' ', ':'], '-', Carbon::now()->toDateTimeString());
             $name = $timestamp. '-' .$file->getClientOriginalName();
             $photoPath=request('photo')->storeAs('espece_animale_uploads',$name,'public');
             $espece->photo = $photoPath;
-         
+
         }
 
           $espece->nom=$data['nom'];
-         
+
           $espece->famille=$data['famille'];
           $espece->nom_scientifique=$data['nom_scientifique'];
-          
+
           $espece->uuid=Str::uuid();
           $espece->save();
           $request->session()->flash('status', 'Espèce Animale ajouté avec succès');
           return redirect()->route('espece_vegetales.index');
     }
 
-   
+
     public function show($uuid)
-    {  
+    {
         $espece=EspeceVegetal::where('uuid',$uuid)->first();
-       
+
         return view('pages.backOffice.espece_vegetales.show', compact('espece'));
     }
 
@@ -87,7 +91,7 @@ class EspeceVegetalController extends Controller
     public function edit($uuid)
     {
         $espece=EspeceVegetal::where('uuid',$uuid)->first();
-       
+
 
         return view('pages.backOffice.espece_vegetales.edit',compact('espece'));
     }
@@ -101,7 +105,7 @@ class EspeceVegetalController extends Controller
      */
     public function update(Request $request, $uuid)
     {
-        
+
         $data=request()->validate([
             'nom'=> ['required','string','max:255','min:3'],
             'famille'=> ['required','string','max:255','min:3'],
@@ -111,22 +115,22 @@ class EspeceVegetalController extends Controller
 
 
           $espece=EspeceVegetal::where('uuid',$uuid)->first();
-       
+
           if($request->hasFile('photo')){
-            
+
             $file = $request->file('photo');
-            $timestamp = str_replace([' ', ':'], '-', Carbon::now()->toDateTimeString()); 
+            $timestamp = str_replace([' ', ':'], '-', Carbon::now()->toDateTimeString());
             $name = $timestamp. '-' .$file->getClientOriginalName();
             $photoPath=request('photo')->storeAs('espece_animale_uploads',$name,'public');
             $espece->photo = $photoPath;
-         
+
         }
 
           $espece->nom=$data['nom'];
-         
+
           $espece->famille=$data['famille'];
           $espece->nom_scientifique=$data['nom_scientifique'];
-          
+
           $espece->uuid=Str::uuid();
           $espece->save();
           $request->session()->flash('status', 'Espèce Animale mise a jours avec succès');
@@ -145,7 +149,7 @@ class EspeceVegetalController extends Controller
     {
         $espece=EspeceVegetal::where('uuid',$uuid)->first();
         $espece->delete();
-        
+
         return redirect()->route('espece_vegetales.index')->with('status','EspeceVegetal supprimée avec succès');
     }
 }

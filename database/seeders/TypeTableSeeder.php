@@ -13,8 +13,8 @@ class TypeTableSeeder extends Seeder
      * @return void
      */
     public function run()
-    {   
-        $types=['Aeroport','Port','Parc'];
+    {
+        $types=['unité douaniere','unité policiere','gendarmerie', 'unité de pêche et halieutiques'];
         Type::truncate();
         foreach($types as $type){
          Type::create([
