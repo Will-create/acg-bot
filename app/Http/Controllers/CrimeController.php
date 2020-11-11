@@ -32,8 +32,7 @@ class CrimeController extends Controller
     {
         $pays = Pay::all();
         $unites = Unite::all();
-        return response()->json(['pays' => $pays, 'unites' => $unites]);
-        // return view('pages.backOffice.crimes.create', compact('pays', 'unites'));
+        return view('pages.backOffice.crimes.create', compact('pays', 'unites'));
     }
 
     /**

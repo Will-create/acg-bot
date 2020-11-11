@@ -45,7 +45,8 @@
 								</ul>
 								<div>
 									<div id="step-1" class="">
-										<form>
+                                    <form action="{{route('crimes.store')}}" method="POST">
+                                        @csrf
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
@@ -100,6 +101,11 @@
                                                         <input type="text" name="latitude" id="latitude" class="form-control" autocomplete="og">
                                                     </div>
                                                 </div>
+                                            </div>
+                                            <div class="div">
+                                            <a href="{{}}" class="btn btn-primary"> Suivant</a>
+                                                <button type="submit" class="btn btn-primary"> Suivant</button>
+
                                             </div>
 										</form>
 									</div>

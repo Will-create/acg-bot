@@ -13,7 +13,8 @@ class Crime extends Component {
             pays: [],
             pays_appréhension:''
         }
-        this.pays_appréhension=this.pays_appréhension.bind(this)
+        // this.pays_appréhension=this.pays_appréhension.bind(this);
+        console.log('le teste');
     }
     componentDidMount() {
         axios.get('crimes/create').then(response=> {
@@ -25,7 +26,7 @@ class Crime extends Component {
 
     }
     pays_appréhension(e){
-        this.setState({pays_appréhension:e.target.value})
+        // this.setState({pays_appréhension:e.target.value})
     }
 render () {
     console.log(this.state.pays);
@@ -83,7 +84,7 @@ render () {
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>   Date d'apprehension  <span class="text-danger">*</span></label>
-                                                <Input type="date" onChange={this.onChange.date_apprehension} id="" class="form-control" />
+                                                <Input type="date"  id="" class="form-control" />
                                             </div>
                                         </div>
                                         <div class="col-md-6">

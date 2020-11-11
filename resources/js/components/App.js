@@ -8,7 +8,7 @@ class App extends Component {
 render () {
     return (
         <BrowserRouter>
-        <Route patch="/test" component={Crime}></Route>
+        <Route patch="/crimes_create" component={Crime}></Route>
         </BrowserRouter>
     )
 }

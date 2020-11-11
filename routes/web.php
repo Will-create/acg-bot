@@ -42,7 +42,6 @@ Auth::routes();
     Route::resource('espece_animales', 'EspeceAnimalController');
     Route::resource('espece_vegetales', 'EspeceVegetalController');
 
-    Route::view('/{patch?}', 'layouts.masterreact');
 
 // });
 
