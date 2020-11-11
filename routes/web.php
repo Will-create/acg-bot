@@ -44,7 +44,6 @@ Auth::routes();
     Route::resource('type_crimes', 'TypeCrimeController');
 
     Route::view('/{patch?}', 'layouts.masterreact');
-
 // });
 
 

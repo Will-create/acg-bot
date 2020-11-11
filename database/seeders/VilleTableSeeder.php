@@ -13,7 +13,7 @@ class VilleTableSeeder extends Seeder
      *
      * @return void
      */
-    
+
     public function run()
     {
         $villes=[
@@ -62,7 +62,7 @@ class VilleTableSeeder extends Seeder
             ['Ziro','Sapouy',2],
             ['Zondoma','Gourcy',2],
             ['ZoundWéogo','Manga',2]
-            
+
         ];
        // Ville::truncate();
         foreach($villes as $ville){

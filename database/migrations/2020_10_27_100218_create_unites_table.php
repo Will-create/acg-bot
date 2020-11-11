@@ -35,17 +35,17 @@ class CreateUnitesTable extends Migration
 
 
 
-            $table->foreign('ville_id')->references('id')->on('villes')->onDelete('restrict')
-            ->onUpdate('restrict');
+            // $table->foreign('ville_id')->references('id')->on('villes')->onDelete('restrict')
+            // ->onUpdate('restrict');
 
-            $table->foreign('pays_id')->references('id')->on('pays')->onDelete('restrict')
-            ->onUpdate('restrict');
+            // $table->foreign('pays_id')->references('id')->on('pays')->onDelete('restrict')
+            // ->onUpdate('restrict');
 
-            $table->foreign('responsable_id')->references('id')->on('users')->onDelete('restrict')
-            ->onUpdate('restrict');
+            // $table->foreign('responsable_id')->references('id')->on('users')->onDelete('restrict')
+            // ->onUpdate('restrict');
 
-            $table->foreign('type_id')->references('id')->on('types')->onDelete('restrict')
-            ->onUpdate('restrict');
+            // $table->foreign('type_id')->references('id')->on('types')->onDelete('restrict')
+            // ->onUpdate('restrict');
         });
     }
 

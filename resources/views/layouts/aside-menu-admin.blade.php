@@ -42,26 +42,23 @@
                         <li class="slide">
                             <a class="side-menu__item" data-toggle="slide" href="#">
                                 <i class="mdi mdi-rss aide-icon"  ></i>
-                                <span class="side-menu__label">Espèce Animal</span><i class="angle fa fa-angle-right"></i>
+                                <span class="side-menu__label">Espèces Animales</span><i class="angle fa fa-angle-right"></i>
                             </a>
                             <ul class="slide-menu">
-                                <li><a class="slide-item" href="{{route('espece_animales.index')}}"><span>Les espèce Animal</span></a></li>
-                                <li><a class="slide-item" href="{{route('espece_animales.create')}}"><span>Ajouter un espèce animal </span></a></li>
+                                <li><a class="slide-item" href="{{route('espece_animales.index')}}"><span>Les espèces Animales</span></a></li>
+                                <li><a class="slide-item" href="{{route('espece_animales.create')}}"><span>Ajouter une espèce animale </span></a></li>
                             </ul>
                         </li>
                         <li class="slide">
                             <a class="side-menu__item" data-toggle="slide" href="#">
                                 <i class="mdi mdi-rss aide-icon"  ></i>
-                                <span class="side-menu__label">Espèce végétal</span><i class="angle fa fa-angle-right"></i>
+                                <span class="side-menu__label">Espèces végétales</span><i class="angle fa fa-angle-right"></i>
                             </a>
                             <ul class="slide-menu">
-                                <li><a class="slide-item" href="{{route('espece_vegetales.index')}}"><span>Tous les espèces</span></a></li>
-                                <li><a class="slide-item" href="{{route('espece_vegetales.create')}}"><span>Ajouter un espèce végétal </span></a></li>
+                                <li><a class="slide-item" href="{{route('espece_vegetales.index')}}"><span>Toutes les espèces</span></a></li>
+                                <li><a class="slide-item" href="{{route('espece_vegetales.create')}}"><span>Ajouter une espèce végétale </span></a></li>
                             </ul>
                         </li>
-
-
-
 
                         <li class="slide">
                             <a class="side-menu__item" data-toggle="slide" href="#">

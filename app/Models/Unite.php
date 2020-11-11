@@ -9,7 +9,7 @@ class Unite extends Model
 {
     use HasFactory;
     protected $fillable=[
-        'nom',
+        'designation',
         'uuid',
         'pays_id',
         'ville_id',
@@ -37,7 +37,7 @@ class Unite extends Model
     public function type(){
         return $this->belongsTo('App\Models\Type','type_id','id');
     }
-    
+
     public function responsable(){
         return $this->belongsTo('App\Models\User','responsable_id');
     }
