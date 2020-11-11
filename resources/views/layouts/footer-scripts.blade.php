@@ -2,8 +2,9 @@
 		<a href="#top" id="back-to-top"><i class="fa fa-angle-up"></i></a>
 
 		<!-- JQUERY JS -->
-		<script src="{{URL::asset('assets/plugins/datatable/jquery.dataTables.min.js')}}"></script>
 		<script src="{{URL::asset('assets/js/jquery-3.4.1.min.js')}}"></script>
+		<script src="{{URL::asset('assets/plugins/datatable/jquery.dataTables.min.js')}}"></script>
+		
 
 		<!-- BOOTSTRAP JS -->
 		<script src="{{URL::asset('assets/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>

@@ -14,7 +14,8 @@ class PaysTableSeeder extends Seeder
      * @return void
      */
     public function run()
-    {   Pay::truncate();
+    {  
+        // Pay::truncate();
         $pays=[
         ['Bénin','bj'],
         ['Burkina Faso','bf'],

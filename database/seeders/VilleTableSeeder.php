@@ -64,7 +64,7 @@ class VilleTableSeeder extends Seeder
             ['ZoundWéogo','Manga',2]
             
         ];
-        Ville::truncate();
+       // Ville::truncate();
         foreach($villes as $ville){
             Ville::create([
                 'nom'=>$ville[1],

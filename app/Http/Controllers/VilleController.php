@@ -92,7 +92,7 @@ class VilleController extends Controller
 
         return view('pages.backOffice.villes.edit',compact('ville','pays'));
     }
-
+    
     /**
      * Update the specified resource in storage.
      *
@@ -127,10 +127,12 @@ class VilleController extends Controller
      * @param  \App\Models\Unite  $unite
      * @return \Illuminate\Http\Response
      */
+    
     public function destroy(Request $request, Ville $ville)
     {
         $unite->delete();
 
         return redirect()->route('villes.index')->with('status','Ville supprimée avec succès');
     }
+
 }

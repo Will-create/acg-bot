@@ -21,7 +21,7 @@ class UserTableSeeder extends Seeder
         $ville = [
             'Ouagadougou', 'Bobo Dioulasso', 'Banfora', 'Ouahigouya'
         ];
-        User::truncate();
+        //User::truncate();
         $faker = Factory::create();
         $roles = Role::all();
         foreach ($roles as $key => $role) {
@@ -30,8 +30,7 @@ class UserTableSeeder extends Seeder
                 'titre'                 => $faker->title,
                 'actif'                 => true,
                 'role_id'               => $role->id,
-                'unite_id'              => 1,
-                'profile_photo_path'    => $faker->file($sourceDir = 'D:\Switch Maker\image', $targetDir = 'D:\Switch Maker\criminalite\storage\app\public\user_photo_profile', false),
+                'profile_photo_path'    => "/images/pngs/bg-l.png",
                 'prenom'                => $faker->lastName,
                 'email'                 => $faker->safeEmail,
                 'tel'                   => $faker->phoneNumber,

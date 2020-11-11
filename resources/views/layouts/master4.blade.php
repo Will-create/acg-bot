@@ -9,7 +9,7 @@
         <meta name="keywords" content="">
         <title> {{ $titrePage ??  'Systeme de paiement en masse'}} </title>
         @include('layouts.head')
-        <link rel="stylesheet" href="{{asset('css/custom.css')}}">
+       
 
     </head>
 

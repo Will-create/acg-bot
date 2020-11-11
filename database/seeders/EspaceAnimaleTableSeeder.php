@@ -22,7 +22,7 @@ class EspaceAnimaleTableSeeder extends Seeder
             EspeceAnimal::create([
                 'nom'           => $faker->text($maxNbChars = 25),
                 'uuid'          => Str::uuid(),
-                'photo'         => $faker->file($sourceDir = 'D:\Switch Maker\espece_animal', $targetDir = 'D:\Switch Maker\criminalite\storage\app\public\espece_animale_uploads', false),
+                'photo'         => "/images/pngs/bg-l.png",
                 'famille'       => $faker->text($maxNbChars = 25),
                 'nom_scientifique'      => $faker->text($maxNbChars = 50),
                 'ordre_id'              => Ordre::first()->id

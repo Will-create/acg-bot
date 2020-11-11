@@ -23,7 +23,8 @@ class CreateCrimesTable extends Migration
             $table->unsignedBigInteger('pays_appréhension')->nullable();
             $table->unsignedBigInteger('pays_destination')->nullable();
             $table->unsignedBigInteger('pays_origine_produit')->nullable();
-            $table->unsignedBigInteger('unite_id')->nullable();;
+            $table->unsignedBigInteger('unite_id')->nullable();
+            $table->unsignedBigInteger('type_crime_id')->nullable();
             $table->unsignedBigInteger('services_Investigateurs');
             $table->date('date_apprehension')->nullable();
             $table->string('arme_utilise')->nullable();
@@ -45,6 +46,8 @@ class CreateCrimesTable extends Migration
 
 
             $table->foreign('nature_crime_id')->references('id')->on('crime_natures')->onDelete('restrict')
+            ->onUpdate('restrict');
+            $table->foreign('type_crime_id')->references('id')->on('type_crimes')->onDelete('restrict')
             ->onUpdate('restrict');
             $table->foreign('ville_id')->references('id')->on('villes')->onDelete('restrict')
             ->onUpdate('restrict');

@@ -13,5 +13,9 @@ class Crime extends Model
     public function getRouteKeyName(){
         return 'uuid';
     }
+
+    public function type(){
+        return $this->belongsTo('App\Models\TypeCrime','type_crime_id','id');
+    }
     
 }

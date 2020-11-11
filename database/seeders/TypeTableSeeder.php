@@ -15,7 +15,7 @@ class TypeTableSeeder extends Seeder
     public function run()
     {
         $types=['unité douaniere','unité policiere','gendarmerie', 'unité de pêche et halieutiques'];
-        Type::truncate();
+        //Type::truncate();
         foreach($types as $type){
          Type::create([
              'nom'=>$type,

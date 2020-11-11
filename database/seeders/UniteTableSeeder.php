@@ -26,7 +26,7 @@ class UniteTableSeeder extends Seeder
         $users=User::all();
         $villes=Ville::all();
         $types=Type::all();
-        Unite::truncate();
+        //Unite::truncate();
 
 
         foreach($villes as $ville){

@@ -15,7 +15,7 @@ class RoleTableSeeder extends Seeder
     public function run()
     {  
         $roles = ['Agent d’une Unité', 'Chef d’Unité', 'Coordonnateur National', 'Coordonnateur Régional', 'Administrateur Général'];
-        Role::truncate();
+        //Role::truncate();
         Role::create([
             'uuid'          => Str::uuid(),
             'designation'   => 'Administrateur Général',

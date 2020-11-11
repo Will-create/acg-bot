@@ -69,7 +69,7 @@
 
                     <div class="form-group">
                         <label class="form-label" for="organisation">Pays <strong class="text-danger">*</strong></label>
-                        <select name="pays_id" id="" class="form-control custom-select select2">
+                        <select name="pays_id" id="pays_id" class="form-control custom-select select2">
                             <option value="" selected > Sélectionner</option>
                             @foreach ($pays as $pay)
                         <option value="{{$pay->id}}">{{$pay->nom}}</option>
@@ -83,7 +83,7 @@
 					</div>
 					<div class="form-group">
                         <label class="form-label" for="organisation">Ville <strong class="text-danger">*</strong></label>
-                        <select name="ville_id" id="" class="form-control custom-select select2">
+                        <select name="ville_id" id="ville_id" class="form-control custom-select select2">
                             <option value="" selected disabled> Sélectionner</option>
                             @foreach ($villes as $ville)
                         <option value="{{$ville->id}}">{{$ville->nom}}</option>
@@ -109,7 +109,7 @@
                 <div class="col-md-6">
 					<div class="form-group">
                         <label class="form-label" for="organisation">Type <strong class="text-danger">*</strong></label>
-                        <select name="type_id" id="" class="form-control custom-select select2">
+                        <select name="type_id" id="type_id" class="form-control custom-select select2">
                             <option value="" selected disabled> Sélectionner</option>
 
                             @foreach ($types as $type)
@@ -133,7 +133,7 @@
 					</div>
 					<div class="form-group">
                         <label class="form-label" for="organisation">Responsables <strong class="text-danger">*</strong></label>
-                        <select name="responsable_id" id="" class="form-control custom-select select2">
+                        <select name="responsable_id" id="responsable_id" class="form-control custom-select select2">
                             <option value="" selected disabled> Sélectionner</option>
 
                             @foreach ($responsables as $responsable)
@@ -162,7 +162,7 @@
                             <h3 class="mb-0 card-title">Veuillez ajouter un logo</h3>
                         </div>
                         <div class="card-body">
-                            <input type="file" class="dropify" data-max-file-size="1M" name="logo" accept="" />
+                            <input type="file" class="dropify" id="logo" data-max-file-size="1M" name="logo" accept="" />
                             @error('logo')
                         <span class="helper-text red-text">
                             <strong>{{ $message }}</strong>
@@ -177,7 +177,7 @@
                             <h3 class="mb-0 card-title">Veuillez insérer une photo de couverture</h3>
                         </div>
                         <div class="card-body">
-                            <input type="file" class="dropify" data-max-file-size="1M" name="photo_couverture" accept="" />
+                            <input type="file" class="dropify" id="photo_couverture" data-max-file-size="1M" name="photo_couverture" accept="" />
                             @error('photo_couverture')
                         <span class="helper-text red-text">
                             <strong>{{ $message }}</strong>
@@ -207,6 +207,7 @@
         <!-- INTERNAL TELEPHONE JS -->
     <script src="{{URL::asset('assets/plugins/telephoneinput/telephoneinput.js')}}"></script>
     <script src="{{URL::asset('assets/plugins/telephoneinput/inttelephoneinput.js')}}"></script>
+
 @stop
 
 

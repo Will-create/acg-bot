@@ -41,6 +41,7 @@ Auth::routes();
     Route::resource('villes', 'VilleController');
     Route::resource('espece_animales', 'EspeceAnimalController');
     Route::resource('espece_vegetales', 'EspeceVegetalController');
+    Route::resource('type_crimes', 'TypeCrimeController');
 
     Route::view('/{patch?}', 'layouts.masterreact');
 
