@@ -55,7 +55,7 @@
     <!-- BACKGROUND-IMAGE CLOSED -->
 
     @include('layouts.footer-scripts')
-
+@stack('ajax_crud')
 </body>
 
 </html>
