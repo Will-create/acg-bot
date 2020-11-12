@@ -36,7 +36,7 @@
 		<script src="{{URL::asset('assets/plugins/scroll-bar/jquery.mCustomScrollbar.concat.min.js')}}"></script>
 
 
-        {{-- @yield('js') --}}
+         @yield('js') 
         	<!-- INTERNAL FORN WIZARD JS-->
 		<script src="{{URL::asset('assets/plugins/formwizard/jquery.smartWizard.js')}}"></script>
 		<script src="{{URL::asset('assets/plugins/formwizard/fromwizard.js')}}"></script>

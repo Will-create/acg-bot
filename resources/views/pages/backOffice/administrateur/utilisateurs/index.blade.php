@@ -12,7 +12,8 @@
 
           <!-- INTERNAL PRISM CSS -->
           <link href="{{URL::asset('assets/plugins/prism/prism.css')}}" rel="stylesheet">
-          	<!-- INTERNAL TELEPHONE CSS-->
+			  <!-- INTERNAL TELEPHONE CSS-->
+			  
 		<link rel="stylesheet" href="{{URL::asset('assets/plugins/telephoneinput/telephoneinput.css')}}">
 @endsection
 @section('page-header')
@@ -31,10 +32,7 @@
                             <i class="fe fe-plus"></i>
                         </span>
                         Ajouter un utilisateur</a>
-
-
                     </button>
-
 					</div>
 				</div>
 				<!-- PAGE-HEADER END -->
@@ -85,16 +83,12 @@
 					</div>
 				</div>
 			 {{-- @include('pages.backOffice.administrateur.utilisateurs._modelCreationUtilisateur') --}}
-
-
-
 @endsection
 @section('js')
      <!-- INTERNAL  DATA TABLE JS-->
     <script src="{{URL::asset('assets/plugins/fileuploads/js/fileupload.js')}}"></script>
     <script src="{{URL::asset('assets/plugins/fileuploads/js/file-upload.js')}}"></script>
     <script src="{{URL::asset('assets/plugins/datatable/jquery.dataTables.min.js')}}"></script>
-
     <script src="{{URL::asset('assets/plugins/datatable/dataTables.bootstrap4.min.js')}}"></script>
     <script src="{{URL::asset('assets/plugins/datatable/datatable.js')}}"></script>
     <script src="{{URL::asset('assets/plugins/datatable/dataTables.responsive.min.js')}}"></script>

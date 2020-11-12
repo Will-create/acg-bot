@@ -25,7 +25,7 @@
 		<link href="{{URL::asset('assets/css/icons.css')}}" rel="stylesheet" />
 
 
-        {{-- @yield('css') --}}
+         @yield('css') 
         		<!-- FORN WIZARD CSS -->
 		<link href="{{URL::asset('assets/plugins/formwizard/smart_wizard.css')}}" rel="stylesheet">
 		<link href="{{URL::asset('assets/plugins/formwizard/smart_wizard_theme_arrows.css')}}" rel="stylesheet">
