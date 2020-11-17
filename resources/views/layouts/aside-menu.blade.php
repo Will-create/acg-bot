@@ -3,7 +3,7 @@
                 <aside class="app-sidebar">
                     <div class="side-header">
                         <a class="header-brand1" href="">
-                                <img src="{{ asset('assets/images/logo_yelli.png') }}" class="header-brand-img" alt="">
+                                <img src="{{ asset('assets/logo.png') }}" class="header-brand-img" alt="">
                         </a><!-- LOGO -->
                     </div>
                     <ul class="side-menu">

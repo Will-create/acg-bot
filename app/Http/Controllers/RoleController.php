@@ -97,6 +97,7 @@ class RoleController extends Controller
      * @param  \App\Models\Role  $role
      * @return \Illuminate\Http\Response
      */
+    
     public function update(Request $request, $uuid)
     {
         $data=request()->validate([

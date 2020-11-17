@@ -218,6 +218,8 @@ class UniteController extends Controller
      * @param  \App\Models\Unite  $unite
      * @return \Illuminate\Http\Response
      */
+
+     
     public function destroy(Request $request, Unite $unite)
     {
         $unite->delete();

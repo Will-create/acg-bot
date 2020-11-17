@@ -127,7 +127,6 @@ class EspeceAnimalController extends Controller
         }
 
           $espece->nom=$data['nom'];
-
           $espece->famille=$data['famille'];
           $espece->nom_scientifique=$data['nom_scientifique'];
 

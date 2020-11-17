@@ -37,6 +37,7 @@ class CrimeController extends Controller
         $unites = Unite::all();
         $crime_type_reglements = crimeTypeReglement::all();
         return view('pages.backOffice.crimes.create', compact('pays', 'unites', 'crime_type_reglements'));
+        
     }
 
     /**
