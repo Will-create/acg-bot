@@ -15,7 +15,7 @@ class CreateCommentairesTable extends Migration
     {
         Schema::create('commentaires', function (Blueprint $table) {
             $table->id();
-            $table->string('uuid');
+            $table->uuid('uuid');
             $table->unsignedBigInteger('crime_id');
             $table->unsignedBigInteger('par');
             $table->unsignedBigInteger('pour');

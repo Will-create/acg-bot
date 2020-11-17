@@ -15,31 +15,25 @@ class CreateCrimesTable extends Migration
     {
         Schema::create('crimes', function (Blueprint $table) {
             $table->id();
-            $table->string('uuid');
+            $table->uuid('uuid');
             $table->foreignId('nature_crime_id');
             $table->unsignedBigInteger('ville_id')->nullable();
-            $table->string('espece')->nullable();
-
-            $table->unsignedBigInteger('pays_appréhension')->nullable();
+            $table->unsignedBigInteger('condition_produit_id');
+            $table->unsignedBigInteger('pays_apprehension')->nullable();
             $table->unsignedBigInteger('pays_destination')->nullable();
             $table->unsignedBigInteger('pays_origine_produit')->nullable();
             $table->unsignedBigInteger('unite_id')->nullable();
-            $table->unsignedBigInteger('type_crime_id')->nullable();
-            $table->unsignedBigInteger('services_Investigateurs');
+            $table->unsignedBigInteger('services_investigateurs');
             $table->date('date_apprehension')->nullable();
-            $table->string('arme_utilise')->nullable();
             $table->string('localite_aprrehension')->nullable();
-            $table->string('longitude')->nullable();
-            $table->string('Latitude')->nullable();
-            $table->string('dure_emprisonnment')->nullable();
+            $table->string('longitude', 25)->nullable();
+            $table->string('latitude', 25)->nullable();
             $table->text('gestion_des_saisis')->nullable();
-            $table->string('penalite')->nullable();
-            $table->string('intention')->nullable();
-            $table->integer('Quantite_saisie')->nullable();
-            $table->integer('Nombre_complice')->nullable();
+            $table->integer('quantite_saisie')->nullable();
+            $table->integer('nombre_complice')->nullable();
             $table->boolean('veto')->nullable();
             $table->boolean('lien_terrorisme')->default(false);
-            $table->string('victime')->nullable();
+            $table->string('victime', 100)->nullable();
             $table->unsignedBigInteger('aire_protegee_id');
             $table->timestamps();
 
@@ -51,7 +45,7 @@ class CreateCrimesTable extends Migration
             ->onUpdate('restrict');
             $table->foreign('ville_id')->references('id')->on('villes')->onDelete('restrict')
             ->onUpdate('restrict');
-            $table->foreign('pays_appréhension')->references('id')->on('pays')->onDelete('restrict')
+            $table->foreign('pays_apprehension')->references('id')->on('pays')->onDelete('restrict')
             ->onUpdate('restrict');
             $table->foreign('pays_destination')->references('id')->on('pays')->onDelete('restrict')
             ->onUpdate('restrict');
@@ -59,7 +53,9 @@ class CreateCrimesTable extends Migration
             ->onUpdate('restrict');
             $table->foreign('unite_id')->references('id')->on('unites')->onDelete('restrict')
             ->onUpdate('restrict');
-            $table->foreign('services_Investigateurs')->references('id')->on('users')->onDelete('restrict')
+            $table->foreign('services_investigateurs')->references('id')->on('users')->onDelete('restrict')
+            ->onUpdate('restrict');
+            $table->foreign('condition_produit_id')->references('id')->on('condition_produits')->onDelete('restrict')
             ->onUpdate('restrict');
 
         });

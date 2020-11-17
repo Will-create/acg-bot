@@ -15,9 +15,9 @@ class CreateCrimeOutilsTable extends Migration
     {
         Schema::create('crime_outils', function (Blueprint $table) {
             $table->id();
-            $table->string('libelle');
-            $table->string('reference');
-            $table->text('requarques');
+            $table->string('libelle', 120);
+            $table->string('reference', 50);
+            $table->text('remarques');
             $table->unsignedBigInteger('crime_id');
             $table->timestamps();
 

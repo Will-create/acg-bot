@@ -15,21 +15,21 @@ class CreateCrimeAuteursTable extends Migration
     {
         Schema::create('crime_auteurs', function (Blueprint $table) {
             $table->id();
-            $table->string('uuid');
+            $table->uuid('uuid');
             $table->unsignedBigInteger('crime_id');
-            $table->string('nom');
-            $table->string('prenom');
+            $table->string('nom', 50);
+            $table->string('prenom', 60);
             $table->text('adresse');
-            $table->string('pays');
-            $table->string('ville');
+            $table->string('pays', 25);
+            $table->string('ville', 25);
             $table->enum('type', ['auteur', 'complice']);
-            $table->integer('age');
+            $table->date('date_naiss');
             $table->enum('genre', ['masculin', 'feminin']);
-            $table->string('education');
+            $table->boolean('education');
             $table->boolean('voyageur_international');
-            $table->integer('Revenue');
-            $table->string('nationalite');
-            $table->string('travail');
+            $table->integer('revenue');
+            $table->string('nationalite', 25);
+            $table->string('travail', 100);
             $table->text('affaire_judiciaire');
             $table->timestamps();
 

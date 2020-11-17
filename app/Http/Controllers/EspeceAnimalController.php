@@ -20,7 +20,7 @@ class EspeceAnimalController extends Controller
      */
     public function index()
     {
-        $especes=EspeceAnimal::orderBy('nom','asc')->get();
+        dd(EspeceAnimal::with('crime_especes.crimes')->orderBy('nom','asc')->get());
         return view('pages.backOffice.espece_animales.index',compact('especes'));
     }
 

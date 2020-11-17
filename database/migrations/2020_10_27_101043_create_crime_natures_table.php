@@ -15,9 +15,9 @@ class CreateCrimeNaturesTable extends Migration
     {
         Schema::create('crime_natures', function (Blueprint $table) {
             $table->id();
-            $table->string('uuid');
-            $table->string('nature');
-            $table->text('description')->nullable();
+            $table->uuid('uuid');
+            $table->string('nature', 100);
+            $table->text('description', 200)->nullable();
             $table->timestamps();
         });
     }

@@ -15,7 +15,7 @@ class CreateConditionProduitsTable extends Migration
     {
         Schema::create('condition_produits', function (Blueprint $table) {
             $table->id();
-            $table->string('libelle');
+            $table->string('libelle', 100);
             $table->text('description')->nullable();
             $table->timestamps();
         });

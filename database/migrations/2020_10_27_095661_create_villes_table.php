@@ -15,9 +15,9 @@ class CreateVillesTable extends Migration
     {
         Schema::create('villes', function (Blueprint $table) {
             $table->id();
-            $table->string('uuid');
+            $table->uuid('uuid');
             $table->unsignedBigInteger('pays_id');
-            $table->string('nom');
+            $table->string('nom', 50);
             $table->timestamps();
 
             $table->foreign('pays_id')->references('id')->on('pays')->onDelete('restrict')
