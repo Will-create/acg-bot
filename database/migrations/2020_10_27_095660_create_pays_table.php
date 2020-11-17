@@ -15,10 +15,10 @@ class CreatePaysTable extends Migration
     {
         Schema::create('pays', function (Blueprint $table) {
             $table->id();
-            $table->string('uuid');
-            $table->string('nom');
-            $table->string('codeiso3_pays_origine')->nullable();
-            $table->string('icone');
+            $table->uuid('uuid');
+            $table->string('nom', 50);
+            $table->string('codeiso3_pays_origine', 60)->nullable();
+            $table->text('icone');
             $table->timestamps();
         });
     }

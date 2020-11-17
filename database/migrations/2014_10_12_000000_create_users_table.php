@@ -15,19 +15,19 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('uuid');
-            $table->string('nom');
-            $table->string('prenom');
+            $table->uuid('uuid');
+            $table->string('nom', 50);
+            $table->string('prenom', 100);
             $table->foreignId('role_id');
             // $table->foreignId('unite_id')->nullable();
             $table->boolean('actif')->default(true);
-            $table->string('titre')->nullable();
+            $table->string('titre', 50)->nullable();
             $table->string('ville_id')->nulllable();
             $table->foreignId('pay_id')->nulllable();
-            $table->string('email')->unique();
-            $table->string('tel');
+            $table->string('email', 60)->unique();
+            $table->number('tel');
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('password', 10);
             $table->foreignId('current_team_id')->nullable();
             $table->text('profile_photo_path')->nullable();
             $table->rememberToken();

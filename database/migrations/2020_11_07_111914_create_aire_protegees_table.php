@@ -15,8 +15,9 @@ class CreateAireProtegeesTable extends Migration
     {
         Schema::create('aire_protegees', function (Blueprint $table) {
             $table->id();
-            $table->string('uuid');
-            $table->string('libelle');
+            $table->uuid('uuid');
+            $table->string('libelle', 255);
+            $table->string('code_wdpa_ aire', 100);
             $table->text('adresse');
             $table->unsignedBigInteger('pays_id');
             $table->integer('tel');

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEspeceAnimalsTable extends Migration
+class CreateEspeceVegetalsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateEspeceAnimalsTable extends Migration
      */
     public function up()
     {
-        Schema::create('espece_animals', function (Blueprint $table) {
+        Schema::create('espece_vegetals', function (Blueprint $table) {
             $table->id();
-            $table->string('uuid');
+            $table->uuid('uuid');
             $table->string('nom');
             $table->string('famille');
             $table->string('statut_uicn')->nullable();
@@ -38,6 +38,6 @@ class CreateEspeceAnimalsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('espece_animals');
+        Schema::dropIfExists('espece_vegetals');
     }
 }

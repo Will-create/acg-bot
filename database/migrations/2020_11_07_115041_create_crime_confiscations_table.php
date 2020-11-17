@@ -15,7 +15,7 @@ class CreateCrimeConfiscationsTable extends Migration
     {
         Schema::create('crime_confiscations', function (Blueprint $table) {
             $table->id();
-            $table->string('designation');
+            $table->string('designation', 100);
             $table->unsignedInteger('nombre');
             $table->unsignedInteger('quantite');
             $table->unsignedInteger('poids');

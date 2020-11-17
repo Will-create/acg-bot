@@ -20,4 +20,8 @@ class EspeceAnimal extends Model
     public function getRouteKeyName(){
         return 'uuid';
     }
+    public function crime_especes()
+    {
+        return $this->hasMany(CrimeEspece::class);
+    }
 }

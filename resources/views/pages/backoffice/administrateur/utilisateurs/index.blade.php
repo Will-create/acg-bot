@@ -62,8 +62,6 @@
 										</thead>
 										<tbody>
                                             @foreach ($utilisateurs as $utilisateur)
-
-
 											<tr>
 												<td> <a class="text-dark" href="{{route('utilisateurs.show', $utilisateur)}}"> {{$utilisateur->nom}} </a></td>
 												<td> <a class="text-dark" href="{{route('utilisateurs.show', $utilisateur)}}">{{$utilisateur->prenom}} </a></td>

@@ -109,7 +109,7 @@ class UtilisateursController extends Controller
             'profile_photo_path'        => $path
         ]);
 
-        $request->session()->flash('status', 'Utilisateur ajouté avec succès');
+        $request->session()->flash('status', 'Utilisateur créé avec succès');
 
         return redirect()->route('utilisateurs.index');
     }
