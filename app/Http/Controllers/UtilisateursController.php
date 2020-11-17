@@ -37,7 +37,7 @@ class UtilisateursController extends Controller
             $utilisateurs  = User::latest()->get();
         }
 
-        return view('pages.backOffice.administrateur.utilisateurs.index', compact('utilisateurs'));
+        return view('pages.backoffice.administrateur.utilisateurs.index', compact('utilisateurs'));
     }
 
     /**
@@ -65,7 +65,7 @@ class UtilisateursController extends Controller
             $pays = Pay::where('nom', Auth::user()->pay->nom)->first();
         }
 
-        return view('pages.backOffice.administrateur.utilisateurs.create', compact('roles', 'unites', 'villes', 'pays'));
+        return view('pages.backoffice.administrateur.utilisateurs.create', compact('roles', 'unites', 'villes', 'pays'));
     }
 
     /**
@@ -122,7 +122,7 @@ class UtilisateursController extends Controller
      */
     public function show(User $utilisateur)
     {
-        return view('pages.backOffice.administrateur.utilisateurs.show', compact('utilisateur'));
+        return view('pages.backoffice.administrateur.utilisateurs.show', compact('utilisateur'));
     }
 
     /**
@@ -137,7 +137,7 @@ class UtilisateursController extends Controller
         $unites = Unite::all();
         $villes = Ville::all();
         $pays = Pay::all();
-        return view('pages.backOffice.administrateur.utilisateurs.edit', compact('roles', 'unites', 'villes', 'pays', 'utilisateur'));
+        return view('pages.backoffice.administrateur.utilisateurs.edit', compact('roles', 'unites', 'villes', 'pays', 'utilisateur'));
     }
 
     /**

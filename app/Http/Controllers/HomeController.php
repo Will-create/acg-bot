@@ -25,6 +25,6 @@ class HomeController extends Controller
      */
     public function index()
     {   
-        return view('pages.backOffice.users-list');
+        return view('pages.backoffice.users-list');
     }
 }

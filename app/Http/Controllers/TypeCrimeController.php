@@ -12,14 +12,14 @@ class TypeCrimeController extends Controller
     public function index()
     {
         $types=TypeCrime::orderBy('nom','asc')->get();
-        return view('pages.backOffice.type_crimes.index',compact('types'));
+        return view('pages.backoffice.type_crimes.index',compact('types'));
     }
 
 
     public function create()
     {
 
-        return view('pages.backOffice.type_crimes.form');
+        return view('pages.backoffice.type_crimes.form');
     }
 
     /**
@@ -46,7 +46,7 @@ class TypeCrimeController extends Controller
     {
         $type=TypeCrime::where('uuid',$uuid)->first();
 
-        return view('pages.backOffice.type_crimes.show', compact('type'));
+        return view('pages.backoffice.type_crimes.show', compact('type'));
     }
 
     /**
@@ -58,7 +58,7 @@ class TypeCrimeController extends Controller
     public function edit($uuid)
     {
         $type=TypeCrime::where('uuid',$uuid)->first();
-        return view('pages.backOffice.type_crimes.edit',compact('type'));
+        return view('pages.backoffice.type_crimes.edit',compact('type'));
     }
 
     /**

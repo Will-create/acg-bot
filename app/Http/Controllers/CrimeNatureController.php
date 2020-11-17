@@ -20,7 +20,7 @@ class CrimeNatureController extends Controller
     public function index()
     {
         $naturesCrimes = CrimeNature::all();
-        return view('pages.backOffice.natureCrime.index', compact('naturesCrimes'));
+        return view('pages.backoffice.natureCrime.index', compact('naturesCrimes'));
     }
 
     /**

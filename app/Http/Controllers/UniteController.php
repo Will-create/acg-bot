@@ -26,7 +26,7 @@ class UniteController extends Controller
     public function index()
     {
         $unites=Unite::all();
-        return view('pages.backOffice.unites.index',compact('unites'));
+        return view('pages.backoffice.unites.index',compact('unites'));
     }
 
     /**
@@ -41,7 +41,7 @@ class UniteController extends Controller
         $villes=Ville::where('pays_id',$pays[0]->id)->orderBy('pays_id', 'asc')->get();
         $responsables=User::all();
         $types= Type::all();
-        return view('pages.backOffice.unites.form',compact('villes','pays', 'responsables','types'));
+        return view('pages.backoffice.unites.form',compact('villes','pays', 'responsables','types'));
     }
 
 
@@ -125,7 +125,7 @@ class UniteController extends Controller
 
         
         $carte=openstreetmap_url($unite->long,$unite->lat);
-        return view('pages.backOffice.unites.show', compact('unite','carte'));
+        return view('pages.backoffice.unites.show', compact('unite','carte'));
     }
 
     /**
@@ -140,7 +140,7 @@ class UniteController extends Controller
         $villes=Ville::where('pays_id',$pays[0]->id)->orderBy('pays_id', 'asc')->get();
         $responsables=User::all();
         $types=Type::all();
-        return view('pages.backOffice.unites.edit',compact('unite','responsables','pays','villes','types'));
+        return view('pages.backoffice.unites.edit',compact('unite','responsables','pays','villes','types'));
     }
 
     /**

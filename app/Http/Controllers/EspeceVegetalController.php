@@ -21,14 +21,14 @@ class EspeceVegetalController extends Controller
     {
         $especes=EspeceVegetal::orderBy('nom','asc')->get();
 
-        return view('pages.backOffice.espece_vegetales.index',compact('especes'));
+        return view('pages.backoffice.espece_vegetales.index',compact('especes'));
     }
 
 
     public function create()
     {
 
-        return view('pages.backOffice.espece_vegetales.form');
+        return view('pages.backoffice.espece_vegetales.form');
     }
 
     /**
@@ -79,7 +79,7 @@ class EspeceVegetalController extends Controller
     {
         $espece=EspeceVegetal::where('uuid',$uuid)->first();
 
-        return view('pages.backOffice.espece_vegetales.show', compact('espece'));
+        return view('pages.backoffice.espece_vegetales.show', compact('espece'));
     }
 
     /**
@@ -93,7 +93,7 @@ class EspeceVegetalController extends Controller
         $espece=EspeceVegetal::where('uuid',$uuid)->first();
 
 
-        return view('pages.backOffice.espece_vegetales.edit',compact('espece'));
+        return view('pages.backoffice.espece_vegetales.edit',compact('espece'));
     }
 
     /**

@@ -19,7 +19,7 @@ class RoleController extends Controller
     public function index()
     {
         $roles=Role::all();
-        return view('pages.backOffice.administrateur.roles.index', compact('roles'));
+        return view('pages.backoffice.administrateur.roles.index', compact('roles'));
     }
 
     /**
@@ -29,7 +29,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        return view('pages.backOffice.administrateur.roles.form');
+        return view('pages.backoffice.administrateur.roles.form');
         
     }
 
@@ -76,7 +76,7 @@ class RoleController extends Controller
     public function show($uuid)
     {
         $role=Role::where('uuid',$uuid)->first();
-        return view('pages.backOffice.administrateur.roles.edit',compact('role'));
+        return view('pages.backoffice.administrateur.roles.edit',compact('role'));
     }
 
     /**
@@ -87,7 +87,7 @@ class RoleController extends Controller
      */
     public function edit($uuid)
     {   $role=Role::where('uuid',$uuid)->first();
-        return view('pages.backOffice.administrateur.roles.edit',compact('role'));
+        return view('pages.backoffice.administrateur.roles.edit',compact('role'));
     }
 
     /**

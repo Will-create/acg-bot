@@ -24,7 +24,7 @@ class AdminNavigationController extends Controller
         else {
             $utilisateurs  = User::latest()->get();
             $coordonateurs = User::where('role_id', Role::where('designation', 'Coordonnateur National')->first()->id)->get();
-            return view('pages.backOffice.administrateur.dasboard-admin', compact('utilisateurs', 'coordonateurs'));
+            return view('pages.backoffice.administrateur.dasboard-admin', compact('utilisateurs', 'coordonateurs'));
         }
     }
 

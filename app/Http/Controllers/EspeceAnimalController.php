@@ -21,14 +21,14 @@ class EspeceAnimalController extends Controller
     public function index()
     {
         $especes=EspeceAnimal::orderBy('nom','asc')->get();
-        return view('pages.backOffice.espece_animales.index',compact('especes'));
+        return view('pages.backoffice.espece_animales.index',compact('especes'));
     }
 
 
     public function create()
     {
 
-        return view('pages.backOffice.espece_animales.form');
+        return view('pages.backoffice.espece_animales.form');
     }
 
     /**
@@ -79,7 +79,7 @@ class EspeceAnimalController extends Controller
     {
         $espece=EspeceAnimal::where('uuid',$uuid)->first();
 
-        return view('pages.backOffice.espece_animales.show', compact('espece'));
+        return view('pages.backoffice.espece_animales.show', compact('espece'));
     }
 
     /**
@@ -93,7 +93,7 @@ class EspeceAnimalController extends Controller
         $espece=EspeceAnimal::where('uuid',$uuid)->first();
 
 
-        return view('pages.backOffice.espece_animales.edit',compact('espece'));
+        return view('pages.backoffice.espece_animales.edit',compact('espece'));
     }
 
     /**

@@ -25,7 +25,7 @@ class VilleController extends Controller
     {
         $villes=Ville::orderBy('pays_id','asc')->get();
 
-        return view('pages.backOffice.villes.index',compact('villes'));
+        return view('pages.backoffice.villes.index',compact('villes'));
     }
 
 
@@ -33,7 +33,7 @@ class VilleController extends Controller
     {
         $pays=Pay::orderBy('nom', 'asc')->get();
 
-        return view('pages.backOffice.villes.form',compact('pays'));
+        return view('pages.backoffice.villes.form',compact('pays'));
     }
 
     /**
@@ -76,7 +76,7 @@ class VilleController extends Controller
      */
     public function show(Ville $ville)
     {
-        return view('pages.backOffice.villes.show', compact('ville'));
+        return view('pages.backoffice.villes.show', compact('ville'));
     }
 
     /**
@@ -90,7 +90,7 @@ class VilleController extends Controller
         $pays=Pay::orderBy('nom', 'asc')->get();
 
 
-        return view('pages.backOffice.villes.edit',compact('ville','pays'));
+        return view('pages.backoffice.villes.edit',compact('ville','pays'));
     }
     
     /**

@@ -20,7 +20,7 @@ class PayController extends Controller
     public function index()
     {
         $pays=Pay::all();
-        return view('pages.backOffice.pays.list', compact('pays'));
+        return view('pages.backoffice.pays.list', compact('pays'));
     }
 
 
@@ -33,7 +33,7 @@ class PayController extends Controller
     public function show(Pay $pay)
     {
         $villes=Ville::where('pays_id',$pay->id)->get();
-        return view('pages.backOffice.pays.index', compact('pay','villes'));
+        return view('pages.backoffice.pays.index', compact('pay','villes'));
     }
 
 
