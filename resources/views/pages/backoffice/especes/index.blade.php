@@ -3,14 +3,11 @@
 @section('css')
         <!-- INTERNAL SELECT2 CSS -->
 		<link href="{{URL::asset('assets/plugins/fileuploads/css/fileupload.css')}}" rel="stylesheet" type="text/css" />
-
 		<link href="{{URL::asset('assets/plugins/select2/select2.min.css')}}" rel="stylesheet" />
-
 		<!-- INTERNAL  DATA TABLE CSS-->
 		<link href="{{URL::asset('assets/plugins/datatable/dataTables.bootstrap4.min.css')}}" rel="stylesheet" />
 		<link href="{{URL::asset('assets/plugins/datatable/responsivebootstrap4.min.css')}}" rel="stylesheet" />
         <link href="{{URL::asset('assets/plugins/datatable/fileexport/buttons.bootstrap4.min.css')}}" rel="stylesheet" />
-
           <!-- INTERNAL PRISM CSS -->
           <link href="{{URL::asset('assets/plugins/prism/prism.css')}}" rel="stylesheet">
           	<!-- INTERNAL TELEPHONE CSS-->
@@ -21,17 +18,19 @@
 
 				<div class="page-header">
 					<div>
-						<h1 class="page-title">Liste des Espèces Végétales</h1>
+						<h1 class="page-title">Liste des Espèces Animales</h1>
 						<ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{route('accueil')}}">Accueil</a></li>
-							<li class="breadcrumb-item active" aria-current="page">Espèces Végétales</li>
+							<li class="breadcrumb-item active" aria-current="page">Espèces Animales</li>
 						</ol>
 					</div>
 					<div class="ml-auto pageheader-btn">
-                    <a class="btn btn-primary" href="{{route('espece_vegetales.create')}}">  <span>
+                    <a class="btn btn-primary" href="{{route('especes.create')}}">  <span>
                             <i class="fe fe-plus"></i>
                         </span>
-                        Ajouter une Espèce Végétale</a>
+                        Ajouter une Espèces Animale</a>
+
+
                     </button>
 
 					</div>
@@ -40,14 +39,12 @@
 @endsection
 @section('content')
 @include('partials._notification')
-
-
 				<!-- ROW-1 OPEN -->
 				<div class="row">
 					<div class="col-md-12 col-lg-12">
 						<div class="card">
 							<div class="card-header">
-								<h3 class="card-title">Liste des Espèces Végétales</h3>
+								<h3 class="card-title">Liste des Espèces Animales</h3>
 							</div>
 							<div class="card-body">
 								<div class="table-responsive">
@@ -58,23 +55,19 @@
 												<th class="wd-15p">Nom</th>
 												<th class="wd-15p">Famille</th>
 												<th class="wd-20p">Nom scientifique</th>
-
-                                                {{-- <th>Actions</th> --}}
+												<th>Type</th>
 											</tr>
 										</thead>
 										<tbody>
                                             @foreach ($especes as $espece)
-
-
 											<tr>
-												<td> <a class="text-dark" href="{{route('espece_vegetales.show', $espece->uuid)}}"> <div class="col-auto"><span class="avatar brround avatar-md d-block cover-image" data-image-src="{{asset('storage/espece_vegetal_uploads/'.$espece->photo)}}"></span></div> </a></td>
-												<td> <a class="text-dark" href="{{route('espece_vegetales.show', $espece->uuid)}}"> {{$espece->nom}} </a></td>
-												<td> <a class="text-dark" href="{{route('espece_vegetales.show', $espece->uuid)}}"> {{$espece->famille}} </a></td>
-												<td> <a class="text-dark" href="{{route('espece_vegetales.show', $espece->uuid)}}">{{$espece->nom_scientifique}}</a></td>
-
+												<td> <a class="text-dark" href="{{route('especes.show', $espece->uuid)}}"> <div class="col-auto"><span class="avatar brround avatar-md d-block cover-image" data-image-src="{{asset('assets').$espece->photo}}"></span></div> </a></td>
+												<td> <a class="text-dark" href="{{route('especes.show', $espece->uuid)}}"> {{$espece->nom}} </a></td>
+												<td> <a class="text-dark" href="{{route('especes.show', $espece->uuid)}}"> {{$espece->famille}} </a></td>
+												<td> <a class="text-dark" href="{{route('especes.show', $espece->uuid)}}">{{$espece->nom_scientifique}}</a></td>
+												<td> <a class="text-dark" href="{{route('especes.show', $espece->uuid)}}"> {{$espece->type}} </a></td>
                                             </tr>
                                             @endforeach
-
 										</tbody>
 									</table>
 								</div>
@@ -85,16 +78,12 @@
 					</div>
 				</div>
 			 {{-- @include('pages.backOffice.administrateur.utilisateurs._modelCreationUtilisateur') --}}
-
-
-
 @endsection
 @section('js')
      <!-- INTERNAL  DATA TABLE JS-->
     <script src="{{URL::asset('assets/plugins/fileuploads/js/fileupload.js')}}"></script>
     <script src="{{URL::asset('assets/plugins/fileuploads/js/file-upload.js')}}"></script>
     <script src="{{URL::asset('assets/plugins/datatable/jquery.dataTables.min.js')}}"></script>
-
     <script src="{{URL::asset('assets/plugins/datatable/dataTables.bootstrap4.min.js')}}"></script>
     <script src="{{URL::asset('assets/plugins/datatable/datatable.js')}}"></script>
     <script src="{{URL::asset('assets/plugins/datatable/dataTables.responsive.min.js')}}"></script>
@@ -106,16 +95,13 @@
     <script src="{{URL::asset('assets/plugins/datatable/fileexport/buttons.html5.min.js')}}"></script>
     <script src="{{URL::asset('assets/plugins/datatable/fileexport/buttons.print.min.js')}}"></script>
     <script src="{{URL::asset('assets/plugins/datatable/fileexport/buttons.colVis.min.js')}}"></script>
-
     <script src="{{URL::asset('assets/plugins/clipboard/clipboard.min.js')}}"></script>
     <script src="{{URL::asset('assets/plugins/clipboard/clipboard.js')}}"></script>
-
     <!-- INTERNALPRISM JS -->
     <script src="{{URL::asset('assets/plugins/prism/prism.js')}}"></script>
         <!-- INTERNAL TELEPHONE JS -->
     <script src="{{URL::asset('assets/plugins/telephoneinput/telephoneinput.js')}}"></script>
     <script src="{{URL::asset('assets/plugins/telephoneinput/inttelephoneinput.js')}}"></script>
-
     <script type="text/javascript">
     var modal = document.getElementById('largeModalAddUser');
         @if (count($errors) > 0)

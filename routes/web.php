@@ -27,7 +27,7 @@ Auth::routes();
     Route::get('utilisateurs/gerer/{utilisateur}',              'UtilisateursController@gerer')->name('gerer-utilisateur');
     Route::resource('crimes',                                   'CrimeController');
 
-    Route::resource('espace_vegetal',                           'EspeceVegetalController');
+    
     Route::resource('nature_crimes',                            'CrimeNatureController');
 
     Route::get('/home','UniteController@index')->name('home');
@@ -39,8 +39,9 @@ Auth::routes();
 
     Route::resource('unites', 'UniteController');
     Route::resource('villes', 'VilleController');
-    Route::resource('espece_animales', 'EspeceAnimalController');
-    Route::resource('espece_vegetales', 'EspeceVegetalController');
+    Route::resource('especes', 'EspeceController');
+    Route::resource('confiscations', 'CrimeConfiscationController');
+    
     Route::resource('type_crimes', 'TypeCrimeController');
 
     Route::view('/{patch?}', 'layouts.masterreact');

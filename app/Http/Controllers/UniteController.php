@@ -6,7 +6,7 @@ use App\Models\Unite;
 use App\Models\Pay;
 use App\Models\Ville;
 use App\Models\User;
-use App\Models\Type;
+use App\Models\TypeCrime;
 use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
@@ -26,6 +26,7 @@ class UniteController extends Controller
     public function index()
     {
         $unites=Unite::all();
+ 
         return view('pages.backoffice.unites.index',compact('unites'));
     }
 
@@ -40,7 +41,7 @@ class UniteController extends Controller
         $pays=Pay::where('id',auth()->user()->id)->orderBy('nom', 'asc')->get();
         $villes=Ville::where('pays_id',$pays[0]->id)->orderBy('pays_id', 'asc')->get();
         $responsables=User::all();
-        $types= Type::all();
+        $types= TypeCrime::all();
         return view('pages.backoffice.unites.form',compact('villes','pays', 'responsables','types'));
     }
 
@@ -139,7 +140,7 @@ class UniteController extends Controller
         $pays=Pay::where('id',auth()->user()->id)->orderBy('nom', 'asc')->get();
         $villes=Ville::where('pays_id',$pays[0]->id)->orderBy('pays_id', 'asc')->get();
         $responsables=User::all();
-        $types=Type::all();
+        $types=TypeCrime::all();
         return view('pages.backoffice.unites.edit',compact('unite','responsables','pays','villes','types'));
     }
 

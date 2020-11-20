@@ -21,8 +21,6 @@ class CreateCommentairesTable extends Migration
             $table->unsignedBigInteger('pour');
             $table->text('commentaire');
             $table->timestamps();
-
-
             $table->foreign('crime_id')->references('id')->on('crimes')->onDelete('restrict')
             ->onUpdate('restrict');
             $table->foreign('par')->references('id')->on('users')->onDelete('restrict')

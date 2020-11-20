@@ -13,6 +13,7 @@ class CreateEspecesTable extends Migration
      */
     public function up()
     {
+        
         Schema::create('especes', function (Blueprint $table) {
             $table->id();
             $table->uuid('uuid');

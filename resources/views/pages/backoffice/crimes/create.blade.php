@@ -18,7 +18,7 @@
                     </ol>
                 </div>
                 <div class="ml-auto pageheader-btn">
-                <a class="btn btn-primary" href="{{route('espece_animales.create')}}">  <span>
+                <a class="btn btn-primary" href="{{route('especes.create')}}">  <span>
                         <i class="fe fe-plus"></i>
                     </span>
                     Ajouter une Espèces Animale</a>
@@ -44,7 +44,7 @@
 								<ul>
 									<li><a href="#step-1">Informations générales</a></li>
 									<li><a href="#step-2">Information sur le produit</a></li>
-									<li><a href="#step-3">Information sur le trafiquant</a></li>
+									<li><a href="#step-3">Autres informations</a></li>
 								</ul>
 								<div>
 									<div id="step-1" class="">
@@ -52,11 +52,12 @@
 
                                         @csrf
                                         <input type="hidden" name="step" value="1">
+                                        <input type="hidden" name="uuid">
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>   Pays d'appréhension  <span class="text-danger">*</span></label>
-                                                        <select name="pays_appréhension" id="" class="form-control custom-select select2">
+                                                        <select name="pays_apprehension"  class="form-control custom-select select2">
                                                             <option value="" selected disabled> Séléctionnez un pays</option>
                                                             @forelse ($pays as $pays_apprehension)
                                                         <option value="{{$pays_apprehension->id}}"> {{$pays_apprehension->nom}}</option>
@@ -64,53 +65,41 @@
                                                             Aucun pays disponible
                                                             @endforelse
                                                         </select>
-
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label>  Code ISO3 du pays appréhension  <span class="text-danger">*</span></label>
-                                                        <input type="text" name="codeiso3_pays_apprehension" id="" class="form-control">
+                                                        <label>   Date d'apprehension  <span class="text-danger">*</span></label>
+                                                        <input type="date" name="date_apprehension"  class="form-control">
                                                     </div>
                                                 </div>
+                                                
+                                                
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>  Services Investigateurs  <span class="text-danger">*</span></label>
-                                                        <select name="espece" id="" class="form-control custom-select select2">
-                                                            <option value="unite"  selected> Mon unité</option>
+                                                        <select name="services_investigateurs"  class="form-control custom-select select2">
+                                                            <option value=""  selected disabled> Sélectionnez une unité</option>
+                                                            @foreach ($unites as $unite)
+                                                            <option value={{$unite->id}}>{{$unite->designation}}</option>
+                                                                
+                                                            @endforeach
+
 
                                                         </select>
 
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>  Espèce trafiquée  <span class="text-danger">*</span></label>
-                                                        <select name="espece" id="" class="form-control custom-select select2">
-                                                            <option value="" disabled selected> Sélectionnez</option>
-                                                          <option value="animal">Espèce animale</option>
-                                                          <option value="vegetal">Espèce végétale</option>
-                                                        </select>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>   Date d'apprehension  <span class="text-danger">*</span></label>
-                                                        <input type="date" name="date_apprehension" id="" class="form-control">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
+                                                                            <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label> Localité d'aprrehension <span class="text-danger">*</span></label>
-                                                        <input type="text" name="localite_aprrehension" id="" class="form-control">
+                                                        <input type="text" name="localite_apprehension"  class="form-control">
                                                     </div>
                                                 </div>
                                             </div>
+                                            
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
@@ -125,6 +114,23 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="row">
+                                               
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>  Espèce trafiquée  <span class="text-danger">*</span></label>
+                                                        <select name="espece_id"  class="form-control custom-select select2">
+                                                            <option value="" disabled selected> Sélectionnez une espèce </option>
+                                                            @foreach ($especes as $espece)
+                                                            <option value="{{$espece->id}}">{{ucfirst($espece->nom)}}</option>
+                                                                
+                                                            @endforeach
+                                                        </select>
+
+                                                    </div>
+                                                </div>
+                           
+                                            </div>
                                             <div class="text-right">
                                             <a href="{!! URL::previous() !!}" class="btn btn-info sw-btn-prev disabled"> Précedent</a>
                                                 <button type="submit" id="submit1" class="btn btn-primary"> Suivant</button>
@@ -137,12 +143,13 @@
                                         <form  method="POST" id="form_setp_2">
                                             @csrf
                                         <input type="hidden" name="step" value="2">
+                                        <input id="uuid2" type="hidden" name="uuid">
 
                                              <div class="row">
                                                  <div class="col-md-6">
                                                     <div class="form-group">
                                                     <label for="pays_origine_produit"> Pays d'origine du produit <span class="text-danger">*</span> </label>
-                                                    <select name="pays_origine_produit" id="" class="form-control select2">
+                                                    <select name="pays_origine_produit"  class="form-control select2">
                                                         <option value="" disabled selected> Sélectionnez</option>
                                                         @forelse ($pays as $pays_origine)
                                                     <option value="{{$pays_origine->id}}">{{$pays_origine->nom}}</option>
@@ -155,7 +162,7 @@
                                                  <div class="col-md-6">
                                                     <div class="form-group">
                                                     <label for="pays_destination"> Pays de destination du produit <span class="text-danger">*</span> </label>
-                                                    <select name="pays_destination" id="" class="form-control select2">
+                                                    <select name="pays_destination"  class="form-control select2">
                                                         <option value="" disabled selected> Sélectionnez</option>
                                                         @forelse ($pays as $pays_destination)
                                                     <option value="{{$pays_destination->id}}">{{$pays_destination->nom}}</option>
@@ -171,10 +178,10 @@
                                                  <div class="col-md-6">
                                                     <div class="form-group">
                                                     <label for="quantite"> Aires protégées d'origine du produits <span class="text-danger">*</span> </label>
-                                                    <select name="unite_id" id="" class="form-control select2">
+                                                    <select name="aire_protegee_id"  class="form-control select2">
                                                         <option value="" disabled selected> Sélectionnez</option>
-                                                        @forelse ($unites as $unite_origine)
-                                                    <option value="{{$unite_origine->id}}">{{$unite_origine->designation}}</option>
+                                                        @forelse ($aires as $aire)
+                                                    <option value="{{$aire->id}}">{{$aire->libelle}}</option>
                                                         @empty
                                                         Aucun pays
                                                         @endforelse
@@ -184,7 +191,7 @@
                                                  <div class="col-md-6">
                                                     <div class="form-group">
                                                     <label for="date_abattage">Date d’abattage/capture <span class="text-danger">*</span> </label>
-                                                    <input type="date" name="date_abattage" id="" class="form-control">
+                                                    <input type="date" name="date_abattage"  class="form-control">
                                              </div>
                                              </div>
                                              </div>
@@ -192,158 +199,61 @@
                                              <div class="row">
                                                  <div class="col-md-6">
                                                     <div class="form-group">
-                                                    <label for="quantite"> Gestion des saisis <span class="text-danger">*</span> </label>
-                                                    <select name="" id="" class="form-control select2">
+                                                    <label for="gestion_des_saisies"> Gestion des saisis <span class="text-danger">*</span> </label>
+                                                    <select name="gestion_des_saisies"  class="form-control select2">
 
                                                         <option value="crime_type_reglement" disabled selected> Sélectionnez</option>
-                                                        @foreach ($crime_type_reglements as $crime_type_reglement)
-                                                        <option value="{{$crime_type_reglement->type}}"> {{$crime_type_reglement->type}}</option>
-
-                                                        @endforeach
-                                                    </select>
+                                                        <option value="Détruit">Détruit</option>
+                                                        <option value="Stocké">Stocké</option>
+                                                     </select>
                                                     </div>
                                                  </div>
-                                                 <div class="col-md-6">
-                                                    <div class="form-group">
-                                                    <label for="quantite"> Gestion des saisis <span class="text-danger">*</span> </label>
-                                                    <select name="crime_type_suite" id="" class="form-control select2">
-
-                                                        <option value="" disabled selected> Sélectionnez</option>
-                                                        @foreach ($crime_type_reglements as $crime_type_suite)
-                                                        <option value="{{$crime_type_suite->suite }}"> {{$crime_type_suite->suite }}</option>
-
-                                                        @endforeach
-                                                    </select>
-                                                    </div>
-                                                 </div>
-
+                                                 
                                              </div>
 
-                                             <div class="row">
-                                                 <div class="col-md-6">
-                                                    <div class="form-group">
-                                                    <label for="penalite"> Pénalité <span class="text-danger">*</span> </label>
-                                                    <select name="form" id="" class="form-control select2">
-                                                        <option value="" disabled selected> Sélectionnez</option>
-                                                        <option value="amende"> Amende</option>
-                                                        <option value="emprisonnement"> Emprisonnement</option>
-                                                    </select>
-                                                    </div>
-                                             </div>
-                                                 <div class="col-md-6">
-                                                    <div class="form-group">
-                                                    <label for="quantite">Arme légère à petit calibre utilisée<span class="text-danger">*</span> </label>
-                                                    <input type="text" name="" id="" class="form-control">
-                                             </div>
-                                             </div>
-                                             </div>
+                                            
                                            <div class="text-right">
                                             <a href="{!! URL::previous() !!}" class="btn btn-info sw-btn-prev disabled"> Précedent</a>
                                             <button type="submit" id="submit2" class="btn btn-primary"> Suivant</button>
                                            </div>
                                             </form>
-                                        </div>
+                                            </div>
                                     <div id="step-3" class="">
                                         <form  method="POST" id="form_setp_3">
                                             @csrf
                                         <input type="hidden" name="step" value="3">
+                                        <input type="hidden" name="uuid" id="uuid3" value="3">
+
 
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label>Nom <span class="text-danger">*</span> </label>
-                                                        <input type="text" class="form-control" name="nom" id="inputtext3" placeholder="Nom du trafiquant">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Prenom <span class="text-danger">*</span></label>
-                                                        <input type="text" class="form-control" name="prenom" id="inputtext3" placeholder="Nom du trafiquant">
-                                                    </div>
-                                                </div>
-                                            </div>
+                                                    <label for="lien_terrorisme"> Lien térrorisme <span class="text-danger">*</span> </label>
+                                                    <select name="lien_terrorisme"  class="form-control select2">
 
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Sexe <span class="text-danger">*</span></label>
-                                                        <select name="genre" id="" class="form-control select2">
-                                                            <option value="maxculin"> Maxculin </option>
-                                                            <option value="feminin"> Feminin </option>
-                                                        </select>
+                                                        <option value="" disabled selected> Sélectionnez</option>
+                                                        <option value="1">Oui</option>
+                                                        <option value="0">Non</option>
+                                                     </select>
                                                     </div>
-                                                </div>
-                                                <div class="col-md-6">
+                                                 </div>
+                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label>Age <span class="text-danger">*</span> </label>
-                                                        <input type="text" class="form-control" name="age" id="inputtext3" placeholder="Nom du trafiquant">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Nationalité <span class="text-danger">*</span> </label>
-                                                        <input type="text" class="form-control" name="nationalite"   placeholder="Nationalité du trafiquant">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label> <span class="text-danger"></span> </label>
-                                                        <ul class="list-group">
-                                                            <li class="list-group-item">
-                                                                Education
-                                                                <div class="material-switch pull-right">
-                                                                    <input id="someSwitchOptionPrimary" name="someSwitchOption001" type="checkbox">
-                                                                    <label for="someSwitchOptionPrimary" class="label-primary"></label>
-                                                                </div>
-                                                            </li>
+                                                    <label for="veto"> Veto <span class="text-danger">*</span> </label>
+                                                    <select name="veto"  class="form-control select2">
 
-                                                        </ul>
+                                                        <option value="" disabled selected> Sélectionnez</option>
+                                                        <option value="1">Oui</option>
+                                                        <option value="0">Non</option>
+                                                     </select>
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label> <span class="text-danger"></span> </label>
-
-                                                        <ul class="list-group">
-                                                            <li class="list-group-item">
-                                                                Voyageur international
-                                                                <div class="material-switch pull-right">
-                                                                    <input id="someSwitchOptionSuccess" name="voyageur_international" type="checkbox">
-                                                                    <label for="someSwitchOptionSuccess" class="label-primary"></label>
-                                                                </div>
-                                                            </li>
-
-                                                        </ul>
-                                                    </div>
-                                                </div>
+                                                 </div>
+                                                
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Revenue <span class="text-danger">*</span> </label>
-                                                        <input type="number" class="form-control" name="Revenue"   placeholder="Nationalité du trafiquant">
+                                                        <input type="text" class="form-control" name="victime"   placeholder="">
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label> Nombre de complice <span class="text-danger">*</span> </label>
-                                                        <input type="number" name="" id="" class="form-control">
-
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Intention <span class="text-danger">*</span> </label>
-                                                        <select name="" id="" class="form-control select2">
-                                                            <option value="" disabled selected> Sélectionnez</option>
-                                                            <option value="" > Prêt à abondonner </option>
-                                                            <option value=""> mordu du braconnage ou du trafic</option>
-                                                        </select>
-                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="text-right">

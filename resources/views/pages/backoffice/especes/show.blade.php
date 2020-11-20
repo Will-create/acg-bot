@@ -20,14 +20,14 @@
                 @include('partials._notification')
 				<div class="page-header">
 					<div>
-						<h1 class="page-title">Liste des Espèces Animales</h1>
+						<h1 class="page-title">Liste des Espèces</h1>
 						<ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{route('accueil')}}">Accueil</a></li>
 							<li class="breadcrumb-item active" aria-current="page">{{$espece->nom}}</li>
 						</ol>
 					</div>
 					<div class="ml-auto pageheader-btn">
-                    <a class="btn btn-primary" href="{{route('espece_animales.index')}}"  >  <span>
+                    <a class="btn btn-primary" href="{{route('especes.index')}}"  >  <span>
                             <i class="fe fe-list"></i>
                         </span>
                         Toutes les Espèces Animales</a>
@@ -52,7 +52,7 @@
                         <div class="card-body wideget-user-contact">
 
 
-                            <img src="{{asset('storage/espece_animale_uploads/'.$espece->photo)}}" style="min-width:100%; object-fit:cover; object-position: 50% 50%;" alt="" srcset="">
+                            <img src="{{asset('storage/'.$espece->photo)}}" style="min-width:100%; object-fit:cover; object-position: 50% 50%;" alt="" srcset="">
                         </div>
                     </div>
                 </div>
@@ -69,6 +69,10 @@
                                                 <br><br>
                                         <strong>Nom Scientifique :</strong> {{$espece->nom_scientifique}}
                                                 <br><br>
+                                        <strong>Type :</strong> {{$espece->type}}
+                                                <br><br>
+                                        <strong>Ordre :</strong> {{$espece->ordre->nom}}
+                                                <br><br>
                                     </div>
                                 </div>
                             </div>
@@ -80,7 +84,7 @@
                 </div><!-- COL-END -->
             </div>
             <div class="modal-footer">
-                <form method="POST" action="{{route('espece_animales.destroy',$espece->uuid)}}" onsubmit="return confirm('Voulez vous vraiment supprimer cette Espèce?')">
+                <form method="POST" action="{{route('especes.destroy',$espece->uuid)}}" onsubmit="return confirm('Voulez vous vraiment supprimer cette Espèce?')">
                 {{ csrf_field() }}
                     @method('DELETE')
                     <button class="btn btn-danger">
@@ -90,7 +94,7 @@
                 </form>
 
 
-                <a href="{{route('espece_animales.edit',$espece->uuid)}}" class="btn btn-primary">
+                <a href="{{route('especes.edit',$espece->uuid)}}" class="btn btn-primary">
                     Modifier cette Espèce Animale</a>
 
             <a href="{{ URL::previous() }}" class="btn btn-primary"> <span>

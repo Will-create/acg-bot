@@ -35,7 +35,7 @@ class Unite extends Model
         return $this->belongsTo('App\Models\Ville', 'ville_id', 'id');
     }
     public function type(){
-        return $this->belongsTo('App\Models\Type','type_id','id');
+        return $this->belongsTo('App\Models\TypeCrime');
     }
 
     public function responsable(){

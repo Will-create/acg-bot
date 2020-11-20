@@ -39,24 +39,15 @@
                             </ul>
                         </li>
 
+                       
                         <li class="slide">
                             <a class="side-menu__item" data-toggle="slide" href="#">
                                 <i class="mdi mdi-rss aide-icon"  ></i>
-                                <span class="side-menu__label">Espèces Animales</span><i class="angle fa fa-angle-right"></i>
+                                <span class="side-menu__label">Espèces</span><i class="angle fa fa-angle-right"></i>
                             </a>
                             <ul class="slide-menu">
-                                <li><a class="slide-item" href="{{route('espece_animales.index')}}"><span>Les espèces Animales</span></a></li>
-                                <li><a class="slide-item" href="{{route('espece_animales.create')}}"><span>Ajouter une espèce animale </span></a></li>
-                            </ul>
-                        </li>
-                        <li class="slide">
-                            <a class="side-menu__item" data-toggle="slide" href="#">
-                                <i class="mdi mdi-rss aide-icon"  ></i>
-                                <span class="side-menu__label">Espèces végétales</span><i class="angle fa fa-angle-right"></i>
-                            </a>
-                            <ul class="slide-menu">
-                                <li><a class="slide-item" href="{{route('espece_vegetales.index')}}"><span>Toutes les espèces</span></a></li>
-                                <li><a class="slide-item" href="{{route('espece_vegetales.create')}}"><span>Ajouter une espèce végétale </span></a></li>
+                                <li><a class="slide-item" href="{{route('especes.index')}}"><span>Toutes les espèces</span></a></li>
+                                <li><a class="slide-item" href="{{route('especes.create')}}"><span>Ajouter une espèces</span></a></li>
                             </ul>
                         </li>
 
@@ -106,6 +97,16 @@
                             <ul class="slide-menu">
                                 <li><a class="slide-item" href="{{route('roles.index')}}"><span>Roles</span></a></li>
                                 <li><a class="slide-item" href="{{route('roles.create')}}"><span>Nouveau </span></a></li>
+                            </ul>
+                        </li>
+                        <li class="slide">
+                            <a class="side-menu__item" data-toggle="slide" href="#">
+                                <i class="mdi mdi-rss aide-icon"  ></i>
+                                <span class="side-menu__label">Confiscations</span><i class="angle fa fa-angle-right"></i>
+                            </a>
+                            <ul class="slide-menu">
+                                <li><a class="slide-item" href="{{route('confiscations.index')}}"><span>Toutes les confiscations</span></a></li>
+                                <li><a class="slide-item" href="{{route('confiscations.create')}}"><span>Nouvelle confiscation</span></a></li>
                             </ul>
                         </li>
                         <li class="slide">

@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Type;
+use App\Models\TypeUnite;
 use App\Models\Pay;
 use App\Models\Ville;
 use Illuminate\Database\Seeder;
@@ -25,14 +25,14 @@ class UniteTableSeeder extends Seeder
         $pays=Pay::all();
         $users=User::all();
         $villes=Ville::all();
-        $types=Type::all();
+        $types=TypeUnite::all();
         //Unite::truncate();
 
 
         foreach($villes as $ville){
             $unite = Unite::create([
                 'designation'                    =>$faker->name,
-                'type_id'                        =>rand(1,$types->count()),
+                'type_unite_id'                  =>rand(1,$types->count()),
                 'tel'                            =>$faker->phoneNumber,
                 'adresse'                        =>substr($faker->text,0,250),
                 'ville_id'                       =>$ville->id,

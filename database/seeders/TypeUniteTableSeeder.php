@@ -3,9 +3,9 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Type;
+use App\Models\TypeUnite;
 use Illuminate\Support\Str;
-class TypeTableSeeder extends Seeder
+class TypeUniteTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -17,7 +17,7 @@ class TypeTableSeeder extends Seeder
         $types=['unité douaniere','unité policiere','gendarmerie', 'unité de pêche et halieutiques'];
         //Type::truncate();
         foreach($types as $type){
-         Type::create([
+         TypeUnite::create([
              'nom'=>$type,
              'uuid'=>Str::uuid()
              ]);

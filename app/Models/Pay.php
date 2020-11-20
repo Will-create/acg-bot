@@ -21,4 +21,11 @@ class Pay extends Model
     public function unites(){
         return $this->hasMany('App\Models\Unite','pays_id');
     }
+    public function crimes(){
+        return $this->hasMany('App\Models\Crime','pays_apprehension','id');
+    }
+    public function aireProtegees(){
+        return $this->hasMany('App\Models\AireProtegee','pays_id','id');
+    }
 }
+

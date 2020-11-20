@@ -5,7 +5,8 @@ $(document).ready(function () {
     $.ajaxSetup({
         headers: {
 
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                'uuid':null
             }
     });
 
@@ -25,7 +26,10 @@ $('body').on('click', '#submit1', function (event) {
       data:fd,
     //   dataType: 'json',
       success: function (data) {
-          console.log(data)
+        console.log('uuid:')
+          
+         var uuid2 = document.querySelector('#uuid2').value = data;
+         console.log(uuid2)
           document.querySelector('#loader').classList.add('d-none');
           document.querySelector('#smartwizard').classList.remove('d-none');
           var url = '/crimes/create#step-2';
@@ -34,7 +38,7 @@ $('body').on('click', '#submit1', function (event) {
             position: 'center',
             icon: 'success',
             title: 'Informations sauvegardées avec succès ',
-            showConfirmButton: false,
+            button: false,
             timer: 2500
           })
 
@@ -48,12 +52,10 @@ $('body').on('click', '#submit1', function (event) {
        position: 'center',
        icon: 'error',
        title: 'Une erreur s\'est produite, Veullez réessayer',
-       showConfirmButton: false,
+       button: false,
        timer: 2500
-
      })
     }
-
   });
 });
 
@@ -73,6 +75,8 @@ $('body').on('click', '#submit2', function (event) {
     //   dataType: 'json',
       success: function (data) {
           console.log(data)
+          var uuid3 = document.querySelector('#uuid3').value = data;
+          console.log(uuid3)
         document.querySelector('#loader').classList.add('d-none');
       document.querySelector('#smartwizard').classList.remove('d-none');
 
@@ -82,7 +86,7 @@ $('body').on('click', '#submit2', function (event) {
             position: 'center',
             icon: 'success',
             title: 'Informations sauvegardées avec succès ',
-            showConfirmButton: false,
+            button: false,
             timer: 2500
           })
 
@@ -96,7 +100,7 @@ $('body').on('click', '#submit2', function (event) {
        position: 'center',
        icon: 'error',
        title: 'Une erreur s\'est produite, Veullez réessayer',
-       showConfirmButton: false,
+       button: false,
        timer: 2500
 
      })
@@ -114,6 +118,10 @@ $('body').on('click', '#submit3', function (event) {
     // var email = $("#email").val();
     var fd = $('#form_setp_3').serialize();
     console.log(fd)
+    
+      
+    
+ 
     $.ajax({
 	  url: '/crimes',
       type: "POST",
@@ -121,13 +129,13 @@ $('body').on('click', '#submit3', function (event) {
     //   dataType: 'json',
       success: function (data) {
           console.log(data)
-          var url = '/crimes/create#1';
+          var url = '/crimes';
           location.href = url;
            swal({
             position: 'center',
             icon: 'success',
             title: 'Informations sauvegardées avec succès ',
-            showConfirmButton: false,
+            button: false,
             timer: 2500
           })
 
@@ -138,9 +146,8 @@ $('body').on('click', '#submit3', function (event) {
        position: 'center',
        icon: 'error',
        title: 'Une erreur s\'est produite, Veullez réessayer',
-       showConfirmButton: false,
+       button: false,
        timer: 2500
-
      })
     }
 

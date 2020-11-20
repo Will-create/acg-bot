@@ -20,17 +20,17 @@
                 @include('partials._notification')
 				<div class="page-header">
 					<div>
-						<h1 class="page-title">Liste des Espèces Végétales</h1>
+						<h1 class="page-title">Listes des confiscations de crime</h1>
 						<ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{route('accueil')}}">Accueil</a></li>
-							<li class="breadcrumb-item active" aria-current="page">{{$espece->nom}}</li>
+							<li class="breadcrumb-item active" aria-current="page">{{$confiscation->designation}}</li>
 						</ol>
 					</div>
 					<div class="ml-auto pageheader-btn">
-                    <a class="btn btn-primary" href="{{route('espece_vegetales.index')}}"  >  <span>
+                    <a class="btn btn-primary" href="{{route('confiscations.index')}}"  >  <span>
                             <i class="fe fe-list"></i>
                         </span>
-                        Toutes les Espèces Végétales</a>
+                        Toutes les confiscations</a>
                     </button>
 
 					</div>
@@ -41,18 +41,17 @@
             <!-- ROW-1 OPEN -->
             <div class="row">
                 <div class="col-lg-4">
-
+                   
                     <div class="card">
                         <div class="card-header">
                             <div class="float-left">
-                                <h3 class="card-title">{{$espece->nom}}</h3>
+                                <h3 class="card-title">Objet confisqué {{$confiscation->designation}}</h3>
                             </div>
                             <div class="clearfix"></div>
                         </div>
                         <div class="card-body wideget-user-contact">
-
-
-                            <img src="{{asset('storage/espece_vegetal_uploads/' .$espece->photo)}}" style="min-width:100%; object-fit:cover; object-position: 50% 50%;" alt="" srcset="">
+                            
+                            
                         </div>
                     </div>
                 </div>
@@ -64,12 +63,10 @@
                                 <div class="card-body">
                                     <div id="profile-log-switch">
                                         <div class="media-heading">
-                                            <h5><strong>Details de {{$espece->nom}}</strong></h5>
+                                            <h5><strong>Details de {{$confiscation->designation}}</strong></h5>
                                         </div>
-                                        <strong>Famille :</strong> {{$espece->famille}}
-                                                <br><br>
-                                        <strong>Nom Scientifique :</strong> {{$espece->nom_scientifique}}
-                                                <br><br>
+                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -77,27 +74,27 @@
                         </div>
 
                     </div>
-
+                    
                 </div><!-- COL-END -->
             </div>
             <div class="modal-footer">
-                <form method="POST" action="{{route('espece_vegetales.destroy',$espece->uuid)}}" onsubmit="return confirm('Voulez vous vraiment supprimer cette Espèce?')">
+                <form method="POST" action="{{route('confiscations.destroy',$confiscation->uuid)}}" onsubmit="return confirm('Voulez vous vraiment supprimer cette Confiscation?')">
                 {{ csrf_field() }}
                     @method('DELETE')
                     <button class="btn btn-danger">
-                    Supprimer cette Espèce Végétale
+                    Supprimer cette Confiscation
                     </button>
-
+                
                 </form>
-
-
-                <a href="{{route('espece_vegetales.edit',$espece->uuid)}}" class="btn btn-primary">
-                    Modifier cette Espèce Végétale</a>
-
+                
+                
+                <a href="{{route('confiscations.edit',$confiscation->uuid)}}" class="btn btn-primary">
+                    Modifier cette Confiscation</a>
+            
             <a href="{{ URL::previous() }}" class="btn btn-primary"> <span>
                     <i class="fe fe-close"></i>
                 </span> Retour</a>
-
+            
             </div>
             <!-- ROW-1 CLOSED -->
 @endsection

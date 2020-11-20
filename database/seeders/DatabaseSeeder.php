@@ -16,15 +16,13 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(PaysTableSeeder::class);
         $this->call(VilleTableSeeder::class);
-        $this->call(TypeTableSeeder::class);
+        $this->call(TypeUniteTableSeeder::class);
         $this->call(TypeCrimeTableSeeder::class);
         //\App\Models\User::factory(10)->create();
         $this->call(RoleTableSeeder::class);
         $this->call(UserTableSeeder::class);
         $this->call(UniteTableSeeder::class);
         $this->call(OrdreTableSeeder::class);
-        $this->call(EspaceVegetalTableSeeder::class);
-        $this->call(EspaceAnimaleTableSeeder::class);
-
+        $this->call(EspaceTableSeeder::class);
     }
 }

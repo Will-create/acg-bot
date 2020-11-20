@@ -18,22 +18,20 @@
 @endsection
 @section('page-header')
                 <!-- PAGE-HEADER -->
-
+                
 				<div class="page-header">
 					<div>
-						<h1 class="page-title">Liste des Espèces Animales</h1>
+						<h1 class="page-title">Liste des Confiscations de crime</h1>
 						<ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{route('accueil')}}">Accueil</a></li>
-							<li class="breadcrumb-item active" aria-current="page">Espèces Animales</li>
+							<li class="breadcrumb-item active" aria-current="page">Confiscations</li>
 						</ol>
 					</div>
 					<div class="ml-auto pageheader-btn">
-                    <a class="btn btn-primary" href="{{route('espece_animales.create')}}">  <span>
+                    <a class="btn btn-primary" href="{{route('confiscations.create')}}"  >  <span>
                             <i class="fe fe-plus"></i>
                         </span>
-                        Ajouter une Espèces Animale</a>
-
-
+                        Ajouter une Confiscation de crime</a>
                     </button>
 
 					</div>
@@ -42,38 +40,40 @@
 @endsection
 @section('content')
 @include('partials._notification')
-
-
 				<!-- ROW-1 OPEN -->
 				<div class="row">
 					<div class="col-md-12 col-lg-12">
 						<div class="card">
 							<div class="card-header">
-								<h3 class="card-title">Liste des Espèces Animales</h3>
+								<h3 class="card-title">Liste des Confiscations de crimes</h3>
 							</div>
 							<div class="card-body">
 								<div class="table-responsive">
 									<table id="data-table1" class="table table-striped table-bordered text-nowrap w-100 table-sm">
 										<thead>
 											<tr>
-												<th class="wd-15p">Photo</th>
-												<th class="wd-15p">Nom</th>
-												<th class="wd-15p">Famille</th>
-												<th class="wd-20p">Nom scientifique</th>
-
+												<th class="wd-15p">Designation</th>
+												
+												<th class="wd-20p">Nombre</th>
+												<th class="wd-20p">Poids</th>
+												<th class="wd-20p">Description</th>
+												<th class="wd-20p">Date confiscation</th>
+												
                                                 {{-- <th>Actions</th> --}}
 											</tr>
 										</thead>
 										<tbody>
-                                            @foreach ($especes as $espece)
+                                            @foreach ($confiscations as $confiscation)
 
 
 											<tr>
-												<td> <a class="text-dark" href="{{route('espece_animales.show', $espece->uuid)}}"> <div class="col-auto"><span class="avatar brround avatar-md d-block cover-image" data-image-src="{{asset('storage/espece_animale_uploads/'.$espece->photo)}}"></span></div> </a></td>
-												<td> <a class="text-dark" href="{{route('espece_animales.show', $espece->uuid)}}"> {{$espece->nom}} </a></td>
-												<td> <a class="text-dark" href="{{route('espece_animales.show', $espece->uuid)}}"> {{$espece->famille}} </a></td>
-												<td> <a class="text-dark" href="{{route('espece_animales.show', $espece->uuid)}}">{{$espece->nom_scientifique}}</a></td>
+												<td> <a class="text-dark" href="{{route('confiscations.show', $confiscation->uuid)}}"> {{$confiscation->designation}} </a></td>
+												<td> <a class="text-dark" href="{{route('confiscations.show', $confiscation->uuid)}}">{{$confiscation->nombre}}</a></td>
+												<td> <a class="text-dark" href="{{route('confiscations.show', $confiscation->uuid)}}"> {{$confiscation->poids}} </a></td>
+												<td> <a class="text-dark" href="{{route('confiscations.show', $confiscation->uuid)}}"> {{$confiscation->description}} </a></td>
+												<td> <a class="text-dark" href="{{route('confiscations.show', $confiscation->uuid)}}"> {{$confiscation->crime->date_apprehension}} </a></td>
 
+												
                                             </tr>
                                             @endforeach
 

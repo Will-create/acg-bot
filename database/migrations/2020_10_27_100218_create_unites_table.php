@@ -20,16 +20,15 @@ class CreateUnitesTable extends Migration
             $table->unsignedBigInteger('ville_id');
             $table->unsignedBigInteger('pays_id');
             $table->unsignedBigInteger('responsable_id');
-            $table->unsignedBigInteger('type_id');
-            $table->string('tel', 15);
-             $table->string('tel2', 15)->nullable();
+            $table->unsignedBigInteger('type_unite_id');
+            $table->string('tel', 40);
+             $table->string('tel2',40)->nullable();
             $table->text('adresse', 200);
             $table->string('lat', 25)->nullable();
             $table->string('long', 25)->nullable();
             $table->string('administration_tutelle')->nullable();
             $table->mediumText('logo')->nullable();
             $table->mediumText('photo_couverture')->nullable();
-
             $table->timestamps();
 
 
@@ -43,7 +42,7 @@ class CreateUnitesTable extends Migration
             $table->foreign('responsable_id')->references('id')->on('users')->onDelete('restrict')
             ->onUpdate('restrict');
 
-            $table->foreign('type_id')->references('id')->on('types')->onDelete('restrict')
+            $table->foreign('type_unite_id')->references('id')->on('type_unites')->onDelete('restrict')
             ->onUpdate('restrict');
         });
     }
