@@ -31,7 +31,7 @@ class CreateCrimeAuteursTable extends Migration
             $table->string('nationalite', 25);
             $table->string('travail', 100);
             $table->text('affaire_judiciaire');
-            $table->timestam-ps();
+            $table->timestamps();
 
 
             $table->foreign('crime_id')->references('id')->on('crimes')->onDelete('restrict')
