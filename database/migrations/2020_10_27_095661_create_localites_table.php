@@ -4,22 +4,22 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateVillesTable extends Migration
+class CreateLocalitesTable extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
      */
+
     public function up()
     {
-        Schema::create('villes', function (Blueprint $table) {
+        Schema::create('localites', function (Blueprint $table) {
             $table->id();
             $table->uuid('uuid');
             $table->unsignedBigInteger('pays_id');
             $table->string('nom', 50);
             $table->timestamps();
-
             $table->foreign('pays_id')->references('id')->on('pays')->onDelete('restrict')
             ->onUpdate('restrict');
         });
@@ -32,6 +32,6 @@ class CreateVillesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('villes');
+        Schema::dropIfExists('localites');
     }
 }

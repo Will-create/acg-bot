@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Unite;
 use App\Models\Pay;
-use App\Models\Ville;
+use App\Models\Localite;
 use App\Models\User;
 use App\Models\TypeCrime;
 use Illuminate\Support\Str;
@@ -39,10 +39,10 @@ class UniteController extends Controller
     public function create()
     {
         $pays=Pay::where('id',auth()->user()->id)->orderBy('nom', 'asc')->get();
-        $villes=Ville::where('pays_id',$pays[0]->id)->orderBy('pays_id', 'asc')->get();
+        $localites=Localite::where('pays_id',$pays[0]->id)->orderBy('pays_id', 'asc')->get();
         $responsables=User::all();
         $types= TypeCrime::all();
-        return view('pages.backoffice.unites.form',compact('villes','pays', 'responsables','types'));
+        return view('pages.backoffice.unites.form',compact('localites','pays', 'responsables','types'));
     }
 
 
@@ -65,7 +65,7 @@ class UniteController extends Controller
             'logo'=> ['image','required'],
             'photo_couverture'=> ['image','required'],
             'pays_id'=> ['required','integer'],
-            'ville_id'=> ['required','integer'],
+            'localite_id'=> ['required','integer'],
 
           ]);
 
@@ -99,7 +99,7 @@ class UniteController extends Controller
           $unite->lat=$data['lat'];
           $unite->long=$data['long'];
           $unite->pays_id =$data['pays_id'];
-          $unite->ville_id=$data['ville_id'];
+          $unite->localite_id=$data['ville_id'];
           $unite->uuid=Str::uuid();
           $unite->save();
 
@@ -138,10 +138,10 @@ class UniteController extends Controller
     public function edit(Unite $unite)
     {
         $pays=Pay::where('id',auth()->user()->id)->orderBy('nom', 'asc')->get();
-        $villes=Ville::where('pays_id',$pays[0]->id)->orderBy('pays_id', 'asc')->get();
+        $localites=Localite::where('pays_id',$pays[0]->id)->orderBy('pays_id', 'asc')->get();
         $responsables=User::all();
         $types=TypeCrime::all();
-        return view('pages.backoffice.unites.edit',compact('unite','responsables','pays','villes','types'));
+        return view('pages.backoffice.unites.edit',compact('unite','responsables','pays','localites','types'));
     }
 
     /**
@@ -164,7 +164,7 @@ class UniteController extends Controller
             'logo'=> ['image'],
             'photo_couverture'=> ['image'],
             'pays_id'=> ['required','integer'],
-            'ville_id'=> ['required','integer'],
+            'localite_id'=> ['required','integer'],
 
           ]);
 
@@ -173,15 +173,11 @@ class UniteController extends Controller
 
 
          if($request->hasFile('logo')){
-
             $file = $request->file('logo');
             $timestamp = str_replace([' ', ':'], '-', Carbon::now()->toDateTimeString());
             $name = $timestamp. '-' .$file->getClientOriginalName();
             $logoPath=request('logo')->storeAs('logo_uploads',$name,'public');
             $unite->logo = $logoPath;
-
-
-
          }
          if($request->hasFile('photo_couverture')){
             $file = $request->file('photo_couverture');
@@ -190,20 +186,15 @@ class UniteController extends Controller
             $photoPath=request('photo_couverture')->storeAs('photo_uploads',$name,'public');
             $unite->photo_couverture = $photoPath;
              }
-
-
-
-
           $unite->designation=$data['designation'];
           $unite->type=$data['type_id'];
           $unite->tel=$data['tel'];
-
           $unite->adresse=$data['adresse'];
           $unite->responsable_id=$data['responsable_id'];
           $unite->lat=$data['lat'];
           $unite->long=$data['long'];
           $unite->pays_id =$data['pays_id'];
-          $unite->ville_id=$data['ville_id'];
+          $unite->localite_id=$data['localite_id'];
           $unite->uuid=Str::uuid();
              $unite->save();
 

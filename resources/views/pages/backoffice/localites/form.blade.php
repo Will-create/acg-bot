@@ -21,7 +21,7 @@
                 @include('partials._notification')
 				<div class="page-header">
 					<div>
-						<h1 class="page-title">Liste des Villes</h1>
+						<h1 class="page-title">Liste des Localités</h1>
 						<ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{route('accueil')}}">Accueil</a></li>
 							<li class="breadcrumb-item active" aria-current="page">Nouveau</li>
@@ -31,7 +31,7 @@
                     <a class="btn btn-primary" href="{{route('unites.index')}}"  >  <span>
                             <i class="fe fe-list"></i>
                         </span>
-                        Toutes les villes</a>
+                        Toutes les localités</a>
                     </button>
 
 					</div>
@@ -40,16 +40,15 @@
 @endsection
 @section('content')
 
-<form action="{{route('villes.update',$ville->uuid)}}" method="post" enctype="multipart/form-data">
+<form action="{{route('localites.store')}}" method="post" enctype="multipart/form-data">
     @csrf
-    @method('PUT')
     <div class="card">
         <div class="card-body">
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
                         <label class="form-label" for="designation">Nom <strong class="text-danger">*</strong> </label>
-                        <input type="text" class="form-control" name="nom" placeholder="Nom" id="nom"  value="{{$ville->nom}}" required>
+                        <input type="text" class="form-control" name="nom" placeholder="Nom" id="nom"  value="{{old('nom')}}" required>
                         @error('nom')
                         <span class="helper-text red-text">
                             <strong>{{ $message }}</strong>
@@ -61,7 +60,7 @@
 					<div class="form-group">
                         <label class="form-label" for="organisation">Pays <strong class="text-danger">*</strong></label>
                         <select name="pays_id" id="" class="form-control custom-select select2">
-                            <option value="{{$ville->pays->id}}" selected > {{$ville->pays->nom}}</option>
+                            <option value="" selected > Sélectionner</option>
                             @foreach ($pays as $pay)
                         <option value="{{$pay->id}}">{{$pay->nom}}</option>
                             @endforeach
@@ -83,7 +82,7 @@
     <div class="modal-footer">
         <button type="submit" class="btn btn-primary"> <span>
             <i class="fe fe-save"></i>
-        </span> Mettre a jours</button>
+        </span> Enregistrer</button>
 
     </div>
 </form>

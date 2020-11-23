@@ -38,7 +38,7 @@ Auth::routes();
 
 
     Route::resource('unites', 'UniteController');
-    Route::resource('villes', 'VilleController');
+    Route::resource('localites', 'LocaliteController');
     Route::resource('especes', 'EspeceController');
     Route::resource('confiscations', 'CrimeConfiscationController');
     

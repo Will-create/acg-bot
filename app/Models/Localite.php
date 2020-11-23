@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Ville extends Model
+class Localite extends Model
 {
     use HasFactory;
 
@@ -16,6 +16,9 @@ class Ville extends Model
 
     public function pays(){
         return $this->belongsTo('App\Models\Pay','pays_id', 'id');
+    }
+    public function unites(){
+        return $this->belongsTo('App\Models\Unite','unite_id', 'id');
     }
     
 }

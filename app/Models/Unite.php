@@ -31,15 +31,23 @@ class Unite extends Model
     public function pays(){
         return $this->belongsTo('App\Models\Pay','pays_id', 'id');
     }
-    public function ville(){
-        return $this->belongsTo('App\Models\Ville', 'ville_id', 'id');
+
+    public function localite(){
+        return $this->belongsTo('App\Models\Localite', 'localite_id', 'id');
     }
+
     public function type(){
-        return $this->belongsTo('App\Models\TypeCrime');
+        return $this->belongsTo('App\Models\TypeCrime','type_unite_id','id');
     }
 
     public function responsable(){
         return $this->belongsTo('App\Models\User','responsable_id');
     }
 
+    public function crimes(){
+        return $this->hasMany('App\Models\Crime','unite_id','id');
+    }
+    public function users(){
+        return $this->hasMany('App\Models\Users','unite_id','id');
+    }
 }

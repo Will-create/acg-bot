@@ -11,6 +11,7 @@ class CreateCrimeEspecesTable extends Migration
      *
      * @return void
      */
+
     public function up()
     {
         Schema::create('crime_especes', function (Blueprint $table) {
@@ -19,7 +20,6 @@ class CreateCrimeEspecesTable extends Migration
             $table->unsignedBigInteger('crime_id');
             $table->unsignedBigInteger('espece_id');
             $table->timestamps();
-
             $table->foreign('crime_id')->references('id')->on('crimes')->onDelete('restrict')
             ->onUpdate('restrict');
             $table->foreign('espece_id')->references('id')->on('especes')->onDelete('restrict')

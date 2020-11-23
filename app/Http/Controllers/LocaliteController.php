@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Ville;
+use App\Models\Localite;
 use App\Models\Unite;
 use App\Models\Pay;
 use App\Models\User;
@@ -10,7 +10,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
 
-class VilleController extends Controller
+class LocaliteController extends Controller
 {
     public function __construct()
     {
@@ -23,9 +23,9 @@ class VilleController extends Controller
      */
     public function index()
     {
-        $villes=Ville::orderBy('pays_id','asc')->get();
+        $localites=Localite::orderBy('pays_id','asc')->get();
 
-        return view('pages.backoffice.villes.index',compact('villes'));
+        return view('pages.backoffice.localites.index',compact('localites'));
     }
 
 
@@ -33,7 +33,7 @@ class VilleController extends Controller
     {
         $pays=Pay::orderBy('nom', 'asc')->get();
 
-        return view('pages.backoffice.villes.form',compact('pays'));
+        return view('pages.backoffice.localites.form',compact('pays'));
     }
 
     /**
@@ -52,31 +52,31 @@ class VilleController extends Controller
           ]);
 
 
-          $ville= new Ville;
+          $localite= new Localite;
 
 
 
 
 
-          $ville->nom=$data['nom'];
+          $localite->nom=$data['nom'];
 
-          $ville->pays_id =$data['pays_id'];
+          $localite->pays_id =$data['pays_id'];
 
-          $ville->uuid=Str::uuid();
-          $ville->save();
-          $request->session()->flash('status', 'Ville ajoutée avec succès');
-          return redirect()->route('villes.index');
+          $localite->uuid=Str::uuid();
+          $localite->save();
+          $request->session()->flash('status', 'localitée ajoutée avec succès');
+          return redirect()->route('localites.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Ville  $ville
+     * @param  \App\Models\localite  $localite
      * @return \Illuminate\Http\Response
      */
-    public function show(Ville $ville)
+    public function show(Localite $localite)
     {
-        return view('pages.backoffice.villes.show', compact('ville'));
+        return view('pages.backoffice.localites.show', compact('localite'));
     }
 
     /**
@@ -85,12 +85,12 @@ class VilleController extends Controller
      * @param  \App\Models\Unite  $unite
      * @return \Illuminate\Http\Response
      */
-    public function edit(Ville $ville)
+    public function edit(Localite $localite)
     {
         $pays=Pay::orderBy('nom', 'asc')->get();
 
 
-        return view('pages.backoffice.villes.edit',compact('ville','pays'));
+        return view('pages.backoffice.localites.edit',compact('localite','pays'));
     }
     
     /**
@@ -100,7 +100,7 @@ class VilleController extends Controller
      * @param  \App\Models\Unite  $unite
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Ville $ville)
+    public function update(Request $request, Localite $localite)
     {
 
         $data=request()->validate([
@@ -109,15 +109,15 @@ class VilleController extends Controller
 
 
           ]);
-          $ville->nom=$data['nom'];
+          $localite->nom=$data['nom'];
 
-          $ville->pays_id =$data['pays_id'];
+          $localite->pays_id =$data['pays_id'];
 
-          $ville->uuid=Str::uuid();
-          $ville->save();
+          $localite->uuid=Str::uuid();
+          $localite->save();
 
-         $request->session()->flash('status','Ville  modifiée avec succès!');
-          return redirect()->route('villes.index');
+         $request->session()->flash('status','localité  modifiée avec succès!');
+          return redirect()->route('localites.index');
     }
 
 
@@ -128,11 +128,11 @@ class VilleController extends Controller
      * @return \Illuminate\Http\Response
      */
     
-    public function destroy(Request $request, Ville $ville)
+    public function destroy(Request $request, Localite $localite)
     {
-        $unite->delete();
+        $localite->delete();
 
-        return redirect()->route('villes.index')->with('status','Ville supprimée avec succès');
+        return redirect()->route('localites.index')->with('status','localite supprimée avec succès');
     }
 
 }

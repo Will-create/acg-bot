@@ -20,17 +20,17 @@
                 @include('partials._notification')
 				<div class="page-header">
 					<div>
-						<h1 class="page-title">Liste des Villes</h1>
+						<h1 class="page-title">Liste des Localités</h1>
 						<ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{route('accueil')}}">Accueil</a></li>
-							<li class="breadcrumb-item active" aria-current="page">{{$ville->nom}}</li>
+							<li class="breadcrumb-item active" aria-current="page">{{$localite->nom}}</li>
 						</ol>
 					</div>
 					<div class="ml-auto pageheader-btn">
-                    <a class="btn btn-primary" href="{{route('villes.index')}}"  >  <span>
+                    <a class="btn btn-primary" href="{{route('localites.index')}}"  >  <span>
                             <i class="fe fe-list"></i>
                         </span>
-                        Toutes les villes</a>
+                        Toutes les localites</a>
                     </button>
 
 					</div>
@@ -45,7 +45,7 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="float-left">
-                                <h3 class="card-title">Ville de {{$ville->nom}}</h3>
+                                <h3 class="card-title">localite de {{$localite->nom}}</h3>
                             </div>
                             <div class="clearfix"></div>
                         </div>
@@ -63,7 +63,7 @@
                                 <div class="card-body">
                                     <div id="profile-log-switch">
                                         <div class="media-heading">
-                                            <h5><strong>Details de {{$ville->nom}}</strong></h5>
+                                            <h5><strong>Details de {{$localite->nom}}</strong></h5>
                                         </div>
                                         
 
@@ -78,18 +78,18 @@
                 </div><!-- COL-END -->
             </div>
             <div class="modal-footer">
-                <form method="POST" action="{{route('villes.destroy',['ville'=>$ville->uuid])}}" onsubmit="return confirm('Voulez vous vraiment supprimer cette Ville?')">
+                <form method="POST" action="{{route('localites.destroy',['localite'=>$localite->uuid])}}" onsubmit="return confirm('Voulez vous vraiment supprimer cette localite?')">
                 {{ csrf_field() }}
                     @method('DELETE')
                     <button class="btn btn-danger">
-                    Supprimer cette Ville
+                    Supprimer cette localite
                     </button>
                 
                 </form>
                 
                 
-                <a href="{{route('villes.edit',['ville'=>$ville->uuid])}}" class="btn btn-primary">
-                    Modifier cette Ville</a>
+                <a href="{{route('localites.edit',['localite'=>$localite->uuid])}}" class="btn btn-primary">
+                    Modifier cette localite</a>
             
             <a href="{{ URL::previous() }}" class="btn btn-primary"> <span>
                     <i class="fe fe-close"></i>

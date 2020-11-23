@@ -4,9 +4,9 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
-use App\Models\Ville;
+use App\Models\Localite;
 
-class VilleTableSeeder extends Seeder
+class LocaliteTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,7 +16,7 @@ class VilleTableSeeder extends Seeder
 
     public function run()
     {
-        $villes=[
+        $localites=[
             ['Balé','Boromo',2],
             ['Bam','Kongoussi',2],
             ['Banwa','Solenzo',2],
@@ -64,10 +64,10 @@ class VilleTableSeeder extends Seeder
             ['ZoundWéogo','Manga',2]
 
         ];
-       // Ville::truncate();
-        foreach($villes as $ville){
-            Ville::create([
-                'nom'=>$ville[1],
+ 
+        foreach($localites as $localite){
+            Localite::create([
+                'nom'=>$localite[1],
                 'uuid'=>Str::uuid(),
                 'pays_id'=>rand(1,16)
             ]);

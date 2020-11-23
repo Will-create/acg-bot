@@ -21,17 +21,17 @@
                 
 				<div class="page-header">
 					<div>
-						<h1 class="page-title">Liste des villes</h1>
+						<h1 class="page-title">Liste des localites</h1>
 						<ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{route('accueil')}}">Accueil</a></li>
-							<li class="breadcrumb-item active" aria-current="page">Villes</li>
+							<li class="breadcrumb-item active" aria-current="page">localites</li>
 						</ol>
 					</div>
 					<div class="ml-auto pageheader-btn">
-                    <a class="btn btn-primary" href="{{route('villes.create')}}"  >  <span>
+                    <a class="btn btn-primary" href="{{route('localites.create')}}"  >  <span>
                             <i class="fe fe-plus"></i>
                         </span>
-                        Ajouter une Ville</a>
+                        Ajouter une localite</a>
 
 
                     </button>
@@ -49,7 +49,7 @@
 					<div class="col-md-12 col-lg-12">
 						<div class="card">
 							<div class="card-header">
-								<h3 class="card-title">Liste des Villes</h3>
+								<h3 class="card-title">Liste des Localités</h3>
 							</div>
 							<div class="card-body">
 								<div class="table-responsive">
@@ -64,12 +64,12 @@
 											</tr>
 										</thead>
 										<tbody>
-                                            @foreach ($villes as $ville)
+                                            @foreach ($localites as $localite)
 
 
 											<tr>
-												<td> <a class="text-dark" href="{{route('villes.show', $ville->uuid)}}"> {{$ville->nom}} </a></td>
-												<td> <a class="text-dark" href="{{route('villes.show', $ville->uuid)}}">{{$ville->pays->nom}}</a></td>
+												<td> <a class="text-dark" href="{{route('localites.show', $localite->uuid)}}"> {{$localite->nom}} </a></td>
+												<td> <a class="text-dark" href="{{route('localites.show', $localite->uuid)}}">{{$localite->pays->nom}}</a></td>
 												
                                             </tr>
                                             @endforeach

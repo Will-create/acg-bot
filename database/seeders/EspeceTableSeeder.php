@@ -7,7 +7,7 @@ use App\Models\Ordre;
 use Illuminate\Database\Seeder;
 use Faker\Factory;
 use Illuminate\Support\Str;
-class EspaceTableSeeder extends Seeder
+class EspeceTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.

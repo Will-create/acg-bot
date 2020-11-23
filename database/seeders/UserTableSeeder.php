@@ -25,7 +25,7 @@ class UserTableSeeder extends Seeder
         $faker = Factory::create();
         $roles = Role::all();
         foreach ($roles as $key => $role) {
-            $user =   User::create([
+            User::create([
                 'nom'                   => $faker->firstName,
                 'titre'                 => $faker->title,
                 'actif'                 => true,

@@ -12,4 +12,7 @@ class TypeUnite extends Model
     public function getRouteKeyName(){
         return 'uuid';
     }
+    public function unites(){
+        return $this->hasMany('App\Models\Unite','type_unite_id','id');
+    }
 }

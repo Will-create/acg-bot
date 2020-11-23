@@ -21,17 +21,17 @@
                 @include('partials._notification')
 				<div class="page-header">
 					<div>
-						<h1 class="page-title">Liste des Villes</h1>
+						<h1 class="page-title">Liste des Localités</h1>
 						<ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{route('accueil')}}">Accueil</a></li>
-							<li class="breadcrumb-item active" aria-current="page">Nouveau</li>
+							<li class="breadcrumb-item active" aria-current="page">Modifier</li>
 						</ol>
 					</div>
 					<div class="ml-auto pageheader-btn">
-                    <a class="btn btn-primary" href="{{route('unites.index')}}"  >  <span>
+                    <a class="btn btn-primary" href="{{route('localites.index')}}"  >  <span>
                             <i class="fe fe-list"></i>
                         </span>
-                        Toutes les villes</a>
+                        Toutes les localités</a>
                     </button>
 
 					</div>
@@ -40,15 +40,16 @@
 @endsection
 @section('content')
 
-<form action="{{route('villes.store')}}" method="post" enctype="multipart/form-data">
+<form action="{{route('localites.update',$localite->uuid)}}" method="post" enctype="multipart/form-data">
     @csrf
+    @method('PUT')
     <div class="card">
         <div class="card-body">
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
                         <label class="form-label" for="designation">Nom <strong class="text-danger">*</strong> </label>
-                        <input type="text" class="form-control" name="nom" placeholder="Nom" id="nom"  value="{{old('nom')}}" required>
+                        <input type="text" class="form-control" name="nom" placeholder="Nom" id="nom"  value="{{$ville->nom}}" required>
                         @error('nom')
                         <span class="helper-text red-text">
                             <strong>{{ $message }}</strong>
@@ -60,7 +61,7 @@
 					<div class="form-group">
                         <label class="form-label" for="organisation">Pays <strong class="text-danger">*</strong></label>
                         <select name="pays_id" id="" class="form-control custom-select select2">
-                            <option value="" selected > Sélectionner</option>
+                            <option value="{{$localite->pays->id}}" selected > {{$localite->pays->nom}}</option>
                             @foreach ($pays as $pay)
                         <option value="{{$pay->id}}">{{$pay->nom}}</option>
                             @endforeach
@@ -82,7 +83,7 @@
     <div class="modal-footer">
         <button type="submit" class="btn btn-primary"> <span>
             <i class="fe fe-save"></i>
-        </span> Enregistrer</button>
+        </span> Mettre a jours</button>
 
     </div>
 </form>
@@ -91,7 +92,6 @@
 <script src="{{URL::asset('assets/plugins/fileuploads/js/fileupload.js')}}"></script>
 <script src="{{URL::asset('assets/plugins/fileuploads/js/file-upload.js')}}"></script>
 <script src="{{URL::asset('assets/plugins/datatable/jquery.dataTables.min.js')}}"></script>
-
     <!-- INTERNALPRISM JS -->
     <script src="{{URL::asset('assets/plugins/prism/prism.js')}}"></script>
         <!-- INTERNAL TELEPHONE JS -->

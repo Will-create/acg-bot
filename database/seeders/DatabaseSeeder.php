@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
 
     {
         $this->call(PaysTableSeeder::class);
-        $this->call(VilleTableSeeder::class);
+        $this->call(LocaliteTableSeeder::class);
         $this->call(TypeUniteTableSeeder::class);
         $this->call(TypeCrimeTableSeeder::class);
         //\App\Models\User::factory(10)->create();
@@ -23,6 +23,6 @@ class DatabaseSeeder extends Seeder
         $this->call(UserTableSeeder::class);
         $this->call(UniteTableSeeder::class);
         $this->call(OrdreTableSeeder::class);
-        $this->call(EspaceTableSeeder::class);
+        $this->call(EspeceTableSeeder::class);
     }
 }

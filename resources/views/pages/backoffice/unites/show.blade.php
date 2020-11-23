@@ -81,7 +81,7 @@
                             <td><strong>Pays : </strong> {{$unite->pays->nom}}</td>
                             </tr>
                             <tr>
-                            <td><strong>Ville: </strong> {{$unite->ville->nom}}</td>
+                            <td><strong>Ville: </strong> {{$unite->localite->nom}}</td>
                             </tr>
                         </tbody>
                         <tbody class="col-lg-12 col-xl-6 p-0">

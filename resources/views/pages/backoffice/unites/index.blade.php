@@ -59,7 +59,7 @@
 												<th class="wd-15p">Dénomination</th>
 												<th class="wd-15p">Type</th>
 												<th class="wd-20p">Pays</th>
-												<th class="wd-20p">Ville</th>
+												<th class="wd-20p">localie</th>
 												<th class="wd-15p">Téléphone</th>
                                                 {{-- <th>Actions</th> --}}
 											</tr>
@@ -72,7 +72,7 @@
 												<td> <a class="text-dark" href="{{route('unites.show', $unite->uuid)}}"> {{$unite->designation}} </a></td>
 												<td> <a class="text-dark" href="{{route('unites.show', $unite->uuid)}}">{{$unite->type->nom}} </a></td>
 												<td> <a class="text-dark" href="{{route('unites.show', $unite->uuid)}}">{{$unite->pays->nom}} </a></td>
-												<td> <a class="text-dark" href="{{route('unites.show', $unite->uuid)}}">{{$unite->ville->nom}} </a></td>
+												<td> <a class="text-dark" href="{{route('unites.show', $unite->uuid)}}">{{$unite->localite->nom}} </a></td>
 												<td> <a class="text-dark" href="{{route('unites.show', $unite->uuid)}}">{{$unite->tel}} </a></td>
                                             </tr>
                                             @endforeach
