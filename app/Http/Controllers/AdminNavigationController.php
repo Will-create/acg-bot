@@ -8,11 +8,17 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AdminNavigationController extends Controller
-{  public function __construct()
-    {
-        $this->middleware('auth');
-    }
+{
 
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
+
+
+    public function bienvenue() {
+       return "Bienvenue";
+    }
     public function accueil() {
         if (Auth::user()->role->designation == 'Chef d’Unité') {
             $utilisateurs  = User::where('role_id', Role::where('designation', 'Agent d’une Unité')->first()->id)->where('pay_id', Auth::user()->pay->id)->latest()->get();
