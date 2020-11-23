@@ -1,0 +1,39 @@
+.bg-select{background: rgb(175, 240, 137) !important; }
+.text-xs{font-size: 9px !important; color:red; padding:5px 0 !important; }
+.text-sm{font-size: 11px !important; color:red; padding:5px 0 !important; }
+.no-p h2 {
+    margin-bottom: 0em;
+}
+
+span.helper-text.red-text {
+    color: red;
+    font-size: smaller;
+}
+.iti.iti--allow-dropdown {
+    width: 100%;
+
+}
+
+.aide-icon{
+    font-size: 21px;
+    padding-right: 13px;
+}
+.font-20{
+    font-size: 20px;
+}
+#loader {
+    margin: 40px;
+  }
+  .loader {
+    margin: auto;
+    border: 16px solid #e3e3e3;
+    border-radius: 50%;
+    border-top: 16px solid #1565c0;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+  }
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
