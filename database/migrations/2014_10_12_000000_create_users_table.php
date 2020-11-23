@@ -25,7 +25,7 @@ class CreateUsersTable extends Migration
             $table->string('ville_id')->nulllable();
             $table->foreignId('pay_id')->nulllable();
             $table->string('email', 60)->unique();
-            $table->number('tel');
+            $table->integer('tel');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password', 10);
             $table->foreignId('current_team_id')->nullable();
