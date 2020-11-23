@@ -12,4 +12,9 @@ class TypeCrime extends Model
     public function getRouteKeyName(){
         return 'uuid';
     }
+
+
+    public function crimes(){
+        return $this->hasMany('App\Models\Crime');
+    }
 }

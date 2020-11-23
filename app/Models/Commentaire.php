@@ -17,6 +17,7 @@ class Commentaire extends Model
     public function auteur(){
         return $this->belongsTo('App\Models\User','par','id');
     }
+    
     public function destinataire(){
         return $this->belongsTo('App\Models\User','pour','id');
     }

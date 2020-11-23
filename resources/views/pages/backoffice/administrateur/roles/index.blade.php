@@ -42,8 +42,6 @@
 @endsection
 @section('content')
 @include('partials._notification')
-
-
 				<!-- ROW-1 OPEN -->
 				<div class="row">
 					<div class="col-md-12 col-lg-12">

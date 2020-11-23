@@ -12,4 +12,8 @@ class CrimeAuteur extends Model
     public function getRouteKeyName(){
         return 'uuid';
     }
+
+    public function crimes(){
+        return $this->belongsTo('App\Models\Crime','crime_id','id');
+    }
 }
