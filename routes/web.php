@@ -1,5 +1,6 @@
 <?php
 
+use Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,13 +16,13 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-// Route::get('/',function(){
-//   return redirect()->route('accueil');
-// });
+Route::get('/',function(){
+  return "Le papa noel";
+});
 
 
 // Route::prefix('74uAExW4d')->group(function () {
-    Route::get('/',                                             'AdminNavigationController@bienvenue')->name('bienvenue');
+    // Route::get('/',                                             'AdminNavigationController@bienvenue')->name('bienvenue');
     Route::get('/accueil',                                      'AdminNavigationController@accueil')->name('accueil');
     Route::resource('utilisateurs',                             'UtilisateursController');
     Route::resource('roles',                                    'RoleController');
