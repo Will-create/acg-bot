@@ -31,18 +31,17 @@ Auth::routes();
     Route::resource('nature_crimes',                            'CrimeNatureController');
 
     Route::get('/home','UniteController@index')->name('home');
-
-    Route::get('/pays','PayController@index')->name('pays.index');
-    Route::get('/pays/{pay}','PayController@show')->name('pays.show');
-
-
-
+    Route::get('/localites/filtreur/{pays}','LocaliteController@filter')->name('localites.filter');
+    Route::get('/unites/filtreur/{pays}','UniteController@filter')->name('unites.filter');
+    Route::resource('/pays','PayController');
+    
     Route::resource('unites', 'UniteController');
     Route::resource('localites', 'LocaliteController');
     Route::resource('especes', 'EspeceController');
     Route::resource('confiscations', 'CrimeConfiscationController');
     
     Route::resource('type_crimes', 'TypeCrimeController');
+    Route::resource('type_unites', 'TypeUniteController');
 
     Route::view('/{patch?}', 'layouts.masterreact');
 // });

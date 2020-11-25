@@ -18,23 +18,24 @@ class UniteController extends Controller
         $this->middleware('auth');
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+  
     public function index()
     {
         $unites=Unite::all();
  
         return view('pages.backoffice.unites.index',compact('unites'));
     }
+    public function filter($p)
+    {  
+        $pay=Pay::where('id',$p )->first();
+      
+        return view('pages.backoffice.unites.filter', [
+            'unites'                    =>Unite::where('pays_id',$pay->id)->get(),
+            'pays'                         =>Pay::all(),
+            'pay'                          =>$pay
+        ]);
+    }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
 
     public function create()
     {
@@ -45,19 +46,14 @@ class UniteController extends Controller
         return view('pages.backoffice.unites.form',compact('localites','pays', 'responsables','types'));
     }
 
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $data=request()->validate([
             'designation'=> ['required','string','max:255','min:3'],
-            'type_id'=> ['required','integer'],
+            'type_unite_id'=> ['required','integer'],
             'tel'=> ['required','string','max:255','min:3'],
+            'tel2'=> ['string','max:255','min:3'],
+            'administration_tutelle'=> ['required','string','max:255','min:3'],
             'adresse'=> ['required','string','max:255','min:3'],
             'responsable_id'=>['required','integer'],
             'lat'=> ['required','string','max:255','min:8'],
@@ -91,15 +87,16 @@ class UniteController extends Controller
              }
 
           $unite->designation=$data['designation'];
-          $unite->type_id=$data['type_id'];
+          $unite->type_unite_id=$data['type_unite_id'];
           $unite->tel=$data['tel'];
-
+          $unite->tel2=$data['tel2'];
+          $unite->administration_tutelle=$data['administration_tutelle'];
           $unite->adresse=$data['adresse'];
           $unite->responsable_id=$data['responsable_id'];
           $unite->lat=$data['lat'];
           $unite->long=$data['long'];
           $unite->pays_id =$data['pays_id'];
-          $unite->localite_id=$data['ville_id'];
+          $unite->localite_id=$data['localite_id'];
           $unite->uuid=Str::uuid();
           $unite->save();
 
@@ -109,12 +106,7 @@ class UniteController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Unite  $unite
-     * @return \Illuminate\Http\Response
-     */
+ 
     public function show(Unite $unite)
     {  
 
@@ -129,12 +121,6 @@ class UniteController extends Controller
         return view('pages.backoffice.unites.show', compact('unite','carte'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Unite  $unite
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Unite $unite)
     {
         $pays=Pay::where('id',auth()->user()->id)->orderBy('nom', 'asc')->get();
@@ -144,19 +130,15 @@ class UniteController extends Controller
         return view('pages.backoffice.unites.edit',compact('unite','responsables','pays','localites','types'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Unite  $unite
-     * @return \Illuminate\Http\Response
-     */
+   
     public function update(Request $request, Unite $unite)
     {
         $data=request()->validate([
             'designation'=> ['required','string','max:255','min:3'],
-            'type_id'=> ['required','integer'],
+            'type_unite_id'=> ['required','integer'],
             'tel'=> ['required','string','max:255','min:3'],
+            'tel2'=> ['string','max:255','min:3'],
+            'administration_tutelle'=> ['string','max:255','min:3'],
             'adresse'=> ['required','string','max:255','min:3'],
             'responsable_id'=>['required','integer'],
             'lat'=> ['string','max:255','min:8'],
@@ -186,9 +168,12 @@ class UniteController extends Controller
             $photoPath=request('photo_couverture')->storeAs('photo_uploads',$name,'public');
             $unite->photo_couverture = $photoPath;
              }
+
           $unite->designation=$data['designation'];
-          $unite->type=$data['type_id'];
+          $unite->type_unite_id=$data['type_unite_id'];
           $unite->tel=$data['tel'];
+          $unite->tel2=$data['tel2'];
+          $unite->administration_tutelle=$data['administration_tutelle'];
           $unite->adresse=$data['adresse'];
           $unite->responsable_id=$data['responsable_id'];
           $unite->lat=$data['lat'];
@@ -197,21 +182,12 @@ class UniteController extends Controller
           $unite->localite_id=$data['localite_id'];
           $unite->uuid=Str::uuid();
              $unite->save();
-
-
           $request->session()->flash('status','Unité mise à jours avec succès!!!');
           return redirect()->route('unites.index');
     }
 
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Unite  $unite
-     * @return \Illuminate\Http\Response
-     */
-
-     
+   
     public function destroy(Request $request, Unite $unite)
     {
         $unite->delete();

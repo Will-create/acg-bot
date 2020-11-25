@@ -55,10 +55,10 @@ class User extends Authenticatable
     }
     public function ville()
     {
-        return $this->belongsTo(Ville::class, 'id', 'ville_id');
+        return $this->belongsTo(Localite::class, 'localite_id', 'id');
     }
     public function pay()
     {
-        return $this->belongsTo(Pay::class, 'pay_id', 'id');
+        return $this->belongsTo(Pay::class, 'pays_id', 'id');
     }
 }

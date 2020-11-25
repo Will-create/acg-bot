@@ -17,6 +17,7 @@ class CreateTypeUnitesTable extends Migration
             $table->id();
             $table->string('uuid');
             $table->string('nom', 100);
+            $table->text('description')->nullable();
             $table->timestamps();
 
         });

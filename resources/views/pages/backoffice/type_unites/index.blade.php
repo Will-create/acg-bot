@@ -18,24 +18,20 @@
 @endsection
 @section('page-header')
                 <!-- PAGE-HEADER -->
-                
+
 				<div class="page-header">
 					<div>
-						<h1 class="page-title">Liste villes dans {{$pay->nom}}</h1>
+						<h1 class="page-title">Liste des types d'unité</h1>
 						<ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{route('accueil')}}">Accueil</a></li>
-							<li class="breadcrumb-item active" aria-current="page">Villes dans {{$pay->nom}}</li>
+							<li class="breadcrumb-item active" aria-current="page">Types d'unité</li>
 						</ol>
 					</div>
 					<div class="ml-auto pageheader-btn">
-                    <a class="btn btn-primary" href="{{route('pays.create')}}"  >  <span>
+                    <a class="btn btn-primary" href="{{route('type_unites.create')}}">  <span>
                             <i class="fe fe-plus"></i>
                         </span>
-						Ajouter une Ville</a>
-						<a class="btn btn-primary" href="{{URL::previous()}}"  >  <span>
-                            <i class="fe fe-array-right"></i>
-                        </span>
-                        Retour</a>
+                        Ajouter un type d'unité</a>
 
 
                     </button>
@@ -53,28 +49,28 @@
 					<div class="col-md-12 col-lg-12">
 						<div class="card">
 							<div class="card-header">
-								<h3 class="card-title">Villes dans {{$pay->nom}} </h3>
+								<h3 class="card-title">Liste des types d'unité</h3>
 							</div>
 							<div class="card-body">
 								<div class="table-responsive">
 									<table id="data-table1" class="table table-striped table-bordered text-nowrap w-100 table-sm">
 										<thead>
 											<tr>
-												<th class="wd-15p">Nom</th>
 												
-												<th class="wd-20p">Pays</th>
-												
+												<th class="wd-15p">Designation</th>
+											
+												<th class="wd-30p">Description</th>
+
                                                 {{-- <th>Actions</th> --}}
 											</tr>
 										</thead>
 										<tbody>
-                                            @foreach ($villes as $ville)
+                                            @foreach ($types as $type)
 
 
 											<tr>
-												<td> <a class="text-dark" href="{{route('villes.show', $ville->uuid)}}"> {{$ville->nom}} </a></td>
-												<td> <a class="text-dark" href="{{route('villes.show', $ville->uuid)}}">{{$ville->pays->nom}}</a></td>
-												
+												<td> <a class="text-dark" href="{{route('type_unites.show', $type->uuid)}}"> {{ucfirst($type->nom)}} </a></td>
+												<td> <a class="text-dark" href="{{route('type_unites.show', $type->uuid)}}">{{$type->description}}</a></td>
                                             </tr>
                                             @endforeach
 

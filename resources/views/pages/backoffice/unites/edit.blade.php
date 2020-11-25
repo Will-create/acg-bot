@@ -57,17 +57,29 @@
                         </span>
                         @enderror
 					</div>
-					<div class="col-md-6">
-                        <div class="input-group form-group">
+					
+                        <div class="form-group">
                             <label class="form-label" for="tel">Téléphone <strong class="text-danger">*</strong></label>
-                            <input class="form-control" id="phone" name="tel" type="tel"  value="{{$unite->tel}}" required>
+                            <input class="form-control"  name="tel" type="text"  value="{{$unite->tel}}" required>
                             @error('tel')
                             <span class="helper-text red-text">
                                 <strong>{{ $message }}</strong>
                             </span>
                             @enderror
                         </div>
-                    </div>
+                    
+                    
+                        <div class="form-group">
+                            <label class="form-label" for="tel2">Téléphone 2<strong class="text-danger">*</strong></label>
+                            <input class="form-control"  name="tel2" type="text"  value="{{$unite->tel2}}">
+                            @error('tel2')
+                            <span class="helper-text red-text">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                   
+
 
 
 
@@ -113,15 +125,24 @@
                 </div>
                 <div class="col-md-6">
 					<div class="form-group">
-                        <label class="form-label" for="organisation">Type <strong class="text-danger">*</strong></label>
-                        <select name="type_id" id="type_id" class="form-control custom-select select2">
-                        <option value="{{$unite->type->id}}" selected disabled> {{$unite->type->nom}}</option>
+                        <label class="form-label" for="organisation">Type d'unité<strong class="text-danger">*</strong></label>
+                        <select name="type_unite_id" id="type_unite_id" class="form-control custom-select select2">
+                        <option value="{{$unite->type_unite_id}}" selected> {{$unite->type->nom}}</option>
 
                             @foreach ($types as $type)
                         <option value="{{$type->id}}">{{$type->nom}}</option>
                             @endforeach
                         </select>
-                        @error('organisation')
+                        @error('type_unite_id')
+                        <span class="helper-text red-text">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="administration_tutelle">Administration tutelle <strong class="text-danger">*</strong></label>
+                        <input class="form-control"  name="administration_tutelle" type="text"  value="{{$unite->administration_tutelle}}" required>
+                        @error('administration_tutelle')
                         <span class="helper-text red-text">
                             <strong>{{ $message }}</strong>
                         </span>

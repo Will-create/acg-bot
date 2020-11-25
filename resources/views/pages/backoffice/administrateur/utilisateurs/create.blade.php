@@ -123,14 +123,14 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label class="form-label" for="organisation">Ville <strong class="text-danger">*</strong></label>
-                        <select name="ville_id" id="" class="form-control custom-select select2">
+                        <label class="form-label" for="organisation">Localité <strong class="text-danger">*</strong></label>
+                        <select name="localite_id" id="" class="form-control custom-select select2">
                             <option value="" selected disabled> Sélectionner</option>
-                            @foreach ($villes as $ville)
-                        <option value="{{$ville->id}}">{{$ville->nom}}</option>
+                            @foreach ($localites as $localite)
+                        <option value="{{$localite->id}}">{{$localite->nom}}</option>
                             @endforeach
                         </select>
-                        @error('organisation')
+                        @error('localite_id')
                         <span class="helper-text red-text">
                             <strong>{{ $message }}</strong>
                         </span>

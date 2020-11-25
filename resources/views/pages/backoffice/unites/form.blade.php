@@ -55,15 +55,25 @@
                         @enderror
 					</div>
 					
-                        <div class="input-group  form-group">
+                        <div class="form-group">
                             <label class="form-label" for="tel">Téléphone <strong class="text-danger">*</strong></label>
-                            <input class="form-control" id="phone" name="tel" type="tel"  value="{{old('tel')}}" required>
+                            <input class="form-control"  name="tel" type="text"  value="{{old('tel')}}" required>
                             @error('tel')
                             <span class="helper-text red-text">
                                 <strong>{{ $message }}</strong>
                             </span>
                             @enderror
                         </div>
+                        <div class="form-group">
+                            <label class="form-label" for="tel">Téléphone 2<strong class="text-danger">*</strong></label>
+                            <input class="form-control"  name="tel2" type="text"  value="{{old('tel2')}}">
+                            @error('tel2')
+                            <span class="helper-text red-text">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                   
                    
                    
 					
@@ -110,29 +120,29 @@
                 <div class="col-md-6">
 					<div class="form-group">
                         <label class="form-label" for="organisation">Type <strong class="text-danger">*</strong></label>
-                        <select name="type_id" id="type_id" class="form-control custom-select select2">
+                        <select name="type_unite_id" id="type_unite_id" class="form-control custom-select select2">
                             <option value="" selected disabled> Sélectionner</option>
 
                             @foreach ($types as $type)
                         <option value="{{$type->id}}">{{$type->nom}}</option>
                             @endforeach
                         </select>
-                        @error('organisation')
+                        @error('type_unite_id')
                         <span class="helper-text red-text">
                             <strong>{{ $message }}</strong>
                         </span>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label class="form-label" for="adresse">Adresse complete<strong class="text-danger">*</strong></label>
-                        <textarea class="form-control" rows="4" name="adresse" id="adresse"  value="{{old('adresse')}}" required></textarea>
-                        @error('adresse')
+                        <label class="form-label" for="administration_tutelle">Administration tutelle <strong class="text-danger">*</strong></label>
+                        <input class="form-control"  name="administration_tutelle" type="text"  value="{{old('administration_tutelle')}}" required>
+                        @error('administration_tutelle')
                         <span class="helper-text red-text">
                             <strong>{{ $message }}</strong>
                         </span>
                         @enderror
-					</div>
-					<div class="form-group">
+                    </div>
+                    <div class="form-group">
                         <label class="form-label" for="organisation">Responsables <strong class="text-danger">*</strong></label>
                         <select name="responsable_id" id="responsable_id" class="form-control custom-select select2">
                             <option value="" selected disabled> Sélectionner</option>
@@ -147,6 +157,17 @@
                         </span>
                         @enderror
                     </div>
+               
+                    <div class="form-group">
+                        <label class="form-label" for="adresse">Adresse complete<strong class="text-danger">*</strong></label>
+                        <textarea class="form-control" rows="5" name="adresse" id="adresse"  value="{{old('adresse')}}" required></textarea>
+                        @error('adresse')
+                        <span class="helper-text red-text">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+					</div>
+					
                     <div class="form-group">
                         <label class="form-label" for="long">Longitude <strong class="text-danger">*</strong> </label>
                         <input type="text" class="form-control" name="long" placeholder="Longitude" id="long"  value="{{old('long')}}" required>
@@ -194,7 +215,6 @@
         <button type="submit" class="btn btn-primary"> <span>
             <i class="fe fe-save"></i>
         </span> Enregistrer</button>
-
     </div>
 </form>
 @stop
@@ -202,13 +222,11 @@
 <script src="{{URL::asset('assets/plugins/fileuploads/js/fileupload.js')}}"></script>
 <script src="{{URL::asset('assets/plugins/fileuploads/js/file-upload.js')}}"></script>
 <script src="{{URL::asset('assets/plugins/datatable/jquery.dataTables.min.js')}}"></script>
-
     <!-- INTERNALPRISM JS -->
     <script src="{{URL::asset('assets/plugins/prism/prism.js')}}"></script>
         <!-- INTERNAL TELEPHONE JS -->
     <script src="{{URL::asset('assets/plugins/telephoneinput/telephoneinput.js')}}"></script>
     <script src="{{URL::asset('assets/plugins/telephoneinput/inttelephoneinput.js')}}"></script>
-
 @stop
 
 

@@ -27,12 +27,11 @@
 						</ol>
 					</div>
 					<div class="ml-auto pageheader-btn">
-                    <a class="btn btn-primary" href="{{route('villes.index')}}"  >  <span>
-                            <i class="fe fe-list"></i>
+                    <a class="btn btn-primary" href="{{route('pays.create')}}"  >  <span>
+                            <i class="fe fe-plus"></i>
+                            AJouter un pays
                         </span>
                         </a>
-                   
-
 					</div>
 				</div>
 				<!-- PAGE-HEADER END -->
@@ -44,16 +43,16 @@
                    @foreach ($pays as $pay)
                   
                     <div class="col-sm-2">
-                       <a href="{{route('pays.show',$pay->uuid)}}">
+                       <a href="#">
                         <div class="card">
                             <div class="card-header">
-                                <div class="float-left">
-                                    <h3 class="card-title"> {{$pay->nom}}</h3>
+                                <div class="">
+                                    <h3 class="card-title" style="text-align: center;">{{$pay->nom}}</h3>
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
                             <div class="card-body wideget-user-contact">
-                                <img src="{{asset('assets').$pay->icone}}" style="min-width:100%; object-fit:cover; object-position: 50% 50%;" alt="" srcset="">
+                            <img src="{{asset('storage').'/'.$pay->icone}}" style="min-width:100%; object-fit:cover; object-position: 50% 50%;" alt="" srcset="">
                                 
                             </div>
                         </div>

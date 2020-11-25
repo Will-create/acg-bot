@@ -15,6 +15,7 @@ class Unite extends Model
         'ville_id',
         'designation',
         'responsable_id',
+        'administration_tutelle',
         'type',
         'adresse',
         'tel',

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class TypeUnite extends Model
 {
     use HasFactory;
-    protected $fillable = ['nom',"uuid"];
+    protected $fillable = ['nom','description','uuid'];
     public function getRouteKeyName(){
         return 'uuid';
     }

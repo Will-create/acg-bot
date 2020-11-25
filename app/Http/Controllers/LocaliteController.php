@@ -16,17 +16,13 @@ class LocaliteController extends Controller
     {
         $this->middleware('auth');
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+  
     public function index()
     {
         $localites=Localite::orderBy('pays_id','asc')->get();
-
         return view('pages.backoffice.localites.index',compact('localites'));
     }
+
 
 
     public function create()
@@ -36,12 +32,7 @@ class LocaliteController extends Controller
         return view('pages.backoffice.localites.form',compact('pays'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+   
     public function store(Request $request)
     {
         $data=request()->validate([
@@ -67,24 +58,27 @@ class LocaliteController extends Controller
           $request->session()->flash('status', 'localitée ajoutée avec succès');
           return redirect()->route('localites.index');
     }
+    
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\localite  $localite
-     * @return \Illuminate\Http\Response
-     */
+    
     public function show(Localite $localite)
     {
         return view('pages.backoffice.localites.show', compact('localite'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Unite  $unite
-     * @return \Illuminate\Http\Response
-     */
+
+    public function filter($p)
+    {  
+        $pay=Pay::where('id',$p )->first();
+      
+        return view('pages.backoffice.localites.filter', [
+            'localites'                    =>Localite::where('pays_id',$pay->id)->get(),
+            'pays'                         =>Pay::all(),
+            'pay'                          =>$pay
+        ]);
+    }
+
+  
     public function edit(Localite $localite)
     {
         $pays=Pay::orderBy('nom', 'asc')->get();
@@ -92,14 +86,7 @@ class LocaliteController extends Controller
 
         return view('pages.backoffice.localites.edit',compact('localite','pays'));
     }
-    
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Unite  $unite
-     * @return \Illuminate\Http\Response
-     */
+ 
     public function update(Request $request, Localite $localite)
     {
 
@@ -121,12 +108,7 @@ class LocaliteController extends Controller
     }
 
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Unite  $unite
-     * @return \Illuminate\Http\Response
-     */
+ 
     
     public function destroy(Request $request, Localite $localite)
     {

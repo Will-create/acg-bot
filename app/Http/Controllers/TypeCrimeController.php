@@ -22,12 +22,7 @@ class TypeCrimeController extends Controller
         return view('pages.backoffice.type_crimes.form');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function store(Request $request)
     {
         $data=request()->validate([
@@ -49,25 +44,14 @@ class TypeCrimeController extends Controller
         return view('pages.backoffice.type_crimes.show', compact('type'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\TypeCrime  $type
-     * @return \Illuminate\Http\Response
-     */
+    
     public function edit($uuid)
     {
         $type=TypeCrime::where('uuid',$uuid)->first();
         return view('pages.backoffice.type_crimes.edit',compact('type'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\TypeCrime  $type
-     * @return \Illuminate\Http\Response
-     */
+    
     public function update(Request $request, $uuid)
     {
 
@@ -85,12 +69,7 @@ class TypeCrimeController extends Controller
     }
 
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\TypeCrime  $type
-     * @return \Illuminate\Http\Response
-     */
+    
 
     public function destroy(Request $request,$uuid)
     {

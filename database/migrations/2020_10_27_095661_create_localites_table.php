@@ -20,8 +20,7 @@ class CreateLocalitesTable extends Migration
             $table->unsignedBigInteger('pays_id');
             $table->string('nom', 50);
             $table->timestamps();
-            $table->foreign('pays_id')->references('id')->on('pays')->onDelete('restrict')
-            ->onUpdate('restrict');
+            $table->foreign('pays_id')->references('id')->on('pays');
         });
     }
 
@@ -30,6 +29,8 @@ class CreateLocalitesTable extends Migration
      *
      * @return void
      */
+
+
     public function down()
     {
         Schema::dropIfExists('localites');

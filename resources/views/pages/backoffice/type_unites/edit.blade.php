@@ -21,17 +21,17 @@
                 @include('partials._notification')
 				<div class="page-header">
 					<div>
-						<h1 class="page-title">Liste des Localités</h1>
+						<h1 class="page-title">Liste des Types de crimes</h1>
 						<ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{route('accueil')}}">Accueil</a></li>
-							<li class="breadcrumb-item active" aria-current="page">Modifier</li>
+							<li class="breadcrumb-item active" aria-current="page">Modifier {{$type->nom}}</li>
 						</ol>
 					</div>
 					<div class="ml-auto pageheader-btn">
-                    <a class="btn btn-primary" href="{{route('localites.index')}}"  >  <span>
+                    <a class="btn btn-primary" href="{{route('type_crimes.index')}}"  >  <span>
                             <i class="fe fe-list"></i>
                         </span>
-                        Toutes les localités</a>
+                        Tous les types de crimes</a>
                     </button>
 
 					</div>
@@ -40,43 +40,41 @@
 @endsection
 @section('content')
 
-<form action="{{route('localites.update',$localite->uuid)}}" method="post" enctype="multipart/form-data">
+<form action="{{route('type_unites.update',$type->uuid)}}" method="post" enctype="multipart/form-data">
     @csrf
     @method('PUT')
     <div class="card">
         <div class="card-body">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="form-group">
-                        <label class="form-label" for="designation">Nom <strong class="text-danger">*</strong> </label>
-                        <input type="text" class="form-control" name="nom" placeholder="Nom" id="nom"  value="{{$localite->nom}}" required>
+                        <label class="form-label" for="designation">Designation <strong class="text-danger">*</strong> </label>
+                        <input type="text" class="form-control" name="nom" placeholder="Designation" id="nom"  value="{{$type->nom}}" required>
                         @error('nom')
                         <span class="helper-text red-text">
                             <strong>{{ $message }}</strong>
                         </span>
                         @enderror
-					</div>
-                </div>
-                <div class="col-md-6">
-					<div class="form-group">
-                        <label class="form-label" for="organisation">Pays <strong class="text-danger">*</strong></label>
-                        <select name="pays_id" id="" class="form-control custom-select select2">
-                            <option value="{{$localite->pays->id}}" selected > {{$localite->pays->nom}}</option>
-                            @foreach ($pays as $pay)
-                        <option value="{{$pay->id}}">{{$pay->nom}}</option>
-                            @endforeach
-                        </select>
-                        @error('pays_id')
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="designation">Description <strong class="text-danger">*</strong> </label>
+                        <textarea rows="4" type="text" class="form-control" name="description" placeholder="Description" id="description" required>{{$type->description}}</textarea>
+                        @error('description')
                         <span class="helper-text red-text">
                             <strong>{{ $message }}</strong>
                         </span>
                         @enderror
-					</div>
-                    
-					
-                    
+                    </div>
+
                 </div>
+
+
+
                 
+
+                   
+
+               
             </div>
         </div>
     </div>
@@ -92,6 +90,7 @@
 <script src="{{URL::asset('assets/plugins/fileuploads/js/fileupload.js')}}"></script>
 <script src="{{URL::asset('assets/plugins/fileuploads/js/file-upload.js')}}"></script>
 <script src="{{URL::asset('assets/plugins/datatable/jquery.dataTables.min.js')}}"></script>
+
     <!-- INTERNALPRISM JS -->
     <script src="{{URL::asset('assets/plugins/prism/prism.js')}}"></script>
         <!-- INTERNAL TELEPHONE JS -->

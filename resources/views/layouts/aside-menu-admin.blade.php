@@ -35,6 +35,7 @@
                             </a>
                             <ul class="slide-menu">
                                 <li><a class="slide-item" href="{{route('unites.index')}}"><span>Toutes les unités</span></a></li>
+                                <li><a class="slide-item" href="{{route('unites.filter',1)}}"><span>Unités par pays</span></a></li>
                                 <li><a class="slide-item" href="{{route('unites.create')}}"><span>Nouveau </span></a></li>
                             </ul>
                         </li>
@@ -71,6 +72,16 @@
                             <li><a class="slide-item" href="{{route('type_crimes.create')}}"><span>Nouveau </span></a></li>
                             </ul>
                         </li>
+                        <li class="slide">
+                            <a class="side-menu__item" data-toggle="slide" href="#">
+                                <i class="mdi mdi-rss aide-icon"  ></i>
+                                <span class="side-menu__label">Types d'unité</span><i class="angle fa fa-angle-right"></i>
+                            </a>
+                            <ul class="slide-menu">
+                            <li><a class="slide-item" href="{{route('type_unites.index')}}"><span>Tous les types d'unité</span></a></li>
+                            <li><a class="slide-item" href="{{route('type_unites.create')}}"><span>Nouveau </span></a></li>
+                            </ul>
+                        </li>
 
 
 
@@ -82,7 +93,7 @@
                         <li class="slide">
                             <a class="side-menu__item" data-toggle="slide" href="#">
                                 <i class="mdi mdi-rss aide-icon"  ></i>
-                                <span class="side-menu__label">Nature des crimes</span><i class="angle fa fa-angle-right"></i>
+                                <span class="side-menu__label">gestion des Natures des crimes</span><i class="angle fa fa-angle-right"></i>
                             </a>
                             <ul class="slide-menu">
                             <li><a class="slide-item" href="{{route('nature_crimes.index')}}"><span>Nature des crimes</span></a></li>
@@ -92,7 +103,7 @@
                         <li class="slide">
                             <a class="side-menu__item" data-toggle="slide" href="#">
                                 <i class="mdi mdi-rss aide-icon"  ></i>
-                                <span class="side-menu__label">Roles</span><i class="angle fa fa-angle-right"></i>
+                                <span class="side-menu__label">Gestion des Roles</span><i class="angle fa fa-angle-right"></i>
                             </a>
                             <ul class="slide-menu">
                                 <li><a class="slide-item" href="{{route('roles.index')}}"><span>Roles</span></a></li>
@@ -102,7 +113,7 @@
                         <li class="slide">
                             <a class="side-menu__item" data-toggle="slide" href="#">
                                 <i class="mdi mdi-rss aide-icon"  ></i>
-                                <span class="side-menu__label">Confiscations</span><i class="angle fa fa-angle-right"></i>
+                                <span class="side-menu__label">Gestion des Confiscations</span><i class="angle fa fa-angle-right"></i>
                             </a>
                             <ul class="slide-menu">
                                 <li><a class="slide-item" href="{{route('confiscations.index')}}"><span>Toutes les confiscations</span></a></li>
@@ -112,7 +123,7 @@
                         <li class="slide">
                             <a class="side-menu__item" data-toggle="slide" href="#">
                                 <i class="mdi mdi-rss aide-icon"  ></i>
-                                <span class="side-menu__label">Pays</span><i class="angle fa fa-angle-right"></i>
+                                <span class="side-menu__label">Gestion des Pays</span><i class="angle fa fa-angle-right"></i>
                             </a>
                             <ul class="slide-menu">
                                 <li><a class="slide-item" href="{{route('pays.index')}}"><span>Tous les pays</span></a></li>
@@ -122,10 +133,11 @@
                         <li class="slide">
                             <a class="side-menu__item" data-toggle="slide" href="#">
                                 <i class="mdi mdi-rss aide-icon"  ></i>
-                                <span class="side-menu__label">Villes</span><i class="angle fa fa-angle-right"></i>
+                                <span class="side-menu__label">Gestion des localités</span><i class="angle fa fa-angle-right"></i>
                             </a>
                             <ul class="slide-menu">
                                 <li><a class="slide-item" href="{{route('localites.index')}}"><span>Toutes les localités</span></a></li>
+                                <li><a class="slide-item" href="{{route('localites.filter',1)}}"><span>Localité par pays</span></a></li>
                                 <li><a class="slide-item" href="{{route('localites.create')}}"><span>Nouveau </span></a></li>
                             </ul>
                         </li>

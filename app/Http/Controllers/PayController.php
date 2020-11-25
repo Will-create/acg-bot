@@ -3,37 +3,67 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pay;
-use App\Models\Ville;
-use Illuminate\Http\Request;
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Illuminate\Support\Carbon;
 class PayController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth');
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+  
     public function index()
     {
-        $pays=Pay::all();
-        return view('pages.backoffice.pays.list', compact('pays'));
+      
+        return view('pages.backoffice.pays.list', [
+            'pays'                    =>Pay::all()
+        ]);
     }
 
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Pay  $pay
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Pay $pay)
+
+    public function create()
     {
-        $villes=Ville::where('pays_id',$pay->id)->get();
-        return view('pages.backoffice.pays.index', compact('pay','villes'));
+        
+        return view('pages.backoffice.pays.form');
+    }
+    
+
+    public function store(Request $request)
+    {
+        $data=request()->validate([
+            'nom'=> ['required','string','max:255','min:3'],
+            'icone'=> ['image'],
+            'codeiso3_pays_origine' => ['required','string','max:255','min:3']
+
+
+          ]);
+
+
+          $pays = new Pay;
+
+
+          if($request->hasFile('icone')){
+
+            $file = $request->file('icone');
+            $timestamp = str_replace([' ', ':'], '-', Carbon::now()->toDateTimeString());
+            $name = $timestamp. '-' .$file->getClientOriginalName();
+            $iconePath=request('icone')->storeAs('/storage/images/flags',$name,'public');
+            $pays->icone = $iconePath;
+         }
+
+
+          $pays->nom=$data['nom'];
+          
+
+          $pays->codeiso3_pays_origine =$data['codeiso3_pays_origine'];
+
+          $pays->uuid=Str::uuid();
+          $pays->save();
+          $request->session()->flash('status', 'pays ajoutée avec succès');
+          return redirect()->route('pays.index');
     }
 
 

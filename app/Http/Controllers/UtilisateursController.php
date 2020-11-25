@@ -6,7 +6,7 @@ use App\Models\Pay;
 use App\Models\Role;
 use App\Models\Unite;
 use App\Models\User;
-use App\Models\Ville;
+use App\Models\Localite;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -48,7 +48,7 @@ class UtilisateursController extends Controller
     public function create()
     {
         $unites = Unite::all();
-        $villes = Ville::all();
+        $localites = Localite::all();
         $pays = Pay::all();
         if (Auth::user()->role->designation == 'Administrateur Général') {
             $roles = Role::whereIn('designation', ['Coordonnateur Régional', 'Coordonnateur National'])->get();
@@ -65,7 +65,7 @@ class UtilisateursController extends Controller
             $pays = Pay::where('nom', Auth::user()->pay->nom)->first();
         }
 
-        return view('pages.backoffice.administrateur.utilisateurs.create', compact('roles', 'unites', 'villes', 'pays'));
+        return view('pages.backoffice.administrateur.utilisateurs.create', compact('roles', 'unites', 'localites', 'pays'));
     }
 
     /**
@@ -83,7 +83,7 @@ class UtilisateursController extends Controller
             'email'                     => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'role_id'                   => ['required'],
             'pay_id'                    => ['required'],
-            'ville_id'                  => ['required'],
+            'localite_id'               => ['required'],
             'unite_id'                  => ['nullable'],
             'titre'                     => ['nullable', 'string', 'max:100'],
             'profile_photo_path'        => ['nullable'],
@@ -102,7 +102,7 @@ class UtilisateursController extends Controller
             'email'                     => $data['email'],
             'role_id'                   => $data['role_id'],
             'pay_id'                    => $data['pay_id'],
-            'ville_id'                  => $data['ville_id'],
+            'localite_id'               => $data['localite_id'],
             'unite_id'                  => $request->unite_id,
             'titre'                     => $request->titre,
             'password'                  => Hash::make('00000000'),
@@ -114,30 +114,18 @@ class UtilisateursController extends Controller
         return redirect()->route('utilisateurs.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
     public function show(User $utilisateur)
     {
         return view('pages.backoffice.administrateur.utilisateurs.show', compact('utilisateur'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
     public function edit(User $utilisateur)
     {
         $roles = Role::whereIn('designation', ['Coordonnateur Régional', 'Coordonnateur National'])->get();
         $unites = Unite::all();
-        $villes = Ville::all();
+        $localites = Localite::all();
         $pays = Pay::all();
-        return view('pages.backoffice.administrateur.utilisateurs.edit', compact('roles', 'unites', 'villes', 'pays', 'utilisateur'));
+        return view('pages.backoffice.administrateur.utilisateurs.edit', compact('roles', 'unites', 'localites', 'pays', 'utilisateur'));
     }
 
     /**

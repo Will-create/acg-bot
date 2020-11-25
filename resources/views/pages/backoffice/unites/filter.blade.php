@@ -21,17 +21,17 @@
                 
 				<div class="page-header">
 					<div>
-						<h1 class="page-title">Liste villes dans {{$pay->nom}}</h1>
+						<h1 class="page-title">Liste des localités dans {{$pay->nom}}</h1>
 						<ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{route('accueil')}}">Accueil</a></li>
-							<li class="breadcrumb-item active" aria-current="page">Villes dans {{$pay->nom}}</li>
+							<li class="breadcrumb-item active" aria-current="page">Localités dans {{$pay->nom}}</li>
 						</ol>
 					</div>
 					<div class="ml-auto pageheader-btn">
-                    <a class="btn btn-primary" href="{{route('pays.create')}}"  >  <span>
+                    <a class="btn btn-primary" href="{{route('unites.create')}}"  >  <span>
                             <i class="fe fe-plus"></i>
                         </span>
-						Ajouter une Ville</a>
+						Ajouter une unités</a>
 						<a class="btn btn-primary" href="{{URL::previous()}}"  >  <span>
                             <i class="fe fe-array-right"></i>
                         </span>
@@ -46,47 +46,90 @@
 @endsection
 @section('content')
 @include('partials._notification')
-
-
-				<!-- ROW-1 OPEN -->
-				<div class="row">
-					<div class="col-md-12 col-lg-12">
-						<div class="card">
-							<div class="card-header">
-								<h3 class="card-title">Villes dans {{$pay->nom}} </h3>
-							</div>
-							<div class="card-body">
-								<div class="table-responsive">
-									<table id="data-table1" class="table table-striped table-bordered text-nowrap w-100 table-sm">
-										<thead>
-											<tr>
-												<th class="wd-15p">Nom</th>
-												
-												<th class="wd-20p">Pays</th>
-												
-                                                {{-- <th>Actions</th> --}}
-											</tr>
-										</thead>
-										<tbody>
-                                            @foreach ($villes as $ville)
-
-
-											<tr>
-												<td> <a class="text-dark" href="{{route('villes.show', $ville->uuid)}}"> {{$ville->nom}} </a></td>
-												<td> <a class="text-dark" href="{{route('villes.show', $ville->uuid)}}">{{$ville->pays->nom}}</a></td>
-												
-                                            </tr>
-                                            @endforeach
-
-										</tbody>
-									</table>
+			            <!-- ROW-1 OPEN -->
+						<div class="row">
+							<div class="col-lg-3">
+							   
+								<div class="card">
+									<div class="card-header">
+										<div class="float-left">
+											<h3 class="card-title">Liste de tous les pays</h3>
+										</div>
+										<div class="clearfix"></div>
+									</div>
+									<div class="card-body" style="height:55vh;overflow: scroll">
+										@foreach ($pays as $p)
+				
+				
+															
+												<a class="side-menu__item {{$p->uuid == $pay->uuid  ? 'active' : ''  }} " href="{{route('unites.filter', $p->id)}}">
+																	 
+												<span class="side-menu__label">{{$p->nom}} </span>
+												</a>
+																 
+											@endforeach
+									</div>
 								</div>
 							</div>
-							<!-- TABLE WRAPPER -->
+							<div class="col-lg-9">
+			
+								<div class="row">
+									<div class="col-md-12 col-lg-12">
+										<div class="card">
+											<div class="card-header">
+												<h3 class="card-title">Les unités de {{$pay->nom}} </h3>
+											</div>
+											<div class="card-body">
+												<div class="table-responsive">
+													<table id="data-table1" class="table table-striped table-bordered text-nowrap w-100 table-sm">
+														<thead>
+															<tr>
+																<th class="wd-15p">Dénomination</th>
+																<th class="wd-15p">Type</th>
+																<th class="wd-20p">Pays</th>
+																<th class="wd-20p">localité</th>
+																<th class="wd-15p">Téléphone</th>
+																{{-- <th>Actions</th> --}}
+															</tr>
+														</thead>
+														<tbody>
+															@foreach ($unites as $unite)
+				
+				
+															<tr>
+																<td> <a class="text-dark" href="{{route('unites.show', $unite->uuid)}}"> {{$unite->designation}} </a></td>
+																<td> <a class="text-dark" href="{{route('unites.show', $unite->uuid)}}">{{$unite->type->nom}} </a></td>
+																<td> <a class="text-dark" href="{{route('unites.show', $unite->uuid)}}">{{$unite->pays->nom}} </a></td>
+																<td> <a class="text-dark" href="{{route('unites.show', $unite->uuid)}}">{{$unite->localite->nom}} </a></td>
+																<td> <a class="text-dark" href="{{route('unites.show', $unite->uuid)}}">{{$unite->tel}} </a></td>
+															</tr>
+															@endforeach
+				
+														</tbody>
+													</table>
+												</div>
+											</div>
+											<!-- TABLE WRAPPER -->
+										</div>
+										<!-- SECTION WRAPPER -->
+									</div>
+								</div>
+							</div><!-- COL-END -->
 						</div>
-						<!-- SECTION WRAPPER -->
-					</div>
-				</div>
+						<div class="modal-footer">
+							
+							
+							
+							
+						<a href="{{ URL::previous() }}" class="btn btn-primary"> <span>
+								<i class="fe fe-close"></i>
+							</span> Retour</a>
+						
+						</div>
+						<!-- ROW-1 CLOSED -->
+
+				<!-- ROW-1 OPEN -->
+			
 			 {{-- @include('pages.backOffice.administrateur.utilisateurs._modelCreationUtilisateur') --}}
 
 
