@@ -2,6 +2,7 @@
 
 @section('content')
 
+@include('partials._notification')
 
 			<!-- Row -->
 			<div class="row">
@@ -86,13 +87,14 @@
                             <div class="wideget-user text-center">
                                 <div class="wideget-user-desc">
                                     <div class="wideget-user-img">
-                                        <img class="" src="http://localhost:5000/assets/images/user.png" alt="img">
+                                        <img class="" src="{{asset('storage/'. Auth::user()->profile_photo_path)}}" alt="img">
+
                                     </div>
                                     <div class="user-wrap">
                                     <h4 class="mb-1">{{Auth::user()->nom. ' '. Auth::user()->prenom}}</h4>
                                     <h6 class=" mb-4"> <i class="fa fa-envelope"> </i> {{Auth::user()->email}} </h6>
                                     <h6 class="text-muted mb-4"> Adminsitrateur Général de la plateforme</h6>
-                                    <a href="#" class="btn btn-primary mt-1 mb-1 btn-sm"> <i class="zmdi zmdi-eye text-white"></i> Voir le profil</a>
+                                    <a href="{{route('profil')}}" class="btn btn-primary mt-1 mb-1 btn-sm"> <i class="zmdi zmdi-eye text-white"></i> Voir le profil</a>
 
 
                                     {{-- <a href="http://localhost:5000/utilisateurs/9fb2ae90-f991-46c2-a03e-037039442b45/edit" class="btn btn-primary mt-1 mb-1 btn-sm"> <i class="zmdi zmdi-edit text-white"></i>  Editer le profile </a> --}}
@@ -126,14 +128,14 @@
 
 										<tr>
 											<td>
-												<img src="http://localhost:5003/assets/images/users/3.jpg" alt="profile-user" class="brround  avatar-sm w-32 mr-2">
+												<img src="{{asset('storage/'. $coordonateur->profile_photo_path )}}" alt="profile-user" class="brround  avatar-sm w-32 mr-2">
 												{{$coordonateur->pay->nom}}
 											</td>
                                         <td>{{$coordonateur->nom}}</td>
                                         <td>{{$coordonateur->prenom}}</td>
                                         <td>{{$coordonateur->tel}}</td>
 											<td>
-												<button type="button" class="badge {{$coordonateur->actif ? 'badge-success':'badge-danger'}} ">{{$coordonateur->actif ? 'Ativé':'Désactivé'}}</button>
+                                            <a href="{{route('gerer-utilisateur', $coordonateur)}}" class="badge {{$coordonateur->actif ? 'badge-success':'badge-danger'}} ">{{$coordonateur->actif ? 'Ativé':'Désactivé'}}</a>
 											</td>
 										</tr>
                                         @empty

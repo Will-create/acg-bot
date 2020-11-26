@@ -1,7 +1,7 @@
 @extends('layouts.master4')
 
 @section('content')
-
+@include('partials._notification')
 
 			<!-- Row -->
 			<div class="row">
@@ -11,7 +11,7 @@
 							<div class="row mb-1">
 								<div class="col">
 									<p class="mb-1">Utilisateurs</p>
-									<h3 class="mb-0 number-font">{{count($utilisateurs)}}</h3>
+									{{-- <h3 class="mb-0 number-font">{{count($utilisateurs)}}</h3> --}}
 								</div>
 								<div class="col-auto mb-0">
 									<div class="dash-icon text-orange">
@@ -120,7 +120,7 @@
 											<th>Status</th>
 										</tr>
 									</thead>
-									<tbody>
+									{{-- <tbody>
                                        @forelse ($coordonateurs as $coordonateur)
 
 
@@ -139,7 +139,7 @@
                                         @empty
                                         aucune donné
                                        @endforelse
-									</tbody>
+									</tbody> --}}
 								</table>
 							</div>
 						</div>

@@ -2,6 +2,7 @@
 
 @section('content')
 
+@include('partials._notification')
 
 			<!-- Row -->
 			<div class="row">
@@ -86,7 +87,7 @@
                             <div class="wideget-user text-center">
                                 <div class="wideget-user-desc">
                                     <div class="wideget-user-img">
-                                        <img class="" src="http://localhost:5000/assets/images/user.png" alt="img">
+                                        <img class="" src="{{asset('storage/'. Auth::user()->profile_photo_path)}}" alt="img">
                                     </div>
                                     <div class="user-wrap">
                                     <h4 class="mb-1">{{Auth::user()->nom. ' '. Auth::user()->prenom}}</h4>
@@ -121,7 +122,7 @@
 										</tr>
 									</thead>
 									<tbody>
-                                       @forelse ($coordonateurs as $coordonateur)
+                                       {{-- @forelse ($coordonateurs as $coordonateur)
 
 
 										<tr>
@@ -139,7 +140,7 @@
                                         @empty
                                         aucune donné
                                        @endforelse
-									</tbody>
+									</tbody> --}}
 								</table>
 							</div>
 						</div>

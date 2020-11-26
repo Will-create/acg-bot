@@ -92,7 +92,7 @@ class LocaliteController extends Controller
 
         return view('pages.backoffice.localites.edit',compact('localite','pays'));
     }
-    
+
     /**
      * Update the specified resource in storage.
      *
@@ -127,12 +127,19 @@ class LocaliteController extends Controller
      * @param  \App\Models\Unite  $unite
      * @return \Illuminate\Http\Response
      */
-    
+
     public function destroy(Request $request, Localite $localite)
     {
         $localite->delete();
 
         return redirect()->route('localites.index')->with('status','localite supprimée avec succès');
+    }
+
+    public function ville_by_country($pay_id) {
+
+        $villes =  Localite::where('pays_id', $pay_id)->get();
+         return response()->json($villes);
+
     }
 
 }

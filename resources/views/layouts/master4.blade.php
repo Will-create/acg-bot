@@ -7,9 +7,11 @@
         <meta name="description" content="Systeme de paiement en masse">
         <meta name="author" content="Switch Maker">
         <meta name="keywords" content="">
-        <title> {{ $titrePage ??  'Systeme de paiement en masse'}} </title>
+        <title> {{ $titrePage ??  'Criminalité environnementale'}} </title>
         @include('layouts.head')
-       
+
+        <link rel="stylesheet" href="{{asset('css/custom.css')}}">
+
 
     </head>
 

@@ -27,7 +27,7 @@
 						</ol>
 					</div>
 					<div class="ml-auto pageheader-btn">
-                    <a class="btn btn-primary" href="{{route('utilisateurs.index')}}"  >  <span>
+                    <a class="btn btn-primary" href="{{route('utilisateurs.index')}}" data-toggle="tooltip" data-placement="top" title="Revenir sur la liste des utilisateurs">  <span>
                             <i class="fe fe-list"></i>
                         </span>
                         Les utilisateurs</a>
@@ -46,17 +46,17 @@
                             <div class="wideget-user text-center">
                                 <div class="wideget-user-desc">
                                     <div class="wideget-user-img">
-                                        <img class="" src="{{asset('assets/images/user.png')}}" alt="img">
+                                        <img class="" src="{{asset('storage/'. $utilisateur->profile_photo_path)}}" alt="img">
                                     </div>
                                     <div class="user-wrap">
                                     <h4 class="mb-1">{{$utilisateur->nom. ' ' . $utilisateur->prenom}}</h4>
                                         <h6 class="text-muted mb-4">Ajouté le : {{formatDate($utilisateur->created_at)}}</h6>
 @if ($utilisateur->actif == true)
-<a href="{{route('gerer-utilisateur', $utilisateur)}}" class="btn btn-danger mt-1 mb-1 btn-sm"> <i class="zmdi zmdi-rss text-white"></i>  Désactiver </a>
+<a href="{{route('gerer-utilisateur', $utilisateur)}}" class="btn btn-success mt-1 mb-1 btn-sm" data-toggle="tooltip" data-placement="top" title="Cliquer pour désactiver"> <i class="zmdi zmdi-rss text-white"></i> Compte  activé </a>
 
 @else
 
-<a href="{{route('gerer-utilisateur', $utilisateur)}}" class="btn btn-success mt-1 mb-1 btn-sm"> <i class="zmdi zmdi-rss text-white"></i>  Activer </a>
+<a href="{{route('gerer-utilisateur', $utilisateur)}}" class="btn btn-danger mt-1 mb-1 btn-sm" data-toggle="tooltip" data-placement="top" title="Cliquer pour activer"> <i class="zmdi zmdi-rss text-white"></i>  Compte désacivé </a>
 @endif
 
                                     <a href="{{route('utilisateurs.edit', $utilisateur)}}" class="btn btn-primary mt-1 mb-1 btn-sm"> <i class="zmdi zmdi-edit text-white"></i>  Editer le profile </a>
@@ -94,6 +94,41 @@
                             </div>
                         </div>
                     </div>
+
+
+                    <button type="button" class="btn btn-outline-danger btn-block  mb-1" data-toggle="modal" data-target="#exampleModalDelete{{$utilisateur->id}}"><i class="fa fa-trash"></i> Supprimer le compte</button>
+
+                    <div class="modal" id="exampleModalDelete{{$utilisateur->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalDelete" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalDelete">Suppression de utilisateur  <span class="text-success"> {{$utilisateur->nom. ' '. $utilisateur->prenom}}</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>  Voullez-vous supprimer cet utilisateur ?
+                                    </p>
+                                </div>
+                                <div class="modal-footer">
+                                    <form action="{{route('utilisateurs.destroy', $utilisateur)}}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger ">
+                                            <i class="fa fa-trash"></i>
+                                        <span>Confirmer la suppression</span>
+                                        </button>
+                                        <button type="reset" class="btn btn-success" data-dismiss="modal">
+                                            <i class="fa fa-times"></i>
+                                                        <span>Annuler</span>
+                                        </button>
+                                        </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
                 <div class="col-lg-8">
 

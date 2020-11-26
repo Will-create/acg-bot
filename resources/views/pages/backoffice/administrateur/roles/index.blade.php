@@ -18,7 +18,7 @@
 @endsection
 @section('page-header')
                 <!-- PAGE-HEADER -->
-                
+
 				<div class="page-header">
 					<div>
 						<h1 class="page-title">Liste des Rôles utilisateurs</h1>
@@ -28,10 +28,10 @@
 						</ol>
 					</div>
 					<div class="ml-auto pageheader-btn">
-                    <a class="btn btn-primary" href="{{route('roles.create')}}">  <span>
+                    {{-- <a class="btn btn-primary" href="{{route('roles.create')}}">  <span>
                             <i class="fe fe-plus"></i>
                         </span>
-                        Ajouter un Rôle</a>
+                        Ajouter un Rôle</a> --}}
 
 
                     </button>
@@ -54,11 +54,11 @@
 									<table id="data-table1" class="table table-striped table-bordered text-nowrap w-100 table-sm">
 										<thead>
 											<tr>
-												
+
 												<th class="wd-15p">Designation</th>
 												<th class="wd-15p">Description</th>
 												<th class="wd-20p">Nombre d'utisateurs</th>
-												
+
                                                 {{-- <th>Actions</th> --}}
 											</tr>
 										</thead>
@@ -67,7 +67,7 @@
 
 
 											<tr>
-												
+
 												<td> <a class="text-dark" href="{{route('roles.show', $role->uuid)}}"> {{$role->designation}} </a></td>
 												<td> <a class="text-dark" href="{{route('roles.show', $role->uuid)}}"> {{substr($role->description,1-1,33)}}... </a></td>
 												<td> <a class="text-dark" href="{{route('roles.show', $role->uuid)}}">{{$role->utilisateurs->count()}}</a></td>
