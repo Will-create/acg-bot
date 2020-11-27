@@ -1,0 +1,51 @@
+<?php
+
+namespace App\Models;
+
+
+
+
+use Illuminate\Database\Eloquent\Model;
+use PhpParser\Node\Expr\Cast\Object_;
+
+class Restriction extends Model
+{
+   
+    
+    private $erreurs = [];
+
+    public function errorify($model){
+     return $model;
+    }
+    public function controler($id, $cible){
+
+    $model = 'App\Models\\'.ucfirst($cible['modelname']);
+    
+    $instance = new $model;
+    
+    
+     $restriction = $instance->where($cible['foreignkey'],$id)->get();
+
+     if($restriction->count() > 0){
+        $erreur =$this->errorify($cible['modelname']);
+        $this->erreurs[$cible['modelname']]=$erreur;
+     }
+
+    }
+    public  function check ( int $id, array $cibles){
+       foreach($cibles as $cible){
+        $this->controler($id,$cible);
+       }
+       if(!$this->erreurs){
+          return false;
+       }else{
+        $msg='Impossible de supprimer cette entité  car elle est liée à  des entités dont: ';
+        $messages=array_keys($this->erreurs);
+        foreach($messages as $message){
+
+            $msg = $msg.' \'\''.$message.'\'\' ';
+        }
+           return ['restrictions'=> $this->erreurs,'message'=> $msg];
+       }
+    }
+}

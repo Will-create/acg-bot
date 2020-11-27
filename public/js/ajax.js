@@ -89,7 +89,6 @@ $('body').on('click', '#submit2', function (event) {
             button: false,
             timer: 2500
           })
-
       },
       error: function (data) {
         document.querySelector('#loader').classList.add('d-none');
@@ -108,9 +107,6 @@ $('body').on('click', '#submit2', function (event) {
 
   });
 });
-
-
-
 $('body').on('click', '#submit3', function (event) {
     event.preventDefault()
     var _token = $("#_token").val();

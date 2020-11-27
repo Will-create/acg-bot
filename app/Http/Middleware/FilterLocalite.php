@@ -20,7 +20,7 @@ class FilterLocalite
     public function handle(Request $request, Closure $next)
     {
 
-        URL::defaults(['pays' => Pay::where('id', 1)->first()]);
+        URL::defaults(['pays' => ]);
 
         return $next($request);
         

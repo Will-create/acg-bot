@@ -170,7 +170,6 @@ class UtilisateursController extends Controller
         $request->session()->flash('status', 'Les informations ont été mises jour avec succès');
         return redirect()->route('utilisateurs.show', $utilisateur->uuid);
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -181,7 +180,6 @@ class UtilisateursController extends Controller
     {
         //
     }
-
     public function gerer(User $utilisateur, Request $request)
     {
        if ($utilisateur->actif == true) {
@@ -189,13 +187,11 @@ class UtilisateursController extends Controller
         $utilisateur->save();
         $request->session()->flash('warning', 'Le compte de l\'utilisateur a été désactivé');
         return redirect()->route('utilisateurs.show', $utilisateur->uuid);
-
        } else {
         $utilisateur->actif = true;
         $utilisateur->save();
         $request->session()->flash('status', 'Le compte de l\'utilisateur a été activé');
         return redirect()->route('utilisateurs.show', $utilisateur->uuid);
        }
-
     }
 }

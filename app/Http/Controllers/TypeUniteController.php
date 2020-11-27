@@ -6,6 +6,7 @@ use App\Models\Unite;
 use App\Models\Pay;
 use App\Models\Localite;
 use App\Models\User;
+use App\Models\Restriction;
 use App\Models\TypeUnite;
 use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
@@ -88,8 +89,23 @@ class TypeUniteController extends Controller
     public function destroy(Request $request,$uuid)
     {
         $type=TypeUnite::where('uuid',$uuid)->first();
-        $type->delete();
 
-        return redirect()->route('type_unites.index')->with('status','Type d\'unité supprimée avec succès');
+
+        $restriction = new Restriction;
+
+        $restrictions = $restriction->check($type->id,[
+            ['foreignkey'=>'type_unite_id','modelname'=>'unite'],
+            ]);
+        
+           if ($restrictions['restrictions']){
+            
+            return redirect()->back()->with('danger',$restrictions['message']);
+           }else{
+            $type->delete();
+            return redirect()->route('type_unites.index')->with('status','Type d\'unité supprimée avec succès');
+    
+           }
+
+        
     }
 }

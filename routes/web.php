@@ -33,6 +33,8 @@ Auth::routes();
     Route::get('/home','UniteController@index')->name('home');
     Route::get('/localites/filtreur/{pays}','LocaliteController@filter')->name('localites.filter');
     Route::get('/unites/filtreur/{pays}','UniteController@filter')->name('unites.filter');
+    Route::get('/unites/api/filtreur/{pays}','UniteController@filtreur');
+
     Route::resource('/pays','PayController');
     
     Route::resource('unites', 'UniteController');

@@ -53,64 +53,42 @@
                         </div>
                         <div class="card-body wideget-user-contact">
 
-
+                            <strong>Description :</strong> {{$type->description}}
+                            <br><br>
                             
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-8">
-                    <div class="tab-content">
-                        <div class="tab-pane active show" id="tab-51">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div id="profile-log-switch">
-                                        
-                                        
-                                        <strong>Description :</strong> {{$type->description}}
-                                                <br><br>
-                                    </div>
+                    <div class="tab-pane active show" id="tab-52">
+                        <div class="card">
+                            
+                            <div class="card-body">
+                                <h3>Unités associées  à ce type</h3>
+                                <div id="profile-log-switch">
+                                    @foreach ($unites as $unite)
+            
+            
+                                                        
+                                            <a class="side-menu__item " href="{{route('unites.show', $unite->uuid)}}">
+                                                                 
+                                            <span class="side-menu__label">{{$unite->designation}} </span>
+                                            </a>
+                                                             
+                                        @endforeach
                                 </div>
                             </div>
-
                         </div>
+        
+                    </div>
                         
                     </div>
 
                 </div><!-- COL-END -->
             </div>
-           <div class="row">
-
-            <div class="col-md-4">
-
-                
-            </div>
-            <div class="col-md-8">
-                <div class="tab-pane active show" id="tab-52">
-                    <div class="card">
-                        
-                        <div class="card-body">
-                            <h3>Unités associé a ce type</h3>
-                            <div id="profile-log-switch">
-                                @foreach ($unites as $unite)
-        
-        
-                                                    
-                                        <a class="side-menu__item " href="{{route('unites.show', $unite->uuid)}}">
-                                                             
-                                        <span class="side-menu__label">{{$unite->designation}} </span>
-                                        </a>
-                                                         
-                                    @endforeach
-                            </div>
-                        </div>
-                    </div>
-    
-                </div>
-    
-            </div>
-           </div>
+           
             <div class="modal-footer">
-                <form method="POST" action="{{route('type_unites.destroy',$type->uuid)}}" onsubmit="return confirm('Voulez vous vraiment supprimer ce Type de crime?')">
+                <form method="POST" action="{{route('type_unites.destroy',$type->uuid)}}" onsubmit="event.preventDefault(); return $.dialog.confirm('Confirmation', 'Voulez vous vraiment supprimer ce Type de crime?',function(){return true})">
                 {{ csrf_field() }}
                     @method('DELETE')
                     <button class="btn btn-danger">

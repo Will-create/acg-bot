@@ -24,7 +24,7 @@
 						<h1 class="page-title">Liste des localités dans {{$pay->nom}}</h1>
 						<ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{route('accueil')}}">Accueil</a></li>
-							<li class="breadcrumb-item active" aria-current="page">Localités dans {{$pay->nom}}</li>
+						<li class="breadcrumb-item active" aria-current="page">Localités dans {{$pay->nom}}</li>
 						</ol>
 					</div>
 					<div class="ml-auto pageheader-btn">
@@ -57,14 +57,15 @@
 										</div>
 										<div class="clearfix"></div>
 									</div>
-									<div class="card-body" style="height:55vh;overflow: scroll">
+									<div id="listpays" class="card-body side-menu" style="height:55vh;overflow-y: scroll">
 										@foreach ($pays as $p)
 				
 				
 															
-												<a class="side-menu__item {{$p->uuid == $pay->uuid  ? 'active' : ''  }} " href="{{route('unites.filter', $p->id)}}">
+												<a style="cursor:pointer" onclick="filtreur({{$p->id}})" class="side-menu__item {{$p->id == $pay->id ? 'active' : ''}}">
 																	 
 												<span class="side-menu__label">{{$p->nom}} </span>
+												
 												</a>
 																 
 											@endforeach
@@ -74,6 +75,9 @@
 							<div class="col-lg-9">
 			
 								<div class="row">
+									<div id="loader" class="d-none">
+										<div class="loader"></div>
+									  </div>
 									<div class="col-md-12 col-lg-12">
 										<div class="card">
 											<div class="card-header">
@@ -92,18 +96,24 @@
 																{{-- <th>Actions</th> --}}
 															</tr>
 														</thead>
-														<tbody>
+														<tbody id="tableBody">
+
 															@foreach ($unites as $unite)
 				
 				
 															<tr>
 																<td> <a class="text-dark" href="{{route('unites.show', $unite->uuid)}}"> {{$unite->designation}} </a></td>
-																<td> <a class="text-dark" href="{{route('unites.show', $unite->uuid)}}">{{$unite->type->nom}} </a></td>
-																<td> <a class="text-dark" href="{{route('unites.show', $unite->uuid)}}">{{$unite->pays->nom}} </a></td>
-																<td> <a class="text-dark" href="{{route('unites.show', $unite->uuid)}}">{{$unite->localite->nom}} </a></td>
-																<td> <a class="text-dark" href="{{route('unites.show', $unite->uuid)}}">{{$unite->tel}} </a></td>
+																<td> <a class="text-dark" href="{{route('unites.show', $unite->uuid)}}">{{$unite->type->nom}}</a></td>
+																<td> <a class="text-dark" href="{{route('unites.show', $unite->uuid)}}"> {{$unite->pays->nom}} </a></td>
+																<td> <a class="text-dark" href="{{route('unites.show', $unite->uuid)}}">{{$unite->localite->nom}}</a></td>
+																<td> <a class="text-dark" href="{{route('unites.show', $unite->uuid)}}">{{$unite->tel}}</a></td>
+																
 															</tr>
-															@endforeach
+												
+																 
+																@endforeach
+															
+				
 				
 														</tbody>
 													</table>
@@ -167,9 +177,37 @@
         @if (count($errors) > 0)
             $('#largeModalAddUser').modal('show');
             modal.classList.add("show");
-        @endif
+		@endif
+		
+
+		var tableBody = document.getElementById('tableBody');	
+		var listpays = document.getElementById('listpays')	;									
+		function injecteur(res){
+			var {unites, pays, pay} = res;
+			var rows = '';
+			var lignes = '';
+			unites.map(function(u){
+            rows +='<tr><td> <a class="text-dark" href="/unites/'+u.uuid+'"> '+u.designation+' </a></td><td> <a class="text-dark" href="/unites/'+u.uuid+'">'+u.type.nom+'</a></td><td> <a class="text-dark" href="/unites/'+u.uuid+'">'+u.pays.nom+' </a></td><td> <a class="text-dark" href="/unites/'+u.uuid+'">'+u.localite.nom+'</a></td><td> <a class="text-dark" href="/unites/'+u.uuid+'">'+u.tel+'</a></td></tr>'
+			})
+			pays.map(function(p){
+				var active = p.id == pay.id ? 'active' : '' ;
+              lignes +='<a style="cursor:pointer" onclick="filtreur('+p.id+')" class="side-menu__item '+active+'"><span class="side-menu__label">'+p.nom+' </span></a>'
+			})
+			tableBody.innerHTML = rows;
+			listpays.innerHTML = lignes;
+		}
+		function filtreur(pays){
+			event.preventDefault();
+			
+			loader.style.display='';
+ 			 axios.get('/unites/api/filtreur/'+pays).then(function(data){
+														var res = data.data;
+													injecteur(res);
+
+													setTimeout(injecteur(res),5555)
+													loader.style.display='none';
+									
+									})
+        }
         </script>
-
-
-
 @endsection

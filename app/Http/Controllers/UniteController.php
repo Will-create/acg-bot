@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Unite;
+use App\Models\Restriction;
 use App\Models\Pay;
+use App\Models\User as U;
 use App\Models\Localite;
-use App\Models\User;
-use App\Models\TypeCrime;
+
+use App\Models\TypeUnite;
 use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
 
 class UniteController extends Controller
@@ -30,7 +33,18 @@ class UniteController extends Controller
         $pay=Pay::where('id',$p )->first();
       
         return view('pages.backoffice.unites.filter', [
-            'unites'                    =>Unite::where('pays_id',$pay->id)->get(),
+            'unites'                    =>Unite::where('pays_id',$pay->id)->with(['pays','type'])->get(),
+            'pays'                         =>Pay::all(),
+            'pay'                          =>$pay
+        ]);
+    }
+
+    public function filtreur($p)
+    {  
+        $pay=Pay::where('id',$p )->first();
+      
+        return response()->json([
+            'unites'                    =>Unite::where('pays_id',$pay->id)->with('pays','type','localite')->get(),
             'pays'                         =>Pay::all(),
             'pay'                          =>$pay
         ]);
@@ -39,10 +53,10 @@ class UniteController extends Controller
 
     public function create()
     {
-        $pays=Pay::where('id',auth()->user()->id)->orderBy('nom', 'asc')->get();
+        $pays=Pay::all();
         $localites=Localite::where('pays_id',$pays[0]->id)->orderBy('pays_id', 'asc')->get();
-        $responsables=User::all();
-        $types= TypeCrime::all();
+        $responsables=U::with('role','pays')->get();
+        $types= TypeUnite::all();
         return view('pages.backoffice.unites.form',compact('localites','pays', 'responsables','types'));
     }
 
@@ -126,7 +140,7 @@ class UniteController extends Controller
         $pays=Pay::where('id',auth()->user()->id)->orderBy('nom', 'asc')->get();
         $localites=Localite::where('pays_id',$pays[0]->id)->orderBy('pays_id', 'asc')->get();
         $responsables=User::all();
-        $types=TypeCrime::all();
+        $types=TypeUnite::all();
         return view('pages.backoffice.unites.edit',compact('unite','responsables','pays','localites','types'));
     }
 
@@ -189,7 +203,16 @@ class UniteController extends Controller
 
    
     public function destroy(Request $request, Unite $unite)
-    {
+    {   
+    
+        $restriction = new Restriction;
+
+        $restrictions = $restriction->check($unite->id,[
+            ['foreignkey'=>'unite_id','modelname'=>'user'],
+            ['foreignkey'=>'unite_id','modelname'=>'user'],
+            ['foreignkey'=>'unite_id','modelname'=>'user']
+
+        ]);
         $unite->delete();
         $request->session()->flash('warning','Unité supprimée avec succès!!!');
         return redirect()->route('unites.index')->with('message','Unité supprimée avec succès');

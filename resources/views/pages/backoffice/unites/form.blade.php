@@ -148,7 +148,9 @@
                             <option value="" selected disabled> Sélectionner</option>
 
                             @foreach ($responsables as $responsable)
-                        <option value="{{$responsable->id}}">{{$responsable->nom}}</option>
+                        <option value="{{$responsable->id}}">{{$responsable->nom}} 
+                            {{$responsable->pays->nom}} 
+                            {{$responsable->role->designation}}</option>
                             @endforeach
                         </select>
                         @error('responsable_id')

@@ -1,10 +1,18 @@
 $(function(e) {
 	
 	//Data-table1
-	$('#data-table1').DataTable();
+	$('#data-table1').DataTable({
+		language: {
+			url: "https://cdn.datatables.net/plug-ins/1.10.19/i18n/French.json"
+		}
+	});
 	
 	//Data-table2
-	var table = $('#data-table2').DataTable();
+	var table = $('#data-table2').DataTable({
+		language: {
+			url: "https://cdn.datatables.net/plug-ins/1.10.19/i18n/French.json"
+		}
+	});
 	$('button').click( function() {
 		var data = table.$('input, select').serialize();
 		alert(

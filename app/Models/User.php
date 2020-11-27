@@ -42,23 +42,21 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function unites(){
-        return $this->hasMany('App\Models\Unite');
-    }
+    
     public function role()
     {
-        return $this->hasOne(Role::class, 'id', 'role_id');
+        return $this->hasOne('App\Models\Role', 'role_id', 'id');
     }
     public function unite()
     {
-        return $this->belongsTo(Unite::class);
+        return $this->hasOne('App\Models\Unite', 'unite_id', 'id');
     }
     public function ville()
     {
-        return $this->belongsTo(Localite::class, 'localite_id', 'id');
+        return $this->belongsTo('App\Models\Unite', 'localite_id', 'id');
     }
-    public function pay()
+    public function pays()
     {
-        return $this->belongsTo(Pay::class, 'pays_id', 'id');
+        return $this->hasOne('App\Models\Pay', 'pay_id');
     }
 }

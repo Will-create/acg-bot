@@ -141,7 +141,9 @@
                                 <li><a class="slide-item" href="{{route('localites.create')}}"><span>Nouveau </span></a></li>
                             </ul>
                         </li>
+
                     </ul>
+                    <br><br><br><br>
                 </aside>
 
 
