@@ -40,7 +40,7 @@
                             </ul>
                         </li>
 
-                       
+
                         <li class="slide">
                             <a class="side-menu__item" data-toggle="slide" href="#">
                                 <i class="mdi mdi-rss aide-icon"  ></i>
@@ -62,7 +62,7 @@
                             <li><a class="slide-item" href="{{route('crimes.create')}}"><span>Nouveau </span></a></li>
                             </ul>
                         </li>
-                        <li class="slide">
+                        {{-- <li class="slide">
                             <a class="side-menu__item" data-toggle="slide" href="#">
                                 <i class="mdi mdi-rss aide-icon"  ></i>
                                 <span class="side-menu__label">Types de Crime</span><i class="angle fa fa-angle-right"></i>
@@ -71,17 +71,7 @@
                             <li><a class="slide-item" href="{{route('type_crimes.index')}}"><span>Tous les types de crime</span></a></li>
                             <li><a class="slide-item" href="{{route('type_crimes.create')}}"><span>Nouveau </span></a></li>
                             </ul>
-                        </li>
-                        <li class="slide">
-                            <a class="side-menu__item" data-toggle="slide" href="#">
-                                <i class="mdi mdi-rss aide-icon"  ></i>
-                                <span class="side-menu__label">Types d'unité</span><i class="angle fa fa-angle-right"></i>
-                            </a>
-                            <ul class="slide-menu">
-                            <li><a class="slide-item" href="{{route('type_unites.index')}}"><span>Tous les types d'unité</span></a></li>
-                            <li><a class="slide-item" href="{{route('type_unites.create')}}"><span>Nouveau </span></a></li>
-                            </ul>
-                        </li>
+                        </li> --}}
 
 
 
@@ -100,7 +90,14 @@
                                 <li><a class="slide-item" href="#"><span>Nouveau </span></a></li>
                             </ul>
                         </li>
+
                         <li class="slide">
+                            <a class="side-menu__item" data-toggle=" " href="{{route('roles.index')}}">
+                                    <i class="mdi mdi-rss aide-icon aide-icon"></i>
+                                    <span class="side-menu__label">Rôles</span>
+                                </a>
+                            </li>
+                        {{-- <li class="slide">
                             <a class="side-menu__item" data-toggle="slide" href="#">
                                 <i class="mdi mdi-rss aide-icon"  ></i>
                                 <span class="side-menu__label">Gestion des Roles</span><i class="angle fa fa-angle-right"></i>
@@ -109,7 +106,7 @@
                                 <li><a class="slide-item" href="{{route('roles.index')}}"><span>Roles</span></a></li>
                                 <li><a class="slide-item" href="{{route('roles.create')}}"><span>Nouveau </span></a></li>
                             </ul>
-                        </li>
+                        </li> --}}
                         <li class="slide">
                             <a class="side-menu__item" data-toggle="slide" href="#">
                                 <i class="mdi mdi-rss aide-icon"  ></i>

@@ -1,7 +1,7 @@
 @extends('layouts.master4')
 
 @section('content')
-
+@include('partials._notification')
 
 			<!-- Row -->
 			<div class="row">

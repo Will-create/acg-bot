@@ -1,27 +1,19 @@
 $(function(e) {
-	
+
 	//Data-table1
-	$('#data-table1').DataTable({
-		language: {
-			url: "https://cdn.datatables.net/plug-ins/1.10.19/i18n/French.json"
-		}
-	});
-	
+	$('#data-table1').DataTable();
+
 	//Data-table2
-	var table = $('#data-table2').DataTable({
-		language: {
-			url: "https://cdn.datatables.net/plug-ins/1.10.19/i18n/French.json"
-		}
-	});
-	$('button').click( function() {
-		var data = table.$('input, select').serialize();
-		alert(
-			"The following data would have been submitted to the server: \n\n"+
-			data.substr( 0, 120 )+'...'
-		);
-		return false;
-	});
-	
+	// var table = $('#data-table2').DataTable();
+	// $('button').click( function() {
+	// 	var data = table.$('input, select').serialize();
+	// 	alert(
+	// 		"The following data would have been submitted to the server: \n\n"+
+	// 		data.substr( 0, 120 )+'...'
+	// 	);
+	// 	return false;
+	// });
+
 	//Data-table3
 	$('#data-table3').DataTable( {
         responsive: {
@@ -38,7 +30,7 @@ $(function(e) {
             }
         }
     } );
-	
+
 	//Export Data-table
 	var table = $('#exportexample').DataTable( {
 		lengthChange: false,

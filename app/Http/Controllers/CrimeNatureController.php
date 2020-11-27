@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CrimeNature;
+use App\Models\TypeCrime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -19,7 +20,7 @@ class CrimeNatureController extends Controller
      */
     public function index()
     {
-        $naturesCrimes = CrimeNature::all();
+        $naturesCrimes = TypeCrime::latest()->get();
         return view('pages.backoffice.natureCrime.index', compact('naturesCrimes'));
     }
 
@@ -42,12 +43,12 @@ class CrimeNatureController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nature'            => 'required',
+            'nom'            => 'required',
             'description'       => 'nullable'
         ]);
 
-        CrimeNature::create([
-                'nature'            => $request->nature,
+        TypeCrime::create([
+                'nom'            => $request->nom,
                 'description'       => $request->description,
                 'uuid'              => Str::uuid(),
 
@@ -86,15 +87,14 @@ class CrimeNatureController extends Controller
      * @param  \App\Models\CrimeNature  $crimeNature
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CrimeNature $nature_crime)
+    public function update(Request $request, TypeCrime $nature_crime)
     {
         $request->validate([
-            'nature'            => 'required',
+            'nom'            => 'required',
             'description'       => 'nullable'
         ]);
-
         $nature_crime->update([
-                'nature'            => $request->nature,
+                'nom'            => $request->nom,
                 'description'       => $request->description,
 
         ]);
@@ -109,7 +109,7 @@ class CrimeNatureController extends Controller
      * @param  \App\Models\CrimeNature  $crimeNature
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CrimeNature $nature_crime, Request $request)
+    public function destroy(TypeCrime $nature_crime, Request $request)
     {
         $nature_crime->delete();
         $request->session()->flash('warning', 'La donnéés a été bien supprimée');

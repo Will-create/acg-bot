@@ -21,7 +21,7 @@
 @include('partials._notification')
 <div class="page-header">
     <div>
-        <h1 class="page-title">Liste des natures de Crimes</h1>
+        <h1 class="page-title">Liste des types de crime</h1>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="#">Moyens de paiment</a></li>
             <li class="breadcrumb-item active" aria-current="page">Accueil</li>
@@ -32,14 +32,13 @@
 <!-- PAGE-HEADER END -->
 @endsection
 @section('content')
-{{-- @include('partials._notification') --}}
 
 <!-- ROW-1 OPEN -->
 <div class="row">
     <div class="col-md-8 col-lg-8">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Liste des natures Crimes</h3>
+                <h3 class="card-title">Liste des types de crime</h3>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -47,7 +46,7 @@
                         <thead>
                             <tr>
                                 <th class="wd-15p">Désignation</th>
-                                <th class="wd-15p">Description</th>
+                                {{-- <th class="wd-15p">Description</th> --}}
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -56,8 +55,8 @@
                             @foreach ($naturesCrimes as $naturesCrime)
 
                             <tr>
-                                <td>{{ucfirst($naturesCrime->nature)}}</td>
-                                <td>{{ucfirst($naturesCrime->description)}}</td>
+                                <td>{{ucfirst($naturesCrime->nom)}}</td>
+                                {{-- <td>{{ucfirst($naturesCrime->description)}}</td> --}}
 
                                 <td>
 
@@ -70,7 +69,7 @@
                                         <div class="modal-dialog modal-lg" role="document">
                                             <div class="modal-content ">
                                                 <div class="modal-header pd-x-20">
-                                                    <h6 class="modal-title text-center">{{$naturesCrime->nature}}
+                                                    <h6 class="modal-title text-center"> <strong> {{ucfirst($naturesCrime->nom)}} </strong>
                                                     </h6>
                                                     <button type="button" class="close" data-dismiss="modal"
                                                         aria-label="Close">
@@ -97,11 +96,11 @@
                                                                                         for="designation">Désignation</label>
                                                                                     <input type="text"
                                                                                         class="form-control"
-                                                                                        name="nature"
+                                                                                        name="nom"
                                                                                         placeholder="Désignation"
                                                                                         id="designation"
-                                                                                        value="{{$naturesCrime->nature}}">
-                                                                                    @error('nature')
+                                                                                        value="{{ucfirst($naturesCrime->nom)}}">
+                                                                                    @error('nom')
                                                                                     <span class="helper-text red-text">
                                                                                         <strong>{{ $message }}</strong>
                                                                                     </span>
@@ -131,11 +130,11 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="modal-footer">
-                                                                    <button type="submit" class="btn btn-primary">
+                                                                    <button type="submit" class="btn btn-primary btn-sm">
                                                                         <span>
                                                                             <i class="fe fe-save"></i>
                                                                         </span> Mettre à jour</button>
-                                                                    <button type="button" class="btn btn-danger"
+                                                                    <button type="button" class="btn btn-danger btn-sm"
                                                                         data-dismiss="modal">
                                                                         <span>
                                                                             <i class="fa fa-close"></i>
@@ -161,7 +160,7 @@
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalDelete">Suppression {{$naturesCrime->nature}}
+                                                    <h5 class="modal-title" id="exampleModalDelete">Suppression de <strong> {{ucfirst($naturesCrime->nom)}} </strong>
                                                          <span class="green-text"> </h5>
                                                     <button type="button" class="close" data-dismiss="modal"
                                                         aria-label="Close">
@@ -177,7 +176,7 @@
                                                         method="POST">
                                                         @csrf
                                                         @method('DELETE')
-                                                    <input type="hidden" name="nature_crimes_id" value="{{$naturesCrime->uuid}}">
+                                                    <input type="hidden" name="nature_crimes_id" value="{{ucfirst($naturesCrime->uuid)}}">
                                                         <button type="submit" class="btn btn-danger ">
                                                             <i class="fa fa-trash"></i>
                                                             <span>Confirmer la suppression</span>
@@ -211,9 +210,9 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label class="form-label" for="designation">Désignation</label>
-                                <input type="text" class="form-control" name="nature" placeholder="Nature"
-                                    id="nature" value="{{old('nature')}}">
-                                @error('nature')
+                                <input type="text" class="form-control" name="nom" placeholder="Nature"
+                                    id="nature" value="{{old('nature')}}" required>
+                                @error('nom')
                                 <span class="helper-text red-text">
                                     <strong>{{ $message }}</strong>
                                 </span>

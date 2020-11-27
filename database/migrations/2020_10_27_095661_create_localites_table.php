@@ -20,7 +20,8 @@ class CreateLocalitesTable extends Migration
             $table->unsignedBigInteger('pays_id');
             $table->string('nom', 50);
             $table->timestamps();
-            $table->foreign('pays_id')->references('id')->on('pays');
+            // $table->foreign('pays_id')->references('id')->on('pays')->onDelete('restrict')
+            // ->onUpdate('restrict');
         });
     }
 

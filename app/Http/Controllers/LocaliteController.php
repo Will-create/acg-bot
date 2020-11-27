@@ -117,4 +117,11 @@ class LocaliteController extends Controller
         return redirect()->route('localites.index')->with('status','localite supprimée avec succès');
     }
 
+    public function ville_by_country($pay_id) {
+
+        $villes =  Localite::where('pays_id', $pay_id)->get();
+         return response()->json($villes);
+
+    }
+
 }

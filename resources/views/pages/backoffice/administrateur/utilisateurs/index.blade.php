@@ -13,7 +13,7 @@
           <!-- INTERNAL PRISM CSS -->
           <link href="{{URL::asset('assets/plugins/prism/prism.css')}}" rel="stylesheet">
 			  <!-- INTERNAL TELEPHONE CSS-->
-			  
+
 		<link rel="stylesheet" href="{{URL::asset('assets/plugins/telephoneinput/telephoneinput.css')}}">
 @endsection
 @section('page-header')
@@ -57,17 +57,21 @@
 												<th class="wd-20p">Email</th>
 												<th class="wd-20p">Role</th>
 												<th class="wd-15p">Téléphone</th>
-                                                {{-- <th>Actions</th> --}}
+                                                <th>Actions</th>
 											</tr>
 										</thead>
 										<tbody>
                                             @foreach ($utilisateurs as $utilisateur)
 											<tr>
-												<td> <a class="text-dark" href="{{route('utilisateurs.show', $utilisateur)}}"> {{$utilisateur->nom}} </a></td>
-												<td> <a class="text-dark" href="{{route('utilisateurs.show', $utilisateur)}}">{{$utilisateur->prenom}} </a></td>
-												<td> <a class="text-dark" href="{{route('utilisateurs.show', $utilisateur)}}">{{$utilisateur->email}} </a></td>
-												<td> <a class="text-dark" href="{{route('utilisateurs.show', $utilisateur)}}">{{$utilisateur->role->designation}} </a></td>
-												<td> <a class="text-dark" href="{{route('utilisateurs.show', $utilisateur)}}">{{$utilisateur->tel}} </a></td>
+												<td> <a class="text-dark" data-toggle="tooltip" data-placement="top" title="CLiquer pour afficher les détails de l'utilisateur" href="{{route('utilisateurs.show', $utilisateur)}}"> {{$utilisateur->nom}} </a></td>
+												<td> <a class="text-dark" data-toggle="tooltip" data-placement="top" title="CLiquer pour afficher les détails de l'utilisateur" href="{{route('utilisateurs.show', $utilisateur)}}">{{$utilisateur->prenom}} </a></td>
+												<td> <a class="text-dark" data-toggle="tooltip" data-placement="top" title="CLiquer pour afficher les détails de l'utilisateur" href="{{route('utilisateurs.show', $utilisateur)}}">{{$utilisateur->email}} </a></td>
+												<td> <a class="text-dark" data-toggle="tooltip" data-placement="top" title="CLiquer pour afficher les détails de l'utilisateur" href="{{route('utilisateurs.show', $utilisateur)}}">{{$utilisateur->role->designation}} </a></td>
+                                                <td> <a class="text-dark" data-toggle="tooltip" data-placement="top" title="CLiquer pour afficher les détails de l'utilisateur" href="{{route('utilisateurs.show', $utilisateur)}}">{{$utilisateur->tel}} </a></td>
+                                                <td>
+                                                    {{-- <a href="{{route('gerer-utilisateur', $utilisateur)}}" class="badge {{$utilisateur->actif ? 'badge-success':'badge-danger'}}" title="{{$utilisateur->actif ? 'Cliquer pour désactiver':'CLiquer pour activer'}}">{{$utilisateur->actif ? 'Ativé':'Désactivé'}}  </a> --}}
+                                                    <a href="{{route('gerer-utilisateur', $utilisateur)}}" class="badge {{$utilisateur->actif ? 'badge-success':'badge-danger'}}" data-toggle="tooltip" data-placement="top" title="{{$utilisateur->actif ? 'Cliquer pour désactiver':'Cliquer pour activer'}}">{{$utilisateur->actif ? 'Ativé':'Désactivé'}}  </a>
+                                                </td>
                                             </tr>
                                             @endforeach
 
@@ -109,11 +113,14 @@
     <script src="{{URL::asset('assets/plugins/telephoneinput/inttelephoneinput.js')}}"></script>
 
     <script type="text/javascript">
-    var modal = document.getElementById('largeModalAddUser');
-        @if (count($errors) > 0)
-            $('#largeModalAddUser').modal('show');
-            modal.classList.add("show");
-        @endif
+    // var modal = document.getElementById('largeModalAddUser');
+    //     @if (count($errors) > 0)
+    //         $('#largeModalAddUser').modal('show');
+    //         modal.classList.add("show");
+    //     @endif
+    $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
         </script>
 
 
