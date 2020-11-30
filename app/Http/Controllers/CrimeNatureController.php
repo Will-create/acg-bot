@@ -53,7 +53,7 @@ class CrimeNatureController extends Controller
                 'uuid'              => Str::uuid(),
 
         ]);
-
+     return response()->json();
         $request->session()->flash('status', 'Informations sauvégardées avec succès');
         return redirect()->route('nature_crimes.index');
     }
@@ -109,8 +109,9 @@ class CrimeNatureController extends Controller
      * @param  \App\Models\CrimeNature  $crimeNature
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TypeCrime $nature_crime, Request $request)
+    public function destroy($ncrime, Request $request)
     {
+        $nature_crime = TypeCrime::find($ncrime);
         $nature_crime->delete();
         $request->session()->flash('warning', 'La donnéés a été bien supprimée');
         return redirect()->route('nature_crimes.index');

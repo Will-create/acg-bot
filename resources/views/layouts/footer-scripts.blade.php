@@ -4,7 +4,7 @@
 		<!-- JQUERY JS -->
 		<script src="{{URL::asset('assets/js/jquery-3.4.1.min.js')}}"></script>
 		<script src="{{URL::asset('assets/plugins/datatable/jquery.dataTables.min.js')}}"></script>
-		
+
 
 		<!-- BOOTSTRAP JS -->
 		<script src="{{URL::asset('assets/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
@@ -36,7 +36,7 @@
 		<script src="{{URL::asset('assets/plugins/scroll-bar/jquery.mCustomScrollbar.concat.min.js')}}"></script>
 
 
-         @yield('js') 
+         @yield('js')
         	<!-- INTERNAL FORN WIZARD JS-->
 		<script src="{{URL::asset('assets/plugins/formwizard/jquery.smartWizard.js')}}"></script>
 		<script src="{{URL::asset('assets/plugins/formwizard/fromwizard.js')}}"></script>
@@ -49,6 +49,7 @@
 		<!-- SIDEBAR JS -->
 		<script src="{{URL::asset('assets/plugins/sidebar/sidebar.js')}}"></script>
 		<!-- CUSTOM JS -->
+		<script src="{{URL::asset('assets/js/fakeLoader.min.js')}}"></script>
 		<script src="{{URL::asset('assets/js/custom.js')}}"></script>
 		<script src="{{URL::asset('js/axios.js')}}"></script>
 		

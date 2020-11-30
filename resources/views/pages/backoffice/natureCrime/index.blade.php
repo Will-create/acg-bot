@@ -34,7 +34,13 @@
 @section('content')
 
 <!-- ROW-1 OPEN -->
+<div id="loader" class="d-none">
+    <div class="loader"></div>
+  </div>
+<div id="crimenature">
+
 <div class="row">
+
     <div class="col-md-8 col-lg-8">
         <div class="card">
             <div class="card-header">
@@ -57,9 +63,7 @@
                             <tr>
                                 <td>{{ucfirst($naturesCrime->nom)}}</td>
                                 {{-- <td>{{ucfirst($naturesCrime->description)}}</td> --}}
-
                                 <td>
-
                                     </a>
                                     <button class="btn btn-warning text-left btn-sm" data-toggle="modal"
                                         data-target="#largeModalDisplay{{$naturesCrime->id}}">
@@ -151,11 +155,11 @@
                                     </div>
 
 
-                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                                <button type="button" class="btn btn-danger btn-sm deletebuton" data-url="{{route('nature_crimes.destroy', $naturesCrime->id)}}" data-toggle="modal"
                                         data-target="#exampleModalDelete{{$naturesCrime->id}}"><i
                                             class="fa fa-trash"></i></button>
 
-                                    <div class="modal" id="exampleModalDelete{{$naturesCrime->id}}" tabindex="-1"
+                                    {{-- <div class="modal" id="exampleModalDelete{{$naturesCrime->id}}" tabindex="-1"
                                         role="dialog" aria-labelledby="exampleModalDelete" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
@@ -190,7 +194,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </td>
                             </tr>
                             @endforeach
@@ -202,7 +206,7 @@
         </div>
     </div>
     <div class="col-md-4 col-lg-4">
-        <form action="{{route('nature_crimes.store')}}" method="post">
+        <form method="GET" id="post_crime">
             @csrf
             <div class="card">
                 <div class="card-body">
@@ -223,7 +227,7 @@
                             <div class="form-group">
                                 <label class="form-label" for="description">Description</label>
                                 <textarea class="form-control" name="description" id="description" rows="4"
-                                    placeholder="Dites quelque chose sur ce moyen de paiement"></textarea>
+                                    placeholder=" Decrivez brièvement cet type  "></textarea>
                                 @error('description')
                                 <span class="helper-text red-text">
                                     <strong>{{ $message }}</strong>
@@ -232,7 +236,7 @@
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <button type="submit" class="btn btn-primary"> <span>
+                            <button type="submit" id="submit4" class="btn btn-primary"> <span>
                                     <i class="fe fe-save"></i>
                                 </span> Enregistrer</button>
                         </div>
@@ -242,6 +246,8 @@
             </div>
         </form>
     </div>
+</div>
+
 </div>
 <!-- ROW-1 CLOSED -->
 
@@ -303,3 +309,71 @@
 
 
 @endsection
+
+@push('ajax_crud')
+{{-- <script src="{{asset('js/jquery19.js')}}"></script> --}}
+<script src="{{asset('js/sweetalert.js')}}"></script>
+
+<script src="{{asset('js/ajax.js')}}"></script>
+<script>
+    $('.deletebuton').click( function () {
+        var item = $(this);
+        swal({
+    title: "Confimer",
+    text: " Voullez-vous supprimer cet enregistrement ? ",
+    icon: "warning",
+    buttons: ["Annuler", "Supprimer"],
+    dangerMode: true,
+  })
+  .then((willDelete) => {
+    if (willDelete) {
+        $('#loader').show();
+      $.ajax({
+          url: item.attr('data-url'),
+          method: 'DELETE',
+          data: { "_token": "{{ csrf_token() }}" },
+          success: function (response) {
+            item.parent().parent().hide();
+            var url = '/nature_crimes';
+          location.href = url;
+            swal({
+            position: 'center',
+            icon: 'success',
+            title: 'La donnée  a supprimée avec succès',
+            button: false,
+            timer: 2500
+          })
+           $('#loader').hide();
+          },
+          error: function(err){
+              console.log('----------------------------error-------------------------');
+              console.log(err);
+              item.parent().parent().hide();
+              var url = '/nature_crimes';
+          location.href = url;
+              swal({
+            position: 'center',
+            icon: 'success',
+            title: 'La donnéé  a supprimée avec succès',
+            button: false,
+            timer: 2500
+          })
+          $('#loader').hide();
+          }
+        });
+    }
+
+    else {
+    swal({
+        position: 'center',
+        icon: 'info',
+        title: 'Suppression annulée',
+        button:false,
+        timer: 1500
+
+    });
+  }
+  });
+    })
+</script>
+@endpush

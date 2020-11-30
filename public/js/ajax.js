@@ -27,7 +27,7 @@ $('body').on('click', '#submit1', function (event) {
     //   dataType: 'json',
       success: function (data) {
         console.log('uuid:')
-          
+
          var uuid2 = document.querySelector('#uuid2').value = data;
          console.log(uuid2)
           document.querySelector('#loader').classList.add('d-none');
@@ -58,6 +58,65 @@ $('body').on('click', '#submit1', function (event) {
     }
   });
 });
+
+
+
+
+
+
+$('body').on('click', '#submit4', function (event) {
+    event.preventDefault()
+    var _token = $("#_token").val();
+    document.querySelector('#crimenature').classList.add('d-none');
+    document.querySelector('#loader').classList.remove('d-none');
+    var fd = $('#post_crime').serialize();
+    console.log('')
+    console.log(fd)
+    $.ajax({
+	  url: '/nature_crimes',
+      type: "POST",
+      data:fd,
+    //   dataType: 'json',
+      success: function (data) {
+
+          document.querySelector('#loader').classList.add('d-none');
+          document.querySelector('#crimenature').classList.remove('d-none');
+          var url = '/nature_crimes';
+          location.href = url;
+           swal({
+            position: 'center',
+            icon: 'success',
+            title: 'Informations sauvegardées avec succès ',
+            button: false,
+            timer: 2500
+          })
+
+      },
+      error: function (data) {
+    document.querySelector('#loader').classList.add('d-none');
+    document.querySelector('#crimenature').classList.remove('d-none');
+      swal({
+       position: 'center',
+       icon: 'error',
+       title: 'Une erreur s\'est produite, Veullez réessayer',
+       button: false,
+       timer: 2500
+     })
+    }
+  });
+});
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -114,10 +173,10 @@ $('body').on('click', '#submit3', function (event) {
     // var email = $("#email").val();
     var fd = $('#form_setp_3').serialize();
     console.log(fd)
-    
-      
-    
- 
+
+
+
+
     $.ajax({
 	  url: '/crimes',
       type: "POST",
@@ -149,5 +208,9 @@ $('body').on('click', '#submit3', function (event) {
 
   });
 });
+
+
+
+
 
 });

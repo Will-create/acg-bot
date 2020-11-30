@@ -174,7 +174,7 @@
                             <h3 class="mb-0 card-title">Photo de profil</h3>
                         </div>
                         <div class="card-body">
-                            <input type="file" class="dropify" data-max-file-size="1M" name="profile_photo_path" accept="" />
+                            <input type="file" class="dropify" data-max-file-size="1M" name="profile_photo_path" accept=".png, .JPEG, ." />
                             @error('profile_photo_path')
                         <span class="helper-text red-text">
                             <strong>{{ $message }}</strong>
