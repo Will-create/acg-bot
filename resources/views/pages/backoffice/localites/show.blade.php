@@ -77,24 +77,52 @@
                     
                 </div><!-- COL-END -->
             </div>
-            <div class="modal-footer">
-                <form method="POST" action="{{route('localites.destroy',['localite'=>$localite->uuid])}}" onsubmit="return confirm('Voulez vous vraiment supprimer cette localite?')">
-                {{ csrf_field() }}
-                    @method('DELETE')
-                    <button class="btn btn-danger">
-                    Supprimer cette localite
-                    </button>
-                
-                </form>
-                
-                
-                <a href="{{route('localites.edit',['localite'=>$localite->uuid])}}" class="btn btn-primary">
-                    Modifier cette localite</a>
-            
-            <a href="{{ URL::previous() }}" class="btn btn-primary"> <span>
-                    <i class="fe fe-close"></i>
-                </span> Retour</a>
-            
+            <div class="row">
+                <div class="col-md-6"></div>
+                <div class="col-md-6 mb-4">
+                 <button type="button" class="btn btn-danger  mb-1" data-toggle="modal" data-target="#exampleModalDelete{{$localite->id}}"><i class="fa fa-trash"></i> Supprimer le type d'unité</button>
+ 
+                 <a href="{{route('localites.edit',$localite->uuid)}}" class="btn btn-primary">
+                     Modifier cette localité</a>
+ 
+             <a href="{{ URL::previous() }}" class="btn btn-primary"> <span>
+                     <i class="fe fe-close"></i>
+                 </span> Retour</a>
+ 
+                </div>
             </div>
-            <!-- ROW-1 CLOSED -->
+ 
+ 
+<div class="modal" id="exampleModalDelete{{$localite->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalDelete" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalDelete">Suppression de localité</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>  Voullez-vous supprimer cette localité ?
+                </p>
+            </div>
+            <div class="modal-footer">
+                <form action="{{route('localites.destroy', $localite->uuid)}}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger ">
+                        <i class="fa fa-trash"></i>
+                    <span>Confirmer la suppression</span>
+                    </button>
+                    <button type="reset" class="btn btn-success" data-dismiss="modal">
+                        <i class="fa fa-times"></i>
+                                    <span>Annuler</span>
+                    </button>
+                    </form>
+
+                   
+            </div>
+        </div>
+    </div>
+</div> 
 @endsection

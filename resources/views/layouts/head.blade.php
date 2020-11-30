@@ -42,4 +42,4 @@
 
 		<!-- COLOR SKIN CSS -->
 		<link id="theme" rel="stylesheet" type="text/css" media="all" href="{{URL::asset('assets/colors/color1.css')}}" />
-		<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+		

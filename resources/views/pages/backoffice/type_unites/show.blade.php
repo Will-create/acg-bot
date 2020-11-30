@@ -86,16 +86,10 @@
 
                 </div><!-- COL-END -->
             </div>
-           
-            <div class="modal-footer">
-                <form method="POST" action="{{route('type_unites.destroy',$type->uuid)}}" onsubmit="event.preventDefault(); return $.dialog.confirm('Confirmation', 'Voulez vous vraiment supprimer ce Type de crime?',function(){return true})">
-                {{ csrf_field() }}
-                    @method('DELETE')
-                    <button class="btn btn-danger">
-                    Supprimer ce type d'unité
-                    </button>
-                </form>
-
+           <div class="row">
+               <div class="col-md-6"></div>
+               <div class="col-md-6 mb-4">
+                <button type="button" class="btn btn-danger  mb-1" data-toggle="modal" data-target="#exampleModalDelete{{$type->id}}"><i class="fa fa-trash"></i> Supprimer le type d'unité</button>
 
                 <a href="{{route('type_unites.edit',$type->uuid)}}" class="btn btn-primary">
                     Modifier ce type d'unité</a>
@@ -104,6 +98,41 @@
                     <i class="fe fe-close"></i>
                 </span> Retour</a>
 
+               </div>
+           </div>
+
+<div class="modal" id="exampleModalDelete{{$type->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalDelete" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalDelete">Suppression de type unité</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
             </div>
-            <!-- ROW-1 CLOSED -->
+            <div class="modal-body">
+                <p>  Voullez-vous supprimer ce type unité ?
+                </p>
+            </div>
+            <div class="modal-footer">
+                <form action="{{route('type_unites.destroy', $type->uuid)}}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger ">
+                        <i class="fa fa-trash"></i>
+                    <span>Confirmer la suppression</span>
+                    </button>
+                    <button type="reset" class="btn btn-success" data-dismiss="modal">
+                        <i class="fa fa-times"></i>
+                                    <span>Annuler</span>
+                    </button>
+                    </form>
+
+                   
+            </div>
+        </div>
+    </div>
+</div> 
+           
+           
 @endsection

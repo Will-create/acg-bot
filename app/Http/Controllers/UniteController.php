@@ -55,7 +55,7 @@ class UniteController extends Controller
     {
         $pays=Pay::all();
         $localites=Localite::where('pays_id',$pays[0]->id)->orderBy('pays_id', 'asc')->get();
-        $responsables=U::with('role','pays')->get();
+        $responsables=U::with('role','pay')->get();
         $types= TypeUnite::all();
         return view('pages.backoffice.unites.form',compact('localites','pays', 'responsables','types'));
     }
@@ -113,11 +113,8 @@ class UniteController extends Controller
           $unite->localite_id=$data['localite_id'];
           $unite->uuid=Str::uuid();
           $unite->save();
-
           $request->session()->flash('status','Unité créée avec succès!!!');
           return redirect()->route('unites.index');
-
-
     }
 
  
@@ -208,13 +205,16 @@ class UniteController extends Controller
         $restriction = new Restriction;
 
         $restrictions = $restriction->check($unite->id,[
-            ['foreignkey'=>'unite_id','modelname'=>'user'],
-            ['foreignkey'=>'unite_id','modelname'=>'user'],
-            ['foreignkey'=>'unite_id','modelname'=>'user']
+            ['foreignkey'=>'services_investigateurs','modelname'=>'crime'],            ]);
+        
+           if ($restrictions){
+            
+            return redirect()->back()->with('danger',$restrictions['message']);
+           }else{
+            $unite->delete();
+            return redirect()->route('unites.index')->with('status','Unité supprimée avec succès');
+    
+           }
 
-        ]);
-        $unite->delete();
-        $request->session()->flash('warning','Unité supprimée avec succès!!!');
-        return redirect()->route('unites.index')->with('message','Unité supprimée avec succès');
     }
 }

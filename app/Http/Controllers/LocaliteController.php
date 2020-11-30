@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Localite;
 use App\Models\Unite;
 use App\Models\Pay;
+use App\Models\Restriction;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
@@ -112,9 +113,23 @@ class LocaliteController extends Controller
     
     public function destroy(Request $request, Localite $localite)
     {
-        $localite->delete();
 
-        return redirect()->route('localites.index')->with('status','localite supprimée avec succès');
+
+        $restriction = new Restriction;
+
+        $restrictions = $restriction->check($localite->id,[
+            ['foreignkey'=>'localite_id','modelname'=>'unite'],            ]);
+        
+           if ($restrictions){
+            
+            return redirect()->back()->with('danger',$restrictions['message']);
+           }else{
+            $localite->delete();
+            return redirect()->route('localites.index')->with('status','Localité supprimée avec succès');
+           }
+       
+
+       
     }
 
     public function ville_by_country($pay_id) {

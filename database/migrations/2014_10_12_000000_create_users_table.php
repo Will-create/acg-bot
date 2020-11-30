@@ -35,8 +35,8 @@ class CreateUsersTable extends Migration
 
             $table->foreign('role_id')->references('id')->on('roles')->onDelete('restrict')
             ->onUpdate('restrict');
-            // $table->foreign('unite_id')->references('id')->on('unites')->onDelete('restrict')
-            // ->onUpdate('restrict');
+            $table->foreign('pay_id')->references('id')->on('pays')->onDelete('restrict')
+            ->onUpdate('restrict');
         });
     }
 

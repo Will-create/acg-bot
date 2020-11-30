@@ -18,6 +18,9 @@ class Pay extends Model
     public function localites(){
         return $this->hasMany('App\Models\Localite', 'pays_id');
     }
+    public function users(){
+        return $this->hasMany('App\Models\User', 'pay_id','id');
+    }
     public function unites(){
         return $this->hasMany('App\Models\Unite','pays_id');
     }

@@ -35,7 +35,10 @@ Auth::routes();
 
     Route::resource('type_crimes', 'TypeCrimeController');
     Route::resource('type_unites', 'TypeUniteController');
-
+    Route::get('/user/profile', 'UtilisateursController@profil')->name('profil');
+    Route::get('/user/password/edit', 'UtilisateursController@edit_password')->name('edit_password');
+    Route::patch('/user/password/edit', 'UtilisateursController@change_password')->name('change_password');
+    Route::get('/pays/ville/{pay_id}', 'LocaliteController@ville_by_country');
     Route::view('/{patch?}', 'layouts.masterreact');
     // });
 

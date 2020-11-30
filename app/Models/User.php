@@ -45,18 +45,18 @@ class User extends Authenticatable
     
     public function role()
     {
-        return $this->hasOne('App\Models\Role', 'role_id', 'id');
+        return $this->belongsTo('App\Models\Role', 'role_id', 'id');
     }
     public function unite()
     {
-        return $this->hasOne('App\Models\Unite', 'unite_id', 'id');
+        return $this->belongsTo('App\Models\Unite', 'unite_id', 'id');
     }
     public function ville()
     {
         return $this->belongsTo('App\Models\Unite', 'localite_id', 'id');
     }
-    public function pays()
+    public function pay()
     {
-        return $this->hasOne('App\Models\Pay', 'pay_id');
+        return $this->belongsTo('App\Models\Pay', 'pay_id','id');
     }
 }

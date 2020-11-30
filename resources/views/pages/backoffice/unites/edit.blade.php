@@ -100,7 +100,7 @@
 					</div>
 					<div class="form-group">
                         <label class="form-label" for="organisation">Localite <strong class="text-danger">*</strong></label>
-                        <select name="localite_id" id="" class="form-control custom-select select2">
+                        <select name="localite_id"  class="form-control custom-select select2">
                         <option value="{{$unite->localite->id}}" selected> {{$unite->localite->nom}}</option>
                             @foreach ($localites as $localite)
                         <option value="{{$localite->id}}">{{$localite->nom}}</option>
@@ -159,7 +159,7 @@
 					</div>
 					<div class="form-group">
                         <label class="form-label" for="organisation">Responsables <strong class="text-danger">*</strong></label>
-                        <select name="responsable_id" id="" class="form-control custom-select select2">
+                        <select name="responsable_id"  class="form-control custom-select select2">
                         <option value="{{$unite->responsable_id}}" selected>{{$unite->responsable->nom}}</option>
 
                             @foreach ($responsables as $responsable)

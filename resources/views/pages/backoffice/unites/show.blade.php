@@ -1,6 +1,7 @@
 @extends('layouts.masterCarte')
 @section('page-header')
                 <!-- PAGE-HEADER -->
+                @include('partials._notification')
 
 				<div class="page-header">
 					<div>
@@ -33,7 +34,7 @@
                 <h3 class="card-title">Photo de Couverture</h3>
             </div>
             <div class="card-body">
-            <img src="{{ asset('assets').$unite->photo_couverture}}" style="min-width:100%; object-fit:cover; object-position: 50% 50%;" alt="" srcset="">
+            <img src="{{ asset('storage').'/'.$unite->photo_couverture}}" style="min-width:100%; object-fit:cover; object-position: 50% 50%;" alt="" srcset="">
                 
             </div>
         </div>
@@ -42,7 +43,7 @@
                 <h3 class="card-title">Logo</h3>
             </div>
             <div class="card-body">
-            <img src="{{ asset('assets').$unite->logo}}" style="min-width:100%; object-fit:cover; object-position: 50% 50%;" alt="" srcset="">
+            <img src="{{ asset('storage').'/'.$unite->logo}}" style="min-width:100%; object-fit:cover; object-position: 50% 50%;" alt="" srcset="">
                 
             </div>
         </div>
@@ -94,36 +95,63 @@
                             <tr>
                             <td><strong>Responsable: </strong> {{$unite->responsable->nom}}</td>
                             </tr>
-
-
                         </tbody>
                     </table>
                 </div>
-
             </div>
         </div>
     </div>
    </div>
 </div>
-<div class="modal-footer">
-    <form method="POST" action="{{route('unites.destroy',['unite'=>$unite->uuid])}}" onsubmit="return confirm('Voulez vous vraiment supprimer cette Unité?')">
-    {{ csrf_field() }}
-        @method('DELETE')
-        <button class="btn btn-danger">
-        Supprimer cette Unité
-        </button>
 
-    </form>
+<div class="row">
+    <div class="col-md-6"></div>
+    <div class="col-md-6 mb-4">
+     <button type="button" class="btn btn-danger  mb-1" data-toggle="modal" data-target="#exampleModalDelete{{$unite->id}}"><i class="fa fa-trash"></i> Supprimer cette unité</button>
 
+     <a href="{{route('unites.edit',$unite->uuid)}}" class="btn btn-primary">
+         Modifier cette unité</a>
 
-    <a href="{{route('unites.edit',['unite'=>$unite->uuid])}}" class="btn btn-primary">
-        Modifier cette Unite</a>
+ <a href="{{ URL::previous() }}" class="btn btn-primary"> <span>
+         <i class="fe fe-close"></i>
+     </span> Retour</a>
 
-<a href="{{ URL::previous() }}" class="btn btn-primary"> <span>
-        <i class="fe fe-close"></i>
-    </span> Retour</a>
-
+    </div>
 </div>
+
+<div class="modal" id="exampleModalDelete{{$unite->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalDelete" aria-hidden="true">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+ <div class="modal-header">
+     <h5 class="modal-title" id="exampleModalDelete">Suppression de l'unité</h5>
+     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+         <span aria-hidden="true">×</span>
+     </button>
+ </div>
+ <div class="modal-body">
+     <p>  Voullez-vous supprimer cette unité ?
+     </p>
+ </div>
+ <div class="modal-footer">
+     <form action="{{route('unites.destroy', $unite->uuid)}}" method="POST">
+         @csrf
+         @method('DELETE')
+         <button type="submit" class="btn btn-danger ">
+             <i class="fa fa-trash"></i>
+         <span>Confirmer la suppression</span>
+         </button>
+         <button type="reset" class="btn btn-success" data-dismiss="modal">
+             <i class="fa fa-times"></i>
+                         <span>Annuler</span>
+         </button>
+         </form>
+
+        
+ </div>
+</div>
+</div>
+</div> 
+
 <input id="long" type="hidden" value="{{$unite->long}}">
 <input id="lat" type="hidden" value="{{$unite->lat}}">
 
@@ -136,7 +164,7 @@
     // Fonction d'initialisation de la carte
     function initMap() {
         // Créer l'objet "macarte" et l'insèrer dans l'élément HTML qui a l'ID "map"
-        macarte = L.map('map').setView([lat, lon], 5);
+        macarte = L.map('map').setView([lat, lon], 9);
         // Leaflet ne récupère pas les cartes (tiles) sur un serveur par défaut. Nous devons lui préciser où nous souhaitons les récupérer. Ici, openstreetmap.fr
         L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
             // Il est toujours bien de laisser le lien vers la source des données
