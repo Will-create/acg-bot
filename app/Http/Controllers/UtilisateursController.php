@@ -7,6 +7,7 @@ use App\Models\Role;
 use App\Models\Unite;
 use App\Models\User;
 use App\Models\Localite;
+use App\Notifications\CreateUserNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -30,7 +31,7 @@ class UtilisateursController extends Controller
         switch (Auth::user()->role->designation) {
             case 'Chef d’Unité':
                 $utilisateurs  = User::where('role_id', Role::where('designation', 'Agent d’une Unité')->first()->id)->where('pay_id', Auth::user()->pay->id)->latest()->get();
-            break;
+                break;
             case 'Coordonnateur National':
                 $role_id = Role::whereIn('designation', ['Chef d’Unité', 'Agent d’une Unité'])->pluck('id');
                 $utilisateurs  = User::where('pay_id', Auth::user()->pay->id)->whereIn('role_id', $role_id)->latest()->get();
@@ -68,18 +69,18 @@ class UtilisateursController extends Controller
                 break;
             case 'Coordonnateur Régional':
                 $roles = Role::where('designation', 'Coordonnateur National')->first();
-            break;
+                break;
             case 'Coordonnateur National':
                 $roles = Role::where('designation', 'Chef d’Unité')->first();
                 $pays = Pay::where('nom', Auth::user()->pay->nom)->first();
-                            break;
+                break;
             case 'Chef d’Unité':
                 $roles = Role::where('designation', 'Agent d’une Unité')->first();
                 $pays = Pay::where('nom', Auth::user()->pay->nom)->first();
-                            break;
+                break;
 
             default:
-             abort(404);
+                abort(404);
                 break;
         }
         return view('pages.backoffice.administrateur.utilisateurs.create', compact('roles', 'unites',  'pays'));
@@ -104,13 +105,15 @@ class UtilisateursController extends Controller
             'ville_id'                  => ['required'],
             'unite_id'                  => ['nullable'],
             'titre'                     => ['nullable', 'string', 'max:100'],
-            'profile_photo_path'        => ['nullable'],
+            'profile_photo_path'        => ['nullable', 'mimes:jpeg,jpg,png,gif', 'required', 'max:10000'],
         ]);
         $path = null;
         if ($request->profile_photo_path) {
             $path = $request->profile_photo_path->store('profile_photo_path');
         }
-        User::create([
+        $n = 8;
+        $result = bin2hex(random_bytes($n));
+        $user =   User::create([
             'uuid'                  => Str::uuid(),
             'nom'                       => $data['nom'],
             'prenom'                    => $data['prenom'],
@@ -121,11 +124,15 @@ class UtilisateursController extends Controller
             'ville_id'                  => $data['ville_id'],
             'unite_id'                  => $request->unite_id,
             'titre'                     => $request->titre,
-            'password'                  => Hash::make('00000000'),
+            'password'                  => Hash::make($result),
             'profile_photo_path'        => $path
         ]);
-
-        $request->session()->flash('status', 'Utilisateur créé avec succès');
+        try {
+            $user->notify(new CreateUserNotification($user, $result));
+            $request->session()->flash('status', 'Utilisateur créé avec succès, un mail lui sera envoyé !');
+        } catch (\Throwable $th) {
+            $request->session()->flash('status', 'Utilisateur créé avec succès, Nous n\'avons pas pu envoyer le mail l\'utilisateur');
+        }
 
         return redirect()->route('utilisateurs.index');
     }
@@ -151,7 +158,7 @@ class UtilisateursController extends Controller
     {
         $roles = Role::whereIn('designation', ['Coordonnateur Régional', 'Coordonnateur National'])->get();
         $unites = Unite::all();
-        $villes = Localite  ::all();
+        $villes = Localite::all();
         $pays = Pay::all();
         return view('pages.backoffice.administrateur.utilisateurs.edit', compact('roles', 'unites', 'villes', 'pays', 'utilisateur'));
     }
@@ -170,17 +177,16 @@ class UtilisateursController extends Controller
         $path = null;
         if ($request->profile_photo_path) {
             $path = $request->profile_photo_path->store('profile_photo_path');
-        }
-        else {
-         $path = $utilisateur->profile_photo_path;
+        } else {
+            $path = $utilisateur->profile_photo_path;
         }
 
         if ($previousUrl ==  '/user/profile') {
             $data =   $request->validate([
                 'nom'                       => ['required', 'string', 'max:255'],
                 'prenom'                    => ['required', 'string', 'max:255'],
-                'tel'                       => 'required|digits_between:8,13|unique:users,tel,'.$utilisateur->id,
-                'email'                     => 'required|email|max:255|unique:users,email,'.$utilisateur->id,
+                'tel'                       => 'required|digits_between:8,13|unique:users,tel,' . $utilisateur->id,
+                'email'                     => 'required|email|max:255|unique:users,email,' . $utilisateur->id,
                 'profile_photo_path'        => ['nullable'],
             ]);
             $utilisateur->update([
@@ -191,17 +197,16 @@ class UtilisateursController extends Controller
                 // 'unite_id'                  => $data['unite_id'],
                 'profile_photo_path'        => $path
             ]);
-        }
-        else {
+        } else {
             $data =   $request->validate([
                 'nom'                       => ['required', 'string', 'max:255'],
                 'prenom'                    => ['required', 'string', 'max:255'],
-                'tel'                       => 'required|digits_between:8,13|unique:users,tel,'.$utilisateur->id,
-                'email'                     => 'required|email|max:255|unique:users,email,'.$utilisateur->id,
+                'tel'                       => 'required|digits_between:8,13|unique:users,tel,' . $utilisateur->id,
+                'email'                     => 'required|email|max:255|unique:users,email,' . $utilisateur->id,
                 'role_id'                   => ['required'],
                 'unite_id'                  => ['nullable'],
                 'titre'                     => ['required'],
-                'profile_photo_path'        => ['nullable'],
+                'profile_photo_path'        => ['nullable', 'mimes:jpeg,jpg,png,gif', 'required', 'max:10000'],
             ]);
             $utilisateur->update([
                 'nom'                       => $request['nom'],
@@ -240,31 +245,32 @@ class UtilisateursController extends Controller
 
     public function gerer(User $utilisateur, Request $request)
     {
-       if ($utilisateur->actif == true) {
-        $utilisateur->actif = false;
-        $utilisateur->save();
-        $request->session()->flash('warning', 'Le compte de l\'utilisateur a été désactivé');
-        return redirect()->back();
+        if ($utilisateur->actif == true) {
+            $utilisateur->actif = false;
+            $utilisateur->save();
+            $request->session()->flash('warning', 'Le compte de l\'utilisateur a été désactivé');
+            return redirect()->back();
 
-        return redirect()->route('utilisateurs.show', $utilisateur->uuid);
-
-       } else {
-        $utilisateur->actif = true;
-        $utilisateur->save();
-        $request->session()->flash('status', 'Le compte de l\'utilisateur a été activé');
-        return redirect()->back();
-        return redirect()->route('utilisateurs.show', $utilisateur->uuid);
-       }
-
+            return redirect()->route('utilisateurs.show', $utilisateur->uuid);
+        } else {
+            $utilisateur->actif = true;
+            $utilisateur->save();
+            $request->session()->flash('status', 'Le compte de l\'utilisateur a été activé');
+            return redirect()->back();
+            return redirect()->route('utilisateurs.show', $utilisateur->uuid);
+        }
     }
 
-    public function profil() {
+    public function profil()
+    {
         return view('pages.backoffice.administrateur.utilisateurs.profil', ['user' => Auth::user()]);
     }
-    public function edit_password() {
+    public function edit_password()
+    {
         return view('pages.backoffice.administrateur.utilisateurs.edit-password');
     }
-    public function change_password(Request $request) {
+    public function change_password(Request $request)
+    {
         $user = Auth::User();
 
         $request->validate([
@@ -282,6 +288,5 @@ class UtilisateursController extends Controller
             return redirect()->back();
         }
         return redirect()->back();
-
-     }
+    }
 }

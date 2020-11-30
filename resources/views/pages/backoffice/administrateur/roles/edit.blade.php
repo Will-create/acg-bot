@@ -56,12 +56,13 @@
                         </span>
                         @enderror
                     </div>
-                    
+
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label class="form-label" for="designation">Description <strong class="text-danger">*</strong> </label>
-                        <input type="text" class="form-control" name="description" placeholder="description" id="description"  value="{{$role->description}}" required>
+                        <textarea name="description" id="" cols="30" class="form-control" placeholder="description" id="description"  rows="5"> {{$role->description}} </textarea>
+                        {{-- <input type="text" class="form-control" name="description" placeholder="description" id="description"  value="{{$role->description}}" required> --}}
                         @error('description')
                         <span class="helper-text red-text">
                             <strong>{{ $message }}</strong>
@@ -69,11 +70,11 @@
                         @enderror
                     </div>
                 </div>
-                
-                    
-                
-                
-                
+
+
+
+
+
             </div>
         </div>
     </div>

@@ -10,6 +10,7 @@
         <title> {{ $titrePage ??  'Criminalité environnementale'}} </title>
         @include('layouts.head')
 
+        <link rel="stylesheet" href="{{asset('assets/css/fakeLoader.min.css')}}">
         <link rel="stylesheet" href="{{asset('css/custom.css')}}">
 
 
@@ -18,12 +19,13 @@
 <body class="app sidebar-mini">
 
     <!-- GLOABAL LOADER -->
-    <div id="global-loader">
+    {{-- <div id="global-loader">
         <img src="{{URL::asset('assets/images/loader.svg')}}" class="loader-img" alt="Loader">
-    </div>
+    </div> --}}
     <!-- End GLOABAL LOADER -->
 
     <!-- PAGE -->
+    {{-- <div class="fakeLoader"></div> --}}
 
 
     <div class="page">
@@ -58,6 +60,9 @@
 
     @include('layouts.footer-scripts')
 @stack('ajax_crud')
+<script>
+    $.fakeLoader();
+ </script>
 </body>
 
 </html>

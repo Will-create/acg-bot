@@ -4,10 +4,10 @@
 	<meta charset="UTF-8">
 	<meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="description" content="Systeme de paiement en masse">
+	<meta name="description" content="Criminalité environnementale">
 	<meta name="author" content="Switch Maker">
 	<meta name="keywords" content="">
-	<title> {{ $titrePage ??  'Systeme de paiement en masse'}} </title>
+	<title> {{ $titrePage ??  'Criminalité environnementalee'}} </title>
     @include('layouts.head')
     <link rel="stylesheet" href="{{asset('css/custom.css')}}">
 </head>
@@ -17,10 +17,10 @@
 		</div>
 		<div class="page">
 			<div class="page-main">
-			
-				
+
+
 				@include('layouts.aside-menu')
-			
+
 				@include('layouts.head')
 				<br>
 				<div class="app-content">
