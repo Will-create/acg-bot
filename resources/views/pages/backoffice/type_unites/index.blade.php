@@ -70,7 +70,7 @@
 
 											<tr>
 												<td> <a class="text-dark" href="{{route('type_unites.show', $type->uuid)}}"> {{ucfirst($type->nom)}} </a></td>
-												<td> <a class="text-dark" href="{{route('type_unites.show', $type->uuid)}}">{{$type->description}}</a></td>
+												<td> <a class="text-dark" href="{{route('type_unites.show', $type->uuid)}}"> {{ substr($type->description, 0, 60) }}</a></td>
                                             </tr>
                                             @endforeach
 

@@ -11,7 +11,7 @@ Auth::routes();
 
 
 // Route::prefix('74uAExW4d')->group(function () {
-    // Route::get('/',                                             'AdminNavigationController@bienvenue')->name('bienvenue');
+    Route::get('/',                                             'AdminNavigationController@accueil')->name('bienvenue');
     Route::get('/accueil',                                      'AdminNavigationController@accueil')->name('accueil');
     Route::resource('utilisateurs',                             'UtilisateursController');
     Route::resource('roles',                                    'RoleController');
@@ -41,5 +41,3 @@ Auth::routes();
     Route::get('/pays/ville/{pay_id}', 'LocaliteController@ville_by_country');
     Route::view('/{patch?}', 'layouts.masterreact');
     // });
-
-

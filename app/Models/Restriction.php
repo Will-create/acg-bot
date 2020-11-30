@@ -39,7 +39,7 @@ class Restriction extends Model
        if(!$this->erreurs){
           return false;
        }else{
-        $msg='Impossible de supprimer cette entité  car elle est liée à  des entités dont: ';
+        $msg='Impossible de supprimer cet enregistrement car il est lié aux entités : ';
         $messages=array_keys($this->erreurs);
         foreach($messages as $message){
 
