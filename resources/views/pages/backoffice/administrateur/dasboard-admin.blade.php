@@ -133,8 +133,10 @@
                                         <td>{{$coordonateur->prenom}}</td>
                                         <td>{{$coordonateur->tel}}</td>
 											<td>
-												<button type="button" class="badge {{$coordonateur->actif ? 'badge-success':'badge-danger'}}" style="border:none">{{$coordonateur->actif ? 'Ativé':'Désactivé'}}</button>
-											</td>
+												{{-- <button type="button" class="badge {{$coordonateur->actif ? 'badge-success':'badge-danger'}}" style="border:none">{{$coordonateur->actif ? 'Ativé':'Désactivé'}}</button> --}}
+                                                <a href="{{route('gerer-utilisateur', $coordonateur)}}" class="badge {{$coordonateur->actif ? 'badge-success':'badge-danger'}}" data-toggle="tooltip" data-placement="top" title="{{$coordonateur->actif ? 'Cliquer pour désactiver':'Cliquer pour activer'}}">{{$coordonateur->actif ? 'Ativé':'Désactivé'}}  </a>
+                                            </td>
+
 										</tr>
                                         @empty
                                         aucune donné

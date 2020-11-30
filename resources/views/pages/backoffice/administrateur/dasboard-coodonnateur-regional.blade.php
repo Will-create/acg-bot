@@ -124,8 +124,6 @@
 									</thead>
 									<tbody>
                                        @forelse ($coordonateurs as $coordonateur)
-
-
 										<tr>
 											<td>
 												<img src="{{asset('storage/'. $coordonateur->profile_photo_path )}}" alt="profile-user" class="brround  avatar-sm w-32 mr-2">
