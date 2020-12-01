@@ -23,38 +23,34 @@
             <h1 class="page-title"> {!! $titrePage !!} </h1>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('accueil') }}">Accueil</a></li>
-                <li class="breadcrumb-item" aria-current="page"><a href="{{route('type_unites.index')}}">Types d'unités</a></li>
-                <li class="breadcrumb-item active" aria-current="page">{{ $btnAction }} un type d'unité</li>
+                <li class="breadcrumb-item" aria-current="page"><a href="{{route('type_crimes.index')}}">Types de crimes</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ $btnAction }} un type de crimes</li>
             </ol>
         </div>
         <div class="ml-auto pageheader-btn">
-            <a class="btn btn-primary" href="{{ route('type_unites.index') }}"> <span>
+            <a class="btn btn-primary" href="{{ route('type_crimes.index') }}"> <span>
                     <i class="fe fe-list"></i>
                 </span> Tous les types d'unité</a>
             </button>
-
         </div>
     </div>
     <!-- PAGE-HEADER END -->
 @endsection
 @section('content')
-
-    @if (Route::currentRouteName() == 'type_unites.create')
-        <form action="{{ route('type_unites.store') }}" method="post" enctype="multipart/form-data">
+    @if (Route::currentRouteName() == 'type_crimes.create')
+        <form action="{{ route('type_crimes.store') }}" method="post" enctype="multipart/form-data">
         @else
-            <form action="{{ route('type_unites.update', $type->uuid) }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('type_crimes.update', $type->uuid) }}" method="post" enctype="multipart/form-data">
                 @method('PUT')
     @endif
     @csrf
-    @include('pages.backoffice.type_unites._form', ['btnAction' => $btnAction, 'type' => $type ])
+    @include('pages.backoffice.type_crimes._form', ['btnAction' => $btnAction, 'type' => $type ])
     </form>
-
 @stop
 @section('js')
     <script src="{{ URL::asset('assets/plugins/fileuploads/js/fileupload.js') }}"></script>
     <script src="{{ URL::asset('assets/plugins/fileuploads/js/file-upload.js') }}"></script>
     <script src="{{ URL::asset('assets/plugins/datatable/jquery.dataTables.min.js') }}"></script>
-
     <!-- INTERNALPRISM JS -->
     <script src="{{ URL::asset('assets/plugins/prism/prism.js') }}"></script>
     <!-- INTERNAL TELEPHONE JS -->

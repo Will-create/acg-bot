@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pay;
+use App\Models\Restriction;
 use App\Models\Role;
 use App\Models\Unite;
 use App\Models\User;
@@ -226,9 +227,19 @@ class UtilisateursController extends Controller
      */
     public function destroy(User $utilisateur, Request $request)
     {
-        $utilisateur->delete();
-        $request->session()->flash('warning', 'Utilisateur supprimé avec succes');
-        return redirect()->route('utilisateurs.index');
+
+        $restriction = new Restriction;
+        $restrictions = $restriction->check($utilisateur->id,[
+            ['foreignkey'=>'responsable_id','modelname'=>'unite'],  
+        ]);
+           if ($restrictions){
+            return redirect()->back()->with('danger',$restrictions['message']);
+           }else{
+            $utilisateur->delete();
+            $request->session()->flash('warning', 'Utilisateur supprimé avec succes');
+            return redirect()->route('utilisateurs.index');
+           }
+       
     }
     public function gerer(User $utilisateur, Request $request)
     {

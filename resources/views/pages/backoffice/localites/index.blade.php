@@ -18,20 +18,20 @@
 @endsection
 @section('page-header')
                 <!-- PAGE-HEADER -->
-                
+
 				<div class="page-header">
 					<div>
-						<h1 class="page-title">Liste des localites</h1>
+						<h1 class="page-title">Liste des localités</h1>
 						<ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{route('accueil')}}">Accueil</a></li>
-							<li class="breadcrumb-item active" aria-current="page">localites</li>
+							<li class="breadcrumb-item active" aria-current="page">Localités</li>
 						</ol>
 					</div>
 					<div class="ml-auto pageheader-btn">
-                    <a class="btn btn-primary" href="{{route('localites.create')}}"  >  <span>
+                    <a class="btn btn-primary" href="{{route('localites.create')}}">  <span>
                             <i class="fe fe-plus"></i>
                         </span>
-                        Ajouter une localite</a>
+                        Ajouter un type d'unité</a>
 
 
                     </button>
@@ -57,9 +57,9 @@
 										<thead>
 											<tr>
 												<th class="wd-15p">Nom</th>
-												
-												<th class="wd-20p">Pays</th>
-												
+											
+												<th class="wd-30p">Pays</th>
+
                                                 {{-- <th>Actions</th> --}}
 											</tr>
 										</thead>
@@ -68,9 +68,8 @@
 
 
 											<tr>
-												<td> <a class="text-dark" href="{{route('localites.show', $localite->uuid)}}"> {{$localite->nom}} </a></td>
-												<td> <a class="text-dark" href="{{route('localites.show', $localite->uuid)}}">{{$localite->pays->nom}}</a></td>
-												
+												<td> <a class="text-dark" href="{{route('localites.show', $localite->uuid)}}"> {{ucfirst($localite->nom)}} </a></td>
+												<td> <a class="text-dark" href="{{route('localites.show', $localite->uuid)}}"> {{ $localite->pay->nom}}</a></td>
                                             </tr>
                                             @endforeach
 

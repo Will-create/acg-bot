@@ -64,11 +64,7 @@
                     </div>
 
                 </div>
-
-
-
                 <div class="col-md-6">
-
                         <div class="form-group">
                             <label class="form-label" for="nom_scientifique">Nom Scientifique <strong class="text-danger">*</strong> </label>
                             <input type="text" class="form-control" name="nom_scientifique" placeholder="Nom Scientifique" id="nom_scientifique"  value="{{$espece->nom_scientifique}}" required>
@@ -78,7 +74,6 @@
                             </span>
                             @enderror
                         </div>
-
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">

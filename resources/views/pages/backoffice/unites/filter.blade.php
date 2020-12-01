@@ -21,7 +21,7 @@
                 
 				<div class="page-header">
 					<div>
-						<h1 class="page-title">Liste des localités dans {{$pay->nom}}</h1>
+						<h1 class="page-title" id="page-title">Liste des localités dans {{$pay->nom}}</h1>
 						<ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{route('accueil')}}">Accueil</a></li>
 						<li class="breadcrumb-item active" aria-current="page">Localités dans {{$pay->nom}}</li>
@@ -126,11 +126,7 @@
 								</div>
 							</div><!-- COL-END -->
 						</div>
-						<div class="modal-footer">
-							
-							
-							
-							
+						<div class="modal-footer">	
 						<a href="{{ URL::previous() }}" class="btn btn-primary"> <span>
 								<i class="fe fe-close"></i>
 							</span> Retour</a>
@@ -150,7 +146,6 @@
     <script src="{{URL::asset('assets/plugins/fileuploads/js/fileupload.js')}}"></script>
     <script src="{{URL::asset('assets/plugins/fileuploads/js/file-upload.js')}}"></script>
     <script src="{{URL::asset('assets/plugins/datatable/jquery.dataTables.min.js')}}"></script>
-
     <script src="{{URL::asset('assets/plugins/datatable/dataTables.bootstrap4.min.js')}}"></script>
     <script src="{{URL::asset('assets/plugins/datatable/datatable.js')}}"></script>
     <script src="{{URL::asset('assets/plugins/datatable/dataTables.responsive.min.js')}}"></script>
@@ -171,17 +166,15 @@
         <!-- INTERNAL TELEPHONE JS -->
     <script src="{{URL::asset('assets/plugins/telephoneinput/telephoneinput.js')}}"></script>
     <script src="{{URL::asset('assets/plugins/telephoneinput/inttelephoneinput.js')}}"></script>
-
     <script type="text/javascript">
     var modal = document.getElementById('largeModalAddUser');
         @if (count($errors) > 0)
             $('#largeModalAddUser').modal('show');
             modal.classList.add("show");
 		@endif
-		
-
 		var tableBody = document.getElementById('tableBody');	
-		var listpays = document.getElementById('listpays')	;									
+		var listpays = document.getElementById('listpays')	;	
+		var pageTitle = document.getElementById('page-title')	;								
 		function injecteur(res){
 			var {unites, pays, pay} = res;
 			var rows = '';
@@ -195,6 +188,7 @@
 			})
 			tableBody.innerHTML = rows;
 			listpays.innerHTML = lignes;
+			pageTitle.innerHTML = 'Liste des unités dans '+pay.nom;
 		}
 		function filtreur(pays){
 			event.preventDefault();

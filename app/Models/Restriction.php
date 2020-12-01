@@ -30,7 +30,6 @@ class Restriction extends Model
         $erreur =$this->errorify($cible['modelname']);
         $this->erreurs[$cible['modelname']]=$erreur;
      }
-
     }
     public  function check ( int $id, array $cibles){
        foreach($cibles as $cible){
@@ -42,7 +41,6 @@ class Restriction extends Model
         $msg='Impossible de supprimer cet enregistrement car il est lié aux entités : ';
         $messages=array_keys($this->erreurs);
         foreach($messages as $message){
-
             $msg = $msg.' \'\''.$message.'\'\' ';
         }
            return ['restrictions'=> $this->erreurs,'message'=> $msg];

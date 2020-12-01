@@ -13,7 +13,6 @@ class Pay extends Model
     public function getRouteKeyName(){
         return 'uuid';
     }
-    
 
     public function localites(){
         return $this->hasMany('App\Models\Localite', 'pays_id');

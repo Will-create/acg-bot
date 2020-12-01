@@ -20,20 +20,19 @@
     @include('partials._notification')
     <div class="page-header">
         <div>
-            <h1 class="page-title">Liste des types d'unité</h1>
+            <h1 class="page-title">Details du pays {{ ucfirst($pays->nom) }}</h1>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('accueil') }}">Accueil</a></li>
-                <li class="breadcrumb-item" aria-current="page"><a href="{{route('type_unites.index')}}">Types d'unités</a></li>
-                <li class="breadcrumb-item active" aria-current="page">{{ ucfirst($type->nom) }}</li>
+                <li class="breadcrumb-item active" aria-current="page"><a href="{{ route('pays.index') }}">Pays</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><span class="text-dark">Details</span> {{ ucfirst($pays->nom) }}</li>
             </ol>
         </div>
         <div class="ml-auto pageheader-btn">
             <a class="btn btn-primary" href="{{ route('type_unites.index') }}"> <span>
                     <i class="fe fe-list"></i>
                 </span>
-                Tous les types d'unité</a>
+                Tous les pays</a>
             </button>
-
         </div>
     </div>
     <!-- PAGE-HEADER END -->
@@ -42,46 +41,63 @@
     <!-- ROW-1 OPEN -->
     <div class="row">
         <div class="col-lg-4">
-
             <div class="card">
                 <div class="card-header">
                     <div class="float-left">
                         <div class="media-heading">
-                            <h5><strong>Details de {{ ucfirst($type->nom) }}</strong></h5>
+                            <h5><strong>Details du pays {{ ucfirst($pays->nom) }}</strong></h5>
                         </div>
                     </div>
                     <div class="clearfix"></div>
                 </div>
                 <div class="card-body wideget-user-contact">
 
-                    <strong>Description :</strong> {{ $type->description }}
-                    <br><br>
-
+					<a href="{{ route('pays.show',$pays->uuid) }}">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="">
+                                    <h3 class="card-title" style="text-align: center;">{{$pays->nom}}</h3>
+                                    
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="card-body wideget-user-contact">
+                            <img src="{{asset('storage').'/'.$pays->icone}}" style="min-width:100%; object-fit:cover; object-position: 50% 50%;" alt="" srcset="">
+                            <div class="clearfix"></div>
+                            <br>
+                            <small>Code ISO 3 : {{$pays->codeiso3_pays_origine}} </small>
+                            </div>
+                        </div>
+                       </a>
                 </div>
             </div>
         </div>
         <div class="col-lg-8">
             <div class="tab-pane active show" id="tab-52">
                 <div class="card">
-
                     <div class="card-body">
-                        <h3>Unités associées à ce type</h3>
-                        @foreach ($unites as $unite)
-
-
-
-                            <a class="text-dark" href="{{ route('unites.show', $unite->uuid) }}">
-                                <span class="">{{ $unite->designation }} </span>
+                        <h3>Localités associées à ce pays</h3>
+                        @foreach($localites as $localite)
+                            <a class="text-dark" href="{{ route('localites.show', $localite->uuid) }}">
+                                <span class="">{{ $localite->nom}} </span>
                             </a> <br>
-
                         @endforeach
                     </div>
                 </div>
-
             </div>
-
+            <div class="tab-pane active show" id="tab-52">
+                <div class="card">
+                    <div class="card-body">
+                        <h3>Unités associées à ce pays</h3>
+                        @foreach($unites as $unite)
+                            <a class="text-dark" href="{{ route('unites.show', $unite->uuid) }}">
+                                <span class="">{{ $unite->designation}} </span>
+                            </a> <br>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
         </div>
-
     </div><!-- COL-END -->
     </div>
     <div class="row">
@@ -90,48 +106,7 @@
             <a href="{{ route('type_unites.index') }}" class="btn btn-dark"> <span>
                     <i class="fe fe-close"></i>
                 </span><i class="fa fa-times"></i> Retour</a>
-
-            <a href="{{ route('type_unites.edit', $type->uuid) }}" class="btn btn-primary">
-                <i class="fa fa-edit"></i> Modifier</a>
-
-            <button type="button" class="btn btn-danger  mb-1" data-toggle="modal"
-                data-target="#exampleModalDelete{{ $type->id }}"><i class="fa fa-trash"></i></button>
         </div>
     </div>
-
-    <div class="modal" id="exampleModalDelete{{ $type->id }}" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalDelete" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalDelete">Suppression de {{ $type->nom }}</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p> Etes-vous sûr de bien vouloir supprimer ce type d'unité ?
-                    </p>
-                </div>
-                <div class="modal-footer">
-                    <form action="{{ route('type_unites.destroy', $type->uuid) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger ">
-                            <i class="fa fa-trash"></i>
-                            <span>Confirmer</span>
-                        </button>
-                        <button type="reset" class="btn btn-success" data-dismiss="modal">
-                            <i class="fa fa-times"></i>
-                            <span>Annuler</span>
-                        </button>
-                    </form>
-
-
-                </div>
-            </div>
-        </div>
-    </div>
-
 
 @endsection

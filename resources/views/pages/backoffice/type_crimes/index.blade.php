@@ -21,7 +21,7 @@
 
 				<div class="page-header">
 					<div>
-						<h1 class="page-title">Liste des types de crime</h1>
+						<h1 class="page-title">Liste des types de crimes</h1>
 						<ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{route('accueil')}}">Accueil</a></li>
 							<li class="breadcrumb-item active" aria-current="page">Types de crimes</li>
@@ -31,46 +31,36 @@
                     <a class="btn btn-primary" href="{{route('type_crimes.create')}}">  <span>
                             <i class="fe fe-plus"></i>
                         </span>
-                        Ajouter un type de crime</a>
-
-
+                        Ajouter un type de crimes</a>
                     </button>
-
 					</div>
 				</div>
 				<!-- PAGE-HEADER END -->
 @endsection
 @section('content')
 @include('partials._notification')
-
-
 				<!-- ROW-1 OPEN -->
 				<div class="row">
 					<div class="col-md-12 col-lg-12">
 						<div class="card">
 							<div class="card-header">
-								<h3 class="card-title">Liste des types de crimes</h3>
+								<h3 class="card-title">Liste des types d'unité</h3>
 							</div>
 							<div class="card-body">
 								<div class="table-responsive">
 									<table id="data-table1" class="table table-striped table-bordered text-nowrap w-100 table-sm">
 										<thead>
-											<tr>
-												
+											<tr>	
 												<th class="wd-15p">Designation</th>
-											
 												<th class="wd-30p">Description</th>
-
                                                 {{-- <th>Actions</th> --}}
 											</tr>
 										</thead>
 										<tbody>
                                             @foreach ($types as $type)
-
-
 											<tr>
 												<td> <a class="text-dark" href="{{route('type_crimes.show', $type->uuid)}}"> {{ucfirst($type->nom)}} </a></td>
-												<td> <a class="text-dark" href="{{route('type_crimes.show', $type->uuid)}}">{{$type->description}}</a></td>
+												<td> <a class="text-dark" href="{{route('type_crimes.show', $type->uuid)}}"> {{ substr($type->description, 0, 60) }}</a></td>
                                             </tr>
                                             @endforeach
 
@@ -84,16 +74,12 @@
 					</div>
 				</div>
 			 {{-- @include('pages.backOffice.administrateur.utilisateurs._modelCreationUtilisateur') --}}
-
-
-
 @endsection
 @section('js')
      <!-- INTERNAL  DATA TABLE JS-->
     <script src="{{URL::asset('assets/plugins/fileuploads/js/fileupload.js')}}"></script>
     <script src="{{URL::asset('assets/plugins/fileuploads/js/file-upload.js')}}"></script>
     <script src="{{URL::asset('assets/plugins/datatable/jquery.dataTables.min.js')}}"></script>
-
     <script src="{{URL::asset('assets/plugins/datatable/dataTables.bootstrap4.min.js')}}"></script>
     <script src="{{URL::asset('assets/plugins/datatable/datatable.js')}}"></script>
     <script src="{{URL::asset('assets/plugins/datatable/dataTables.responsive.min.js')}}"></script>
@@ -105,16 +91,13 @@
     <script src="{{URL::asset('assets/plugins/datatable/fileexport/buttons.html5.min.js')}}"></script>
     <script src="{{URL::asset('assets/plugins/datatable/fileexport/buttons.print.min.js')}}"></script>
     <script src="{{URL::asset('assets/plugins/datatable/fileexport/buttons.colVis.min.js')}}"></script>
-
     <script src="{{URL::asset('assets/plugins/clipboard/clipboard.min.js')}}"></script>
     <script src="{{URL::asset('assets/plugins/clipboard/clipboard.js')}}"></script>
-
     <!-- INTERNALPRISM JS -->
     <script src="{{URL::asset('assets/plugins/prism/prism.js')}}"></script>
         <!-- INTERNAL TELEPHONE JS -->
     <script src="{{URL::asset('assets/plugins/telephoneinput/telephoneinput.js')}}"></script>
     <script src="{{URL::asset('assets/plugins/telephoneinput/inttelephoneinput.js')}}"></script>
-
     <script type="text/javascript">
     var modal = document.getElementById('largeModalAddUser');
         @if (count($errors) > 0)
@@ -122,7 +105,4 @@
             modal.classList.add("show");
         @endif
         </script>
-
-
-
 @endsection

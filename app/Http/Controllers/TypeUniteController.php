@@ -29,18 +29,17 @@ class TypeUniteController extends Controller
     public function store(Request $request)
     {
         $data=request()->validate([
-            'nom'=> ['required','string','max:255','min:3'],
+            'nom'=> ['required','string','max:255','min:3','unique:type_unites'],
             'description'=> ['required','string','max:500','min:3'],
           ]);
-          $type= new TypeUnite;
+          $type= new TypeUnite();
           $type->nom=$data['nom'];
           $type->description=$data['description'];
           $type->uuid=Str::uuid();
           $type->save();
           $request->session()->flash('status', 'Le type de d\'unité '.$type->nom.' ajouté avec succès !');
-          return redirect()->route('type_unites.show', $type);
+          return redirect()->route('type_unites.index');
     }
-
     public function show($uuid)
     {
         return view('pages.backoffice.type_unites.show',[
@@ -49,7 +48,6 @@ class TypeUniteController extends Controller
         ]);
     }
 
-    
     public function edit($uuid)
     {
         return view('pages.backoffice.type_unites.createdit', [
@@ -81,7 +79,7 @@ class TypeUniteController extends Controller
         $restrictions = $restriction->check($type->id,[
             ['foreignkey'=>'type_unite_id','modelname'=>'unite'],
         ]);
-        if ($restrictions['restrictions']){
+        if ($restrictions){
         return redirect()->back()->with('danger',$restrictions['message']);
         } else {
             $type->delete();

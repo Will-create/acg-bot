@@ -21,9 +21,10 @@
                 
 				<div class="page-header">
 					<div>
-						<h1 class="page-title">Liste des localités dans {{$pay->nom}}</h1>
+						<h1 class="page-title" id="page-title">Liste des localités dans {{$pay->nom}}</h1>
 						<ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{route('accueil')}}">Accueil</a></li>
+						<li class="breadcrumb-item"><a href="{{route('accueil')}}">Accueil</a></li>
+						<li class="breadcrumb-item" aria-current="page"><a href="{{route('localites.index')}}">Localités</a></li>
 							<li class="breadcrumb-item active" aria-current="page">Localités dans {{$pay->nom}}</li>
 						</ol>
 					</div>
@@ -57,14 +58,15 @@
 										</div>
 										<div class="clearfix"></div>
 									</div>
-									<div class="card-body" style="height:55vh;overflow: scroll">
+									<div id="listpays" class="card-body side-menu" style="height:55vh;overflow-y: scroll">
 										@foreach ($pays as $p)
 				
 				
 															
-												<a class="side-menu__item {{$p->uuid == $pay->uuid  ? 'active' : ''  }} " href="{{route('localites.filter', $p->id)}}">
+												<a style="cursor:pointer" onclick="filtreur({{$p->id}})" class="side-menu__item {{$p->id == $pay->id ? 'active' : ''}}">
 																	 
 												<span class="side-menu__label">{{$p->nom}} </span>
+												
 												</a>
 																 
 											@endforeach
@@ -91,13 +93,13 @@
 																{{-- <th>Actions</th> --}}
 															</tr>
 														</thead>
-														<tbody>
+														<tbody id="tableBody" >
 															@foreach ($localites as $localite)
 				
 				
 															<tr>
 																<td> <a class="text-dark" href="{{route('localites.show', $localite->uuid)}}"> {{$localite->nom}} </a></td>
-																<td> <a class="text-dark" href="{{route('localites.show', $localite->uuid)}}">{{$localite->pays->nom}}</a></td>
+																<td> <a class="text-dark" href="{{route('localites.show', $localite->uuid)}}">{{$localite->pay->nom}}</a></td>
 																
 															</tr>
 															@endforeach
@@ -164,6 +166,32 @@
             $('#largeModalAddUser').modal('show');
             modal.classList.add("show");
         @endif
+		var tableBody = document.getElementById('tableBody');	
+		var pageTitle = document.getElementById('page-title');
+		var listpays = document.getElementById('listpays')	;									
+		function injecteur(res){
+			var {localites, pays, pay} = res;
+			
+			var rows = '';
+			var lignes = '';
+			localites.map(function(lo){
+            rows +='<tr><td> <a class="text-dark" href="/localites/'+lo.uuid+'"> '+lo.nom+' </a></td><td> <a class="text-dark" href="/localites/'+lo.uuid+'">'+lo.pay.nom+' </a></td></tr>';
+			})
+			pays.map(function(p){
+				var active = p.id == pay.id ? 'active' : '' ;
+              lignes +='<a style="cursor:pointer" onclick="filtreur('+p.id+')" class="side-menu__item '+active+'"><span class="side-menu__label">'+p.nom+' </span></a>'
+			})
+			tableBody.innerHTML = rows;
+			listpays.innerHTML = lignes;
+			pageTitle.innerHTML = 'Liste des localités dans '+pay.nom;
+			
+		}
+		function filtreur(pays){
+			event.preventDefault();
+ 			 axios.get('/localites/api/filtreur/'+pays).then(function(data){
+														var res = data.data;
+													injecteur(res);})
+        }
         </script>
 
 

@@ -14,7 +14,7 @@ class Localite extends Model
         return 'uuid';
     }
 
-    public function pays(){
+    public function pay(){
         return $this->belongsTo('App\Models\Pay','pays_id', 'id');
     }
     public function unites(){

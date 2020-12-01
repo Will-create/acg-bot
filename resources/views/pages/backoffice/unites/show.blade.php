@@ -5,10 +5,12 @@
 
 				<div class="page-header">
 					<div>
-                    <h1 class="page-title">{{$unite->designation}}</h1>
+                    <h1 class="page-title">Details d'unités </h1>
 						<ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{route('accueil')}}">Accueil</a></li>
-							<li class="breadcrumb-item active" aria-current="page">Unités</li>
+                            <li class="breadcrumb-item" aria-current="page"><a href="{{route('unites.index')}}">Unités</a></li>                           
+                            <li class="breadcrumb-item active" aria-current="page"><span class="text-dark">Détails </span>{{$unite->designation}}</li>
+                            
 						</ol>
 					</div>
 					<div class="ml-auto pageheader-btn">
@@ -66,15 +68,12 @@
     <div class="card">
         <div class="card-body">
             <div id="profile-log-switch">
-                <div class="media-heading text-primary">
-                    <h5><strong>Details</strong></h5>
+                <div class="media-heading text-dark">
+                    <h5><strong>{{ucfirst($unite->designation)}}</strong></h5>
                 </div>
                 <div class="table-responsive ">
                     <table class="table row table-borderless">
                         <tbody class="col-lg-12 col-xl-6 p-0">
-                            <tr>
-                            <td><strong>Designation:</strong> {{$unite->designation}}</td>
-                            </tr>
                             <tr>
                             <td><strong>Type d'unite :</strong> {{$unite->type->nom}}</td>
                             </tr>
@@ -82,18 +81,24 @@
                             <td><strong>Pays : </strong> {{$unite->pays->nom}}</td>
                             </tr>
                             <tr>
-                            <td><strong>Ville: </strong> {{$unite->localite->nom}}</td>
+                            <td><strong>Localité : </strong> {{$unite->localite->nom}}</td>
                             </tr>
+                            <tr>
+                                <td><strong>Administratutelle : </strong> {{$unite->administration_tutelle}}</td>
+                                </tr>
                         </tbody>
                         <tbody class="col-lg-12 col-xl-6 p-0">
                             <tr>
-                            <td><strong>Adresse: </strong> {{$unite->adresse}}</td>
+                            <td><strong>Adresse : </strong> {{$unite->adresse}}</td>
                             </tr>
                             <tr>
-                                <td><strong>Téléphone: </strong>{{$unite->tel}}</td>
+                                <td><strong>Téléphone : </strong>{{$unite->tel}}</td>
                             </tr>
                             <tr>
-                            <td><strong>Responsable: </strong> {{$unite->responsable->nom}}</td>
+                                <td><strong>Téléphone 2: </strong>{{$unite->tel2}}</td>
+                            </tr>
+                            <tr>
+                            <td><strong>Responsable : </strong> <a href="{{route('utilisateurs.show',$unite->responsable->uuid)}}">{{$unite->responsable->nom}}   {{$unite->responsable->prenom}}</a> </td>
                             </tr>
                         </tbody>
                     </table>
@@ -103,55 +108,52 @@
     </div>
    </div>
 </div>
-
 <div class="row">
     <div class="col-md-6"></div>
     <div class="col-md-6 mb-4">
-     <button type="button" class="btn btn-danger  mb-1" data-toggle="modal" data-target="#exampleModalDelete{{$unite->id}}"><i class="fa fa-trash"></i> Supprimer cette unité</button>
+        <a href="{{ route('unites.index') }}" class="btn btn-dark"> <span>
+                <i class="fe fe-close"></i>
+            </span><i class="fa fa-times"></i> Retour</a>
 
-     <a href="{{route('unites.edit',$unite->uuid)}}" class="btn btn-primary">
-         Modifier cette unité</a>
-
- <a href="{{ URL::previous() }}" class="btn btn-primary"> <span>
-         <i class="fe fe-close"></i>
-     </span> Retour</a>
-
+        <a href="{{ route('unites.edit', $unite->uuid) }}" class="btn btn-primary">
+            <i class="fa fa-edit"></i> Modifier</a>
+        <button type="button" class="btn btn-danger  mb-1" data-toggle="modal"
+            data-target="#exampleModalDelete{{ $unite->id }}"><i class="fa fa-trash"></i></button>
     </div>
 </div>
+<div class="modal" id="exampleModalDelete{{ $unite->id }}" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalDelete" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalDelete">Suppression de {{ $unite->designation }}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p> Etes-vous sûr de bien vouloir supprimer cette unité ?
+                </p>
+            </div>
+            <div class="modal-footer">
+                <form action="{{ route('unites.destroy', $unite->uuid) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger ">
+                        <i class="fa fa-trash"></i>
+                        <span>Confirmer</span>
+                    </button>
+                    <button type="reset" class="btn btn-success" data-dismiss="modal">
+                        <i class="fa fa-times"></i>
+                        <span>Annuler</span>
+                    </button>
+                </form>
 
-<div class="modal" id="exampleModalDelete{{$unite->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalDelete" aria-hidden="true">
-<div class="modal-dialog" role="document">
-<div class="modal-content">
- <div class="modal-header">
-     <h5 class="modal-title" id="exampleModalDelete">Suppression de l'unité</h5>
-     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-         <span aria-hidden="true">×</span>
-     </button>
- </div>
- <div class="modal-body">
-     <p>  Voullez-vous supprimer cette unité ?
-     </p>
- </div>
- <div class="modal-footer">
-     <form action="{{route('unites.destroy', $unite->uuid)}}" method="POST">
-         @csrf
-         @method('DELETE')
-         <button type="submit" class="btn btn-danger ">
-             <i class="fa fa-trash"></i>
-         <span>Confirmer la suppression</span>
-         </button>
-         <button type="reset" class="btn btn-success" data-dismiss="modal">
-             <i class="fa fa-times"></i>
-                         <span>Annuler</span>
-         </button>
-         </form>
 
-        
- </div>
+            </div>
+        </div>
+    </div>
 </div>
-</div>
-</div> 
-
 <input id="long" type="hidden" value="{{$unite->long}}">
 <input id="lat" type="hidden" value="{{$unite->lat}}">
 
