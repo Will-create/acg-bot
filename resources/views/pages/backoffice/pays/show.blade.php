@@ -56,16 +56,16 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="">
-                                    <h3 class="card-title" style="text-align: center;">{{$pays->nom}}</h3>
-                                    
+                                    <h3 class="card-title" >{{$pays->nom}}</h3>
+                                    <small>Code ISO 3 : {{$pays->codeiso3_pays_origine}} </small>
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
                             <div class="card-body wideget-user-contact">
                             <img src="{{asset('storage').'/'.$pays->icone}}" style="min-width:100%; object-fit:cover; object-position: 50% 50%;" alt="" srcset="">
                             <div class="clearfix"></div>
-                            <br>
-                            <small>Code ISO 3 : {{$pays->codeiso3_pays_origine}} </small>
+                            
+                            
                             </div>
                         </div>
                        </a>
@@ -78,7 +78,7 @@
                     <div class="card-body">
                         <h3>Localités associées à ce pays</h3>
                         @foreach($localites as $localite)
-                            <a class="text-dark" href="{{ route('localites.show', $localite->uuid) }}">
+                            <a class="text-dark" href="{{ route('localites.show', $localite->uuid) }}" data-toggle="tooltip" data-placement="right" title="Cliquer pour afficher les détails">
                                 <span class="">{{ $localite->nom}} </span>
                             </a> <br>
                         @endforeach
@@ -90,7 +90,7 @@
                     <div class="card-body">
                         <h3>Unités associées à ce pays</h3>
                         @foreach($unites as $unite)
-                            <a class="text-dark" href="{{ route('unites.show', $unite->uuid) }}">
+                            <a class="text-dark" href="{{ route('unites.show', $unite->uuid) }}" data-toggle="tooltip" data-placement="right" title="Cliquer pour afficher les détails">
                                 <span class="">{{ $unite->designation}} </span>
                             </a> <br>
                         @endforeach

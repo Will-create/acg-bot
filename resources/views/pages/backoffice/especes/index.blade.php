@@ -18,17 +18,17 @@
 
 				<div class="page-header">
 					<div>
-						<h1 class="page-title">Liste des Espèces Animales</h1>
+						<h1 class="page-title">Liste des Espèces</h1>
 						<ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{route('accueil')}}">Accueil</a></li>
-							<li class="breadcrumb-item active" aria-current="page">Espèces Animales</li>
+							<li class="breadcrumb-item active" aria-current="page">Espèces</li>
 						</ol>
 					</div>
 					<div class="ml-auto pageheader-btn">
                     <a class="btn btn-primary" href="{{route('especes.create')}}">  <span>
                             <i class="fe fe-plus"></i>
                         </span>
-                        Ajouter une Espèces Animale</a>
+                        Ajouter une Espèce</a>
 
 
                     </button>
@@ -44,7 +44,7 @@
 					<div class="col-md-12 col-lg-12">
 						<div class="card">
 							<div class="card-header">
-								<h3 class="card-title">Liste des Espèces Animales</h3>
+								<h3 class="card-title">Liste des Espèces</h3>
 							</div>
 							<div class="card-body">
 								<div class="table-responsive">
@@ -61,11 +61,11 @@
 										<tbody>
                                             @foreach ($especes as $espece)
 											<tr>
-												<td> <a class="text-dark" href="{{route('especes.show', $espece->uuid)}}"> <div class="col-auto"><span class="avatar brround avatar-md d-block cover-image" data-image-src="{{asset('assets').$espece->photo}}"></span></div> </a></td>
-												<td> <a class="text-dark" href="{{route('especes.show', $espece->uuid)}}"> {{$espece->nom}} </a></td>
-												<td> <a class="text-dark" href="{{route('especes.show', $espece->uuid)}}"> {{$espece->famille}} </a></td>
-												<td> <a class="text-dark" href="{{route('especes.show', $espece->uuid)}}">{{$espece->nom_scientifique}}</a></td>
-												<td> <a class="text-dark" href="{{route('especes.show', $espece->uuid)}}"> {{$espece->type}} </a></td>
+												<td> <a class="text-dark" href="{{route('especes.show',  $espece->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" > <div class="col-auto"><span class="avatar brround avatar-md d-block cover-image" data-image-src="{{asset('storage').'/'.$espece->photo}}"></span></div> </a></td>
+												<td> <a class="text-dark" href="{{route('especes.show',  $espece->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" > {{$espece->nom}} </a></td>
+												<td> <a class="text-dark" href="{{route('especes.show',  $espece->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" > {{$espece->famille}} </a></td>
+												<td> <a class="text-dark" href="{{route('especes.show',  $espece->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" >{{$espece->nom_scientifique}}</a></td>
+												<td> <a class="text-dark" href="{{route('especes.show',  $espece->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" > {{ucfirst($espece->type)}} </a></td>
                                             </tr>
                                             @endforeach
 										</tbody>
@@ -109,7 +109,4 @@
             modal.classList.add("show");
         @endif
         </script>
-
-
-
 @endsection

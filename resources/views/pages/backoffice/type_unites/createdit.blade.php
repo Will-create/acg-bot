@@ -23,6 +23,7 @@
             <h1 class="page-title"> {!! $titrePage !!} </h1>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('accueil') }}">Accueil</a></li>
+				<li class="breadcrumb-item" aria-current="page"><a href="{{route('unites.index')}}">Unités</a></li>
                 <li class="breadcrumb-item" aria-current="page"><a href="{{route('type_unites.index')}}">Types d'unités</a></li>
                 <li class="breadcrumb-item active" aria-current="page">{{ $btnAction }} un type d'unité</li>
             </ol>

@@ -23,6 +23,7 @@
             <h1 class="page-title"> {!! $titrePage !!} </h1>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('accueil') }}">Accueil</a></li>
+				<li class="breadcrumb-item" aria-current="page"><a href="{{route('pays.index')}}">Pays</a></li>
                 <li class="breadcrumb-item" aria-current="page"><a href="{{route('localites.index')}}">Localités</a></li>
                 <li class="breadcrumb-item active" aria-current="page">{{ $btnAction }} une localité</li>
             </ol>

@@ -1,16 +1,12 @@
-
 @extends('layouts.master4')
 @section('css')
         <!-- INTERNAL SELECT2 CSS -->
 		<link href="{{URL::asset('assets/plugins/fileuploads/css/fileupload.css')}}" rel="stylesheet" type="text/css" />
-
 		<link href="{{URL::asset('assets/plugins/select2/select2.min.css')}}" rel="stylesheet" />
-
 		<!-- INTERNAL  DATA TABLE CSS-->
 		<link href="{{URL::asset('assets/plugins/datatable/dataTables.bootstrap4.min.css')}}" rel="stylesheet" />
 		<link href="{{URL::asset('assets/plugins/datatable/responsivebootstrap4.min.css')}}" rel="stylesheet" />
         <link href="{{URL::asset('assets/plugins/datatable/fileexport/buttons.bootstrap4.min.css')}}" rel="stylesheet" />
-
           <!-- INTERNAL PRISM CSS -->
           <link href="{{URL::asset('assets/plugins/prism/prism.css')}}" rel="stylesheet">
           	<!-- INTERNAL TELEPHONE CSS-->
@@ -18,7 +14,6 @@
 @endsection
 @section('page-header')
                 <!-- PAGE-HEADER -->
-
 				<div class="page-header">
 					<div>
 						<h1 class="page-title">Liste des Rôles utilisateurs</h1>
@@ -32,10 +27,7 @@
                             <i class="fe fe-plus"></i>
                         </span>
                         Ajouter un Rôle</a> --}}
-
-
                     </button>
-
 					</div>
 				</div>
 				<!-- PAGE-HEADER END -->
@@ -54,23 +46,18 @@
 									<table id="data-table1" class="table table-striped table-bordered text-nowrap w-100 table-sm">
 										<thead>
 											<tr>
-
 												<th class="wd-15p">Designation</th>
 												<th class="wd-15p">Description</th>
 												<th class="wd-20p">Nombre d'utisateurs</th>
-
                                                 {{-- <th>Actions</th> --}}
 											</tr>
 										</thead>
 										<tbody>
                                             @foreach ($roles as $role)
-
-
 											<tr>
-
-												<td> <a class="text-dark" href="{{route('roles.show', $role->uuid)}}"> {{$role->designation}} </a></td>
-												<td> <a class="text-dark" href="{{route('roles.show', $role->uuid)}}"> {{substr($role->description,1-1,33)}}... </a></td>
-												<td> <a class="text-dark" href="{{route('roles.show', $role->uuid)}}">{{$role->utilisateurs->count()}}</a></td>
+												<td> <a  class="text-dark" href="{{route('roles.show', $role->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" > {{$role->designation}} </a></td>
+												<td> <a  class="text-dark" href="{{route('roles.show', $role->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" > {{substr($role->description,1-1,33)}}... </a></td>
+												<td> <a  class="text-dark" href="{{route('roles.show', $role->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" >{{$role->utilisateurs->count()}}</a></td>
                                             </tr>
                                             @endforeach
 
@@ -84,9 +71,6 @@
 					</div>
 				</div>
 			 {{-- @include('pages.backOffice.administrateur.utilisateurs._modelCreationUtilisateur') --}}
-
-
-
 @endsection
 @section('js')
      <!-- INTERNAL  DATA TABLE JS-->

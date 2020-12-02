@@ -23,8 +23,9 @@
 					<div>
 						<h1 class="page-title">Liste des types de crimes</h1>
 						<ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{route('accueil')}}">Accueil</a></li>
-							<li class="breadcrumb-item active" aria-current="page">Types de crimes</li>
+						<li class="breadcrumb-item"><a href="{{route('accueil')}}">Accueil</a></li>
+						<li class="breadcrumb-item" aria-current="page"><a href="{{route('crimes.index')}}">Crimes</a></li>
+						<li class="breadcrumb-item active" aria-current="page">Types de crimes</li>
 						</ol>
 					</div>
 					<div class="ml-auto pageheader-btn">
@@ -58,9 +59,9 @@
 										</thead>
 										<tbody>
                                             @foreach ($types as $type)
-											<tr>
-												<td> <a class="text-dark" href="{{route('type_crimes.show', $type->uuid)}}"> {{ucfirst($type->nom)}} </a></td>
-												<td> <a class="text-dark" href="{{route('type_crimes.show', $type->uuid)}}"> {{ substr($type->description, 0, 60) }}</a></td>
+											<tr >
+												<td> <a class="text-dark" href="{{route('type_crimes.show', $type->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" > {{ucfirst($type->nom)}} </a></td>
+												<td> <a class="text-dark" href="{{route('type_crimes.show', $type->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" > {{ substr($type->description, 0, 60) }}</a></td>
                                             </tr>
                                             @endforeach
 

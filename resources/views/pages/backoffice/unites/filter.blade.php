@@ -23,8 +23,9 @@
 					<div>
 						<h1 class="page-title" id="page-title">Liste des localités dans {{$pay->nom}}</h1>
 						<ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{route('accueil')}}">Accueil</a></li>
-						<li class="breadcrumb-item active" aria-current="page">Localités dans {{$pay->nom}}</li>
+						<li class="breadcrumb-item"><a href="{{route('accueil')}}">Accueil</a></li>
+						<li class="breadcrumb-item" aria-current="page"><a href="{{route('unites.index')}}">Unités</a></li>
+						<li class="breadcrumb-item active" aria-current="page">Unités dans {{$pay->nom}}</li>
 						</ol>
 					</div>
 					<div class="ml-auto pageheader-btn">
@@ -102,12 +103,11 @@
 				
 				
 															<tr>
-																<td> <a class="text-dark" href="{{route('unites.show', $unite->uuid)}}"> {{$unite->designation}} </a></td>
-																<td> <a class="text-dark" href="{{route('unites.show', $unite->uuid)}}">{{$unite->type->nom}}</a></td>
-																<td> <a class="text-dark" href="{{route('unites.show', $unite->uuid)}}"> {{$unite->pays->nom}} </a></td>
-																<td> <a class="text-dark" href="{{route('unites.show', $unite->uuid)}}">{{$unite->localite->nom}}</a></td>
-																<td> <a class="text-dark" href="{{route('unites.show', $unite->uuid)}}">{{$unite->tel}}</a></td>
-																
+																<td> <a class="text-dark" href="{{route('unites.show', $unite->uuid)}}"  data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails"> {{$unite->designation}} </a></td>
+																<td> <a class="text-dark" href="{{route('unites.show', $unite->uuid)}}"  data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails">{{$unite->type->nom}}</a></td>
+																<td> <a class="text-dark" href="{{route('unites.show', $unite->uuid)}}"  data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails"> {{$unite->pays->nom}} </a></td>
+																<td> <a class="text-dark" href="{{route('unites.show', $unite->uuid)}}"  data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails">{{$unite->localite->nom}}</a></td>
+																<td> <a class="text-dark" href="{{route('unites.show', $unite->uuid)}}"  data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails">{{$unite->tel}}</a></td>
 															</tr>
 												
 																 

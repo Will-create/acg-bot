@@ -1,9 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Pay;
-
 use App\Models\Localite;
 use App\Models\Unite;
 use Illuminate\Support\Str;
@@ -19,13 +17,11 @@ class PayController extends Controller
   
     public function index()
     {
-      
         return view('pages.backoffice.pays.index', [
             'pays'                    =>Pay::all()
         ]);
 
     }
-    
     public function create()
     {
         return view('pages.backoffice.pays.createdit', [
@@ -34,16 +30,14 @@ class PayController extends Controller
             'btnAction' => "Ajouter"
         ]);
     }
-
     public function show($uuid)
     {
         return view('pages.backoffice.pays.show',[
             'pays'   => $pay = Pay::where('uuid',$uuid)->with('localites')->first(),
-            'localites'   => Localite::where('pays_id',$pay->id)->get(),
             'unites'      => Unite::where('pays_id',$pay->id)->get(),
+            'localites'   => Localite::where('pays_id',$pay->id)->get(),
         ]);
     }
-
     public function store(Request $request)
     {
         $data=request()->validate([

@@ -15,13 +15,11 @@ class LocaliteController extends Controller
     {
         $this->middleware('auth');
     }
-  
     public function index()
     {
         $localites=Localite::orderBy('pays_id','asc')->get();
         return view('pages.backoffice.localites.index',compact('localites'));
     }
-
     public function create()
     {
         return view('pages.backoffice.localites.createdit', [
@@ -31,7 +29,6 @@ class LocaliteController extends Controller
             'btnAction' => "Ajouter"
         ]);
     }
-
     public function store(Request $request)
     {
         $data=request()->validate([

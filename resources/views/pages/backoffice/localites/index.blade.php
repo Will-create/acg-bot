@@ -23,8 +23,9 @@
 					<div>
 						<h1 class="page-title">Liste des localités</h1>
 						<ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{route('accueil')}}">Accueil</a></li>
-							<li class="breadcrumb-item active" aria-current="page">Localités</li>
+						<li class="breadcrumb-item"><a href="{{route('accueil')}}">Accueil</a></li>
+						<li class="breadcrumb-item" aria-current="page"><a href="{{route('pays.index')}}">Pays</a></li>
+						<li class="breadcrumb-item active" aria-current="page">Localités</li>
 						</ol>
 					</div>
 					<div class="ml-auto pageheader-btn">
@@ -68,8 +69,8 @@
 
 
 											<tr>
-												<td> <a class="text-dark" href="{{route('localites.show', $localite->uuid)}}"> {{ucfirst($localite->nom)}} </a></td>
-												<td> <a class="text-dark" href="{{route('localites.show', $localite->uuid)}}"> {{ $localite->pay->nom}}</a></td>
+												<td> <a class="text-dark" href="{{route('localites.show', $localite->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" > {{ucfirst($localite->nom)}} </a></td>
+												<td> <a class="text-dark" href="{{route('localites.show', $localite->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" > {{ $localite->pay->nom}}</a></td>
                                             </tr>
                                             @endforeach
 

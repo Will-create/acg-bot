@@ -23,6 +23,7 @@
             <h1 class="page-title">Liste des localités</h1>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('accueil') }}">Accueil</a></li>
+                <li class="breadcrumb-item" aria-current="page"><a href="{{route('pays.index')}}">Pays</a></li>
                 <li class="breadcrumb-item" aria-current="page"><a href="{{route('localites.index')}}">Localités</a></li>
                 <li class="breadcrumb-item active" aria-current="page">{{ ucfirst($localite->nom) }}</li>
             </ol>
@@ -66,7 +67,7 @@
                             <h3>Unités associées à cette Localité</h3>
                             @foreach($unites as $unite)
 
-                                <a class="text-dark" href="{{ route('unites.show', $unite->uuid) }}">
+                                <a class="text-dark" href="{{ route('unites.show', $unite->uuid) }}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails">
                                     <span class="">{{ $unite->designation}} </span>
                                 </a> <br>
     

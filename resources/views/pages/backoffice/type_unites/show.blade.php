@@ -23,6 +23,7 @@
             <h1 class="page-title">Liste des types d'unité</h1>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('accueil') }}">Accueil</a></li>
+                <li class="breadcrumb-item" aria-current="page"><a href="{{route('unites.index')}}">Unités</a></li>
                 <li class="breadcrumb-item" aria-current="page"><a href="{{route('type_unites.index')}}">Types d'unités</a></li>
                 <li class="breadcrumb-item active" aria-current="page">{{ ucfirst($type->nom) }}</li>
             </ol>
@@ -70,8 +71,8 @@
 
 
 
-                            <a class="text-dark" href="{{ route('unites.show', $unite->uuid) }}">
-                                <span class="">{{ $unite->designation }} </span>
+                        <a class="text-dark" href="{{ route('unites.show', $unite->uuid) }}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails">
+                            <span class="" >{{ $unite->designation }} </span>
                             </a> <br>
 
                         @endforeach

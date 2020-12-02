@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Models\Unite;
 use App\Models\TypeCrime;
 use App\Models\Restriction;
@@ -16,7 +15,6 @@ class TypeCrimeController extends Controller
         $types=TypeCrime::orderBy('nom','asc')->get();
         return view('pages.backoffice.type_crimes.index',compact('types'));
     }
-
     public function create()
     {
         return view('pages.backoffice.type_crimes.createdit', [
@@ -25,7 +23,6 @@ class TypeCrimeController extends Controller
             'btnAction' => "Ajouter" 
         ]);
     }
-
     public function store(Request $request)
     {
         $data=request()->validate([
@@ -68,7 +65,7 @@ class TypeCrimeController extends Controller
         $type->description=$data['description'];
         $type->uuid=Str::uuid();
         $type->save();
-        $request->session()->flash('status', 'Type de d\'unité mis a jours avec succès');
+        $request->session()->flash('status', 'Type de crime mis a jours avec succès');
         return redirect()->route('type_crimes.show', $type);
     }
 
@@ -77,13 +74,13 @@ class TypeCrimeController extends Controller
         $type=TypeCrime::where('uuid',$uuid)->first();
         $restriction = new Restriction;
         $restrictions = $restriction->check($type->id,[
-            ['foreignkey'=>'type_unite_id','modelname'=>'crime'],
+            ['foreignkey'=>'type_crime_id','modelname'=>'crime'],
         ]);
         if ($restrictions){
         return redirect()->back()->with('danger',$restrictions['message']);
         } else {
             $type->delete();
-            return redirect()->route('type_crimes.index')->with('status','Type de crime supprimée avec succès');
+            return redirect()->route('type_crimes.index')->with('status','Type de crime supprimé avec succès');
         }
    }
 }

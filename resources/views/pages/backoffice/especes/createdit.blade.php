@@ -23,11 +23,11 @@
             <h1 class="page-title"> {!! $titrePage !!} </h1>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('accueil') }}">Accueil</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Ajouter</li>
+                <li class="breadcrumb-item active" aria-current="page">{{ $btnAction }}</li>
             </ol>
         </div>
         <div class="ml-auto pageheader-btn">
-            <a class="btn btn-primary" href="{{ route('unites.index') }}"> <span>
+            <a class="btn btn-primary" href="{{ route('especes.index') }}"> <span>
                     <i class="fe fe-list"></i>
                 </span> Toutes les unités</a>
             </button>
@@ -38,14 +38,14 @@
 @endsection
 @section('content')
 
-    @if (Route::currentRouteName() == 'unites.create')
-        <form action="{{ route('unites.store') }}" method="post" enctype="multipart/form-data">
+    @if (Route::currentRouteName() == 'especes.create')
+        <form action="{{ route('especes.store') }}" method="post" enctype="multipart/form-data">
         @else
-            <form action="{{ route('unites.update', $unite->uuid) }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('especes.update', $espece->uuid) }}" method="post" enctype="multipart/form-data">
                 @method('PUT')
     @endif
     @csrf
-    @include('pages.backoffice.unites._form', ['btnAction' => $btnAction, 'unite' => $unite ])
+    @include('pages.backoffice.especes._form', ['btnAction' => $btnAction, 'unite' => $espece ])
     </form>
 @stop
 @section('js')

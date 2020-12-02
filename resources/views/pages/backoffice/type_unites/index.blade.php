@@ -23,8 +23,9 @@
 					<div>
 						<h1 class="page-title">Liste des types d'unité</h1>
 						<ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{route('accueil')}}">Accueil</a></li>
-							<li class="breadcrumb-item active" aria-current="page">Types d'unité</li>
+						<li class="breadcrumb-item"><a href="{{route('accueil')}}">Accueil</a></li>
+						<li class="breadcrumb-item" aria-current="page"><a href="{{route('unites.index')}}">Unités</a></li>
+						<li class="breadcrumb-item active" aria-current="page">Types d'unité</li>
 						</ol>
 					</div>
 					<div class="ml-auto pageheader-btn">
@@ -69,8 +70,8 @@
 
 
 											<tr>
-												<td> <a class="text-dark" href="{{route('type_unites.show', $type->uuid)}}"> {{ucfirst($type->nom)}} </a></td>
-												<td> <a class="text-dark" href="{{route('type_unites.show', $type->uuid)}}"> {{ substr($type->description, 0, 60) }}</a></td>
+												<td> <a data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" class="text-dark" href="{{route('type_unites.show', $type->uuid)}}"> {{ucfirst($type->nom)}} </a></td>
+												<td> <a data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" class="text-dark" href="{{route('type_unites.show', $type->uuid)}}"> {{ substr($type->description, 0, 60) }}</a></td>
                                             </tr>
                                             @endforeach
 

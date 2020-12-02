@@ -43,7 +43,7 @@
                    @foreach ($pays as $pay)
                   
                     <div class="col-sm-3">
-                       <a href="{{ route('pays.show',$pay->uuid) }}">
+                       <a href="{{ route('pays.show',$pay->uuid) }}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails de {{$pay->nom}}">
                         <div class="card">
                             <div class="card-header">
                                 <div class="">
@@ -55,7 +55,7 @@
                                 <div class="clearfix"></div>
                             </div>
                             <div class="card-body wideget-user-contact">
-                            <img src="{{asset('storage').'/'.$pay->icone}}" style="min-width:100%; object-fit:cover; object-position: 50% 50%;" alt="" srcset="">
+                            <img src="{{asset('storage').'/'.$pay->icone}}"   style="min-width:100%; object-fit:cover; object-position: 50% 50%;" alt="" srcset="">
                             <div class="clearfix"></div>
                            
                             </div>

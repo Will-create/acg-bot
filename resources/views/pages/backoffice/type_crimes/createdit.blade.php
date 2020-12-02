@@ -23,6 +23,7 @@
             <h1 class="page-title"> {!! $titrePage !!} </h1>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('accueil') }}">Accueil</a></li>
+                <li class="breadcrumb-item" aria-current="page"><a href="{{route('crimes.index')}}">Crimes</a></li>
                 <li class="breadcrumb-item" aria-current="page"><a href="{{route('type_crimes.index')}}">Types de crimes</a></li>
                 <li class="breadcrumb-item active" aria-current="page">{{ $btnAction }} un type de crimes</li>
             </ol>

@@ -7,7 +7,7 @@
         <meta name="description" content="Systeme de paiement en masse">
         <meta name="author" content="Switch Maker">
         <meta name="keywords" content="">
-        <title> {{ $titrePage ??  'Systeme de paiement en masse'}} </title>
+        <title> {{ isset($titrePage) ? $titrePage : 'Administration' }} || Criminalité environnementale - UICN PACO </title> </title>
         @include('layouts.head')
         <link rel="stylesheet" href="{{asset('css/custom.css')}}">
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ==" crossorigin="" />
@@ -21,16 +21,12 @@
             height:400px;
         }
     </style>
-
     <!-- GLOABAL LOADER -->
     <div id="global-loader">
         <img src="{{URL::asset('assets/images/loader.svg')}}" class="loader-img" alt="Loader">
     </div>
     <!-- End GLOABAL LOADER -->
-
     <!-- PAGE -->
-
-
     <div class="page">
         <div class="page-main">
             @if (Auth::user()->role->designation == 'Administrateur Général')
@@ -56,11 +52,8 @@
         @include('layouts.aside-bar')
         @include('layouts.footer')
     </div>
-
     <!--END PAGE -->
-
     <!-- BACKGROUND-IMAGE CLOSED -->
-
     @include('layouts.footer-scripts')
 
 </body>

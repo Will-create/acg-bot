@@ -18,8 +18,6 @@
 
 				        </li>
 
-
-
                         <li class="slide">
                             <a class="side-menu__item" data-toggle="slide" href="#">
 				                <i class="mdi mdi-account-multiple aide-icon"></i>

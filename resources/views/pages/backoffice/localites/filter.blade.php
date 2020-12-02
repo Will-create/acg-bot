@@ -24,6 +24,7 @@
 						<h1 class="page-title" id="page-title">Liste des localités dans {{$pay->nom}}</h1>
 						<ol class="breadcrumb">
 						<li class="breadcrumb-item"><a href="{{route('accueil')}}">Accueil</a></li>
+						<li class="breadcrumb-item" aria-current="page"><a href="{{route('pays.index')}}">Pays</a></li>
 						<li class="breadcrumb-item" aria-current="page"><a href="{{route('localites.index')}}">Localités</a></li>
 							<li class="breadcrumb-item active" aria-current="page">Localités dans {{$pay->nom}}</li>
 						</ol>
@@ -98,8 +99,8 @@
 				
 				
 															<tr>
-																<td> <a class="text-dark" href="{{route('localites.show', $localite->uuid)}}"> {{$localite->nom}} </a></td>
-																<td> <a class="text-dark" href="{{route('localites.show', $localite->uuid)}}">{{$localite->pay->nom}}</a></td>
+																<td> <a class="text-dark" href="{{route('localites.show', $localite->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" > {{$localite->nom}} </a></td>
+																<td> <a class="text-dark" href="{{route('localites.show', $localite->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" >{{$localite->pay->nom}}</a></td>
 																
 															</tr>
 															@endforeach
@@ -171,11 +172,10 @@
 		var listpays = document.getElementById('listpays')	;									
 		function injecteur(res){
 			var {localites, pays, pay} = res;
-			
-			var rows = '';
 			var lignes = '';
+			var rows = '';
 			localites.map(function(lo){
-            rows +='<tr><td> <a class="text-dark" href="/localites/'+lo.uuid+'"> '+lo.nom+' </a></td><td> <a class="text-dark" href="/localites/'+lo.uuid+'">'+lo.pay.nom+' </a></td></tr>';
+            rows +='<tr><td> <a class="text-dark" href="/localites/'+lo.uuid+'" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" > '+lo.nom+' </a></td><td> <a class="text-dark" href="/localites/'+lo.uuid+'" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" >'+lo.pay.nom+' </a></td></tr>';
 			})
 			pays.map(function(p){
 				var active = p.id == pay.id ? 'active' : '' ;
@@ -193,7 +193,4 @@
 													injecteur(res);})
         }
         </script>
-
-
-
 @endsection

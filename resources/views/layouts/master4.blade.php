@@ -14,9 +14,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/fakeLoader.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
 </head>
-
 <body class="app sidebar-mini">
-
     <div class="page">
         <div class="page-main">
             @if (Auth::user()->role->designation == 'Administrateur Général')

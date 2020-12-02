@@ -20,9 +20,10 @@
                 @include('partials._notification')
 				<div class="page-header">
 					<div>
-						<h1 class="page-title">Liste des Espèces</h1>
+						<h1 class="page-title">Détails d'une espèce</h1>
 						<ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{route('accueil')}}">Accueil</a></li>
+                        <li class="breadcrumb-item" aria-current="page"><a href="{{route('especes.index')}}">Espèces</a></li>
 							<li class="breadcrumb-item active" aria-current="page">{{$espece->nom}}</li>
 						</ol>
 					</div>
@@ -30,7 +31,7 @@
                     <a class="btn btn-primary" href="{{route('especes.index')}}"  >  <span>
                             <i class="fe fe-list"></i>
                         </span>
-                        Toutes les Espèces Animales</a>
+                        Toutes les Espèces</a>
                     </button>
 
 					</div>
@@ -50,30 +51,37 @@
                             <div class="clearfix"></div>
                         </div>
                         <div class="card-body wideget-user-contact">
-
-
                             <img src="{{asset('storage/'.$espece->photo)}}" style="min-width:100%; object-fit:cover; object-position: 50% 50%;" alt="" srcset="">
+                                <br><br>
+                            <div  id="profile-log-switch">
+                                
+                                <strong>Famille :</strong> {{$espece->famille}}
+                                        <br><br>
+                                <strong>Nom Scientifique :</strong> {{$espece->nom_scientifique}}
+                                        <br><br>
+                                <strong>Type :</strong> {{$espece->type}}
+                                        <br><br>
+                                <strong>Ordre :</strong> {{$espece->ordre->nom}}
+                                        <br><br>
+                            </div>
                         </div>
+
+                    
                     </div>
+
+
                 </div>
                 <div class="col-lg-8">
                     <div class="tab-content">
                         <div class="tab-pane active show" id="tab-51">
                             <div class="card">
                                 <div class="card-body">
-                                    <div id="profile-log-switch">
-                                        <div class="media-heading">
-                                            <h5><strong>Details de {{$espece->nom}}</strong></h5>
-                                        </div>
-                                        <strong>Famille :</strong> {{$espece->famille}}
-                                                <br><br>
-                                        <strong>Nom Scientifique :</strong> {{$espece->nom_scientifique}}
-                                                <br><br>
-                                        <strong>Type :</strong> {{$espece->type}}
-                                                <br><br>
-                                        <strong>Ordre :</strong> {{$espece->ordre->nom}}
-                                                <br><br>
-                                    </div>
+                                    <h3>Crimes associés à cette espèce</h3>
+                                    @foreach($crimes as $crime)
+                                        <a class="text-dark" href="{{ route('crimes.show', $crime->uuid) }}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" >
+                                            <span class="">{{ $crime->nom}} </span>
+                                        </a> <br>
+                                    @endforeach
                                 </div>
                             </div>
 
@@ -83,24 +91,53 @@
 
                 </div><!-- COL-END -->
             </div>
-            <div class="modal-footer">
-                <form method="POST" action="{{route('especes.destroy',$espece->uuid)}}" onsubmit="return confirm('Voulez vous vraiment supprimer cette Espèce?')">
-                {{ csrf_field() }}
-                    @method('DELETE')
-                    <button class="btn btn-danger">
-                    Supprimer cette Espèce Animale
-                    </button>
-
-                </form>
-
-
-                <a href="{{route('especes.edit',$espece->uuid)}}" class="btn btn-primary">
-                    Modifier cette Espèce Animale</a>
-
-            <a href="{{ URL::previous() }}" class="btn btn-primary"> <span>
-                    <i class="fe fe-close"></i>
-                </span> Retour</a>
-
+            <div class="row">
+                <div class="col-md-6"></div>
+                <div class="col-md-6 mb-4">
+                    <a href="{{ route('especes.index') }}" class="btn btn-dark"> <span>
+                            <i class="fe fe-close"></i>
+                        </span><i class="fa fa-times"></i> Retour</a>
+        
+                    <a href="{{ route('especes.edit', $espece->uuid) }}" class="btn btn-primary">
+                        <i class="fa fa-edit"></i> Modifier</a>
+        
+                    <button type="button" class="btn btn-danger  mb-1" data-toggle="modal"
+                        data-target="#exampleModalDelete{{ $espece->id }}"><i class="fa fa-trash"></i></button>
+                </div>
             </div>
+        
+            <div class="modal" id="exampleModalDelete{{ $espece->id }}" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalDelete" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalDelete">Suppression de {{ $espece->nom }}</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p> Etes-vous sûr de bien vouloir supprimer cette espèce ?
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <form action="{{ route('especes.destroy', $espece->uuid) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger ">
+                                    <i class="fa fa-trash"></i>
+                                    <span>Confirmer</span>
+                                </button>
+                                <button type="reset" class="btn btn-success" data-dismiss="modal">
+                                    <i class="fa fa-times"></i>
+                                    <span>Annuler</span>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
             <!-- ROW-1 CLOSED -->
 @endsection
+
