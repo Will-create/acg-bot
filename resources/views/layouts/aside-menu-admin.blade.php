@@ -37,7 +37,7 @@
                         <li class="slide">
                             <a class="side-menu__item" data-toggle="slide" href="#">
                                 <i class="mdi mdi-scale-balance aide-icon"  ></i>
-                                <span class="side-menu__label">Unités</span><i class="angle fa fa-angle-right"></i>
+                                <span class="side-menu__label">Unités de lois</span><i class="angle fa fa-angle-right"></i>
                             </a>
                             <ul class="slide-menu">
                                 <li><a class="slide-item" href="{{route('unites.index')}}"><span>Toutes les unités</span></a></li>
@@ -91,15 +91,37 @@
                             </li> 
                             </ul>
                         </li>
-                         
                         
-
-
-
-
+                        
+                        
+                        
+                        
+                        
                         <li>
                             <h3>Configurations</h3>
                         </li>
+                                    <li class="slide">
+                                        <a class="side-menu__item" data-toggle="slide" href="#">
+                                            <i class="mdi mdi-earth aide-icon"  ></i>
+                                            <span class="side-menu__label">Gestion des Pays</span><i class="angle fa fa-angle-right"></i>
+                                        </a>
+                                        <ul class="slide-menu">
+                                            <li><a class="slide-item" href="{{route('pays.index')}}"><span>Tous les pays</span></a></li>
+                                            <li><a class="slide-item" href="{{route('pays.create')}}"><span>Nouveau </span></a></li>
+                                           
+                                            <li class="slide">
+                                                <a class="side-menu__item" data-toggle="slide" href="#">
+                                                    <i class="mdi mdi-earth aide-icon"  ></i>
+                                                    <span class="side-menu__label">Gestion des localités</span><i class="angle fa fa-angle-right"></i>
+                                                </a>
+                                                <ul class="slide-menu">
+                                                    <li><a class="slide-item" href="{{route('localites.index')}}"><span>Toutes les localités</span></a></li>
+                                                    <li><a class="slide-item" href="{{route('localites.filter',1)}}"><span>Localité par pays</span></a></li>
+                                                    <li><a class="slide-item" href="{{route('localites.create')}}"><span>Nouveau </span></a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
 
                         <li class="slide">
                             <a class="side-menu__item" data-toggle="slide" href="#">
@@ -131,28 +153,6 @@
                             <ul class="slide-menu">
                                 <li><a class="slide-item" href="{{route('confiscations.index')}}"><span>Toutes les confiscations</span></a></li>
                                 <li><a class="slide-item" href="{{route('confiscations.create')}}"><span>Nouvelle confiscation</span></a></li>
-                            </ul>
-                        </li>
-                        <li class="slide">
-                            <a class="side-menu__item" data-toggle="slide" href="#">
-                                <i class="mdi mdi-earth aide-icon"  ></i>
-                                <span class="side-menu__label">Gestion des Pays</span><i class="angle fa fa-angle-right"></i>
-                            </a>
-                            <ul class="slide-menu">
-                                <li><a class="slide-item" href="{{route('pays.index')}}"><span>Tous les pays</span></a></li>
-                                <li><a class="slide-item" href="{{route('pays.create')}}"><span>Nouveau </span></a></li>
-                               
-                                <li class="slide">
-                                    <a class="side-menu__item" data-toggle="slide" href="#">
-                                        <i class="mdi mdi-earth aide-icon"  ></i>
-                                        <span class="side-menu__label">Gestion des localités</span><i class="angle fa fa-angle-right"></i>
-                                    </a>
-                                    <ul class="slide-menu">
-                                        <li><a class="slide-item" href="{{route('localites.index')}}"><span>Toutes les localités</span></a></li>
-                                        <li><a class="slide-item" href="{{route('localites.filter',1)}}"><span>Localité par pays</span></a></li>
-                                        <li><a class="slide-item" href="{{route('localites.create')}}"><span>Nouveau </span></a></li>
-                                    </ul>
-                                </li>
                             </ul>
                         </li>
                     </ul>

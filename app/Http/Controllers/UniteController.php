@@ -25,8 +25,9 @@ class UniteController extends Controller
         $unites=Unite::all();
         return view('pages.backoffice.unites.index',compact('unites'));
     }
-    public function filter($p)
+    public function filter()
     {  
+        $p = 1;
         $pay=Pay::where('id',$p )->first();
         return view('pages.backoffice.unites.filter', [
             'unites'                    =>Unite::where('pays_id',$pay->id)->with(['pays','type'])->get(),

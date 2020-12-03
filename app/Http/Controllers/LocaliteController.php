@@ -53,8 +53,9 @@ class LocaliteController extends Controller
         ]);
     }
 
-    public function filter($p)
+    public function filter()
     {  
+        $p = 1;
         $pay=Pay::where('id',$p )->first();
         return view('pages.backoffice.localites.filter', [
             'localites'                    =>Localite::where('pays_id',$pay->id)->get(),
@@ -83,6 +84,7 @@ class LocaliteController extends Controller
             'btnAction' => "Mettre à jour"
         ]);
     }
+    
  
     public function update(Request $request, Localite $localite)
     {
@@ -97,23 +99,18 @@ class LocaliteController extends Controller
          $request->session()->flash('status', 'La localité '.$localite->nom.' est mis  avec succès !');
           return redirect()->route('localites.index');
     }
-
     public function destroy(Request $request, Localite $localite)
     {
         $restriction = new Restriction();
-
         $restrictions = $restriction->check($localite->id,[
             ['foreignkey'=>'localite_id','modelname'=>'unite'],            ]);
-        
            if ($restrictions){
-            
             return redirect()->back()->with('danger',$restrictions['message']);
            }else{
             $localite->delete();
             return redirect()->route('localites.index')->with('status','Localité supprimée avec succès');
            }
     }
-
     public function ville_by_country($pay_id) {
         $villes =  Localite::where('pays_id', $pay_id)->get();
          return response()->json($villes);

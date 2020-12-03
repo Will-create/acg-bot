@@ -20,7 +20,8 @@ class CrimeController extends Controller
 
     public function index()
     {
-        //
+        
+        return view('pages.backoffice.crimes.index', []);
     }
 
   

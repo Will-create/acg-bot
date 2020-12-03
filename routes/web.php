@@ -8,8 +8,6 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Auth::routes();
-
-
 // Route::prefix('74uAExW4d')->group(function () {
     Route::get('/',                                             'AdminNavigationController@accueil')->name('bienvenue');
     Route::get('/accueil',                                      'AdminNavigationController@accueil')->name('accueil');
@@ -22,8 +20,8 @@ Auth::routes();
     Route::resource('nature_crimes',                            'CrimeNatureController');
 
     Route::get('/home','UniteController@index')->name('home');
-    Route::get('/localites/filtreur/{pays}','LocaliteController@filter')->name('localites.filter');
-    Route::get('/unites/filtreur/{pays}','UniteController@filter')->name('unites.filter');
+    Route::get('/localites/filtreur/','LocaliteController@filter')->name('localites.filter');
+    Route::get('/unites/filtreur/','UniteController@filter')->name('unites.filter');
     Route::get('/unites/api/filtreur/{pays}','UniteController@filtreur');
     Route::get('/localites/api/filtreur/{pays}','LocaliteController@filtreur');
 
