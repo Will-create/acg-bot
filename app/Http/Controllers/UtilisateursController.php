@@ -101,7 +101,7 @@ class UtilisateursController extends Controller
         $data =   $request->validate([
             'nom'                       => ['required', 'string', 'max:255'],
             'prenom'                    => ['required', 'string', 'max:255'],
-            'tel'                       => ['required', 'digits_between:8,13'],
+            'tel'                       => ['required', 'string', 'min:8', 'max:20'],
             'email'                     => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'role_id'                   => ['required'],
             'pay_id'                    => ['required'],
@@ -137,7 +137,7 @@ class UtilisateursController extends Controller
             $request->session()->flash('status', 'Utilisateur créé avec succès, Nous n\'avons pas pu envoyer le mail l\'utilisateur');
         }
 
-        return redirect()->route('utilisateurs.index');
+        return redirect()->route('utilisateurs.show', $user->uuid);
     }
 
     public function show(User $utilisateur)
@@ -176,7 +176,7 @@ class UtilisateursController extends Controller
             $data =   $request->validate([
                 'nom'                       => ['required', 'string', 'max:255'],
                 'prenom'                    => ['required', 'string', 'max:255'],
-                'tel'                       => 'required|digits_between:8,13|unique:users,tel,' . $utilisateur->id,
+                'tel'                       => 'required|string|min:8|max:20|unique:users,tel,' . $utilisateur->id,
                 'email'                     => 'required|email|max:255|unique:users,email,' . $utilisateur->id,
                 'profile_photo_path'        => ['nullable'],
             ]);
@@ -185,14 +185,14 @@ class UtilisateursController extends Controller
                 'prenom'                    => $request['prenom'],
                 'tel'                       => $request['tel'],
                 'email'                     => $request['email'],
-                // 'unite_id'                  => $data['unite_id'],
+                'unite_id'                  => $request['unite_id'],
                 'profile_photo_path'        => $path
             ]);
         } else {
             $data =   $request->validate([
                 'nom'                       => ['required', 'string', 'max:255'],
                 'prenom'                    => ['required', 'string', 'max:255'],
-                'tel'                       => 'required|digits_between:8,13|unique:users,tel,' . $utilisateur->id,
+                'tel'                       => 'required|string|min:8|max:20|unique:users,tel,' . $utilisateur->id,
                 'email'                     => 'required|email|max:255|unique:users,email,' . $utilisateur->id,
                 'role_id'                   => ['required'],
                 'unite_id'                  => ['nullable'],
@@ -205,7 +205,7 @@ class UtilisateursController extends Controller
                 'tel'                       => $request['tel'],
                 'email'                     => $request['email'],
                 'role_id'                   => $request['role_id'],
-                // 'unite_id'                  => $data['unite_id'],
+                'unite_id'                  => $request['unite_id'],
                 'titre'                     => $request['titre'],
                 'profile_photo_path'        => $path
             ]);

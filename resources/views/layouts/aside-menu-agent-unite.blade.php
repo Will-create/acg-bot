@@ -47,8 +47,8 @@
                                 <span class="side-menu__label">Crimes</span><i class="angle fa fa-angle-right"></i>
                             </a>
                             <ul class="slide-menu">
-                                <li><a class="slide-item" href="#"><span>Tous les crimes</span></a></li>
-                                <li><a class="slide-item" href="#"><span>Nouveau </span></a></li>
+                            <li><a class="slide-item" href="{{route('crimes.index')}}"><span>Tous les crimes</span></a></li>
+                            <li><a class="slide-item" href="{{route('crimes.create')}}"><span>Nouveau </span></a></li>
                             </ul>
                         </li>
 

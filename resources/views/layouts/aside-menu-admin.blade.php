@@ -52,16 +52,16 @@
                                     <li><a class="slide-item" href="{{route('type_unites.index')}}"><span>Tous les types d'unité</span></a></li>
                                     <li><a class="slide-item" href="{{route('type_unites.create')}}"><span>Nouveau </span></a></li>
                                     </ul>
-                                </li> 
+                                </li>
                             </ul>
                         </li>
 
 
                         <li class="slide">
                             <a class="side-menu__item" data-toggle="slide" href="#">
-                        
-                               
-                                <i class="mdi mdi-svg  aide-icon"  ></i>
+
+
+                                <i class="mdi mdi-rss aide-icon"  ></i>
 
                                 <span class="side-menu__label">Espèces</span><i class="angle fa fa-angle-right"></i>
                             </a>
@@ -88,15 +88,33 @@
                                 <li><a class="slide-item" href="{{route('type_crimes.index')}}"><span>Tous les types de crime</span></a></li>
                                 <li><a class="slide-item" href="{{route('type_crimes.create')}}"><span>Nouveau </span></a></li>
                                 </ul>
-                            </li> 
+                            </li>
                             </ul>
                         </li>
-                        
-                        
-                        
-                        
-                        
-                        
+                         <li class="slide">
+                            <a class="side-menu__item" data-toggle="slide" href="#">
+                                <i class="mdi mdi-rss aide-icon"  ></i>
+                                <span class="side-menu__label">Types de Crime</span><i class="angle fa fa-angle-right"></i>
+                            </a>
+                            <ul class="slide-menu">
+                            <li><a class="slide-item" href="{{route('type_crimes.index')}}"><span>Tous les types de crime</span></a></li>
+                            <li><a class="slide-item" href="{{route('type_crimes.create')}}"><span>Nouveau </span></a></li>
+                            </ul>
+                        </li>
+                        <li class="slide">
+                            <a class="side-menu__item" data-toggle="slide" href="#">
+                                <i class="mdi mdi-rss aide-icon"  ></i>
+                                <span class="side-menu__label">Types d'unité</span><i class="angle fa fa-angle-right"></i>
+                            </a>
+                            <ul class="slide-menu">
+                            <li><a class="slide-item" href="{{route('type_unites.index')}}"><span>Tous les types d'unité</span></a></li>
+                            <li><a class="slide-item" href="{{route('type_unites.create')}}"><span>Nouveau </span></a></li>
+                            </ul>
+                        </li>
+
+
+
+
                         <li>
                             <h3>Configurations</h3>
                         </li>
@@ -108,7 +126,7 @@
                                         <ul class="slide-menu">
                                             <li><a class="slide-item" href="{{route('pays.index')}}"><span>Tous les pays</span></a></li>
                                             <li><a class="slide-item" href="{{route('pays.create')}}"><span>Nouveau </span></a></li>
-                                           
+
                                             <li class="slide">
                                                 <a class="side-menu__item" data-toggle="slide" href="#">
                                                     <i class="mdi mdi-earth aide-icon"  ></i>
@@ -134,7 +152,7 @@
                             </ul>
                         </li>
 
-                        
+
                         {{-- <li class="slide">
                             <a class="side-menu__item" data-toggle="slide" href="#">
                                 <i class="mdi mdi-rss aide-icon"  ></i>

@@ -1,6 +1,8 @@
 @extends('layouts.master4')
 @section('css')
-		<!-- FORN WIZARD CSS -->
+        <!-- FORN WIZARD CSS -->
+		<link href="{{URL::asset('assets/plugins/select2/select2.min.css')}}" rel="stylesheet" />
+
 		<link href="{{URL::asset('assets/plugins/formwizard/smart_wizard.css')}}" rel="stylesheet">
 		<link href="{{URL::asset('assets/plugins/formwizard/smart_wizard_theme_arrows.css')}}" rel="stylesheet">
 		<link href="{{URL::asset('assets/plugins/formwizard/smart_wizard_theme_circles.css')}}" rel="stylesheet">
@@ -11,17 +13,17 @@
 			<!-- PAGE-HEADER -->
 			<div class="page-header">
                 <div>
-                    <h1 class="page-title">Nouveau crime</h1>
+                    <h1 class="page-title">Enregistrement de crime</h1>
                     <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{route('accueil')}}">Accueil</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Espèces Animales</li>
+                        <li class="breadcrumb-item active" aria-current="page">Nouveau</li>
                     </ol>
                 </div>
                 <div class="ml-auto pageheader-btn">
                 <a class="btn btn-primary" href="{{route('especes.create')}}">  <span>
                         <i class="fe fe-plus"></i>
                     </span>
-                    Ajouter une Espèces Animale</a>
+                   Enregistrer un crime</a>
 
 
                 </button>
@@ -73,25 +75,11 @@
                                                         <input type="date" name="date_apprehension"  class="form-control">
                                                     </div>
                                                 </div>
-                                                
-                                                
+
+
                                             </div>
                                             <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>  Services Investigateurs  <span class="text-danger">*</span></label>
-                                                        <select name="services_investigateurs"  class="form-control custom-select select2">
-                                                            <option value=""  selected disabled> Sélectionnez une unité</option>
-                                                            @foreach ($unites as $unite)
-                                                            <option value={{$unite->id}}>{{$unite->designation}}</option>
-                                                                
-                                                            @endforeach
 
-
-                                                        </select>
-
-                                                    </div>
-                                                </div>
                                                                             <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label> Localité d'aprrehension <span class="text-danger">*</span></label>
@@ -99,7 +87,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            
+
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
@@ -115,21 +103,25 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                               
+
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>  Espèce trafiquée  <span class="text-danger">*</span></label>
-                                                        <select name="espece_id"  class="form-control custom-select select2">
+                                                        <select class="js-example-disabled-results">
+                                                            <option value="one">First</option>
+                                                            <option value="two" disabled="disabled">Second (disabled)</option>
+                                                            <option value="three">Third</option>
+                                                          </select>
+                                                        {{-- <select name="espece_id"  class="form-control custom-select select2">
                                                             <option value="" disabled selected> Sélectionnez une espèce </option>
                                                             @foreach ($especes as $espece)
                                                             <option value="{{$espece->id}}">{{ucfirst($espece->nom)}}</option>
-                                                                
                                                             @endforeach
-                                                        </select>
+                                                        </select> --}}
 
                                                     </div>
                                                 </div>
-                           
+
                                             </div>
                                             <div class="text-right">
                                             <a href="{!! URL::previous() !!}" class="btn btn-info sw-btn-prev disabled"> Précedent</a>
@@ -208,10 +200,10 @@
                                                      </select>
                                                     </div>
                                                  </div>
-                                                 
+
                                              </div>
 
-                                            
+
                                            <div class="text-right">
                                             <a href="{!! URL::previous() !!}" class="btn btn-info sw-btn-prev disabled"> Précedent</a>
                                             <button type="submit" id="submit2" class="btn btn-primary"> Suivant</button>
@@ -248,7 +240,7 @@
                                                      </select>
                                                     </div>
                                                  </div>
-                                                
+
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Revenue <span class="text-danger">*</span> </label>
@@ -278,7 +270,10 @@
 		<!-- INTERNAL ACCORDION-WIZARD FORM JS -->
 		<script src="{{URL::asset('assets/plugins/accordion-Wizard-Form/jquery.accordion-wizard.min.js')}}"></script>
 
-		<!--INTERNAL  ADVANCED FORM JS -->
+        <!--INTERNAL  ADVANCED FORM JS -->
+        	<!--INTERNAL  FORMELEMENTS JS -->
+		<script src="{{URL::asset('assets/js/form-elements.js')}}"></script>
+		<script src="{{URL::asset('assets/js/select2.js')}}"></script>
 		<script src="{{URL::asset('assets/js/advancedform.js')}}"></script>
 @endsection
 
@@ -286,6 +281,11 @@
 @push('ajax_crud')
 {{-- <script src="{{asset('js/jquery19.js')}}"></script> --}}
 <script src="{{asset('js/sweetalert.js')}}"></script>
+<link href="{{URL::asset('assets/plugins/select2/select2.min.css')}}" rel="stylesheet" />
 
 <script src="{{asset('js/ajax.js')}}"></script>
+<script>
+    var $disabledResults = $(".js-example-disabled-results");
+$disabledResults.select2();
+</script>
 @endpush

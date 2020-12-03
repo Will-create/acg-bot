@@ -21,17 +21,14 @@
 
 				<div class="page-header">
 					<div>
-						<h1 class="page-title">Liste des Crimes</h1>
+						<h1 class="page-title">Liste des crimes </h1>
 						<ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{route('accueil')}}">Accueil</a></li>
-							<li class="breadcrumb-item active" aria-current="page">Crimes</li>
+							<li class="breadcrumb-item active" aria-current="page">crime environnemental</li>
 						</ol>
 					</div>
 					<div class="ml-auto pageheader-btn">
-                    <a class="btn btn-primary" href="{{route('crimes.create')}}">  <span>
-                            <i class="fe fe-plus"></i>
-                        </span>
-                        Ajouter un crime</a>
+
 
 
                     </button>
@@ -45,8 +42,47 @@
 
 
 
-			 {{-- @include('pages.backOffice.administrateur.utilisateurs._modelCreationUtilisateur') --}}
+@include('partials._notification')
 
+
+<!-- ROW-1 OPEN -->
+<div class="row">
+    <div class="col-md-12 col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Liste des Localités</h3>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="data-table1" class="table table-striped table-bordered text-nowrap w-100 table-sm">
+                        <thead>
+                            <tr>
+                                <th class="wd-15p">Nom</th>
+
+                                <th class="wd-30p">Pays</th>
+
+                                {{-- <th>Actions</th> --}}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($crimes as $crime)
+
+
+                            <tr>
+                                <td> <a class="text-dark" href="{{route('crimes.show', $crime->uuid)}}"> {{ucfirst($localite->nom)}} </a></td>
+                                <td> <a class="text-dark" href="{{route('crimes.show', $crime->uuid)}}"> {{ $crime}}</a></td>
+                            </tr>
+                            @endforeach
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- TABLE WRAPPER -->
+        </div>
+        <!-- SECTION WRAPPER -->
+    </div>
+</div>
 
 
 @endsection
@@ -88,4 +124,3 @@
 
 
 @endsection
-            
