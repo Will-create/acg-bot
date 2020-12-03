@@ -11,7 +11,7 @@
                         </span>
                         @enderror
 					</div>
-					
+
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -27,7 +27,7 @@
 
                            <div class="col-md-6">
                             <div class="form-group">
-                                <label class="form-label" for="tel">Téléphone 2<strong class="text-danger">*</strong></label>
+                                <label class="form-label" for="tel">Téléphone 2 <strong class="text-danger">*</strong></label>
                                 <input class="form-control" placeholder="Téléphone"  name="tel2" type="text"  value="{{old('tel2')?? $unite->tel2}}">
                                 @error('tel2')
                                 <span class="helper-text red-text">
@@ -89,9 +89,9 @@
                             </div>
                         </div>
                     </div>
-					
-                    
-                    
+
+
+
                 </div>
                 <div class="col-md-6">
 					<div class="form-group">
@@ -100,7 +100,7 @@
                             <option value="{{Route::currentRouteName() == 'unites.edit' ? $unite->type->id : '' }}" selected >{{Route::currentRouteName() == 'unites.edit' ? $unite->type->nom : 'Sélectionner' }}</option>
 
                             @foreach ($types as $type)
-                        <option value="{{$type->id}}">{{$type->nom}}</option>
+                        <option value="{{$type->id}}">{{ucFirst($type->nom)}}</option>
                             @endforeach
                         </select>
                         @error('type_unite_id')
@@ -135,7 +135,7 @@
                         </span>
                         @enderror
                     </div>
-               
+
                     <div class="form-group">
                         <label class="form-label" for="adresse">Adresse complete <strong class="text-danger">*</strong></label>
                         <textarea class="form-control" placeholder="Adresse" rows="6" name="adresse" id="adresse"  required>{{old('adresse') ?? $unite->adresse}}</textarea>
@@ -145,8 +145,8 @@
                         </span>
                         @enderror
 					</div>
-					
-                    
+
+
                 </div>
                 <div class="col-md-6 ">
                     <div class="card shadow">
