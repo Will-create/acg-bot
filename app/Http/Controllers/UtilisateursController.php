@@ -64,7 +64,7 @@ class UtilisateursController extends Controller
         $localites = Localite::all();
         $pays = Pay::all();
 
-        
+
         switch (Auth::user()->role->designation) {
             case 'Administrateur Général':
                 $roles = Role::whereIn('designation', ['Coordonnateur Régional', 'Coordonnateur National'])->get();
@@ -75,6 +75,7 @@ class UtilisateursController extends Controller
             case 'Coordonnateur National':
                 $roles = Role::where('designation', 'Chef d’Unité')->first();
                 $pays = Pay::where('nom', Auth::user()->pay->nom)->first();
+                $unites = Unite::where('pays_id', $pays->id)->get();
                 break;
             case 'Chef d’Unité':
                 $roles = Role::where('designation', 'Agent d’une Unité')->first();
@@ -171,7 +172,7 @@ class UtilisateursController extends Controller
             $path = $utilisateur->profile_photo_path;
         }
 
-        if ($previousUrl ==  '/user/profile') {
+        if ($previousUrl ==  '/user/profil') {
             $data =   $request->validate([
                 'nom'                       => ['required', 'string', 'max:255'],
                 'prenom'                    => ['required', 'string', 'max:255'],
@@ -230,7 +231,7 @@ class UtilisateursController extends Controller
 
         $restriction = new Restriction;
         $restrictions = $restriction->check($utilisateur->id,[
-            ['foreignkey'=>'responsable_id','modelname'=>'unite'],  
+            ['foreignkey'=>'responsable_id','modelname'=>'unite'],
         ]);
            if ($restrictions){
             return redirect()->back()->with('danger',$restrictions['message']);
@@ -239,7 +240,7 @@ class UtilisateursController extends Controller
             $request->session()->flash('warning', 'Utilisateur supprimé avec succes');
             return redirect()->route('utilisateurs.index');
            }
-       
+
     }
     public function gerer(User $utilisateur, Request $request)
     {

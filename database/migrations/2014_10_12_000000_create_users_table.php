@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->foreignId('unite_id')->nullable();
             $table->boolean('actif')->default(true);
             $table->string('titre', 50)->nullable();
-            $table->string('ville_id')->nulllable();
+            $table->string('localite_id')->nulllable();
             $table->foreignId('pay_id')->nulllable();
             $table->string('email', 60)->unique();
             $table->string('tel');

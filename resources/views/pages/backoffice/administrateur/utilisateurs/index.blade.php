@@ -63,14 +63,16 @@
 										<tbody>
                                             @foreach ($utilisateurs as $utilisateur)
 											<tr>
-												<td> <a class="text-dark" data-toggle="tooltip" data-placement="top" title="CLiquer pour afficher les détails de l'utilisateur" href="{{route('utilisateurs.show', $utilisateur)}}"> {{$utilisateur->nom}} </a></td>
-												<td> <a class="text-dark" data-toggle="tooltip" data-placement="top" title="CLiquer pour afficher les détails de l'utilisateur" href="{{route('utilisateurs.show', $utilisateur)}}">{{$utilisateur->prenom}} </a></td>
-												<td> <a class="text-dark" data-toggle="tooltip" data-placement="top" title="CLiquer pour afficher les détails de l'utilisateur" href="{{route('utilisateurs.show', $utilisateur)}}">{{$utilisateur->email}} </a></td>
-												<td> <a class="text-dark" data-toggle="tooltip" data-placement="top" title="CLiquer pour afficher les détails de l'utilisateur" href="{{route('utilisateurs.show', $utilisateur)}}">{{$utilisateur->role->designation}} </a></td>
-                                                <td> <a class="text-dark" data-toggle="tooltip" data-placement="top" title="CLiquer pour afficher les détails de l'utilisateur" href="{{route('utilisateurs.show', $utilisateur)}}">{{$utilisateur->tel}} </a></td>
+												<td> <a class="text-dark" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails de l'utilisateur" href="{{route('utilisateurs.show', $utilisateur)}}"> {{$utilisateur->nom}} </a></td>
+												<td> <a class="text-dark" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails de l'utilisateur" href="{{route('utilisateurs.show', $utilisateur)}}">{{$utilisateur->prenom}} </a></td>
+												<td> <a class="text-dark" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails de l'utilisateur" href="{{route('utilisateurs.show', $utilisateur)}}">{{$utilisateur->email}} </a></td>
+												<td> <a class="text-dark" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails de l'utilisateur" href="{{route('utilisateurs.show', $utilisateur)}}">{{$utilisateur->role->designation}} </a></td>
+                       <td> <a class="text-dark" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails de l'utilisateur" href="{{route('utilisateurs.show', $utilisateur)}}">{{$utilisateur->tel}} </a></td>
                                                 <td>
                                                     {{-- <a href="{{route('gerer-utilisateur', $utilisateur)}}" class="badge {{$utilisateur->actif ? 'badge-success':'badge-danger'}}" title="{{$utilisateur->actif ? 'Cliquer pour désactiver':'CLiquer pour activer'}}">{{$utilisateur->actif ? 'Ativé':'Désactivé'}}  </a> --}}
-                                                    <a href="{{route('gerer-utilisateur', $utilisateur)}}" class="badge {{$utilisateur->actif ? 'badge-success':'badge-danger'}}" data-toggle="tooltip" data-placement="top" title="{{$utilisateur->actif ? 'Cliquer pour désactiver':'Cliquer pour activer'}}">{{$utilisateur->actif ? 'Ativé':'Désactivé'}}  </a>
+                                                    <button type="button" class="badge handleAcount {{$utilisateur->actif ?  'badge-success':'badge-danger'}}" data-toggle="tooltip" data-placement="top" title="{{$utilisateur->actif ? 'Cliquer pour désactiver':'Cliquer pour activer'}}" data-status="{{$utilisateur->actif ? 'Désactiver':'Activer'}}"   data-url="{{route('gerer-utilisateur', $utilisateur)}}" data-toggle="modal" data-clocation="{{url()->current()}}"
+                                                         style="border:none">  {{$utilisateur->actif ? 'Ativé':'Désactivé'}}</button>
+                                                    {{-- <a href="{{route('gerer-utilisateur', $utilisateur)}}" class="badge {{$utilisateur->actif ? 'badge-success':'badge-danger'}}" data-toggle="tooltip" data-placement="top" title="{{$utilisateur->actif ? 'Cliquer pour désactiver':'Cliquer pour activer'}}">{{$utilisateur->actif ? 'Ativé':'Désactivé'}}  </a> --}}
                                                 </td>
                                             </tr>
                                             @endforeach
@@ -126,3 +128,88 @@
 
 
 @endsection
+@push('ajax_crud')
+<script src="{{asset('js/sweetalert.js')}}"></script>
+
+{{-- <script src="{{asset('js/ajax.js')}}"></script> --}}
+<script>
+    $('.handleAcount').click( function () {
+        var item = $(this);
+        var url = item.attr('data-url');
+        var clocation = item.attr('data-clocation');
+         var status = item.attr('data-status');// item.data('status')
+
+        swal({
+    title: "Confirmation",
+    text: " Voullez-vous "+status+" le compte  cet utilisateur ? ",
+    // icon:  status == 'Désactiver' ? "warning" : "success",
+    buttons: {
+        confirm: {
+          text: status,
+          value: true,
+          visible: true,
+          className: "btn-sm",
+          closeModal: true
+        },
+        cancel: {
+          text: "Annuler",
+          value: false,
+          visible: true,
+          className: "btn-sm",
+          closeModal: true,
+        }
+      },
+    dangerMode: status == 'Désactiver' ? true : false,
+  })
+  .then((willDelete) => {
+    if (willDelete) {
+        $('#loader').show();
+      $.ajax({
+          url: item.attr('data-url'),
+           data: { "_token": "{{ csrf_token() }}" },
+          success: function (response) {
+            // item.parent().parent().hide();
+           location.href = clocation;
+            swal({
+            position: 'center',
+            icon: 'success',
+            title: 'Succès',
+            text: 'Traitement effectué',
+            button: false,
+            timer: 2500
+          })
+           $('#loader').hide();
+          },
+          error: function(err){
+              console.log('----------------------------error-------------------------');
+              console.log(err);
+              item.parent().parent().hide();
+              location.href = clocation;
+              swal({
+            position: 'center',
+            icon: 'error',
+            title: 'Echec',
+            title: 'Opération échouée',
+            button: false,
+            timer: 2500
+          })
+          $('#loader').hide();
+          }
+        });
+    }
+
+    else {
+    swal({
+        position: 'center',
+        icon: 'info',
+        title: 'Info',
+        text: 'Opération annulée',
+        button:false,
+        timer: 1500
+
+    });
+  }
+  });
+    })
+</script>
+@endpush

@@ -92,7 +92,7 @@
                                     <h4 class="mb-1">{{Auth::user()->nom. ' '. Auth::user()->prenom}}</h4>
                                     <h6 class=" mb-4"> <i class="fa fa-envelope"> </i> {{Auth::user()->email}} </h6>
                                     <h6 class="text-muted mb-4"> Adminsitrateur Général de la plateforme</h6>
-                                    <a href="#" class="btn btn-primary mt-1 mb-1 btn-sm"> <i class="zmdi zmdi-eye text-white"></i> Voir le profil</a>
+                                    <a href="{{route('profil')}}" class="btn btn-primary mt-1 mb-1 btn-sm" data-toggle="tooltip" data-placement="top" title=" Voir mon profil " > <i class="zmdi zmdi-eye text-white"></i> Voir le profil</a>
 
 
                                     {{-- <a href="http://localhost:5000/utilisateurs/9fb2ae90-f991-46c2-a03e-037039442b45/edit" class="btn btn-primary mt-1 mb-1 btn-sm"> <i class="zmdi zmdi-edit text-white"></i>  Editer le profile </a> --}}
@@ -122,8 +122,6 @@
 									</thead>
 									<tbody>
                                        @forelse ($coordonateurs as $coordonateur)
-
-
 										<tr>
 											<td>
                                             <img src="{{asset('assets/images/users/3.jpg')}}" alt="profile-user" class="brround  avatar-sm w-32 mr-2">
@@ -133,8 +131,13 @@
                                         <td>{{$coordonateur->prenom}}</td>
                                         <td>{{$coordonateur->tel}}</td>
 											<td>
-												<button type="button" class="badge {{$coordonateur->actif ? 'badge-success':'badge-danger'}}" style="border:none">{{$coordonateur->actif ? 'Ativé':'Désactivé'}}</button>
-											</td>
+                                                {{-- <button type="button" class="badge {{$coordonateur->actif ? 'badge-success':'badge-danger'}}" style="border:none">{{$coordonateur->actif ? 'Ativé':'Désactivé'}}</button> --}}
+                                            <button type="button" class="badge handleAcount {{$coordonateur->actif ?  'badge-success':'badge-danger'}}" data-toggle="tooltip" data-placement="top" title="{{$coordonateur->actif ? 'Cliquer pour désactiver':'Cliquer pour activer'}}" data-status="{{$coordonateur->actif ? 'Désactiver':'Activer'}}"   data-url="{{route('gerer-utilisateur', $coordonateur)}}" data-toggle="modal" data-clocation="{{url()->current()}}"
+                                                    data-target="#exampleModalDelete{{$coordonateur->id}}" style="border:none">  {{$coordonateur->actif ? 'Ativé':'Désactivé'}}</button>
+
+                                                {{-- <a href="{{route('gerer-utilisateur', $coordonateur)}}" class="badge {{$coordonateur->actif ? 'badge-success':'badge-danger'}}" data-toggle="tooltip" data-placement="top" title="{{$coordonateur->actif ? 'Cliquer pour désactiver':'Cliquer pour activer'}}">{{$coordonateur->actif ? 'Ativé':'Désactivé'}}  </a> --}}
+                                            </td>
+
 										</tr>
                                         @empty
                                         aucune donné
@@ -157,8 +160,93 @@
 		<script src="{{URL::asset('assets/plugins/peitychart/jquery.peity.min.js')}}"></script>
 		<script src="{{URL::asset('assets/plugins/peitychart/peitychart.init.js')}}"></script>
 		<!-- INTERNAL APEXCHART JS -->
-		<script src="{{URL::asset('assets/js/apexcharts.js')}}"></script>
+		{{-- <script src="{{URL::asset('assets/js/apexcharts.js')}}"></script> --}}
 
 		<!--INTERNAL  INDEX JS -->
-		<script src="{{URL::asset('assets/js/index1.js')}}"></script>
+		{{-- <script src="{{URL::asset('assets/js/index1.js')}}"></script> --}}
 @endsection
+@push('ajax_crud')
+<script src="{{asset('js/sweetalert.js')}}"></script>
+
+{{-- <script src="{{asset('js/ajax.js')}}"></script> --}}
+<script>
+    $('.handleAcount').click( function () {
+        var item = $(this);
+        var url = item.attr('data-url');
+        var clocation = item.attr('data-clocation');
+         var status = item.attr('data-status');// item.data('status')
+
+        swal({
+    title: "Confirmer",
+    text: " Voullez-vous "+status+" le compte  cet utilisateur ? ",
+    icon:  status == 'Désactiver' ? "warning" : "success",
+    buttons: {
+        confirm: {
+          text: status,
+          value: true,
+          visible: true,
+          className: "btn-sm",
+          closeModal: true
+        },
+        cancel: {
+          text: "Annuler",
+          value: false,
+          visible: true,
+          className: "btn-sm",
+          closeModal: true,
+        }
+      },
+    dangerMode: status == 'Désactiver' ? true : false,
+  })
+  .then((willDelete) => {
+    if (willDelete) {
+        $('#loader').show();
+      $.ajax({
+          url: item.attr('data-url'),
+           data: { "_token": "{{ csrf_token() }}" },
+          success: function (response) {
+            // item.parent().parent().hide();
+           location.href = clocation;
+            swal({
+            position: 'center',
+            icon: 'success',
+            title: 'Succès',
+            text: 'Traitement effectué',
+            button: false,
+            timer: 2500
+          })
+           $('#loader').hide();
+          },
+          error: function(err){
+              console.log('----------------------------error-------------------------');
+              console.log(err);
+              item.parent().parent().hide();
+              location.href = clocation;
+              swal({
+            position: 'center',
+            icon: 'error',
+            title: 'Echec',
+            title: 'Opération échouée',
+            button: false,
+            timer: 2500
+          })
+          $('#loader').hide();
+          }
+        });
+    }
+
+    else {
+    swal({
+        position: 'center',
+        icon: 'info',
+        title: 'Info',
+        text: 'Opération annulée',
+        button:false,
+        timer: 1500
+
+    });
+  }
+  });
+    })
+</script>
+@endpush
