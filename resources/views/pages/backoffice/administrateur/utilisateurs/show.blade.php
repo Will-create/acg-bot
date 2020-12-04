@@ -189,14 +189,14 @@
                         </div>
 
                     </div>
-                    {{-- <div class="tab-content">
+                    <div class="tab-content">
                         <div class="tab-pane active show" id="tab-51">
                             <div class="card">
                                 <div class="card-body">
                                     <div class="row profie-img">
                                         <div class="col-md-12">
                                             <div class="media-heading">
-                                                <h5><strong>Description</strong></h5>
+                                                <h5><strong>Biographie</strong></h5>
                                             </div>
                                             <p>
                                                 Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus</p>
@@ -208,7 +208,7 @@
 
                         </div>
 
-                    </div> --}}
+                    </div>
                 </div><!-- COL-END -->
             </div>
             <!-- ROW-1 CLOSED -->

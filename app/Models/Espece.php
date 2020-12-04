@@ -14,7 +14,7 @@ class Espece extends Model
         'photo',
         'famille',
         'nom_scientifique',
-        'type',
+        'regne',
         'ordre_id'
     ];
 
@@ -28,5 +28,5 @@ class Espece extends Model
     public function ordre(){
         return $this->belongsTo('App\Models\Ordre', 'ordre_id', 'id');
     }
-    
+
 }

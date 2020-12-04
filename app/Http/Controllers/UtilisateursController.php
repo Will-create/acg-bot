@@ -165,6 +165,7 @@ class UtilisateursController extends Controller
     {
 
         $previousUrl = str_replace(url('/'), '', url()->previous());
+        
         $path = null;
         if ($request->profile_photo_path) {
             $path = $request->profile_photo_path->store('profile_photo_path');

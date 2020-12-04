@@ -23,8 +23,8 @@
     <div>
         <h1 class="page-title">Liste des types de crime</h1>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Moyens de paiment</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Accueil</li>
+        <li class="breadcrumb-item"><a href="{{route('accueil')}}">Accueil</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Type de crime</li>
         </ol>
     </div>
 
@@ -53,7 +53,7 @@
                             <tr>
                                 <th class="wd-15p">Désignation</th>
                                 {{-- <th class="wd-15p">Description</th> --}}
-                                <th>Actions</th>
+                                {{-- <th>Actions</th> --}}
                             </tr>
                         </thead>
                         <tbody>
@@ -63,7 +63,7 @@
                             <tr>
                                 <td>{{ucfirst($naturesCrime->nom)}}</td>
                                 {{-- <td>{{ucfirst($naturesCrime->description)}}</td> --}}
-                                <td>
+                                {{-- <td>
                                     </a>
                                     <button class="btn btn-warning text-left btn-sm" data-toggle="modal"
                                         data-target="#largeModalDisplay{{$naturesCrime->id}}">
@@ -159,43 +159,8 @@
                                         data-target="#exampleModalDelete{{$naturesCrime->id}}"><i
                                             class="fa fa-trash"></i></button>
 
-                                    {{-- <div class="modal" id="exampleModalDelete{{$naturesCrime->id}}" tabindex="-1"
-                                        role="dialog" aria-labelledby="exampleModalDelete" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalDelete">Suppression de <strong> {{ucfirst($naturesCrime->nom)}} </strong>
-                                                         <span class="green-text"> </h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                        aria-label="Close">
-                                                        <span aria-hidden="true">×</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <p> Voullez-vous confirmer la suppression ?
-                                                    </p>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <form action="{{route('nature_crimes.destroy', $naturesCrime)}}"
-                                                        method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                    <input type="hidden" name="nature_crimes_id" value="{{ucfirst($naturesCrime->uuid)}}">
-                                                        <button type="submit" class="btn btn-danger ">
-                                                            <i class="fa fa-trash"></i>
-                                                            <span>Confirmer la suppression</span>
-                                                        </button>
-                                                        <button type="reset" class="btn btn-success"
-                                                            data-dismiss="modal">
-                                                            <i class="fa fa-trash"></i>
-                                                            <span>Annuler</span>
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div> --}}
-                                </td>
+
+                                </td> --}}
                             </tr>
                             @endforeach
 

@@ -16,7 +16,7 @@
                 <!-- PAGE-HEADER -->
 				<div class="page-header">
 					<div>
-						<h1 class="page-title">Liste des Rôles utilisateurs</h1>
+						<h1 class="page-title">Liste des rôles utilisateurs</h1>
 						<ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{route('accueil')}}">Accueil</a></li>
 							<li class="breadcrumb-item active" aria-current="page">Rôles utilisateurs</li>
@@ -39,7 +39,7 @@
 					<div class="col-md-12 col-lg-12">
 						<div class="card">
 							<div class="card-header">
-								<h3 class="card-title">Liste des Rôles</h3>
+								<h3 class="card-title">Liste des rôles</h3>
 							</div>
 							<div class="card-body">
 								<div class="table-responsive">
@@ -55,9 +55,9 @@
 										<tbody>
                                             @foreach ($roles as $role)
 											<tr>
-												<td> <a  class="text-dark" href="{{route('roles.show', $role->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" > {{$role->designation}} </a></td>
-												<td> <a  class="text-dark" href="{{route('roles.show', $role->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" > {{substr($role->description,1-1,33)}}... </a></td>
-												<td> <a  class="text-dark" href="{{route('roles.show', $role->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" >{{$role->utilisateurs->count()}}</a></td>
+												<td>   {{$role->designation}} </td>
+												<td>   {{substr($role->description,1-1,33)}}... </td>
+												<td>  {{$role->utilisateurs->count()}}</td>
                                             </tr>
                                             @endforeach
 

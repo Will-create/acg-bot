@@ -46,7 +46,7 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="float-left">
-                                <h3 class="card-title">{{$espece->nom}}</h3>
+                                <h3 class="card-title">{{ucFirst($espece->nom)}}</h3>
                             </div>
                             <div class="clearfix"></div>
                         </div>
@@ -54,19 +54,27 @@
                             <img src="{{asset('storage/'.$espece->photo)}}" style="min-width:100%; object-fit:cover; object-position: 50% 50%;" alt="" srcset="">
                                 <br><br>
                             <div  id="profile-log-switch">
-                                
-                                <strong>Famille :</strong> {{$espece->famille}}
-                                        <br><br>
-                                <strong>Nom Scientifique :</strong> {{$espece->nom_scientifique}}
-                                        <br><br>
-                                <strong>Type :</strong> {{$espece->type}}
-                                        <br><br>
-                                <strong>Ordre :</strong> {{$espece->ordre->nom}}
+
+                                <dl class="dl">
+                                    <dt>Famille :</dt>
+                                    <dd> {{$espece->famille}} </dd>
+                                    <dt>Nom Scientifique :</dt>
+                                    <dd> {{$espece->nom_scientifique}}
+                                    </dd>
+                                    <dt>Règne :</dt>
+                                    <dd> {{ucFirst($espece->regne)}}</dd>
+                                    <dt>Ordre :</dt>
+                                    <dd>
+                                        {{ucFirst($espece->ordre->nom)}}
+                                    </dd>
+                                </dl>
+
+
                                         <br><br>
                             </div>
                         </div>
 
-                    
+
                     </div>
 
 
@@ -97,15 +105,15 @@
                     <a href="{{ route('especes.index') }}" class="btn btn-dark"> <span>
                             <i class="fe fe-close"></i>
                         </span><i class="fa fa-times"></i> Retour</a>
-        
+
                     <a href="{{ route('especes.edit', $espece->uuid) }}" class="btn btn-primary">
                         <i class="fa fa-edit"></i> Modifier</a>
-        
+
                     <button type="button" class="btn btn-danger  mb-1" data-toggle="modal"
-                        data-target="#exampleModalDelete{{ $espece->id }}"><i class="fa fa-trash"></i></button>
+                        data-target="#exampleModalDelete{{ $espece->id }}"><i class="fa fa-trash"></i> Supprimer</button>
                 </div>
             </div>
-        
+
             <div class="modal" id="exampleModalDelete{{ $espece->id }}" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalDelete" aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -137,7 +145,7 @@
                     </div>
                 </div>
             </div>
-        
+
             <!-- ROW-1 CLOSED -->
 @endsection
 

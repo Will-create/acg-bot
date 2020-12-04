@@ -23,13 +23,18 @@
             <h1 class="page-title"> {!! $titrePage !!} </h1>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('accueil') }}">Accueil</a></li>
-                <li class="breadcrumb-item active" aria-current="page">{{ $btnAction }}</li>
+                @if(Route::currentRouteName() == 'especes.create')
+                <li class="breadcrumb-item active" aria-current="page"> Nouveau </li>
+                @else
+                <li class="breadcrumb-item active" aria-current="page"> Mise à jour </li>
+
+                @endif
             </ol>
         </div>
         <div class="ml-auto pageheader-btn">
             <a class="btn btn-primary" href="{{ route('especes.index') }}"> <span>
                     <i class="fe fe-list"></i>
-                </span> Toutes les unités</a>
+                </span> Toutes les espèces</a>
             </button>
 
         </div>
@@ -45,7 +50,7 @@
                 @method('PUT')
     @endif
     @csrf
-    @include('pages.backoffice.especes._form', ['btnAction' => $btnAction, 'unite' => $espece ])
+    @include('pages.backoffice.especes._form', ['btnAction' => $btnAction, 'unite' => $espece])
     </form>
 @stop
 @section('js')
