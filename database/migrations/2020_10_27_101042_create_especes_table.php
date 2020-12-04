@@ -13,7 +13,7 @@ class CreateEspecesTable extends Migration
      */
     public function up()
     {
-        
+
         Schema::create('especes', function (Blueprint $table) {
             $table->id();
             $table->uuid('uuid');
@@ -21,7 +21,7 @@ class CreateEspecesTable extends Migration
             $table->string('famille');
             $table->string('statut_uicn')->nullable();
             $table->string('statut_cites')->nullable();
-            $table->enum('type', ['espece animale', 'espece vegetale']);
+            $table->enum('regne', ['animal', 'vegetal']);
             $table->unsignedBigInteger('ordre_id');
             $table->string('nom_scientifique')->nullable();
             $table->mediumText('photo')->nullable();

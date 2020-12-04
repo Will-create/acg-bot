@@ -29,7 +29,12 @@ Auth::routes();
 
     Route::resource('unites', 'UniteController');
     Route::resource('localites', 'LocaliteController');
-    Route::resource('especes', 'EspeceController');
+    Route::resource('especes', 'EspeceController')->except('create');
+    // Route::get('especes', 'EspeceController@index')->name('especes.index');
+    Route::get('especes/regnes/{regne}', 'EspeceController@regne')->name('especes.regne.show');
+    Route::get('espece/{regne?}', 'EspeceController@create')->name('especes.create');
+
+
     Route::resource('confiscations', 'CrimeConfiscationController');
 
     Route::resource('type_crimes', 'TypeCrimeController');

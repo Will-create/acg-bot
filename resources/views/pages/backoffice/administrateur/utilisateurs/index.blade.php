@@ -57,7 +57,7 @@
 												<th class="wd-20p">Email</th>
 												<th class="wd-20p">Role</th>
 												<th class="wd-15p">Téléphone</th>
-                                                <th>Actions</th>
+                                                {{-- <th>Actions</th> --}}
 											</tr>
 										</thead>
 										<tbody>
@@ -68,12 +68,12 @@
 												<td> <a class="text-dark" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails de l'utilisateur" href="{{route('utilisateurs.show', $utilisateur)}}">{{$utilisateur->email}} </a></td>
 												<td> <a class="text-dark" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails de l'utilisateur" href="{{route('utilisateurs.show', $utilisateur)}}">{{$utilisateur->role->designation}} </a></td>
                        <td> <a class="text-dark" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails de l'utilisateur" href="{{route('utilisateurs.show', $utilisateur)}}">{{$utilisateur->tel}} </a></td>
-                                                <td>
-                                                    {{-- <a href="{{route('gerer-utilisateur', $utilisateur)}}" class="badge {{$utilisateur->actif ? 'badge-success':'badge-danger'}}" title="{{$utilisateur->actif ? 'Cliquer pour désactiver':'CLiquer pour activer'}}">{{$utilisateur->actif ? 'Ativé':'Désactivé'}}  </a> --}}
+                                                {{-- <td>
+                                                    <a href="{{route('gerer-utilisateur', $utilisateur)}}" class="badge {{$utilisateur->actif ? 'badge-success':'badge-danger'}}" title="{{$utilisateur->actif ? 'Cliquer pour désactiver':'CLiquer pour activer'}}">{{$utilisateur->actif ? 'Ativé':'Désactivé'}}  </a>
                                                     <button type="button" class="badge handleAcount {{$utilisateur->actif ?  'badge-success':'badge-danger'}}" data-toggle="tooltip" data-placement="top" title="{{$utilisateur->actif ? 'Cliquer pour désactiver':'Cliquer pour activer'}}" data-status="{{$utilisateur->actif ? 'Désactiver':'Activer'}}"   data-url="{{route('gerer-utilisateur', $utilisateur)}}" data-toggle="modal" data-clocation="{{url()->current()}}"
                                                          style="border:none">  {{$utilisateur->actif ? 'Ativé':'Désactivé'}}</button>
-                                                    {{-- <a href="{{route('gerer-utilisateur', $utilisateur)}}" class="badge {{$utilisateur->actif ? 'badge-success':'badge-danger'}}" data-toggle="tooltip" data-placement="top" title="{{$utilisateur->actif ? 'Cliquer pour désactiver':'Cliquer pour activer'}}">{{$utilisateur->actif ? 'Ativé':'Désactivé'}}  </a> --}}
-                                                </td>
+                                                    <a href="{{route('gerer-utilisateur', $utilisateur)}}" class="badge {{$utilisateur->actif ? 'badge-success':'badge-danger'}}" data-toggle="tooltip" data-placement="top" title="{{$utilisateur->actif ? 'Cliquer pour désactiver':'Cliquer pour activer'}}">{{$utilisateur->actif ? 'Ativé':'Désactivé'}}  </a>
+                                                </td> --}}
                                             </tr>
                                             @endforeach
 

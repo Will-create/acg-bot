@@ -22,24 +22,49 @@ class EspeceController extends Controller
     public function index()
     {
         $especes=Espece::orderBy('nom','asc')->get();
-
-        return view('pages.backoffice.especes.index',compact('especes'));
+        $titre = 'Liste des espèses';
+        $subtitle = 'Espèces';
+        $regne = null;
+        return view('pages.backoffice.especes.index',compact('especes', 'titre', 'subtitle', 'regne'));
     }
-    public function create()
+    public function regne($regne)
+    {
+        $especes=Espece::where('regne', $regne)->orderBy('nom','asc')->get();
+        switch ($regne) {
+            case 'animal':
+                $regne= 'animal';
+                $subtitle = ' Espèces animales';
+                break;
+            case 'vegetal':
+                $regne= 'végétal';
+                $subtitle = ' Espèces végétales';
+
+                break;
+            default:
+              abort(404);
+                break;
+        }
+        $titre = 'Liste des espèses '. $regne.'s';
+
+        return view('pages.backoffice.especes.index',compact('especes', 'titre', 'subtitle','regne'));
+    }
+
+    public function create($regne = null)
     {
         return view('pages.backoffice.especes.createdit', [
-            'espece'                      =>  new Espece(),            
+            'espece'                      =>  new Espece(),
             'ordres'                      =>  Ordre::all(),
-            'titrePage'                   => "Ajouter une nouvelle espèce",
-            'btnAction'                   => "Ajouter"
+            'titrePage'                   => "Ajouter une espèce",
+            'btnAction'                   => "Enregistrer",
+            'regne'                       => $regne
         ]);
     }
     public function store(Request $request)
-    {   
+    {
         $data=request()->validate([
             'nom'=> ['required','string','max:255','min:3','unique:especes'],
             'famille'=> ['required','string','max:255','min:3'],
-            'type'=> ['required','string','max:255'],
+            'regne'=> ['required','string','max:255'],
             'ordre_id'=> ['required','integer'],
             'nom_scientifique'=> ['required','string','max:255','min:3'],
             'photo'=> ['image'],
@@ -54,13 +79,13 @@ class EspeceController extends Controller
         }
           $espece->nom=$data['nom'];
           $espece->famille=$data['famille'];
-          $espece->type=$data['type'];
+          $espece->regne=$data['regne'];
           $espece->ordre_id=$data['ordre_id'];
           $espece->nom_scientifique=$data['nom_scientifique'];
           $espece->uuid=Str::uuid();
-          $espece->save();
+         $espece->save();
           $request->session()->flash('status', 'Espèce ajoutée avec succès');
-          return redirect()->route('especes.index');
+          return redirect()->route('especes.show', $espece->uuid);
     }
     public function show($uuid)
     {
@@ -72,10 +97,10 @@ class EspeceController extends Controller
     public function edit($uuid)
     {
             return view('pages.backoffice.especes.createdit', [
-                'espece'            =>  Espece::where('uuid',$uuid)->first(),            
+                'espece'            =>Espece::where('uuid',$uuid)->first(),
                 'ordres'            =>  Ordre::all(),
                 'titrePage'         => "Mise a jours de ".Espece::where('uuid',$uuid)->first()->nom,
-                'btnAction'         => "Mettre a jours"
+                'btnAction'         => "Mettre a jour"
             ]);
     }
     public function update(Request $request, $uuid)
@@ -83,7 +108,7 @@ class EspeceController extends Controller
         $data=request()->validate([
             'nom'=> ['required','string','max:255','min:3'],
             'famille'=> ['required','string','max:255','min:3'],
-            'type'=> ['required','string','max:255'],
+            'regne'=> ['required','string','max:255'],
             'ordre_id'=> ['required','integer'],
             'nom_scientifique'=> ['required','string','max:255','min:3'],
             'photo'=> ['image'],
@@ -98,13 +123,13 @@ class EspeceController extends Controller
         }
           $espece->nom=$data['nom'];
           $espece->famille=$data['famille'];
-          $espece->type=$data['type'];
+          $espece->regne=$data['regne'];
           $espece->ordre_id=$data['ordre_id'];
           $espece->nom_scientifique=$data['nom_scientifique'];
           $espece->uuid=Str::uuid();
-          $espece->save();
+           $espece->save();
           $request->session()->flash('status', 'Espèce mise a jours avec succès');
-          return redirect()->route('especes.index');
+          return redirect()->route('especes.show', $espece->uuid);
     }
     public function destroy(Request $request,$uuid)
     {

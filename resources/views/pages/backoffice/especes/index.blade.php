@@ -18,17 +18,17 @@
 
 				<div class="page-header">
 					<div>
-						<h1 class="page-title">Liste des Espèces</h1>
+						<h1 class="page-title">{{$titre}}</h1>
 						<ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{route('accueil')}}">Accueil</a></li>
-							<li class="breadcrumb-item active" aria-current="page">Espèces</li>
+							<li class="breadcrumb-item active" aria-current="page">{{$subtitle}}</li>
 						</ol>
 					</div>
 					<div class="ml-auto pageheader-btn">
-                    <a class="btn btn-primary" href="{{route('especes.create')}}">  <span>
+                    <a class="btn btn-primary" href="{{route('especes.create', $regne)}}">  <span>
                             <i class="fe fe-plus"></i>
                         </span>
-                        Ajouter une Espèce</a>
+                    Ajouter une espèce @if($regne) {{$regne.'e'}} @endif</a>
 
 
                     </button>
@@ -44,28 +44,27 @@
 					<div class="col-md-12 col-lg-12">
 						<div class="card">
 							<div class="card-header">
-								<h3 class="card-title">Liste des Espèces</h3>
+								<h3 class="card-title"> {{$titre}}</h3>
 							</div>
 							<div class="card-body">
 								<div class="table-responsive">
 									<table id="data-table1" class="table table-striped table-bordered text-nowrap w-100 table-sm">
 										<thead>
 											<tr>
-												<th class="wd-15p">Photo</th>
+												{{-- <th class="wd-15p">Photo</th> --}}
 												<th class="wd-15p">Nom</th>
 												<th class="wd-15p">Famille</th>
-												<th class="wd-20p">Nom scientifique</th>
-												<th>Type</th>
+												<th>Règne</th>
 											</tr>
 										</thead>
 										<tbody>
                                             @foreach ($especes as $espece)
 											<tr>
-												<td> <a class="text-dark" href="{{route('especes.show',  $espece->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" > <div class="col-auto"><span class="avatar brround avatar-md d-block cover-image" data-image-src="{{asset('storage').'/'.$espece->photo}}"></span></div> </a></td>
+												{{-- <td> <a class="text-dark" href="{{route('especes.show',  $espece->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" > <div class="col-auto"><span class="avatar brround avatar-md d-block cover-image" data-image-src="{{asset('storage').'/'.$espece->photo}}"></span></div> </a></td> --}}
 												<td> <a class="text-dark" href="{{route('especes.show',  $espece->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" > {{$espece->nom}} </a></td>
 												<td> <a class="text-dark" href="{{route('especes.show',  $espece->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" > {{$espece->famille}} </a></td>
-												<td> <a class="text-dark" href="{{route('especes.show',  $espece->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" >{{$espece->nom_scientifique}}</a></td>
-												<td> <a class="text-dark" href="{{route('especes.show',  $espece->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" > {{ucfirst($espece->type)}} </a></td>
+												{{-- <td> <a class="text-dark" href="{{route('especes.show',  $espece->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" >{{$espece->nom_scientifique}}</a></td> --}}
+												<td> <a class="text-dark" href="{{route('especes.show',  $espece->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" > {{ucfirst($espece->regne)}} </a></td>
                                             </tr>
                                             @endforeach
 										</tbody>

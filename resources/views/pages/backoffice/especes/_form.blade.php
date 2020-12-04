@@ -1,4 +1,3 @@
-
         <div class="card-body">
             <div class="row">
                 <div class="col-md-6">
@@ -17,7 +16,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-label" for="famille">Famille <strong class="text-danger">*</strong></label>
-                                    <input class="form-control"  name="famille" placeholder="Téléphone" type="text"  value="{{old('famille') ?? $espece->famille}}" required>
+                                    <input class="form-control"  name="famille" placeholder="Famille" type="text"  value="{{old('famille') ?? $espece->famille}}" required>
                                     @error('famille')
                                     <span class="helper-text red-text">
                                         <strong>{{ $message }}</strong>
@@ -27,11 +26,11 @@
                             </div>
                         </div>
                     <div class="form-group">
-                        <label class="form-label" for="organisation">Ordres <strong class="text-danger">*</strong></label>
+                        <label class="form-label" for="ordre_id">Ordres <strong class="text-danger">*</strong></label>
                         <select name="ordre_id" id="ordre_id" class="form-control custom-select select2">
                             <option value="{{Route::currentRouteName() == 'especes.edit' ? $espece->ordre->id : '' }}" selected >{{Route::currentRouteName() == 'especes.edit' ? ucfirst($espece->ordre->nom) : 'Sélectionner' }}</option>
                             @foreach ($ordres as $ordre)
-                        <option value="{{$ordre->id}}">{{$ordre->nom}}</option>
+                        <option value="{{$ordre->id}}">{{ ucFirst( $ordre->nom)}}</option>
                             @endforeach
                         </select>
                         @error('ordre_id')
@@ -40,8 +39,6 @@
                         </span>
                         @enderror
                     </div>
-               
-                   
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
@@ -53,13 +50,16 @@
                         </span>
                         @enderror
                     </div>
-               
                 <div class="form-group">
-                    <label class="form-label" for="organisation">Type d'espece <strong class="text-danger">*</strong></label>
-                    <select name="type" id="type" class="form-control custom-select select2">
-                        <option value="{{Route::currentRouteName() == 'especes.edit' ? $espece->type : '' }}" selected >{{Route::currentRouteName() == 'especes.edit' ? ucfirst( $espece->type) : 'Sélectionner' }}</option>
-                        <option value="espece animale">Espece Animale</option>
-                        <option value="espece vegetale">Espece Végétale</option> 
+                    <label class="form-label" for="organisation"> Règne <strong class="text-danger">*</strong></label>
+                    <select name="regne" id="type" class="form-control custom-select select2">
+                        @if ( isset ($regne) && $regne)
+                    <option value="{{$regne}}"> {{ucFirst($regne)}}</option>
+                        @else
+                        <option value="{{Route::currentRouteName() == 'especes.edit' ? $espece->regne : '' }}" selected >{{Route::currentRouteName() == 'especes.edit' ? ucfirst( $espece->regne) : 'Sélectionner' }}</option>
+                        <option value="animal"> Animal</option>
+                        <option value="vegetal"> Végétal</option>
+                        @endif
                     </select>
                     @error('type')
                     <span class="helper-text red-text">
@@ -67,11 +67,11 @@
                     </span>
                     @enderror
                 </div>
-                </div>            
+                </div>
                 <div class="col-md-12 ">
                     <div class="card shadow">
                         <div class="card-header">
-                            <h3 class="mb-0 card-title">Veuillez ajouter un logo  <strong class="text-danger">*</strong></h3>
+                            <h3 class="mb-0 card-title"> Photo d'illustration  <strong class="text-danger">*</strong></h3>
                         </div>
                         <div class="card-body">
                             <input type="file" class="dropify" id="logo" data-max-file-size="1M" name="photo" accept="" />

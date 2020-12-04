@@ -52,14 +52,15 @@
                                     <h4 class="mb-1">{{$utilisateur->nom. ' ' . $utilisateur->prenom}}</h4>
                                         <h6 class="text-muted mb-4">Ajouté le : {{formatDate($utilisateur->created_at)}}</h6>
 @if ($utilisateur->actif == true)
-<a href="{{route('gerer-utilisateur', $utilisateur)}}" class="btn btn-success mt-1 mb-1 btn-sm" data-toggle="tooltip" data-placement="top" title="Cliquer pour désactiver"> <i class="zmdi zmdi-rss text-white"></i> Compte  activé </a>
+<a  @if($utilisateur->id != Auth::user()->id)   href="{{route('gerer-utilisateur', $utilisateur)}}" @endif  class="btn btn-success mt-1 mb-1 btn-sm" data-toggle="tooltip" data-placement="top" title="Cliquer pour désactiver" > <i class="zmdi zmdi-rss text-white"></i> Compte  activé </a>
 
 @else
 
-<a href="{{route('gerer-utilisateur', $utilisateur)}}" class="btn btn-danger mt-1 mb-1 btn-sm" data-toggle="tooltip" data-placement="top" title="Cliquer pour activer"> <i class="zmdi zmdi-rss text-white"></i>  Compte désacivé </a>
+<a  @if($utilisateur->id != Auth::user()->id)   href="{{route('gerer-utilisateur', $utilisateur)}}" @endif   class="btn btn-danger mt-1 mb-1 btn-sm" data-toggle="tooltip" data-placement="top" title="Cliquer pour activer"  > <i class="zmdi zmdi-rss text-white"></i>  Compte désacivé </a>
 @endif
 
-                                    <a href="{{route('utilisateurs.edit', $utilisateur)}}" class="btn btn-primary mt-1 mb-1 btn-sm"> <i class="zmdi zmdi-edit text-white"></i>  Editer le profile </a>
+
+                                    <a  href="{{route('utilisateurs.edit', $utilisateur)}}" class="btn btn-primary mt-1 mb-1 btn-sm"> <i class="zmdi zmdi-edit text-white"></i>  Editer le profile </a>
                                     </div>
                                 </div>
                             </div>
@@ -96,7 +97,9 @@
                     </div>
 
 
+                    @if ($utilisateur->id != Auth::user()->id)
                     <button type="button" class="btn btn-outline-danger btn-block  mb-1" data-toggle="modal" data-target="#exampleModalDelete{{$utilisateur->id}}"><i class="fa fa-trash"></i> Supprimer le compte</button>
+                    @endif
 
                     <div class="modal" id="exampleModalDelete{{$utilisateur->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalDelete" aria-hidden="true">
                         <div class="modal-dialog" role="document">
@@ -193,7 +196,7 @@
                                     <div class="row profie-img">
                                         <div class="col-md-12">
                                             <div class="media-heading">
-                                                <h5><strong>Description</strong></h5>
+                                                <h5><strong>Biographie</strong></h5>
                                             </div>
                                             <p>
                                                 Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus</p>

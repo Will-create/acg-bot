@@ -101,7 +101,11 @@ class UtilisateursController extends Controller
         $data =   $request->validate([
             'nom'                       => ['required', 'string', 'max:255'],
             'prenom'                    => ['required', 'string', 'max:255'],
+<<<<<<< HEAD
             'tel'                       => 'required|string|min:8|max:20',
+=======
+            'tel'                       => ['required', 'string', 'min:8', 'max:20'],
+>>>>>>> dffe4ce2de1f47e2c87730a663000dfd0c336d76
             'email'                     => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'role_id'                   => ['required','integer'],
             'pay_id'                    => ['required','integer'],
@@ -138,7 +142,7 @@ class UtilisateursController extends Controller
             $request->session()->flash('status', 'Utilisateur créé avec succès, Nous n\'avons pas pu envoyer le mail l\'utilisateur');
         }
 
-        return redirect()->route('utilisateurs.show',$user->uuid);
+        return redirect()->route('utilisateurs.show', $user->uuid);
     }
     
 
@@ -161,6 +165,7 @@ class UtilisateursController extends Controller
     {
 
         $previousUrl = str_replace(url('/'), '', url()->previous());
+        
         $path = null;
         if ($request->profile_photo_path) {
             $path = $request->profile_photo_path->store('profile_photo_path');
@@ -180,7 +185,7 @@ class UtilisateursController extends Controller
                 'prenom'                    => $request['prenom'],
                 'tel'                       => $request['tel'],
                 'email'                     => $request['email'],
-                // 'unite_id'                  => $data['unite_id'],
+                'unite_id'                  => $request['unite_id'],
                 'profile_photo_path'        => $path
             ]);
         } else {
@@ -200,7 +205,7 @@ class UtilisateursController extends Controller
                 'tel'                       => $request['tel'],
                 'email'                     => $request['email'],
                 'role_id'                   => $request['role_id'],
-                // 'unite_id'                  => $data['unite_id'],
+                'unite_id'                  => $request['unite_id'],
                 'titre'                     => $request['titre'],
                 'profile_photo_path'        => $path
             ]);

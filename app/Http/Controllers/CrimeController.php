@@ -20,22 +20,21 @@ class CrimeController extends Controller
 
     public function index()
     {
-        
-        return view('pages.backoffice.crimes.index', []);
+        return view('pages.backoffice.crimes.index', ['crimes'  => Crime::all()]);
     }
 
-  
+
     public function create()
     {
-      
+
         return view('pages.backoffice.crimes.create', [
             'pays'                           => Pay::all(),
             'unites'                         => Unite::all(),
-            'especes'                        => Espece::all(), 
+            'especes'                        => Espece::all(),
             'aires'                          => AireProtegee::all()
 
         ]);
-        
+
     }
 
     /**
@@ -83,14 +82,14 @@ class CrimeController extends Controller
                         'pays_destination'                              => ['required','integer'],
                         'aire_protegee_id'                              => ['nullable','integer'],
                         'date_abattage'                                 => ['required','date'],
-                        
+
                         ]);
                         $crime->pays_origine_produit                    = $request->pays_origine_produit;
                         $crime->pays_destination                        = $request->pays_destination;
                         $crime->aire_protegee_id                        = $request->aire_protegee_id;
                         $crime->date_abattage                           = $request->date_abattage;
-                        
-                        
+
+
                         $crime->save();
                         return $request->uuid = $crime->uuid;
 
@@ -103,20 +102,20 @@ class CrimeController extends Controller
                     # code...
                     if ($request->uuid){
 
- 
+
                         $crime = Crime::where('uuid',$request->uuid)->first();
                         $data =  $request->validate([
                         'lien_terrorisme'                          => ['required','integer'],
                         'veto'                                     => ['required','integer'],
                         'victime'                                  => ['nullable','string','max:255','min:3'],
-                                                
+
                         ]);
                         $crime->lien_terrorisme                         = $request->lien_terrorisme;
                         $crime->veto                                    = $request->veto;
                         $crime->victime                                 = $request->victime;
-                        
+
                         $crime->save();
-                        
+
 
                     }else{
 
@@ -127,26 +126,26 @@ class CrimeController extends Controller
            }
 
 
-       
-                
 
 
-                
-           
-                
 
 
-                
-           
-            
-            
-
-       
 
 
-        
 
-        
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 
     /**
