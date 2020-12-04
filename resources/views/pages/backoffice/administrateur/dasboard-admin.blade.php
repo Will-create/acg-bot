@@ -56,7 +56,7 @@
 									</div>
 								</div>
 							</div>
-							<span class="fs-12 text-muted"> <strong>0.15%</strong><i class="mdi mdi-arrow-down"></i> <span class="text-muted fs-12 ml-0 mt-1">Signalés ce mois</span></span>
+							{{-- <span class="fs-12 text-muted"> <strong>0.15%</strong><i class="mdi mdi-arrow-down"></i> <span class="text-muted fs-12 ml-0 mt-1">Signalés ce mois</span></span> --}}
 						</div>
 					</div>
 				</div>
@@ -117,7 +117,7 @@
 											<th>Nom</th>
 											<th>Prenom</th>
 											<th>tel</th>
-											<th>Status</th>
+											<th>Statut</th>
 										</tr>
 									</thead>
 									<tbody>
