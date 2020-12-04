@@ -33,13 +33,11 @@
                     <i class="fe fe-list"></i>
                 </span> Tous les types d'unité</a>
             </button>
-
         </div>
     </div>
     <!-- PAGE-HEADER END -->
 @endsection
 @section('content')
-
     @if (Route::currentRouteName() == 'type_unites.create')
         <form action="{{ route('type_unites.store') }}" method="post" enctype="multipart/form-data">
         @else
@@ -49,13 +47,11 @@
     @csrf
     @include('pages.backoffice.type_unites._form', ['btnAction' => $btnAction, 'type' => $type ])
     </form>
-
 @stop
 @section('js')
     <script src="{{ URL::asset('assets/plugins/fileuploads/js/fileupload.js') }}"></script>
     <script src="{{ URL::asset('assets/plugins/fileuploads/js/file-upload.js') }}"></script>
     <script src="{{ URL::asset('assets/plugins/datatable/jquery.dataTables.min.js') }}"></script>
-
     <!-- INTERNALPRISM JS -->
     <script src="{{ URL::asset('assets/plugins/prism/prism.js') }}"></script>
     <!-- INTERNAL TELEPHONE JS -->

@@ -37,7 +37,6 @@
     <!-- PAGE-HEADER END -->
 @endsection
 @section('content')
-
     @if (Route::currentRouteName() == 'unites.create')
         <form action="{{ route('unites.store') }}" method="post" enctype="multipart/form-data">
         @else
@@ -48,6 +47,8 @@
     @include('pages.backoffice.unites._form', ['btnAction' => $btnAction, 'unite' => $unite ])
     </form>
 @stop
+{{-- CODE JS DE FILTRAGE --}}
+
 @section('js')
     <script src="{{ URL::asset('assets/plugins/fileuploads/js/fileupload.js') }}"></script>
     <script src="{{ URL::asset('assets/plugins/fileuploads/js/file-upload.js') }}"></script>

@@ -33,7 +33,6 @@
                                     </li>
                             </ul>
                         </li>
-
                         <li class="slide">
                             <a class="side-menu__item" data-toggle="slide" href="#">
                                 <i class="mdi mdi-scale-balance aide-icon"  ></i>
@@ -45,7 +44,6 @@
                                 <li><a class="slide-item" href="{{route('unites.create')}}"><span>Nouveau </span></a></li>
                                 <li class="slide">
                                     <a class="side-menu__item" data-toggle="slide" href="#">
-                                        <i class="mdi mdi-scale-balance aide-icon"  ></i>
                                         <span class="side-menu__label">Types d'unité</span><i class="angle fa fa-angle-right"></i>
                                     </a>
                                     <ul class="slide-menu">
@@ -55,8 +53,6 @@
                                 </li> 
                             </ul>
                         </li>
-
-
                         <li class="slide">
                             <a class="side-menu__item" data-toggle="slide" href="#">
                         
@@ -70,7 +66,6 @@
                                 <li><a class="slide-item" href="{{route('especes.create')}}"><span>Ajouter une espèces</span></a></li>
                             </ul>
                         </li>
-
                         <li class="slide">
                             <a class="side-menu__item" data-toggle="slide" href="#">
                                 <i class="mdi mdi-alert aide-icon"  ></i>
@@ -81,7 +76,6 @@
                             <li><a class="slide-item" href="{{route('crimes.create')}}"><span>Nouveau </span></a></li>
                             <li class="slide">
                                 <a class="side-menu__item" data-toggle="slide" href="#">
-                                    <i class="mdi mdi-alert aide-icon"  ></i>
                                     <span class="side-menu__label">Types de Crime</span><i class="angle fa fa-angle-right"></i>
                                 </a>
                                 <ul class="slide-menu">
@@ -91,12 +85,6 @@
                             </li> 
                             </ul>
                         </li>
-                        
-                        
-                        
-                        
-                        
-                        
                         <li>
                             <h3>Configurations</h3>
                         </li>
@@ -111,7 +99,6 @@
                                            
                                             <li class="slide">
                                                 <a class="side-menu__item" data-toggle="slide" href="#">
-                                                    <i class="mdi mdi-earth aide-icon"  ></i>
                                                     <span class="side-menu__label">Gestion des localités</span><i class="angle fa fa-angle-right"></i>
                                                 </a>
                                                 <ul class="slide-menu">
@@ -122,7 +109,6 @@
                                             </li>
                                         </ul>
                                     </li>
-
                         <li class="slide">
                             <a class="side-menu__item" data-toggle="slide" href="#">
                                 <i class="mdi mdi-rss aide-icon"  ></i>
@@ -133,8 +119,6 @@
                                 <li><a class="slide-item" href="#"><span>Nouveau </span></a></li>
                             </ul>
                         </li>
-
-                        
                         {{-- <li class="slide">
                             <a class="side-menu__item" data-toggle="slide" href="#">
                                 <i class="mdi mdi-rss aide-icon"  ></i>
@@ -158,13 +142,3 @@
                     </ul>
                     <br><br><br><br>
                 </aside>
-
-
-
-
-
-
-
-
-
-

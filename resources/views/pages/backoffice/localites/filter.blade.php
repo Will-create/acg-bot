@@ -139,7 +139,6 @@
     <script src="{{URL::asset('assets/plugins/fileuploads/js/fileupload.js')}}"></script>
     <script src="{{URL::asset('assets/plugins/fileuploads/js/file-upload.js')}}"></script>
     <script src="{{URL::asset('assets/plugins/datatable/jquery.dataTables.min.js')}}"></script>
-
     <script src="{{URL::asset('assets/plugins/datatable/dataTables.bootstrap4.min.js')}}"></script>
     <script src="{{URL::asset('assets/plugins/datatable/datatable.js')}}"></script>
     <script src="{{URL::asset('assets/plugins/datatable/dataTables.responsive.min.js')}}"></script>
@@ -151,16 +150,13 @@
     <script src="{{URL::asset('assets/plugins/datatable/fileexport/buttons.html5.min.js')}}"></script>
     <script src="{{URL::asset('assets/plugins/datatable/fileexport/buttons.print.min.js')}}"></script>
     <script src="{{URL::asset('assets/plugins/datatable/fileexport/buttons.colVis.min.js')}}"></script>
-
     <script src="{{URL::asset('assets/plugins/clipboard/clipboard.min.js')}}"></script>
     <script src="{{URL::asset('assets/plugins/clipboard/clipboard.js')}}"></script>
-
     <!-- INTERNALPRISM JS -->
     <script src="{{URL::asset('assets/plugins/prism/prism.js')}}"></script>
         <!-- INTERNAL TELEPHONE JS -->
     <script src="{{URL::asset('assets/plugins/telephoneinput/telephoneinput.js')}}"></script>
     <script src="{{URL::asset('assets/plugins/telephoneinput/inttelephoneinput.js')}}"></script>
-
     <script type="text/javascript">
     var modal = document.getElementById('largeModalAddUser');
         @if (count($errors) > 0)

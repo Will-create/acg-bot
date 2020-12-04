@@ -25,7 +25,7 @@ class LocaliteController extends Controller
         return view('pages.backoffice.localites.createdit', [
             'localite' => new Localite(),
             'pays' => Pay::orderBy('nom', 'asc')->get(),
-            'titrePage' => "Ajouter une nouvelle localité",
+            'titrePage' => "Ajout d'une nouvelle localité",
             'btnAction' => "Ajouter"
         ]);
     }
@@ -41,7 +41,7 @@ class LocaliteController extends Controller
           $localite->uuid=Str::uuid();
           $localite->save();
           $request->session()->flash('status', 'La localité '.$localite->nom.' est ajoutée avec succès !');
-          return redirect()->route('localites.index');
+          return redirect()->route('localites.show',$localite->uuid);
     }
     
     public function show(Localite $localite)
@@ -96,8 +96,8 @@ class LocaliteController extends Controller
           $localite->pays_id =$data['pays_id'];
           $localite->uuid=Str::uuid();
           $localite->save();
-         $request->session()->flash('status', 'La localité '.$localite->nom.' est mis  avec succès !');
-          return redirect()->route('localites.index');
+         $request->session()->flash('status', 'La localité '.$localite->nom.' est mise à jours avec succès !');
+          return redirect()->route('localites.show', $localite->uuid);
     }
     public function destroy(Request $request, Localite $localite)
     {

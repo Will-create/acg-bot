@@ -29,7 +29,7 @@
                             <h3 class="mb-0 card-title">Veuillez ajouter le drapeau du pays <strong class="text-danger">*</strong></h3>
                         </div>
                         <div class="card-body">
-                            <input type="file" class="dropify" id="icone" data-max-file-size="1M" name="icone" accept="" />
+                            <input type="file" class="dropify" id="icone" data-max-file-size="1M" name="icone" accept="image/*" />
                             @error('icone')
                         <span class="helper-text red-text">
                             <strong>{{ $message }}</strong>

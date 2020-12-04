@@ -26,7 +26,7 @@ class PayController extends Controller
     {
         return view('pages.backoffice.pays.createdit', [
             'pays' => new Pay(),
-            'titrePage' => "Ajouter un nouveau pays",
+            'titrePage' => "Ajout d'un nouveau pays",
             'btnAction' => "Ajouter"
         ]);
     }
@@ -57,7 +57,7 @@ class PayController extends Controller
           $pays->codeiso3_pays_origine =$data['codeiso3_pays_origine'];
           $pays->uuid=Str::uuid();
           $pays->save();
-          $request->session()->flash('status', 'pays ajoutée avec succès');
-          return redirect()->route('pays.index');
+          $request->session()->flash('status', 'pays ajouté avec succès');
+          return redirect()->route('pays.show', $pays->uuid);
     }
 }

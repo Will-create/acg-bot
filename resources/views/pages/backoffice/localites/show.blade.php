@@ -53,7 +53,7 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="card-body wideget-user-contact">
-                    <strong>Description :</strong> {{ $localite->pay->nom }}
+                    <strong>Pays :</strong> {{ $localite->pay->nom }}
                     <br><br>
                 </div>
             </div>

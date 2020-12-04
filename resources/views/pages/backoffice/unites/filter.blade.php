@@ -32,12 +32,8 @@
                     <a class="btn btn-primary" href="{{route('unites.create')}}"  >  <span>
                             <i class="fe fe-plus"></i>
                         </span>
-						Ajouter une unités</a>
-						<a class="btn btn-primary" href="{{URL::previous()}}"  >  <span>
-                            <i class="fe fe-array-right"></i>
-                        </span>
-                        Retour</a>
-
+						Ajouter une unité</a>
+	
 
                     </button>
 
@@ -127,8 +123,8 @@
 							</div><!-- COL-END -->
 						</div>
 						<div class="modal-footer">	
-						<a href="{{ URL::previous() }}" class="btn btn-primary"> <span>
-								<i class="fe fe-close"></i>
+						<a href="{{ URL::previous() }}" class="btn btn-dark"> <span>
+							<i class="fa fa-times" aria-hidden="true"></i>
 							</span> Retour</a>
 						
 						</div>

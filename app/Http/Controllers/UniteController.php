@@ -22,7 +22,7 @@ class UniteController extends Controller
     }
     public function index()
     {
-        $unites=Unite::all();
+        $unites=Unite::orderBy('designation','asc')->get();
         return view('pages.backoffice.unites.index',compact('unites'));
     }
     public function filter()
@@ -31,7 +31,7 @@ class UniteController extends Controller
         $pay=Pay::where('id',$p )->first();
         return view('pages.backoffice.unites.filter', [
             'unites'                    =>Unite::where('pays_id',$pay->id)->with(['pays','type'])->get(),
-            'pays'                         =>Pay::all(),
+            'pays'                         =>Pay::orderBy('nom','asc')->get(),
             'pay'                          =>$pay
         ]);
     }
@@ -42,7 +42,7 @@ class UniteController extends Controller
       
         return response()->json([
             'unites'                    =>Unite::where('pays_id',$pay->id)->with('pays','type','localite')->get(),
-            'pays'                         =>Pay::all(),
+            'pays'                         =>Pay::orderBy('nom','asc')->get(),
             'pay'                          =>$pay
         ]);
     }
@@ -53,9 +53,9 @@ class UniteController extends Controller
             'unite' => new Unite(),
             'localites' => Localite::with('pay')->orderBy('pays_id', 'asc')->get(),
             'responsables' => U::with('role','pay')->get(),
-            'types' =>TypeUnite::all(),
-            'pays' =>Pay::all(),
-            'titrePage' => "Ajouter une nouvelle unité",
+            'types' =>TypeUnite::orderBy('nom','asc')->get(),
+            'pays' =>Pay::orderBy('nom','asc')->get(),
+            'titrePage' => "Ajout d'une nouvelle unité de lois",
             'btnAction' => "Ajouter"
         ]);
     }
@@ -92,7 +92,6 @@ class UniteController extends Controller
             $photoPath=request('photo_couverture')->storeAs('photo_uploads',$name,'public');
             $unite->photo_couverture = $photoPath;
              }
-
           $unite->designation=$data['designation'];
           $unite->type_unite_id=$data['type_unite_id'];
           $unite->tel=$data['tel'];
@@ -107,7 +106,7 @@ class UniteController extends Controller
           $unite->uuid=Str::uuid();
           $unite->save();
           $request->session()->flash('status','Unité créée avec succès!!!');
-          return redirect()->route('unites.index');
+          return redirect()->route('unites.show',$unite->uuid);
     }
     public function show(Unite $unite)
     {  
@@ -118,16 +117,15 @@ class UniteController extends Controller
         $carte=openstreetmap_url($unite->long,$unite->lat);
         return view('pages.backoffice.unites.show', compact('unite','carte'));
     }
-
     public function edit(Unite $unite)
     {
         return view('pages.backoffice.unites.createdit', [
             'unite' => $unite,
             'localites' => Localite::with('pay')->orderBy('pays_id', 'asc')->get(),
             'responsables' => U::with('role','pay')->get(),
-            'types' =>TypeUnite::all(),
-            'pays' =>Pay::all(),
-            'titrePage' => "Mettre à jours une nouvelle unité",
+            'types' =>TypeUnite::orderBy('nom','asc')->get(),
+            'pays' =>Pay::orderBy('nom','asc')->get(),
+            'titrePage' => "Mise à jours une nouvelle unité de lois",
             'btnAction' => "Mettre à jours"
         ]);
     }
@@ -178,7 +176,7 @@ class UniteController extends Controller
           $unite->uuid=Str::uuid();
              $unite->save();
           $request->session()->flash('status','Unité mise à jours avec succès!!!');
-          return redirect()->route('unites.index');
+          return redirect()->route('unites.show', $unite->uuid);
     }
     public function destroy(Request $request, Unite $unite)
     {   

@@ -2,14 +2,11 @@
 @section('css')
     <!-- INTERNAL SELECT2 CSS -->
     <link href="{{ URL::asset('assets/plugins/fileuploads/css/fileupload.css') }}" rel="stylesheet" type="text/css" />
-
     <link href="{{ URL::asset('assets/plugins/select2/select2.min.css') }}" rel="stylesheet" />
-
     <!-- INTERNAL  DATA TABLE CSS-->
     <link href="{{ URL::asset('assets/plugins/datatable/dataTables.bootstrap4.min.css') }}" rel="stylesheet" />
     <link href="{{ URL::asset('assets/plugins/datatable/responsivebootstrap4.min.css') }}" rel="stylesheet" />
     <link href="{{ URL::asset('assets/plugins/datatable/fileexport/buttons.bootstrap4.min.css') }}" rel="stylesheet" />
-
     <!-- INTERNAL PRISM CSS -->
     <link href="{{ URL::asset('assets/plugins/prism/prism.css') }}" rel="stylesheet">
     <!-- INTERNAL TELEPHONE CSS-->
@@ -34,7 +31,6 @@
                 </span>
                 Tous les types d'unité</a>
             </button>
-
         </div>
     </div>
     <!-- PAGE-HEADER END -->
@@ -43,7 +39,6 @@
     <!-- ROW-1 OPEN -->
     <div class="row">
         <div class="col-lg-4">
-
             <div class="card">
                 <div class="card-header">
                     <div class="float-left">
@@ -54,35 +49,25 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="card-body wideget-user-contact">
-
                     <strong>Description :</strong> {{ $type->description }}
                     <br><br>
-
                 </div>
             </div>
         </div>
         <div class="col-lg-8">
             <div class="tab-pane active show" id="tab-52">
                 <div class="card">
-
                     <div class="card-body">
-                        <h3>Unités associées à ce type</h3>
+                        <h3 class="page-title">Unités associées à ce type</h3>
                         @foreach ($unites as $unite)
-
-
-
                         <a class="text-dark" href="{{ route('unites.show', $unite->uuid) }}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails">
                             <span class="" >{{ $unite->designation }} </span>
                             </a> <br>
-
                         @endforeach
                     </div>
                 </div>
-
             </div>
-
         </div>
-
     </div><!-- COL-END -->
     </div>
     <div class="row">
@@ -99,7 +84,6 @@
                 data-target="#exampleModalDelete{{ $type->id }}"><i class="fa fa-trash"></i></button>
         </div>
     </div>
-
     <div class="modal" id="exampleModalDelete{{ $type->id }}" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalDelete" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -127,12 +111,8 @@
                             <span>Annuler</span>
                         </button>
                     </form>
-
-
                 </div>
             </div>
         </div>
     </div>
-
-
 @endsection

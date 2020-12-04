@@ -35,7 +35,7 @@ class TypeCrimeController extends Controller
           $type->uuid=Str::uuid();
           $type->save();
           $request->session()->flash('status', 'Le type de crime '.$type->nom.' ajouté avec succès !');
-          return redirect()->route('type_crimes.index');
+          return redirect()->route('type_crimes.show', $type->uuid);
     }
     public function show($uuid)
     {

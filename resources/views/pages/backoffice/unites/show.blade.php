@@ -5,11 +5,11 @@
 
 				<div class="page-header">
 					<div>
-                    <h1 class="page-title">Details d'unités </h1>
+                    <h1 class="page-title">Details d'unité de lois </h1>
 						<ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{route('accueil')}}">Accueil</a></li>
                             <li class="breadcrumb-item" aria-current="page"><a href="{{route('unites.index')}}">Unités</a></li>                           
-                            <li class="breadcrumb-item active" aria-current="page"><span class="text-dark">Détails </span>{{$unite->designation}}</li>
+                            <li class="breadcrumb-item active" aria-current="page"><span class="text-dark"></span>{{$unite->designation}}</li>
                             
 						</ol>
 					</div>
@@ -27,7 +27,52 @@
 				<!-- PAGE-HEADER END -->
 @endsection
 @section('content')
-
+<!-- ROW-2 END -->
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12" >
+    <div class="card">
+        <div class="card-body">
+            <div id="profile-log-switch">
+                <div class="media-heading text-dark">
+                    <h5><strong>{{ucfirst($unite->designation)}}</strong></h5>
+                </div>
+                <div class="table-responsive ">
+                    <table class="table row table-borderless table-sm">
+                        <tbody class="col-lg-12 col-xl-6 p-2 ">
+                            <tr>
+                            <td><strong>Type d'unite :</strong><a  data-toggle="tooltip" data-placement="right" title="Cliquer pour afficher les détails" class="text-dark" href="{{route('type_unites.show',$unite->type->uuid)}}">{{$unite->type->nom}}</a></td>
+                            </tr>
+                            <tr>
+                            <td><strong>Pays : </strong> <a  data-toggle="tooltip" data-placement="right" title="Cliquer pour afficher les détails" class="text-dark" href="{{route('pays.show',$unite->pays->uuid)}}">{{$unite->pays->nom}}</a></td>
+                            </tr>
+                            <tr>
+                            <td><strong>Localité : </strong><a  data-toggle="tooltip" data-placement="right" title="Cliquer pour afficher les détails" class="text-dark" href="{{route('localites.show',$unite->localite->uuid)}}">{{$unite->localite->nom}}</a></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Administratutelle : </strong> {{$unite->administration_tutelle}}</td>
+                             </tr>
+                        </tbody>
+                        <tbody class="col-lg-12 col-xl-6 p-0">
+                            <tr>
+                            <td><strong>Adresse : </strong> {{$unite->adresse}}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Téléphone : </strong>{{$unite->tel}}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Téléphone 2: </strong>{{$unite->tel2}}</td>
+                            </tr>
+                            <tr>
+                            <td><strong>Responsable : </strong> <a  data-toggle="tooltip" data-placement="right" title="Cliquer pour afficher les détails" class="text-dark" href="{{route('utilisateurs.show',$unite->responsable->uuid)}}">{{$unite->responsable->nom}}   {{$unite->responsable->prenom}}</a> </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+   </div>
+</div>
 <!-- ROW-2 -->
 <div class="row" style="height: auto">
     <div class="col-lg-4 col-md-12 col-sm-12 col-xl-3 mb-10" >
@@ -62,52 +107,7 @@
         </div>
     </div>
 </div>
-<!-- ROW-2 END -->
-<div class="row">
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12" >
-    <div class="card">
-        <div class="card-body">
-            <div id="profile-log-switch">
-                <div class="media-heading text-dark">
-                    <h5><strong>{{ucfirst($unite->designation)}}</strong></h5>
-                </div>
-                <div class="table-responsive ">
-                    <table class="table row table-borderless">
-                        <tbody class="col-lg-12 col-xl-6 p-0">
-                            <tr>
-                            <td><strong>Type d'unite :</strong> {{$unite->type->nom}}</td>
-                            </tr>
-                            <tr>
-                            <td><strong>Pays : </strong> {{$unite->pays->nom}}</td>
-                            </tr>
-                            <tr>
-                            <td><strong>Localité : </strong> {{$unite->localite->nom}}</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Administratutelle : </strong> {{$unite->administration_tutelle}}</td>
-                                </tr>
-                        </tbody>
-                        <tbody class="col-lg-12 col-xl-6 p-0">
-                            <tr>
-                            <td><strong>Adresse : </strong> {{$unite->adresse}}</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Téléphone : </strong>{{$unite->tel}}</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Téléphone 2: </strong>{{$unite->tel2}}</td>
-                            </tr>
-                            <tr>
-                            <td><strong>Responsable : </strong> <a href="{{route('utilisateurs.show',$unite->responsable->uuid)}}">{{$unite->responsable->nom}}   {{$unite->responsable->prenom}}</a> </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-   </div>
-</div>
+
 <div class="row">
     <div class="col-md-6"></div>
     <div class="col-md-6 mb-4">

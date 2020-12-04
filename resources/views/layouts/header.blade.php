@@ -3,8 +3,8 @@
                     <div class="container-fluid">
                         <div class="d-flex">
                             <a class="header-brand d-md-none" href="{{url('/' . $page='index')}}">
-                                <img src="{{URL::asset('assets/images/brand/logo-3.png')}}" class="header-brand-img mobile-icon" alt="logo">
-                                <img src="{{URL::asset('assets/images/brand/logo.png')}}" class="header-brand-img desktop-logo mobile-logo" alt="logo">
+                                <img src="{{URL::asset('assets/logo.png')}}" class="header-brand-img mobile-icon" alt="logo">
+                                <img src="{{URL::asset('assets/logo.png')}}" class="header-brand-img desktop-logo mobile-logo" alt="logo">
                             </a>
                             <a aria-label="Hide Sidebar" class="app-sidebar__toggle" data-toggle="sidebar" href="#">
                                 <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">

@@ -13,8 +13,8 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="form-label" for="tel">Téléphone <strong class="text-danger">*</strong></label>
-                                    <input class="form-control"  name="tel" placeholder="Téléphone" type="text"  value="{{old('tel') ?? $unite->tel}}" >
+                                    <label class="form-label " for="tel">Téléphone <strong class="text-danger">*</strong></label>
+                                    <input class="form-control phone"  name="tel" placeholder="Téléphone" type="text"  value="{{old('tel') ?? $unite->tel}}" >
                                     @error('tel')
                                     <span class="helper-text red-text">
                                         <strong>{{ $message }}</strong>
@@ -22,11 +22,10 @@
                                     @enderror
                                 </div>
                             </div>
-
                            <div class="col-md-6">
                             <div class="form-group">
                                 <label class="form-label" for="tel">Téléphone 2 <strong class="text-danger">*</strong></label>
-                                <input class="form-control" placeholder="Téléphone"  name="tel2" type="text"  value="{{old('tel2')?? $unite->tel2}}">
+                                <input class="form-control phone" placeholder="Téléphone"  name="tel2" type="text"  value="{{old('tel2')?? $unite->tel2}}">
                                 @error('tel2')
                                 <span class="helper-text red-text">
                                     <strong>{{ $message }}</strong>
@@ -37,10 +36,10 @@
                         </div>
                     <div class="form-group">
                         <label class="form-label" for="organisation">Pays <strong class="text-danger">*</strong></label>
-                        <select name="pays_id" id="pays_id" class="form-control custom-select select2">
-                            <option value="{{Route::currentRouteName() == 'unites.edit' ? $unite->pays->id : '' }}" selected >{{Route::currentRouteName() == 'unites.edit' ? $unite->pays->nom : 'Sélectionner' }}</option>
+                        <select onchange="lier(this.value)" id="select"  name="pays_id" id="pays_id" class="form-control custom-select select2">
+                            <option  value="{{Route::currentRouteName() == 'unites.edit' ? $unite->pays->id : '' }}" selected >{{Route::currentRouteName() == 'unites.edit' ? $unite->pays->nom : 'Sélectionner' }}</option>
                             @foreach ($pays as $pay)
-                        <option value="{{$pay->id}}">{{$pay->nom}}</option>
+                        <option  id="{{$pay->id}}" value="{{$pay->id}}">{{$pay->nom}}</option>
                             @endforeach
                         </select>
                         @error('pays_id')
@@ -53,9 +52,7 @@
                         <label class="form-label" for="organisation">Localite <strong class="text-danger">*</strong></label>
                         <select name="localite_id" id="localite_id" class="form-control custom-select select2">
                             <option value="{{Route::currentRouteName() == 'unites.edit' ? $unite->localite->id : '' }}" selected >{{Route::currentRouteName() == 'unites.edit' ? $unite->localite->nom.'______('.$unite->localite->pay->nom.')'  : 'Sélectionner' }}</option>
-                            @foreach ($localites as $localite)
-                        <option value="{{$localite->id}}">{{$localite->nom}}______ ({{$localite->pay->nom}})</option>
-                            @endforeach
+                            
                         </select>
                         @error('localite_id')
                         <span class="helper-text red-text">
@@ -87,16 +84,12 @@
                             </div>
                         </div>
                     </div>
-
-
-
                 </div>
                 <div class="col-md-6">
 					<div class="form-group">
                         <label class="form-label" for="organisation">Type <strong class="text-danger">*</strong></label>
                         <select name="type_unite_id" id="type_unite_id" class="form-control custom-select select2">
                             <option value="{{Route::currentRouteName() == 'unites.edit' ? $unite->type->id : '' }}" selected >{{Route::currentRouteName() == 'unites.edit' ? $unite->type->nom : 'Sélectionner' }}</option>
-
                             @foreach ($types as $type)
                         <option value="{{$type->id}}">{{ucFirst($type->nom)}}</option>
                             @endforeach
@@ -119,12 +112,11 @@
                     <div class="form-group">
                         <label class="form-label" for="organisation">Responsables <strong class="text-danger">*</strong></label>
                         <select name="responsable_id" id="responsable_id" class="form-control custom-select select2">
-                            <option value="{{Route::currentRouteName() == 'unites.edit' ? $unite->responsable->id : '' }}" selected >{{Route::currentRouteName() == 'unites.edit' ? $unite->responsable->nom  : 'Sélectionner' }}</option>
-
+                            <option  value="{{Route::currentRouteName() == 'unites.edit' ? $unite->responsable->id : '' }}" selected >{{Route::currentRouteName() == 'unites.edit' ? $unite->responsable->nom  : 'Sélectionner' }}</option>
                             @foreach ($responsables as $responsable)
-                        <option value="{{$responsable->id}}">{{$responsable->nom}} //
-                            {{$responsable->pay->nom}} //
-                            {{$responsable->role->designation}}//</option>
+                        <option  value="{{$responsable->id}}"> <span class="red-text">Nom:</span> {{$responsable->nom}} {{$responsable->prenom}} Pays:   
+                            {{$responsable->pay->nom}} Role:
+                            {{$responsable->role->designation}}</option>
                             @endforeach
                         </select>
                         @error('responsable_id')
@@ -152,7 +144,7 @@
                             <h3 class="mb-0 card-title">Veuillez ajouter un logo  <strong class="text-danger">*</strong></h3>
                         </div>
                         <div class="card-body">
-                            <input type="file" class="dropify" id="logo" data-max-file-size="1M" name="logo" accept="" />
+                            <input type="file" class="dropify" id="logo" data-max-file-size="1M" name="logo" accept="image/*" />
                             @error('logo')
                         <span class="helper-text red-text">
                             <strong>{{ $message }}</strong>
@@ -167,7 +159,7 @@
                             <h3 class="mb-0 card-title">Veuillez insérer une photo de couverture <strong class="text-danger">*</strong></h3>
                         </div>
                         <div class="card-body">
-                            <input type="file" class="dropify" id="photo_couverture" data-max-file-size="1M" name="photo_couverture" accept="" />
+                            <input type="file" class="dropify" id="photo_couverture" data-max-file-size="1M" name="photo_couverture" accept="image/*" />
                             @error('photo_couverture')
                         <span class="helper-text red-text">
                             <strong>{{ $message }}</strong>
@@ -185,5 +177,15 @@
             <button type="submit" class="btn btn-primary"> <span>
                     <i class="fe fe-save"></i>
                 </span> {{ $btnAction }}</button>
-
         </div>
+        <script>
+            var listlocalite = document.getElementById('localite_id');									
+            function lier(id){
+                event.preventDefault();
+                 axios.get('/localites/api/filtreur/'+id).then(function(data){
+                    data.data.localites.map(function(lo){
+                    listlocalite.innerHTML += '<option value="' + lo.id + '">  ' + lo.nom + ' </option>';
+                })
+            })
+            }
+    </script>

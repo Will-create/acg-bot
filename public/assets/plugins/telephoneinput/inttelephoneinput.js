@@ -1,9 +1,14 @@
 $(function() {
 
 	// International Telephone Input
-	var input = document.querySelector("#phone");
+  var inputs = document.querySelectorAll('.phone');
+  console.log(inputs);
+  inputs.forEach(input => {
     window.intlTelInput(input, {
-      utilsScript: "assets/plugins/telephoneinput/utils.js",
+      utilsScript: "../assets/plugins/telephoneinput/utils.js",
     });
+  });
+  
+    
 });
 

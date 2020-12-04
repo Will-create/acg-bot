@@ -59,7 +59,7 @@
 												<th class="wd-15p">Dénomination</th>
 												<th class="wd-15p">Type</th>
 												<th class="wd-20p">Pays</th>
-												<th class="wd-20p">localie</th>
+												<th class="wd-20p">localité</th>
 												<th class="wd-15p">Téléphone</th>
                                                 {{-- <th>Actions</th> --}}
 											</tr>

@@ -19,17 +19,13 @@ class RoleController extends Controller
     public function create()
     {
         return view('pages.backoffice.administrateur.roles.form');
-        
     }
-
     public function store(Request $request)
     {
-         
         $data=request()->validate([
             'designation'=> ['required','string','max:255','min:3'],
             'description'=> ['string','max:255','min:4'],
           ]);
-         
           $roles= new Role();
           $roles->designation=$data['designation'];
           $roles->description =$data['description'];
@@ -38,7 +34,6 @@ class RoleController extends Controller
          $request->session()->flash('status','Rôle  engistré avec succès!');
           return redirect()->route('roles.index');
     }
-
     public function show($uuid)
     {
         $role=Role::where('uuid',$uuid)->first();
@@ -55,8 +50,8 @@ class RoleController extends Controller
             'description'=> ['string','max:255','min:4'],
           ]);
           $role=Role::where('uuid',$uuid)->first();
-          $role->designation=$data['designation'];
-          $role->description =$data['description'];
+          $role->designation = $data['designation'];
+          $role->description = $data['description'];
           $role->uuid=Str::uuid();
           $role->save();
          $request->session()->flash('status','Rôle  modifié avec succès!');

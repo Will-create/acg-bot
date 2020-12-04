@@ -72,7 +72,7 @@ class EspeceController extends Controller
     public function edit($uuid)
     {
             return view('pages.backoffice.especes.createdit', [
-                'espece'            =>Espece::where('uuid',$uuid)->first(),            
+                'espece'            =>  Espece::where('uuid',$uuid)->first(),            
                 'ordres'            =>  Ordre::all(),
                 'titrePage'         => "Mise a jours de ".Espece::where('uuid',$uuid)->first()->nom,
                 'btnAction'         => "Mettre a jours"

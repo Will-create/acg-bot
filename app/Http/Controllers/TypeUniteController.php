@@ -21,7 +21,7 @@ class TypeUniteController extends Controller
     {
         return view('pages.backoffice.type_unites.createdit', [
             'type' => new TypeUnite(),
-            'titrePage' => "Ajouter un nouveau type d'unité",
+            'titrePage' => "Ajout d'un nouveau type d'unité",
             'btnAction' => "Ajouter"
         ]);
     }
@@ -37,8 +37,8 @@ class TypeUniteController extends Controller
           $type->description=$data['description'];
           $type->uuid=Str::uuid();
           $type->save();
-          $request->session()->flash('status', 'Le type de d\'unité '.$type->nom.' ajouté avec succès !');
-          return redirect()->route('type_unites.index');
+          $request->session()->flash('status', 'Le type d\'unité "'.$type->nom.'" ajouté avec succès !');
+          return redirect()->route('type_unites.show',$type->uuid);
     }
     public function show($uuid)
     {
@@ -68,8 +68,8 @@ class TypeUniteController extends Controller
         $type->description=$data['description'];
         $type->uuid=Str::uuid();
         $type->save();
-        $request->session()->flash('status', 'Type de d\'unité mis a jours avec succès');
-        return redirect()->route('type_unites.show', $type);
+        $request->session()->flash('status', 'Type d\'unité mis à jours avec succès');
+        return redirect()->route('type_unites.show', $type->uuid);
     }
 
     public function destroy(Request $request,$uuid)

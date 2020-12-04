@@ -27,7 +27,6 @@
             <li class="breadcrumb-item active" aria-current="page">Accueil</li>
         </ol>
     </div>
-
 </div>
 <!-- PAGE-HEADER END -->
 @endsection
@@ -38,9 +37,7 @@
     <div class="loader"></div>
   </div>
 <div id="crimenature">
-
 <div class="row">
-
     <div class="col-md-8 col-lg-8">
         <div class="card">
             <div class="card-header">
@@ -57,9 +54,7 @@
                             </tr>
                         </thead>
                         <tbody>
-
                             @foreach ($naturesCrimes as $naturesCrime)
-
                             <tr>
                                 <td>{{ucfirst($naturesCrime->nom)}}</td>
                                 {{-- <td>{{ucfirst($naturesCrime->description)}}</td> --}}
@@ -71,7 +66,7 @@
                                     </button>
                                     <div id="largeModalDisplay{{$naturesCrime->id}}" class="modal">
                                         <div class="modal-dialog modal-lg" role="document">
-                                            <div class="modal-content ">
+                                            <div class="modal-content">
                                                 <div class="modal-header pd-x-20">
                                                     <h6 class="modal-title text-center"> <strong> {{ucfirst($naturesCrime->nom)}} </strong>
                                                     </h6>
@@ -82,8 +77,6 @@
                                                 </div>
                                                 <div class="modal-body pd-20">
                                                     <div class="row">
-                                                        <div class="col-md-12">
-
                                                             <form
                                                                 action="{{route('nature_crimes.update', $naturesCrime)}}"
                                                                 method="post">
@@ -110,8 +103,6 @@
                                                                                     </span>
                                                                                     @enderror
                                                                                 </div>
-
-
                                                                             </div>
                                                                             <div class="col-md-12">
                                                                                 <div class="form-group">
@@ -121,7 +112,6 @@
                                                                                         name="description"
                                                                                         id="description" rows="4"
                                                                                         placeholder="Dites quelque chose sur ce moyen de paiement">{{$naturesCrime->description}}</textarea>
-
                                                                                     @error('description')
                                                                                     <span class="helper-text red-text">
                                                                                         <strong>{{ $message }}</strong>
@@ -129,7 +119,6 @@
                                                                                     @enderror
                                                                                 </div>
                                                                             </div>
-
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -142,23 +131,18 @@
                                                                         data-dismiss="modal">
                                                                         <span>
                                                                             <i class="fa fa-close"></i>
-
                                                                         </span>Fermer</button>
                                                                 </div>
                                                             </form>
-
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div><!-- MODAL DIALOG -->
                                     </div>
-
-
                                 <button type="button" class="btn btn-danger btn-sm deletebuton" data-url="{{route('nature_crimes.destroy', $naturesCrime->id)}}" data-toggle="modal"
                                         data-target="#exampleModalDelete{{$naturesCrime->id}}"><i
                                             class="fa fa-trash"></i></button>
-
                                     {{-- <div class="modal" id="exampleModalDelete{{$naturesCrime->id}}" tabindex="-1"
                                         role="dialog" aria-labelledby="exampleModalDelete" aria-hidden="true">
                                         <div class="modal-dialog" role="document">

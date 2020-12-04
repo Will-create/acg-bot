@@ -103,7 +103,7 @@
     <div class="row">
         <div class="col-md-6"></div>
         <div class="col-md-6 mb-4">
-            <a href="{{ route('type_unites.index') }}" class="btn btn-dark"> <span>
+            <a href="{{ route('pays.index') }}" class="btn btn-dark"> <span>
                     <i class="fe fe-close"></i>
                 </span><i class="fa fa-times"></i> Retour</a>
         </div>
