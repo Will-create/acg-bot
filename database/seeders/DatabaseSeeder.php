@@ -24,5 +24,6 @@ class DatabaseSeeder extends Seeder
         $this->call(UniteTableSeeder::class);
         $this->call(OrdreTableSeeder::class);
         $this->call(EspeceTableSeeder::class);
+        $this->call(AireTableSeeder::class);
     }
 }

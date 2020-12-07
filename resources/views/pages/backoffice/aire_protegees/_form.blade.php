@@ -1,179 +1,130 @@
 
-        <div class="card-body">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label class="form-label" for="libelle">Libellé<strong class="text-danger">*</strong> </label>
-                        <input type="text" class="form-control" name="libelle" placeholder="Libellé" id="libelle"  value="{{old('libelle') ?? $aire->libelle }}" required>
-                        @error('libelle')
-                        <span class="helper-text red-text">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-					</div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label class="form-label" for="tel">Téléphone <strong class="text-danger">*</strong></label>
-                                    <input class="form-control"  name="tel" placeholder="Téléphone" type="text"  value="{{old('tel') ?? $aire->tel}}" required>
-                                    @error('tel')
-                                    <span class="helper-text red-text">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-                           </div>
-                        </div>
-                    <div class="form-group">
-                        <label class="form-label" for="organisation">Pays <strong class="text-danger">*</strong></label>
-                        <select name="pays_id" id="pays_id" class="form-control custom-select select2">
-                            <option value="{{Route::currentRouteName() == 'unites.edit' ? $aire->pays->id : '' }}" selected >{{Route::currentRouteName() == 'unites.edit' ? $aire->pays->nom : 'Sélectionner' }}</option>
-                            @foreach ($pays as $pay)
-                        <option value="{{$pay->id}}">{{$pay->nom}}</option>
-                            @endforeach
-                        </select>
-                        @error('pays_id')
-                        <span class="helper-text red-text">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-                    </div>
-                    {{-- <div class="form-group">
-                        <label class="form-label" for="organisation">Localit <strong class="text-danger">*</strong></label>
-                        <select name="localite_id" id="localite_id" class="form-control custom-select select2">
-                            <option value="{{Route::currentRouteName() == 'unites.edit' ? $aire->localite->id : '' }}" selected >{{Route::currentRouteName() == 'unites.edit' ? $aire->localite->nom.'______('.$aire->localite->pay->nom.')'  : 'Sélectionner' }}</option>
-                            @foreach ($localites as $localite)
-                        <option value="{{$localite->id}}">{{$localite->nom}}______ ({{$localite->pay->nom}})</option>
-                            @endforeach
-                        </select>
-                        @error('localite_id')
-                        <span class="helper-text red-text">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-                    </div> --}}
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="form-label" for="map">Lien Google map<strong class="text-danger">*</strong> </label>
-                                <input type="text" class="form-control" placeholder="Longitude" name="map" placeholder="Longitude" id="map"  value="{{old('long') ?? $aire->long}}" required>
-                                @error('long')
-                                <span class="helper-text red-text">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div>
-                        {{-- <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="form-label" for="lat">Latitude <strong class="text-danger">*</strong> </label>
-                                <input type="text" class="form-control" placeholder="Latitude" name="lat" placeholder="Latidude" id="lat"  value="{{old('lat') ?? $aire->lat}}" required>
-                                @error('lat')
-                                <span class="helper-text red-text">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div> --}}
-                    </div>
-					
-                    
-                    
+       
+       <div class="card-body">
+           <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="form-label" for="libelle">Libellé<strong class="text-danger">*</strong> </label>
+                    <input type="text" class="form-control" name="libelle" placeholder="Libellé" id="libelle"  value="{{old('libelle') ?? $aire->libelle }}">
+                    @error('libelle')
+                    <span class="helper-text red-text">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
                 </div>
-                {{-- <div class="col-md-6">
-					<div class="form-group">
-                        <label class="form-label" for="organisation">Type <strong class="text-danger">*</strong></label>
-                        <select name="type_unite_id" id="type_unite_id" class="form-control custom-select select2">
-                            <option value="{{Route::currentRouteName() == 'unites.edit' ? $aire->type->id : '' }}" selected >{{Route::currentRouteName() == 'unites.edit' ? $aire->type->nom : 'Sélectionner' }}</option>
-
-                            @foreach ($types as $type)
-                        <option value="{{$type->id}}">{{$type->nom}}</option>
-                            @endforeach
-                        </select>
-                        @error('type_unite_id')
-                        <span class="helper-text red-text">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-                    </div> --}}
-                    {{-- <div class="form-group">
-                        <label class="form-label" for="administration_tutelle">Administration tutelle <strong class="text-danger">*</strong></label>
-                        <input class="form-control" placeholder="Administration tutelle"  name="administration_tutelle" type="text"  value="{{old('administration_tutelle') ?? $aire->administration_tutelle}}" required>
-                        @error('administration_tutelle')
-                        <span class="helper-text red-text">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-                    </div> --}}
-                    {{-- <div class="form-group">
-                        <label class="form-label" for="organisation">Responsables <strong class="text-danger">*</strong></label>
-                        <select name="responsable_id" id="responsable_id" class="form-control custom-select select2">
-                            <option value="{{Route::currentRouteName() == 'unites.edit' ? $aire->responsable->id : '' }}" selected >{{Route::currentRouteName() == 'unites.edit' ? $aire->responsable->nom  : 'Sélectionner' }}</option>
-
-                            @foreach ($responsables as $responsable)
-                        <option value="{{$responsable->id}}">{{$responsable->nom}} //
-                            {{$responsable->pay->nom}} //
-                            {{$responsable->role->designation}}//</option>
-                            @endforeach
-                        </select>
-                        @error('responsable_id')
-                        <span class="helper-text red-text">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-                    </div> --}}
-               
-                    <div class="form-group">
-                        <label class="form-label" for="adresse">Adresse complete <strong class="text-danger">*</strong></label>
-                        <textarea class="form-control" placeholder="Adresse" rows="6" name="adresse" id="adresse"  required>{{old('adresse') ?? $aire->adresse}}</textarea>
-                        @error('adresse')
-                        <span class="helper-text red-text">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-					</div>
-					
-                    
-                </div>
-                <div class="col-md-6 ">
-                    <div class="card shadow">
-                        <div class="card-header">
-                            <h3 class="mb-0 card-title">Veuillez ajouter un logo  <strong class="text-danger">*</strong></h3>
-                        </div>
-                        <div class="card-body">
-                            <input type="file" class="dropify" id="logo" data-max-file-size="1M" name="logo" accept="" />
-                            @error('logo')
-                        <span class="helper-text red-text">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-                        </div>
-                    </div>
-				</div>
-				<div class="col-md-6 ">
-                    <div class="card shadow">
-                        <div class="card-header">
-                            <h3 class="mb-0 card-title">Veuillez insérer une image de couverture <strong class="text-danger">*</strong></h3>
-                        </div>
-                        <div class="card-body">
-                            <input type="file" class="dropify" id="image_couverture" data-max-file-size="1M" name="image_couverture" accept="" />
-                            @error('image_couverture')
-                        <span class="helper-text red-text">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-                        </div>
-                    </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="form-label" for="tel">Téléphone <strong class="text-danger">*</strong></label>
+                    <input class="form-control"  name="tel" placeholder="Téléphone" type="text"  value="{{old('tel') ?? $aire->tel}}">
+                    @error('tel')
+                    <span class="helper-text red-text">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
                 </div>
             </div>
         </div>
-        <div class="modal-footer">
-            <a href="{{ route('aire_protegees.index') }}" class="btn btn-dark"> <i class="fa fa-times"
-                    aria-hidden="true"></i>
-                Annuler </a>
-            <button type="submit" class="btn btn-primary"> <span>
-                    <i class="fe fe-save"></i>
-                </span> {{ $btnAction }}</button>
-
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="form-label" for="organisation">Pays <strong class="text-danger">*</strong></label>
+                    <select name="pays_id" id="pays_id" class="form-control custom-select select2">
+                        <option value="{{Route::currentRouteName() == 'aire_protegees.edit' ? $aire->pays->id : '' }}" selected >{{Route::currentRouteName() == 'aire_protegees.edit' ? $aire->pays->nom : 'Sélectionner' }}</option>
+                        @foreach ($pays as $pay)
+                        <option value="{{$pay->id}}">{{$pay->nom}}</option>
+                        @endforeach
+                    </select>
+                    @error('pays_id')
+                    <span class="helper-text red-text">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                   </div>
+                    <div class="form-group">
+                        <label class="form-label" for="map">Map<strong class="text-danger">*</strong> </label>
+                        <input type="text" class="form-control" placeholder="Lien Google map" name="map"  value="{{old('map') ?? $aire->map}}">
+                            @error('map')
+                                <span class="helper-text red-text">
+                                <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="code_wdpa_aire">Code wdpa<strong class="text-danger">*</strong> </label>
+                        <input type="text" class="form-control" placeholder="Code_wdpa_aire" name="code_wdpa_aire"  id="code_wdpa_aire"  value="{{old('code_wdpa_aire') ?? $aire->code_wdpa_aire}}">
+                            @error('code_wdpa_aire')
+                                <span class="helper-text red-text">
+                                <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                    </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="form-label" for="adresse">Adresse complete<strong class="text-danger">*</strong></label>
+                <textarea class="form-control" placeholder="Adresse" rows="5" name="adresse" id="adresse" >{{old('adresse') ?? $aire->adresse}}</textarea>
+                    @error('adresse')
+                    <span class="helper-text red-text">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                </div>
+            </div>
         </div>
+        <div class="row">
+            <div class="col-md-6">
+            </div>
+            <div class="col-md-6">
+            </div>
+           </div>
+       </div>
+       <div class="row">
+           <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header">
+                    <h3 class="mb-0 card-title">Veuillez ajouter un logo  <strong class="text-danger">*</strong></h3>
+                </div>
+                <div class="card-body">
+                    <input type="file" class="dropify" id="logo" data-max-file-size="1M" name="logo" accept="image/*" />
+                    @error('logo')
+                <span class="helper-text red-text">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card shadow">
+            <div class="card-header">
+                <h3 class="mb-0 card-title">Veuillez insérer une image de couverture <strong class="text-danger">*</strong></h3>
+            </div>
+            <div class="card-body">
+                <input type="file" class="dropify" id="image_couverture" data-max-file-size="1M" name="image_couverture" accept="image/*" />
+                @error('image_couverture')
+            <span class="helper-text red-text">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
+            </div>
+        </div>
+           </div>
+       </div>
+       <div class="modal-footer">
+        <a href="{{ route('aire_protegees.index') }}" class="btn btn-dark"> <i class="fa fa-times"
+                aria-hidden="true"></i>
+            Annuler </a>
+        <button type="submit" class="btn btn-primary"> <span>
+                <i class="fe fe-save"></i>
+            </span> {{ $btnAction }}</button>
+        </div>
+
+       
+       
+       
+       
+       
+       
+       
+       

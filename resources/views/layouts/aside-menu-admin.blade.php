@@ -170,6 +170,16 @@
                                 <li><a class="slide-item" href="{{route('confiscations.create')}}"><span>Nouvelle confiscation</span></a></li>
                             </ul>
                         </li>
+                        <li class="slide">
+                            <a class="side-menu__item" data-toggle="slide" href="#">
+                                <i class="mdi mdi-attachment aide-icon"  ></i>
+                                <span class="side-menu__label">Gestion des aires protégées </span><i class="angle fa fa-angle-right"></i>
+                            </a>
+                            <ul class="slide-menu">
+                                <li><a class="slide-item" href="{{route('aire_protegees.index')}}"><span>Toutes les aires protégées</span></a></li>
+                                <li><a class="slide-item" href="{{route('aire_protegees.create')}}"><span>Nouvelle aire protégée</span></a></li>
+                            </ul>
+                        </li>
                     </ul>
                     <br><br><br><br>
                 </aside>

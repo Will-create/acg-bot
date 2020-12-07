@@ -2,14 +2,11 @@
 @section('css')
     <!-- INTERNAL SELECT2 CSS -->
     <link href="{{ URL::asset('assets/plugins/fileuploads/css/fileupload.css') }}" rel="stylesheet" type="text/css" />
-
     <link href="{{ URL::asset('assets/plugins/select2/select2.min.css') }}" rel="stylesheet" />
-
     <!-- INTERNAL  DATA TABLE CSS-->
     <link href="{{ URL::asset('assets/plugins/datatable/dataTables.bootstrap4.min.css') }}" rel="stylesheet" />
     <link href="{{ URL::asset('assets/plugins/datatable/responsivebootstrap4.min.css') }}" rel="stylesheet" />
     <link href="{{ URL::asset('assets/plugins/datatable/fileexport/buttons.bootstrap4.min.css') }}" rel="stylesheet" />
-
     <!-- INTERNAL PRISM CSS -->
     <link href="{{ URL::asset('assets/plugins/prism/prism.css') }}" rel="stylesheet">
     <!-- INTERNAL TELEPHONE CSS-->
@@ -31,7 +28,6 @@
                     <i class="fe fe-list"></i>
                 </span> Toutes les unités</a>
             </button>
-
         </div>
     </div>
     <!-- PAGE-HEADER END -->
@@ -48,7 +44,6 @@
     </form>
 @stop
 {{-- CODE JS DE FILTRAGE --}}
-
 @section('js')
     <script src="{{ URL::asset('assets/plugins/fileuploads/js/fileupload.js') }}"></script>
     <script src="{{ URL::asset('assets/plugins/fileuploads/js/file-upload.js') }}"></script>

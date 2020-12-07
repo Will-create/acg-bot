@@ -81,9 +81,9 @@
 														<thead>
 															<tr>
 																<th class="wd-15p">Libellé</th>
-																<th class="wd-15p">Adresse</th>
 																<th class="wd-20p">Pays</th>
 																<th class="wd-20p">Code wdpa</th>
+																<th class="wd-15p">Adresse</th>
 																<th class="wd-15p">Téléphone</th>
 																{{-- <th>Actions</th> --}}
 															</tr>
@@ -91,10 +91,10 @@
 														<tbody id="tableBody">
 															@foreach ($aires as $aire)
 															<tr>
-																<td> <a class="text-dark" href="{{route('aire_protegees.show', $aire->uuid)}}"  data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails"> {{$aire->designation}} </a></td>
-																<td> <a class="text-dark" href="{{route('aire_protegees.show', $aire->uuid)}}"  data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails">{{$aire->type->nom}}</a></td>
+																<td> <a class="text-dark" href="{{route('aire_protegees.show', $aire->uuid)}}"  data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails"> {{$aire->libelle}} </a></td>
 																<td> <a class="text-dark" href="{{route('aire_protegees.show', $aire->uuid)}}"  data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails"> {{$aire->pays->nom}} </a></td>
-																<td> <a class="text-dark" href="{{route('aire_protegees.show', $aire->uuid)}}"  data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails">{{$aire->localite->nom}}</a></td>
+																<td> <a class="text-dark" href="{{route('aire_protegees.show', $aire->uuid)}}"  data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails">{{$aire->code_wdpa_aire}}</a></td>
+																<td> <a class="text-dark" href="{{route('aire_protegees.show', $aire->uuid)}}"  data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails">{{substr($aire->adresse,0,25) }}</a></td>
 																<td> <a class="text-dark" href="{{route('aire_protegees.show', $aire->uuid)}}"  data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails">{{$aire->tel}}</a></td>
 																@endforeach
 														</tbody>
@@ -150,31 +150,27 @@
             modal.classList.add("show");
 		@endif
 		var tableBody = document.getElementById('tableBody');	
-		var listpays = document.getElementById('listpays')	;	
-		var pageTitle = document.getElementById('page-title')	;								
+		var listpays = document.getElementById('listpays');	
+		var pageTitle = document.getElementById('page-title');								
 		function injecteur(res){
-			var {aires, pays, pay} = res;
-			var rows = '';
-			var lignes = '';
+			var {aires, pays, pay} = res, rows, lignes;
 			aires.map(function(a){
-            rows +='<tr><td> <a class="text-dark" href="/aire_protegees/'+a.uuid+'"> '+a.libelle+' </a></td><td> <a class="text-dark" href="/aire_protegees/'+a.uuid+'">'+a.adresse+'</a></td><td> <a class="text-dark" href="/aire_protegees/'+a.uuid+'">'+a.pays.nom+' </a></td><td> <a class="text-dark" href="/aire_protegees/'+a.uuid+'">'+a.code_wdpa_aire+'</a></td><td> <a class="text-dark" href="/aire_protegees/'+a.uuid+'">'+a.tel+'</a></td></tr>'
+			lignes +='<tr><td> <a class="text-dark" href="/aire_protegees/'+a.uuid+'"> '+a.libelle+' </a></td><td> <a class="text-dark" href="/aire_protegees/'+a.uuid+'">'+a.pays.nom+'</a></td><td> <a class="text-dark" href="/aire_protegees/'+a.uuid+'">'+a.code_wdpa_aire+' </a></td><td> <a class="text-dark" href="/aire_protegees/'+a.uuid+'">'+a.adresse.slice(0,25) +'</a></td><td> <a class="text-dark" href="/aire_protegees/'+a.uuid+'">'+a.tel+'</a></td></tr>'
 			})
 			pays.map(function(p){
 				var active = p.id == pay.id ? 'active' : '' ;
-              lignes +='<a style="cursor:pointer" onclick="filtreur('+p.id+')" class="side-menu__item '+active+'"><span class="side-menu__label">'+p.nom+' </span></a>'
+				rows +='<a style="cursor:pointer" onclick="filtreur('+p.id+')" class="side-menu__item '+active+'"><span class="side-menu__label">'+p.nom+' </span></a>'
 			})
-			tableBody.innerHTML = rows;
-			listpays.innerHTML = lignes;
 			pageTitle.innerHTML = 'Liste des aires protegées dans '+pay.nom;
+			listpays.innerHTML = rows;
+			tableBody.innerHTML = lignes;
 		}
 		function filtreur(pays){
 			event.preventDefault();
-			loader.style.display='';
  			 axios.get('/aire_protegees/api/filtreur/'+pays).then(function(data){
 														var res = data.data;
 													injecteur(res);
-													setTimeout(injecteur(res),5555)
-													loader.style.display='none';
+													
 									})
         }
         </script>

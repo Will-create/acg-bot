@@ -26,7 +26,7 @@
 						</ol>
 					</div>
 					<div class="ml-auto pageheader-btn">
-                    <a class="btn btn-primary" href="{{route('aires_protegees.create')}}"  >  <span>
+                <a class="btn btn-primary" href="{{route('aire_protegees.create')}}"  >  <span>
                             <i class="fe fe-plus"></i>
                         </span>
                         Ajouter une Aire protégées</a>

@@ -181,10 +181,9 @@
         <script>
             var listlocalite = document.getElementById('localite_id');									
             function lier(id){
-                event.preventDefault();
                  axios.get('/localites/api/filtreur/'+id).then(function(data){
-                    data.data.localites.map(function(lo){
-                    listlocalite.innerHTML += '<option value="' + lo.id + '">  ' + lo.nom + ' </option>';
+                    data.data.localites.map(function(loc){
+                    listlocalite.innerHTML += '<option value="' + loc.id + '">  ' + loc.nom + ' </option>';
                 })
             })
             }

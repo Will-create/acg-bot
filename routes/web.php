@@ -24,6 +24,7 @@ Auth::routes();
     Route::get('/unites/filtreur/','UniteController@filter')->name('unites.filter');
     Route::get('/unites/api/filtreur/{pays}','UniteController@filtreur');
     Route::get('/localites/api/filtreur/{pays}','LocaliteController@filtreur');
+    Route::get('/aire_protegees/api/filtreur/{pays}','AireProtegeeController@filtreur');
 
     Route::resource('/pays','PayController');
 
@@ -33,6 +34,7 @@ Auth::routes();
     // Route::get('especes', 'EspeceController@index')->name('especes.index');
     Route::get('especes/regnes/{regne}', 'EspeceController@regne')->name('especes.regne.show');
     Route::get('espece/{regne?}', 'EspeceController@create')->name('especes.create');
+    Route::resource('aire_protegees', 'AireProtegeeController');
 
 
     Route::resource('confiscations', 'CrimeConfiscationController');

@@ -20,12 +20,11 @@ class CreateAireProtegeesTable extends Migration
             $table->string('code_wdpa_aire', 100);
             $table->text('adresse');
             $table->unsignedBigInteger('pays_id');
-            $table->integer('tel');
-            $table->text('map');
-            $table->text('logo');
-            $table->text('image_couverture');
+            $table->string('tel',45);
+            $table->text('map')->nullable();
+            $table->text('logo')->nullable();
+            $table->text('image_couverture')->nullable();
             $table->timestamps();
-
             $table->foreign('pays_id')->references('id')->on('pays')->onDelete('restrict')
             ->onUpdate('restrict');
         });

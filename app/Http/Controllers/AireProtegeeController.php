@@ -2,84 +2,166 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pay;
+use App\Models\Localite;
+use App\Models\Restriction;
+use Illuminate\Support\Str;
 use App\Models\AireProtegee;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class AireProtegeeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
-        //
+        $p = 1;
+        $pay = Pay::where('id', $p)->first();
+        return view('pages.backoffice.aire_protegees.filter', [
+            'aires'                        => AireProtegee::where('pays_id', $pay->id)->with(['pays'])->orderBy('libelle', 'asc')->get(),
+            'pays'                         => Pay::orderBy('nom', 'asc')->get(),
+            'pay'                          => $pay
+        ]);
+    }
+    public function filter()
+    {
+        $p = 1;
+        $pay = Pay::where('id', $p)->first();
+        return view('pages.backoffice.aire_protegees.filter', [
+            'aires'                        => AireProtegee::where('pays_id', $pay->id)->with(['pays'])->orderBy('libelle', 'asc')->get(),
+            'pays'                         => Pay::orderBy('nom', 'asc')->get(),
+            'pay'                          => $pay
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function filtreur($p)
+    {
+        $pay = Pay::where('id', $p)->first();
+
+        return response()->json([
+            'aires'                        => AireProtegee::where('pays_id', $pay->id)->with('pays')->orderBy('libelle', 'asc')->get(),
+            'pays'                         => Pay::orderBy('nom', 'asc')->get(),
+            'pay'                          => $pay
+        ]);
+    }
     public function create()
     {
-        //
+        return view('pages.backoffice.aire_protegees.createdit', [
+            'aire' => new AireProtegee(),
+            'localites' => Localite::with('pay')->orderBy('pays_id', 'asc')->get(),
+            'pays' => Pay::orderBy('nom', 'asc')->get(),
+            'titrePage' => "Ajout d'une nouvelle aire protegée",
+            'btnAction' => "Ajouter"
+        ]);
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $data = request()->validate([
+            'libelle' => ['required', 'string', 'max:255', 'min:3', 'unique:aire_protegees'],
+            'tel' => ['required', 'string', 'max:255', 'min:3'],
+            'code_wdpa_aire' => ['string', 'max:255', 'min:3'],
+            'adresse' => ['required', 'string', 'max:255', 'min:3'],
+            'map' => ['required', 'string', 'min:8'],
+            'logo' => ['image'],
+            'image_couverture' => ['image'],
+            'pays_id' => ['required', 'integer'],
+        ]);
+        $aire = new AireProtegee();
+        if ($request->hasFile('logo')) {
+            $file = $request->file('logo');
+            $timestamp = str_replace([' ', ':'], '-', Carbon::now()->toDateTimeString());
+            $name = $timestamp . '-' . $file->getClientOriginalName();
+            $logoPath = request('logo')->storeAs('logo_uploads', $name, 'public');
+            $aire->logo = $logoPath;
+        }
+        if ($request->hasFile('image_couverture')) {
+            $file = $request->file('image_couverture');
+            $timestamp = str_replace([' ', ':'], '-', Carbon::now()->toDateTimeString());
+            $name = $timestamp . '-' . $file->getClientOriginalName();
+            $photoPath = request('image_couverture')->storeAs('photo_uploads', $name, 'public');
+            $aire->image_couverture = $photoPath;
+        }
+        $aire->libelle = $data['libelle'];
+        $aire->tel = $data['tel'];
+        $aire->code_wdpa_aire = $data['code_wdpa_aire'];
+        $aire->adresse = $data['adresse'];
+        $aire->map = $data['map'];
+        $aire->pays_id = $data['pays_id'];
+        $aire->uuid = Str::uuid();
+        $aire->save();
+        $request->session()->flash('status', 'Aire protégée avec succès!!!');
+        return redirect()->route('aire_protegees.show', $aire->uuid);
+    }
+    public function show($uuid)
+    {
+        $aire = AireProtegee::where('uuid', $uuid)->with('pays')->first();
+        $carte = $aire->map;
+        return view('pages.backoffice.aire_protegees.show', compact('aire', 'carte'));
+    }
+    public function edit($uuid)
+    {
+        return view('pages.backoffice.aire_protegees.createdit', [
+            'aire' => AireProtegee::where('uuid', $uuid)->first(),
+            'pays' => Pay::orderBy('nom', 'asc')->get(),
+            'titrePage' => "Mise a jours d'une aire protegée",
+            'btnAction' => "Ajouter"
+        ]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\AireProtegee  $aireProtegee
-     * @return \Illuminate\Http\Response
-     */
-    public function show(AireProtegee $aireProtegee)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\AireProtegee  $aireProtegee
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(AireProtegee $aireProtegee)
+    public function update(Request $request, AireProtegee $aire)
     {
-        //
-    }
+        $data = request()->validate([
+            'libelle' => ['required', 'string', 'max:255', 'min:3'],
+            'tel' => ['required', 'string', 'max:255', 'min:3'],
+            'code_wdpa_aire' => ['string', 'max:255'],
+            'adresse' => ['required', 'string', 'max:255', 'min:3'],
+            'map' => ['required', 'string', 'min:8'],
+            'logo' => ['image'],
+            'image_couverture' => ['image'],
+            'pays_id' => ['required', 'integer'],
+        ]);
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\AireProtegee  $aireProtegee
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, AireProtegee $aireProtegee)
-    {
-        //
+        if ($request->hasFile('logo')) {
+            $file = $request->file('logo');
+            $timestamp = str_replace([' ', ':'], '-', Carbon::now()->toDateTimeString());
+            $name = $timestamp . '-' . $file->getClientOriginalName();
+            $logoPath = request('logo')->storeAs('logo_uploads', $name, 'public');
+            $aire->logo = $logoPath;
+        }
+        if ($request->hasFile('image_couverture')) {
+            $file = $request->file('image_couverture');
+            $timestamp = str_replace([' ', ':'], '-', Carbon::now()->toDateTimeString());
+            $name = $timestamp . '-' . $file->getClientOriginalName();
+            $photoPath = request('image_couverture')->storeAs('photo_uploads', $name, 'public');
+            $aire->image_couverture = $photoPath;
+        }
+        $aire->libelle = $data['libelle'];
+        $aire->tel = $data['tel'];
+        $aire->code_wdpa_aire = $data['code_wdpa_aire'];
+        $aire->adresse = $data['adresse'];
+        $aire->map = $data['map'];
+        $aire->pays_id = $data['pays_id'];
+        $aire->uuid = Str::uuid();
+        $aire->save();
+        $request->session()->flash('status', 'Aire protégée mis a jours avec succès!!!');
+        return redirect()->route('aire_protegees.show', $aire->uuid);
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\AireProtegee  $aireProtegee
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(AireProtegee $aireProtegee)
-    {
-        //
+    public function destroy(Request $request, $uuid)
+    {   
+        $restriction = new Restriction;
+        $aire = AireProtegee::where('uuid', $uuid)->first();
+        $restrictions = $restriction->check($aire->id, [
+            ['foreignkey' => 'aire_protegee_id', 'modelname' => 'crime'],
+        ]);
+        if ($restrictions) {
+            return redirect()->back()->with('danger', $restrictions['message']);
+        } else {
+            $aire->delete();
+        return redirect()->route('aire_protegees.index')->with('status', 'Aire protégée supprimée avec succès');
+        }
     }
 }
