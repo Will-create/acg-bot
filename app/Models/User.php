@@ -53,7 +53,7 @@ class User extends Authenticatable
     }
     public function ville()
     {
-        return $this->belongsTo('App\Models\Unite', 'localite_id', 'id');
+        return $this->belongsTo('App\Models\Localite', 'localite_id', 'id');
     }
     public function pay()
     {

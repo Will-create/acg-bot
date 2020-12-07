@@ -18,7 +18,7 @@
 @endsection
 @section('page-header')
                 <!-- PAGE-HEADER -->
-                
+
 				<div class="page-header">
 					<div>
 						<h1 class="page-title">Liste des unités aires</h1>
@@ -70,7 +70,7 @@
 
 											<tr data-placement="top" title="Cliquer pour afficher les détails">
 												<td> <a class="text-dark" href="{{route('unites.show', $unite->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" > {{$unite->designation}} </a></td>
-												<td> <a class="text-dark" href="{{route('unites.show', $unite->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" >{{$unite->type->nom}} </a></td>
+												<td> <a class="text-dark" href="{{route('unites.show', $unite->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" >{{ucFirst($unite->type->nom)}} </a></td>
 												<td> <a class="text-dark" href="{{route('unites.show', $unite->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" >{{$unite->pays->nom}} </a></td>
 												<td> <a class="text-dark" href="{{route('unites.show', $unite->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" >{{$unite->localite->nom}} </a></td>
 												<td> <a class="text-dark" href="{{route('unites.show', $unite->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" >{{$unite->tel}} </a></td>

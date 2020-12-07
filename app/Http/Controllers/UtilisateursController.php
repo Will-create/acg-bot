@@ -63,7 +63,7 @@ class UtilisateursController extends Controller
         $unites = Unite::all();
         $localites = Localite::all();
         $pays = Pay::all();
-
+       $utilisateur = new User();
 
         switch (Auth::user()->role->designation) {
             case 'Administrateur Général':
@@ -86,7 +86,7 @@ class UtilisateursController extends Controller
                 abort(404);
                 break;
         }
-        return view('pages.backoffice.administrateur.utilisateurs.create', compact('roles', 'unites', 'localites', 'pays'));
+        return view('pages.backoffice.administrateur.utilisateurs.create', compact('roles', 'unites', 'localites', 'pays', 'utilisateur'));
     }
 
     /**
@@ -97,15 +97,11 @@ class UtilisateursController extends Controller
      */
     public function store(Request $request)
     {
-     
+
         $data =   $request->validate([
             'nom'                       => ['required', 'string', 'max:255'],
             'prenom'                    => ['required', 'string', 'max:255'],
-<<<<<<< HEAD
-            'tel'                       => 'required|string|min:8|max:20',
-=======
             'tel'                       => ['required', 'string', 'min:8', 'max:20'],
->>>>>>> dffe4ce2de1f47e2c87730a663000dfd0c336d76
             'email'                     => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'role_id'                   => ['required','integer'],
             'pay_id'                    => ['required','integer'],
@@ -114,7 +110,7 @@ class UtilisateursController extends Controller
             'titre'                     => ['nullable', 'string', 'max:100'],
             'profile_photo_path'        => ['nullable', 'mimes:jpeg,jpg,png,gif', 'required', 'max:10000'],
         ]);
-       
+
         $path = null;
         if ($request->profile_photo_path) {
             $path = $request->profile_photo_path->store('profile_photo_path');
@@ -123,13 +119,13 @@ class UtilisateursController extends Controller
         $result = bin2hex(random_bytes($n));
         $user =   User::create([
             'uuid'                  => Str::uuid(),
-            'nom'                       => $data['nom'],
-            'prenom'                    => $data['prenom'],
-            'tel'                       => $data['tel'],
-            'email'                     => $data['email'],
-            'role_id'                   => $data['role_id'],
-            'pay_id'                    => $data['pay_id'],
-            'localite_id'               => $data['localite_id'],
+            'nom'                       => $request['nom'],
+            'prenom'                    => $request['prenom'],
+            'tel'                       => $request['tel'],
+            'email'                     => $request['email'],
+            'role_id'                   => $request['role_id'],
+            'pay_id'                    => $request['pay_id'],
+            'localite_id'               => $request['localite_id'],
             'unite_id'                  => $request->unite_id,
             'titre'                     => $request->titre,
             'password'                  => Hash::make($result),
@@ -144,7 +140,7 @@ class UtilisateursController extends Controller
 
         return redirect()->route('utilisateurs.show', $user->uuid);
     }
-    
+
 
     public function show(User $utilisateur)
     {
@@ -160,25 +156,26 @@ class UtilisateursController extends Controller
         return view('pages.backoffice.administrateur.utilisateurs.edit', compact('roles', 'unites', 'localites', 'pays', 'utilisateur'));
     }
 
-  
+
     public function update(Request $request, User $utilisateur)
     {
 
         $previousUrl = str_replace(url('/'), '', url()->previous());
-        
+
         $path = null;
         if ($request->profile_photo_path) {
             $path = $request->profile_photo_path->store('profile_photo_path');
         } else {
             $path = $utilisateur->profile_photo_path;
         }
+
         if ($previousUrl ==  '/user/profil') {
             $data =   $request->validate([
                 'nom'                       => ['required', 'string', 'max:255'],
                 'prenom'                    => ['required', 'string', 'max:255'],
                 'tel'                       => 'required|string|min:8|max:20|unique:users,tel,' . $utilisateur->id,
                 'email'                     => 'required|email|max:255|unique:users,email,' . $utilisateur->id,
-                'profile_photo_path'        => ['nullable'],
+                'profile_photo_path'        => 'nullable',
             ]);
             $utilisateur->update([
                 'nom'                       => $request['nom'],
@@ -196,9 +193,10 @@ class UtilisateursController extends Controller
                 'email'                     => 'required|email|max:255|unique:users,email,' . $utilisateur->id,
                 'role_id'                   => ['required'],
                 'unite_id'                  => ['nullable'],
-                'titre'                     => ['required'],
-                'profile_photo_path'        => ['nullable', 'mimes:jpeg,jpg,png,gif', 'required', 'max:10000'],
+                'pay_id'                    => ['required'],
+                'profile_photo_path'        => ['nullable', 'mimes:jpeg,jpg,png,gif', 'max:10000'],
             ]);
+
             $utilisateur->update([
                 'nom'                       => $request['nom'],
                 'prenom'                    => $request['prenom'],

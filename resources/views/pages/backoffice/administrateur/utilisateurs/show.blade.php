@@ -60,7 +60,7 @@
 @endif
 
 
-                                    <a  href="{{route('utilisateurs.edit', $utilisateur)}}" class="btn btn-primary mt-1 mb-1 btn-sm"> <i class="zmdi zmdi-edit text-white"></i>  Editer le profile </a>
+                                    <a  href="{{route('utilisateurs.edit', $utilisateur)}}" class="btn btn-primary mt-1 mb-1 btn-sm"> <i class="zmdi zmdi-edit text-white"></i>  Editer le profil </a>
                                     </div>
                                 </div>
                             </div>

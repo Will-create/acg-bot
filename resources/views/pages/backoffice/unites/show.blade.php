@@ -8,14 +8,14 @@
                     <h1 class="page-title">Details d'unité de lois </h1>
 						<ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{route('accueil')}}">Accueil</a></li>
-                            <li class="breadcrumb-item" aria-current="page"><a href="{{route('unites.index')}}">Unités</a></li>                           
+                            <li class="breadcrumb-item" aria-current="page"><a href="{{route('unites.index')}}">Unités</a></li>
                             <li class="breadcrumb-item active" aria-current="page"><span class="text-dark"></span>{{$unite->designation}}</li>
-                            
+
 						</ol>
 					</div>
 					<div class="ml-auto pageheader-btn">
                     <a class="btn btn-primary" href="{{route('unites.index')}}"  >  <span>
-                            <i class="fe fe-plus"></i>
+                            <i class="fe fe-list"></i>
                         </span>
                         Toutes les unités</a>
 
@@ -82,7 +82,7 @@
             </div>
             <div class="card-body">
             <img src="{{ asset('storage').'/'.$unite->photo_couverture}}" style="min-width:100%; object-fit:cover; object-position: 50% 50%;" alt="" srcset="">
-                
+
             </div>
         </div>
         <div class="card">
@@ -91,7 +91,7 @@
             </div>
             <div class="card-body">
             <img src="{{ asset('storage').'/'.$unite->logo}}" style="min-width:100%; object-fit:cover; object-position: 50% 50%;" alt="" srcset="">
-                
+
             </div>
         </div>
     </div>
@@ -101,7 +101,7 @@
                 <h3 class="card-title">Localisation</h3>
             </div>
             <div class="card-body">
-                
+
             <div id="map"></div>
             </div>
         </div>
@@ -118,7 +118,7 @@
         <a href="{{ route('unites.edit', $unite->uuid) }}" class="btn btn-primary">
             <i class="fa fa-edit"></i> Modifier</a>
         <button type="button" class="btn btn-danger  mb-1" data-toggle="modal"
-            data-target="#exampleModalDelete{{ $unite->id }}"><i class="fa fa-trash"></i></button>
+            data-target="#exampleModalDelete{{ $unite->id }}"><i class="fa fa-trash"></i> Supprimer</button>
     </div>
 </div>
 <div class="modal" id="exampleModalDelete{{ $unite->id }}" tabindex="-1" role="dialog"
@@ -178,9 +178,9 @@
     }
     window.onload = function(){
 // Fonction d'initialisation qui s'exécute lorsque le DOM est chargé
-initMap(); 
+initMap();
     };
 </script>
-    
+
 
 @endsection
