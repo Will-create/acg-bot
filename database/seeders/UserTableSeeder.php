@@ -4,10 +4,10 @@ namespace Database\Seeders;
 
 use App\Models\Role;
 use Illuminate\Database\Seeder;
-use Faker\Factory;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Faker\Factory;
 
 class UserTableSeeder extends Seeder
 {
@@ -18,11 +18,12 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
+        $faker=Factory::create();
         $ville = [
             'Ouagadougou', 'Bobo Dioulasso', 'Banfora', 'Ouahigouya'
         ];
         //User::truncate();
-        $faker = Factory::create();
+
         $roles = Role::all();
         foreach ($roles as $key => $role) {
             User::create([
