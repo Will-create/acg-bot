@@ -23,8 +23,8 @@ class UserTableSeeder extends Seeder
             'Ouagadougou', 'Bobo Dioulasso', 'Banfora', 'Ouahigouya'
         ];
         //User::truncate();
-
         $roles = Role::all();
+
         foreach ($roles as $key => $role) {
             User::create([
                 'nom'                   => $faker->firstName,
