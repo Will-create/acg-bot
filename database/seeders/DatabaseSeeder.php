@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
         // $this->call(LocaliteTableSeeder::class);
         // $this->call(TypeUniteTableSeeder::class);
         // $this->call(TypeCrimeTableSeeder::class);
+         \App\Models\Pay::factory(16)->create();
          \App\Models\Role::factory(5)->create();
          \App\Models\User::factory(10)->create();
         // $this->call(RoleTableSeeder::class);

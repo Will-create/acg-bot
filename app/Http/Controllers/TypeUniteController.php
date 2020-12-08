@@ -11,6 +11,10 @@ use Illuminate\Http\Request;
 
 class TypeUniteController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         $types=TypeUnite::orderBy('nom','asc')->get();
@@ -25,7 +29,7 @@ class TypeUniteController extends Controller
             'btnAction' => "Ajouter"
         ]);
     }
-    
+
     public function store(Request $request)
     {
         $data=request()->validate([
@@ -56,7 +60,7 @@ class TypeUniteController extends Controller
             'btnAction' => "Mettre à jour"
         ]);
     }
-    
+
     public function update(Request $request, $uuid)
     {
         $data=request()->validate([

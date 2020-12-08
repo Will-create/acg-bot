@@ -30,7 +30,7 @@ class UserFactory extends Factory
             'role_id'               => 1,
             'profile_photo_path'    => "/images/pngs/bg-l.png",
             'prenom'                => $this->faker->lastName,
-            'email'                 => 'admin@uicn.com',
+            'email'                 => $this->faker->safeEmail,
             'tel'                   => $this->faker->phoneNumber,
             'password'              => Hash::make('00000000'),
             'localite_id'              => $this->faker->numberBetween($min = 1, $max = 5),
