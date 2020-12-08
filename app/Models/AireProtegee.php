@@ -12,16 +12,10 @@ class AireProtegee extends Model
     public function getRouteKeyName(){
         return 'uuid';
     }
-
-
     public function crimes(){
         return $this->hasOne('App\Models\Crime','aire_protegee_id','id');
     }
     public function pays(){
         return $this->belongsTo('App\Models\Pay','pays_id','id');
     }
-    
-
-    
-   
 }

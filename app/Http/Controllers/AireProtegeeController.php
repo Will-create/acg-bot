@@ -18,12 +18,11 @@ class AireProtegeeController extends Controller
     }
     public function index()
     {
-        $p = 1;
-        $pay = Pay::where('id', $p)->first();
-        return view('pages.backoffice.aire_protegees.filter', [
-            'aires'                        => AireProtegee::where('pays_id', $pay->id)->with(['pays'])->orderBy('libelle', 'asc')->get(),
-            'pays'                         => Pay::orderBy('nom', 'asc')->get(),
-            'pay'                          => $pay
+       
+        return view('pages.backoffice.aire_protegees.index', [
+            'aires'                        => AireProtegee::with(['pays'])->orderBy('libelle', 'asc')->get(),
+            
+ 
         ]);
     }
     public function filter()
@@ -112,8 +111,10 @@ class AireProtegeeController extends Controller
     }
 
 
-    public function update(Request $request, AireProtegee $aire)
-    {
+    public function update(Request $request, $uuid)
+    {    
+
+        $aire = AireProtegee::where('uuid', $uuid)->first();
         $data = request()->validate([
             'libelle' => ['required', 'string', 'max:255', 'min:3'],
             'tel' => ['required', 'string', 'max:255', 'min:3'],

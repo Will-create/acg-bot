@@ -18,22 +18,22 @@ class Restriction extends Model
      return $model;
     }
     public function controler($id, $cible){
-
     $model = 'App\Models\\'.ucfirst($cible['modelname']);
-    
-    $instance = new $model;
-    
-    
-     $restriction = $instance->where($cible['foreignkey'],$id)->get();
-
-     if($restriction->count() > 0){
-        $erreur =$this->errorify($cible['modelname']);
-        $this->erreurs[$cible['modelname']]=$erreur;
-     }
+      $instance = new $model;
+      $restriction = $instance->where($cible['foreignkey'],$id)->get();
+      if($restriction->count() > 0){
+         $erreur =$this->errorify($cible['modelname']);
+         $this->erreurs[$cible['modelname']]=$erreur;
+      }
     }
     public  function check ( int $id, array $cibles){
        foreach($cibles as $cible){
-        $this->controler($id,$cible);
+        
+        try {
+         $this->controler($id,$cible);
+        } catch (\Throwable $th) {
+         return ['restrictions'=> $this->erreurs,'message'=> 'Erreur:'.$th->getCode().'----La classe "Restriction" a rencontré une erreur dans les paramètre. Nom de model ou nom de clé étrangère incorrect'];
+        }
        }
        if(!$this->erreurs){
           return false;
@@ -41,7 +41,7 @@ class Restriction extends Model
         $msg='Impossible de supprimer cet enregistrement car il est lié aux entités : ';
         $messages=array_keys($this->erreurs);
         foreach($messages as $message){
-            $msg = $msg.' \'\''.$message.'\'\' ';
+            $msg = $msg.'\'\''.$message.'\'\'';
         }
            return ['restrictions'=> $this->erreurs,'message'=> $msg];
        }

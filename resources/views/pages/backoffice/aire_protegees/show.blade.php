@@ -9,13 +9,13 @@
 						<ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{route('accueil')}}">Accueil</a></li>
                             <li class="breadcrumb-item" aria-current="page"><a href="{{route('aire_protegees.index')}}">Aires protégées</a></li>                           
-                            <li class="breadcrumb-item active" aria-current="page"><span class="text-dark">Détails </span>{{$aire->libelle}}</li>
+                            <li class="breadcrumb-item active" aria-current="page"><span class="text-dark"></span>{{$aire->libelle}}</li>
                             
 						</ol>
 					</div>
 					<div class="ml-auto pageheader-btn">
                     <a class="btn btn-primary" href="{{route('aire_protegees.index')}}"  >  <span>
-                            <i class="fe fe-plus"></i>
+                            <i class="fe fe-list"></i>
                         </span>
                         Toutes les aires protégées</a>
                     </button>
@@ -38,7 +38,7 @@
                     <table class="table row table-borderless">
                         <tbody class="col-lg-12 col-xl-6 p-0">
                             <tr>
-                            <td><strong>Pays : </strong> {{$aire->pays->nom}}</td>
+                            <td><strong>Pays : </strong><a  data-toggle="tooltip" data-placement="right" title="Cliquer pour afficher les détails" class="text-dark" href="{{route('pays.show',$aire->pays->uuid)}}">{{$aire->pays->nom}}</a> </td>
                             </tr>
                             <tr>
                             <td><strong>Code : </strong> {{$aire->code_wdpa_aire}}</td>
@@ -107,7 +107,7 @@
         <a href="{{ route('aire_protegees.edit', $aire->uuid) }}" class="btn btn-primary">
             <i class="fa fa-edit"></i> Modifier</a>
         <button type="button" class="btn btn-danger  mb-1" data-toggle="modal"
-            data-target="#exampleModalDelete{{ $aire->id }}"><i class="fa fa-trash"></i></button>
+            data-target="#exampleModalDelete{{ $aire->id }}"><i class="fa fa-trash"> Supprimer</i></button>
     </div>
 </div>
 <div class="modal" id="exampleModalDelete{{ $aire->id }}" tabindex="-1" role="dialog"

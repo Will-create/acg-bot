@@ -73,10 +73,10 @@
             </div>
         </div>
         <div class="col-lg-8">
-            <div class="tab-pane active show" id="tab-52">
+            <div class="tab-pane active show" id="tab-56">
                 <div class="card">
                     <div class="card-body">
-                        <h3>Localités associées à ce pays</h3>
+                        <h3 class="card-title" >Localités associées à ce pays</h3>
                         @foreach($localites as $localite)
                             <a class="text-dark" href="{{ route('localites.show', $localite->uuid) }}" data-toggle="tooltip" data-placement="right" title="Cliquer pour afficher les détails">
                                 <span class="">{{ $localite->nom}} </span>
@@ -88,10 +88,22 @@
             <div class="tab-pane active show" id="tab-52">
                 <div class="card">
                     <div class="card-body">
-                        <h3>Unités associées à ce pays</h3>
+                        <h3 class="card-title" >Unités associées à ce pays</h3>
                         @foreach($unites as $unite)
                             <a class="text-dark" href="{{ route('unites.show', $unite->uuid) }}" data-toggle="tooltip" data-placement="right" title="Cliquer pour afficher les détails">
                                 <span class="">{{ $unite->designation}} </span>
+                            </a> <br>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane active show" id="tab-54">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title" >Aires protégées associées à ce pays</h3>
+                        @foreach($aires as $aire)
+                            <a class="text-dark" href="{{ route('aire_protegees.show', $aire->uuid) }}" data-toggle="tooltip" data-placement="right" title="Cliquer pour afficher les détails">
+                                <span class="">{{ $aire->libelle}} </span>
                             </a> <br>
                         @endforeach
                     </div>
@@ -106,6 +118,45 @@
             <a href="{{ route('pays.index') }}" class="btn btn-dark"> <span>
                     <i class="fe fe-close"></i>
                 </span><i class="fa fa-times"></i> Retour</a>
+    
+            <a href="{{ route('pays.edit', $pays->uuid) }}" class="btn btn-primary">
+                <i class="fa fa-edit"></i> Modifier</a>
+            <button type="button" class="btn btn-danger  mb-1" data-toggle="modal"
+                data-target="#exampleModalDelete{{ $pays->id }}"><i class="fa fa-trash"> Supprimer</i></button>
+        </div>
+    </div>
+    <div class="modal" id="exampleModalDelete{{ $pays->id }}" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalDelete" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalDelete">Suppression de {{ $pays->designation }}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                                
+                    <p> Etes-vous sûr de bien vouloir supprimer ce pays ?
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <form action="{{ route('pays.destroy', $pays->uuid) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger ">
+                            <i class="fa fa-trash"></i>
+                            <span>Confirmer</span>
+                        </button>
+                        <button type="reset" class="btn btn-success" data-dismiss="modal">
+                            <i class="fa fa-times"></i>
+                            <span>Annuler</span>
+                        </button>
+                    </form>
+    
+    
+                </div>
+            </div>
         </div>
     </div>
 

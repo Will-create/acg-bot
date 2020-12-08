@@ -149,29 +149,33 @@
             $('#largeModalAddUser').modal('show');
             modal.classList.add("show");
 		@endif
-		var tableBody = document.getElementById('tableBody');	
+		// var tableBody = document.getElementById('tableBody');	
 		var listpays = document.getElementById('listpays');	
-		var pageTitle = document.getElementById('page-title');								
+		var pageTitle = document.getElementById('page-title');	
+		var datatable = $( '#data-table1' ).dataTable();							
 		function injecteur(res){
-			var {aires, pays, pay} = res, rows, lignes;
-			aires.map(function(a){
-			lignes +='<tr><td> <a class="text-dark" href="/aire_protegees/'+a.uuid+'"> '+a.libelle+' </a></td><td> <a class="text-dark" href="/aire_protegees/'+a.uuid+'">'+a.pays.nom+'</a></td><td> <a class="text-dark" href="/aire_protegees/'+a.uuid+'">'+a.code_wdpa_aire+' </a></td><td> <a class="text-dark" href="/aire_protegees/'+a.uuid+'">'+a.adresse.slice(0,25) +'</a></td><td> <a class="text-dark" href="/aire_protegees/'+a.uuid+'">'+a.tel+'</a></td></tr>'
-			})
+			var {aires, pays, pay} = res, rows = '', lignes = '';
+			datatable.fnAddData(aires);
+			// aires.map(function(a){
+			// lignes +='<tr><td> <a class="text-dark" href="/aire_protegees/'+a.uuid+'"> '+a.libelle+' </a></td><td> <a class="text-dark" href="/aire_protegees/'+a.uuid+'">'+a.pays.nom+'</a></td><td> <a class="text-dark" href="/aire_protegees/'+a.uuid+'">'+a.code_wdpa_aire+' </a></td><td> <a class="text-dark" href="/aire_protegees/'+a.uuid+'">'+a.adresse.slice(0,25) +'</a></td><td> <a class="text-dark" href="/aire_protegees/'+a.uuid+'">'+a.tel+'</a></td></tr>'
+			// })
+			datatable.draw();
+			console.log(datatable);
 			pays.map(function(p){
 				var active = p.id == pay.id ? 'active' : '' ;
 				rows +='<a style="cursor:pointer" onclick="filtreur('+p.id+')" class="side-menu__item '+active+'"><span class="side-menu__label">'+p.nom+' </span></a>'
 			})
 			pageTitle.innerHTML = 'Liste des aires protegées dans '+pay.nom;
 			listpays.innerHTML = rows;
-			tableBody.innerHTML = lignes;
+			// tableBody.innerHTML = lignes;
 		}
 		function filtreur(pays){
 			event.preventDefault();
  			 axios.get('/aire_protegees/api/filtreur/'+pays).then(function(data){
 														var res = data.data;
-													injecteur(res);
-													
-									})
+														
+														injecteur(res);
+													})
         }
         </script>
 @endsection

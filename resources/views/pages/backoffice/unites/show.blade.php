@@ -28,6 +28,7 @@
 @endsection
 @section('content')
 <!-- ROW-2 END -->
+
 <div class="row">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12" >
     <div class="card">
@@ -65,6 +66,8 @@
                             <tr>
                             <td><strong>Responsable : </strong> <a  data-toggle="tooltip" data-placement="right" title="Cliquer pour afficher les détails" class="text-dark" href="{{route('utilisateurs.show',$unite->responsable->uuid)}}">{{$unite->responsable->nom}}   {{$unite->responsable->prenom}}</a> </td>
                             </tr>
+
+                            
                         </tbody>
                     </table>
                 </div>
@@ -118,7 +121,7 @@
         <a href="{{ route('unites.edit', $unite->uuid) }}" class="btn btn-primary">
             <i class="fa fa-edit"></i> Modifier</a>
         <button type="button" class="btn btn-danger  mb-1" data-toggle="modal"
-            data-target="#exampleModalDelete{{ $unite->id }}"><i class="fa fa-trash"></i></button>
+            data-target="#exampleModalDelete{{ $unite->id }}"><i class="fa fa-trash"></i> Supprimer</button>
     </div>
 </div>
 <div class="modal" id="exampleModalDelete{{ $unite->id }}" tabindex="-1" role="dialog"

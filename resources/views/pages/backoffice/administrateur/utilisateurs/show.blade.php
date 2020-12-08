@@ -158,14 +158,14 @@
                                                     </tr>
                                                     @if ($utilisateur->unite)
                                                     <tr>
-                                                        <td><strong>Unité :</strong> {{$utilisateur->unite->nom}}</td>
+                                                        <td><strong>Unité :</strong> {{$utilisateur->unite->designation}}</td>
                                                         </tr>
                                                     @else
-
-                                                    @endif
                                                     <tr>
-                                                    <td><strong>Unité :</strong> Auncune unité </td>
-                                                    </tr>
+                                                        <td><strong>Unité :</strong> Aucune unité </td>
+                                                        </tr>
+                                                    @endif
+                                                    
                                                 </tbody>
                                                 <tbody class="col-lg-12 col-xl-6 p-0">
                                                     <tr>

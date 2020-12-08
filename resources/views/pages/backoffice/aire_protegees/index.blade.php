@@ -42,31 +42,30 @@
 					<div class="col-md-12 col-lg-12">
 						<div class="card">
 							<div class="card-header">
-								<h3 class="card-title">Liste des Unités</h3>
+								<h3 class="card-title">Liste des aires protégées</h3>
 							</div>
 							<div class="card-body">
 								<div class="table-responsive">
 									<table id="data-table1" class="table table-striped table-bordered text-nowrap w-100 table-sm">
 										<thead>
 											<tr>
-												<th class="wd-15p">Dénomination</th>
-												<th class="wd-15p">Type</th>
+												<th class="wd-15p">Libellé</th>
 												<th class="wd-20p">Pays</th>
-												<th class="wd-20p">Localite</th>
+												<th class="wd-20p">Code wdpa</th>
+												<th class="wd-15p">Adresse</th>
 												<th class="wd-15p">Téléphone</th>
-                                                {{-- <th>Actions</th> --}}
+												{{-- <th>Actions</th> --}}
 											</tr>
 										</thead>
-										<tbody>
-                                            @foreach ($unites as $unite)
+										<tbody id="tableBody">
+											@foreach ($aires as $aire)
 											<tr>
-												<td> <a class="text-dark" href="{{route('unites.show', $unite->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" > {{$unite->designation}} </a></td>
-												<td> <a class="text-dark" href="{{route('unites.show', $unite->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" >{{$unite->type->nom}} </a></td>
-												<td> <a class="text-dark" href="{{route('unites.show', $unite->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" >{{$unite->pays->nom}} </a></td>
-												<td> <a class="text-dark" href="{{route('unites.show', $unite->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" >{{$unite->localite->nom}} </a></td>
-												<td> <a class="text-dark" href="{{route('unites.show', $unite->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" >{{$unite->tel}} </a></td>
-                                            </tr>
-                                            @endforeach
+												<td> <a class="text-dark" href="{{route('aire_protegees.show', $aire->uuid)}}"  data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails"> {{$aire->libelle}} </a></td>
+												<td> <a class="text-dark" href="{{route('aire_protegees.show', $aire->uuid)}}"  data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails"> {{$aire->pays->nom}} </a></td>
+												<td> <a class="text-dark" href="{{route('aire_protegees.show', $aire->uuid)}}"  data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails">{{$aire->code_wdpa_aire}}</a></td>
+												<td> <a class="text-dark" href="{{route('aire_protegees.show', $aire->uuid)}}"  data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails">{{substr($aire->adresse,0,25) }}</a></td>
+												<td> <a class="text-dark" href="{{route('aire_protegees.show', $aire->uuid)}}"  data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails">{{$aire->tel}}</a></td>
+												@endforeach
 										</tbody>
 									</table>
 								</div>

@@ -5,7 +5,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label class="form-label" for="nom">Nom<strong class="text-danger">*</strong> </label>
-                        <input type="text" class="form-control" name="nom" placeholder="Nom" id="nom"  value="{{old('nom')?? $pays->nom}}" required>
+                        <input type="text" class="form-control" name="nom" placeholder="Nom" id="nom"  value="{{old('nom')?? $pays->nom}}">
                         @error('nom')
                         <span class="helper-text red-text">
                             <strong>{{ $message }}</strong>
@@ -14,7 +14,7 @@
 					</div>
 					<div class="form-group">
                         <label class="form-label" for="codeiso3_pays_origine">Code ISO 3 <strong class="text-danger">*</strong></label>
-                        <input type="text" class="form-control" name="codeiso3_pays_origine" placeholder="Code ISO" id="codeiso3_pays_origine"  value="{{old('codeiso3_pays_origine') ?? $pays->codeiso3_pays_origine}}" required>
+                        <input type="text" class="form-control" name="codeiso3_pays_origine" placeholder="Code ISO" id="codeiso3_pays_origine"  value="{{old('codeiso3_pays_origine') ?? $pays->codeiso3_pays_origine}}">
                         @error('codeiso3_pays_origine')
                         <span class="helper-text red-text">
                             <strong>{{ $message }}</strong>
@@ -48,6 +48,6 @@
         <button type="submit" class="btn btn-primary"> <span>
                 <i class="fe fe-save"></i>
             </span> {{ $btnAction }}</button>
-    </div
+    </div>
 
 

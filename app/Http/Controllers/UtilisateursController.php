@@ -101,11 +101,7 @@ class UtilisateursController extends Controller
         $data =   $request->validate([
             'nom'                       => ['required', 'string', 'max:255'],
             'prenom'                    => ['required', 'string', 'max:255'],
-<<<<<<< HEAD
             'tel'                       => 'required|string|min:8|max:20',
-=======
-            'tel'                       => ['required', 'string', 'min:8', 'max:20'],
->>>>>>> dffe4ce2de1f47e2c87730a663000dfd0c336d76
             'email'                     => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'role_id'                   => ['required','integer'],
             'pay_id'                    => ['required','integer'],
@@ -146,8 +142,10 @@ class UtilisateursController extends Controller
     }
     
 
-    public function show(User $utilisateur)
-    {
+    public function show($uuid)
+    {   
+
+        $utilisateur = User::where('uuid',$uuid)->with('unite')->first();
         return view('pages.backoffice.administrateur.utilisateurs.show', compact('utilisateur'));
     }
 
@@ -279,7 +277,6 @@ class UtilisateursController extends Controller
         if (Hash::check($request->get('current_password'), $user->password)) {
             $user->password = Hash::make($request->get('new_password'));
             $user->save();
-
             session()->flash('status', '<b>Votre mot de passe a été mis à jour avec succès !</b>');
             return redirect()->route('accueil');
         } else {

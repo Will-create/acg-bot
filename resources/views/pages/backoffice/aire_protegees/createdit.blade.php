@@ -2,14 +2,11 @@
 @section('css')
     <!-- INTERNAL SELECT2 CSS -->
     <link href="{{ URL::asset('assets/plugins/fileuploads/css/fileupload.css') }}" rel="stylesheet" type="text/css" />
-
     <link href="{{ URL::asset('assets/plugins/select2/select2.min.css') }}" rel="stylesheet" />
-
     <!-- INTERNAL  DATA TABLE CSS-->
     <link href="{{ URL::asset('assets/plugins/datatable/dataTables.bootstrap4.min.css') }}" rel="stylesheet" />
     <link href="{{ URL::asset('assets/plugins/datatable/responsivebootstrap4.min.css') }}" rel="stylesheet" />
     <link href="{{ URL::asset('assets/plugins/datatable/fileexport/buttons.bootstrap4.min.css') }}" rel="stylesheet" />
-
     <!-- INTERNAL PRISM CSS -->
     <link href="{{ URL::asset('assets/plugins/prism/prism.css') }}" rel="stylesheet">
     <!-- INTERNAL TELEPHONE CSS-->
@@ -32,13 +29,11 @@
                     <i class="fe fe-list"></i>
                 </span> Toutes les unités</a>
             </button>
-
         </div>
     </div>
     <!-- PAGE-HEADER END -->
 @endsection
 @section('content')
-
     @if (Route::currentRouteName() == 'aire_protegees.create')
         <form action="{{ route('aire_protegees.store') }}" method="post" enctype="multipart/form-data">
         @else
