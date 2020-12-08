@@ -49,7 +49,7 @@
                     </span>
                     @enderror
                 </div>
-                @if (Auth::user()->role->designation == 'Coordonnateur National')
+                @if (Auth::user()->role->designation == 'Coordonnateur National' ||  Auth::user()->role->designation == 'Chef d’Unité')
                     <div class="form-group">
                         <label class="form-label" for="organisation">Role <strong class="text-danger">*</strong></label>
                         <select name="role_id" id="" class="form-control custom-select select2">
@@ -132,7 +132,7 @@
 
     </div>
     <div class="col-md-12">
-        @if (Auth::user()->role->designation != 'Coordonnateur National')
+        @if (Auth::user()->role->designation != 'Coordonnateur National' && Auth::user()->role->designation != 'Chef d’Unité')
         <div class="form-group">
             <label class="form-label" for="organisation">Role <strong class="text-danger">*</strong></label>
             <select name="role_id" id="" class="form-control custom-select select2">

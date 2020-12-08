@@ -80,6 +80,7 @@ class UtilisateursController extends Controller
             case 'Chef d’Unité':
                 $roles = Role::where('designation', 'Agent d’une Unité')->first();
                 $pays = Pay::where('nom', Auth::user()->pay->nom)->first();
+                // $unites = Unite::where('pays_id', $pays->id)->get();
                 break;
 
             default:
@@ -135,7 +136,7 @@ class UtilisateursController extends Controller
             $user->notify(new CreateUserNotification($user, $result));
             $request->session()->flash('status', 'Utilisateur créé avec succès, un mail lui sera envoyé !');
         } catch (\Throwable $th) {
-            $request->session()->flash('status', 'Utilisateur créé avec succès, Nous n\'avons pas pu envoyer le mail l\'utilisateur');
+            $request->session()->flash('status', 'Utilisateur créé avec succès,  nous n\'nous avons pu envoyer envoyer le mail');
         }
 
         return redirect()->route('utilisateurs.show', $user->uuid);

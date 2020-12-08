@@ -70,12 +70,15 @@
 								</div>
 							</div>
 							<div class="col-lg-9">
+							<div id="loader" class="d-none">
+                                    <div class="loader"></div>
+                                  </div>
 			
 								<div class="row">
 									<div id="loader" class="d-none">
 										<div class="loader"></div>
 									  </div>
-									<div class="col-md-12 col-lg-12">
+									<div id="aire_proteger_content" class="col-md-12 col-lg-12">
 										<div class="card">
 											<div class="card-header">
 												<h3 class="card-title">Les unités de {{$pay->nom}} </h3>
@@ -185,18 +188,18 @@
 			tableBody.innerHTML = rows;
 			listpays.innerHTML = lignes;
 			pageTitle.innerHTML = 'Liste des unités dans '+pay.nom;
+			$('#loader').addClass('d-none');
+        $('#aire_proteger_content').show();
 		}
 		function filtreur(pays){
+			$('#loader').removeClass('d-none');
+       		 $('#aire_proteger_content').hide();
 			event.preventDefault();
 			
-			loader.style.display='';
+		
  			 axios.get('/unites/api/filtreur/'+pays).then(function(data){
 														var res = data.data;
 													injecteur(res);
-
-													setTimeout(injecteur(res),5555)
-													loader.style.display='none';
-									
 									})
         }
         </script>

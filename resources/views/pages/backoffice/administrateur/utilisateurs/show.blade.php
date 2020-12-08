@@ -52,11 +52,11 @@
                                     <h4 class="mb-1">{{$utilisateur->nom. ' ' . $utilisateur->prenom}}</h4>
                                         <h6 class="text-muted mb-4">Ajouté le : {{formatDate($utilisateur->created_at)}}</h6>
 @if ($utilisateur->actif == true)
-<a  @if($utilisateur->id != Auth::user()->id)   href="{{route('gerer-utilisateur', $utilisateur)}}" @endif  class="btn btn-success mt-1 mb-1 btn-sm" data-toggle="tooltip" data-placement="top" title="Cliquer pour désactiver" > <i class="zmdi zmdi-rss text-white"></i> Compte  activé </a>
+<a  @if($utilisateur->id != Auth::user()->id &&  Auth::user()->role->designation == "Administrateur Général")  data-toggle="tooltip" data-placement="top" title="Cliquer pour désactiver"  href="{{route('gerer-utilisateur', $utilisateur)}}" @endif  class="btn btn-success mt-1 mb-1 btn-sm"  > <i class="zmdi zmdi-rss text-white"></i> Compte  activé </a>
 
 @else
 
-<a  @if($utilisateur->id != Auth::user()->id)   href="{{route('gerer-utilisateur', $utilisateur)}}" @endif   class="btn btn-danger mt-1 mb-1 btn-sm" data-toggle="tooltip" data-placement="top" title="Cliquer pour activer"  > <i class="zmdi zmdi-rss text-white"></i>  Compte désacivé </a>
+<a  @if($utilisateur->id != Auth::user()->id &&  Auth::user()->role->designation == "Administrateur Général") data-toggle="tooltip" data-placement="top" title="Cliquer pour désactiver"  href="{{route('gerer-utilisateur', $utilisateur)}}" @endif   class="btn btn-danger mt-1 mb-1 btn-sm"   > <i class="zmdi zmdi-rss text-white"></i>  Compte désacivé </a>
 @endif
 
 
@@ -156,16 +156,8 @@
                                                     <tr>
                                                     <td><strong>Role :</strong> {{$utilisateur->role->designation}}</td>
                                                     </tr>
-                                                    @if ($utilisateur->unite)
-                                                    <tr>
-                                                        <td><strong>Unité :</strong> {{$utilisateur->unite->nom}}</td>
-                                                        </tr>
-                                                    @else
-
-                                                    @endif
-                                                    <tr>
-                                                    <td><strong>Unité :</strong> Auncune unité </td>
-                                                    </tr>
+                                                  
+                                                   
                                                 </tbody>
                                                 <tbody class="col-lg-12 col-xl-6 p-0">
                                                     <tr>
@@ -175,9 +167,15 @@
                                                     <tr>
                                                         <td><strong>Téléphone :</strong> {{formatel($utilisateur->tel)}} </td>
                                                     </tr>
+                                                      @if ($utilisateur->unite)
                                                     <tr>
-                                                        <td><strong>Fonction :</strong> {{formatel($utilisateur->titre)}} </td>
+                                                        <td>  <strong>Unité :</strong> <a href="{{route('unites.show', $utilisateur->unite->uuid)}}" class="text-dark" data-toggle="tooltip" data-placement="top" title="Voir les détails de l'unité">     {{$utilisateur->unite->designation}} </a></td>
+                                                        </tr>
+                                                    @else
+                                                     <tr>
+                                                    <td><strong>Unité :</strong> Auncune unité </td>
                                                     </tr>
+                                                    @endif
                                                 </tbody>
                                             </table>
                                         </div>

@@ -1,16 +1,12 @@
-
 @extends('layouts.master4')
 @section('css')
         <!-- INTERNAL SELECT2 CSS -->
 		<link href="{{URL::asset('assets/plugins/fileuploads/css/fileupload.css')}}" rel="stylesheet" type="text/css" />
-
 		<link href="{{URL::asset('assets/plugins/select2/select2.min.css')}}" rel="stylesheet" />
-
 		<!-- INTERNAL  DATA TABLE CSS-->
 		<link href="{{URL::asset('assets/plugins/datatable/dataTables.bootstrap4.min.css')}}" rel="stylesheet" />
 		<link href="{{URL::asset('assets/plugins/datatable/responsivebootstrap4.min.css')}}" rel="stylesheet" />
         <link href="{{URL::asset('assets/plugins/datatable/fileexport/buttons.bootstrap4.min.css')}}" rel="stylesheet" />
-
           <!-- INTERNAL PRISM CSS -->
           <link href="{{URL::asset('assets/plugins/prism/prism.css')}}" rel="stylesheet">
           	<!-- INTERNAL TELEPHONE CSS-->
@@ -18,7 +14,6 @@
 @endsection
 @section('page-header')
                 <!-- PAGE-HEADER -->
-                
 				<div class="page-header">
 					<div>
 						<h1 class="page-title" id="page-title">Liste des aires protégées dans {{$pay->nom}}</h1>
@@ -33,22 +28,16 @@
                             <i class="fe fe-plus"></i>
                         </span>
 						Ajouter une aire protégée</a>
-						<a class="btn btn-primary" href="{{URL::previous()}}"  >  <span>
-                            <i class="fe fe-array-right"></i>
-                        </span>
-                        Retour</a>
                     </button>
-
 					</div>
 				</div>
 				<!-- PAGE-HEADER END -->
 @endsection
 @section('content')
 @include('partials._notification')
-			            <!-- ROW-1 OPEN -->
-						<div class="row">
+                        <!-- ROW-1 OPEN -->
+						<div class="row" >
 							<div class="col-lg-3">
-							   
 								<div class="card">
 									<div class="card-header">
 										<div class="float-left">
@@ -58,18 +47,20 @@
 									</div>
 									<div id="listpays" class="card-body side-menu" style="height:55vh;overflow-y: scroll">
 										@foreach ($pays as $p)
-												<a style="cursor:pointer" onclick="filtreur({{$p->id}})" class="side-menu__item {{$p->id == $pay->id ? 'active' : ''}}">
+												<a style="cursor:pointer" onclick="filtreur({{$p->id}});" class="side-menu__item {{$p->id == $pay->id ? 'active' : ''}}">
 												<span class="side-menu__label">{{$p->nom}} </span>
 												</a>
 											@endforeach
 									</div>
 								</div>
-							</div>
+                            </div>
+
 							<div class="col-lg-9">
-								<div class="row">
-									<div id="loader" class="d-none">
-										<div class="loader"></div>
-									  </div>
+                                <div id="loader" class="d-none">
+                                    <div class="loader"></div>
+                                  </div>
+								<div class="row" id="aire_proteger_content">
+
 									<div class="col-md-12 col-lg-12">
 										<div class="card">
 											<div class="card-header">
@@ -108,16 +99,16 @@
 								</div>
 							</div><!-- COL-END -->
 						</div>
-						<div class="modal-footer">	
+						<div class="modal-footer">
 						<a href="{{ URL::previous() }}" class="btn btn-primary"> <span>
 								<i class="fe fe-close"></i>
 							</span> Retour</a>
-						
+
 						</div>
 						<!-- ROW-1 CLOSED -->
 
 				<!-- ROW-1 OPEN -->
-			
+
 			 {{-- @include('pages.backOffice.administrateur.utilisateurs._modelCreationUtilisateur') --}}
 @endsection
 @section('js')
@@ -149,11 +140,13 @@
             $('#largeModalAddUser').modal('show');
             modal.classList.add("show");
 		@endif
-		var tableBody = document.getElementById('tableBody');	
-		var listpays = document.getElementById('listpays');	
-		var pageTitle = document.getElementById('page-title');								
+
+		var tableBody = document.getElementById('tableBody');
+		var listpays = document.getElementById('listpays');
+		var pageTitle = document.getElementById('page-title');
 		function injecteur(res){
-			var {aires, pays, pay} = res, rows, lignes;
+            var {aires, pays, pay} = res, rows = lignes = '';
+
 			aires.map(function(a){
 			lignes +='<tr><td> <a class="text-dark" href="/aire_protegees/'+a.uuid+'"> '+a.libelle+' </a></td><td> <a class="text-dark" href="/aire_protegees/'+a.uuid+'">'+a.pays.nom+'</a></td><td> <a class="text-dark" href="/aire_protegees/'+a.uuid+'">'+a.code_wdpa_aire+' </a></td><td> <a class="text-dark" href="/aire_protegees/'+a.uuid+'">'+a.adresse.slice(0,25) +'</a></td><td> <a class="text-dark" href="/aire_protegees/'+a.uuid+'">'+a.tel+'</a></td></tr>'
 			})
@@ -163,15 +156,19 @@
 			})
 			pageTitle.innerHTML = 'Liste des aires protegées dans '+pay.nom;
 			listpays.innerHTML = rows;
-			tableBody.innerHTML = lignes;
+            tableBody.innerHTML = lignes;
+
+            $('#loader').addClass('d-none');
+            $('#aire_proteger_content').show();
 		}
 		function filtreur(pays){
+        $('#loader').removeClass('d-none');
+        $('#aire_proteger_content').hide();
 			event.preventDefault();
  			 axios.get('/aire_protegees/api/filtreur/'+pays).then(function(data){
 														var res = data.data;
 													injecteur(res);
-													
-									})
+                                                });
         }
         </script>
 @endsection

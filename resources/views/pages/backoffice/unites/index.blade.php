@@ -21,7 +21,7 @@
 
 				<div class="page-header">
 					<div>
-						<h1 class="page-title">Liste des unités aires</h1>
+						<h1 class="page-title">Liste des unités d'application de lois</h1>
 						<ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{route('accueil')}}">Accueil</a></li>
 							<li class="breadcrumb-item active" aria-current="page">Unités</li>

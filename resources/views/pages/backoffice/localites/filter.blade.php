@@ -34,11 +34,7 @@
                             <i class="fe fe-plus"></i>
                         </span>
 						Ajouter une localité</a>
-						<a class="btn btn-primary" href="{{URL::previous()}}"  >  <span>
-                            <i class="fe fe-array-right"></i>
-                        </span>
-                        Retour</a>
-
+						
 
                     </button>
 
@@ -75,9 +71,12 @@
 								</div>
 							</div>
 							<div class="col-lg-9">
+							<div id="loader" class="d-none">
+                                    <div class="loader"></div>
+                                </div>
 			
 								<div class="row">
-									<div class="col-md-12 col-lg-12">
+									<div id="aire_proteger_content" class="col-md-12 col-lg-12">
 										<div class="card">
 											<div class="card-header">
 												<h3 class="card-title">Les localités de {{$pay->nom}} </h3>
@@ -180,9 +179,13 @@
 			tableBody.innerHTML = rows;
 			listpays.innerHTML = lignes;
 			pageTitle.innerHTML = 'Liste des localités dans '+pay.nom;
+			 $('#loader').toggleClass('d-none');
+        $('#aire_proteger_content').show();
 			
 		}
 		function filtreur(pays){
+			 $('#loader').toggleClass('d-none');
+            $('#aire_proteger_content').hide();
 			event.preventDefault();
  			 axios.get('/localites/api/filtreur/'+pays).then(function(data){
 														var res = data.data;

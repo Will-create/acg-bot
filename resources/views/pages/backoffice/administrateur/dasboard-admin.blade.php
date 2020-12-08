@@ -65,7 +65,7 @@
 						<div class="card-body">
 							<div class="row mb-1">
 								<div class="col">
-									<p class="mb-1">Espèces</p>
+									<p class="mb-1">Unités de loi</p>
 									<h3 class="mb-0 number-font">10 523</h3>
 								</div>
 								<div class="col-auto mb-0">
