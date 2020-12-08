@@ -119,7 +119,7 @@
 											<th>Nom</th>
 											<th>Prenom</th>
 											<th>tel</th>
-											<th>Status</th>
+											<th>Statut</th>
 										</tr>
 									</thead>
 									<tbody>

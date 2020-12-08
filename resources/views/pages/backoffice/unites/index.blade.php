@@ -18,10 +18,10 @@
 @endsection
 @section('page-header')
                 <!-- PAGE-HEADER -->
-                
+
 				<div class="page-header">
 					<div>
-						<h1 class="page-title">Liste des unités aires</h1>
+						<h1 class="page-title">Liste des unités d'application de lois</h1>
 						<ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{route('accueil')}}">Accueil</a></li>
 							<li class="breadcrumb-item active" aria-current="page">Unités</li>
@@ -70,7 +70,7 @@
 
 											<tr data-placement="top" title="Cliquer pour afficher les détails">
 												<td> <a class="text-dark" href="{{route('unites.show', $unite->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" > {{$unite->designation}} </a></td>
-												<td> <a class="text-dark" href="{{route('unites.show', $unite->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" >{{$unite->type->nom}} </a></td>
+												<td> <a class="text-dark" href="{{route('unites.show', $unite->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" >{{ucFirst($unite->type->nom)}} </a></td>
 												<td> <a class="text-dark" href="{{route('unites.show', $unite->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" >{{$unite->pays->nom}} </a></td>
 												<td> <a class="text-dark" href="{{route('unites.show', $unite->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" >{{$unite->localite->nom}} </a></td>
 												<td> <a class="text-dark" href="{{route('unites.show', $unite->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" >{{$unite->tel}} </a></td>

@@ -22,7 +22,7 @@ class EspeceController extends Controller
     public function index()
     {
         $especes=Espece::orderBy('nom','asc')->get();
-        $titre = 'Liste des espèses';
+        $titre = 'Liste des espèces';
         $subtitle = 'Espèces';
         $regne = null;
         return view('pages.backoffice.especes.index',compact('especes', 'titre', 'subtitle', 'regne'));

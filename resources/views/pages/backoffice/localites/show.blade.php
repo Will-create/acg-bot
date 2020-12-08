@@ -53,9 +53,7 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="card-body wideget-user-contact">
-                    <strong>Pays :</strong><a class="text-dark" href="{{ route('pays.show', $localite->pay->uuid) }}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails">
-                        <span class="">{{ $localite->pay->nom }} </span>
-                    </a> 
+                    <strong>Pays :</strong> <a class="text-dark" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" href="{{route('pays.show',$localite->pay->uuid)}}"> {{ $localite->pay->nom }}</a>
                     <br><br>
                 </div>
             </div>
@@ -65,7 +63,7 @@
                 <div class="tab-pane active show" id="tab-52">
                     <div class="card">
                         <div class="card-body">
-                            <h3 class="card-title" >Unités associées à cette Localité</h3>
+                            <h3 class="page-title">Unités associées à cette Localité</h3>
                             @foreach($unites as $unite)
                                 <a class="text-dark" href="{{ route('unites.show', $unite->uuid) }}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails">
                                     <span class="">{{ $unite->designation}} </span>
@@ -92,7 +90,7 @@
             <a href="{{ route('localites.edit', $localite->uuid) }}" class="btn btn-primary">
                 <i class="fa fa-edit"></i> Modifier</a>
             <button type="button" class="btn btn-danger  mb-1" data-toggle="modal"
-                data-target="#exampleModalDelete{{ $localite->id }}"><i class="fa fa-trash"></i></button>
+                data-target="#exampleModalDelete{{ $localite->id }}"><i class="fa fa-trash"></i> Supprimer</button>
         </div>
     </div>
 
@@ -107,7 +105,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p> Etes-vous sûr de bien vouloir supprimer cette localité ?
+                    <p> Etes-vous sûr de vouloir supprimer cette localité ?
                     </p>
                 </div>
                 <div class="modal-footer">

@@ -7,12 +7,12 @@
 			<!-- CONTAINER OPEN -->
 			<div class="container-login100">
 				<div class="wrap-login100 p-6">
-					
+
 					<div class="row">
 						<div class="col-md-3"></div>
 
 						<div class="col-md-6">
-							<img src="{{asset('assets/logo.png')}}" style="max-width:20vh; object-fit:cover; object-position: 50% 50%;" alt="" srcset="">
+							<img src="{{asset('assets/logo.jpeg')}}" style="max-width:20vh; object-fit:cover; object-position: 50% 50%;" alt="" srcset="">
 							<br><br>
 						</div>
 						<div class="col-md-3"></div>

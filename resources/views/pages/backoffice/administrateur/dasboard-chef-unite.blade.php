@@ -87,7 +87,7 @@
                             <div class="wideget-user text-center">
                                 <div class="wideget-user-desc">
                                     <div class="wideget-user-img">
-                                        <img class="" src="http://localhost:5000/assets/images/user.png" alt="img">
+                                    <img class="" src="{{asset('storage/'. Auth::user()->profile_photo_path )}}" alt="img">
                                     </div>
                                     <div class="user-wrap">
                                     <h4 class="mb-1">{{Auth::user()->nom. ' '. Auth::user()->prenom}}</h4>
@@ -107,7 +107,7 @@
 				<div class="col-sm-12 col-md-12 col-lg-8 col-xl-8">
 					<div class="card">
 						<div class="card-header">
-							<h3 class="card-title">Les coordonnateurs nationaux</h3>
+							<h3 class="card-title">Les agents </h3>
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
@@ -118,11 +118,11 @@
 											<th>Nom</th>
 											<th>Prenom</th>
 											<th>tel</th>
-											<th>Status</th>
+											<th>Statut</th>
 										</tr>
 									</thead>
 									<tbody>
-                                       @forelse ($coordonateurs as $coordonateur)
+                                       @forelse ($utilisateurs as $coordonateur)
 
 
 										<tr>

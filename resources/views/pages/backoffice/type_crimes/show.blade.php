@@ -83,7 +83,7 @@
                 <i class="fa fa-edit"></i> Modifier</a>
 
             <button type="button" class="btn btn-danger  mb-1" data-toggle="modal"
-                data-target="#exampleModalDelete{{ $type->id }}"><i class="fa fa-trash"></i></button>
+                data-target="#exampleModalDelete{{ $type->id }}"><i class="fa fa-trash"></i> Supprimer </button>
         </div>
     </div>
 

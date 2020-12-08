@@ -84,7 +84,7 @@
                         <div class="tab-pane active show" id="tab-51">
                             <div class="card">
                                 <div class="card-body">
-                                    <h3>Crimes associés à cette espèce</h3>
+                                    <h3 class="page-title">Crimes associés à cette espèce</h3>
                                     @foreach($crimes as $crime)
                                         <a class="text-dark" href="{{ route('crimes.show', $crime->uuid) }}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" >
                                             <span class="">{{ $crime->nom}} </span>
@@ -125,7 +125,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <p> Etes-vous sûr de bien vouloir supprimer cette espèce ?
+                            <p> Etes-vous sûr de vouloir supprimer cette espèce ?
                             </p>
                         </div>
                         <div class="modal-footer">

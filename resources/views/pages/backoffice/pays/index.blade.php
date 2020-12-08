@@ -57,19 +57,11 @@
                             <div class="card-body wideget-user-contact">
                             <img src="{{asset('storage').'/'.$pay->icone}}"   style="min-width:100%; object-fit:cover; object-position: 50% 50%;" alt="" srcset="">
                             <div class="clearfix"></div>
-                           
                             </div>
                         </div>
                        </a>
                        </div>
-                   
-                       
                    @endforeach
-                   
-              
-                
             </div>
-            
-            
             <!-- ROW-1 CLOSED -->
 @endsection

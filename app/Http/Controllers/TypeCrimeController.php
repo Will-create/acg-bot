@@ -10,6 +10,10 @@ use Illuminate\Http\Request;
 
 class TypeCrimeController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         $types=TypeCrime::orderBy('nom','asc')->get();
@@ -20,7 +24,7 @@ class TypeCrimeController extends Controller
         return view('pages.backoffice.type_crimes.createdit', [
             'type' => new TypeCrime(),
             'titrePage' => "Ajouter un nouveau type de crime",
-            'btnAction' => "Ajouter" 
+            'btnAction' => "Ajouter"
         ]);
     }
     public function store(Request $request)
@@ -53,7 +57,7 @@ class TypeCrimeController extends Controller
             'btnAction' => "Mettre à jour"
         ]);
     }
-    
+
     public function update(Request $request, $uuid)
     {
         $data=request()->validate([

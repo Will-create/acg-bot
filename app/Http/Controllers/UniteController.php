@@ -63,19 +63,19 @@ class UniteController extends Controller
     public function store(Request $request)
     {
         $data=request()->validate([
-            'designation'=> ['required','string','max:255','min:3','unique:unites'],
-            'type_unite_id'=> ['required','integer'],
-            'tel'=> ['required','string','max:255','min:3'],
-            'tel2'=> ['string','max:255','min:3'],
-            'administration_tutelle'=> ['required','string','max:255','min:3'],
-            'adresse'=> ['required','string','max:255','min:3'],
-            'responsable_id'=>['required','integer'],
-            'lat'=> ['required','string','max:255','min:8'],
-            'long'=> ['required','string','max:255','min:8'],
-            'logo'=> ['image','required'],
-            'photo_couverture'=> ['image','required'],
-            'pays_id'=> ['required','integer'],
-            'localite_id'=> ['required','integer'],
+            'designation'                   => ['required','string','max:255','min:3','unique:unites'],
+            'type_unite_id'                 => ['required','integer'],
+            'tel'                           => ['required','string','max:255','min:3'],
+            'tel2'                          => ['nullable','string','max:255','min:3'],
+            'administration_tutelle'        => ['required','string','max:255','min:3'],
+            'adresse'                       => ['required','string','max:255','min:3'],
+            'responsable_id'                =>['required','integer'],
+            'lat'                           => ['nullable','required','string','max:255','min:8'],
+            'long'                          => ['nullable','required','string','max:255','min:8'],
+            'logo'                          => ['image','required'],
+            'photo_couverture'              => ['image','nullable'],
+            'pays_id'                       => ['required','integer'],
+            'localite_id'                   => ['required','integer'],
           ]);
           $unite= new Unite;
           if($request->hasFile('logo')){
@@ -125,8 +125,8 @@ class UniteController extends Controller
             'responsables' => U::with('role','pay')->get(),
             'types' =>TypeUnite::orderBy('nom','asc')->get(),
             'pays' =>Pay::orderBy('nom','asc')->get(),
-            'titrePage' => "Mise à jours une nouvelle unité de lois",
-            'btnAction' => "Mettre à jours"
+            'titrePage' => "Mise à jour ". $unite->designation,
+            'btnAction' => "Mettre à jour"
         ]);
     }
 
@@ -137,14 +137,14 @@ class UniteController extends Controller
             'designation'=> ['required','string','max:255','min:3'],
             'type_unite_id'=> ['required','integer'],
             'tel'=> ['required','string','max:255','min:3'],
-            'tel2'=> ['string','max:255','min:3','nullable'],
-            'administration_tutelle'=> ['string','max:255','min:3','nullable'],
+            'tel2'=> ['nullable', 'string','max:255','min:3'],
+            'administration_tutelle'=> ['nullable','string','max:255','min:3'],
             'adresse'=> ['required','string','max:255','min:3'],
             'responsable_id'=>['required','integer'],
             'lat'=> ['string','max:255','min:8'],
-            'long'=> ['string','max:255','min:8'],
-            'logo'=> ['image'],
-            'photo_couverture'=> ['image'],
+            'long'=> ['nullable', 'string','max:255','min:8'],
+            'logo'=> ['nullable', 'image'],
+            'photo_couverture'=> ['nullable', 'image'],
             'pays_id'=> ['required','integer'],
             'localite_id'=> ['required','integer'],
           ]);
