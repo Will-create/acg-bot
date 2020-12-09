@@ -19,7 +19,7 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         $faker=Factory::create();
-        
+
         $ville = [
             'Ouagadougou', 'Bobo Dioulasso', 'Banfora', 'Ouahigouya'
         ];
@@ -47,7 +47,7 @@ class UserTableSeeder extends Seeder
                 'role_id'               => $role->id,
                 'profile_photo_path'    => "/images/pngs/bg-l.png",
                 'prenom'                => $faker->lastName,
-                'email'                 => $faker->safeEmail,
+                'email'                 => $faker->freeEmail,
                 'tel'                   => $faker->phoneNumber,
                 'password'              => Hash::make('00000000'),
                 'localite_id'              => $faker->numberBetween($min = 1, $max = 5),

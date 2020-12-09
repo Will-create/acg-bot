@@ -17,10 +17,13 @@ class EspeceTableSeeder extends Seeder
     public function run()
     {
         $faker = Factory::create();
+        \Bezhanov\Faker\ProviderCollectionHelper::addAllProvidersTo($faker);
+        $faker->addProvider(new \Bezhanov\Faker\Provider\Species($faker));
+
         $regnes = ['animal','vegetal'];
         for ($i=0; $i <20 ; $i++) {
             Espece::create([
-                'nom'                   => $faker->text($maxNbChars = 25),
+                'nom'                   => $faker->creature,
                 'uuid'                  => Str::uuid(),
                 'photo'                 => "/images/pngs/bg-l.png",
                 'famille'               => $faker->text($maxNbChars = 25),
