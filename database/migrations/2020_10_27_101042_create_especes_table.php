@@ -21,7 +21,7 @@ class CreateEspecesTable extends Migration
             $table->string('famille');
             $table->string('statut_uicn')->nullable();
             $table->string('statut_cites')->nullable();
-            $table->enum('regne', ['animal', 'vegetal']);
+            $table->enum('regne', ['animal', 'végétal']);
             $table->unsignedBigInteger('ordre_id');
             $table->string('nom_scientifique')->nullable();
             $table->mediumText('photo')->nullable();

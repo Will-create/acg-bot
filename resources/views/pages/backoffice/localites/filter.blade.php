@@ -189,6 +189,7 @@
 			event.preventDefault();
  			 axios.get('/localites/api/filtreur/'+pays).then(function(data){
 														var res = data.data;
+														console.log(res)
 													injecteur(res);})
         }
         </script>

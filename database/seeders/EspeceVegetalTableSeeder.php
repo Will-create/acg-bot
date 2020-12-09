@@ -7,7 +7,7 @@ use App\Models\Ordre;
 use Illuminate\Database\Seeder;
 use Faker\Factory;
 use Illuminate\Support\Str;
-class EspeceTableSeeder extends Seeder
+class EspeceVegetalTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -21,11 +21,11 @@ class EspeceTableSeeder extends Seeder
         $faker->addProvider(new \Bezhanov\Faker\Provider\Species($faker));
         for ($i=0; $i <10 ; $i++) {
             Espece::create([
-                'nom'                   => $faker->creature,
+                'nom'                   => $faker->plant,
                 'uuid'                  => Str::uuid(),
-                'photo'                 =>$faker->file($sourceDir = '/home/louisbertson/Desktop/criminalite/public/storage/espece_animal', $targetDir = '/home/louisbertson/Desktop/criminalite/public/storage/images', false),
+                'photo'                 =>$faker->file($sourceDir = '/home/louisbertson/Desktop/criminalite/public/storage/espece_vegetal', $targetDir = '/home/louisbertson/Desktop/criminalite/public/storage/images', false),
                 'famille'               => $faker->company,
-                'regne'                 =>'animal',
+                'regne'                 =>'végétal',
                 'nom_scientifique'      => $faker->catchPhrase,
                 'ordre_id'              => Ordre::first()->id
             ]);
