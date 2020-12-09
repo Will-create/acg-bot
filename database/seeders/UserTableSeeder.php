@@ -19,7 +19,7 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         $faker=Factory::create();
-        
+
         $ville = [
             'Ouagadougou', 'Bobo Dioulasso', 'Banfora', 'Ouahigouya'
         ];
