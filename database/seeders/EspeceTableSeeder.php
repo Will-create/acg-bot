@@ -17,15 +17,13 @@ class EspeceTableSeeder extends Seeder
     public function run()
     {
         $faker = Factory::create();
-        \Bezhanov\Faker\ProviderCollectionHelper::addAllProvidersTo($faker);
-        $faker->addProvider(new \Bezhanov\Faker\Provider\Species($faker));
-        for ($i=0; $i <10 ; $i++) {
+        for ($i=0; $i <0 ; $i++) {
             Espece::create([
-                'nom'                   => $faker->creature,
+                'nom'                   => $faker->jobTitle,
                 'uuid'                  => Str::uuid(),
                 'photo'                 =>$faker->file($sourceDir = '/home/louisbertson/Desktop/criminalite/public/storage/espece_animal', $targetDir = '/home/louisbertson/Desktop/criminalite/public/storage/images', false),
                 'famille'               => $faker->company,
-                'regne'                 =>'animal',
+                'regne'                 =>$faker->randomElement($array = array ('animal','végétal')),
                 'nom_scientifique'      => $faker->catchPhrase,
                 'ordre_id'              => Ordre::first()->id
             ]);

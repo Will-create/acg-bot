@@ -17,11 +17,10 @@ class EspeceVegetalTableSeeder extends Seeder
     public function run()
     {
         $faker = Factory::create();
-        \Bezhanov\Faker\ProviderCollectionHelper::addAllProvidersTo($faker);
-        $faker->addProvider(new \Bezhanov\Faker\Provider\Species($faker));
+        
         for ($i=0; $i <10 ; $i++) {
             Espece::create([
-                'nom'                   => $faker->plant,
+                'nom'                   => $faker->jobTitle,
                 'uuid'                  => Str::uuid(),
                 'photo'                 =>$faker->file($sourceDir = '/home/louisbertson/Desktop/criminalite/public/storage/espece_vegetal', $targetDir = '/home/louisbertson/Desktop/criminalite/public/storage/images', false),
                 'famille'               => $faker->company,
