@@ -21,8 +21,6 @@ class AireProtegeeController extends Controller
        
         return view('pages.backoffice.aire_protegees.index', [
             'aires'                        => AireProtegee::with(['pays'])->orderBy('libelle', 'asc')->get(),
-            
- 
         ]);
     }
     public function filter()

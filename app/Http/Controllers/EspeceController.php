@@ -74,7 +74,7 @@ class EspeceController extends Controller
             $file = $request->file('photo');
             $timestamp = str_replace([' ', ':'], '-', Carbon::now()->toDateTimeString());
             $name = $timestamp. '-' .$file->getClientOriginalName();
-            $photoPath=request('photo')->storeAs('especes_uploads',$name,'public');
+            $photoPath=request('photo')->storeAs('storage/images',$name,'public');
             $espece->photo = $photoPath;
         }
           $espece->nom=$data['nom'];
@@ -111,7 +111,6 @@ class EspeceController extends Controller
             'regne'=> ['required','string','max:255'],
             'ordre_id'=> ['required','integer'],
             'nom_scientifique'=> ['required','string','max:255','min:3'],
-            'photo'=> ['image'],
           ]);
           $espece=Espece::where('uuid',$uuid)->first();
           if($request->hasFile('photo')){
