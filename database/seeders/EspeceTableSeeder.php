@@ -23,7 +23,7 @@ class EspeceTableSeeder extends Seeder
                 'uuid'                  => Str::uuid(),
                 'photo'                 =>$faker->file($sourceDir = '/home/louisbertson/Desktop/criminalite/public/storage/espece_animal', $targetDir = '/home/louisbertson/Desktop/criminalite/public/storage/images', false),
                 'famille'               => $faker->company,
-                'regne'                 =>$faker->randomElement($array = array ('animal','végétal')),
+                'regne'                 =>'animal',
                 'nom_scientifique'      => $faker->catchPhrase,
                 'ordre_id'              => Ordre::first()->id
             ]);

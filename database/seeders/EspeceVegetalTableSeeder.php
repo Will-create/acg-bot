@@ -22,9 +22,9 @@ class EspeceVegetalTableSeeder extends Seeder
             Espece::create([
                 'nom'                   => $faker->jobTitle,
                 'uuid'                  => Str::uuid(),
-                'photo'                 =>$faker->file($sourceDir = '/home/louisbertson/Desktop/criminalite/public/storage/espece_vegetal', $targetDir = '/home/louisbertson/Desktop/criminalite/public/storage/images', false),
+                'photo'                 =>$faker->file($sourceDir = '/home/louisbertson/Desktop/criminalite/public/storage/espece_animal', $targetDir = '/home/louisbertson/Desktop/criminalite/public/storage/images', false),
                 'famille'               => $faker->company,
-                'regne'                 =>'végétal',
+                'regne'                 =>'animal',
                 'nom_scientifique'      => $faker->catchPhrase,
                 'ordre_id'              => Ordre::first()->id
             ]);

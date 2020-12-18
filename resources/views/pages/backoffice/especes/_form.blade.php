@@ -71,10 +71,10 @@
                 <div class="col-md-12 ">
                     <div class="card shadow">
                         <div class="card-header">
-                            <h3 class="mb-0 card-title"> Photo d'illustration  <strong class="text-danger">*</strong></h3>
+                            <h3 class="mb-0 card-title">Photo d'illustration<strong class="text-danger">*</strong></h3>
                         </div>
                         <div class="card-body">
-                            <input type="file" class="dropify" id="logo" data-max-file-size="1M" name="photo" accept="" />
+                            <input type="file" class="dropify" id="photo" data-max-file-size="1M" name="photo" accept="image/*"/>
                             @error('photo')
                         <span class="helper-text red-text">
                             <strong>{{ $message }}</strong>
@@ -88,7 +88,7 @@
             <a href="{{ route('especes.index') }}" class="btn btn-dark"> <i class="fa fa-times"
                     aria-hidden="true"></i>
                 Annuler </a>
-            <button type="submit" class="btn btn-primary"> <span>
+            <button type="submit" class="btn btn-primary"><span>
                     <i class="fe fe-save"></i>
                 </span> {{ $btnAction }}</button>
         </div>

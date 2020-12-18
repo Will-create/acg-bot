@@ -67,7 +67,7 @@ class EspeceController extends Controller
             'regne'=> ['required','string','max:255'],
             'ordre_id'=> ['required','integer'],
             'nom_scientifique'=> ['required','string','max:255','min:3'],
-            'photo'=> ['image'],
+            'photo'=> ['required'],
           ]);
             $espece= new Espece;
           if($request->hasFile('photo')){
