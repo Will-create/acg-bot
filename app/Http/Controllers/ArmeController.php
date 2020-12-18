@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Ordre;
+use App\Models\Arme;
 use Illuminate\Http\Request;
 
-class OrdreController extends Controller
-{   
-    
+class ArmeController extends Controller
+{
     /**
      * Display a listing of the resource.
      *
@@ -42,10 +41,10 @@ class OrdreController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Ordre  $ordre
+     * @param  \App\Models\Arme  $arme
      * @return \Illuminate\Http\Response
      */
-    public function show(Ordre $ordre)
+    public function show(Arme $arme)
     {
         //
     }
@@ -53,10 +52,10 @@ class OrdreController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Ordre  $ordre
+     * @param  \App\Models\Arme  $arme
      * @return \Illuminate\Http\Response
      */
-    public function edit(Ordre $ordre)
+    public function edit(Arme $arme)
     {
         //
     }
@@ -65,10 +64,10 @@ class OrdreController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Ordre  $ordre
+     * @param  \App\Models\Arme  $arme
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Ordre $ordre)
+    public function update(Request $request, Arme $arme)
     {
         //
     }
@@ -76,10 +75,10 @@ class OrdreController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Ordre  $ordre
+     * @param  \App\Models\Arme  $arme
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Ordre $ordre)
+    public function destroy(Arme $arme)
     {
         //
     }

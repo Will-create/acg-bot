@@ -26,7 +26,7 @@
                     <br>
                     <div class="card shadow">
                         <div class="card-header">
-                            <h3 class="mb-0 card-title">Veuillez ajouter le drapeau du pays <strong class="text-danger">*</strong></h3>
+                            <h3 class="mb-0 card-title">Veuillez ajouter le drapeau du pays </h3>
                         </div>
                         <div class="card-body">
                             <input type="file" class="dropify" id="icone" data-max-file-size="1M" name="icone" accept="image/*" />

@@ -66,18 +66,14 @@ class PayController extends Controller
     }
     public function edit($uuid)
     {
-        return view('pages.backoffice.localites.createdit', [
+        return view('pages.backoffice.pays.createdit', [
             'pays'      =>Pay::where('uuid', $uuid)->first(),
             'titrePage' => "Mise à jour ".Pay::where('uuid', $uuid)->first()->designation,
             'btnAction' => "Mettre à jour"
         ]);
     }
-    
- 
     public function update(Request $request, $uuid)
     { 
-
-
         $pays = Pay::where('uuid', $uuid)->first();
         $data=request()->validate([
         'nom'=> ['required','string','max:255','min:3'],
@@ -112,7 +108,7 @@ class PayController extends Controller
             return redirect()->back()->with('danger',$restrictions['message']);
            }else{
             $pays->delete();
-            return redirect()->route('localites.index')->with('status','Localité supprimée avec succès');
+            return redirect()->route('pays.index')->with('status','Pays supprimée avec succès');
            }
     }
 }

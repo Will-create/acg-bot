@@ -140,8 +140,7 @@
             $('#largeModalAddUser').modal('show');
             modal.classList.add("show");
 		@endif
-
-		var tableBody = document.getElementById('tableBody');
+		var tableBody = $('#data-table1');
 		var listpays = document.getElementById('listpays');
 		var pageTitle = document.getElementById('page-title');
 		function injecteur(res){
@@ -155,15 +154,13 @@
 				rows +='<a style="cursor:pointer" onclick="filtreur('+p.id+')" class="side-menu__item '+active+'"><span class="side-menu__label">'+p.nom+' </span></a>'
 			})
 			pageTitle.innerHTML = 'Liste des aires protegées dans '+pay.nom;
+			
 			listpays.innerHTML = rows;
-<<<<<<< HEAD
-			// tableBody.innerHTML = lignes;
-=======
-            tableBody.innerHTML = lignes;
-
+			
+            tableBody.html(lignes);
+		
             $('#loader').addClass('d-none');
             $('#aire_proteger_content').show();
->>>>>>> 092a0404efcf5553eb4977e00f015ce7755162af
 		}
 		function filtreur(pays){
         $('#loader').removeClass('d-none');
@@ -171,14 +168,10 @@
 			event.preventDefault();
  			 axios.get('/aire_protegees/api/filtreur/'+pays).then(function(data){
 														var res = data.data;
-<<<<<<< HEAD
 														
-														injecteur(res);
-													})
-=======
+												
 													injecteur(res);
                                                 });
->>>>>>> 092a0404efcf5553eb4977e00f015ce7755162af
         }
         </script>
 @endsection

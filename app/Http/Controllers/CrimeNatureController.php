@@ -96,7 +96,6 @@ class CrimeNatureController extends Controller
         $nature_crime->update([
                 'nom'            => $request->nom,
                 'description'       => $request->description,
-
         ]);
 
         $request->session()->flash('status', 'Informations mises à jour avec succès');

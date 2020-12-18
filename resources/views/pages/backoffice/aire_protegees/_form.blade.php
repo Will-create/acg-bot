@@ -1,84 +1,88 @@
+        <div class="card">
+            <div class="card-head">
 
+            </div>
+                    <div class="card-body">
+                        <div class="row">
+                         <div class="col-md-6">
+                             <div class="form-group">
+                                 <label class="form-label" for="libelle">Libellé<strong class="text-danger">*</strong> </label>
+                                 <input type="text" class="form-control" name="libelle" placeholder="Libellé" id="libelle"  value="{{old('libelle') ?? $aire->libelle }}">
+                                 @error('libelle')
+                                 <span class="helper-text red-text">
+                                     <strong>{{ $message }}</strong>
+                                 </span>
+                                 @enderror
+                             </div>
+                         </div>
+                         <div class="col-md-6">
+                             <div class="form-group">
+                                 <label class="form-label" for="tel">Téléphone <strong class="text-danger">*</strong></label>
+                                 <input class="form-control"  name="tel" placeholder="Téléphone" type="text"  value="{{old('tel') ?? $aire->tel}}">
+                                 @error('tel')
+                                 <span class="helper-text red-text">
+                                     <strong>{{ $message }}</strong>
+                                 </span>
+                                 @enderror
+                             </div>
+                         </div>
+                     </div>
+                     <div class="row">
+                         <div class="col-md-6">
+                             <div class="form-group">
+                                 <label class="form-label" for="organisation">Pays <strong class="text-danger">*</strong></label>
+                                 <select name="pays_id" id="pays_id" class="form-control custom-select select2">
+                                     <option value="{{Route::currentRouteName() == 'aire_protegees.edit' ? $aire->pays->id : '' }}" selected >{{Route::currentRouteName() == 'aire_protegees.edit' ? $aire->pays->nom : 'Sélectionner' }}</option>
+                                     @foreach ($pays as $pay)
+                                     <option value="{{$pay->id}}">{{$pay->nom}}</option>
+                                     @endforeach
+                                 </select>
+                                 @error('pays_id')
+                                 <span class="helper-text red-text">
+                                     <strong>{{ $message }}</strong>
+                                 </span>
+                                 @enderror
+                                </div>
+                                 <div class="form-group">
+                                     <label class="form-label" for="map">Map<strong class="text-danger">*</strong> </label>
+                                     <input type="text" class="form-control" placeholder="Lien Google map" name="map"  value="{{old('map') ?? $aire->map}}">
+                                         @error('map')
+                                             <span class="helper-text red-text">
+                                             <strong>{{ $message }}</strong>
+                                             </span>
+                                         @enderror
+                                 </div>
+                                 <div class="form-group">
+                                     <label class="form-label" for="code_wdpa_aire">Code wdpa<strong class="text-danger">*</strong> </label>
+                                     <input type="text" class="form-control" placeholder="Code_wdpa_aire" name="code_wdpa_aire"  id="code_wdpa_aire"  value="{{old('code_wdpa_aire') ?? $aire->code_wdpa_aire}}">
+                                         @error('code_wdpa_aire')
+                                             <span class="helper-text red-text">
+                                             <strong>{{ $message }}</strong>
+                                             </span>
+                                         @enderror
+                                 </div>
+                         </div>
+                         <div class="col-md-6">
+                             <div class="form-group">
+                                 <label class="form-label" for="adresse">Adresse complete<strong class="text-danger">*</strong></label>
+                             <textarea class="form-control" placeholder="Adresse" rows="5" name="adresse" id="adresse" >{{old('adresse') ?? $aire->adresse}}</textarea>
+                                 @error('adresse')
+                                 <span class="helper-text red-text">
+                                     <strong>{{ $message }}</strong>
+                                 </span>
+                                 @enderror
+                             </div>
+                         </div>
+                     </div>
+                     <div class="row">
+                         <div class="col-md-6">
+                         </div>
+                         <div class="col-md-6">
+                         </div>
+                        </div>
+                    </div>
+        </div>
        
-       <div class="card-body">
-           <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label class="form-label" for="libelle">Libellé<strong class="text-danger">*</strong> </label>
-                    <input type="text" class="form-control" name="libelle" placeholder="Libellé" id="libelle"  value="{{old('libelle') ?? $aire->libelle }}">
-                    @error('libelle')
-                    <span class="helper-text red-text">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label class="form-label" for="tel">Téléphone <strong class="text-danger">*</strong></label>
-                    <input class="form-control"  name="tel" placeholder="Téléphone" type="text"  value="{{old('tel') ?? $aire->tel}}">
-                    @error('tel')
-                    <span class="helper-text red-text">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label class="form-label" for="organisation">Pays <strong class="text-danger">*</strong></label>
-                    <select name="pays_id" id="pays_id" class="form-control custom-select select2">
-                        <option value="{{Route::currentRouteName() == 'aire_protegees.edit' ? $aire->pays->id : '' }}" selected >{{Route::currentRouteName() == 'aire_protegees.edit' ? $aire->pays->nom : 'Sélectionner' }}</option>
-                        @foreach ($pays as $pay)
-                        <option value="{{$pay->id}}">{{$pay->nom}}</option>
-                        @endforeach
-                    </select>
-                    @error('pays_id')
-                    <span class="helper-text red-text">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
-                   </div>
-                    <div class="form-group">
-                        <label class="form-label" for="map">Map<strong class="text-danger">*</strong> </label>
-                        <input type="text" class="form-control" placeholder="Lien Google map" name="map"  value="{{old('map') ?? $aire->map}}">
-                            @error('map')
-                                <span class="helper-text red-text">
-                                <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label" for="code_wdpa_aire">Code wdpa<strong class="text-danger">*</strong> </label>
-                        <input type="text" class="form-control" placeholder="Code_wdpa_aire" name="code_wdpa_aire"  id="code_wdpa_aire"  value="{{old('code_wdpa_aire') ?? $aire->code_wdpa_aire}}">
-                            @error('code_wdpa_aire')
-                                <span class="helper-text red-text">
-                                <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                    </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label class="form-label" for="adresse">Adresse complete<strong class="text-danger">*</strong></label>
-                <textarea class="form-control" placeholder="Adresse" rows="5" name="adresse" id="adresse" >{{old('adresse') ?? $aire->adresse}}</textarea>
-                    @error('adresse')
-                    <span class="helper-text red-text">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-            </div>
-            <div class="col-md-6">
-            </div>
-           </div>
-       </div>
        <div class="row">
            <div class="col-md-6">
             <div class="card shadow">
@@ -119,12 +123,3 @@
                 <i class="fe fe-save"></i>
             </span> {{ $btnAction }}</button>
         </div>
-
-       
-       
-       
-       
-       
-       
-       
-       

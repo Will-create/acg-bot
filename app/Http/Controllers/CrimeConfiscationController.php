@@ -51,9 +51,6 @@ class CrimeConfiscationController extends Controller
             'crime_id'                       => ['required','integer'],
             'nombre'                         => ['required','integer'],
             'poids'                          => ['required','integer'],
-            
-
-
           ]);
 
 

@@ -97,8 +97,8 @@
                     <label class="form-label" for="organisation">Localité <strong
                             class="text-danger">*</strong></label>
                     <select name="localite_id" id="ville_id" class="form-control custom-select select2">
-                        @if ($utilisateur->ville)
-                    <option value="{{$utilisateur->ville}}" selected > {{$utilisateur->ville->nom}}</option>
+                        @if ($utilisateur->localite)
+                    <option value="{{$utilisateur->localite}}" selected > {{$utilisateur->localite->nom}}</option>
 
                         @else
                         <option value="" selected disabled> Sélectionner</option>
