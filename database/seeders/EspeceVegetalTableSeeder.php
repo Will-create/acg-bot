@@ -17,18 +17,32 @@ class EspeceVegetalTableSeeder extends Seeder
     public function run()
     {
         $faker = Factory::create();
-        
+        \Bezhanov\Faker\ProviderCollectionHelper::addAllProvidersTo($faker);
+        $faker->addProvider(new \Bezhanov\Faker\Provider\Species($faker));
+        // for ($i=0; $i <0 ; $i++) {
+        //     Espece::create([
+        //         'nom'                   => $faker->bird,
+        //         'uuid'                  => Str::uuid(),
+        //         'photo'                 => $faker->file($sourceDir = 'D:\Switch Maker\criminalite\public\espece_animal', $targetDir = 'storage\app\public\espece_uploads', false),
+        //         'famille'               => $faker->bird,
+        //         'regne'                 => 'animal',
+        //         'nom_scientifique'      => $faker->bird,
+        //         'ordre_id'              => Ordre::inRandomOrder()->first()->id
+        //     ]);
+        // }
         for ($i=0; $i <10 ; $i++) {
             Espece::create([
-                'nom'                   => $faker->jobTitle,
+                'nom'                   => $faker->plant,
                 'uuid'                  => Str::uuid(),
-                'photo'                 =>$faker->file($sourceDir = '/home/louisbertson/Desktop/criminalite/public/storage/espece_animal', $targetDir = '/home/louisbertson/Desktop/criminalite/public/storage/images', false),
-                'famille'               => $faker->company,
+                'photo'                 => 'espece_uploads/'.$faker->file($sourceDir = 'D:\Switch Maker\criminalite\public\espece_animal', $targetDir = 'storage\app\public\espece_uploads', false),
+                'famille'               => $faker->plant,
                 'regne'                 =>'animal',
-                'nom_scientifique'      => $faker->catchPhrase,
-                'ordre_id'              => Ordre::first()->id
+                'nom_scientifique'      => $faker->plant,
+                'ordre_id'              => Ordre::inRandomOrder()->first()->id
             ]);
         }
+
+
     }
-   
+
 }

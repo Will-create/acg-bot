@@ -51,7 +51,7 @@
                             <div class="clearfix"></div>
                         </div>
                         <div class="card-body wideget-user-contact">
-                            <img src="{{asset('storage/images/'.$espece->photo)}}" style="min-width:100%; object-fit:cover; object-position: 50% 50%;" alt="" srcset="">
+                            <img src="{{asset('storage/'.$espece->photo)}}" style="min-width:100%; object-fit:cover; object-position: 50% 50%;" alt="" srcset="">
                                 <br><br>
                             <div  id="profile-log-switch">
 

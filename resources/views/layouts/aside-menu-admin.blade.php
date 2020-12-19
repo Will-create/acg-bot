@@ -12,7 +12,7 @@
                         </li>
 				        <li class="slide">
                         <a class="side-menu__item" data-toggle=" " href="{{route('accueil')}}">
-				                <i class="mdi mdi-dashboard aide-icon"></i>
+				                <i class="mdi mdi-apps aide-icon"></i>
 				                <span class="side-menu__label">Tableau de board</span>
 				            </a>
                         </li>
@@ -39,7 +39,7 @@
                             <a class="side-menu__item" data-toggle="slide" href="#">
 
 
-                                <i class="mdi mdi-rss aide-icon"  ></i>
+                                <i class="mdi mdi-barley aide-icon"  ></i>
 
                                 <span class="side-menu__label">Espèces</span><i class="angle fa fa-angle-right"></i>
                             </a>
@@ -151,7 +151,7 @@
                         </li>
                         <li class="slide">
                             <a class="side-menu__item" data-toggle="slide" href="#">
-                                <i class="mdi mdi-sprout-outine aide-icon"  ></i>
+                                <i class="mdi mdi- aide-icon"  ></i>
                                 <span class="side-menu__label">Gestion des aires protégées </span><i class="angle fa fa-angle-right"></i>
                             </a>
                             <ul class="slide-menu">
