@@ -19,6 +19,9 @@ class Crime extends Model
     public function localite(){
         return $this->hasOne('App\Models\Localite','type_crime_id','id');
     }
+    public function auteurs(){
+        return $this->belongsToMany('App\Models\CrimeAuteur','auteur_crimes');
+    }
     
     public function paysDestination(){
         return $this->belongsTo('App\Models\Pay','pays_destination','id');
@@ -39,6 +42,9 @@ class Crime extends Model
 
     public function confiscations(){
         return $this->hasMany('App\Models\crimeConfiscation','crime_id','id');
+    }
+    public function armes(){
+        return $this->hasMany('App\Models\Arme','crime_id','id');
     }
 
     public function commentaires(){

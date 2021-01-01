@@ -14,6 +14,6 @@ class CrimeAuteur extends Model
     }
 
     public function crimes(){
-        return $this->belongsTo('App\Models\Crime','crime_id','id');
+        return $this->belongsToMany('App\Models\Crime','auteur_crimes');
     }
 }

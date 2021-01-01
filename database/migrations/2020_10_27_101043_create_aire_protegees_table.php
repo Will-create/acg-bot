@@ -29,7 +29,6 @@ class CreateAireProtegeesTable extends Migration
             ->onUpdate('restrict');
         });
     }
-
     /**
      * Reverse the migrations.
      *

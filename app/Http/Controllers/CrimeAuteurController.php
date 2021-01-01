@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Crime;
+use App\Models\Localite;
+use App\Models\User as U;
 use App\Models\CrimeAuteur;
+use App\Models\Pay;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class CrimeAuteurController extends Controller
@@ -11,82 +16,105 @@ class CrimeAuteurController extends Controller
     {
         $this->middleware('auth');
     }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
     public function index()
     {
-        //
+        $auteurs=CrimeAuteur::orderBy('nom','asc')->with('crimes')->get();
+        return view('pages.backoffice.auteurs.index',compact('auteurs'));
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('pages.backoffice.auteurs.createdit', [
+            'auteur' => new CrimeAuteur(),
+            'crimes' => Crime::all(),
+            'localites' => Localite::all(),
+            'pays' => Pay::all(),
+            'titrePage' => "Ajout d'un nouvel auteur de crime",
+            'btnAction' => "Ajouter"
+        ]);
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-
     public function store(Request $request)
     {
-        //
+        $data=request()->validate([
+            'commentaire'=> ['required','string','max:255','min:3'],
+            'pour'=> ['required','integer'],
+            'crime_id'=> ['required','integer']
+          ]);
+          $commentaire= new CrimeAuteur();
+          $commentaire->pour=$data['pour'];
+          $commentaire->commentaire=$data['commentaire'];
+          $commentaire->par=Auth()->user()->id;
+          $commentaire->crime_id =$data['crime_id'];
+          $commentaire->uuid=Str::uuid();
+          $commentaire->save();
+          $request->session()->flash('status', 'Commentaire ajouté avec succès !');
+          return redirect()->route('commentaires.show',$commentaire->uuid);
+    }
+    
+    public function show(CrimeAuteur $auteur)
+    {
+        return view('pages.backoffice.auteurs.show',[
+            'auteur'   => $auteur,
+            'autres'   =>CrimeAuteur::where('crime_id',$auteur->crime->id)->get(),
+        ]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\CrimeAuteur  $crimeAuteur
-     * @return \Illuminate\Http\Response
-     */
-    public function show(CrimeAuteur $crimeAuteur)
-    {
-        //
+    public function filter()
+    {  
+        $p = 1;
+        $crime=Crime::where('id',$p )->first();
+        return view('pages.backoffice.commentaires.filter', [
+            'commentaires'                    =>CrimeAuteur::where('crime_id',$crime->id)->get(),
+            'crimes'                         =>Crime::all(),
+            'crime'                          =>$crime
+        ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\CrimeAuteur  $crimeAuteur
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(CrimeAuteur $crimeAuteur)
-    {
-        //
+    public function filtreur($p)
+    {  
+        $crime=Crime::where('id',$p )->first();
+        
+      
+        return response()->json([
+            'commentaires'                   => CrimeAuteur::where('crime_id',$crime->id)->with('auteur','destinataire','crime')->get(),
+            'crimes'                         =>Crime::all(),
+            'roles'                          =>Role::all(),
+            'crime'                          =>$crime
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\CrimeAuteur  $crimeAuteur
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, CrimeAuteur $crimeAuteur)
+    public function edit(Commentaire $commentaire)
     {
-        //
+        return view('pages.backoffice.commentaires.createdit', [
+            'commentaire'      =>$commentaire,
+            'crimes'      =>Crime::all(),
+            'destinataires' =>U::with('role')->get(),
+            'titrePage' => "Mise à jour ",
+            'btnAction' => "Mettre à jour"
+        ]);
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\CrimeAuteur  $crimeAuteur
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(CrimeAuteur $crimeAuteur)
+    
+ 
+    public function update(Request $request, Commentaire $commentaire)
     {
-        //
+        $data=request()->validate([
+            'commentaire'=> ['required','string','max:255','min:3'],
+            'pour'=> ['required','integer'],
+            'crime_id'=> ['required','integer']
+          ]);
+          $commentaire->pour=$data['pour'];
+          $commentaire->commentaire=$data['commentaire'];
+          $commentaire->par=Auth()->user()->id;
+          $commentaire->crime_id =$data['crime_id'];
+          $commentaire->uuid=Str::uuid();
+          $commentaire->save();
+         $request->session()->flash('status','Mise à jours du commentaire effectuée avec succès !');
+          return redirect()->route('commentaires.show', $commentaire->uuid);
     }
+    public function destroy(Request $request, Commentaire $commentaire)
+    {
+        $commentaire->delete();
+        return redirect()->route('commentaires.index')->with('status','Commentaire supprimé avec succès');
+        
+    }
+    
 }

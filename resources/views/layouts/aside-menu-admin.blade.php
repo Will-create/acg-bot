@@ -160,6 +160,39 @@
                                 <li><a class="slide-item" href="{{route('aire_protegees.create')}}"><span>Nouvelle aire protégée</span></a></li>
                             </ul>
                         </li>
+                        <li class="slide">
+                            <a class="side-menu__item" data-toggle="slide" href="#">
+                                <i class="mdi mdi-arrow aide-icon"  ></i>
+                                <span class="side-menu__label">Gestion des armes </span><i class="angle fa fa-angle-right"></i>
+                            </a>
+                            <ul class="slide-menu">
+                                <li><a class="slide-item" href="{{route('armes.index')}}"><span>Toutes les armes de crime</span></a></li>
+                                {{-- <li><a class="slide-item" href="{{route('armes.filter')}}"><span>Les aires protégées par pays</span></a></li> --}}
+                                <li><a class="slide-item" href="{{route('armes.create')}}"><span>Nouvelle arme de crime</span></a></li>
+                            </ul>
+                        </li>
+                        <li class="slide">
+                            <a class="side-menu__item" data-toggle="slide" href="#">
+                                <i class="mdi mdi-message aide-icon"  ></i>
+                                <span class="side-menu__label">Gestion des commentaires</span><i class="angle fa fa-angle-right"></i>
+                            </a>
+                            <ul class="slide-menu">
+                                <li><a class="slide-item" href="{{route('commentaires.index')}}"><span>Tous les commentaires</span></a></li>
+                                <li><a class="slide-item" href="{{route('commentaires.filter')}}"><span>Les commentaires par crime</span></a></li>
+                                <li><a class="slide-item" href="{{route('commentaires.create')}}"><span>Nouveau commentaire</span></a></li>
+                            </ul>
+                        </li>
+                        <li class="slide">
+                            <a class="side-menu__item" data-toggle="slide" href="#">
+                                <i class="mdi mdi-message aide-icon"  ></i>
+                                <span class="side-menu__label">Gestion des auteurs de crime</span><i class="angle fa fa-angle-right"></i>
+                            </a>
+                            <ul class="slide-menu">
+                                <li><a class="slide-item" href="{{route('crime_auteurs.index')}}"><span>Tous les auteurs</span></a></li>
+                                <li><a class="slide-item" href="{{route('crime_auteurs.filter')}}"><span>Les auteurs par crime</span></a></li>
+                                <li><a class="slide-item" href="{{route('crime_auteurs.create')}}"><span>Nouvel auteur</span></a></li>
+                            </ul>
+                        </li>
                     </ul>
                     <br><br><br><br>
                 </aside>

@@ -74,7 +74,7 @@ class EspeceController extends Controller
             $file = $request->file('photo');
             $timestamp = str_replace([' ', ':'], '-', Carbon::now()->toDateTimeString());
             $name = $timestamp. '-' .$file->getClientOriginalName();
-            $photoPath=request('photo')->storeAs('storage/images',$name,'public');
+            $photoPath=request('photo')->storeAs('images',$name,'public');
             $espece->photo = $photoPath;
         }
           $espece->nom=$data['nom'];

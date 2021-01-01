@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateArmesTable extends Migration
+class CreateAuteurCrimesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,11 @@ class CreateArmesTable extends Migration
      */
     public function up()
     {
-        Schema::create('armes', function (Blueprint $table) {
+        Schema::create('auteur_crimes', function (Blueprint $table) {
             $table->id();
-            $table->uuid('uuid');
-            $table->string('libelle');
-            $table->string('reference')->nullable();
-            $table->text('remarques')->nullable();
-            $table->text('photo')->nullable();
+            $table->unsignedBigInteger('auteur_id');
             $table->unsignedBigInteger('crime_id');
+            $table->foreign('auteur_id')->references('id')->on('crime_auteurs')->onDelete('restrict')->onUpdate('restrict');
             $table->foreign('crime_id')->references('id')->on('crimes')->onDelete('restrict')->onUpdate('restrict');
             $table->timestamps();
         });
@@ -33,6 +30,6 @@ class CreateArmesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('armes');
+        Schema::dropIfExists('auteur_crimes');
     }
 }
