@@ -25,7 +25,7 @@
                                 <select name="crime_id" id="crime_id" class="form-control custom-select select2">
                                     <option  value="{{Route::currentRouteName() == 'commentaires.edit' ? $commentaire->crime_id : '' }}" {{Route::currentRouteName() == 'commentaires.edit' ? '' : 'disabled' }} selected >{{Route::currentRouteName() == 'commentaires.edit' ? $commentaire->crime->localite_apprehension  : 'Sélectionner' }}</option>
                                     @foreach ($crimes as $crime)
-                                    <option  value="{{$crime->id}}"> <span class="red-text">{{$crime->localite_apprehension}}  
+                                    <option  value="{{$crime->id}}"> <span class="red-text">{{ strtoupper($crime->uuid)}}  
                                         
                                         @endforeach
                                     </select>

@@ -35,21 +35,42 @@ class CrimeAuteurController extends Controller
     public function store(Request $request)
     {
         $data=request()->validate([
-            'commentaire'=> ['required','string','max:255','min:3'],
-            'pour'=> ['required','integer'],
-            'crime_id'=> ['required','integer']
+            'nom'                       => ['required', 'string', 'max:255'],
+            'prenom'                    => ['required', 'string', 'max:255'],
+            'genre'                     => ['required', 'string', 'max:255'],
+            'type'                      => ['required', 'string', 'max:255'],
+            'travail'                   => ['required', 'string', 'max:255'],
+            'date_naiss'                => ['required', 'date',   'max:255'],
+            'nationalite'               => ['required', 'string', 'max:255'],
+            'revenue'                   => ['required', 'integer', 'max:255'],
+            'tel'                       => ['string', 'min:8', 'max:20'],
+            'education'                 => ['required', 'string', 'email', 'max:255'],
+            'voyageur_international'    => ['required','integer'],
+            'pays_id'                   => ['required','integer'],
+            'localite_id'               => ['required','integer'],
+            'affaire_judiciaire'        => ['required','text'],
           ]);
-          $commentaire= new CrimeAuteur();
-          $commentaire->pour=$data['pour'];
-          $commentaire->commentaire=$data['commentaire'];
-          $commentaire->par=Auth()->user()->id;
-          $commentaire->crime_id =$data['crime_id'];
-          $commentaire->uuid=Str::uuid();
-          $commentaire->save();
+          $auteur= new CrimeAuteur();
+          $auteur->nom=$data['nom'];
+          $auteur->prenom=$data['prenom'];
+          $auteur->genre=$data['genre'];
+          $auteur->travail=$data['travail'];
+          $auteur->type=$data['type'];
+          $auteur->date_naiss =$data['date_naiss'];
+          $auteur->nationalite =$data['nationalite'];
+          $auteur->revenue =$data['revenue'];
+          $auteur->tel =$data['tel'];
+          $auteur->education =$data['education'];
+          $auteur->voyageur_international =$data['voyageur_international'];
+          $auteur->affaire_judiciaire =$data['affaire_judiciaire'];
+          $auteur->pays_id =$data['pays_id'];
+          $auteur->localite_id =$data['localite_id'];
+          $auteur->crime_id =$data['crime_id'];
+          $auteur->uuid=Str::uuid();
+          $auteur->save();
           $request->session()->flash('status', 'Commentaire ajouté avec succès !');
-          return redirect()->route('commentaires.show',$commentaire->uuid);
+          return redirect()->route('commentaires.show',$auteur->uuid);
     }
-    
     public function show(CrimeAuteur $auteur)
     {
         return view('pages.backoffice.auteurs.show',[
@@ -72,8 +93,6 @@ class CrimeAuteurController extends Controller
     public function filtreur($p)
     {  
         $crime=Crime::where('id',$p )->first();
-        
-      
         return response()->json([
             'commentaires'                   => CrimeAuteur::where('crime_id',$crime->id)->with('auteur','destinataire','crime')->get(),
             'crimes'                         =>Crime::all(),
@@ -82,10 +101,10 @@ class CrimeAuteurController extends Controller
         ]);
     }
 
-    public function edit(Commentaire $commentaire)
+    public function edit(Commentaire $auteur)
     {
         return view('pages.backoffice.commentaires.createdit', [
-            'commentaire'      =>$commentaire,
+            'commentaire'      =>$auteur,
             'crimes'      =>Crime::all(),
             'destinataires' =>U::with('role')->get(),
             'titrePage' => "Mise à jour ",
@@ -94,25 +113,25 @@ class CrimeAuteurController extends Controller
     }
     
  
-    public function update(Request $request, Commentaire $commentaire)
+    public function update(Request $request, Commentaire $auteur)
     {
         $data=request()->validate([
             'commentaire'=> ['required','string','max:255','min:3'],
             'pour'=> ['required','integer'],
             'crime_id'=> ['required','integer']
           ]);
-          $commentaire->pour=$data['pour'];
-          $commentaire->commentaire=$data['commentaire'];
-          $commentaire->par=Auth()->user()->id;
-          $commentaire->crime_id =$data['crime_id'];
-          $commentaire->uuid=Str::uuid();
-          $commentaire->save();
+          $auteur->pour=$data['pour'];
+          $auteur->commentaire=$data['commentaire'];
+          $auteur->par=Auth()->user()->id;
+          $auteur->crime_id =$data['crime_id'];
+          $auteur->uuid=Str::uuid();
+          $auteur->save();
          $request->session()->flash('status','Mise à jours du commentaire effectuée avec succès !');
-          return redirect()->route('commentaires.show', $commentaire->uuid);
+          return redirect()->route('commentaires.show', $auteur->uuid);
     }
-    public function destroy(Request $request, Commentaire $commentaire)
+    public function destroy(Request $request, Commentaire $auteur)
     {
-        $commentaire->delete();
+        $auteur->delete();
         return redirect()->route('commentaires.index')->with('status','Commentaire supprimé avec succès');
         
     }

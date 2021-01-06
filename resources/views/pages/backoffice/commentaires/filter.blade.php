@@ -57,7 +57,8 @@
 									<div id="listcrimes" class="card-body side-menu" style="height:55vh;overflow-y: scroll">
 										@foreach ($crimes as $c)
 												<a style="cursor:pointer" onclick="filtreur({{$c->id}})" class="side-menu__item {{$c->id == $crime->id ? 'active' : ''}}">
-												<span class="side-menu__label">{{$c->localite_apprehension}} </span>
+							
+												<span class="side-menu__label">{{ substr(strtoupper($c->uuid),0,15)}} </span>
 												</a>
 											@endforeach
 									</div>
@@ -183,7 +184,7 @@
 			}
 			crimes.map(function(c){
 				var active = c.id == crime.id ? 'active' : '' ;
-              lignes +='<a style="cursor:pointer" onclick="filtreur('+c.id+')" class="side-menu__item '+active+'"><span class="side-menu__label">'+c.localite_apprehension+' </span></a>'
+              lignes +='<a style="cursor:pointer" onclick="filtreur('+c.id+')" class="side-menu__item '+active+'"><span class="side-menu__label">'+c.uuid.substr(0,15).toUpperCase()+' </span></a>'
 			})
 			tableBody.innerHTML = rows;
 			listcrimes.innerHTML = lignes;

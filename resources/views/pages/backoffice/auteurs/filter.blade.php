@@ -21,19 +21,19 @@
                 
 				<div class="page-header">
 					<div>
-						<h1 class="page-title" id="page-title">Les commentaires par Crime</h1>
+						<h1 class="page-title" id="page-title">Les auteurs de crimes</h1>
 						<ol class="breadcrumb">
 						<li class="breadcrumb-item"><a href="{{route('accueil')}}">Accueil</a></li>
 						<li class="breadcrumb-item" aria-current="page"><a href="{{route('crimes.index')}}">Crimes</a></li>
-						<li class="breadcrumb-item" aria-current="page"><a href="{{route('commentaires.index')}}">Commentaires</a></li>
-							<li class="breadcrumb-item active" aria-current="page">Commentaires a propos de {{$crime->localite_apprehension}}</li>
+						<li class="breadcrumb-item" aria-current="page"><a href="{{route('commentaires.index')}}">Auteurs</a></li>
+							<li class="breadcrumb-item active" aria-current="page">Les auteurs du crime {{$crime->uuid}}</li>
 						</ol>
 					</div>
 					<div class="ml-auto pageheader-btn">
                     <a class="btn btn-primary" href="{{route('commentaires.create')}}"  >  <span>
                             <i class="fe fe-plus"></i>
                         </span>
-						Ajouter un commentaire</a>
+						Ajouter un auteur de crime</a>
 						
 
                     </button>
@@ -50,15 +50,21 @@
 								<div class="card">
 									<div class="card-header">
 										<div class="float-left">
-											<h3 class="card-title">Les commentaires par crime</h3>
+											<h3 class="card-title">Liste de tous les pays</h3>
 										</div>
 										<div class="clearfix"></div>
 									</div>
 									<div id="listcrimes" class="card-body side-menu" style="height:55vh;overflow-y: scroll">
 										@foreach ($crimes as $c)
+				
+				
+															
 												<a style="cursor:pointer" onclick="filtreur({{$c->id}})" class="side-menu__item {{$c->id == $crime->id ? 'active' : ''}}">
-												<span class="side-menu__label">{{$c->localite_apprehension}} </span>
+																	 
+												<span class="side-menu__label">{{ strtoupper($c->uuid)}} </span>
+												
 												</a>
+																 
 											@endforeach
 									</div>
 								</div>
@@ -72,29 +78,27 @@
 									<div id="aire_proteger_content" class="col-md-12 col-lg-12">
 										<div class="card">
 											<div class="card-header">
-												<h3 class="card-title">Les localités de {{$crime->localite_apprehension}} </h3>
+												<h3 class="card-title">Auteurs de crime</h3>
 											</div>
 											<div class="card-body">
 												<div class="table-responsive">
 													<table id="data-table1" class="table table-striped table-bordered text-nowrap w-100 table-sm">
 														<thead>
 															<tr>
-																<th class="wd-15p">Par</th>
-																
-																<th class="wd-20p">Pour</th>
-																
-																<th>Commentaire</th>
+																<th class="wd-15p">Nom</th>
+																<th class="wd-15p">Prénom</th>
+																<th class="wd-15p">Genre</th>
+																<th class="wd-15p">Pays/Localité</th>
 															</tr>
 														</thead>
-														<tbody id="tableBody" >
-															@foreach ($commentaires as $commentaire)
-				
-				
+														<tbody>
+															@foreach ($auteurs as $auteur)
 															<tr>
-																<td> <a class="text-dark" href="{{route('commentaires.show',  $commentaire->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" > {{$commentaire->auteur->nom}} {{$commentaire->auteur->prenom}}({{$commentaire->auteur->role->designation}}) </a></td>
-																<td> <a class="text-dark" href="{{route('commentaires.show',  $commentaire->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" > {{$commentaire->destinataire->nom}} {{$commentaire->destinataire->prenom}}({{$commentaire->destinataire->role->designation}}) </a></td>
-																<td> <a class="text-dark" href="{{route('commentaires.show',  $commentaire->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" > {{substr($commentaire->commentaire, 0, 60) }} </a></td>
-																				
+																{{-- <td> <a class="text-dark" href="{{route('crime_auteurs.show',  $auteur->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" > <div class="col-auto"><span class="avatar brround avatar-md d-block cover-image" data-image-src="{{asset('storage').'/'.$auteur->photo}}"></span></div> </a></td> --}}
+																<td> <a class="text-dark" href="{{route('crime_auteurs.show',  $auteur->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" > {{$auteur->nom}}</a></td>
+																<td> <a class="text-dark" href="{{route('crime_auteurs.show',  $auteur->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" >{{$auteur->prenom}}</a></td>
+																<td> <a class="text-dark" href="{{route('crime_auteurs.show',  $auteur->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" >{{$auteur->genre}}</a></td>
+																<td> <a class="text-dark" href="{{route('crime_auteurs.show',  $auteur->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" > {{$auteur->pays->nom}}/{{$auteur->localite->nom}}</a></td>
 															</tr>
 															@endforeach
 														</tbody>
@@ -109,10 +113,6 @@
 							</div><!-- COL-END -->
 						</div>
 						<div class="modal-footer">
-							
-							
-							
-							
 						<a href="{{ URL::previous() }}" class="btn btn-primary"> <span>
 								<i class="fe fe-close"></i>
 							</span> Retour</a>
@@ -137,7 +137,7 @@
     <script src="{{URL::asset('assets/plugins/datatable/dataTables.responsive.min.js')}}"></script>
     <script src="{{URL::asset('assets/plugins/datatable/fileexport/dataTables.buttons.min.js')}}"></script>
     <script src="{{URL::asset('assets/plugins/datatable/fileexport/buttons.bootstrap4.min.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/datatable/fileexport/jszip.min.js')}}"></script>
+    <script src="{{URL::asset('assets/plugins/datatable/fileexport/jszicri.min.js')}}"></script>
     <script src="{{URL::asset('assets/plugins/datatable/fileexport/pdfmake.min.js')}}"></script>
     <script src="{{URL::asset('assets/plugins/datatable/fileexport/vfs_fonts.js')}}"></script>
     <script src="{{URL::asset('assets/plugins/datatable/fileexport/buttons.html5.min.js')}}"></script>
@@ -160,34 +160,19 @@
 		var pageTitle = document.getElementById('page-title');
 		var listcrimes = document.getElementById('listcrimes')	;									
 		function injecteur(res){
-			var {commentaires, crimes, crime,roles} = res;
+			var {auteurs, crimes, crime} = res;
 			var lignes = '';
 			var rows = '';
-				var roleA = '';
-				var roleD = '';
-				var str = '';
-			for (var i=0; i < commentaires.length;i++){
-				var co = commentaires[i];
-				for (var i=0; i < roles.length;i++){
-				var ro = roles[i];
-			        if (ro.id == co.auteur.role_id){
-						roleA = ro.designation;
-					     str = '<tr><td> <a class="text-dark" href="/commentaires/'+co.uuid+'" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" > '+co.auteur.nom+' '+co.auteur.prenom+' ('+roleA+') </a></td><td> <a class="text-dark" href="/commentaires/'+co.uuid+'" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" > '+co.destinataire.nom+' '+co.destinataire.prenom+' ('+roleD+') </a></td><td> <a class="text-dark" href="/commentaires/'+co.uuid+'" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" >'+co.commentaire+' </a></td></tr>';
-					}
-						if (ro.id == co.destinataire.role_id){
-							roleD = ro.designation;
-							str = '<tr><td> <a class="text-dark" href="/commentaires/'+co.uuid+'" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" > '+co.auteur.nom+' '+co.auteur.prenom+' ('+roleA+') </a></td><td> <a class="text-dark" href="/commentaires/'+co.uuid+'" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" > '+co.destinataire.nom+' '+co.destinataire.prenom+' ('+roleD+') </a></td><td> <a class="text-dark" href="/commentaires/'+co.uuid+'" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" >'+co.commentaire+' </a></td></tr>';
-						}
-			}
-			rows += str;
-			}
-			crimes.map(function(c){
-				var active = c.id == crime.id ? 'active' : '' ;
-              lignes +='<a style="cursor:pointer" onclick="filtreur('+c.id+')" class="side-menu__item '+active+'"><span class="side-menu__label">'+c.localite_apprehension+' </span></a>'
+			auteurs.map(function(au){
+            rows +='<tr><td> <a class="text-dark" href="/crime_auteurs/'+au.uuid+'" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" > '+au.nom+'/'+au.prenom+' </a></td><td> <a class="text-dark" href="/crime_auteurs/'+au.uuid+'" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" >'+au.genre+' </a></td><td> <a class="text-dark" href="/crime_auteurs/'+au.uuid+'" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" >'+au.pays.nom+'/'+au.localite.nom+' </a></td></tr>';
+			})
+			crimes.map(function(cri){
+				var active = cri.id == crime.id ? 'active' : '' ;
+              lignes +='<a style="cursor:pointer" onclick="filtreur('+cri.id+')" class="side-menu__item '+active+'"><span class="side-menu__label">'+cri.uuid.toUpperCase()+' </span></a>'
 			})
 			tableBody.innerHTML = rows;
 			listcrimes.innerHTML = lignes;
-			pageTitle.innerHTML = 'Liste des commentaires a propos de '+crime.localite_apprehension;
+			pageTitle.innerHTML = 'Liste des auteurs du crime '+crime.uuid;
 			 $('#loader').toggleClass('d-none');
         $('#aire_proteger_content').show();
 			
@@ -196,7 +181,7 @@
 			 $('#loader').toggleClass('d-none');
             $('#aire_proteger_content').hide();
 			event.preventDefault();
- 			 axios.get('/commentaires/api/filtreur/'+crime).then(function(data){
+ 			 axios.get('/crime_auteurs/api/filtreur/'+crime).then(function(data){
 														var res = data.data;
 														console.log(res)
 													injecteur(res);})

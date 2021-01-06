@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Arme;
-use App\Models\Crime;
 use Illuminate\Database\Seeder;
 use Faker\Factory;
 use Illuminate\Support\Str;
@@ -17,7 +16,6 @@ class ArmeTableSeeder extends Seeder
     public function run()
     {
         $faker = Factory::create();
-        $crimes = Crime::all();
         for ($i=0; $i <10 ; $i++) {
             Arme::create([
                 'libelle'               => $faker->name,
@@ -25,7 +23,7 @@ class ArmeTableSeeder extends Seeder
                 'photo'                 => 'images/'.$faker->file($sourceDir = '/home/louisbertson/Desktop/criminalite/public/chasse', $targetDir = '/home/louisbertson/Desktop/criminalite/public/storage/images', false),
                 'reference'             => $faker->name,
                 'remarques'             => $faker->text,
-                'crime_id'              => random_int(0,$crimes->count()),
+                'crime_id'              => random_int(0,15),
             ]);
         }
     }

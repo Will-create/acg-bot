@@ -32,8 +32,6 @@ class AireTableSeeder extends Seeder
         $pays=Pay::all();
         $localites=Localite::all();
         //Unite::truncate();
-
-
         foreach($localites as $localite){
             $aires = AireProtegee::create([
                 'libelle'                        =>$faker->streetName,

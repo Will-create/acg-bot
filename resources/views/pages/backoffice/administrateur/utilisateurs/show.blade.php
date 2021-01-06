@@ -32,7 +32,6 @@
                         </span>
                         Les utilisateurs</a>
                     </button>
-
 					</div>
 				</div>
 				<!-- PAGE-HEADER END -->

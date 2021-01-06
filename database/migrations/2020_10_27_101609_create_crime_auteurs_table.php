@@ -11,34 +11,32 @@ class CreateCrimeAuteursTable extends Migration
      *
      * @return void
      */
+    
     public function up()
     {
         Schema::create('crime_auteurs', function (Blueprint $table) {
             $table->id();
             $table->uuid('uuid');
-            $table->unsignedBigInteger('crime_id');
+            $table->integer('revenue');
+            $table->unsignedBigInteger('localite_id');
+            $table->unsignedBigInteger('pays_id');
             $table->string('nom', 50);
             $table->string('prenom', 60);
-            $table->text('adresse');
-            $table->string('pays_id', 25);
-            $table->string('localite_id', 25);
-            $table->enum('type', ['auteur', 'complice']);
-            $table->date('date_naiss');
-            $table->enum('genre', ['masculin', 'feminin']);
-            $table->boolean('education');
-            $table->boolean('voyageur_international');
-            $table->integer('revenue');
             $table->string('nationalite', 25);
             $table->string('travail', 100);
+            $table->string('tel', 60);
             $table->text('affaire_judiciaire');
+            $table->text('adresse');
+            $table->enum('genre', ['masculin', 'feminin']);
+            $table->enum('type', ['auteur', 'complice']);
+            $table->date('date_naiss');
+            $table->boolean('voyageur_international');
+            $table->boolean('education');
             $table->timestamps();
             $table->foreign('pays_id')->references('id')->on('pays')->onDelete('restrict')->onUpdate('restrict');
             $table->foreign('localite_id')->references('id')->on('localites')->onDelete('restrict')->onUpdate('restrict');
-            $table->foreign('crime_id')->references('id')->on('crimes')->onDelete('restrict')
-            ->onUpdate('restrict');
         });
     }
-
     /**
      * Reverse the migrations.
      *

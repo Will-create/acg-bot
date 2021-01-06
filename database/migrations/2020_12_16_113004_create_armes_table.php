@@ -21,7 +21,6 @@ class CreateArmesTable extends Migration
             $table->text('remarques')->nullable();
             $table->text('photo')->nullable();
             $table->unsignedBigInteger('crime_id');
-            $table->foreign('crime_id')->references('id')->on('crimes')->onDelete('restrict')->onUpdate('restrict');
             $table->timestamps();
         });
     }

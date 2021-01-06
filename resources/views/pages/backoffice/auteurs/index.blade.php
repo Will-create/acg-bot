@@ -15,20 +15,19 @@
 @endsection
 @section('page-header')
                 <!-- PAGE-HEADER -->
-
 				<div class="page-header">
 					<div>
-						<h1 class="page-title">Les commentaires de crime</h1>
+						<h1 class="page-title">Les auteurs de crimes</h1>
 						<ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{route('accueil')}}">Accueil</a></li>
-							<li class="breadcrumb-item active" aria-current="page">Commentaires</li>
+							<li class="breadcrumb-item active" aria-current="page">Auteurs de crime</li>
 						</ol>
 					</div>
 					<div class="ml-auto pageheader-btn">
-                    <a class="btn btn-primary" href="{{route('commentaires.create')}}">  <span>
+                    <a class="btn btn-primary" href="{{route('crime_auteurs.create')}}">  <span>
                             <i class="fe fe-plus"></i>
                         </span>
-                    Ajouter un commentaire</a>
+                    Ajouter un auteur dee crime</a>
 
 
                     </button>
@@ -44,28 +43,27 @@
 					<div class="col-md-12 col-lg-12">
 						<div class="card">
 							<div class="card-header">
-								<h3 class="card-title">Commentaires de crime</h3>
+								<h3 class="card-title">Auteurs de crime</h3>
 							</div>
 							<div class="card-body">
 								<div class="table-responsive">
 									<table id="data-table1" class="table table-striped table-bordered text-nowrap w-100 table-sm">
 										<thead>
 											<tr>
-												{{-- <th class="wd-15p">Photo</th> --}}
-												<th class="wd-15p">Par</th>
-												<th class="wd-15p">Pour</th>
-												<th class="wd-15p">A propos de</th>
-												<th>Commentaire</th>
+												<th class="wd-15p">Nom</th>
+												<th class="wd-15p">Prénom</th>
+												<th class="wd-15p">Genre</th>
+												<th class="wd-15p">Pays/Localité</th>
 											</tr>
 										</thead>
 										<tbody>
-                                            @foreach ($commentaires as $commentaire)
+                                            @foreach ($auteurs as $auteur)
 											<tr>
-												{{-- <td> <a class="text-dark" href="{{route('commentaires.show',  $commentaire->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" > <div class="col-auto"><span class="avatar brround avatar-md d-block cover-image" data-image-src="{{asset('storage').'/'.$commentaire->photo}}"></span></div> </a></td> --}}
-												<td> <a class="text-dark" href="{{route('commentaires.show',  $commentaire->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" > {{$commentaire->auteur->nom}} {{$commentaire->auteur->prenom}}({{$commentaire->auteur->role->designation}}) </a></td>
-												<td> <a class="text-dark" href="{{route('commentaires.show',  $commentaire->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" > {{$commentaire->destinataire->nom}} {{$commentaire->destinataire->prenom}}({{$commentaire->destinataire->role->designation}}) </a></td>
-												 <td> <a class="text-dark" href="{{route('commentaires.show',  $commentaire->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" >{{$commentaire->crime->localite_apprehension}}</a></td>
-												<td> <a class="text-dark" href="{{route('commentaires.show',  $commentaire->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" > {{substr($commentaire->commentaire, 0, 60) }} </a></td>
+												{{-- <td> <a class="text-dark" href="{{route('crime_auteurs.show',  $auteur->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" > <div class="col-auto"><span class="avatar brround avatar-md d-block cover-image" data-image-src="{{asset('storage').'/'.$auteur->photo}}"></span></div> </a></td> --}}
+												<td> <a class="text-dark" href="{{route('crime_auteurs.show',  $auteur->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" > {{$auteur->nom}}</a></td>
+												<td> <a class="text-dark" href="{{route('crime_auteurs.show',  $auteur->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" >{{$auteur->prenom}}</a></td>
+												<td> <a class="text-dark" href="{{route('crime_auteurs.show',  $auteur->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" >{{$auteur->genre}}</a></td>
+												<td> <a class="text-dark" href="{{route('crime_auteurs.show',  $auteur->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" > {{$auteur->pays->nom}}/{{$auteur->localite->nom}}</a></td>
                                             </tr>
                                             @endforeach
 										</tbody>
