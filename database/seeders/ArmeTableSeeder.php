@@ -20,7 +20,7 @@ class ArmeTableSeeder extends Seeder
             Arme::create([
                 'libelle'               => $faker->name,
                 'uuid'                  => Str::uuid(),
-                'photo'                 => 'images/'.$faker->file($sourceDir = '/home/louisbertson/Desktop/criminalite/public/chasse', $targetDir = '/home/louisbertson/Desktop/criminalite/public/storage/images', false),
+                'photo'                 => 'images/'.$faker->file($sourceDir = 'D:\Switch Maker\criminalite\public\chasse', $targetDir = 'D:\Switch Maker\criminalite\public\storage\images', false),
                 'reference'             => $faker->name,
                 'remarques'             => $faker->text,
                 'crime_id'              => random_int(0,15),

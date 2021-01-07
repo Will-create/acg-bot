@@ -18,7 +18,7 @@ class AireProtegeeController extends Controller
     }
     public function index()
     {
-       
+
         return view('pages.backoffice.aire_protegees.index', [
             'aires'                        => AireProtegee::with(['pays'])->orderBy('libelle', 'asc')->get(),
         ]);
@@ -114,7 +114,7 @@ class AireProtegeeController extends Controller
 
 
     public function update(Request $request, $uuid)
-    {    
+    {
 
         $aire = AireProtegee::where('uuid', $uuid)->first();
         $data = request()->validate([
@@ -157,7 +157,7 @@ class AireProtegeeController extends Controller
         return redirect()->route('aire_protegees.show', $aire->uuid);
     }
     public function destroy(Request $request, $uuid)
-    {   
+    {
         $restriction = new Restriction;
         $aire = AireProtegee::where('uuid', $uuid)->first();
         $restrictions = $restriction->check($aire->id, [

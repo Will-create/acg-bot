@@ -8,21 +8,21 @@ use Illuminate\Database\Eloquent\Model;
 class Crime extends Model
 {
     use HasFactory;
-    protected $fillable = ['uuid', 'nature_crime_id', 'localite_id', 'espece', 'pays_apprehension', 'pays_destination', 'pays_origine_produit', 'unite_id', 'services_investigateurs','codeiso3_pays_apprehension', 'date_apprehension', 'arme_utilise', 'localite_aprrehension', 'longitude', 'Latitude', 'dure_emprisonnment', 'gestion_des_saisis', 'penalite', 'intention', 'Quantite_saisie', 'Nombre_complice', 'veto', 'lien_terrorisme', 'victime', 'aire_protegee_id', 'date_abattage'];
-    
+    protected $fillable = ['uuid', 'nature_crime_id', 'localite_id', 'espece_id', 'pays_apprehension', 'pays_destination', 'pays_origine_produit', 'unite_id', 'services_investigateurs','codeiso3_pays_apprehension', 'date_apprehension', 'arme_utilise', 'localite_aprrehension', 'longitude', 'Latitude', 'dure_emprisonnment', 'gestion_des_saisis', 'penalite', 'intention', 'Quantite_saisie', 'Nombre_complice', 'veto', 'lien_terrorisme', 'victime', 'aire_protegee_id', 'date_abattage', 'type_crime_id'];
+
     public function getRouteKeyName(){
         return 'uuid';
     }
     public function type(){
-        return $this->hasOne('App\Models\TypeCrime','type_crime_id','id');
+        return $this->hasOne('App\Models\TypeCrime','id', 'type_crime_id');
     }
     public function localite(){
         return $this->hasOne('App\Models\Localite','type_crime_id','id');
     }
     public function auteurs(){
-        return $this->belongsToMany('App\Models\CrimeAuteur','auteur_crimes');
+        return $this->hasMany(CrimeAuteur::class);
     }
-    
+
     public function paysDestination(){
         return $this->belongsTo('App\Models\Pay','pays_destination','id');
     }
@@ -41,7 +41,7 @@ class Crime extends Model
 
 
     public function confiscations(){
-        return $this->hasMany('App\Models\crimeConfiscation','crime_id','id');
+        return $this->hasMany(crimeConfiscation::class);
     }
     public function armes(){
         return $this->hasMany('App\Models\Arme','crime_id','id');
@@ -51,6 +51,8 @@ class Crime extends Model
         return $this->hasMany('App\Models\Commentaire','crime_id','id');
     }
 
-    
-    
+    public function especes(){
+        return $this->belongsToMany(Espece::class,'crime_especes');
+    }
+
 }

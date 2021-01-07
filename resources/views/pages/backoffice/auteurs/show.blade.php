@@ -59,9 +59,9 @@
                                             <tr>
                                             <td><strong>Date de naissance :</strong> {{$auteur->date_naiss}}</td>
                                             </tr>
-                                            <tr>
+                                            {{-- <tr>
                                                 <td><strong>Pays/Localité :</strong> {{$auteur->pays->nom}} {{$auteur->localite->nom}}</td>
-                                                </tr>
+                                                </tr> --}}
                                         </tbody>
                                         <tbody class="col-lg-12 col-xl-6 p-0">
                                             <tr>
@@ -100,7 +100,7 @@
                                     @if ($autres->count() == 1)
                                     <span class="">Aucun autre commentaire n'est disponible que celui-la</span>
                                     @endif
-                                        
+
                                     @endforeach
                                 </div>
                             </div>

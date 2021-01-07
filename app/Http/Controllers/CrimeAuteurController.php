@@ -21,7 +21,7 @@ class CrimeAuteurController extends Controller
         $auteurs=CrimeAuteur::orderBy('nom','asc')->with('crimes')->get();
         return view('pages.backoffice.auteurs.index',compact('auteurs'));
     }
-    public function create()
+    public function create($crime = null)
     {
         return view('pages.backoffice.auteurs.createdit', [
             'auteur' => new CrimeAuteur(),
@@ -29,7 +29,8 @@ class CrimeAuteurController extends Controller
             'localites' => Localite::all(),
             'pays' => Pay::all(),
             'titrePage' => "Ajout d'un nouvel auteur de crime",
-            'btnAction' => "Ajouter"
+            'btnAction' => "Ajouter",
+            'crimeUuid' => $crime
         ]);
     }
     public function store(Request $request)
@@ -37,20 +38,20 @@ class CrimeAuteurController extends Controller
         $data=request()->validate([
             'nom'                       => ['required', 'string', 'max:255'],
             'prenom'                    => ['required', 'string', 'max:255'],
+            'adresse'                    => ['required', 'string', 'max:500'],
             'genre'                     => ['required', 'string', 'max:255'],
             'type'                      => ['required', 'string', 'max:255'],
             'travail'                   => ['required', 'string', 'max:255'],
             'date_naiss'                => ['required', 'date',   'max:255'],
             'nationalite'               => ['required', 'string', 'max:255'],
-            'revenue'                   => ['required', 'integer', 'max:255'],
-            'tel'                       => ['string', 'min:8', 'max:20'],
-            'education'                 => ['required', 'string', 'email', 'max:255'],
+            'revenue'                   => ['numeric', 'min:100', 'max:500000000'],
+            'education'                 => ['required', 'string'],
             'voyageur_international'    => ['required','integer'],
-            'pays_id'                   => ['required','integer'],
-            'localite_id'               => ['required','integer'],
-            'affaire_judiciaire'        => ['required','text'],
+            'affaire_judiciaire'        => ['nullable','string'],
           ]);
+          $crime = Crime::where('uuid', $request->crimeUiid)->first();
           $auteur= new CrimeAuteur();
+          $auteur->uuid=Str::uuid();
           $auteur->nom=$data['nom'];
           $auteur->prenom=$data['prenom'];
           $auteur->genre=$data['genre'];
@@ -59,28 +60,29 @@ class CrimeAuteurController extends Controller
           $auteur->date_naiss =$data['date_naiss'];
           $auteur->nationalite =$data['nationalite'];
           $auteur->revenue =$data['revenue'];
-          $auteur->tel =$data['tel'];
           $auteur->education =$data['education'];
           $auteur->voyageur_international =$data['voyageur_international'];
           $auteur->affaire_judiciaire =$data['affaire_judiciaire'];
-          $auteur->pays_id =$data['pays_id'];
-          $auteur->localite_id =$data['localite_id'];
-          $auteur->crime_id =$data['crime_id'];
-          $auteur->uuid=Str::uuid();
+          $auteur->adresse =$data['adresse'];
+          $auteur->crime_id =$crime->id;
           $auteur->save();
-          $request->session()->flash('status', 'Commentaire ajouté avec succès !');
-          return redirect()->route('commentaires.show',$auteur->uuid);
+          $request->session()->flash('status', 'Auteur ajouté avec succès');
+          return redirect()->route('crimes.show',$crime->uuid);
     }
-    public function show(CrimeAuteur $auteur)
+    public function show( $auteurUuid)
     {
-        return view('pages.backoffice.auteurs.show',[
+        $auteur = CrimeAuteur::where('uuid', $auteurUuid)->first();
+        return view('pages.backoffice.auteurs.createdit',[
             'auteur'   => $auteur,
-            'autres'   =>CrimeAuteur::where('crime_id',$auteur->crime->id)->get(),
+            'autres'   =>CrimeAuteur::where('crime_id',$auteur->crime_id)->get(),
+            'titrePage'     => 'Mise à jour '. $auteur->nom . ' ' . $auteur->prenom,
+            'btnAction'         => 'Mise à jpur',
+            'crimeUuid'         => null
         ]);
     }
 
     public function filter()
-    {  
+    {
         $p = 1;
         $crime=Crime::where('id',$p )->first();
         return view('pages.backoffice.commentaires.filter', [
@@ -91,7 +93,7 @@ class CrimeAuteurController extends Controller
     }
 
     public function filtreur($p)
-    {  
+    {
         $crime=Crime::where('id',$p )->first();
         return response()->json([
             'commentaires'                   => CrimeAuteur::where('crime_id',$crime->id)->with('auteur','destinataire','crime')->get(),
@@ -111,29 +113,69 @@ class CrimeAuteurController extends Controller
             'btnAction' => "Mettre à jour"
         ]);
     }
-    
- 
-    public function update(Request $request, Commentaire $auteur)
+
+
+    public function update(Request $request,  $auteurUuid)
     {
         $data=request()->validate([
-            'commentaire'=> ['required','string','max:255','min:3'],
-            'pour'=> ['required','integer'],
-            'crime_id'=> ['required','integer']
+            'nom'                       => ['required', 'string', 'max:255'],
+            'prenom'                    => ['required', 'string', 'max:255'],
+            'adresse'                    => ['required', 'string', 'max:500'],
+            'genre'                     => ['required', 'string', 'max:255'],
+            'type'                      => ['required', 'string', 'max:255'],
+            'travail'                   => ['required', 'string', 'max:255'],
+            'date_naiss'                => ['required', 'date',   'max:255'],
+            'nationalite'               => ['required', 'string', 'max:255'],
+            'revenue'                   => ['numeric', 'min:100', 'max:500000000'],
+            'education'                 => ['required', 'string'],
+            'voyageur_international'    => ['required','integer'],
+            'affaire_judiciaire'        => ['nullable','string'],
           ]);
-          $auteur->pour=$data['pour'];
-          $auteur->commentaire=$data['commentaire'];
-          $auteur->par=Auth()->user()->id;
-          $auteur->crime_id =$data['crime_id'];
-          $auteur->uuid=Str::uuid();
-          $auteur->save();
-         $request->session()->flash('status','Mise à jours du commentaire effectuée avec succès !');
-          return redirect()->route('commentaires.show', $auteur->uuid);
+          $auteur=   CrimeAuteur::where('uuid', $auteurUuid)->first();
+          $auteur->nom=$data['nom'];
+          $auteur->prenom=$data['prenom'];
+          $auteur->genre=$data['genre'];
+          $auteur->travail=$data['travail'];
+          $auteur->type=$data['type'];
+          $auteur->date_naiss =$data['date_naiss'];
+          $auteur->nationalite =$data['nationalite'];
+          $auteur->revenue =$data['revenue'];
+          $auteur->education =$data['education'];
+          $auteur->voyageur_international =$data['voyageur_international'];
+          $auteur->affaire_judiciaire =$data['affaire_judiciaire'];
+          $auteur->adresse =$data['adresse'];
+          $auteur->update();
+          $request->session()->flash('status', 'Auteur ajouté avec succès');
+          return redirect()->route('crimes.show',$auteur->crime->uuid);
     }
-    public function destroy(Request $request, Commentaire $auteur)
+    // public function update(Request $request, Commentaire $auteur)
+    // {
+    //     $data=request()->validate([
+    //         'commentaire'=> ['required','string','max:255','min:3'],
+    //         'pour'=> ['required','integer'],
+    //         'crime_id'=> ['required','integer']
+    //       ]);
+    //       $auteur->pour=$data['pour'];
+    //       $auteur->commentaire=$data['commentaire'];
+    //       $auteur->par=Auth()->user()->id;
+    //       $auteur->crime_id =$data['crime_id'];
+    //       $auteur->uuid=Str::uuid();
+    //       $auteur->save();
+    //      $request->session()->flash('status','Mise à jours du commentaire effectuée avec succès !');
+    //       return redirect()->route('commentaires.show', $auteur->uuid);
+    // }
+    public function destroy(Request $request,  $auteur)
     {
+        $auteur =  CrimeAuteur::where('uuid', $auteur)->first();
         $auteur->delete();
-        return redirect()->route('commentaires.index')->with('status','Commentaire supprimé avec succès');
-        
+        return redirect()->route('crimes.show', $auteur->crime->uuid)->with('status','Auteur supprimer avec succès');
+
     }
-    
+    // public function destroy(Request $request, Commentaire $auteur)
+    // {
+    //     $auteur->delete();
+    //     return redirect()->route('commentaires.index')->with('status','Commentaire supprimé avec succès');
+
+    // }
+
 }

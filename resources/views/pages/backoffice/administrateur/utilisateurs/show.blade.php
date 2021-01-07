@@ -155,14 +155,14 @@
                                                     <tr>
                                                     <td><strong>Role :</strong> {{$utilisateur->role->designation}}</td>
                                                     </tr>
-                                                  
-                                                   
+
+
                                                 </tbody>
                                                 <tbody class="col-lg-6 col-xl-6 p-0">
                                                     
 
                                                     <tr>
-                                                        <td><strong>Téléphone :</strong> {{formatel($utilisateur->tel)}} </td>
+                                                        <td><strong>Téléphone :</strong> {{ ($utilisateur->tel)}} </td>
                                                     </tr>
                                                     <tr>
                                                         <td><strong>Pays :</strong> {{Ucfirst($utilisateur->pays->nom)}}</td>

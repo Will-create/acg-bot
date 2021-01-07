@@ -67,7 +67,7 @@
                             <td><strong>Responsable : </strong> <a  data-toggle="tooltip" data-placement="right" title="Cliquer pour afficher les détails" class="text-dark" href="{{route('utilisateurs.show',$unite->responsable->uuid)}}">{{ucfirst($unite->responsable->nom)}} {{ucfirst($unite->responsable->prenom)}}</a> </td>
                             </tr>
 
-                            
+
                         </tbody>
                     </table>
                 </div>

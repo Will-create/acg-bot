@@ -28,5 +28,9 @@ class Espece extends Model
     public function ordre(){
         return $this->belongsTo('App\Models\Ordre', 'ordre_id', 'id');
     }
+    public function crimes(){
+        return $this->belongsToMany(Crime::class,'crime_especes');
+    }
+
 
 }

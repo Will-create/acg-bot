@@ -93,7 +93,12 @@
                 <div class="col-md-6">
                     <h4>Photo de profil</h4>
                     <div class="profil-image-image-zone">
-                    <img src="{{asset('storage/'. Auth::user()->profile_photo_path)}}" alt="{{Auth::user()->nom. ' '. Auth::user()->prenom}}" class="user-prfil-image">
+                        @if (Auth::user()->profile_photo_path)
+                        <img src="{{asset('storage/'. Auth::user()->profile_photo_path)}}" alt="{{Auth::user()->nom. ' '. Auth::user()->prenom}}" class="user-prfil-image">
+                        @else
+                        <img src="{{asset('images/person.png')}}" alt="{{Auth::user()->nom. ' '. Auth::user()->prenom}}" class="user-prfil-image">
+
+                        @endif
                     </div>
                 </div>
                 <div class="col-md-6 ">

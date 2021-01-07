@@ -23,7 +23,7 @@
 
 		<!--- CUSTOM CSS -->
 		<link href="{{URL::asset('css/custom.css')}}" rel="stylesheet" />
-				@yield('css') 
+				@yield('css')
         		<!-- FORN WIZARD CSS -->
 		<link href="{{URL::asset('assets/plugins/formwizard/smart_wizard.css')}}" rel="stylesheet">
 		<link href="{{URL::asset('assets/plugins/formwizard/smart_wizard_theme_arrows.css')}}" rel="stylesheet">
@@ -33,5 +33,6 @@
 		<!-- SIDEBAR CSS -->
 		<link href="{{URL::asset('assets/plugins/sidebar/sidebar.css')}}" rel="stylesheet">
 		<!-- COLOR SKIN CSS -->
-		<link id="theme" rel="stylesheet" type="text/css" media="all" href="{{URL::asset('assets/colors/color1.css')}}" />
-		
+        <link id="theme" rel="stylesheet" type="text/css" media="all" href="{{URL::asset('assets/colors/color1.css')}}" />
+
+        @stack('livewire')
