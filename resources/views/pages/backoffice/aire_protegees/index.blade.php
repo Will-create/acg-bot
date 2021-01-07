@@ -49,7 +49,7 @@
 									<table id="data-table1" class="table table-striped table-bordered text-nowrap w-100 table-sm">
 										<thead>
 											<tr>
-												<th class="wd-15p">Libellé</th>
+												<th class="wd-15p">Désignation</th>
 												<th class="wd-20p">Pays</th>
 												<th class="wd-20p">Code wdpa</th>
 												<th class="wd-15p">Adresse</th>

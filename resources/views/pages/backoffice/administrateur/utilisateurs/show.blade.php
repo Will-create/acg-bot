@@ -57,8 +57,6 @@
 
 <a  @if($utilisateur->id != Auth::user()->id &&  Auth::user()->role->designation == "Administrateur Général") data-toggle="tooltip" data-placement="top" title="Cliquer pour désactiver"  href="{{route('gerer-utilisateur', $utilisateur)}}" @endif   class="btn btn-danger mt-1 mb-1 btn-sm"   > <i class="zmdi zmdi-rss text-white"></i>  Compte désacivé </a>
 @endif
-
-
                                     <a  href="{{route('utilisateurs.edit', $utilisateur)}}" class="btn btn-primary mt-1 mb-1 btn-sm"> <i class="zmdi zmdi-edit text-white"></i>  Editer le profil </a>
                                     </div>
                                 </div>
@@ -68,7 +66,7 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="float-left">
-                                <h3 class="card-title">Contact</h3>
+                                <h3 class="card-title">Contacts</h3>
                             </div>
                             <div class="clearfix"></div>
                         </div>
@@ -99,7 +97,6 @@
                     @if ($utilisateur->id != Auth::user()->id)
                     <button type="button" class="btn btn-outline-danger btn-block  mb-1" data-toggle="modal" data-target="#exampleModalDelete{{$utilisateur->id}}"><i class="fa fa-trash"></i> Supprimer le compte</button>
                     @endif
-
                     <div class="modal" id="exampleModalDelete{{$utilisateur->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalDelete" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
@@ -144,9 +141,12 @@
                                         </div>
                                         <div class="table-responsive ">
                                             <table class="table row table-borderless">
-                                                <tbody class="col-lg-12 col-xl-6 p-0">
+                                                <tbody class="col-lg-6 col-xl-6 p-0">
                                                     <tr>
                                                         <td><strong>Nom :</strong> {{Ucfirst($utilisateur->nom)}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><strong>Prénom :</strong> {{Ucfirst($utilisateur->prenom)}}</td>
                                                     </tr>
 
                                                     <tr>
@@ -158,14 +158,19 @@
                                                   
                                                    
                                                 </tbody>
-                                                <tbody class="col-lg-12 col-xl-6 p-0">
-                                                    <tr>
-                                                        <td><strong>Prénom :</strong> {{Ucfirst($utilisateur->prenom)}}</td>
-                                                    </tr>
+                                                <tbody class="col-lg-6 col-xl-6 p-0">
+                                                    
 
                                                     <tr>
                                                         <td><strong>Téléphone :</strong> {{formatel($utilisateur->tel)}} </td>
                                                     </tr>
+                                                    <tr>
+                                                        <td><strong>Pays :</strong> {{Ucfirst($utilisateur->pays->nom)}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><strong>Localité :</strong> {{Ucfirst($utilisateur->localite->nom)}}</td>
+                                                    </tr>
+
                                                       @if ($utilisateur->unite)
                                                     <tr>
                                                         <td>  <strong>Unité :</strong> <a href="{{route('unites.show', $utilisateur->unite->uuid)}}" class="text-dark" data-toggle="tooltip" data-placement="top" title="Voir les détails de l'unité">     {{$utilisateur->unite->designation}} </a></td>

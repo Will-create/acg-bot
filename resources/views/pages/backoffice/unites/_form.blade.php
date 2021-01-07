@@ -51,10 +51,9 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label class="form-label" for="organisation">Localite <strong class="text-danger">*</strong></label>
+                            <label class="form-label" for="organisation">Localité <strong class="text-danger">*</strong></label>
                             <select name="localite_id" id="localite_id" class="form-control custom-select select2">
-                                <option value="{{Route::currentRouteName() == 'unites.edit' ? $unite->localite->id : '' }}" {{Route::currentRouteName() == 'unites.edit' ? '' : 'disabled' }} selected >{{Route::currentRouteName() == 'unites.edit' ? $unite->localite->nom.'______('.$unite->localite->pay->nom.')'  : 'Sélectionner' }}</option>
-                                
+                                <option value="{{Route::currentRouteName() == 'unites.edit' ? $unite->localite->id : '' }}" {{Route::currentRouteName() == 'unites.edit' ? '' : 'disabled' }} selected >{{Route::currentRouteName() == 'unites.edit' ? $unite->localite->nom.', ('.$unite->localite->pay->nom.')'  : 'Sélectionner' }}</option>
                             </select>
                             @error('localite_id')
                             <span class="helper-text red-text">
@@ -91,7 +90,7 @@
                         <div class="form-group">
                             <label class="form-label" for="organisation">Type <strong class="text-danger">*</strong></label>
                             <select name="type_unite_id" id="type_unite_id" class="form-control custom-select select2">
-                                <option value="{{Route::currentRouteName() == 'unites.edit' ? $unite->type->id : '' }}" {{Route::currentRouteName() == 'unites.edit' ? '' : 'disabled' }} selected >{{Route::currentRouteName() == 'unites.edit' ? $unite->type->nom : 'Sélectionner' }}</option>
+                                <option value="{{Route::currentRouteName() == 'unites.edit' ? $unite->type->id : '' }}" {{Route::currentRouteName() == 'unites.edit' ? '' : 'disabled' }} selected >{{Route::currentRouteName() == 'unites.edit' ? ucfirst($unite->type->nom) : 'Sélectionner' }}</option>
                                 @foreach ($types as $type)
                             <option value="{{$type->id}}">{{ucFirst($type->nom)}}</option>
                                 @endforeach
@@ -120,9 +119,11 @@
                             <select name="responsable_id" id="responsable_id" class="form-control custom-select select2">
                                 <option  value="{{Route::currentRouteName() == 'unites.edit' ? $unite->responsable->id : '' }}" {{Route::currentRouteName() == 'unites.edit' ? '' : 'disabled' }} selected >{{Route::currentRouteName() == 'unites.edit' ? $unite->responsable->nom  : 'Sélectionner' }}</option>
                                 @foreach ($responsables as $responsable)
-                            <option  value="{{$responsable->id}}"> <span class="red-text">Nom:</span> {{$responsable->nom}} {{$responsable->prenom}} Pays:   
-                                {{$responsable->pay->nom}} Role:
-                                {{$responsable->role->designation}}</option>
+                                 @if ($responsable->role->designation == 'Agent d’une Unité')
+                                 <option  value="{{$responsable->id}}"> <span class="red-text"></span>{{$responsable->nom}} {{$responsable->prenom}},                         
+                                    {{$responsable->pays->nom}},                      
+                                              {{$responsable->role->designation}}</option>
+                                 @endif
                                 @endforeach
                             </select>
                             @error('responsable_id')

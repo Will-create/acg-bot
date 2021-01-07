@@ -18,6 +18,8 @@ class CreateAireProtegeesTable extends Migration
             $table->uuid('uuid');
             $table->string('libelle', 255);
             $table->string('code_wdpa_aire', 100);
+            $table->string('nom_responsable', 100);
+            $table->string('prenom_responsable', 100);
             $table->text('adresse');
             $table->unsignedBigInteger('pays_id');
             $table->string('tel',45);

@@ -41,7 +41,7 @@
                     <table class="table row table-borderless table-sm">
                         <tbody class="col-lg-12 col-xl-6 p-2 ">
                             <tr>
-                            <td><strong>Type d'unite :</strong><a  data-toggle="tooltip" data-placement="right" title="Cliquer pour afficher les détails" class="text-dark" href="{{route('type_unites.show',$unite->type->uuid)}}">{{$unite->type->nom}}</a></td>
+                            <td><strong>Type d'unite : </strong><a  data-toggle="tooltip" data-placement="right" title="Cliquer pour afficher les détails" class="text-dark" href="{{route('type_unites.show',$unite->type->uuid)}}">{{ucfirst($unite->type->nom)}}</a></td>
                             </tr>
                             <tr>
                             <td><strong>Pays : </strong> <a  data-toggle="tooltip" data-placement="right" title="Cliquer pour afficher les détails" class="text-dark" href="{{route('pays.show',$unite->pays->uuid)}}">{{$unite->pays->nom}}</a></td>
@@ -50,7 +50,7 @@
                             <td><strong>Localité : </strong><a  data-toggle="tooltip" data-placement="right" title="Cliquer pour afficher les détails" class="text-dark" href="{{route('localites.show',$unite->localite->uuid)}}">{{$unite->localite->nom}}</a></td>
                             </tr>
                             <tr>
-                                <td><strong>Administratutelle : </strong> {{$unite->administration_tutelle}}</td>
+                                <td><strong>Administratutelle : </strong> {{ucfirst($unite->administration_tutelle)}}</td>
                              </tr>
                         </tbody>
                         <tbody class="col-lg-12 col-xl-6 p-0">
@@ -64,10 +64,41 @@
                                 <td><strong>Téléphone 2: </strong>{{$unite->tel2}}</td>
                             </tr>
                             <tr>
-                            <td><strong>Responsable : </strong> <a  data-toggle="tooltip" data-placement="right" title="Cliquer pour afficher les détails" class="text-dark" href="{{route('utilisateurs.show',$unite->responsable->uuid)}}">{{$unite->responsable->nom}}   {{$unite->responsable->prenom}}</a> </td>
+                            <td><strong>Responsable : </strong> <a  data-toggle="tooltip" data-placement="right" title="Cliquer pour afficher les détails" class="text-dark" href="{{route('utilisateurs.show',$unite->responsable->uuid)}}">{{ucfirst($unite->responsable->nom)}} {{ucfirst($unite->responsable->prenom)}}</a> </td>
                             </tr>
 
                             
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+   </div>
+</div>
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12" >
+    <div class="card">
+        <div class="card-body">
+            <div id="profile-log-switch">
+                <div class="media-heading text-dark">
+                    <h5><strong>Les agents de cette unité</strong></h5>
+                </div>
+                <div class="table-responsive ">
+                    <table class="table row table-borderless table-sm">
+                        
+                        <tbody class="col-lg-12 col-xl-6 p-0">
+                            @php
+                                $i=1;
+                            @endphp
+                            <tr>
+                            <td><strong class="pl-2" >Responsable : </strong> <a  data-toggle="tooltip" data-placement="right" title="Cliquer pour afficher les détails" class="text-dark" href="{{route('utilisateurs.show',$unite->responsable->uuid)}}">{{ucfirst($unite->responsable->nom)}} {{ucfirst($unite->responsable->prenom)}}</a> </td>
+                            </tr>
+                            @foreach ($agents as $agent)
+                                <tr>
+                                <td><strong class="pl-2">{{$i++}}</strong> <a  data-toggle="tooltip" data-placement="right" title="Cliquer pour afficher les détails" class="text-dark" href="{{route('utilisateurs.show',$agent->uuid)}}">{{ucfirst($agent->nom)}} {{ucfirst($agent->prenom)}}, {{formatel($agent->tel)}}</a> </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -159,7 +190,6 @@
 </div>
 <input id="long" type="hidden" value="{{$unite->long}}">
 <input id="lat" type="hidden" value="{{$unite->lat}}">
-
 <script type="text/javascript">
     // On initialise la latitude et la longitude de Paris (centre de la carte)
     var lat =parseFloat(document.getElementById('lat').value) ;
@@ -169,15 +199,15 @@
     // Fonction d'initialisation de la carte
     function initMap() {
         // Créer l'objet "macarte" et l'insèrer dans l'élément HTML qui a l'ID "map"
-        macarte = L.map('map').setView([lat, lon], 9);
+        macarte = L.map('map').setView([lon, lat], 6);
         // Leaflet ne récupère pas les cartes (tiles) sur un serveur par défaut. Nous devons lui préciser où nous souhaitons les récupérer. Ici, openstreetmap.fr
         L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
             // Il est toujours bien de laisser le lien vers la source des données
-            attribution: 'données © <a href="//osm.org/copyright">OpenStreetMap</a>/ODbL - rendu <a href="//openstreetmap.fr">OSM France</a>',
+            attribution: 'données © <a href="//osm.org/copyright">OpenStreetMap</a>/ODbL - rendu <a href="//openstreetmap.fr">UICN</a>',
             minZoom: 1,
             maxZoom: 20
         }).addTo(macarte);
-        var marker = L.marker([lat, lon]).addTo(macarte);
+        var marker = L.marker([lon,lat]).addTo(macarte);
     }
     window.onload = function(){
 // Fonction d'initialisation qui s'exécute lorsque le DOM est chargé

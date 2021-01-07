@@ -146,7 +146,7 @@ class UtilisateursController extends Controller
     public function show($uuid)
     {   
 
-        $utilisateur = User::where('uuid',$uuid)->with('unite')->first();
+        $utilisateur = User::where('uuid',$uuid)->with('unite','localite','pays')->first();
         return view('pages.backoffice.administrateur.utilisateurs.show', compact('utilisateur'));
     }
 

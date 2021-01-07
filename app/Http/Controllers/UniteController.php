@@ -52,7 +52,7 @@ class UniteController extends Controller
         return view('pages.backoffice.unites.createdit', [
             'unite' => new Unite(),
             'localites' => Localite::with('pay')->orderBy('pays_id', 'asc')->get(),
-            'responsables' => U::with('role','pay')->get(),
+            'responsables' => U::with('role','pays')->get(),
             'types' =>TypeUnite::orderBy('nom','asc')->get(),
             'pays' =>Pay::orderBy('nom','asc')->get(),
             'titrePage' => "Ajout d'une nouvelle unité de lois",
@@ -114,15 +114,16 @@ class UniteController extends Controller
             $url = 'https:⁄⁄www.openstreetmap.org/?mlat='.$lat.'&amp;mlon='.$lon.'#map='.$zoom.'/'.$lat.'/'.$lon;
             return $url;
         }
+        $agents= U::where('unite_id',$unite->id)->get();
         $carte=openstreetmap_url($unite->long,$unite->lat);
-        return view('pages.backoffice.unites.show', compact('unite','carte'));
+        return view('pages.backoffice.unites.show', compact('unite','carte','agents'));
     }
     public function edit(Unite $unite)
     {
         return view('pages.backoffice.unites.createdit', [
             'unite' => $unite,
             'localites' => Localite::with('pay')->orderBy('pays_id', 'asc')->get(),
-            'responsables' => U::with('role','pay')->get(),
+            'responsables' => U::with('role','pays')->get(),
             'types' =>TypeUnite::orderBy('nom','asc')->get(),
             'pays' =>Pay::orderBy('nom','asc')->get(),
             'titrePage' => "Mise à jour ". $unite->designation,

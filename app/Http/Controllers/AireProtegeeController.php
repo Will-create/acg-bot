@@ -61,9 +61,11 @@ class AireProtegeeController extends Controller
             'tel' => ['required', 'string', 'max:255', 'min:3'],
             'code_wdpa_aire' => ['string', 'max:255', 'min:3'],
             'adresse' => ['required', 'string', 'max:255', 'min:3'],
+            'nom_responsable' => ['required', 'string', 'max:255', 'min:3'],
+            'prenom_responsable' => ['required', 'string', 'max:255', 'min:3'],
             'map' => ['required', 'string', 'min:8'],
-            'logo' => ['image'],
-            'image_couverture' => ['image'],
+            'logo' => ['nullable'],
+            'image_couverture' => ['nullable'],
             'pays_id' => ['required', 'integer'],
         ]);
         $aire = new AireProtegee();
@@ -85,6 +87,8 @@ class AireProtegeeController extends Controller
         $aire->tel = $data['tel'];
         $aire->code_wdpa_aire = $data['code_wdpa_aire'];
         $aire->adresse = $data['adresse'];
+        $aire->nom_responsable = $data['nom_responsable'];
+        $aire->prenom_responsable=$data['prenom_responsable'];
         $aire->map = $data['map'];
         $aire->pays_id = $data['pays_id'];
         $aire->uuid = Str::uuid();
@@ -104,7 +108,7 @@ class AireProtegeeController extends Controller
             'aire' => AireProtegee::where('uuid', $uuid)->first(),
             'pays' => Pay::orderBy('nom', 'asc')->get(),
             'titrePage' => "Mise a jours d'une aire protegée",
-            'btnAction' => "Ajouter"
+            'btnAction' => "Mettre a jours"
         ]);
     }
 
@@ -118,12 +122,13 @@ class AireProtegeeController extends Controller
             'tel' => ['required', 'string', 'max:255', 'min:3'],
             'code_wdpa_aire' => ['string', 'max:255'],
             'adresse' => ['required', 'string', 'max:255', 'min:3'],
+            'nom_responsable' => ['required', 'string', 'max:255', 'min:3'],
+            'prenom_responsable' => ['required', 'string', 'max:255', 'min:3'],
             'map' => ['required', 'string', 'min:8'],
-            'logo' => ['image'],
-            'image_couverture' => ['image'],
+            'logo' => ['nullable'],
+            'image_couverture' => ['nullable'],
             'pays_id' => ['required', 'integer'],
         ]);
-
         if ($request->hasFile('logo')) {
             $file = $request->file('logo');
             $timestamp = str_replace([' ', ':'], '-', Carbon::now()->toDateTimeString());
@@ -142,6 +147,8 @@ class AireProtegeeController extends Controller
         $aire->tel = $data['tel'];
         $aire->code_wdpa_aire = $data['code_wdpa_aire'];
         $aire->adresse = $data['adresse'];
+        $aire->nom_responsable = $data['nom_responsable'];
+        $aire->prenom_responsable=$data['prenom_responsable'];
         $aire->map = $data['map'];
         $aire->pays_id = $data['pays_id'];
         $aire->uuid = Str::uuid();

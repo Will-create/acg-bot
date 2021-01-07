@@ -99,7 +99,7 @@
                                     <li class="slide">
                                         <a class="side-menu__item" data-toggle="slide" href="#">
                                             <i class="mdi mdi-earth aide-icon"  ></i>
-                                            <span class="side-menu__label">Gestion des Pays</span><i class="angle fa fa-angle-right"></i>
+                                            <span class="side-menu__label">Pays</span><i class="angle fa fa-angle-right"></i>
                                         </a>
                                         <ul class="slide-menu">
                                             <li><a class="slide-item" href="{{route('pays.index')}}"><span>Tous les pays</span></a></li>
@@ -107,7 +107,7 @@
 
                                             <li class="slide">
                                                 <a class="side-menu__item" data-toggle="slide" href="#">
-                                                    <span class="side-menu__label">Gestion des localités</span><i class="angle fa fa-angle-right"></i>
+                                                    <span class="side-menu__label">Localités</span><i class="angle fa fa-angle-right"></i>
                                                 </a>
                                                 <ul class="slide-menu">
                                                     <li><a class="slide-item" href="{{route('localites.index')}}"><span>Toutes les localités</span></a></li>
@@ -120,15 +120,13 @@
                         <li class="slide">
                             <a class="side-menu__item" data-toggle="slide" href="#">
                                 <i class="mdi mdi-rss aide-icon"  ></i>
-                                <span class="side-menu__label">Gestion des Natures des crimes</span><i class="angle fa fa-angle-right"></i>
+                                <span class="side-menu__label">Natures de crimes</span><i class="angle fa fa-angle-right"></i>
                             </a>
                             <ul class="slide-menu">
                             <li><a class="slide-item" href="{{route('nature_crimes.index')}}"><span>Nature des crimes</span></a></li>
                                 <li><a class="slide-item" href="#"><span>Nouveau </span></a></li>
                             </ul>
                         </li>
-
-
                         {{-- <li class="slide">
                             <a class="side-menu__item" data-toggle="slide" href="#">
                                 <i class="mdi mdi-rss aide-icon"  ></i>
@@ -142,7 +140,7 @@
                         <li class="slide">
                             <a class="side-menu__item" data-toggle="slide" href="#">
                                 <i class="mdi mdi-archive aide-icon"  ></i>
-                                <span class="side-menu__label">Gestion des Confiscations</span><i class="angle fa fa-angle-right"></i>
+                                <span class="side-menu__label">Confiscations</span><i class="angle fa fa-angle-right"></i>
                             </a>
                             <ul class="slide-menu">
                                 <li><a class="slide-item" href="{{route('confiscations.index')}}"><span>Toutes les confiscations</span></a></li>
@@ -152,7 +150,7 @@
                         <li class="slide">
                             <a class="side-menu__item" data-toggle="slide" href="#">
                                 <i class="mdi mdi- aide-icon"  ></i>
-                                <span class="side-menu__label">Gestion des aires protégées </span><i class="angle fa fa-angle-right"></i>
+                                <span class="side-menu__label">Aires protégées </span><i class="angle fa fa-angle-right"></i>
                             </a>
                             <ul class="slide-menu">
                                 <li><a class="slide-item" href="{{route('aire_protegees.index')}}"><span>Toutes les aires protégées</span></a></li>
@@ -163,7 +161,7 @@
                         <li class="slide">
                             <a class="side-menu__item" data-toggle="slide" href="#">
                                 <i class="mdi mdi-arrow aide-icon"  ></i>
-                                <span class="side-menu__label">Gestion des armes </span><i class="angle fa fa-angle-right"></i>
+                                <span class="side-menu__label">Armes </span><i class="angle fa fa-angle-right"></i>
                             </a>
                             <ul class="slide-menu">
                                 <li><a class="slide-item" href="{{route('armes.index')}}"><span>Toutes les armes de crime</span></a></li>
@@ -174,7 +172,7 @@
                         <li class="slide">
                             <a class="side-menu__item" data-toggle="slide" href="#">
                                 <i class="mdi mdi-message aide-icon"  ></i>
-                                <span class="side-menu__label">Gestion des commentaires</span><i class="angle fa fa-angle-right"></i>
+                                <span class="side-menu__label">Commentaires</span><i class="angle fa fa-angle-right"></i>
                             </a>
                             <ul class="slide-menu">
                                 <li><a class="slide-item" href="{{route('commentaires.index')}}"><span>Tous les commentaires</span></a></li>
@@ -185,7 +183,7 @@
                         <li class="slide">
                             <a class="side-menu__item" data-toggle="slide" href="#">
                                 <i class="mdi mdi-message aide-icon"  ></i>
-                                <span class="side-menu__label">Gestion des auteurs de crime</span><i class="angle fa fa-angle-right"></i>
+                                <span class="side-menu__label">Auteurs de crime</span><i class="angle fa fa-angle-right"></i>
                             </a>
                             <ul class="slide-menu">
                                 <li><a class="slide-item" href="{{route('crime_auteurs.index')}}"><span>Tous les auteurs</span></a></li>

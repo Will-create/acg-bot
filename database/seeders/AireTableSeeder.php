@@ -35,6 +35,8 @@ class AireTableSeeder extends Seeder
         foreach($localites as $localite){
             $aires = AireProtegee::create([
                 'libelle'                        =>$faker->streetName,
+                'prenom_responsable'             =>$faker->lastName,
+                'nom_responsable'                =>$faker->firstName,
                 'tel'                            =>$faker->phoneNumber,
                 'adresse'                        =>$faker->streetAddress,
                 'code_wdpa_aire'                 =>$localite->id,

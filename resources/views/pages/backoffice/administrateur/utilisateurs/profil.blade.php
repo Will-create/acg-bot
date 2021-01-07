@@ -56,24 +56,24 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label class="form-label" for="email">Email <strong class="text-danger">*</strong></label>
-                     <input type="email" class="form-control" name="email" placeholder="Email" id="email"  value="{{$user->email}}" required>
-                     @error('email')
-                     <span class="helper-text red-text">
-                         <strong>{{ $message }}</strong>
-                     </span>
-                     @enderror
-                    </div>
-
-
-
-
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
                         <label class="form-label" for="prenom">Prénom <strong class="text-danger">*</strong></label>
                         <input type="text" class="form-control" name="prenom" placeholder="Prénom" id="prenom"  value="{{$user->prenom}}" required>
                         @error('prenom')
+                        <span class="helper-text red-text">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
+                    
+                    
+                    
+                    
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-label" for="email">Email <strong class="text-danger">*</strong></label>
+                        <input type="email" class="form-control" name="email" placeholder="Email" id="email"  value="{{$user->email}}" required>
+                        @error('email')
                         <span class="helper-text red-text">
                             <strong>{{ $message }}</strong>
                         </span>

@@ -44,10 +44,12 @@ class CreateUserNotification extends Notification
         $url = Route('accueil');
 
         return (new MailMessage)
-        ->subject("Criminalité environnementale")
+        ->subject("Compte créé sur l'application web de gestion des criminalités environnementales")
         ->greeting('Bonjour '. $this->user->nom.' !')
-        ->line('Vous avez été ajouté à la plateforme de gestion des crimes environnementaux en tant que  '. $this->user->role->designation. ' ')
-        ->line("Veuillez vous connecter avec  l'identifiant ". $this->user->email. " et le mot de passe  ". $this->password. "   pour plus d'information " )
+        ->line('Votre compte a été créé sur la plateforme de  gestion criminalités environnementales en tant que '. $this->user->role->designation. ' ')
+        ->line("Veuillez vous connecter avec  l'identifiants suivants :". $this->user->email. " et le mot de passe  ". $this->password. "   pour plus d'information " )
+        ->line("Nom d'utilisateur :". $this->user->email )
+        ->line("Mot de passe  :". $this->password)
         ->action('Connexion', $url);
     }
 
