@@ -1,16 +1,10 @@
-
-
 $(document).ready(function () {
-
     $.ajaxSetup({
         headers: {
-
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
                 'uuid':null
             }
     });
-
-
 //Save data into database
 $('body').on('click', '#submit1', function (event) {
     event.preventDefault()
@@ -27,7 +21,6 @@ $('body').on('click', '#submit1', function (event) {
     //   dataType: 'json',
       success: function (data) {
         console.log('uuid:')
-
          var uuid2 = document.querySelector('#uuid2').value = data;
          console.log(uuid2)
           document.querySelector('#loader').classList.add('d-none');
@@ -41,7 +34,6 @@ $('body').on('click', '#submit1', function (event) {
             button: false,
             timer: 2500
           })
-
       },
       error: function (data) {
         console.log(data);
@@ -58,12 +50,6 @@ $('body').on('click', '#submit1', function (event) {
     }
   });
 });
-
-
-
-
-
-
 $('body').on('click', '#submit4', function (event) {
     event.preventDefault()
     var _token = $("#_token").val();
@@ -78,7 +64,6 @@ $('body').on('click', '#submit4', function (event) {
       data:fd,
     //   dataType: 'json',
       success: function (data) {
-
           document.querySelector('#loader').classList.add('d-none');
           document.querySelector('#crimenature').classList.remove('d-none');
           var url = '/nature_crimes';
@@ -90,7 +75,6 @@ $('body').on('click', '#submit4', function (event) {
             button: false,
             timer: 2500
           })
-
       },
       error: function (data) {
     document.querySelector('#loader').classList.add('d-none');
@@ -105,21 +89,6 @@ $('body').on('click', '#submit4', function (event) {
     }
   });
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 $('body').on('click', '#submit2', function (event) {
     event.preventDefault()
     var _token = $("#_token").val();
@@ -138,7 +107,6 @@ $('body').on('click', '#submit2', function (event) {
           console.log(uuid3)
         document.querySelector('#loader').classList.add('d-none');
       document.querySelector('#smartwizard').classList.remove('d-none');
-
           var url = '/crimes/create#step-3';
           location.href = url;
            swal({
@@ -152,7 +120,6 @@ $('body').on('click', '#submit2', function (event) {
       error: function (data) {
         document.querySelector('#loader').classList.add('d-none');
          document.querySelector('#smartwizard').classList.remove('d-none');
-
         console.log(data.responseJSON);
       swal({
        position: 'center',
@@ -160,10 +127,8 @@ $('body').on('click', '#submit2', function (event) {
        title: 'Une erreur s\'est produite, Veullez réessayer',
        button: false,
        timer: 2500
-
      })
     }
-
   });
 });
 $('body').on('click', '#submit3', function (event) {
@@ -173,10 +138,6 @@ $('body').on('click', '#submit3', function (event) {
     // var email = $("#email").val();
     var fd = $('#form_setp_3').serialize();
     console.log(fd)
-
-
-
-
     $.ajax({
 	  url: '/crimes',
       type: "POST",
@@ -193,7 +154,6 @@ $('body').on('click', '#submit3', function (event) {
             button: false,
             timer: 2500
           })
-
       },
       error: function (data) {
         console.log(data.responseJSON);
@@ -205,14 +165,6 @@ $('body').on('click', '#submit3', function (event) {
        timer: 2500
      })
     }
-
   });
 });
-
-
-
-
-
 });
-
-
