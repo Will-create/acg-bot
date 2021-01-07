@@ -25,6 +25,10 @@
                             {{ $confiscation->nombre ? $confiscation->nombre : $confiscation->quanite}}
                             </a>
                         </td>
+                        <td>
+                            <a class="text-dark" data-toggle="tooltip" data-placement="top" title="Cliquer pour voir les détails" href="{{route('confiscations.show', $confiscation)}}">
+                                {{formatDate($confiscation->condition)}}
+                        </td>
                          <td> <a class="text-dark" data-toggle="tooltip" data-placement="top" title="Cliquer pour voir les détails" href="{{route('confiscations.show', $confiscation)}}">
                             {{formatDate($confiscation->created_at)}}
                         </a>
