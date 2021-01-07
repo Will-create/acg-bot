@@ -1,7 +1,6 @@
 
 
 $(document).ready(function () {
-
     $.ajaxSetup({
         headers: {
 
@@ -15,7 +14,7 @@ $(document).ready(function () {
 $('body').on('click', '#submit1', function (event) {
     event.preventDefault()
     var _token = $("#_token").val();
-    document.querySelector('#smartwizard').classList.add('d-none');
+    document.querySelector('#smatwizard').classList.add('d-none');
     document.querySelector('#loader').classList.remove('d-none');
     var fd = $('#form_setp_1').serialize();
     console.log('console')
@@ -26,14 +25,12 @@ $('body').on('click', '#submit1', function (event) {
       data:fd,
     //   dataType: 'json',
       success: function (data) {
-        console.log('uuid:')
-
-         var uuid2 = document.querySelector('#uuid2').value = data;
-         console.log(uuid2)
+        console.log(data.data.uuid)
           document.querySelector('#loader').classList.add('d-none');
-          document.querySelector('#smartwizard').classList.remove('d-none');
-          var url = '/crimes/create#step-2';
-          location.href = url;
+          document.querySelector('#smatwizard').classList.remove('d-none');
+          var url = '/crimes/' + data.data.uuid;
+
+        location.href = url;
            swal({
             position: 'center',
             icon: 'success',
@@ -47,7 +44,7 @@ $('body').on('click', '#submit1', function (event) {
         console.log(data);
     //   $('#form_setp_1').trigger("reset");
     document.querySelector('#loader').classList.add('d-none');
-    document.querySelector('#smartwizard').classList.remove('d-none');
+    document.querySelector('#smatwizard').classList.remove('d-none');
       swal({
        position: 'center',
        icon: 'error',
@@ -123,7 +120,7 @@ $('body').on('click', '#submit4', function (event) {
 $('body').on('click', '#submit2', function (event) {
     event.preventDefault()
     var _token = $("#_token").val();
-     document.querySelector('#smartwizard').classList.add('d-none');
+     document.querySelector('#smatwizard').classList.add('d-none');
     document.querySelector('#loader').classList.remove('d-none');
     var fd = $('#form_setp_2').serialize();
     console.log(fd)
@@ -137,7 +134,7 @@ $('body').on('click', '#submit2', function (event) {
           var uuid3 = document.querySelector('#uuid3').value = data;
           console.log(uuid3)
         document.querySelector('#loader').classList.add('d-none');
-      document.querySelector('#smartwizard').classList.remove('d-none');
+      document.querySelector('#smatwizard').classList.remove('d-none');
 
           var url = '/crimes/create#step-3';
           location.href = url;
@@ -151,7 +148,7 @@ $('body').on('click', '#submit2', function (event) {
       },
       error: function (data) {
         document.querySelector('#loader').classList.add('d-none');
-         document.querySelector('#smartwizard').classList.remove('d-none');
+         document.querySelector('#smatwizard').classList.remove('d-none');
 
         console.log(data.responseJSON);
       swal({

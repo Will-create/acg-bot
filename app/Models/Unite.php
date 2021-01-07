@@ -9,7 +9,6 @@ class Unite extends Model
 {
     use HasFactory;
     protected $fillable=[
-        'designation',
         'uuid',
         'pays_id',
         'ville_id',

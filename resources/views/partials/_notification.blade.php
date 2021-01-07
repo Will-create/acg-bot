@@ -1,6 +1,6 @@
 
 @if ( Session::has('status') )
-<div class="alert alert-success shadow" role="alert">
+<div class="alert alert-success shadow" role="alert" style="width: 90%">
     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
     {!! session('status') !!}
 </div>

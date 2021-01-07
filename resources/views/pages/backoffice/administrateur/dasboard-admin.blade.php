@@ -29,7 +29,7 @@
 						<div class="card-body">
 							<div class="row mb-1">
 								<div class="col">
-									<p class="mb-1">Espaces</p>
+									<p class="mb-1">Aires protégées</p>
 									<h3 class="mb-0 number-font">587 3652</h3>
 								</div>
 								<div class="col-auto mb-0">
@@ -52,7 +52,7 @@
 								</div>
 								<div class="col-auto mb-0">
 									<div class="dash-icon text-secondary">
-                                        <i class="fa fa-skull-crossbones"></i>
+                                        <i class="mdi mdi-alert aide-icon"></i>
 									</div>
 								</div>
 							</div>
@@ -70,7 +70,7 @@
 								</div>
 								<div class="col-auto mb-0">
 									<div class="dash-icon text-warning">
-										<i class="bx bxs-credit-card-front"></i>
+                                        <i class="mdi mdi-domain  "></i>
 									</div>
 								</div>
 							</div>

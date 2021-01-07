@@ -155,8 +155,8 @@
                                                     <tr>
                                                     <td><strong>Role :</strong> {{$utilisateur->role->designation}}</td>
                                                     </tr>
-                                                  
-                                                   
+
+
                                                 </tbody>
                                                 <tbody class="col-lg-12 col-xl-6 p-0">
                                                     <tr>
@@ -164,7 +164,7 @@
                                                     </tr>
 
                                                     <tr>
-                                                        <td><strong>Téléphone :</strong> {{formatel($utilisateur->tel)}} </td>
+                                                        <td><strong>Téléphone :</strong> {{ ($utilisateur->tel)}} </td>
                                                     </tr>
                                                       @if ($utilisateur->unite)
                                                     <tr>

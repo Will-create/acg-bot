@@ -13,7 +13,7 @@ class CrimeAuteur extends Model
         return 'uuid';
     }
 
-    public function crimes(){
-        return $this->belongsToMany('App\Models\Crime','auteur_crimes');
+    public function crime(){
+        return $this->belongsTo(Crime::class);
     }
 }

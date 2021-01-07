@@ -43,6 +43,8 @@
 
     @include('layouts.footer-scripts')
     @stack('ajax_crud')
+    @stack('livewirescript')
+    @stack('scriptlive')
     <script>
         $.fakeLoader();
 

@@ -20,7 +20,7 @@ class CrimeConfiscationController extends Controller
      */
     public function index()
     {
-        
+
 
         return view('pages.backoffice.confiscations.index',[
             'confiscations'                     => crimeConfiscation::with('crime')->orderBy('designation', 'asc')->get()
@@ -28,12 +28,12 @@ class CrimeConfiscationController extends Controller
     }
 
 
-    public function create()
+    public function create($crime = null)
     {
-       
 
         return view('pages.backoffice.confiscations.form',[
-            'crimes'                     => Crime::with('paysApprehension','service_investigateur')->orderBy('pays_apprehension', 'asc')->get()
+            'crime'                     => $crime
+            // 'crimes'                     => Crime::with('paysApprehension','service_investigateur')->orderBy('pays_apprehension', 'asc')->get()
         ]);
     }
 
@@ -44,26 +44,26 @@ class CrimeConfiscationController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
+    {
         $data=request()->validate([
             'designation'                    => ['required','string','max:255','min:3'],
             'description'                    => ['required','string','min:3'],
-            'crime_id'                       => ['required','integer'],
-            'nombre'                         => ['required','integer'],
-            'poids'                          => ['required','integer'],
+            'crime'                          => ['required'],
+            'nombre'                         => ['nullable','integer'],
+            'poids'                          => ['nullable','integer'],
           ]);
-
+            $crime = Crime::where('uuid', $request->crime)->first();
 
           $confiscation= new crimeConfiscation;
+          $confiscation->uuid=Str::uuid();
           $confiscation->designation=$data['designation'];
-          $confiscation->crime_id =$data['crime_id'];
+          $confiscation->crime_id =$crime->id;
           $confiscation->nombre =$data['nombre'];
           $confiscation->description =$data['description'];
           $confiscation->poids =$data['poids'];
-          $confiscation->uuid=Str::uuid();
           $confiscation->save();
           $request->session()->flash('status', 'Confiscation ajoutée avec succès');
-          return redirect()->route('confiscations.index');
+          return redirect()->route('crimes.show', $crime->uuid);
     }
 
     /**
@@ -85,13 +85,13 @@ class CrimeConfiscationController extends Controller
      */
     public function edit(crimeConfiscation $confiscation)
     {
-        
+
         return view('pages.backoffice.confiscations.edit',[
             'crimes'                     => Crime::with('paysApprehension','service_investigateur')->orderBy('pays_apprehension', 'asc')->get(),
             'confiscation'               => $confiscation
         ]);
     }
-    
+
     /**
      * Update the specified resource in storage.
      *
@@ -108,13 +108,13 @@ class CrimeConfiscationController extends Controller
             'crime_id'                       => ['required','integer'],
             'nombre'                         => ['required','integer'],
             'poids'                          => ['required','integer'],
-            
+
 
 
           ]);
 
 
-          
+
           $confiscation->designation=$data['designation'];
           $confiscation->crime_id =$data['crime_id'];
           $confiscation->nombre =$data['nombre'];
@@ -132,7 +132,7 @@ class CrimeConfiscationController extends Controller
      * @param  \App\Models\Unite  $unite
      * @return \Illuminate\Http\Response
      */
-    
+
     public function destroy(Request $request, crimeConfiscation $confiscation)
     {
         $confiscation->delete();

@@ -23,8 +23,8 @@
                                 <span class="side-menu__label">Espèce Animal</span><i class="angle fa fa-angle-right"></i>
                             </a>
                             <ul class="slide-menu">
-                                <li><a class="slide-item" href="#"><span>Les espèce Animal</span></a></li>
-                                <li><a class="slide-item" href="#"><span>Ajouter un espèce animal </span></a></li>
+                                <li><a class="slide-item" href="{{route('especes.regne.show', ['regne' => 'animal'])}}"><span>Les espèce Animal</span></a></li>
+                                <li><a class="slide-item" href="{{route('especes.create', ['regne' => 'animal'])}}"><span>Ajouter un espèce animal </span></a></li>
                             </ul>
                         </li>
                         <li class="slide">
@@ -33,8 +33,8 @@
                                 <span class="side-menu__label">Espèce végétal</span><i class="angle fa fa-angle-right"></i>
                             </a>
                             <ul class="slide-menu">
-                                <li><a class="slide-item" href="#"><span>Tous les espèces</span></a></li>
-                                <li><a class="slide-item" href="#"><span>Ajouter un espèce végétal </span></a></li>
+                                <li><a class="slide-item" href="{{route('especes.regne.show', ['regne' => 'vegetal'])}}"><span>Tous les espèces</span></a></li>
+                                <li><a class="slide-item" href="{{route('especes.create', ['regne' => 'vegetal'])}}"><span>Ajouter un espèce végétal </span></a></li>
                             </ul>
                         </li>
 

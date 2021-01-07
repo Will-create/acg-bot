@@ -42,6 +42,7 @@
 
 <form action="{{route('confiscations.store')}}" method="post" enctype="multipart/form-data">
     @csrf
+    <input type="hidden" name="crime" value="{{$crime}}">
     <div class="card">
         <div class="card-body">
             <div class="row">
@@ -59,13 +60,17 @@
                 <div class="col-md-6">
 					<div class="form-group">
                         <label class="form-label" for="organisation">Conditions<strong class="text-danger">*</strong></label>
-                        <select name="condition" id="" class="form-control custom-select select2">
+                        {{-- <select name="condition" id="" class="form-control custom-select select2">
                             <option value="" selected > Sélectionner</option>
-
                             <option value="frais">Frais</option>
                             <option value="vivant">Vivant</option>
-                        
-                        </select>
+                        </select> --}}
+                        <select class="js-example-basic-confiscation" name="condition">
+                            <option value="" selected > Sélectionner</option>
+                            <option value="frais">Frais</option>
+                            <option value="vivant">Vivant</option>
+
+                          </select>
                         @error('condition')
                         <span class="helper-text red-text">
                             <strong>{{ $message }}</strong>
@@ -78,7 +83,7 @@
 
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label class="form-label" for="designation">Poids <strong class="text-danger">*</strong> </label>
+                        <label class="form-label" for="designation">Poids <strong class="text-danger"></strong> </label>
                         <input type="number" class="form-control" name="poids" placeholder="Le poids en kg" id="poids"  value="{{old('poids')}}" required>
                         @error('poids')
                         <span class="helper-text red-text">
@@ -89,7 +94,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label class="form-label" for="nombre">Nombre <strong class="text-danger">*</strong> </label>
+                        <label class="form-label" for="nombre">Nombre <strong class="text-danger"></strong> </label>
                         <input type="number" class="form-control" name="nombre" placeholder="Nombre" id="nombre"  value="{{old('nombre')}}" required>
                         @error('nombre')
                         <span class="helper-text red-text">
@@ -99,7 +104,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            {{-- <div class="row">
                 <div class="col-md-6">
 					<div class="form-group">
                         <label class="form-label" for="organisation">Crime<strong class="text-danger">*</strong></label>
@@ -116,7 +121,8 @@
                         @enderror
 					</div>
                 </div>
-                <div class="col-md-6">
+                --}}
+                <div class="col-md-12">
                     <div class="form-group">
                         <label class="form-label" for="adresse">Description<strong class="text-danger">*</strong></label>
                         <textarea class="form-control" rows="4" name="description" id="description"  value="{{old('description')}}" required></textarea>
@@ -130,7 +136,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="modal-footer">
         <button type="submit" class="btn btn-primary"> <span>
             <i class="fe fe-save"></i>

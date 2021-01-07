@@ -67,7 +67,7 @@
                             <td><strong>Responsable : </strong> <a  data-toggle="tooltip" data-placement="right" title="Cliquer pour afficher les détails" class="text-dark" href="{{route('utilisateurs.show',$unite->responsable->uuid)}}">{{$unite->responsable->nom}}   {{$unite->responsable->prenom}}</a> </td>
                             </tr>
 
-                            
+
                         </tbody>
                     </table>
                 </div>
@@ -169,15 +169,15 @@
     // Fonction d'initialisation de la carte
     function initMap() {
         // Créer l'objet "macarte" et l'insèrer dans l'élément HTML qui a l'ID "map"
-        macarte = L.map('map').setView([lat, lon], 9);
+        macarte = L.map('map').setView([lon, lat], 1);
         // Leaflet ne récupère pas les cartes (tiles) sur un serveur par défaut. Nous devons lui préciser où nous souhaitons les récupérer. Ici, openstreetmap.fr
         L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
             // Il est toujours bien de laisser le lien vers la source des données
-            attribution: 'données © <a href="//osm.org/copyright">OpenStreetMap</a>/ODbL - rendu <a href="//openstreetmap.fr">OSM France</a>',
-            minZoom: 1,
+            attribution: 'données © <a href="//osm.org/copyright">OpenStreetMap</a>/ODbL - rendu <a href="//openstreetmap.fr">UICN</a>',
+            minZoom: 10,
             maxZoom: 20
         }).addTo(macarte);
-        var marker = L.marker([lat, lon]).addTo(macarte);
+        var marker = L.marker([lon, lat]).addTo(macarte);
     }
     window.onload = function(){
 // Fonction d'initialisation qui s'exécute lorsque le DOM est chargé

@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Role;
+use App\Models\Unite;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -30,7 +31,8 @@ class UserTableSeeder extends Seeder
             'titre'                 => $faker->title,
             'actif'                 => true,
             'role_id'               => 1,
-            'profile_photo_path'    => "/images/pngs/bg-l.png",
+            'profile_photo_path'                 => 'profile_photo_path/'.$faker->file($sourceDir = 'D:\Switch Maker\criminalite\public\images\user', $targetDir = 'storage\app\public\profile_photo_path', false),
+
             'prenom'                => $faker->lastName,
             'email'                 => 'admin@uicn.com',
             'tel'                   => $faker->phoneNumber,
@@ -40,12 +42,12 @@ class UserTableSeeder extends Seeder
             'pay_id'                => rand(1,16)
         ]);
         foreach ($roles as $key => $role) {
-            User::create([
+          $user =   User::create([
                 'nom'                   => $faker->firstName,
                 'titre'                 => $faker->title,
                 'actif'                 => true,
                 'role_id'               => $role->id,
-                'profile_photo_path'    => "/images/pngs/bg-l.png",
+                'profile_photo_path'                 => 'profile_photo_path/'.$faker->file($sourceDir = 'D:\Switch Maker\criminalite\public\images\user', $targetDir = 'storage\app\public\profile_photo_path', false),
                 'prenom'                => $faker->lastName,
                 'email'                 => $faker->freeEmail,
                 'tel'                   => $faker->phoneNumber,
@@ -54,6 +56,13 @@ class UserTableSeeder extends Seeder
                 'uuid'                  => Str::uuid(),
                 'pay_id'                => rand(1,16)
             ]);
+
+            // if($user->role->designation == "Chef d’Unité" || $user->role->designation == "Agent d’une Unité")
+            // {
+            //   $user->update([
+            //     'unite_id'      => Unite::inRandomOrder()->first()->id
+            //   ]);
+            // }
         }
     }
 }

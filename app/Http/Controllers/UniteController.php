@@ -26,7 +26,7 @@ class UniteController extends Controller
         return view('pages.backoffice.unites.index',compact('unites'));
     }
     public function filter()
-    {  
+    {
         $p = 1;
         $pay=Pay::where('id',$p )->first();
         return view('pages.backoffice.unites.filter', [
@@ -37,9 +37,9 @@ class UniteController extends Controller
     }
 
     public function filtreur($p)
-    {  
+    {
         $pay=Pay::where('id',$p )->first();
-      
+
         return response()->json([
             'unites'                    =>Unite::where('pays_id',$pay->id)->with('pays','type','localite')->get(),
             'pays'                         =>Pay::orderBy('nom','asc')->get(),
@@ -48,7 +48,7 @@ class UniteController extends Controller
     }
     public function create()
     {
-   
+
         return view('pages.backoffice.unites.createdit', [
             'unite' => new Unite(),
             'localites' => Localite::with('pay')->orderBy('pays_id', 'asc')->get(),
@@ -73,7 +73,7 @@ class UniteController extends Controller
             'lat'                           => ['nullable','required','string','max:255','min:8'],
             'long'                          => ['nullable','required','string','max:255','min:8'],
             'logo'                          => ['image','required'],
-            'photo_couverture'              => ['image','nullable'],
+            'photo_couverture'              => ['nullable'],
             'pays_id'                       => ['required','integer'],
             'localite_id'                   => ['required','integer'],
           ]);
@@ -109,7 +109,7 @@ class UniteController extends Controller
           return redirect()->route('unites.show',$unite->uuid);
     }
     public function show(Unite $unite)
-    {  
+    {
         function openstreetmap_url($lon, $lat, $zoom=13) {
             $url = 'https:⁄⁄www.openstreetmap.org/?mlat='.$lat.'&amp;mlon='.$lon.'#map='.$zoom.'/'.$lat.'/'.$lon;
             return $url;
@@ -130,7 +130,7 @@ class UniteController extends Controller
         ]);
     }
 
-   
+
     public function update(Request $request, Unite $unite)
     {
         $data=request()->validate([
@@ -144,7 +144,7 @@ class UniteController extends Controller
             'lat'=> ['string','max:255','min:8'],
             'long'=> ['nullable', 'string','max:255','min:8'],
             'logo'=> ['nullable', 'image'],
-            'photo_couverture'=> ['nullable', 'image'],
+            'photo_couverture'=> ['nullable'],
             'pays_id'=> ['required','integer'],
             'localite_id'=> ['required','integer'],
           ]);
@@ -179,7 +179,7 @@ class UniteController extends Controller
           return redirect()->route('unites.show', $unite->uuid);
     }
     public function destroy(Request $request, Unite $unite)
-    {   
+    {
         $restriction = new Restriction;
         $restrictions = $restriction->check($unite->id,[
             ['foreignkey'=>'type_crime_id','modelname'=>'crime'],            ]);

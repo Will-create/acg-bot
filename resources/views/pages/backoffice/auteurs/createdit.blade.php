@@ -33,9 +33,9 @@
             </ol>
         </div>
         <div class="ml-auto pageheader-btn">
-            <a class="btn btn-primary" href="{{ route('crime_auteurs.index') }}"> <span>
+            <a class="btn btn-primary" href="{{ route('crimes.show', $auteur->crime ? $auteur->crime->uuid : $crimeUuid) }}"> <span>
                     <i class="fe fe-list"></i>
-                </span> Toutes les auteurs de crime</a>
+                </span> Revenir au crime</a>
             </button>
 
         </div>

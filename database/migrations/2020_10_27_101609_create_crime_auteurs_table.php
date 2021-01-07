@@ -11,20 +11,21 @@ class CreateCrimeAuteursTable extends Migration
      *
      * @return void
      */
-    
+
     public function up()
     {
         Schema::create('crime_auteurs', function (Blueprint $table) {
             $table->id();
             $table->uuid('uuid');
             $table->integer('revenue');
-            $table->unsignedBigInteger('localite_id');
-            $table->unsignedBigInteger('pays_id');
+            $table->foreign('crime_id');
+            $table->unsignedBigInteger('localite_id')->nullable();
+            $table->unsignedBigInteger('pays_id')->nullable();
             $table->string('nom', 50);
             $table->string('prenom', 60);
             $table->string('nationalite', 25);
             $table->string('travail', 100);
-            $table->string('tel', 60);
+            $table->string('tel', 60)->nullable();
             $table->text('affaire_judiciaire');
             $table->text('adresse');
             $table->enum('genre', ['masculin', 'feminin']);
