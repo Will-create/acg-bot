@@ -1,7 +1,6 @@
 <?php
 
 namespace Database\Seeders;
-
 use App\Models\Role;
 use App\Models\Unite;
 use Illuminate\Database\Seeder;
@@ -9,7 +8,6 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Faker\Factory;
-
 class UserTableSeeder extends Seeder
 {
     /**

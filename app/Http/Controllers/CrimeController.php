@@ -184,12 +184,14 @@ class CrimeController extends Controller
     {
         $crime =Crime::where('uuid', $crimeUuid)->with('type','armes')->first();
         return view('pages.backoffice.crimes.show',
-        ['crime'  => $crime,
-        'destinataires' =>U::with('role')->get(),
-        'armes'  => Arme::where('crime_id',$crime->id)->orderBy('created_at','desc')->get(),
-        'commentaires'  => Commentaire::where('crime_id',$crime->id)->orderBy('created_at','desc')->get(),
-        'modeReglements'        => ModeReglement::all(),
-        'suites'                => DecisionJustice::all(),
+        [
+            'crime'  => $crime,
+            'destinataires' =>U::with('role')->get(),
+            'armes'  => Arme::where('crime_id',$crime->id)->orderBy('created_at','desc')->get(),
+            'commentaires'  => Commentaire::where('crime_id',$crime->id)->orderBy('created_at','desc')->get(),
+            'modeReglements'        => ModeReglement::all(),
+            'suites'                => DecisionJustice::all()
+            ]);
 
         
     }

@@ -37,21 +37,32 @@
             <div class="card-header">
                 <h3 class="card-title">Liste des Localités</h3>
             </div>
+            <?php
+                $i = 1;
+            ?>
             <div class="card-body">
                 <div class="table-responsive">
                     <table id="data-table1" class="table table-striped table-bordered text-nowrap w-100 table-sm">
                         <thead>
                             <tr>
-                                <th class="wd-15p">UUID</th>
-                                
+                                <th class="wd-15p">Ordre</th>
+                                <th class="wd-15p">Pays d'appréhension</th>
+                                <th class="wd-30p">Nombre d'espèces impliquées</th>
+                                <th class="wd-30p">Règlement</th>
                                 
                             </tr>
                         </thead>
                         <tbody>
                             <?php $__currentLoopData = $crimes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $crime): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <?php
+                        $crimeEspeces =  \App\Models\CrimeEspece::latest()->where('crime_id', $crime->id)->get()
+
+                            ?>
                             <tr>
-                                <td> <a class="text-dark" href="<?php echo e(route('crimes.show', $crime->uuid)); ?>"> <?php echo e(ucfirst($crime->uuid)); ?> </a></td>
-                                
+                                <td><?php echo e($i++); ?></td>
+                                <td> <a class="text-dark" href="<?php echo e(route('crimes.show', $crime->uuid)); ?>"> <?php echo e($crime->paysApprehension ? $crime->paysApprehension->nom: ''); ?> </a></td>
+                                <td> <a class="text-dark" href="<?php echo e(route('crimes.show', $crime->uuid)); ?>"> <?php echo e(count($crimeEspeces)); ?> </a></td>
+                                <td> <a class="text-dark" href="<?php echo e(route('crimes.show', $crime->uuid)); ?>"> <?php echo e($crime->reglement  ? $crime->reglement :''); ?></a></td>
                             </tr>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 

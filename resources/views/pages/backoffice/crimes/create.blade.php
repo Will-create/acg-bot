@@ -48,7 +48,7 @@
                                 {{-- <livewire:crime/> --}}
                                 <div>
                                     <div id="smatwizard">
-                                        <form  method="POST" id="form_setp_1">
+                                        <form   id="form_setp_1">
                                             @csrf
                                         <div class="row">
                                             <div class="col-md-6">

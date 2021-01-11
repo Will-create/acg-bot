@@ -167,8 +167,6 @@ $('body').on('click', '#submit3', function (event) {
     }
   });
 });
-<<<<<<< HEAD
+
 });
-=======
-});
->>>>>>> e94b47cf3258748f4e104d8483f4d50073ea6324
+
