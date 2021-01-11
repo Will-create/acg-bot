@@ -17,17 +17,17 @@
 			<!-- PAGE-HEADER -->
 			<div class="page-header">
                 <div>
-                    <h1 class="page-title">Liste des crimes</h1>
+                    <h1 class="page-title">Crime</h1>
                     <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{route('accueil')}}">Accueil</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Nouveau</li>
                     </ol>
                 </div>
                 <div class="ml-auto pageheader-btn">
-                <a class="btn btn-primary" href="{{route('especes.create')}}">  <span>
+                <a class="btn btn-primary" href="{{route('crimes.index')}}">  <span>
                         <i class="fe fe-plus"></i>
                     </span>
-                   Enregistrer un crime</a>
+                   Tous les crimes</a>
                 </button>
 
                 </div>

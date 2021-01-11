@@ -15,11 +15,11 @@ class CreateCrimeTypeReglementsTable extends Migration
     {
         Schema::create('crime_type_reglements', function (Blueprint $table) {
             $table->id();
-            $table->enum('type', ['transaction forestiere', 'poursuite judiciaire']);
-            $table->enum('suite', ['emprisonnement', 'amende']);
-            $table->text('decision_justice');
+            $table->unsignedBigInteger('mode_id');
+            $table->unsignedBigInteger('suite_id')->nullable();
             $table->unsignedBigInteger('crime_id');
             $table->unsignedBigInteger('auteur_id');
+            $table->integer('amende')->nullable();
             $table->timestamps();
 
             $table->foreign('crime_id')->references('id')->on('crimes')->onDelete('restrict')

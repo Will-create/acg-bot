@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Crime;
 use App\Models\AireProtegee;
+use App\Models\DecisionJustice;
 use App\Models\Espece;
+use App\Models\ModeReglement;
 use App\Models\Pay;
 use App\Models\TypeCrime;
 use App\Models\Unite;
@@ -176,9 +178,11 @@ class CrimeController extends Controller
      */
     public function show( $crimeUuid)
     {
-
         return view('pages.backoffice.crimes.show',
-        ['crime'  => Crime::where('uuid', $crimeUuid)->first()
+        [
+            'crime'                 => Crime::where('uuid', $crimeUuid)->first(),
+            'modeReglements'        => ModeReglement::all(),
+            'suites'                => DecisionJustice::all(),
         ]);
     }
 

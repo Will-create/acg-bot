@@ -10,6 +10,7 @@
                     <th>Ordre</th>
                     <th>Désignation</th>
                     <th>Date d'ajout</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -17,21 +18,35 @@
                 <tr>
                     <td>{{$i++}}</td>
                     <td>
-
                         @if ($crimeEspece->espece->photo)
+
+                        <a  class="text-dark" href="{{route('especes.show', $crimeEspece->espece )}}">
                         <img src="{{asset('storage/' . $crimeEspece->espece->photo)}}" alt="{{$crimeEspece->espece->nom}}" class="brround  avatar-sm w-32 mr-2">
                         {{$crimeEspece->espece->nom}}
+                    </a>
                         @else
+                        <a class="text-dark"  href="{{route('especes.show', $crimeEspece->espece )}}">
                         <img src="{{asset('espece_animal/4.jpeg')}}" alt="profile-user" class="brround  avatar-sm w-32 mr-2">
                         {{$crimeEspece->espece->nom}}
+                        </a>
                         @endif
                     </td>
+                    <a class="text-dark"  href="{{route('especes.show', $crimeEspece->espece )}}">
+
                     <td>{{formatDate($crimeEspece->created_at)}}</td>
+                    </a>
+                    <td>
+                        <button wire:click="delete({{$crimeEspece->id}})"> <i class="fa fa-trash text-danger"></i> </button>
+                    </td>
                 </tr>
                 @endforeach
 
             </tbody>
         </table>
     </div>
-
+    <div wire:loading wire:target="delete">
+        <div id="loader" class="">
+            <div class="loader"></div>
+          </div>
+    </div>
     </div>

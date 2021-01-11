@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Controllers\CrimeTypeReglementController;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -53,6 +54,10 @@ class Crime extends Model
 
     public function especes(){
         return $this->belongsToMany(Espece::class,'crime_especes');
+    }
+    public function reglement()
+    {
+        return $this->hasMany(crimeTypeReglement::class);
     }
 
 }

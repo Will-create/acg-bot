@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Crime;
 use App\Models\crimeTypeReglement;
+use App\Models\DecisionJustice;
+use App\Models\ModeReglement;
 use Illuminate\Http\Request;
 
 class CrimeTypeReglementController extends Controller
@@ -22,9 +25,15 @@ class CrimeTypeReglementController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($crime = null)
     {
-        //
+        return view('pages.backoffice.regelements.create',
+        [
+            'crime'   => Crime::where('uuid', $crime)->first(),
+            'modeReglements'  => ModeReglement::all(),
+            'suites'  => DecisionJustice::all(),
+        ]
+    );
     }
 
     /**
@@ -55,9 +64,13 @@ class CrimeTypeReglementController extends Controller
      * @param  \App\Models\crimeTypeReglement  $crimeTypeReglement
      * @return \Illuminate\Http\Response
      */
-    public function edit(crimeTypeReglement $crimeTypeReglement)
+    public function edit($crimeTypeReglement)
     {
-        //
+        return view('pages.backoffice.regelements.edit', [
+            'crimeTypeReglement'        => crimeTypeReglement::where('id', $crimeTypeReglement)->first(),
+            'modeReglements'  => ModeReglement::all(),
+            'suites'  => DecisionJustice::all(),
+        ]);
     }
 
     /**
@@ -67,9 +80,27 @@ class CrimeTypeReglementController extends Controller
      * @param  \App\Models\crimeTypeReglement  $crimeTypeReglement
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, crimeTypeReglement $crimeTypeReglement)
+    public function update(Request $request, $crimeTypeReglement)
     {
-        //
+        $reglement  = crimeTypeReglement::where('id', $crimeTypeReglement)->first();
+
+        $request->validate([
+                'reglement' => 'required',
+                'suite' => 'nullable',
+                'auteur' => 'required',
+                'amende' => ['nullable', 'numeric', 'min:100', 'max:500000000'],
+        ]);
+
+        $reglement->update([
+            'mode_id' => $request->reglement,
+            'suite_id' => $request->suite,
+            'auteur_id' => $request->auteur,
+            'amende' => $request->amende,
+        ]);
+        session()->flash('status', 'Règlement ejouté avec succès');
+        session()->flash('section', 'reglement');
+        return redirect()->route('crimes.show', $reglement->crime->uuid);
+
     }
 
     /**

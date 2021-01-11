@@ -65,7 +65,7 @@
                             <option value="frais">Frais</option>
                             <option value="vivant">Vivant</option>
                         </select> --}}
-                        <select class="js-example-basic-confiscation" name="condition">
+                        <select class="js-example-basic-confiscation form-control" name="condition">
                             <option value="" selected > Sélectionner</option>
                             <option value="frais">Frais</option>
                             <option value="vivant">Vivant</option>
@@ -84,7 +84,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label class="form-label" for="designation">Poids <strong class="text-danger"></strong> </label>
-                        <input type="number" class="form-control" name="poids" placeholder="Le poids en kg" id="poids"  value="{{old('poids')}}" required>
+                        <input type="number" class="form-control" name="poids" placeholder="Le poids en kg" id="poids"  value="{{old('poids')}}"  >
                         @error('poids')
                         <span class="helper-text red-text">
                             <strong>{{ $message }}</strong>
@@ -95,7 +95,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label class="form-label" for="nombre">Nombre <strong class="text-danger"></strong> </label>
-                        <input type="number" class="form-control" name="nombre" placeholder="Nombre" id="nombre"  value="{{old('nombre')}}" required>
+                        <input type="number" class="form-control" name="nombre" placeholder="Nombre" id="nombre"  value="{{old('nombre')}}"  >
                         @error('nombre')
                         <span class="helper-text red-text">
                             <strong>{{ $message }}</strong>
@@ -124,7 +124,7 @@
                 --}}
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label class="form-label" for="adresse">Description<strong class="text-danger">*</strong></label>
+                        <label class="form-label" for="adresse">Description<strong class="text-danger"></strong></label>
                         <textarea class="form-control" rows="4" name="description" id="description"  value="{{old('description')}}" required></textarea>
                         @error('description')
                         <span class="helper-text red-text">

@@ -1,6 +1,5 @@
 <div>
     <div class="row">
-        @include('partials._notification')
     </div>
     <br>
     <form wire:submit.prevent="submit">
