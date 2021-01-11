@@ -31,7 +31,7 @@ class UserTableSeeder extends Seeder
             'titre'                 => $faker->title,
             'actif'                 => true,
             'role_id'               => 1,
-            'profile_photo_path'                 => 'profile_photo_path/'.$faker->file($sourceDir = 'D:\Switch Maker\criminalite\public\images\user', $targetDir = 'storage\app\public\profile_photo_path', false),
+            'profile_photo_path'                 => 'profile_photo_path/'.$faker->file($sourceDir = '/home/louisbertson/Desktop/criminalite/public/images/user', $targetDir = '/home/louisbertson/Desktop/criminalite/public/profile_photo_path', false),
 
             'prenom'                => $faker->lastName,
             'email'                 => 'admin@uicn.com',
@@ -47,7 +47,7 @@ class UserTableSeeder extends Seeder
                 'titre'                 => $faker->title,
                 'actif'                 => true,
                 'role_id'               => $role->id,
-                'profile_photo_path'                 => 'profile_photo_path/'.$faker->file($sourceDir = 'D:\Switch Maker\criminalite\public\images\user', $targetDir = 'storage\app\public\profile_photo_path', false),
+                'profile_photo_path'                 => 'profile_photo_path/'.$faker->file($sourceDir = '/home/louisbertson/Desktop/criminalite/public/images/user', $targetDir = '/home/louisbertson/Desktop/criminalite/public/profile_photo_path', false),
                 'prenom'                => $faker->lastName,
                 'email'                 => $faker->freeEmail,
                 'tel'                   => $faker->phoneNumber,

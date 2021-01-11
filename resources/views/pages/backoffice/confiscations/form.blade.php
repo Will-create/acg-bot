@@ -65,7 +65,7 @@
                             <option value="frais">Frais</option>
                             <option value="vivant">Vivant</option>
                         </select> --}}
-                        <select class="js-example-basic-confiscation" name="condition">
+                        <select class="form-control js-example-basic-confiscation" name="condition">
                             <option value="" selected > Sélectionner</option>
                             <option value="frais">Frais</option>
                             <option value="vivant">Vivant</option>

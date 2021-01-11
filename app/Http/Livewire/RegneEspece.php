@@ -24,9 +24,7 @@ class RegneEspece extends Component
     public function mount() {
     $this->crime_id = $this->crime->id;
     $this->espece = $this->espece;
-
     }
-
     protected $rules = [
         'espece' => 'required',
         'crime_id' => 'required',

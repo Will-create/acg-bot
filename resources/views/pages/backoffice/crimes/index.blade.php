@@ -3,14 +3,11 @@
 @section('css')
         <!-- INTERNAL SELECT2 CSS -->
 		<link href="{{URL::asset('assets/plugins/fileuploads/css/fileupload.css')}}" rel="stylesheet" type="text/css" />
-
 		<link href="{{URL::asset('assets/plugins/select2/select2.min.css')}}" rel="stylesheet" />
-
 		<!-- INTERNAL  DATA TABLE CSS-->
 		<link href="{{URL::asset('assets/plugins/datatable/dataTables.bootstrap4.min.css')}}" rel="stylesheet" />
 		<link href="{{URL::asset('assets/plugins/datatable/responsivebootstrap4.min.css')}}" rel="stylesheet" />
         <link href="{{URL::asset('assets/plugins/datatable/fileexport/buttons.bootstrap4.min.css')}}" rel="stylesheet" />
-
           <!-- INTERNAL PRISM CSS -->
           <link href="{{URL::asset('assets/plugins/prism/prism.css')}}" rel="stylesheet">
           	<!-- INTERNAL TELEPHONE CSS-->
@@ -18,7 +15,6 @@
 @endsection
 @section('page-header')
                 <!-- PAGE-HEADER -->
-
 				<div class="page-header">
 					<div>
 						<h1 class="page-title">Liste des crimes </h1>
@@ -28,23 +24,14 @@
 						</ol>
 					</div>
 					<div class="ml-auto pageheader-btn">
-
-
-
                     </button>
-
 					</div>
 				</div>
 				<!-- PAGE-HEADER END -->
 @endsection
 @section('content')
 @include('partials._notification')
-
-
-
 @include('partials._notification')
-
-
 <!-- ROW-1 OPEN -->
 <div class="row">
     <div class="col-md-12 col-lg-12">
@@ -57,16 +44,16 @@
                     <table id="data-table1" class="table table-striped table-bordered text-nowrap w-100 table-sm">
                         <thead>
                             <tr>
-                                <th class="wd-15p">Nom</th>
-                                <th class="wd-30p">Pays</th>
+                                <th class="wd-15p">UUID</th>
+                                {{-- <th class="wd-30p">Pays</th> --}}
                                 {{-- <th>Actions</th> --}}
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($crimes as $crime)
                             <tr>
-                                <td> <a class="text-dark" href="{{route('crimes.show', $crime->uuid)}}"> {{ucfirst($localite->nom)}} </a></td>
-                                <td> <a class="text-dark" href="{{route('crimes.show', $crime->uuid)}}"> {{ $crime}}</a></td>
+                                <td> <a class="text-dark" href="{{route('crimes.show', $crime->uuid)}}"> {{ucfirst($crime->uuid)}} </a></td>
+                                {{-- <td> <a class="text-dark" href="{{route('crimes.show', $crime->uuid)}}"> {{ $crime}}</a></td> --}}
                             </tr>
                             @endforeach
 
@@ -110,7 +97,4 @@
             modal.classList.add("show");
         @endif
         </script>
-
-
-
 @endsection

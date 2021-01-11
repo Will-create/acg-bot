@@ -19,7 +19,7 @@ class CrimeTableSeeder extends Seeder
         $faker = Factory::create();
         $crimes =  function(){
             Crime::create([
-                'uuid' => Str::uuid()
+                'uuid' => Str::uuid(),
             ]);
         };
 

@@ -39,6 +39,8 @@ Auth::routes();
     Route::resource('aire_protegees', 'AireProtegeeController');
     Route::resource('confiscations', 'CrimeConfiscationController')->except('create');
     Route::get('confiscations/create/{crime?}', 'CrimeConfiscationController@create')->name('confiscations.create');
+    Route::get('crime/armes/create/{crime}', 'ArmeController@createarme')->name('crime.armes.create');
+
     Route::resource('type_crimes', 'TypeCrimeController');
     Route::resource('type_unites', 'TypeUniteController');
     Route::get('/user/profil', 'UtilisateursController@profil')->name('profil');

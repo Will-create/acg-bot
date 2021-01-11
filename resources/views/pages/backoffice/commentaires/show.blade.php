@@ -96,10 +96,10 @@
                                     @if ($autre->id != $commentaire->id)
                                     <div class="d-flex flex-row comment-row m-t-0">
                                         <a class="text-dark" href="{{ route('utilisateurs.show', $autre->auteur->uuid) }}" data-toggle="tooltip" data-placement="top" title="{{$autre->auteur->nom}} {{$autre->auteur->prenom}}({{$autre->auteur->role->designation}})">
-                                            <div class="p-2"><img   src="{{asset('storage/'. $autre->auteur->profile_photo_path)}}" alt="user" height="40" width="50" class="rounded-circle"></div>
+                                            <div class="p-2"><img   src="{{asset( $autre->auteur->profile_photo_path)}}" alt="user" height="40" width="50" class="rounded-circle"></div>
                                         </a> <br>
                                         <div class="comment-text w-100">
-                                            <div class="comment-footer"><a class="text-dark" href="{{route('commentaires.show', $autre->uuid)}}"><span class="m-b-15 d-block" style="background-color: rgb(241, 255, 251); border-radius:.5em; padding:1em; text-align:center;">{{ substr($autre->commentaire, 0,125) }}<span class="text-muted float-right">{{$autre->created_at->format(' d M Y h:i:s')}}</span> </span> </a><a class="text-dark float-right" href="{{route('utilisateurs.show', $autre->destinataire->uuid)}}">Pour: {{$autre->destinataire->nom}} {{$autre->destinataire->prenom}}({{$autre->destinataire->role->designation}})</a> </div>
+                                            <div class="comment-footer"><a class="text-dark" href="{{route('commentaires.show', $autre->uuid)}}"><span class="m-b-15 d-block" style="background-color: rgb(241, 255, 251); border-radius:.5em; padding:2em; text-align:center;">{{ substr($autre->commentaire, 0,125) }} <br><br> <span style="padding:5px;" class="text-muted  float-right">{{$autre->created_at->format(' d M Y h:i:s')}}</span> </span> </a><a class="text-dark float-right" href="{{route('utilisateurs.show', $autre->destinataire->uuid)}}">Pour: {{$autre->destinataire->nom}} {{$autre->destinataire->prenom}}({{$autre->destinataire->role->designation}})</a> </div>
                                         </div>
                                     </div>
                                     <hr>

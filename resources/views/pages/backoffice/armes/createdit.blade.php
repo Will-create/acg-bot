@@ -42,15 +42,15 @@
     <!-- PAGE-HEADER END -->
 @endsection
 @section('content')
-
-    @if (Route::currentRouteName() == 'armes.create')
+    
+@if (Route::currentRouteName() == 'armes.create')
         <form action="{{ route('armes.store') }}" method="post" enctype="multipart/form-data">
         @else
             <form action="{{ route('armes.update', $arme->uuid) }}" method="post" enctype="multipart/form-data">
                 @method('PUT')
     @endif
     @csrf
-    @include('pages.backoffice.armes._form', ['btnAction' => $btnAction, 'arme' => $arme])
+        @include('pages.backoffice.armes._form', ['btnAction' => $btnAction, 'arme' => $arme])
     </form>
 @stop
 @section('js')

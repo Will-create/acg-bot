@@ -15,7 +15,6 @@
 @endsection
 @section('page-header')
                 <!-- PAGE-HEADER -->
-
 				<div class="page-header">
 					<div>
 						<h1 class="page-title">Les Armes de crime</h1>
@@ -29,10 +28,7 @@
                             <i class="fe fe-plus"></i>
                         </span>
                     Ajouter une arme</a>
-
-
                     </button>
-
 					</div>
 				</div>
 				<!-- PAGE-HEADER END -->

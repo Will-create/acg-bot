@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Crime;
-use App\Models\AireProtegee;
-use App\Models\Espece;
 use App\Models\Pay;
-use App\Models\TypeCrime;
+use App\Models\Arme;
+use App\Models\Crime;
 use App\Models\Unite;
-use Illuminate\Support\Str;
+use App\Models\User as U;
 
+use App\Models\Espece;
+use App\Models\TypeCrime;
+use App\Models\Commentaire;
+
+use Illuminate\Support\Str;
+use App\Models\AireProtegee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -63,7 +67,7 @@ class CrimeController extends Controller
              $crime = new Crime;
              $crime->type_crime_id                   = $request->type_id;
              $crime->date_apprehension               = $request->date_apprehension;
-             $crime->pays_apprehension               = Auth::user()->pay->id;
+             $crime->pays_apprehension               = Auth::user()->pays->id;
              $crime->services_investigateurs         = Auth::user()->unite->id;
              $crime->latitude                        = $request->latitude;
              $crime->localite_apprehension           = $request->localite_apprehension;
@@ -176,9 +180,13 @@ class CrimeController extends Controller
      */
     public function show( $crimeUuid)
     {
-
+        $crime =Crime::where('uuid', $crimeUuid)->with('type','armes')->first();
         return view('pages.backoffice.crimes.show',
-        ['crime'  => Crime::where('uuid', $crimeUuid)->first()
+        ['crime'  => $crime,
+        'destinataires' =>U::with('role')->get(),
+        'armes'  => Arme::where('crime_id',$crime->id)->orderBy('created_at','desc')->get(),
+        'commentaires'  => Commentaire::where('crime_id',$crime->id)->orderBy('created_at','desc')->get(),
+
         ]);
     }
 

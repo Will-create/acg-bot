@@ -1,7 +1,5 @@
-@extends('layouts.master4')
-
-@section('content')
-@include('partials._notification')
+<?php $__env->startSection('content'); ?>
+<?php echo $__env->make('partials._notification', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
 			<!-- Row -->
 			<div class="row">
@@ -11,7 +9,7 @@
 							<div class="row mb-1">
 								<div class="col">
 									<p class="mb-1">Utilisateurs</p>
-									<h3 class="mb-0 number-font">{{count($utilisateurs)}}</h3>
+									<h3 class="mb-0 number-font"><?php echo e(count($utilisateurs)); ?></h3>
 								</div>
 								<div class="col-auto mb-0">
 									<div class="dash-icon text-orange">
@@ -20,7 +18,7 @@
 									</div>
 								</div>
 							</div>
-							{{-- <span class="fs-12 text-muted"> <strong>2.6%</strong><i class="mdi mdi-arrow-up"></i> <span class="text-muted fs-12 ml-0 mt-1">than last week</span></span> --}}
+							
 						</div>
 					</div>
 				</div>
@@ -38,7 +36,7 @@
 									</div>
 								</div>
 							</div>
-							{{-- <span class="fs-12 text-muted"> <strong>23</strong><i class="mdi mdi-arrow-down"></i> <span class="text-muted fs-12 ml-0 mt-1">Ajoutés ce mois</span></span> --}}
+							
 						</div>
 					</div>
 				</div>
@@ -56,7 +54,7 @@
 									</div>
 								</div>
 							</div>
-							{{-- <span class="fs-12 text-muted"> <strong>0.15%</strong><i class="mdi mdi-arrow-down"></i> <span class="text-muted fs-12 ml-0 mt-1">Signalés ce mois</span></span> --}}
+							
 						</div>
 					</div>
 				</div>
@@ -74,7 +72,7 @@
 									</div>
 								</div>
 							</div>
-							{{-- <span class="fs-12 text-muted"> <strong>1.05%</strong><i class="mdi mdi-arrow-up"></i> <span class="text-muted fs-12 ml-0 mt-1">than last week</span></span> --}}
+							
 						</div>
 					</div>
 				</div>
@@ -86,16 +84,16 @@
                             <div class="wideget-user text-center">
                                 <div class="wideget-user-desc">
                                     <div class="wideget-user-img">
-                                    <img class="" src="{{asset('storage/'. Auth::user()->profile_photo_path )}}" alt="img">
+                                    <img class="" src="<?php echo e(asset('storage/'. Auth::user()->profile_photo_path )); ?>" alt="img">
                                     </div>
                                     <div class="user-wrap">
-                                    <h4 class="mb-1">{{Auth::user()->nom. ' '. Auth::user()->prenom}}</h4>
-                                    <h6 class=" mb-4"> <i class="fa fa-envelope"> </i> {{Auth::user()->email}} </h6>
+                                    <h4 class="mb-1"><?php echo e(Auth::user()->nom. ' '. Auth::user()->prenom); ?></h4>
+                                    <h6 class=" mb-4"> <i class="fa fa-envelope"> </i> <?php echo e(Auth::user()->email); ?> </h6>
                                     <h6 class="text-muted mb-4"> Adminsitrateur Général de la plateforme</h6>
-                                    <a href="{{route('profil')}}" class="btn btn-primary mt-1 mb-1 btn-sm" data-toggle="tooltip" data-placement="top" title=" Voir mon profil " > <i class="zmdi zmdi-eye text-white"></i> Voir le profil</a>
+                                    <a href="<?php echo e(route('profil')); ?>" class="btn btn-primary mt-1 mb-1 btn-sm" data-toggle="tooltip" data-placement="top" title=" Voir mon profil " > <i class="zmdi zmdi-eye text-white"></i> Voir le profil</a>
 
 
-                                    {{-- <a href="http://localhost:5000/utilisateurs/9fb2ae90-f991-46c2-a03e-037039442b45/edit" class="btn btn-primary mt-1 mb-1 btn-sm"> <i class="zmdi zmdi-edit text-white"></i>  Editer le profile </a> --}}
+                                    
                                     </div>
                                 </div>
                             </div>
@@ -121,27 +119,28 @@
 										</tr>
 									</thead>
 									<tbody>
-                                       @forelse ($coordonateurs as $coordonateur)
+                                       <?php $__empty_1 = true; $__currentLoopData = $coordonateurs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $coordonateur): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
 										<tr>
 											<td>
-                                            <img src="{{asset('assets/images/users/3.jpg')}}" alt="profile-user" class="brround  avatar-sm w-32 mr-2">
-												{{$coordonateur->pays->nom}}
-											</td>
-                                        <td>{{$coordonateur->nom}}</td>
-                                        <td>{{$coordonateur->prenom}}</td>
-                                        <td>{{$coordonateur->tel}}</td>
-											<td>
-                                                {{-- <button type="button" class="badge {{$coordonateur->actif ? 'badge-success':'badge-danger'}}" style="border:none">{{$coordonateur->actif ? 'Ativé':'Désactivé'}}</button> --}}
-                                            <button type="button" class="badge handleAcount {{$coordonateur->actif ?  'badge-success':'badge-danger'}}" data-toggle="tooltip" data-placement="top" title="{{$coordonateur->actif ? 'Cliquer pour désactiver':'Cliquer pour activer'}}" data-status="{{$coordonateur->actif ? 'Désactiver':'Activer'}}"   data-url="{{route('gerer-utilisateur', $coordonateur)}}" data-toggle="modal" data-clocation="{{url()->current()}}"
-                                                    data-target="#exampleModalDelete{{$coordonateur->id}}" style="border:none">  {{$coordonateur->actif ? 'Ativé':'Désactivé'}}</button>
+                                            <img src="<?php echo e(asset('assets/images/users/3.jpg')); ?>" alt="profile-user" class="brround  avatar-sm w-32 mr-2">
+												<?php echo e($coordonateur->pays->nom); ?>
 
-                                                {{-- <a href="{{route('gerer-utilisateur', $coordonateur)}}" class="badge {{$coordonateur->actif ? 'badge-success':'badge-danger'}}" data-toggle="tooltip" data-placement="top" title="{{$coordonateur->actif ? 'Cliquer pour désactiver':'Cliquer pour activer'}}">{{$coordonateur->actif ? 'Ativé':'Désactivé'}}  </a> --}}
+											</td>
+                                        <td><?php echo e($coordonateur->nom); ?></td>
+                                        <td><?php echo e($coordonateur->prenom); ?></td>
+                                        <td><?php echo e($coordonateur->tel); ?></td>
+											<td>
+                                                
+                                            <button type="button" class="badge handleAcount <?php echo e($coordonateur->actif ?  'badge-success':'badge-danger'); ?>" data-toggle="tooltip" data-placement="top" title="<?php echo e($coordonateur->actif ? 'Cliquer pour désactiver':'Cliquer pour activer'); ?>" data-status="<?php echo e($coordonateur->actif ? 'Désactiver':'Activer'); ?>"   data-url="<?php echo e(route('gerer-utilisateur', $coordonateur)); ?>" data-toggle="modal" data-clocation="<?php echo e(url()->current()); ?>"
+                                                    data-target="#exampleModalDelete<?php echo e($coordonateur->id); ?>" style="border:none">  <?php echo e($coordonateur->actif ? 'Ativé':'Désactivé'); ?></button>
+
+                                                
                                             </td>
 
 										</tr>
-                                        @empty
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                                         aucune donné
-                                       @endforelse
+                                       <?php endif; ?>
 									</tbody>
 								</table>
 							</div>
@@ -150,25 +149,25 @@
 				</div>
 
 			</div>
-@endsection
-@section('js')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('js'); ?>
 		<!-- INTERNAL CHARTJS CHART JS -->
-		<script src="{{URL::asset('assets/plugins/chart/Chart.bundle.js')}}"></script>
-		<script src="{{URL::asset('assets/plugins/chart/utils.js')}}"></script>
+		<script src="<?php echo e(URL::asset('assets/plugins/chart/Chart.bundle.js')); ?>"></script>
+		<script src="<?php echo e(URL::asset('assets/plugins/chart/utils.js')); ?>"></script>
 
 		<!-- INTERNAL PIETY CHART JS -->
-		<script src="{{URL::asset('assets/plugins/peitychart/jquery.peity.min.js')}}"></script>
-		<script src="{{URL::asset('assets/plugins/peitychart/peitychart.init.js')}}"></script>
+		<script src="<?php echo e(URL::asset('assets/plugins/peitychart/jquery.peity.min.js')); ?>"></script>
+		<script src="<?php echo e(URL::asset('assets/plugins/peitychart/peitychart.init.js')); ?>"></script>
 		<!-- INTERNAL APEXCHART JS -->
-		{{-- <script src="{{URL::asset('assets/js/apexcharts.js')}}"></script> --}}
+		
 
 		<!--INTERNAL  INDEX JS -->
-		{{-- <script src="{{URL::asset('assets/js/index1.js')}}"></script> --}}
-@endsection
-@push('ajax_crud')
-<script src="{{asset('js/sweetalert.js')}}"></script>
+		
+<?php $__env->stopSection(); ?>
+<?php $__env->startPush('ajax_crud'); ?>
+<script src="<?php echo e(asset('js/sweetalert.js')); ?>"></script>
 
-{{-- <script src="{{asset('js/ajax.js')}}"></script> --}}
+
 <script>
     $('.handleAcount').click( function () {
         var item = $(this);
@@ -203,7 +202,7 @@
         $('#loader').show();
       $.ajax({
           url: item.attr('data-url'),
-           data: { "_token": "{{ csrf_token() }}" },
+           data: { "_token": "<?php echo e(csrf_token()); ?>" },
           success: function (response) {
             // item.parent().parent().hide();
            location.href = clocation;
@@ -249,4 +248,6 @@
   });
     })
 </script>
-@endpush
+<?php $__env->stopPush(); ?>
+
+<?php echo $__env->make('layouts.master4', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /home/louisbertson/Desktop/criminalite/resources/views/pages/backoffice/administrateur/dasboard-admin.blade.php ENDPATH**/ ?>
