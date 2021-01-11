@@ -60,4 +60,12 @@ class RegneEspece extends Component
         session()->flash('status', 'Espèce ajoutée avec succès');
 
     }
+
+    public function delete($id) {
+       $crimeEspece = CrimeEspece::where('id', $id)->first();
+       $crimeEspece->delete();
+       session()->flash('status', 'Règlement ejouté avec succès');
+       session()->flash('section', 'espece');
+        return redirect()->route('crimes.show', $crimeEspece->crime->uuid);
+    }
 }

@@ -47,7 +47,7 @@ class CrimeConfiscationController extends Controller
     {
         $data=request()->validate([
             'designation'                    => ['required','string','max:255','min:3'],
-            'description'                    => ['required','string','min:3'],
+            'description'                    => ['nullable','string','min:3'],
             'crime'                          => ['required'],
             'nombre'                         => ['nullable','integer'],
             'poids'                          => ['nullable','integer'],

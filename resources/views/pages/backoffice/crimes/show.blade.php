@@ -25,10 +25,10 @@
                     </ol>
                 </div>
                 <div class="ml-auto pageheader-btn">
-                <a class="btn btn-primary" href="{{route('especes.create')}}">  <span>
-                        <i class="fe fe-plus"></i>
+                <a class="btn btn-primary" href="{{route('crimes.index')}}">  <span>
+                        <i class="fe fe-list"></i>
                     </span>
-                   Enregistrer un crime</a>
+                   Liste des crimes</a>
                 </button>
 
                 </div>
@@ -45,12 +45,12 @@
             </div>
             <div class="card-body">
                 <dl class="dl-crime">
-                    <strong class="text-center">{{$crime->type->nom}}</strong> <br>
+                    <strong class="text-center">{{ $crime->type ? $crime->type->nom: '' }}</strong> <br>
                     <dt>Date d'appréhension :</dt>
                     <dd> {{formatDate($crime->date_apprehension)}}
                     </dd>
                     <dt>Localité d'appréhension :</dt>
-                    <dd> {{ucFirst($crime->service_investigateur->designation)}}</dd>
+                    <dd> {{ucFirst($crime->service_investigateur ? $crime->service_investigateur->designation: ' ')}}</dd>
                     <dt>Service investigateur :</dt>
                     <dd>
                         {{ucFirst($crime->localite_aprrehension)}}
@@ -150,6 +150,10 @@
             </div>
         </div>
     </div>
+    @php
+             $crimeEspeces =  \App\Models\CrimeEspece::latest()->where('crime_id', $crime->id)->get()
+    @endphp
+
     <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8">
         <div class="card">
             <div class="card-header">
@@ -159,10 +163,13 @@
                 <div class="row">
                     <div class="col-lg-12">
                             <div class="card-body">
-                                <ul class="demo-accordion accordionjs m-0">
-                                    <li>
+                                <ul class="demo-accordion accordionjs m-0" data-active-index="false">
+                                    <li class="@if(Session::has('section')  &&  (session('section') == "espece")) acc_active @endif">
+                                    @include('partials._notification')
+
                                         <div>
-                                            <h3>Especes</h3>
+                                            <h3>Especes </h3>
+                                            <span class="nom_item_par_collapse badge badge-danger"> {{count($crimeEspeces)}} </span>
                                         </div>
                                         <div>
                                             @livewire('regne-espece', ['crime'  => $crime])
@@ -172,6 +179,8 @@
                                     <li>
                                         <div>
                                             <h3>Auteurs du crimes</h3>
+                                            <span class="nom_item_par_collapse badge badge-danger"> {{count($crime->auteurs)}} </span>
+
                                         </div>
 
                                         <div>
@@ -179,18 +188,28 @@
                                                 <a href="{{route('crime_auteurs.create', ['crime' => $crime->uuid])}}" class="btn btn-primary"> <i class="fa fa-plus" aria-hidden="true"></i> Ajouter</a>
                                             </div>
                                             <br>
+                                            @if (count($crime->auteurs) > 0)
                                             @include('pages.backoffice.auteurs.crimeAuteu', ['crime'  => $crime])
+                                            @else
+                                            <small class="text-danger">Aucun auteur Ajouter</small>
+                                            @endif
                                         </div>
                                     </li>
                                     <li>
                                         <div>
                                             <h3>Specimens confisqués</h3>
+                                            <span class="nom_item_par_collapse badge badge-danger"> {{count($crime->confiscations)}} </span>
+
                                         </div>
                                         <div>
                                             <div class="text-right">
                                                 <a href="{{route('confiscations.create', ['crime' => $crime->uuid])}}" class="btn btn-primary"> <i class="fa fa-plus" aria-hidden="true"></i> Ajouter</a>
                                             </div>
-                                          @include('pages.backoffice.confiscations.crimeConfiscation',['crime' => $crime])
+                                            @if (count($crime->confiscations) > 0)
+                                            @include('pages.backoffice.confiscations.crimeConfiscation')
+                                            @else
+                                            <small class="text-danger"> Aucun speciemen confisqué</small>
+                                            @endif
                                         </div>
                                     </li>
                                     <li>
@@ -210,12 +229,27 @@
                                             </div>
                                         </div>
                                     </li>
-                                    <li>
+                                    <li class="@if(Session::has('section')  &&  (session('section') == "reglement")) acc_active @endif">
                                         <div>
+                                            {{-- &&  (session('section') == "reglement") --}}
                                             <h3>Réglements</h3>
+                                            <span class="nom_item_par_collapse badge badge-danger"> {{ count($crime->reglement)}} </span>
+
                                         </div>
                                         <div>
-                                            <!-- Your text here. For this demo, the content is generated automatically. -->
+                                            {{-- @livewire('reglement', ['crime'  => $crime, 'modeReglements'  => $modeReglements, 'suites'  => $suites]) --}}
+                                            <div class="text-right">
+                                                @if (count($crime->auteurs) > 0)
+                                                <a href="{{route('crime_reglements.create', ['crime'   => $crime->uuid])}}" class="btn btn-primary"> <i class="fa fa-plus" aria-hidden="true"></i> Ajouter</a>
+                                               @else
+                                               <small class="text-danger">
+                                                   Veuillez d'abord ajouter les auteurs du crimes
+                                               </small>
+                                                @endif
+                                            </div>
+                                            @if (count($crime->reglement) > 0)
+                                            @include('pages.backoffice.regelements.list')
+                                            @endif
                                         </div>
                                     </li>
                                 </ul>

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Livewire\Crime;
+use App\Http\Livewire\Reglement;
 use Illuminate\Support\Facades\Route;
 // Route::get('/',function(){
 //   return "Le papa noel";
@@ -47,5 +49,8 @@ Auth::routes();
     Route::get('/user/password/edit', 'UtilisateursController@edit_password')->name('edit_password');
     Route::patch('/user/password/edit', 'UtilisateursController@change_password')->name('change_password');
     Route::get('/pays/ville/{pay_id}', 'LocaliteController@ville_by_country')->name('ville_by_country');
+    Route::resource('crime_reglements', 'CrimeTypeReglementController')->except('create');
+    Route::get('crime_reglements/create/{crime?}', 'CrimeTypeRegl   ementController@create')->name('crime_reglements.create');
     Route::view('/{patch?}', 'layouts.masterreact');
+
     // });

@@ -39,21 +39,32 @@
             <div class="card-header">
                 <h3 class="card-title">Liste des Localités</h3>
             </div>
+            @php
+                $i = 1;
+            @endphp
             <div class="card-body">
                 <div class="table-responsive">
                     <table id="data-table1" class="table table-striped table-bordered text-nowrap w-100 table-sm">
                         <thead>
                             <tr>
-                                <th class="wd-15p">UUID</th>
-                                {{-- <th class="wd-30p">Pays</th> --}}
+                                <th class="wd-15p">Ordre</th>
+                                <th class="wd-15p">Pays d'appréhension</th>
+                                <th class="wd-30p">Nombre d'espèces impliquées</th>
+                                <th class="wd-30p">Règlement</th>
                                 {{-- <th>Actions</th> --}}
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($crimes as $crime)
+                            @php
+                        $crimeEspeces =  \App\Models\CrimeEspece::latest()->where('crime_id', $crime->id)->get()
+
+                            @endphp
                             <tr>
-                                <td> <a class="text-dark" href="{{route('crimes.show', $crime->uuid)}}"> {{ucfirst($crime->uuid)}} </a></td>
-                                {{-- <td> <a class="text-dark" href="{{route('crimes.show', $crime->uuid)}}"> {{ $crime}}</a></td> --}}
+                                <td>{{$i++}}</td>
+                                <td> <a class="text-dark" href="{{route('crimes.show', $crime->uuid)}}"> {{$crime->paysApprehension ? $crime->paysApprehension->nom: ''}} </a></td>
+                                <td> <a class="text-dark" href="{{route('crimes.show', $crime->uuid)}}"> {{count($crimeEspeces)}} </a></td>
+                                <td> <a class="text-dark" href="{{route('crimes.show', $crime->uuid)}}"> {{ $crime->reglement  ? $crime->reglement :''}}</a></td>
                             </tr>
                             @endforeach
 

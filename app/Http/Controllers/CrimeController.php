@@ -9,11 +9,13 @@ use App\Models\Unite;
 use App\Models\User as U;
 
 use App\Models\Espece;
+use App\Models\AireProtegee;
+use App\Models\DecisionJustice;
+use App\Models\ModeReglement;
 use App\Models\TypeCrime;
 use App\Models\Commentaire;
 
 use Illuminate\Support\Str;
-use App\Models\AireProtegee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -186,8 +188,10 @@ class CrimeController extends Controller
         'destinataires' =>U::with('role')->get(),
         'armes'  => Arme::where('crime_id',$crime->id)->orderBy('created_at','desc')->get(),
         'commentaires'  => Commentaire::where('crime_id',$crime->id)->orderBy('created_at','desc')->get(),
+        'modeReglements'        => ModeReglement::all(),
+        'suites'                => DecisionJustice::all(),
 
-        ]);
+        
     }
 
     /**
