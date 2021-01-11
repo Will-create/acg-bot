@@ -44,8 +44,9 @@ class CommentaireController extends Controller
           $commentaire->crime_id =$data['crime_id'];
           $commentaire->uuid=Str::uuid();
           $commentaire->save();
+          $crime = Crime::where('id',$commentaire->crime_id)->first();
           $request->session()->flash('status', 'Commentaire ajouté avec succès !');
-          return redirect()->route('commentaires.show',$commentaire->uuid);
+          return redirect()->route('crimes.show',$crime->uuid);
     }
     
     public function show(Commentaire $commentaire)
