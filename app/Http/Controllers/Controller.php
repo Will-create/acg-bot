@@ -14,6 +14,5 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
     public function cibleur(Request $request, $cible ){
         $request->session()->flash('section', $cible);
-        return response()->json(['status' => 'success']);
     }
 }

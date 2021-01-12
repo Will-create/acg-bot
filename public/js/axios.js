@@ -727,9 +727,3 @@
     ])
 });
 //# sourceMappingURL=axios.min.map
-
-function cibleur(nom){
-    axios.get('crimes/show/cibler/'+nom).then(function (res){
-        console.log(res);
-    })
-}

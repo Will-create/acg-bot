@@ -60,11 +60,11 @@
                             ?>
                             <tr>
                                 <td><?php echo e($i++); ?></td>
-                                <td> <a class="text-dark" href="<?php echo e(route('crimes.show', $crime->uuid)); ?>"> <?php echo e($crime->paysApprehension ? ucfirst($crime->paysApprehension->nom) : ''); ?> </a></td>
-                                <td> <a class="text-dark" href="<?php echo e(route('crimes.show', $crime->uuid)); ?>"> <?php echo e(count($crimeEspeces)); ?> </a></td>
-                                <td> <a class="text-dark" href="<?php echo e(route('crimes.show', $crime->uuid)); ?>"> <?php echo e($crime->reglement  ? count($crime->reglement)  :''); ?></a></td>
-                                <td> <a class="text-dark" href="<?php echo e(route('crimes.show', $crime->uuid)); ?>"> <?php echo e($crime->confiscations  ? count($crime->confiscations)  :''); ?></a></td>
-                                <td> <a class="text-dark" href="<?php echo e(route('crimes.show', $crime->uuid)); ?>"> <?php echo e($crime->service_investigateur->designation  ? $crime->service_investigateur->designation  :''); ?></a></td>
+                                <td> <a class="text-dark" data-toggle="tooltip" data-placement="top" title="Cliquer pour voir les détails" href="<?php echo e(route('crimes.show', $crime->uuid)); ?>"> <?php echo e($crime->paysApprehension ? ucfirst($crime->paysApprehension->nom) : ''); ?> </a></td>
+                                <td> <a class="text-dark" data-toggle="tooltip" data-placement="top" title="Cliquer pour voir les détails" href="<?php echo e(route('crimes.show', $crime->uuid)); ?>"> <?php echo e(count($crimeEspeces)); ?> </a></td>
+                                <td> <a class="text-dark" data-toggle="tooltip" data-placement="top" title="Cliquer pour voir les détails" href="<?php echo e(route('crimes.show', $crime->uuid)); ?>"> <?php echo e($crime->reglement  ? count($crime->reglement)  :''); ?></a></td>
+                                <td> <a class="text-dark" data-toggle="tooltip" data-placement="top" title="Cliquer pour voir les détails" href="<?php echo e(route('crimes.show', $crime->uuid)); ?>"> <?php echo e($crime->confiscations  ? count($crime->confiscations)  :''); ?></a></td>
+                                <td> <a class="text-dark" data-toggle="tooltip" data-placement="top" title="Cliquer pour voir les détails" href="<?php echo e(route('crimes.show', $crime->uuid)); ?>"> <?php echo e($crime->service_investigateur->designation  ? $crime->service_investigateur->designation  :''); ?></a></td>
                             </tr>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </tbody>

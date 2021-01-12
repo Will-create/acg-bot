@@ -35,9 +35,7 @@
             </div>
 @endsection
 @section('content')
-
 <div class="row">
-
     <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">
         <div class="card">
             <div class="card-header">
@@ -66,97 +64,107 @@
             <div class="tab-pane" id="tab-51">
                 <div class="card">
                     <div class="card-body">
-                        <form action="{{ route('commentaires.store')}}" method="post">
-                            @csrf
-                        
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label class="form-label" for="pour">Destinataire <strong class="text-danger">*</strong></label>
-                                        <select name="pour" id="pour" class="form-control custom-select select2">
-                                            <option  value="{{Route::currentRouteName() == 'commentaires.edit' ? $commentaire->pour : '' }}" {{Route::currentRouteName() == 'commentaires.edit' ? '' : 'disabled' }} selected >{{Route::currentRouteName() == 'commentaires.edit' ? $commentaire->destinataire->nom.'  '.$commentaire->destinataire->prenom.' ('.$commentaire->destinataire->role->designation.') ' : 'Sélectionner' }}</option>
-                                            @foreach ($destinataires as $destinataire) 
-                                            <option  value="{{$destinataire->id}}"> <span class="red-text">{{$destinataire->nom}} {{$destinataire->prenom}} ({{$destinataire->role->designation}})
-                                                @endforeach
-                                            </select>
-                                            @error('pour')
-                                            <span class="helper-text red-text">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                            @enderror
-                                        </div>
+                        <ul class="demo-accordion accordionjs m-0" data-active-index="false">
+                            <li class="">
+                                <div>
+                                    <h3>Commentaires</h3>
+                                    <span class="nom_item_par_collapse badge badge-danger"> {{count($commentaires)}} </span>
                                 </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        
-                                        <textarea rows="2" type="text" class="form-control" name="commentaire"
-                                            placeholder="Commentaire" id="commentaire"
-                                            required></textarea>
-                                                @error('commentaire')
-                                            <span class="helper-text red-text">
-                                                <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
+                                <div>
+                                    <br>
+                                                        @if ($commentaires->count() < 1)
+                                                        
+                                                        <span class="">Aucun commentaire n'est disponible pour le moment</span>
+                                                        @else
+                                                              
+                                                       
+                                                              <div id="accordion">
+                                                               @foreach($commentaires as $commentaire)
+                                                               <div class="card">
+                                                                        <div style="background: none;
+                                                                        padding: 0rem 0.5rem;" class="card-header" id="heading{{$commentaire->id}}">
+                                                                        <h5 class="mb-0">
+                                                                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapse{{$commentaire->id}}" aria-expanded="true" aria-controls="collapse{{$commentaire->id}}">
+                                                                            <span class="m-b-15 d-block text-dark">{{ ucfirst(substr($commentaire->commentaire, 0,28)) }}... </span>
+                                                                            </button>
+                                                                        </h5>
+                                                                        </div>
+                                                                <div id="collapse{{$commentaire->id}}" class="collapse" aria-labelledby="heading{{$commentaire->id}}" data-parent="#accordion">
+                                                                  <div class="card-body">
+                                                                      <div class="d-flex flex-row comment-row m-t-0">
+                                                                          <a class="text-dark" href="{{ route('utilisateurs.show', $commentaire->auteur->uuid) }}" data-toggle="tooltip" data-placement="top" title="{{$commentaire->auteur->nom}} {{$commentaire->auteur->prenom}}({{$commentaire->auteur->role->designation}})">
+                                                                              <div class="p-2"><img   src="{{asset( $commentaire->auteur->profile_photo_path)}}" alt="user" height="40" width="50" class="rounded-circle"></div>
+                                                                          </a> <br>
+                                                                          <div class="comment-text w-100">
+                                                                              <div class="comment-footer">
+                                                                                    <span class="m-b-15 d-block" style="background-color: rgb(241, 255, 251); border-radius:.5em; padding:1.5em; text-align:center;"><a class="text-dark" href="{{route('commentaires.show',  $commentaire->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" >{{ ucfirst($commentaire->commentaire)  }}</a> 
+                                                                                    </span> 
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        
+                                                                        <br><br> <span class="text-muted float-right">{{$commentaire->created_at->format(' d M Y h:i:s')}}</span> 
+                                                                    <a class="text-dark" href="{{route('utilisateurs.show', $commentaire->destinataire->uuid)}}">Pour: {{$commentaire->destinataire->nom}} {{$commentaire->destinataire->prenom}}({{$commentaire->destinataire->role->designation}})
+                                                                    </a> 
+                                                                  </div>
+                                                                </div>
+                                                              </div>
+                                                                @endforeach
+                                                            </div>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            
+                                        </ul>
+                                        <div class="row m-5">
+                                            <form action="{{ route('commentaires.store')}}" method="post">
+                                                @csrf
+                                            
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label class="form-label" for="pour">Destinataire <strong class="text-danger">*</strong></label>
+                                                            <select name="pour" id="pour" class="form-control custom-select select2">
+                                                                <option  value="{{Route::currentRouteName() == 'commentaires.edit' ? $commentaire->pour : '' }}" {{Route::currentRouteName() == 'commentaires.edit' ? '' : 'disabled' }} selected >{{Route::currentRouteName() == 'commentaires.edit' ? $commentaire->destinataire->nom.'  '.$commentaire->destinataire->prenom.' ('.$commentaire->destinataire->role->designation.') ' : 'Sélectionner' }}</option>
+                                                                @foreach ($destinataires as $destinataire) 
+                                                                <option  value="{{$destinataire->id}}"> <span class="red-text">{{$destinataire->nom}} {{$destinataire->prenom}} ({{$destinataire->role->designation}})
+                                                                    @endforeach
+                                                                </select>
+                                                                @error('pour')
+                                                                <span class="helper-text red-text">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                                @enderror
+                                                            </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            
+                                                            <textarea rows="2" type="text" class="form-control" name="commentaire"
+                                                                placeholder="Commentaire" id="commentaire"
+                                                                required></textarea>
+                                                                    @error('commentaire')
+                                                                <span class="helper-text red-text">
+                                                                    <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                        </div>
+                                                    </div>
+                                                
+                                                </div>
+                                                <input type="hidden" name="crime_id" value="{{$crime->id}}">
+                                                <div class="text-right">
+                                                    <button class="btn btn-primary" type="submit"> <i class="fa fa-plus" aria-hidden="true"></i> Ajouter</button> 
+                                                </div>
+                                                <br>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
-    
-                            </div>
-                            <input type="hidden" name="crime_id" value="{{$crime->id}}">
-                            <div class="text-right">
-                                <button class="btn btn-primary" type="submit"> <i class="fa fa-plus" aria-hidden="true"></i> Ajouter</button> 
-                            </div>
-                            <br>
-                        </form>
-                        <br>
-                        @if ($commentaires->count() < 1)
-                        <h3 class="page-title">Commentaires 
-                            <span class="nom_item_par_collapse badge badge-danger"> {{ count($commentaires)}} </span>
-                             </h3>
-                        <span class="">Aucun commentaire n'est disponible pour le moment</span>
-                        @else
-                              
-                        <h3 class="page-title">Commentaires 
-                            <span class="nom_item_par_collapse badge badge-danger"> {{ count($commentaires)}} </span>
-                             </h3>
-                              <div id="accordion">
-                               @foreach($commentaires as $commentaire)
-                               <div class="card">
-                                        <div style="background: none;
-                                        padding: 0rem 0.5rem;" class="card-header" id="heading{{$commentaire->id}}">
-                                        <h5 class="mb-0">
-                                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapse{{$commentaire->id}}" aria-expanded="true" aria-controls="collapse{{$commentaire->id}}">
-                                            <span class="m-b-15 d-block text-dark">{{ ucfirst(substr($commentaire->commentaire, 0,28)) }}... </span>
-                                            </button>
-                                        </h5>
-                                        </div>
-                                <div id="collapse{{$commentaire->id}}" class="collapse" aria-labelledby="heading{{$commentaire->id}}" data-parent="#accordion">
-                                  <div class="card-body">
-                                      <div class="d-flex flex-row comment-row m-t-0">
-                                          <a class="text-dark" href="{{ route('utilisateurs.show', $commentaire->auteur->uuid) }}" data-toggle="tooltip" data-placement="top" title="{{$commentaire->auteur->nom}} {{$commentaire->auteur->prenom}}({{$commentaire->auteur->role->designation}})">
-                                              <div class="p-2"><img   src="{{asset( $commentaire->auteur->profile_photo_path)}}" alt="user" height="40" width="50" class="rounded-circle"></div>
-                                          </a> <br>
-                                          <div class="comment-text w-100">
-                                              <div class="comment-footer">
-                                                    <span class="m-b-15 d-block" style="background-color: rgb(241, 255, 251); border-radius:.5em; padding:1.5em; text-align:center;"><a class="text-dark" href="{{route('commentaires.show',  $commentaire->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" >{{ ucfirst($commentaire->commentaire)  }}</a> 
-                                                    </span> 
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                        <br><br> <span class="text-muted float-right">{{$commentaire->created_at->format(' d M Y h:i:s')}}</span> 
-                                    <a class="text-dark" href="{{route('utilisateurs.show', $commentaire->destinataire->uuid)}}">Pour: {{$commentaire->destinataire->nom}} {{$commentaire->destinataire->prenom}}({{$commentaire->destinataire->role->designation}})
-                                    </a> 
-                                  </div>
-                                </div>
-                              </div>
-                                @endforeach
-                            </div>
-                        @endif
-                    </div>
-                </div>
             </div>
         </div>
-    </div>
+    
     @php
              $crimeEspeces =  \App\Models\CrimeEspece::latest()->where('crime_id', $crime->id)->get()
     @endphp

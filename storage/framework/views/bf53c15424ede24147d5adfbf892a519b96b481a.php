@@ -336,7 +336,7 @@ unset($__errorArgs, $__bag); ?>
                     </div>
                     <?php endif; ?>
 
-                    <a href="<?php echo e(route('crimes.show', $auteur->crime ? $auteur->crime->uuid : $crimeUuid)); ?>" class="btn btn-dark"> <i class="fa fa-times"
+                    <a href="<?php echo e(route('crimes.show', $auteur->crime ? $auteur->crime->uuid : $crimeUuid)); ?>" onclick="cibleur('auteur')" class="btn btn-dark"> <i class="fa fa-times"
                             aria-hidden="true"></i>
                         Annuler </a>
                     <button type="submit" class="btn btn-primary"><span>

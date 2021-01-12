@@ -283,7 +283,6 @@
                 </div>
                 </div> --}}
 
-
                 <div class="col-md-12">
                     <div class="form-group">
                         <label class="form-label" for="affaire_judiciaire">Précédents judiciaires<strong
@@ -335,7 +334,7 @@
                     </div>
                     @endif
 
-                    <a href="{{ route('crimes.show', $auteur->crime ? $auteur->crime->uuid : $crimeUuid) }}" class="btn btn-dark"> <i class="fa fa-times"
+                    <a href="{{ route('crimes.show', $auteur->crime ? $auteur->crime->uuid : $crimeUuid) }}" onclick="cibleur('auteur')" class="btn btn-dark"> <i class="fa fa-times"
                             aria-hidden="true"></i>
                         Annuler </a>
                     <button type="submit" class="btn btn-primary"><span>

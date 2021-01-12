@@ -52,6 +52,6 @@ Auth::routes();
     Route::resource('crime_reglements', 'CrimeTypeReglementController')->except('create');
     Route::get('crime_reglements/create/{crime?}', 'CrimeTypeReglementController@create')->name('crime_reglements.create');
     Route::view('/{patch?}', 'layouts.masterreact');
-    Route::get('crimes/show/cibler/{auteur}','Controller@cibleur');
+    Route::post('crimes/show/cibler/{nom}','Controller@cibleur');
 
     // });
