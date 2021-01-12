@@ -22,18 +22,19 @@
             <h1 class="page-title"> <?php echo $titrePage; ?> </h1>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="<?php echo e(route('accueil')); ?>">Accueil</a></li>
-                <?php if(Route::currentRouteName() == 'armes.create'): ?>
-                <li class="breadcrumb-item active" aria-current="page"> Nouvelle arme </li>
+                <li class="breadcrumb-item"><a href="<?php echo e(route('crime_auteurs.index')); ?>">Auteurs de crime</a></li>
+                <?php if(Route::currentRouteName() == 'crime_auteurs.create'): ?>
+                <li class="breadcrumb-item active" aria-current="page"> Nouvel auteur de crime </li>
                 <?php else: ?>
-                <li class="breadcrumb-item active" aria-current="page"> Mise à jour </li>
+                <li class="breadcrumb-item active" aria-current="page"> Mise à jour</li>
 
                 <?php endif; ?>
             </ol>
         </div>
         <div class="ml-auto pageheader-btn">
-            <a class="btn btn-primary" href="<?php echo e(route('armes.index')); ?>"> <span>
+            <a class="btn btn-primary" href="<?php echo e(route('crimes.show', $auteur->crime ? $auteur->crime->uuid : $crimeUuid)); ?>"> <span>
                     <i class="fe fe-list"></i>
-                </span> Toutes les armes</a>
+                </span> Revenir au crime</a>
             </button>
 
         </div>
@@ -41,15 +42,15 @@
     <!-- PAGE-HEADER END -->
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
-    
-<?php if(Route::currentRouteName() == 'armes.create'): ?>
-        <form action="<?php echo e(route('armes.store')); ?>" method="post" enctype="multipart/form-data">
+
+    <?php if(Route::currentRouteName() == 'crime_auteurs.create'): ?>
+        <form action="<?php echo e(route('crime_auteurs.store')); ?>" method="post" enctype="multipart/form-data">
         <?php else: ?>
-            <form action="<?php echo e(route('armes.update', $arme->uuid)); ?>" method="post" enctype="multipart/form-data">
+            <form action="<?php echo e(route('crime_auteurs.update', $auteur->uuid)); ?>" method="post" enctype="multipart/form-data">
                 <?php echo method_field('PUT'); ?>
     <?php endif; ?>
     <?php echo csrf_field(); ?>
-        <?php echo $__env->make('pages.backoffice.armes._form', ['btnAction' => $btnAction, 'arme' => $arme], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    <?php echo $__env->make('pages.backoffice.auteurs._form', ['btnAction' => $btnAction, 'auteur' => $auteur], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     </form>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('js'); ?>
@@ -63,4 +64,4 @@
     <script src="<?php echo e(URL::asset('assets/plugins/telephoneinput/inttelephoneinput.js')); ?>"></script>
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('layouts.master4', ['titrePage' => $titrePage], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /home/louisbertson/Desktop/criminalite/resources/views/pages/backoffice/armes/createdit.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.master4', ['titrePage' => $titrePage], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /home/louisbertson/Desktop/criminalite/resources/views/pages/backoffice/auteurs/createdit.blade.php ENDPATH**/ ?>

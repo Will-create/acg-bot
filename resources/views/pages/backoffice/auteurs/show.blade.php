@@ -111,7 +111,7 @@
             <div class="row">
                 <div class="col-md-6"></div>
                 <div class="col-md-6 mb-4">
-                    <a href="{{ route('crime_auteurs.index') }}" class="btn btn-dark"> <span>
+                    <a href="{{ route('crime_auteurs.index') }}" onclick="cibleur('auteur')" class="btn btn-dark"> <span>
                             <i class="fe fe-close"></i>
                         </span><i class="fa fa-times"></i> Retour</a>
                     <a href="{{ route('crime_auteurs.edit', $commentaire->uuid) }}" class="btn btn-primary">

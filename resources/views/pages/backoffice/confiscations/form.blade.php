@@ -125,7 +125,7 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         <label class="form-label" for="adresse">Description<strong class="text-danger"></strong></label>
-                        <textarea class="form-control" rows="4" name="description" id="description"  value="{{old('description')}}" required></textarea>
+                        <textarea class="form-control" rows="4" name="description" id="description"  value="{{old('description')}}"></textarea>
                         @error('description')
                         <span class="helper-text red-text">
                             <strong>{{ $message }}</strong>

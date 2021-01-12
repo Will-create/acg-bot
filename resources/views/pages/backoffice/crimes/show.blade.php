@@ -109,20 +109,26 @@
                         </form>
                         <br>
                         @if ($commentaires->count() < 1)
-                        <h3 class="page-title">Commentaires (0) </h3>
+                        <h3 class="page-title">Commentaires 
+                            <span class="nom_item_par_collapse badge badge-danger"> {{ count($commentaires)}} </span>
+                             </h3>
                         <span class="">Aucun commentaire n'est disponible pour le moment</span>
                         @else
-                              <h3 class="page-title">Commentaires ({{$commentaires->count()}}) </h3>
+                              
+                        <h3 class="page-title">Commentaires 
+                            <span class="nom_item_par_collapse badge badge-danger"> {{ count($commentaires)}} </span>
+                             </h3>
                               <div id="accordion">
                                @foreach($commentaires as $commentaire)
                                <div class="card">
-                                <div class="card-header" id="heading{{$commentaire->id}}">
-                                  <h5 class="mb-0">
-                                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapse{{$commentaire->id}}" aria-expanded="true" aria-controls="collapse{{$commentaire->id}}">
-                                      <span class="m-b-15 d-block text-dark">{{ ucfirst(substr($commentaire->commentaire, 0,28)) }}... </span>
-                                    </button>
-                                  </h5>
-                                </div>
+                                        <div style="background: none;
+                                        padding: 0rem 0.5rem;" class="card-header" id="heading{{$commentaire->id}}">
+                                        <h5 class="mb-0">
+                                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapse{{$commentaire->id}}" aria-expanded="true" aria-controls="collapse{{$commentaire->id}}">
+                                            <span class="m-b-15 d-block text-dark">{{ ucfirst(substr($commentaire->commentaire, 0,28)) }}... </span>
+                                            </button>
+                                        </h5>
+                                        </div>
                                 <div id="collapse{{$commentaire->id}}" class="collapse" aria-labelledby="heading{{$commentaire->id}}" data-parent="#accordion">
                                   <div class="card-body">
                                       <div class="d-flex flex-row comment-row m-t-0">
@@ -131,14 +137,15 @@
                                           </a> <br>
                                           <div class="comment-text w-100">
                                               <div class="comment-footer">
-                                                    <span class="m-b-15 d-block" style="background-color: rgb(241, 255, 251); border-radius:.5em; padding:1.5em; text-align:center;">{{ ucfirst($commentaire->commentaire)  }} 
+                                                    <span class="m-b-15 d-block" style="background-color: rgb(241, 255, 251); border-radius:.5em; padding:1.5em; text-align:center;"><a class="text-dark" href="{{route('commentaires.show',  $commentaire->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" >{{ ucfirst($commentaire->commentaire)  }}</a> 
                                                     </span> 
                                                 </div>
                                             </div>
                                         </div>
                                         
                                         <br><br> <span class="text-muted float-right">{{$commentaire->created_at->format(' d M Y h:i:s')}}</span> 
-                                    </a><a class="text-dark" href="{{route('utilisateurs.show', $commentaire->destinataire->uuid)}}">Pour: {{$commentaire->destinataire->nom}} {{$commentaire->destinataire->prenom}}({{$commentaire->destinataire->role->designation}})
+                                    <a class="text-dark" href="{{route('utilisateurs.show', $commentaire->destinataire->uuid)}}">Pour: {{$commentaire->destinataire->nom}} {{$commentaire->destinataire->prenom}}({{$commentaire->destinataire->role->designation}})
+                                    </a> 
                                   </div>
                                 </div>
                               </div>
@@ -165,18 +172,17 @@
                             <div class="card-body">
                                 <ul class="demo-accordion accordionjs m-0" data-active-index="false">
                                     <li class="@if(Session::has('section')  &&  (session('section') == "espece")) acc_active @endif">
-                                    @include('partials._notification')
-
                                         <div>
                                             <h3>Especes </h3>
                                             <span class="nom_item_par_collapse badge badge-danger"> {{count($crimeEspeces)}} </span>
                                         </div>
                                         <div>
+                                            @include('partials._notify',['nom'  => 'espece'])
                                             @livewire('regne-espece', ['crime'  => $crime])
                                              <br>
                                         </div>
                                     </li>
-                                    <li>
+                                    <li class="@if(Session::has('section')  &&  (session('section') == "auteur")) acc_active @endif">
                                         <div>
                                             <h3>Auteurs du crimes</h3>
                                             <span class="nom_item_par_collapse badge badge-danger"> {{count($crime->auteurs)}} </span>
@@ -184,6 +190,8 @@
                                         </div>
 
                                         <div>
+                                            @include('partials._notify',['nom'  => 'auteur'])
+
                                             <div class="text-right">
                                                 <a href="{{route('crime_auteurs.create', ['crime' => $crime->uuid])}}" class="btn btn-primary"> <i class="fa fa-plus" aria-hidden="true"></i> Ajouter</a>
                                             </div>
@@ -195,13 +203,15 @@
                                             @endif
                                         </div>
                                     </li>
-                                    <li>
+                                    <li class="@if(Session::has('section')  &&  (session('section') == "confiscation")) acc_active @endif">
                                         <div>
                                             <h3>Specimens confisqués</h3>
                                             <span class="nom_item_par_collapse badge badge-danger"> {{count($crime->confiscations)}} </span>
 
                                         </div>
                                         <div>
+                                            @include('partials._notify',['nom'  => 'confiscation'])
+
                                             <div class="text-right">
                                                 <a href="{{route('confiscations.create', ['crime' => $crime->uuid])}}" class="btn btn-primary"> <i class="fa fa-plus" aria-hidden="true"></i> Ajouter</a>
                                             </div>
@@ -212,14 +222,16 @@
                                             @endif
                                         </div>
                                     </li>
-                                    <li>
+                                    <li class="@if(Session::has('section')  &&  (session('section') == "arme")) acc_active @endif">
                                         <div>
                                             <h3>Armes matérielles</h3>
+                                            <span class="nom_item_par_collapse badge badge-danger"> {{ count($crime->armes)}} </span>
+
                                         </div>
                                         <div>
 
                                             <div>
-                                        {{-- @include('partials._notification') --}}
+                                        @include('partials._notify',['nom'  => 'arme'])
 
                                                 <div class="text-right">
                                                     <a href="{{route('crime.armes.create', ['crime' => $crime])}}" class="btn btn-primary"> <i class="fa fa-plus" aria-hidden="true"></i> Ajouter</a>
@@ -238,6 +250,8 @@
                                         </div>
                                         <div>
                                             {{-- @livewire('reglement', ['crime'  => $crime, 'modeReglements'  => $modeReglements, 'suites'  => $suites]) --}}
+                                            @include('partials._notify',['nom'  => 'reglement'])
+
                                             <div class="text-right">
                                                 @if (count($crime->auteurs) > 0)
                                                 <a href="{{route('crime_reglements.create', ['crime'   => $crime->uuid])}}" class="btn btn-primary"> <i class="fa fa-plus" aria-hidden="true"></i> Ajouter</a>

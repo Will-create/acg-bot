@@ -1,4 +1,3 @@
-
         @php
     @endphp
         <div class="table-responsive">
@@ -36,8 +35,6 @@
                         </td>
                     </tr>
                     @endforeach
-
-
                 </tbody>
             </table>
         </div>

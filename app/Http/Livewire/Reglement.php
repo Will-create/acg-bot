@@ -64,7 +64,8 @@ class Reglement extends Component
             'auteur_id' => $this->auteur,
             'amende' => $this->amende,
         ]);
-        session()->flash('status', 'Règlement ejouté avec succès');
+        session()->flash('reglement', 'Règlement ajouté avec succès');
+        session()->flash('section', 'reglement');
         return redirect()->route('crimes.show', $this->crime->uuid);
 
     }

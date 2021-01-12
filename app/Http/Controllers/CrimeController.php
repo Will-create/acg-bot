@@ -7,14 +7,12 @@ use App\Models\Arme;
 use App\Models\Crime;
 use App\Models\Unite;
 use App\Models\User as U;
-
 use App\Models\Espece;
 use App\Models\AireProtegee;
 use App\Models\DecisionJustice;
 use App\Models\ModeReglement;
 use App\Models\TypeCrime;
 use App\Models\Commentaire;
-
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;

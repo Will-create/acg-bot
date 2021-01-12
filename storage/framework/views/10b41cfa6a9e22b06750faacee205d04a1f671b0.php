@@ -29,7 +29,7 @@
                         </td>
                         <td>
                             <a class="text-dark" data-toggle="tooltip" data-placement="top" title="Cliquer pour voir les détails" href="<?php echo e(route('confiscations.show', $confiscation)); ?>">
-                                <?php echo e($confiscation->condition); ?>
+                                <?php echo e(($confiscation->condition)); ?>
 
                         </td>
                          <td> <a class="text-dark" data-toggle="tooltip" data-placement="top" title="Cliquer pour voir les détails" href="<?php echo e(route('confiscations.show', $confiscation)); ?>">

@@ -43,7 +43,6 @@ class RegneEspece extends Component
 
         ]);
     }
-
     public function submit()
     {
         $this->validate();
@@ -64,7 +63,7 @@ class RegneEspece extends Component
     public function delete($id) {
        $crimeEspece = CrimeEspece::where('id', $id)->first();
        $crimeEspece->delete();
-       session()->flash('status', 'Règlement ejouté avec succès');
+       session()->flash('espece', 'Espèce supprimée avec succès');
        session()->flash('section', 'espece');
         return redirect()->route('crimes.show', $crimeEspece->crime->uuid);
     }

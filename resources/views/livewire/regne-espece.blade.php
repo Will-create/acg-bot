@@ -41,8 +41,8 @@
 </div>
 </form>
 <div wire:loading wire:target="submit">
-    <div id="loader" class="">
-        <div class="loader"></div>
+    <div id="loading" class="">
+        <div class="loading"></div>
       </div>
 </div>
 @include('livewire.crime-espece')

@@ -25,10 +25,10 @@
                     </ol>
                 </div>
                 <div class="ml-auto pageheader-btn">
-                <a class="btn btn-primary" href="<?php echo e(route('especes.create')); ?>">  <span>
-                        <i class="fe fe-plus"></i>
+                <a class="btn btn-primary" href="<?php echo e(route('crimes.index')); ?>">  <span>
+                        <i class="fe fe-list"></i>
                     </span>
-                   Enregistrer un crime</a>
+                   Liste des crimes</a>
                 </button>
 
                 </div>
@@ -45,13 +45,13 @@
             </div>
             <div class="card-body">
                 <dl class="dl-crime">
-                    <strong class="text-center"><?php echo e($crime->type->nom); ?></strong> <br>
+                    <strong class="text-center"><?php echo e($crime->type ? $crime->type->nom: ''); ?></strong> <br>
                     <dt>Date d'appréhension :</dt>
                     <dd> <?php echo e(formatDate($crime->date_apprehension)); ?>
 
                     </dd>
                     <dt>Localité d'appréhension :</dt>
-                    <dd> <?php echo e(ucFirst($crime->service_investigateur->designation)); ?></dd>
+                    <dd> <?php echo e(ucFirst($crime->service_investigateur ? $crime->service_investigateur->designation: ' ')); ?></dd>
                     <dt>Service investigateur :</dt>
                     <dd>
                         <?php echo e(ucFirst($crime->localite_aprrehension)); ?>
@@ -126,20 +126,26 @@ unset($__errorArgs, $__bag); ?>
                         </form>
                         <br>
                         <?php if($commentaires->count() < 1): ?>
-                        <h3 class="page-title">Commentaires (0) </h3>
+                        <h3 class="page-title">Commentaires 
+                            <span class="nom_item_par_collapse badge badge-danger"> <?php echo e(count($commentaires)); ?> </span>
+                             </h3>
                         <span class="">Aucun commentaire n'est disponible pour le moment</span>
                         <?php else: ?>
-                              <h3 class="page-title">Commentaires (<?php echo e($commentaires->count()); ?>) </h3>
+                              
+                        <h3 class="page-title">Commentaires 
+                            <span class="nom_item_par_collapse badge badge-danger"> <?php echo e(count($commentaires)); ?> </span>
+                             </h3>
                               <div id="accordion">
                                <?php $__currentLoopData = $commentaires; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $commentaire): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                <div class="card">
-                                <div class="card-header" id="heading<?php echo e($commentaire->id); ?>">
-                                  <h5 class="mb-0">
-                                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapse<?php echo e($commentaire->id); ?>" aria-expanded="true" aria-controls="collapse<?php echo e($commentaire->id); ?>">
-                                      <span class="m-b-15 d-block text-dark"><?php echo e(ucfirst(substr($commentaire->commentaire, 0,28))); ?>... </span>
-                                    </button>
-                                  </h5>
-                                </div>
+                                        <div style="background: none;
+                                        padding: 0rem 0.5rem;" class="card-header" id="heading<?php echo e($commentaire->id); ?>">
+                                        <h5 class="mb-0">
+                                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapse<?php echo e($commentaire->id); ?>" aria-expanded="true" aria-controls="collapse<?php echo e($commentaire->id); ?>">
+                                            <span class="m-b-15 d-block text-dark"><?php echo e(ucfirst(substr($commentaire->commentaire, 0,28))); ?>... </span>
+                                            </button>
+                                        </h5>
+                                        </div>
                                 <div id="collapse<?php echo e($commentaire->id); ?>" class="collapse" aria-labelledby="heading<?php echo e($commentaire->id); ?>" data-parent="#accordion">
                                   <div class="card-body">
                                       <div class="d-flex flex-row comment-row m-t-0">
@@ -148,14 +154,15 @@ unset($__errorArgs, $__bag); ?>
                                           </a> <br>
                                           <div class="comment-text w-100">
                                               <div class="comment-footer">
-                                                    <span class="m-b-15 d-block" style="background-color: rgb(241, 255, 251); border-radius:.5em; padding:1.5em; text-align:center;"><?php echo e(ucfirst($commentaire->commentaire)); ?> 
+                                                    <span class="m-b-15 d-block" style="background-color: rgb(241, 255, 251); border-radius:.5em; padding:1.5em; text-align:center;"><a class="text-dark" href="<?php echo e(route('commentaires.show',  $commentaire->uuid)); ?>" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" ><?php echo e(ucfirst($commentaire->commentaire)); ?></a> 
                                                     </span> 
                                                 </div>
                                             </div>
                                         </div>
                                         
                                         <br><br> <span class="text-muted float-right"><?php echo e($commentaire->created_at->format(' d M Y h:i:s')); ?></span> 
-                                    </a><a class="text-dark" href="<?php echo e(route('utilisateurs.show', $commentaire->destinataire->uuid)); ?>">Pour: <?php echo e($commentaire->destinataire->nom); ?> <?php echo e($commentaire->destinataire->prenom); ?>(<?php echo e($commentaire->destinataire->role->designation); ?>)
+                                    <a class="text-dark" href="<?php echo e(route('utilisateurs.show', $commentaire->destinataire->uuid)); ?>">Pour: <?php echo e($commentaire->destinataire->nom); ?> <?php echo e($commentaire->destinataire->prenom); ?>(<?php echo e($commentaire->destinataire->role->designation); ?>)
+                                    </a> 
                                   </div>
                                 </div>
                               </div>
@@ -167,6 +174,10 @@ unset($__errorArgs, $__bag); ?>
             </div>
         </div>
     </div>
+    <?php
+             $crimeEspeces =  \App\Models\CrimeEspece::latest()->where('crime_id', $crime->id)->get()
+    ?>
+
     <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8">
         <div class="card">
             <div class="card-header">
@@ -176,62 +187,82 @@ unset($__errorArgs, $__bag); ?>
                 <div class="row">
                     <div class="col-lg-12">
                             <div class="card-body">
-                                <ul class="demo-accordion accordionjs m-0">
-                                    <li>
+                                <ul class="demo-accordion accordionjs m-0" data-active-index="false">
+                                    <li class="<?php if(Session::has('section')  &&  (session('section') == "espece")): ?> acc_active <?php endif; ?>">
                                         <div>
-                                            <h3>Especes</h3>
+                                            <h3>Especes </h3>
+                                            <span class="nom_item_par_collapse badge badge-danger"> <?php echo e(count($crimeEspeces)); ?> </span>
                                         </div>
                                         <div>
+                                            <?php echo $__env->make('partials._notify',['nom'  => 'espece'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                                             <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('regne-espece', ['crime'  => $crime])->html();
-} elseif ($_instance->childHasBeenRendered('BnK9KX2')) {
-    $componentId = $_instance->getRenderedChildComponentId('BnK9KX2');
-    $componentTag = $_instance->getRenderedChildComponentTagName('BnK9KX2');
+} elseif ($_instance->childHasBeenRendered('XHuSJx4')) {
+    $componentId = $_instance->getRenderedChildComponentId('XHuSJx4');
+    $componentTag = $_instance->getRenderedChildComponentTagName('XHuSJx4');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('BnK9KX2');
+    $_instance->preserveRenderedChild('XHuSJx4');
 } else {
     $response = \Livewire\Livewire::mount('regne-espece', ['crime'  => $crime]);
     $html = $response->html();
-    $_instance->logRenderedChild('BnK9KX2', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('XHuSJx4', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
                                              <br>
                                         </div>
                                     </li>
-                                    <li>
+                                    <li class="<?php if(Session::has('section')  &&  (session('section') == "auteur")): ?> acc_active <?php endif; ?>">
                                         <div>
                                             <h3>Auteurs du crimes</h3>
+                                            <span class="nom_item_par_collapse badge badge-danger"> <?php echo e(count($crime->auteurs)); ?> </span>
+
                                         </div>
 
                                         <div>
+                                            <?php echo $__env->make('partials._notify',['nom'  => 'auteur'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+
                                             <div class="text-right">
                                                 <a href="<?php echo e(route('crime_auteurs.create', ['crime' => $crime->uuid])); ?>" class="btn btn-primary"> <i class="fa fa-plus" aria-hidden="true"></i> Ajouter</a>
                                             </div>
                                             <br>
+                                            <?php if(count($crime->auteurs) > 0): ?>
                                             <?php echo $__env->make('pages.backoffice.auteurs.crimeAuteu', ['crime'  => $crime], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                                            <?php else: ?>
+                                            <small class="text-danger">Aucun auteur Ajouter</small>
+                                            <?php endif; ?>
                                         </div>
                                     </li>
-                                    <li>
+                                    <li class="<?php if(Session::has('section')  &&  (session('section') == "confiscation")): ?> acc_active <?php endif; ?>">
                                         <div>
                                             <h3>Specimens confisqués</h3>
+                                            <span class="nom_item_par_collapse badge badge-danger"> <?php echo e(count($crime->confiscations)); ?> </span>
+
                                         </div>
                                         <div>
+                                            <?php echo $__env->make('partials._notify',['nom'  => 'confiscation'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+
                                             <div class="text-right">
                                                 <a href="<?php echo e(route('confiscations.create', ['crime' => $crime->uuid])); ?>" class="btn btn-primary"> <i class="fa fa-plus" aria-hidden="true"></i> Ajouter</a>
                                             </div>
-                                          <?php echo $__env->make('pages.backoffice.confiscations.crimeConfiscation',['crime' => $crime], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                                            <?php if(count($crime->confiscations) > 0): ?>
+                                            <?php echo $__env->make('pages.backoffice.confiscations.crimeConfiscation', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                                            <?php else: ?>
+                                            <small class="text-danger"> Aucun speciemen confisqué</small>
+                                            <?php endif; ?>
                                         </div>
                                     </li>
-                                    <li>
+                                    <li class="<?php if(Session::has('section')  &&  (session('section') == "arme")): ?> acc_active <?php endif; ?>">
                                         <div>
                                             <h3>Armes matérielles</h3>
+                                            <span class="nom_item_par_collapse badge badge-danger"> <?php echo e(count($crime->armes)); ?> </span>
+
                                         </div>
                                         <div>
 
                                             <div>
-                                        
+                                        <?php echo $__env->make('partials._notify',['nom'  => 'arme'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
                                                 <div class="text-right">
                                                     <a href="<?php echo e(route('crime.armes.create', ['crime' => $crime])); ?>" class="btn btn-primary"> <i class="fa fa-plus" aria-hidden="true"></i> Ajouter</a>
@@ -241,12 +272,29 @@ echo $html;
                                             </div>
                                         </div>
                                     </li>
-                                    <li>
+                                    <li class="<?php if(Session::has('section')  &&  (session('section') == "reglement")): ?> acc_active <?php endif; ?>">
                                         <div>
+                                            
                                             <h3>Réglements</h3>
+                                            <span class="nom_item_par_collapse badge badge-danger"> <?php echo e(count($crime->reglement)); ?> </span>
+
                                         </div>
                                         <div>
-                                            <!-- Your text here. For this demo, the content is generated automatically. -->
+                                            
+                                            <?php echo $__env->make('partials._notify',['nom'  => 'reglement'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+
+                                            <div class="text-right">
+                                                <?php if(count($crime->auteurs) > 0): ?>
+                                                <a href="<?php echo e(route('crime_reglements.create', ['crime'   => $crime->uuid])); ?>" class="btn btn-primary"> <i class="fa fa-plus" aria-hidden="true"></i> Ajouter</a>
+                                               <?php else: ?>
+                                               <small class="text-danger">
+                                                   Veuillez d'abord ajouter les auteurs du crimes
+                                               </small>
+                                                <?php endif; ?>
+                                            </div>
+                                            <?php if(count($crime->reglement) > 0): ?>
+                                            <?php echo $__env->make('pages.backoffice.regelements.list', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                                            <?php endif; ?>
                                         </div>
                                     </li>
                                 </ul>

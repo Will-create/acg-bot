@@ -62,7 +62,8 @@ class CrimeConfiscationController extends Controller
           $confiscation->description =$data['description'];
           $confiscation->poids =$data['poids'];
           $confiscation->save();
-          $request->session()->flash('status', 'Confiscation ajoutée avec succès');
+          $request->session()->flash('confiscation', 'Confiscation ajoutée avec succès');
+          $request->session()->flash('section', 'confiscation');
           return redirect()->route('crimes.show', $crime->uuid);
     }
 

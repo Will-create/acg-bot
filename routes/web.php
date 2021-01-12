@@ -50,7 +50,8 @@ Auth::routes();
     Route::patch('/user/password/edit', 'UtilisateursController@change_password')->name('change_password');
     Route::get('/pays/ville/{pay_id}', 'LocaliteController@ville_by_country')->name('ville_by_country');
     Route::resource('crime_reglements', 'CrimeTypeReglementController')->except('create');
-    Route::get('crime_reglements/create/{crime?}', 'CrimeTypeRegl   ementController@create')->name('crime_reglements.create');
+    Route::get('crime_reglements/create/{crime?}', 'CrimeTypeReglementController@create')->name('crime_reglements.create');
     Route::view('/{patch?}', 'layouts.masterreact');
+    Route::get('crimes/show/cibler/{auteur}','Controller@cibleur');
 
     // });

@@ -118,7 +118,7 @@
             <div class="row">
                 <div class="col-md-6"></div>
                 <div class="col-md-6 mb-4">
-                    <a href="{{ route('commentaires.index') }}" class="btn btn-dark"> <span>
+                    <a href="{{ route('crimes.show',$commentaire->crime->uuid) }}"   class="btn btn-dark"> <span>
                             <i class="fe fe-close"></i>
                         </span><i class="fa fa-times"></i> Retour</a>
                     <a href="{{ route('commentaires.edit', $commentaire->uuid) }}" class="btn btn-primary">

@@ -37,7 +37,7 @@
     <div class="col-md-12 col-lg-12">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Liste des Localités</h3>
+                <h3 class="card-title">Liste des Crimes</h3>
             </div>
             @php
                 $i = 1;
@@ -49,25 +49,26 @@
                             <tr>
                                 <th class="wd-15p">Ordre</th>
                                 <th class="wd-15p">Pays d'appréhension</th>
-                                <th class="wd-30p">Nombre d'espèces impliquées</th>
-                                <th class="wd-30p">Règlement</th>
-                                {{-- <th>Actions</th> --}}
+                                <th class="wd-15p">Nombre d'espèces impliquées</th>
+                                <th class="wd-15p">Règlement</th>
+                                <th class="wd-15p">Confiscation</th>
+                                <th class="wd-15p" >Service investigateur</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($crimes as $crime)
                             @php
                         $crimeEspeces =  \App\Models\CrimeEspece::latest()->where('crime_id', $crime->id)->get()
-
                             @endphp
                             <tr>
                                 <td>{{$i++}}</td>
-                                <td> <a class="text-dark" href="{{route('crimes.show', $crime->uuid)}}"> {{$crime->paysApprehension ? $crime->paysApprehension->nom: ''}} </a></td>
+                                <td> <a class="text-dark" href="{{route('crimes.show', $crime->uuid)}}"> {{$crime->paysApprehension ? ucfirst($crime->paysApprehension->nom) : ''}} </a></td>
                                 <td> <a class="text-dark" href="{{route('crimes.show', $crime->uuid)}}"> {{count($crimeEspeces)}} </a></td>
-                                <td> <a class="text-dark" href="{{route('crimes.show', $crime->uuid)}}"> {{ $crime->reglement  ? $crime->reglement :''}}</a></td>
+                                <td> <a class="text-dark" href="{{route('crimes.show', $crime->uuid)}}"> {{ $crime->reglement  ? count($crime->reglement)  :''}}</a></td>
+                                <td> <a class="text-dark" href="{{route('crimes.show', $crime->uuid)}}"> {{ $crime->confiscations  ? count($crime->confiscations)  :''}}</a></td>
+                                <td> <a class="text-dark" href="{{route('crimes.show', $crime->uuid)}}"> {{ $crime->service_investigateur->designation  ? $crime->service_investigateur->designation  :''}}</a></td>
                             </tr>
                             @endforeach
-
                         </tbody>
                     </table>
                 </div>

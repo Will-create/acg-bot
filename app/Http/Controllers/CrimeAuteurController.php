@@ -66,7 +66,9 @@ class CrimeAuteurController extends Controller
           $auteur->adresse =$data['adresse'];
           $auteur->crime_id =$crime->id;
           $auteur->save();
-          $request->session()->flash('status', 'Auteur ajouté avec succès');
+          $request->session()->flash('auteur', 'Auteur ajouté avec succès');
+          $request->session()->flash('section', 'auteur');
+
           return redirect()->route('crimes.show',$crime->uuid);
     }
     public function show( $auteurUuid)

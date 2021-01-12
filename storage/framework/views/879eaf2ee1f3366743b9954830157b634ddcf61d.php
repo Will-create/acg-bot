@@ -1,6 +1,5 @@
 <div>
     <div class="row">
-        <?php echo $__env->make('partials._notification', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     </div>
     <br>
     <form wire:submit.prevent="submit">
@@ -56,8 +55,8 @@ unset($__errorArgs, $__bag); ?>
 </div>
 </form>
 <div wire:loading wire:target="submit">
-    <div id="loader" class="">
-        <div class="loader"></div>
+    <div id="loading" class="">
+        <div class="loading"></div>
       </div>
 </div>
 <?php echo $__env->make('livewire.crime-espece', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>

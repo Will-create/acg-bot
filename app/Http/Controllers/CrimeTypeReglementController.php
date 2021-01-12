@@ -78,7 +78,7 @@ class CrimeTypeReglementController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\crimeTypeReglement  $crimeTypeReglement
-     * @return \Illuminate\Http\Response
+     * @return  \Illuminate\Http\Response
      */
     public function update(Request $request, $crimeTypeReglement)
     {
@@ -97,7 +97,7 @@ class CrimeTypeReglementController extends Controller
             'auteur_id' => $request->auteur,
             'amende' => $request->amende,
         ]);
-        session()->flash('status', 'Règlement ejouté avec succès');
+        session()->flash('reglement', 'Règlement ejouté avec succès');
         session()->flash('section', 'reglement');
         return redirect()->route('crimes.show', $reglement->crime->uuid);
 

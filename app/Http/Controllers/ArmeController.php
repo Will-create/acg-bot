@@ -68,8 +68,8 @@ class ArmeController extends Controller
         $arme->save();
         if (isset($request->fromcrime)){
 
-            $request->session()->flash('statusarme', 'Arme ajoutée avec succès!!!');
-            $request->session()->forget('status');
+            $request->session()->flash('arme', 'Arme ajoutée avec succès!!!');
+            $request->session()->flash('section','arme');
             return redirect()->route('crimes.show', $request->crime);
         }else{
             $request->session()->flash('statusarme', 'Arme ajoutée avec succès!!!');

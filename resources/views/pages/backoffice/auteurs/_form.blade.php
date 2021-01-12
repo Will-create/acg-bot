@@ -291,7 +291,7 @@
                         </label>
                         <textarea rows="5" type="text" class="form-control" name="affaire_judiciaire"
                             placeholder="Précédents judiciaires" id="affaire_judiciaire"
-                            required>{{ old('affaire_judiciaire') ?? $auteur->affaire_judiciaire }}</textarea>
+                            >{{ old('affaire_judiciaire') ?? $auteur->affaire_judiciaire }}</textarea>
                         @error('affaire_judiciaire')
                         <span class="helper-text red-text">
                             <strong>{{ $message }}</strong>
@@ -300,10 +300,8 @@
                     </div>
                 </div>
                 </div>
-
                 <div class="modal-footer">
                     @if ((Route::currentRouteName() == 'crime_auteurs.show'))
-
                     <button type="button" class="btn btn-outline-danger  mb-1" data-toggle="modal" data-target="#exampleModalDelete{{$auteur->id}}"><i class="fa fa-trash"></i> Supprimer</button>
                     <div class="modal" id="exampleModalDelete{{$auteur->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalDelete" aria-hidden="true">
                         <div class="modal-dialog" role="document">

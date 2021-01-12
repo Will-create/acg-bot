@@ -26,7 +26,7 @@ class CreateCrimeAuteursTable extends Migration
             $table->string('nationalite', 25);
             $table->string('travail', 100);
             $table->string('tel', 60)->nullable();
-            $table->text('affaire_judiciaire');
+            $table->text('affaire_judiciaire')->nullable();
             $table->text('adresse');
             $table->enum('genre', ['masculin', 'feminin']);
             $table->enum('type', ['auteur', 'complice']);

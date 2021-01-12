@@ -36,7 +36,7 @@
                     <td>{{formatDate($crimeEspece->created_at)}}</td>
                     </a>
                     <td>
-                        <button wire:click="delete({{$crimeEspece->id}})"> <i class="fa fa-trash text-danger"></i> </button>
+                        <button style="border: unset!important;" wire:click="delete({{$crimeEspece->id}})"> <i class="fa fa-trash text-danger"></i> </button>
                     </td>
                 </tr>
                 @endforeach
@@ -45,8 +45,8 @@
         </table>
     </div>
     <div wire:loading wire:target="delete">
-        <div id="loader" class="">
-            <div class="loader"></div>
+        <div id="loading" class="">
+            <div class="loading"></div>
           </div>
     </div>
     </div>
