@@ -5,7 +5,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="form-label" for="designation">Dénomination <strong class="text-danger">*</strong> </label>
-                            <input type="text" class="form-control" name="designation" placeholder="Dénomination" id="designation"  value="{{old('designation') ?? $unite->designation }}" >
+                            <input type="text" class="form-control" name="designation" placeholder="Dénomination" id="designation"  value="{{old('designation') ?? $unite->designation }}" required>
                             @error('designation')
                             <span class="helper-text red-text">
                                 <strong>{{ $message }}</strong>
@@ -16,7 +16,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="form-label " for="tel">Téléphone <strong class="text-danger">*</strong></label>
-                                        <input class="form-control phone"  name="tel" placeholder="Téléphone" type="text"  value="{{old('tel') ?? $unite->tel}}" >
+                                        <input class="form-control phone"  name="tel" placeholder="Téléphone" type="text"  value="{{old('tel') ?? $unite->tel}}" required >
                                         @error('tel')
                                         <span class="helper-text red-text">
                                             <strong>{{ $message }}</strong>
@@ -38,7 +38,7 @@
                             </div>
                         <div class="form-group">
                             <label class="form-label" for="organisation">Pays <strong class="text-danger">*</strong></label>
-                            <select onchange="lier(this.value)" id="select"  name="pays_id" id="pays_id" class="form-control custom-select select2">
+                            <select onchange="lier(this.value)" id="select"  name="pays_id" id="pays_id" class="form-control custom-select select2" required>
                                 <option  value="{{Route::currentRouteName() == 'unites.edit' ? $unite->pays->id : '' }}" {{Route::currentRouteName() == 'unites.edit' ? '' : 'disabled' }} selected >{{Route::currentRouteName() == 'unites.edit' ? $unite->pays->nom : 'Sélectionner' }}</option>
                                 @foreach ($pays as $pay)
                             <option  id="{{$pay->id}}" value="{{$pay->id}}">{{$pay->nom}}</option>
@@ -52,7 +52,7 @@
                         </div>
                         <div class="form-group">
                             <label class="form-label" for="organisation">Localité <strong class="text-danger">*</strong></label>
-                            <select name="localite_id" id="localite_id" class="form-control custom-select select2">
+                            <select name="localite_id" id="localite_id" class="form-control custom-select select2" required>
                                 <option value="{{Route::currentRouteName() == 'unites.edit' ? $unite->localite->id : '' }}" {{Route::currentRouteName() == 'unites.edit' ? '' : 'disabled' }} selected >{{Route::currentRouteName() == 'unites.edit' ? $unite->localite->nom.', ('.$unite->localite->pay->nom.')'  : 'Sélectionner' }}</option>
                             </select>
                             @error('localite_id')
@@ -88,8 +88,8 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="form-label" for="organisation">Type <strong class="text-danger">*</strong></label>
-                            <select name="type_unite_id" id="type_unite_id" class="form-control custom-select select2">
+                            <label class="form-label" for="organisation">Type d'unité <strong class="text-danger">*</strong></label>
+                            <select name="type_unite_id" id="type_unite_id" class="form-control custom-select select2" required>
                                 <option value="{{Route::currentRouteName() == 'unites.edit' ? $unite->type->id : '' }}" {{Route::currentRouteName() == 'unites.edit' ? '' : 'disabled' }} selected >{{Route::currentRouteName() == 'unites.edit' ? ucfirst($unite->type->nom) : 'Sélectionner' }}</option>
                                 @foreach ($types as $type)
                             <option value="{{$type->id}}">{{ucFirst($type->nom)}}</option>
@@ -101,8 +101,8 @@
                             </span>
                             @enderror
                         </div>
-                       <div class="row"> 
-                       <div class="col-md-12"> 
+                       <div class="row">
+                       <div class="col-md-12">
                         <div class="form-group">
                             <label class="form-label" for="administration_tutelle">Administration tutelle</label>
                             <input class="form-control" placeholder="Administration tutelle"  name="administration_tutelle" type="text"  value="{{old('administration_tutelle') ?? $unite->administration_tutelle}}" >
@@ -116,12 +116,12 @@
                         </div>
                         <div class="form-group">
                             <label class="form-label" for="organisation">Responsables <strong class="text-danger">*</strong></label>
-                            <select name="responsable_id" id="responsable_id" class="form-control custom-select select2">
+                            <select name="responsable_id" id="responsable_id" class="form-control custom-select select2" required>
                                 <option  value="{{Route::currentRouteName() == 'unites.edit' ? $unite->responsable->id : '' }}" {{Route::currentRouteName() == 'unites.edit' ? '' : 'disabled' }} selected >{{Route::currentRouteName() == 'unites.edit' ? $unite->responsable->nom  : 'Sélectionner' }}</option>
                                 @foreach ($responsables as $responsable)
                                  @if ($responsable->role->designation == 'Agent d’une Unité')
-                                 <option  value="{{$responsable->id}}"> <span class="red-text"></span>{{$responsable->nom}} {{$responsable->prenom}},                         
-                                    {{$responsable->pays->nom}},                      
+                                 <option  value="{{$responsable->id}}"> <span class="red-text"></span>{{$responsable->nom}} {{$responsable->prenom}},
+                                    {{$responsable->pays->nom}},
                                               {{$responsable->role->designation}}</option>
                                  @endif
                                 @endforeach
@@ -132,7 +132,7 @@
                             </span>
                             @enderror
                         </div>
-    
+
                         <div class="form-group">
                             <label class="form-label" for="adresse">Adresse complete <strong class="text-danger">*</strong></label>
                             <textarea class="form-control" placeholder="Adresse" rows="6" name="adresse" id="adresse"  >{{old('adresse') ?? $unite->adresse}}</textarea>
@@ -176,7 +176,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="modal-footer">
             <a href="{{ route('unites.index') }}" class="btn btn-dark"> <i class="fa fa-times"
                     aria-hidden="true"></i>
@@ -186,7 +186,7 @@
                 </span> {{ $btnAction }}</button>
         </div>
         <script>
-            var listlocalite = document.getElementById('localite_id');									
+            var listlocalite = document.getElementById('localite_id');
             function lier(id){
                  axios.get('/localites/api/filtreur/'+id).then(function(data){
                     data.data.localites.map(function(loc){

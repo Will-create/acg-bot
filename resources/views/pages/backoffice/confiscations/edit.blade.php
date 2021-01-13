@@ -59,7 +59,7 @@
                 </div>
                 <div class="col-md-6">
 					<div class="form-group">
-                        <label class="form-label" for="organisation">Conditions<strong class="text-danger">*</strong></label>
+                        <label class="form-label" for="organisation">Conditions <strong class="text-danger">*</strong></label>
                         <select name="condition" id="" class="form-control custom-select select2">
                             <option value="" > Sélectionner</option>
 
@@ -79,8 +79,8 @@
 
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label class="form-label" for="designation">Poids <strong class="text-danger">*</strong> </label>
-                        <input type="number" class="form-control" name="poids" placeholder="Le poids en kg" id="poids"  value="{{$confiscation->poids}}" required>
+                        <label class="form-label" for="designation">Poids <strong class="text-danger"></strong> </label>
+                        <input type="number" class="form-control" name="poids" placeholder="Le poids en kg" id="poids"  value="{{$confiscation->poids}}"  >
                         @error('poids')
                         <span class="helper-text red-text">
                             <strong>{{ $message }}</strong>
@@ -90,8 +90,8 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label class="form-label" for="nombre">Nombre <strong class="text-danger">*</strong> </label>
-                        <input type="number" class="form-control" name="nombre" placeholder="Nombre" id="nombre"  value="{{$confiscation->nombre}}" required>
+                        <label class="form-label" for="nombre">Nombre <strong class="text-danger"></strong> </label>
+                        <input type="number" class="form-control" name="nombre" placeholder="Nombre" id="nombre"  value="{{$confiscation->nombre}}"  >
                         @error('nombre')
                         <span class="helper-text red-text">
                             <strong>{{ $message }}</strong>
@@ -102,26 +102,11 @@
         
             </div>
             <div class="row">
-                <div class="col-md-6">
-					<div class="form-group">
-                        <label class="form-label" for="organisation">Crime<strong class="text-danger">*</strong></label>
-                        <select name="crime_id" id="" class="form-control custom-select select2">
-                            <option value=""> Sélectionner</option>
-                            @foreach ($crimes as $crime)
-                        <option {{$confiscation->crime_id == $crime->id ? 'selected' : ''}} value="{{$crime->id}}">{{$crime->paysApprehension->nom ?? ''}} {{$crime->service_investigateur->designation ?? ''}}</option>
-                            @endforeach
-                        </select>
-                        @error('crime_id')
-                        <span class="helper-text red-text">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-					</div>
-                </div>
-                <div class="col-md-6">
+                
+                <div class="col-md-12">
                     <div class="form-group">
-                        <label class="form-label" for="adresse">Description<strong class="text-danger">*</strong></label>
-                        <textarea class="form-control" rows="4" name="description" id="description"  value="{{old('description')}}" required>{{$confiscation->description}}</textarea>
+                        <label class="form-label" for="adresse">Description <strong class="text-danger"></strong></label>
+                        <textarea class="form-control" rows="4" name="description" id="description"  value="{{old('description')}}"  >{{$confiscation->description}}</textarea>
                         @error('description')
                         <span class="helper-text red-text">
                             <strong>{{ $message }}</strong>
@@ -136,7 +121,7 @@
     <div class="modal-footer">
         <button type="submit" class="btn btn-primary"> <span>
             <i class="fe fe-save"></i>
-        </span> Enregistrer</button>
+        </span> Mettre à jour</button>
 
     </div>
 </form>

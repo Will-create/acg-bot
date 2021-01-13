@@ -86,7 +86,6 @@
                 </div>
                 <div class="table-responsive ">
                     <table class="table row table-borderless table-sm">
-                        
                         <tbody class="col-lg-12 col-xl-6 p-0">
                             @php
                                 $i=1;
@@ -112,19 +111,19 @@
     <div class="col-lg-4 col-md-12 col-sm-12 col-xl-3 mb-10" >
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Photo de Couverture</h3>
+                <h3 class="card-title">Logo</h3>
             </div>
             <div class="card-body">
-            <img src="{{ asset('storage').'/'.$unite->photo_couverture}}" style="min-width:100%; object-fit:cover; object-position: 50% 50%;" alt="" srcset="">
+            <img src="{{ asset('storage').'/'.$unite->logo}}" style="min-width:100%; object-fit:cover; object-position: 50% 50%;" alt="" srcset="">
 
             </div>
         </div>
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Logo</h3>
+                <h3 class="card-title">Photo de Couverture</h3>
             </div>
             <div class="card-body">
-            <img src="{{ asset('storage').'/'.$unite->logo}}" style="min-width:100%; object-fit:cover; object-position: 50% 50%;" alt="" srcset="">
+            <img src="{{ asset('storage').'/'.$unite->photo_couverture}}" style="min-width:100%; object-fit:cover; object-position: 50% 50%;" alt="" srcset="">
 
             </div>
         </div>

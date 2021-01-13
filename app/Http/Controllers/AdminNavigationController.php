@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AireProtegee;
+use App\Models\Crime;
 use App\Models\Role;
+use App\Models\Unite;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -42,8 +45,11 @@ class AdminNavigationController extends Controller
             break;
             case 'Administrateur Général':
                 $utilisateurs  = User::latest()->get();
+                $airesprotegers  = AireProtegee::orderBy('libelle', 'DESC')->get();
+                $crimes  = Crime::count();
+                $unites  = Unite::count();
                 $coordonateurs = User::where('role_id', Role::where('designation', 'Coordonnateur National')->first()->id)->get();
-                return view('pages.backoffice.administrateur.dasboard-admin', compact('utilisateurs', 'coordonateurs'));
+                return view('pages.backoffice.administrateur.dasboard-admin', compact('utilisateurs', 'coordonateurs', 'airesprotegers', 'crimes', 'unites'));
             break;
 
 

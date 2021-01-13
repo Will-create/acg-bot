@@ -103,27 +103,26 @@ class CrimeConfiscationController extends Controller
     public function update(Request $request, crimeConfiscation $confiscation)
     {
 
+
         $data=request()->validate([
             'designation'                    => ['required','string','max:255','min:3'],
-            'description'                    => ['required','string','min:3'],
-            'crime_id'                       => ['required','integer'],
-            'nombre'                         => ['required','integer'],
-            'poids'                          => ['required','integer'],
-
-
+            'description'                    => ['nullable','string','min:3'],
+            'nombre'                         => ['nullable','integer'],
+            'poids'                          => ['nullable','integer'],
+            'condition'                      => ['required'],
 
           ]);
 
 
-
-          $confiscation->designation=$data['designation'];
-          $confiscation->crime_id =$data['crime_id'];
-          $confiscation->nombre =$data['nombre'];
-          $confiscation->description =$data['description'];
-          $confiscation->poids =$data['poids'];
+          $confiscation->designation=$request['designation'];
+          $confiscation->nombre =$request['nombre'];
+          $confiscation->description =$request['description'];
+          $confiscation->poids =$request['poids'];
+          $confiscation->condition =$request['condition'];
           $confiscation->save();
-         $request->session()->flash('status','Confiscation  modifiée avec succès!');
-          return redirect()->route('confiscations.index');
+          $request->session()->flash('confiscation', 'Confiscation mise à jour avec succès');
+          $request->session()->flash('section', 'confiscation');
+          return redirect()->route('crimes.show', $confiscation->crime->uuid);
     }
 
 

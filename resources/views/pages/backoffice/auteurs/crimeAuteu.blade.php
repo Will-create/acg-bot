@@ -17,7 +17,7 @@
                     <tr>
                         <td>{{$i++}}</td>
                         <td> <a class="text-dark" data-toggle="tooltip" data-placement="top" title="Cliquer pour voir les détails" href="{{route('crime_auteurs.show', $auteur)}}">
-                            {{$auteur->nom . ' '. $auteur->prenom}}
+                            {{ucFirst($auteur->nom) . ' '. ucFirst($auteur->prenom)}}
                         </a>
                         </td>
                          <td> <a class="text-dark" data-toggle="tooltip" data-placement="top" title="Cliquer pour voir les détails" href="{{route('crime_auteurs.show', $auteur)}}">

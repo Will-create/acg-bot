@@ -22,43 +22,42 @@ class CrimeTableSeeder extends Seeder
      *
      * @return void
      */
-    private $faker=Factory::create();
-    private $pays=Pay::all();
-    private $users=User::all();
-    private $especes = Espece::all();
-    private $localites=Localite::all();
-    private $unites = Unite::all();
-    private $tcrime = TypeCrime::all();
-    private $aires = AireProtegee::all();
-    private $conditions = ['frais', 'vivant'];
+  
 
     
-    private function crimes(){
-        Crime::create([
-            'uuid' => Str::uuid(),
-            'condition_produit_id' => rand(1,count($this->conditions)),
-            'type_crime_id' => rand(1,count($this->tcrime)),
-            'espece_id' => rand(1,count($this->especes)),
-            'pays_apprehension' => rand(1,count($this->pays)),
-            'pays_destination' => rand(1,count($this->pays)),
-            'pays_origine_produit' => rand(1,count($this->pays)),
-            'services_investigateurs' => rand(1,count($this->unites)),
-            'date_apprehension' => $this->faker->date(),
-            'date_abattage' => $this->faker->date(),
-            'localite_apprehension' => rand(1,count($this->localites)),
-            'longitude' => $this->faker->longitude(-6,12),
-            'latitude' => $this->faker->latitude(-6,12),
-            'gestion_des_saisies' => rand(1,count($this->unites)),
-            'veto' => $this->faker->boolean(),
-            'lien_terrorisme' => $this->faker->boolean(),
-            'victime' => $this->faker->firstName.' '.$this->faker->lastName,
-            'aire_protegee_id' => rand(1,count($this->aires)),
-        ]);
-    }
+     
     public function run()
     {
+         $faker=Factory::create();
+         $pays=Pay::all();
+         $users=User::all();
+         $especes = Espece::all();
+         $localites=Localite::all();
+         $unites = Unite::all();
+         $tcrime = TypeCrime::all();
+         $aires = AireProtegee::all();
+         $conditions = ['frais', 'vivant'];
         for ($i=0; $i <15; $i++) { 
-            $this->crimes();
+            Crime::create([
+                'uuid' => Str::uuid(),
+                // 'condition_produit_id' => rand(1,count($conditions)),
+                'type_crime_id' => rand(1,count($tcrime)),
+                'espece_id' => rand(1,count($especes)),
+                'pays_apprehension' => rand(1,count($pays)),
+                'pays_destination' => rand(1,count($pays)),
+                'pays_origine_produit' => rand(1,count($pays)),
+                'services_investigateurs' => rand(1,count($unites)),
+                'date_apprehension' => $faker->date(),
+                'date_abattage' => $faker->date(),
+                'localite_apprehension' => rand(1,count($localites)),
+                'longitude' => $faker->longitude(-6,12),
+                'latitude' => $faker->latitude(-6,12),
+                'gestion_des_saisies' => rand(1,count($unites)),
+                'veto' => $faker->boolean(),
+                'lien_terrorisme' => $faker->boolean(),
+                'victime' => $faker->firstName.' '.$faker->lastName,
+                'aire_protegee_id' => rand(1,count($aires)),
+            ]);
         }
     }
 }

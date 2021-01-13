@@ -20,6 +20,7 @@ class CreateArmesTable extends Migration
             $table->string('reference')->nullable();
             $table->text('remarques')->nullable();
             $table->text('photo')->nullable();
+            $table->string('origine')->nullable();
             $table->unsignedBigInteger('crime_id');
             $table->timestamps();
         });

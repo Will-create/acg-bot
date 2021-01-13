@@ -148,6 +148,7 @@ class CrimeAuteurController extends Controller
           $auteur->adresse =$data['adresse'];
           $auteur->update();
           $request->session()->flash('status', 'Auteur ajouté avec succès');
+          $request->session()->flash('section', 'auteur');
           return redirect()->route('crimes.show',$auteur->crime->uuid);
     }
     // public function update(Request $request, Commentaire $auteur)
@@ -169,6 +170,10 @@ class CrimeAuteurController extends Controller
     public function destroy(Request $request,  $auteur)
     {
         $auteur =  CrimeAuteur::where('uuid', $auteur)->first();
+        if (count($auteur->reglements) > 0) {
+          $request->session()->flash('auteur', 'Impossible de supprimer cet enregistrement');
+            return redirect()->route('crimes.show', $auteur->crime->uuid);
+        }
         $auteur->delete();
         return redirect()->route('crimes.show', $auteur->crime->uuid)->with('status','Auteur supprimer avec succès');
 

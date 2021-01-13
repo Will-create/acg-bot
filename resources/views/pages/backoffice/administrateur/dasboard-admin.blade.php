@@ -30,7 +30,7 @@
 							<div class="row mb-1">
 								<div class="col">
 									<p class="mb-1">Aires protégées</p>
-									<h3 class="mb-0 number-font">587 3652</h3>
+									<h3 class="mb-0 number-font">{{count($airesprotegers)}}</h3>
 								</div>
 								<div class="col-auto mb-0">
 									<div class="dash-icon text-secondary1">
@@ -48,7 +48,7 @@
 							<div class="row mb-1">
 								<div class="col">
 									<p class="mb-1">Crimes</p>
-									<h3 class="mb-0 number-font">58</h3>
+									<h3 class="mb-0 number-font">{{$crimes}}</h3>
 								</div>
 								<div class="col-auto mb-0">
 									<div class="dash-icon text-secondary">
@@ -66,7 +66,7 @@
 							<div class="row mb-1">
 								<div class="col">
 									<p class="mb-1">Unités de loi</p>
-									<h3 class="mb-0 number-font">10 523</h3>
+									<h3 class="mb-0 number-font">{{$unites}}</h3>
 								</div>
 								<div class="col-auto mb-0">
 									<div class="dash-icon text-warning">

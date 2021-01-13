@@ -64,8 +64,8 @@
                             <div class="card-body wideget-user-contact">
                             <img src="{{asset('storage').'/'.$pays->icone}}" style="min-width:100%; object-fit:cover; object-position: 50% 50%;" alt="" srcset="">
                             <div class="clearfix"></div>
-                            
-                            
+
+
                             </div>
                         </div>
                        </a>
@@ -77,11 +77,14 @@
                 <div class="card">
                     <div class="card-body">
                         <h3 class="card-title" >Localités associées à ce pays</h3>
-                        @foreach($localites as $localite)
-                            <a class="text-dark" href="{{ route('localites.show', $localite->uuid) }}" data-toggle="tooltip" data-placement="right" title="Cliquer pour afficher les détails">
-                                <span class="">{{ $localite->nom}} </span>
-                            </a> <br>
-                        @endforeach
+                        @forelse ($localites as $localite)
+                        <a class="text-dark" href="{{ route('localites.show', $localite->uuid) }}" data-toggle="tooltip" data-placement="right" title="Cliquer pour afficher les détails">
+                            <span class="">{{ $localite->nom}} </span>
+                        </a> <br>
+                        @empty
+                        <small class="text-danger">Aucune ville</small>
+                        @endforelse
+
                     </div>
                 </div>
             </div>
@@ -89,11 +92,14 @@
                 <div class="card">
                     <div class="card-body">
                         <h3 class="card-title" >Unités associées à ce pays</h3>
-                        @foreach($unites as $unite)
-                            <a class="text-dark" href="{{ route('unites.show', $unite->uuid) }}" data-toggle="tooltip" data-placement="right" title="Cliquer pour afficher les détails">
-                                <span class="">{{ $unite->designation}} </span>
-                            </a> <br>
-                        @endforeach
+                        @forelse ($unites as $unite)
+                        <a class="text-dark" href="{{ route('unites.show', $unite->uuid) }}" data-toggle="tooltip" data-placement="right" title="Cliquer pour afficher les détails">
+                            <span class="">{{ $unite->designation}} </span>
+                        </a> <br>
+                        @empty
+                        <small class="text-danger">Aucune unité</small>
+                        @endforelse
+
                     </div>
                 </div>
             </div>
@@ -101,11 +107,14 @@
                 <div class="card">
                     <div class="card-body">
                         <h3 class="card-title" >Aires protégées associées à ce pays</h3>
-                        @foreach($aires as $aire)
-                            <a class="text-dark" href="{{ route('aire_protegees.show', $aire->uuid) }}" data-toggle="tooltip" data-placement="right" title="Cliquer pour afficher les détails">
-                                <span class="">{{ $aire->libelle}} </span>
-                            </a> <br>
-                        @endforeach
+                        @forelse ($aires as $aire)
+                        <a class="text-dark" href="{{ route('aire_protegees.show', $aire->uuid) }}" data-toggle="tooltip" data-placement="right" title="Cliquer pour afficher les détails">
+                            <span class="">{{ $aire->libelle}} </span>
+                        </a> <br>
+                        @empty
+                        <small class="text-danger">Aucune aire protégée</small>
+                        @endforelse
+
                     </div>
                 </div>
             </div>
@@ -118,7 +127,7 @@
             <a href="{{ route('pays.index') }}" class="btn btn-dark"> <span>
                     <i class="fe fe-close"></i>
                 </span><i class="fa fa-times"></i> Retour</a>
-    
+
             <a href="{{ route('pays.edit', $pays->uuid) }}" class="btn btn-primary">
                 <i class="fa fa-edit"></i> Modifier</a>
             <button type="button" class="btn btn-danger  mb-1" data-toggle="modal"
@@ -130,14 +139,14 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalDelete">Suppression de {{ $pays->designation }}</h5>
+                    <h5 class="modal-title" id="exampleModalDelete">Suppression de <strong> {{ $pays->nom }} </strong></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                                
-                    <p> Etes-vous sûr de bien vouloir supprimer ce pays ?
+
+                    <p> Etes-vous sûr de  vouloir supprimer ce pays ?
                     </p>
                 </div>
                 <div class="modal-footer">
@@ -153,8 +162,8 @@
                             <span>Annuler</span>
                         </button>
                     </form>
-    
-    
+
+
                 </div>
             </div>
         </div>
