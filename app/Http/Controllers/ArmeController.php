@@ -47,10 +47,11 @@ class ArmeController extends Controller
     {
         $data = request()->validate([
             'libelle' => ['required', 'string', 'max:255', 'min:3', 'unique:aire_protegees'],
-            'reference' => ['required', 'string', 'max:255', 'min:3'],
+            'reference' => ['nullable', 'string', 'max:255', 'min:3'],
             'remarques' => ['required', 'string', 'max:255', 'min:3'],
             'crime_id' => ['required','integer'],
-        ]);
+            'origine' => ['nullable', 'string', 'max:255'],
+            ]);
         $arme = new Arme();
         if ($request->hasFile('photo')) {
             $file = $request->file('photo');
@@ -60,10 +61,11 @@ class ArmeController extends Controller
             $arme->photo = $photoPath;
         }
         
-        $arme->libelle = $data['libelle'];
-        $arme->reference = $data['reference'];
-        $arme->remarques = $data['remarques'];
-        $arme->crime_id = $data['crime_id'];
+        $arme->libelle = $request['libelle'];
+        $arme->reference = $request['reference'];
+        $arme->remarques = $request['remarques'];
+        $arme->crime_id = $request['crime_id'];
+        $arme->origine = $request['origine'];
         $arme->uuid = Str::uuid();
         $arme->save();
         if (isset($request->fromcrime)){
@@ -106,6 +108,7 @@ class ArmeController extends Controller
                 'reference' => ['required', 'string', 'max:255', 'min:3'],
                 'remarques' => ['required', 'string', 'max:255', 'min:3'],
                 'crime_id' => ['required','integer'],
+                'origine' => ['nullable', 'string', 'max:255'],
                 ]);
                 
               
@@ -118,10 +121,11 @@ class ArmeController extends Controller
                 }
                 
                     
-                $arme->libelle = $data['libelle'];
-                $arme->reference = $data['reference'];
-                $arme->remarques = $data['remarques'];
-                $arme->crime_id = $data['crime_id'];
+                $arme->libelle = $request['libelle'];
+                $arme->reference = $request['reference'];
+                $arme->remarques = $request['remarques'];
+                $arme->crime_id = $request['crime_id'];
+                $arme->origine = $request['origine'];
                 $arme->save();
                 $request->session()->flash('status', 'Arme mise a jours avec succès!!!');
                 return redirect()->route('armes.show', $arme->uuid);

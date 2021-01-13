@@ -59,7 +59,7 @@
                 </div>
                 <div class="col-md-6">
 					<div class="form-group">
-                        <label class="form-label" for="organisation">Conditions<strong class="text-danger">*</strong></label>
+                        <label class="form-label" for="organisation">Conditions <strong class="text-danger">*</strong></label>
                         {{-- <select name="condition" id="" class="form-control custom-select select2">
                             <option value="" selected > Sélectionner</option>
                             <option value="frais">Frais</option>
@@ -124,7 +124,7 @@
                 --}}
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label class="form-label" for="adresse">Description<strong class="text-danger"></strong></label>
+                        <label class="form-label" for="adresse">Description <strong class="text-danger"></strong></label>
                         <textarea class="form-control" rows="4" name="description" id="description"  value="{{old('description')}}"></textarea>
                         @error('description')
                         <span class="helper-text red-text">

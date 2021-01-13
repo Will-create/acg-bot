@@ -61,9 +61,23 @@
                         
                             <div class="form-group">
                                 <div class="form-group">
-                                    <label class="form-label" for="reference">Réference <strong class="text-danger">*</strong></label>
-                                    <input class="form-control"  name="reference" placeholder="Réference" type="text"  value="{{old('reference') ?? $arme->reference}}" required>
+                                    <label class="form-label" for="reference">Réference <strong class="text-danger"></strong></label>
+                                    <input class="form-control"  name="reference" placeholder="Réference" type="text"  value="{{old('reference') ?? $arme->reference}}" >
                                     @error('reference')
+                                    <span class="helper-text red-text">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                                <input type="hidden" name="crime_id" value="{{$crime->id}}">
+                                <input type="hidden" name="crime" value="{{$crime->uuid}}">
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <div class="form-group">
+                                    <label class="form-label" for="reference">Origine de l'arme <strong class="text-danger"></strong></label>
+                                    <input class="form-control"  name="origine" placeholder="Origine" type="text"  value="{{old('origine') ?? $arme->origine}}">
+                                    @error('origine')
                                     <span class="helper-text red-text">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -80,7 +94,7 @@
                                     <label class="form-label" for="remarques">Remarques <strong
                                     class="text-danger">*</strong>
                                         </label>
-                                        <textarea rows="5" type="text" class="form-control" name="remarques"
+                                        <textarea rows="10" type="text" class="form-control" name="remarques"
                                             placeholder="Remarques" id="remarques"
                                             required>{{ old('remarques') ?? $arme->remarques }}</textarea>
                                                 @error('remarques')

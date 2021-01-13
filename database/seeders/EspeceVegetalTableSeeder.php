@@ -23,7 +23,7 @@ class EspeceVegetalTableSeeder extends Seeder
             Espece::create([
                 'nom'                   => $faker->bird,
                 'uuid'                  => Str::uuid(),
-                'photo'                 => $faker->file($sourceDir = '/home/louisbertson/Desktop/criminalite/public/espece_animal', $targetDir = 'storage/app/public/espece_uploads', false),
+                'photo'                 => $faker->file($sourceDir = 'D:/switch_maker/war_crimes/public/espece_animal', $targetDir = 'storage/app/public/espece_uploads', false),
                 'famille'               => $faker->bird,
                 'regne'                 => 'animal',
                 'nom_scientifique'      => $faker->bird,
@@ -34,7 +34,7 @@ class EspeceVegetalTableSeeder extends Seeder
             Espece::create([
                 'nom'                   => $faker->name,
                 'uuid'                  => Str::uuid(),
-                'photo'                 => 'espece_uploads/'.$faker->file($sourceDir = '/home/louisbertson/Desktop/criminalite/public/espece_vegetal', $targetDir = 'storage/app/public/espece_uploads', false),
+                'photo'                 => 'espece_uploads/'.$faker->file($sourceDir = 'D:/switch_maker/war_crimes/public/espece_vegetal', $targetDir = 'storage/app/public/espece_uploads', false),
                 'famille'               => $faker->name,
                 'regne'                 =>'végétal',
                 'nom_scientifique'      => $faker->name,
