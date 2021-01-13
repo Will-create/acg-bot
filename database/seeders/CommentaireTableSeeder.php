@@ -10,8 +10,7 @@ use Illuminate\Database\Seeder;
 class CommentaireTableSeeder extends Seeder
 {
     
-    private $crimes = Crime::all();
-    private $utilisateurs = User::all();
+   
     private $comments = [
         "Dans un Saint-Pétersbourg miteux et étouffant, l'homme \"moyen\" est celui qui n'a ni pouvoir ni argent. Rodion Romanovicth Raskolnikov, que tout désigne comme cet homme \"moyen\", entretient le fantasme de devenir un homme \"supérieur\" en accédant au pouvoir par la richesse. Nourri par l'injustice et la misère qui gangrène son pays et par son désir d'idéalisme moral, il part à la rencontre de...",
         "(basée sur l'excellente traduction d'André Markowicz) Raskolinikov un étudiant russe qui ne se prend pas pour de la merde décide d’exécuter pour la voler une vieille usurière. Ce qui lui permettra de prendre dans la vie un départ à la mesure de ces ambitions et de la haute opinion qu'il se fait de lui même. Mais en la tuant il découvre qu'il est un homme comme les autres, ce qu'il vit assez mal....",
@@ -40,16 +39,15 @@ class CommentaireTableSeeder extends Seeder
     ];
     private function commentaires (){
         Commentaire::create([
-            'commentaire' => rand(1,count($this->comments)),
-            'par' => rand(1,count($this->utilisateurs)),
-            'crime_id' => rand(1,count($this->crimes)),
+            'commentaire' => rand(1,count($comments)),
+            'par' => rand(1,count($utilisateurs)),
+            'crime_id' => rand(1,count($crimes)),
 
         ]);
     }
-
-
     public function run()
-    {
+    {    $crimes = Crime::all();
+        $utilisateurs = User::all();
         for ($i=0; $i <234; $i++) { 
             $this->commentaires();
         }
