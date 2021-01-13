@@ -66,7 +66,7 @@
             </div>
          </div>
     </div>
-    
+
     @php
              $crimeEspeces =  \App\Models\CrimeEspece::latest()->where('crime_id', $crime->id)->get()
     @endphp
@@ -101,7 +101,6 @@
 
                                         <div>
                                             @include('partials._notify',['nom'  => 'auteur'])
-
                                             <div class="text-right">
                                                 <a href="{{route('crime_auteurs.create', ['crime' => $crime->uuid])}}" class="btn btn-primary"> <i class="fa fa-plus" aria-hidden="true"></i> Ajouter</a>
                                             </div>

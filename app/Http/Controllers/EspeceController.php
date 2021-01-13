@@ -13,8 +13,6 @@ use Illuminate\Support\Carbon;
 class EspeceController extends Controller
 {
 
-
-
     public function __construct()
     {
         $this->middleware('auth');

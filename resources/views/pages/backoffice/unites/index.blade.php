@@ -26,16 +26,13 @@
                         <li class="breadcrumb-item"><a href="{{route('accueil')}}">Accueil</a></li>
 							<li class="breadcrumb-item active" aria-current="page">Unités</li>
 						</ol>
-					</div>
+                    </div>
+                    
 					<div class="ml-auto pageheader-btn">
                     <a class="btn btn-primary" href="{{route('unites.create')}}"  >  <span>
                             <i class="fe fe-plus"></i>
                         </span>
                         Ajouter une Unité</a>
-
-
-                    </button>
-
 					</div>
 				</div>
 				<!-- PAGE-HEADER END -->

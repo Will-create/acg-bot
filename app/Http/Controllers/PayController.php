@@ -17,7 +17,7 @@ class PayController extends Controller
     {
         $this->middleware('auth');
     }
-  
+
     public function index()
     {
         return view('pages.backoffice.pays.index', [
@@ -46,7 +46,7 @@ class PayController extends Controller
     {
         $data=request()->validate([
             'nom'=> ['required','string','max:255','min:3','unique:pays'],
-            'icone'=> ['image','required'],
+            'icone'=> ['required'],
             'codeiso3_pays_origine' => ['required','string','max:2','min:1','unique:pays']
           ]);
           $pays = new Pay;
@@ -73,11 +73,11 @@ class PayController extends Controller
         ]);
     }
     public function update(Request $request, $uuid)
-    { 
+    {
         $pays = Pay::where('uuid', $uuid)->first();
         $data=request()->validate([
         'nom'=> ['required','string','max:255','min:3'],
-        'icone'=> ['image','required'],
+        'icone'=> ['image','nullable'],
         'codeiso3_pays_origine' => ['string','max:2','min:1']
          ]);
       if($request->hasFile('icone')){
@@ -94,15 +94,15 @@ class PayController extends Controller
       return redirect()->route('pays.show', $pays->uuid);
     }
     public function destroy(Request $request, $uuid)
-    {   
+    {
         $pays = Pay::where('uuid', $uuid)->first();
         $restriction = new Restriction();
         $restrictions = $restriction->check($pays->id,[
             ['foreignkey'=>'pays_id','modelname'=>'Unite'],
             ['foreignkey'=>'pays_id','modelname'=>'Localite'],
             ['foreignkey'=>'pays_id','modelname'=>'AireProtegee'],
-            ['foreignkey'=>'pays_id','modelname'=>'Crime'],
-            
+            ['foreignkey'=>'pays_apprehension','modelname'=>'Crime'],
+
             ]);
            if ($restrictions){
             return redirect()->back()->with('danger',$restrictions['message']);

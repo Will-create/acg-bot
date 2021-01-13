@@ -14,8 +14,6 @@
 		<link rel="stylesheet" href="{{URL::asset('assets/plugins/telephoneinput/telephoneinput.css')}}">
 @endsection
 @section('page-header')
-                <!-- PAGE-HEADER -->
-
 				<div class="page-header">
 					<div>
 						<h1 class="page-title">{{$titre}}</h1>
@@ -23,17 +21,16 @@
                         <li class="breadcrumb-item"><a href="{{route('accueil')}}">Accueil</a></li>
 							<li class="breadcrumb-item active" aria-current="page">{{$subtitle}}</li>
 						</ol>
-					</div>
-					<div class="ml-auto pageheader-btn">
-                    <a class="btn btn-primary" href="{{route('especes.create', $regne)}}">  <span>
-                            <i class="fe fe-plus"></i>
-                        </span>
-                    Ajouter une espèce @if($regne) {{$regne.'e'}} @endif</a>
+                    </div>
+                    @if (Auth::user()->role->designation != 'Coordonnateur Régional' && Auth::user()->role->designation != 'Administrateur Général')
+                    <div class="ml-auto pageheader-btn">
+                        <a class="btn btn-primary" href="{{route('especes.create', $regne)}}">  <span>
+                                <i class="fe fe-plus"></i>
+                            </span>
+                        Ajouter une espèce @if($regne) {{$regne.'e'}} @endif</a>
+                        </div>
+                    @endif
 
-
-                    </button>
-
-					</div>
 				</div>
 				<!-- PAGE-HEADER END -->
 @endsection

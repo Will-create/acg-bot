@@ -23,6 +23,6 @@ class crimeTypeReglement extends Model
     }
     public function auteur()
     {
-        return $this->belongsTo(CrimeAuteur::class);
+        return $this->belongsTo(CrimeAuteur::class );
     }
 }

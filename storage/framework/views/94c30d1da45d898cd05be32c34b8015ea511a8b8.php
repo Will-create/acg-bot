@@ -1,0 +1,1 @@
+<?php /**PATH D:\Switch Maker\criminalite\resources\views\pages\backoffice\natureCrime\show.blade.php ENDPATH**/ ?>
