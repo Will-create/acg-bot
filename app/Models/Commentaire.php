@@ -13,7 +13,6 @@ class Commentaire extends Model
         return 'uuid';
     }
 
-
     public function auteur(){
         return $this->belongsTo('App\Models\User','par','id');
     }

@@ -180,7 +180,7 @@ class CrimeController extends Controller
      */
     public function show( $crimeUuid)
     {
-        $crime =Crime::where('uuid', $crimeUuid)->with('type','armes')->first();
+        $crime =Crime::where('uuid', $crimeUuid)->with('type','armes','service_investigateur')->first();
         return view('pages.backoffice.crimes.show',
         [
             'crime'  => $crime,

@@ -57,7 +57,6 @@ class RegneEspece extends Component
         $this->regne = "";
         $this->espece = "";
         session()->flash('status', 'Espèce ajoutée avec succès');
-
     }
 
     public function delete($id) {

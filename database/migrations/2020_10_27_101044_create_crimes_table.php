@@ -16,7 +16,6 @@ class CreateCrimesTable extends Migration
         Schema::create('crimes', function (Blueprint $table) {
             $table->id();
             $table->uuid('uuid');
-  
             $table->unsignedBigInteger('condition_produit_id')->nullable();
             $table->unsignedBigInteger('type_crime_id')->nullable();
             $table->unsignedBigInteger('espece_id')->nullable();
@@ -29,7 +28,7 @@ class CreateCrimesTable extends Migration
             $table->string('localite_apprehension')->nullable();
             $table->string('longitude', 25)->nullable();
             $table->string('latitude', 25)->nullable();
-            $table->text('gestion_des_saisies')->nullable();
+            $table->unsignedBigInteger('gestion_des_saisies')->nullable();
             $table->boolean('veto')->nullable();
             $table->boolean('lien_terrorisme')->default(false);
             $table->string('victime', 100)->nullable();
@@ -49,9 +48,10 @@ class CreateCrimesTable extends Migration
             ->onUpdate('restrict');
             $table->foreign('services_investigateurs')->references('id')->on('unites')->onDelete('restrict')
             ->onUpdate('restrict');
+            $table->foreign('gestion_des_saisies')->references('id')->on('unites')->onDelete('restrict')
+            ->onUpdate('restrict');
             $table->foreign('condition_produit_id')->references('id')->on('condition_produits')->onDelete('restrict')
             ->onUpdate('restrict');
-
         });
     }
 
