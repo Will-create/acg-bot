@@ -83,6 +83,8 @@
                             </div>
 
                                <div class="row">
+                                   @if ($crimeTypeReglement->suite)
+
                                 <div class="col-md-6">
                                     <div class=" ">
                                         <label>   Suite  <span class="text-danger">*</span></label>
@@ -98,6 +100,9 @@
 
                                     </div>
                                 </div>
+                                @endif
+@if ($crimeTypeReglement->amende)
+
                                 <div class="col-md-6" >
                                     <div class="form-group">
                                         <label>   Amende  <span class="text-danger">*</span></label>
@@ -106,10 +111,12 @@
 
                                     </div>
                                 </div>
+@endif
+
                                </div>
                                 <div class="row" style="margin-top: 28px">
 
-                                        <button type="submit" class="btn btn-primary">Ajouter</button>
+                                        <button type="submit" class="btn btn-primary">Mettre à jour</button>
                                 </div>
                             </form>
                             <div wire:loading wire:target="submit">
@@ -119,8 +126,42 @@
                             </div>
                             </div>
                                                     </div>
-					</div>
-				</div>
+                    </div>
+
+                    <div class="text-right">
+                    <button type="button" class="btn btn-outline-danger   mb-1" data-toggle="modal" data-target="#exampleModalDelete{{$crimeTypeReglement->id}}"><i class="fa fa-trash"></i> Supprimer le règlement</button>
+
+                    </div>
+                    <div class="modal" id="exampleModalDelete{{$crimeTypeReglement->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalDelete" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalDelete">Suppression  <span class="text-success"> </h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>  Voullez-vous supprimer ce règlement ?
+                                    </p>
+                                </div>
+                                <div class="modal-footer">
+                                    <form action="{{route('crime_reglements.destroy', $crimeTypeReglement)}}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger ">
+                                            <i class="fa fa-trash"></i>
+                                        <span>Confirmer la suppression</span>
+                                        </button>
+                                        <button type="reset" class="btn btn-success" data-dismiss="modal">
+                                            <i class="fa fa-times"></i>
+                                                        <span>Annuler</span>
+                                        </button>
+                                        </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>				</div>
 			</div>
 
 @endsection

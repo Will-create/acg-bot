@@ -34,6 +34,7 @@ class DatabaseSeeder extends Seeder
          $this->call(DecisionJusticeTableSeeder::class);
         $this->call(CrimeTableSeeder::class);
         $this->call(CommentaireTableSeeder::class);
+        $this->call(CrimeParameter::class);
 
     }
 }

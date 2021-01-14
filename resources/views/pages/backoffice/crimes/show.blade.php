@@ -101,6 +101,7 @@
 
                                         <div>
                                             @include('partials._notify',['nom'  => 'auteur'])
+                                           
                                             <div class="text-right">
                                                 <a href="{{route('crime_auteurs.create', ['crime' => $crime->uuid])}}" class="btn btn-primary"> <i class="fa fa-plus" aria-hidden="true"></i> Ajouter</a>
                                             </div>
@@ -165,6 +166,7 @@
                                             <div class="text-right">
                                                 @if (count($crime->auteurs) > 0)
                                                 <a href="{{route('crime_reglements.create', ['crime'   => $crime->uuid])}}" class="btn btn-primary"> <i class="fa fa-plus" aria-hidden="true"></i> Ajouter</a>
+                                                <br>
                                                @else
                                                <small class="text-danger">
                                                    Veuillez d'abord ajouter les auteurs du crimes

@@ -171,7 +171,8 @@ class CrimeAuteurController extends Controller
     {
         $auteur =  CrimeAuteur::where('uuid', $auteur)->first();
         if (count($auteur->reglements) > 0) {
-          $request->session()->flash('auteur', 'Impossible de supprimer cet enregistrement');
+          $request->session()->flash('section', 'auteur');
+          $request->session()->flash('error', 'Impossible de supprimer cet enregistrement');
             return redirect()->route('crimes.show', $auteur->crime->uuid);
         }
         $auteur->delete();

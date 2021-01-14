@@ -58,7 +58,7 @@
     <div class="col-md-6 @if(!$displayAmende) d-none @endif" >
         <div class="form-group">
             <label>   Amende  <span class="text-danger">*</span></label>
-               <input type="number" name="amende" id="" wire:model="amende" class="form-control">
+               <input type="number" name="amende" id="" wire:model="amende" class="form-control" min="0">
                   @error('amende') <span class="error text-danger">{{ $message }}</span> @enderror
 
         </div>

@@ -113,8 +113,15 @@ class CrimeTypeReglementController extends Controller
      * @param  \App\Models\crimeTypeReglement  $crimeTypeReglement
      * @return \Illuminate\Http\Response
      */
-    public function destroy(crimeTypeReglement $crimeTypeReglement)
+    public function destroy(Request $request, $id)
+
     {
-        //
+        $reglement = crimeTypeReglement::findOrFail($id);
+        $reglement->delete();
+        session()->flash('reglement', 'Règlement supprimé  avec succès');
+        session()->flash('section', 'reglement');
+        return redirect()->route('crimes.show', $reglement->crime->uuid);
+
+
     }
 }

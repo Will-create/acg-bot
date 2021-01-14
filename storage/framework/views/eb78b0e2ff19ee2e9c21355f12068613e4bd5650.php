@@ -1,5 +1,5 @@
 <div>
- 
+
     <div class="card">
         <div class="card-body">
             <ul class="demo-accordion accordionjs m-0" data-active-index="false">
@@ -33,13 +33,13 @@
                                                               </a> <br>
                                                               <div class="comment-text w-100">
                                                                   <div class="comment-footer">
-                                                                        <span class="m-b-15 d-block" style="background-color: rgb(241, 255, 251); border-radius:.5em; padding:1.5em; text-align:center;"><a class="text-dark" href="<?php echo e(route('commentaires.show',  $commentaire->uuid)); ?>" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" ><?php echo e(ucfirst($commentaire->commentaire)); ?></a> 
-                                                                        </span> 
+                                                                        <span class="m-b-15 d-block" style="background-color: rgb(241, 255, 251); border-radius:.5em; padding:1.5em; text-align:center;"><a class="text-dark" href="<?php echo e(route('commentaires.show',  $commentaire->uuid)); ?>" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" ><?php echo e(ucfirst($commentaire->commentaire)); ?></a>
+                                                                        </span>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <br><br> <span class="text-muted float-right"><?php echo e($commentaire->created_at->format(' d M Y h:i:s')); ?></span> 
-                                                        </a> 
+                                                            <br><br> <span class="text-muted float-right"><?php echo e($commentaire->created_at->format(' d M Y h:i:s')); ?></span>
+                                                        </a>
                                                       </div>
                                                     </div>
                                                   </div>
@@ -50,14 +50,13 @@
                                     </li>
                                 </ul>
                             </div>
-                            <div class="row m-5">
-                                <form wire:submit.prevent="submit" >
-                                    <div class="row">
-                                        <div class="col-md-12">
+                            <div class="row m-5" >
+                                <form wire:submit.prevent="submit"  style="width: 100%">
                                             <div class="form-group">
                                                 <textarea wire:model.lazy="commentaire" rows="2" type="text" class="form-control" name="commentaire"
                                                     placeholder="Commentaire" id="commentaire"
-                                                ></textarea>
+                                                    style="width: 100%"
+                                                    ></textarea>
                                                         <?php $__errorArgs = ['commentaire'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -70,12 +69,10 @@ $message = $__bag->first($__errorArgs[0]); ?>
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
-                                            </div>
                                         </div>
-                                    </div>
                                     <input type="hidden" wire:model="crime_id" name="crime_id" value="<?php echo e($crime->id); ?>">
                                     <div class="text-right">
-                                        <button class="btn btn-primary" type="submit"> <i class="fa fa-plus" aria-hidden="true"></i> Ajouter</button> 
+                                        <button class="btn btn-primary" type="submit"> <i class="fa fa-plus" aria-hidden="true"></i> Envoyer</button>
                                     </div>
                                     <br>
                                 </form>

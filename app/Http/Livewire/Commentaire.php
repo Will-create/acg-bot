@@ -45,6 +45,8 @@ class Commentaire extends Component
 
     public function render()
     {
+        $this->dispatchBrowserEvent('contentChanged');
+
         return view('livewire.commentaire');
     }
 }

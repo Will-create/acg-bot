@@ -1,5 +1,5 @@
 		<!-- FAVICON -->
-		<link rel="shortcut icon" type="image/x-icon" href="{{URL::asset('assets/images/brand/favicon.ico')}}" />
+		<link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/logo.jpeg') }}" />
 		<!-- TITLE -->
 		<title>PayMass Faso</title>
 		<!-- BOOTSTRAP CSS -->

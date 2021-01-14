@@ -18,7 +18,7 @@
 @section('page-header')
                 <!-- PAGE-HEADER -->
                 @include('partials._notification')
-				<div class="page-header">
+				<div class="page-headesupprr">
 					<div>
 						<h1 class="page-title">Liste des utilisateurs</h1>
 						<ol class="breadcrumb">
@@ -159,7 +159,7 @@
 
                                                 </tbody>
                                                 <tbody class="col-lg-6 col-xl-6 p-0">
-                                                    
+
 
                                                     <tr>
                                                         <td><strong>Téléphone :</strong> {{ ($utilisateur->tel)}} </td>
