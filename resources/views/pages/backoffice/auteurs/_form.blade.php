@@ -165,18 +165,6 @@
 
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label class="form-label" for="adresse">Adresse <strong class="text-danger">*</strong> </label>
-                        <input type="text" class="form-control" name="adresse" placeholder="Adresse" id="adresse"
-                            value="{{old('adresse') ?? $auteur->adresse }}" required>
-                        @error('adresse')
-                        <span class="helper-text red-text">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
                         <label class="form-label" for="revenue">Revenue <strong class="text-danger"></strong></label>
                         <input class="form-control" name="revenue" placeholder="Réference" type="text"
                             value="{{old('revenue') ?? $auteur->revenue}}">
@@ -186,6 +174,9 @@
                         </span>
                         @enderror
                     </div>
+                </div>
+                <div class="col-md-4">
+                    
                 </div>
             </div>
         </div>
@@ -282,22 +273,36 @@
                 </div>
                 </div>
                 </div> --}}
-
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label class="form-label" for="affaire_judiciaire">Précédents judiciaires<strong
-                                class="text-danger"></strong>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label" for="adresse">Adresse <strong class="text-danger">*</strong> </label>
                         </label>
-                        <textarea rows="5" type="text" class="form-control" name="affaire_judiciaire"
-                            placeholder="Précédents judiciaires" id="affaire_judiciaire"
-                            >{{ old('affaire_judiciaire') ?? $auteur->affaire_judiciaire }}</textarea>
-                        @error('affaire_judiciaire')
-                        <span class="helper-text red-text">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
+                        <textarea rows="5" type="text" class="form-control" name="addresse"
+                            placeholder="Précédents judiciaires" id="addresse"
+                            >{{ old('addresse') ?? $auteur->addresse }}</textarea>
+                            @error('adresse')
+                            <span class="helper-text red-text">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
                     </div>
-                </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label" for="affaire_judiciaire">Précédents judiciaires<strong
+                                    class="text-danger"></strong>
+                            </label>
+                            <textarea rows="5" type="text" class="form-control" name="affaire_judiciaire"
+                                placeholder="Précédents judiciaires" id="affaire_judiciaire"
+                                >{{ old('affaire_judiciaire') ?? $auteur->affaire_judiciaire }}</textarea>
+                            @error('affaire_judiciaire')
+                            <span class="helper-text red-text">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                    </div>
+
                 </div>
 
 

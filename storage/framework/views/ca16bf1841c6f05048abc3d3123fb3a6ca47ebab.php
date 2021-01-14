@@ -65,25 +65,47 @@
         </div>
         <div class:="tab-content">
             <div class="tab-pane" id="tab-51">
-                <?php
+                <div class="card">
+                    <div class="card-body">
+                        <?php
 if (! isset($_instance)) {
-    $html = \Livewire\Livewire::mount('commentaire',['crime'  => $crime,'commentaires' => $commentaires])->html();
-} elseif ($_instance->childHasBeenRendered('Gd5OMDF')) {
-    $componentId = $_instance->getRenderedChildComponentId('Gd5OMDF');
-    $componentTag = $_instance->getRenderedChildComponentTagName('Gd5OMDF');
+    $html = \Livewire\Livewire::mount('comment',['crime'  => $crime,'commentaires' => $commentaires])->html();
+} elseif ($_instance->childHasBeenRendered('8Th5tmD')) {
+    $componentId = $_instance->getRenderedChildComponentId('8Th5tmD');
+    $componentTag = $_instance->getRenderedChildComponentTagName('8Th5tmD');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('Gd5OMDF');
+    $_instance->preserveRenderedChild('8Th5tmD');
 } else {
-    $response = \Livewire\Livewire::mount('commentaire',['crime'  => $crime,'commentaires' => $commentaires]);
+    $response = \Livewire\Livewire::mount('comment',['crime'  => $crime,'commentaires' => $commentaires]);
     $html = $response->html();
-    $_instance->logRenderedChild('Gd5OMDF', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('8Th5tmD', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
+                        
+                        <?php
+if (! isset($_instance)) {
+    $html = \Livewire\Livewire::mount('commentaire',['crime'  => $crime,'commentaires' => $commentaires])->html();
+} elseif ($_instance->childHasBeenRendered('XOe2AB6')) {
+    $componentId = $_instance->getRenderedChildComponentId('XOe2AB6');
+    $componentTag = $_instance->getRenderedChildComponentTagName('XOe2AB6');
+    $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
+    $_instance->preserveRenderedChild('XOe2AB6');
+} else {
+    $response = \Livewire\Livewire::mount('commentaire',['crime'  => $crime,'commentaires' => $commentaires]);
+    $html = $response->html();
+    $_instance->logRenderedChild('XOe2AB6', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+}
+echo $html;
+?>
+                    </div>
+                
             </div>
          </div>
+        </div>
     </div>
-    
+
+
     <?php
              $crimeEspeces =  \App\Models\CrimeEspece::latest()->where('crime_id', $crime->id)->get()
     ?>
@@ -108,15 +130,15 @@ echo $html;
                                             <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('regne-espece', ['crime'  => $crime])->html();
-} elseif ($_instance->childHasBeenRendered('pyGNgxu')) {
-    $componentId = $_instance->getRenderedChildComponentId('pyGNgxu');
-    $componentTag = $_instance->getRenderedChildComponentTagName('pyGNgxu');
+} elseif ($_instance->childHasBeenRendered('iOGYBek')) {
+    $componentId = $_instance->getRenderedChildComponentId('iOGYBek');
+    $componentTag = $_instance->getRenderedChildComponentTagName('iOGYBek');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('pyGNgxu');
+    $_instance->preserveRenderedChild('iOGYBek');
 } else {
     $response = \Livewire\Livewire::mount('regne-espece', ['crime'  => $crime]);
     $html = $response->html();
-    $_instance->logRenderedChild('pyGNgxu', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('iOGYBek', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -132,7 +154,6 @@ echo $html;
 
                                         <div>
                                             <?php echo $__env->make('partials._notify',['nom'  => 'auteur'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-
                                             <div class="text-right">
                                                 <a href="<?php echo e(route('crime_auteurs.create', ['crime' => $crime->uuid])); ?>" class="btn btn-primary"> <i class="fa fa-plus" aria-hidden="true"></i> Ajouter</a>
                                             </div>
@@ -156,6 +177,7 @@ echo $html;
                                             <div class="text-right">
                                                 <a href="<?php echo e(route('confiscations.create', ['crime' => $crime->uuid])); ?>" class="btn btn-primary"> <i class="fa fa-plus" aria-hidden="true"></i> Ajouter</a>
                                             </div>
+                                            <br>
                                             <?php if(count($crime->confiscations) > 0): ?>
                                             <?php echo $__env->make('pages.backoffice.confiscations.crimeConfiscation', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                                             <?php else: ?>
@@ -207,6 +229,26 @@ echo $html;
                                             <?php endif; ?>
                                         </div>
                                     </li>
+                                    <li >
+                                        <div>
+                                            <h3>Localisation</h3>
+
+                                        </div>
+                                        <div>
+                                        
+                                            <div class="text-right">
+                                                <?php if($crime->longitude != ''): ?>
+                                                
+                                                <div id="map"></div>
+                                               <?php else: ?>
+                                               <small class="text-danger">
+                                                   Aucune  localisation disponible
+                                               </small>
+                                                <?php endif; ?>
+                                            </div>
+                                            
+                                        </div>
+                                    </li>
                                 </ul>
                             </div>
                     </div><!-- COL-END -->
@@ -236,8 +278,35 @@ echo $html;
 
 <?php $__env->stopSection(); ?>
 
-
+<input id="long" type="hidden" value="<?php echo e($crime->longitude); ?>">
+<input id="lat" type="hidden" value="<?php echo e($crime->latitude); ?>">
 <?php $__env->startPush('ajax_crud'); ?>
+
+<script type="text/javascript">
+    // On initialise la latitude et la longitude de Paris (centre de la carte)
+    var lat =parseFloat(document.getElementById('lat').value) ;
+    var lon =parseFloat(document.getElementById('long').value);
+
+    var macarte = null;
+    // Fonction d'initialisation de la carte
+    function initMap() {
+        // Créer l'objet "macarte" et l'insèrer dans l'élément HTML qui a l'ID "map"
+        macarte = L.map('map').setView([lon, lat], 6);
+        // Leaflet ne récupère pas les cartes (tiles) sur un serveur par défaut. Nous devons lui préciser où nous souhaitons les récupérer. Ici, openstreetmap.fr
+        L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
+            // Il est toujours bien de laisser le lien vers la source des données
+            attribution: 'données © <a href="//osm.org/copyright">OpenStreetMap</a>/ODbL - rendu <a href="//openstreetmap.fr">UICN</a>',
+            minZoom: 1,
+            maxZoom: 20
+        }).addTo(macarte);
+        var marker = L.marker([lon,lat]).addTo(macarte);
+    }
+    window.onload = function(){
+// Fonction d'initialisation qui s'exécute lorsque le DOM est chargé
+initMap();
+    };
+</script>
+
 
 <script src="<?php echo e(asset('js/sweetalert.js')); ?>"></script>
 <link href="<?php echo e(URL::asset('assets/plugins/select2/select2.min.css')); ?>" rel="stylesheet" />
@@ -245,20 +314,21 @@ echo $html;
 
 <script src="<?php echo e(asset('js/ajax.js')); ?>"></script>
 
+
 <script>
     // In your Javascript (external .js resource or <script> tag)
 $(document).ready(function() {
-    $('.js-example-basic-single').select2();
-    $('#mySelect2').select2('data');
-    $('#mySelect2').find(':selected');
-    $('.js-example-basic-confiscation').select2();
+    // $('.js-example-basic-single').select2();
+    // $('#mySelect2').select2('data');
+    // $('#mySelect2').find(':selected');
+    // $('.js-example-basic-confiscation').select2();;
     // $('#mySelect2confiscation').select2('data');
-    // $('#mySelect2confiscation').find(':selected');accordionjs
-});
-        window.addEventListener('contentChanged', event => {
-            $('.js-example-basic-single').select2();
-            $('.accordionjs').load();
+    // $('#mySelect2confiscation').find(':selected');accordionjsrefresh-accordeon
+        window.addEventListener('refresh-accordeon', event => {
+            // $('.js-example-basic-single').select2();
+            $('.demo-accordion').accordion();
         });
+});
 </script>
 <?php $__env->stopPush(); ?>
 <?php $__env->startPush('livewirescript'); ?>

@@ -12,70 +12,66 @@
 		<link rel="stylesheet" href="<?php echo e(URL::asset('assets/plugins/telephoneinput/telephoneinput.css')); ?>">
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('page-header'); ?>
-                <!-- PAGE-HEADER -->
 				<div class="page-header">
 					<div>
-						<h1 class="page-title">Liste des crimes </h1>
+						<h1 class="page-title"><?php echo e($titre); ?></h1>
 						<ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="<?php echo e(route('accueil')); ?>">Accueil</a></li>
-							<li class="breadcrumb-item active" aria-current="page">crime environnemental</li>
+							<li class="breadcrumb-item active" aria-current="page"><?php echo e($subtitle); ?></li>
 						</ol>
-					</div>
-					<div class="ml-auto pageheader-btn">
-                    </button>
-					</div>
+                    </div>
+                    <?php if(Auth::user()->role->designation != 'Coordonnateur Régional' && Auth::user()->role->designation != 'Administrateur Général'): ?>
+                    <div class="ml-auto pageheader-btn">
+                        <a class="btn btn-primary" href="<?php echo e(route('especes.create', $regne)); ?>">  <span>
+                                <i class="fe fe-plus"></i>
+                            </span>
+                        Ajouter une espèce <?php if($regne): ?> <?php echo e($regne.'e'); ?> <?php endif; ?></a>
+                        </div>
+                    <?php endif; ?>
+
 				</div>
 				<!-- PAGE-HEADER END -->
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
 <?php echo $__env->make('partials._notification', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-<?php echo $__env->make('partials._notification', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-<!-- ROW-1 OPEN -->
-<div class="row">
-    <div class="col-md-12 col-lg-12">
-        <div class="card">
-            <div class="card-header">
-                <h3 class="card-title">Liste des Crimes</h3>
-            </div>
-            <?php
-                $i = 1;
-            ?>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table id="data-table1" class="table table-striped table-bordered text-nowrap w-100 table-sm">
-                        <thead>
-                            <tr>
-                                <th class="wd-15p">Ordre</th>
-                                <th class="wd-15p">Pays d'appréhension</th>
-                                <th class="wd-15p">Nombre d'espèces impliquées</th>
-                                <th class="wd-15p">Règlement</th>
-                                <th class="wd-15p">Confiscation</th>
-                                <th class="wd-15p" >Service investigateur</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php $__currentLoopData = $crimes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $crime): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <?php
-                        $crimeEspeces =  \App\Models\CrimeEspece::latest()->where('crime_id', $crime->id)->get()
-                            ?>
-                            <tr>
-                                <td><?php echo e($i++); ?></td>
-                                <td> <a class="text-dark" href="<?php echo e(route('crimes.show', $crime->uuid)); ?>"> <?php echo e($crime->paysApprehension ? ucfirst($crime->paysApprehension->nom) : ''); ?> </a></td>
-                                <td> <a class="text-dark" href="<?php echo e(route('crimes.show', $crime->uuid)); ?>"> <?php echo e(count($crimeEspeces)); ?> </a></td>
-                                <td> <a class="text-dark" href="<?php echo e(route('crimes.show', $crime->uuid)); ?>"> <?php echo e($crime->reglement  ? count($crime->reglement)  :''); ?></a></td>
-                                <td> <a class="text-dark" href="<?php echo e(route('crimes.show', $crime->uuid)); ?>"> <?php echo e($crime->confiscations  ? count($crime->confiscations)  :''); ?></a></td>
-                                <td> <a class="text-dark" href="<?php echo e(route('crimes.show', $crime->uuid)); ?>"> <?php echo e($crime->service_investigateur ?  $crime->service_investigateur->designation  :''); ?></a></td>
-                            </tr>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <!-- TABLE WRAPPER -->
-        </div>
-        <!-- SECTION WRAPPER -->
-    </div>
-</div>
+				<!-- ROW-1 OPEN -->
+				<div class="row">
+					<div class="col-md-12 col-lg-12">
+						<div class="card">
+							<div class="card-header">
+								<h3 class="card-title"> <?php echo e($titre); ?></h3>
+							</div>
+							<div class="card-body">
+								<div class="table-responsive">
+									<table id="data-table1" class="table table-striped table-bordered text-nowrap w-100 table-sm">
+										<thead>
+											<tr>
+												
+												<th class="wd-15p">Nom</th>
+												<th class="wd-15p">Famille</th>
+												<th>Règne</th>
+											</tr>
+										</thead>
+										<tbody>
+                                            <?php $__currentLoopData = $especes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $espece): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+											<tr>
+												
+												<td> <a class="text-dark" href="<?php echo e(route('especes.show',  $espece->uuid)); ?>" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" > <?php echo e($espece->nom); ?> </a></td>
+												<td> <a class="text-dark" href="<?php echo e(route('especes.show',  $espece->uuid)); ?>" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" > <?php echo e($espece->famille); ?> </a></td>
+												
+												<td> <a class="text-dark" href="<?php echo e(route('especes.show',  $espece->uuid)); ?>" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" > <?php echo e(ucfirst($espece->regne)); ?> </a></td>
+                                            </tr>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<!-- TABLE WRAPPER -->
+						</div>
+						<!-- SECTION WRAPPER -->
+					</div>
+				</div>
+			 
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('js'); ?>
      <!-- INTERNAL  DATA TABLE JS-->
@@ -109,4 +105,4 @@
         </script>
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('layouts.master4', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /home/louisbertson/Desktop/criminalite/resources/views/pages/backoffice/crimes/index.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.master4', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /home/louisbertson/Desktop/criminalite/resources/views/pages/backoffice/especes/index.blade.php ENDPATH**/ ?>
