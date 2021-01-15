@@ -17,18 +17,23 @@
                             {{$reglement->mode->mode}}
                         </a>
                         </td>
-                        @if ($reglement->mode->mode == "Poursuite judiciaire")
-                         <td> <a class="text-dark" data-toggle="tooltip" data-placement="top" title="Cliquer pour voir les détails" href="{{route('crime_reglements.edit', $reglement)}}">
-                            {{ $reglement->suite}}
-                            </a>
-                        </td>
-                        @endif
-                        @if ( $reglement->suite &&  $reglement->suite->decision == "Condamnation du prévenu à une amende" || $reglement->mode->mode == "Transaction forestière")
                         <td>
+                            @if ($reglement->mode->mode == "Poursuite judiciaire")
+                             <a class="text-dark" data-toggle="tooltip" data-placement="top" title="Cliquer pour voir les détails" href="{{route('crime_reglements.edit', $reglement)}}">
+                            {{ $reglement->suite->decision}}
+                            </a>
+                            @else
+                            Non applicable
+                            @endif
+                        </td>
+                        <td>
+                            @if ( $reglement->suite &&  $reglement->suite->decision == "Condamnation du prévenu à une amende" || $reglement->mode->mode == "Transaction forestière")
                             <a class="text-dark" data-toggle="tooltip" data-placement="top" title="Cliquer pour voir les détails" href="{{route('crime_reglements.edit', $reglement)}}">
                                 {{ ($reglement->amende)}}
+                                @else
+                                Non applicable 
+                                @endif
                         </td>
-                        @endif
                          <td> <a class="text-dark" data-toggle="tooltip" data-placement="top" title="Cliquer pour voir les détails" href="{{route('crime_reglements.edit', $reglement)}}">
                             {{formatDate($reglement->created_at)}}
                         </a>
