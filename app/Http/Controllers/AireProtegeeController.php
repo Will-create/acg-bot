@@ -21,6 +21,7 @@ class AireProtegeeController extends Controller
 
         return view('pages.backoffice.aire_protegees.index', [
             'aires'                        => AireProtegee::with(['pays'])->orderBy('libelle', 'asc')->get(),
+            'titrePage' => "Liste de aires protégées",
         ]);
     }
     public function filter()
@@ -30,7 +31,9 @@ class AireProtegeeController extends Controller
         return view('pages.backoffice.aire_protegees.filter', [
             'aires'                        => AireProtegee::where('pays_id', $pay->id)->with(['pays'])->orderBy('libelle', 'asc')->get(),
             'pays'                         => Pay::orderBy('nom', 'asc')->get(),
-            'pay'                          => $pay
+            'pay'                          => $pay,
+            'titrePage' => "Liste de aires protégées par pays"
+
         ]);
     }
 
@@ -41,7 +44,8 @@ class AireProtegeeController extends Controller
         return response()->json([
             'aires'                        => AireProtegee::where('pays_id', $pay->id)->with('pays')->orderBy('libelle', 'asc')->get(),
             'pays'                         => Pay::orderBy('nom', 'asc')->get(),
-            'pay'                          => $pay
+            'pay'                          => $pay,
+            'titrePage' => "Liste de aires protégées par pays"
         ]);
     }
     public function create()
@@ -100,7 +104,8 @@ class AireProtegeeController extends Controller
     {
         $aire = AireProtegee::where('uuid', $uuid)->with('pays')->first();
         $carte = $aire->map;
-        return view('pages.backoffice.aire_protegees.show', compact('aire', 'carte'));
+        $titrePage ="Details d'une aire protégées : ".$aire->libelle;
+        return view('pages.backoffice.aire_protegees.show', compact('aire', 'carte','titrePage'));
     }
     public function edit($uuid)
     {

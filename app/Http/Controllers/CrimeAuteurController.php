@@ -19,7 +19,9 @@ class CrimeAuteurController extends Controller
     public function index()
     {
         $auteurs=CrimeAuteur::orderBy('nom','asc')->with('crimes')->get();
-        return view('pages.backoffice.auteurs.index',compact('auteurs'));
+        $titrePage = "Liste de tous les auteurs de crime";
+
+        return view('pages.backoffice.auteurs.index',compact('auteurs','titrePage'));
     }
     public function create($crime = null)
     {
@@ -78,7 +80,7 @@ class CrimeAuteurController extends Controller
             'auteur'   => $auteur,
             'autres'   =>CrimeAuteur::where('crime_id',$auteur->crime_id)->get(),
             'titrePage'     => 'Mise à jour '. $auteur->nom . ' ' . $auteur->prenom,
-            'btnAction'         => 'Mise à jpur',
+            'btnAction'         => 'Mise à jour',
             'crimeUuid'         => null
         ]);
     }
@@ -90,6 +92,7 @@ class CrimeAuteurController extends Controller
         return view('pages.backoffice.commentaires.filter', [
             'commentaires'                    =>CrimeAuteur::where('crime_id',$crime->id)->get(),
             'crimes'                         =>Crime::all(),
+            'titrePage' => "Ajout d'un nouvel auteur de crime",
             'crime'                          =>$crime
         ]);
     }

@@ -18,7 +18,9 @@ class CommentaireController extends Controller
     public function index()
     {
         $commentaires=Commentaire::orderBy('commentaire','asc')->with('auteur','destinataire','crime')->get();
-        return view('pages.backoffice.commentaires.index',compact('commentaires'));
+        $titrePage = "Liste de tous les commentaires";
+
+        return view('pages.backoffice.commentaires.index',compact('commentaires','titrePage'));
     }
     public function create()
     {
@@ -54,6 +56,10 @@ class CommentaireController extends Controller
         return view('pages.backoffice.commentaires.show',[
             'commentaire'   => $commentaire,
             'autres'   =>Commentaire::where('crime_id',$commentaire->crime->id)->get(),
+            'autres'   =>Commentaire::where('crime_id',$commentaire->crime->id)->get(),
+            'autres'   =>Commentaire::where('crime_id',$commentaire->crime->id)->get(),
+            'titrePage' => "Détails d'un commentaire"
+
             
         ]);
     }
@@ -65,7 +71,9 @@ class CommentaireController extends Controller
         return view('pages.backoffice.commentaires.filter', [
             'commentaires'                    =>Commentaire::where('crime_id',$crime->id)->get(),
             'crimes'                         =>Crime::all(),
-            'crime'                          =>$crime
+            'crime'                          =>$crime,
+            'titrePage' => "Liste des commentaires par crime"
+
         ]);
     }
 
@@ -78,7 +86,9 @@ class CommentaireController extends Controller
             'commentaires'                   => Commentaire::where('crime_id',$crime->id)->with('auteur','destinataire','crime')->get(),
             'crimes'                         =>Crime::all(),
             'roles'                          =>Role::all(),
-            'crime'                          =>$crime
+            'crime'                          =>$crime,
+            'titrePage' => "Liste des commentaires par crime"
+
         ]);
     }
 
@@ -88,7 +98,7 @@ class CommentaireController extends Controller
             'commentaire'      =>$commentaire,
             'crimes'      =>Crime::all(),
             'destinataires' =>U::with('role')->get(),
-            'titrePage' => "Mise à jour ",
+            'titrePage' => "Mise à jour d'un commentaire",
             'btnAction' => "Mettre à jour"
         ]);
     }

@@ -20,10 +20,9 @@ class ArmeController extends Controller
        
         return view('pages.backoffice.armes.index', [
             'armes'                        => Arme::with(['crime'])->orderBy('libelle', 'asc')->get(),
+            'titrePage' => "Liste de toutes les armes"
         ]);
     }
-   
-
     
     public function create()
     {
@@ -34,6 +33,7 @@ class ArmeController extends Controller
             'btnAction' => "Ajouter"
         ]);
     }
+
     public function createarme($uuid)
     {   
         return view('pages.backoffice.armes.createarme', [
@@ -82,8 +82,8 @@ class ArmeController extends Controller
     {
         $arme = Arme::where('uuid', $uuid)->with('crime')->first();
         $autres = Arme::where('crime_id', $arme->crime->id)->with('crime')->get();
-        
-        return view('pages.backoffice.armes.show', compact('arme','autres'));
+        $titrePage = "Détails d'une arme".$arme->libelle;
+        return view('pages.backoffice.armes.show', compact('arme','autres','titrePage'));
     }
     public function edit($uuid)
     {
@@ -119,8 +119,6 @@ class ArmeController extends Controller
                     $photoPath = request('photo')->storeAs('photo_uploads', $name, 'public');
                     $arme->photo = $photoPath;
                 }
-                
-                    
                 $arme->libelle = $request['libelle'];
                 $arme->reference = $request['reference'];
                 $arme->remarques = $request['remarques'];

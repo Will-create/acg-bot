@@ -1,5 +1,5 @@
 		<!-- FAVICON -->
-		<link rel="shortcut icon" type="image/x-icon" href="<?php echo e(URL::asset('assets/images/brand/favicon.ico')); ?>" />
+		<link rel="shortcut icon" type="image/x-icon" href="<?php echo e(asset('assets/logo.jpeg')); ?>" />
 		<!-- TITLE -->
 		<title>PayMass Faso</title>
 		<!-- BOOTSTRAP CSS -->

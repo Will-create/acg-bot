@@ -39,7 +39,7 @@ class CrimeTableSeeder extends Seeder
         $tcrime = TypeCrime::all();
         $aires = AireProtegee::all();
         $conditions = ['frais', 'vivant'];
-        for ($i = 0; $i < 1000; $i++) {
+        for ($i = 0; $i < 30; $i++) {
             $crime =  Crime::create([
                 'uuid' => Str::uuid(),
                 // 'condition_produit_id' => rand(1,count($conditions)),

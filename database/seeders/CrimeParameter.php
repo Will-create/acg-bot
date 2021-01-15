@@ -38,7 +38,7 @@ class CrimeParameter extends Seeder
             $voyage = [true, false];
 
         foreach ($crimes as $key => $crime) {
-           for ($i=0; $i <10 ; $i++) {
+           for ($i=0; $i <2 ; $i++) {
             CrimeEspece::create([
                 'uuid'  => Str::uuid(),
                'crime_id' => $crime->id,

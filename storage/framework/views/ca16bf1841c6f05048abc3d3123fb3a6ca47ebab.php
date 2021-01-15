@@ -72,15 +72,15 @@
                         <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('comment',['crime'  => $crime,'commentaires' => $commentaires])->html();
-} elseif ($_instance->childHasBeenRendered('wpmkEaf')) {
-    $componentId = $_instance->getRenderedChildComponentId('wpmkEaf');
-    $componentTag = $_instance->getRenderedChildComponentTagName('wpmkEaf');
+} elseif ($_instance->childHasBeenRendered('aU8LRx5')) {
+    $componentId = $_instance->getRenderedChildComponentId('aU8LRx5');
+    $componentTag = $_instance->getRenderedChildComponentTagName('aU8LRx5');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('wpmkEaf');
+    $_instance->preserveRenderedChild('aU8LRx5');
 } else {
     $response = \Livewire\Livewire::mount('comment',['crime'  => $crime,'commentaires' => $commentaires]);
     $html = $response->html();
-    $_instance->logRenderedChild('wpmkEaf', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('aU8LRx5', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -88,15 +88,15 @@ echo $html;
                         <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('commentaire',['crime'  => $crime,'commentaires' => $commentaires])->html();
-} elseif ($_instance->childHasBeenRendered('EpKLXr0')) {
-    $componentId = $_instance->getRenderedChildComponentId('EpKLXr0');
-    $componentTag = $_instance->getRenderedChildComponentTagName('EpKLXr0');
+} elseif ($_instance->childHasBeenRendered('CEZrMg3')) {
+    $componentId = $_instance->getRenderedChildComponentId('CEZrMg3');
+    $componentTag = $_instance->getRenderedChildComponentTagName('CEZrMg3');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('EpKLXr0');
+    $_instance->preserveRenderedChild('CEZrMg3');
 } else {
     $response = \Livewire\Livewire::mount('commentaire',['crime'  => $crime,'commentaires' => $commentaires]);
     $html = $response->html();
-    $_instance->logRenderedChild('EpKLXr0', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('CEZrMg3', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -132,15 +132,15 @@ echo $html;
                                             <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('regne-espece', ['crime'  => $crime])->html();
-} elseif ($_instance->childHasBeenRendered('H4pPcES')) {
-    $componentId = $_instance->getRenderedChildComponentId('H4pPcES');
-    $componentTag = $_instance->getRenderedChildComponentTagName('H4pPcES');
+} elseif ($_instance->childHasBeenRendered('6vsf67O')) {
+    $componentId = $_instance->getRenderedChildComponentId('6vsf67O');
+    $componentTag = $_instance->getRenderedChildComponentTagName('6vsf67O');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('H4pPcES');
+    $_instance->preserveRenderedChild('6vsf67O');
 } else {
     $response = \Livewire\Livewire::mount('regne-espece', ['crime'  => $crime]);
     $html = $response->html();
-    $_instance->logRenderedChild('H4pPcES', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('6vsf67O', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -156,6 +156,7 @@ echo $html;
 
                                         <div>
                                             <?php echo $__env->make('partials._notify',['nom'  => 'auteur'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                                           
                                             <div class="text-right">
                                                 <a href="<?php echo e(route('crime_auteurs.create', ['crime' => $crime->uuid])); ?>" class="btn btn-primary"> <i class="fa fa-plus" aria-hidden="true"></i> Ajouter</a>
                                             </div>
@@ -220,6 +221,7 @@ echo $html;
                                             <div class="text-right">
                                                 <?php if(count($crime->auteurs) > 0): ?>
                                                 <a href="<?php echo e(route('crime_reglements.create', ['crime'   => $crime->uuid])); ?>" class="btn btn-primary"> <i class="fa fa-plus" aria-hidden="true"></i> Ajouter</a>
+                                                <br>
                                                <?php else: ?>
                                                <small class="text-danger">
                                                    Veuillez d'abord ajouter les auteurs du crimes
@@ -268,15 +270,15 @@ echo $html;
                     <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('veto',['crime'  => $crime])->html();
-} elseif ($_instance->childHasBeenRendered('qAUvrKO')) {
-    $componentId = $_instance->getRenderedChildComponentId('qAUvrKO');
-    $componentTag = $_instance->getRenderedChildComponentTagName('qAUvrKO');
+} elseif ($_instance->childHasBeenRendered('DyRgIBi')) {
+    $componentId = $_instance->getRenderedChildComponentId('DyRgIBi');
+    $componentTag = $_instance->getRenderedChildComponentTagName('DyRgIBi');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('qAUvrKO');
+    $_instance->preserveRenderedChild('DyRgIBi');
 } else {
     $response = \Livewire\Livewire::mount('veto',['crime'  => $crime]);
     $html = $response->html();
-    $_instance->logRenderedChild('qAUvrKO', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('DyRgIBi', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -285,15 +287,15 @@ echo $html;
                     <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('validate',['crime'  => $crime])->html();
-} elseif ($_instance->childHasBeenRendered('1nZf7Vo')) {
-    $componentId = $_instance->getRenderedChildComponentId('1nZf7Vo');
-    $componentTag = $_instance->getRenderedChildComponentTagName('1nZf7Vo');
+} elseif ($_instance->childHasBeenRendered('xPQr41E')) {
+    $componentId = $_instance->getRenderedChildComponentId('xPQr41E');
+    $componentTag = $_instance->getRenderedChildComponentTagName('xPQr41E');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('1nZf7Vo');
+    $_instance->preserveRenderedChild('xPQr41E');
 } else {
     $response = \Livewire\Livewire::mount('validate',['crime'  => $crime]);
     $html = $response->html();
-    $_instance->logRenderedChild('1nZf7Vo', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('xPQr41E', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
