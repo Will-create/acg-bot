@@ -180,7 +180,7 @@ class CrimeController extends Controller
      */
     public function show( $crimeUuid)
     {
-        $crime =Crime::where('uuid', $crimeUuid)->with('type','armes','service_investigateur')->first();
+        $crime =Crime::where('uuid', $crimeUuid)->with('type','paysApprehension','armes','service_investigateur','localite')->first();
         function openstreetmap_url($lon, $lat, $zoom=13) {
             $url = 'https:⁄⁄www.openstreetmap.org/?mlat='.$lat.'&amp;mlon='.$lon.'#map='.$zoom.'/'.$lat.'/'.$lon;
             return $url;

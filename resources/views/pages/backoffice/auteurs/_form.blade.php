@@ -153,7 +153,7 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="form-label" for="travail">Profession <strong class="text-danger"></strong></label>
-                        <input class="form-control" name="travail" placeholder="Réference" type="text"
+                        <input class="form-control" name="travail" placeholder="Profession" type="text"
                             value="{{old('travail') ?? $auteur->travail}}">
                         @error('travail')
                         <span class="helper-text red-text">
@@ -165,8 +165,8 @@
 
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label class="form-label" for="revenue">Revenue <strong class="text-danger"></strong></label>
-                        <input class="form-control" name="revenue" placeholder="Réference" type="text"
+                        <label class="form-label" for="revenue">Revenue Mensuel <strong class="text-danger"></strong></label>
+                        <input class="form-control" name="revenue" placeholder="Revenue Mensuel" type="text"
                             value="{{old('revenue') ?? $auteur->revenue}}">
                         @error('revenue')
                         <span class="helper-text red-text">

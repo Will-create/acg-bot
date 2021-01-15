@@ -48,21 +48,23 @@
                     <dd> {{formatDate($crime->date_apprehension)}}
                     </dd>
                     <dt>Localité d'appréhension :</dt>
-                    <dd> {{ucFirst($crime->service_investigateur ? $crime->service_investigateur->designation: ' ')}}</dd>
+                    <dd>
+                        {{ucFirst($crime->paysApprehension->nom)}}{{ucFirst($crime->localite_aprrehension->nom ?? '/'.$crime->localite->nom)}}
+                    </dd>
                     <dt>Service investigateur :</dt>
-                    <dd>
-                        {{ucFirst($crime->localite_aprrehension)}}
+                    <dd> 
+                        {{ucFirst($crime->service_investigateur->designation ?? $crime->service_investigateur->designation)}}
                     </dd>
-                    <dt>Espèce impliquées :</dt>
-                    <dd>
-                        {{ucFirst($crime->localite_aprrehension)}}
-                    </dd>
+                    
                 </dl>
             </div>
         </div>
         <div class:="tab-content">
             <div class="tab-pane" id="tab-51">
                 <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Commentaires</h3>
+                    </div>
                     <div class="card-body">
                         @livewire('comment',['crime'  => $crime,'commentaires' => $commentaires])
                         
@@ -210,38 +212,47 @@
                 </div>
             </div>
         </div>
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title" >Options</h3>
+                
+           </div>
+            <div class="card-body">
+              <div class="row">
+                  <div class="col-md-6">
+                    @livewire('veto',['crime'  => $crime])
+                  </div>
+                  <div class="col-md-6">
+                    @livewire('validate',['crime'  => $crime])
+
+                  </div>
+                  
+
+              </div>
+            </div>
+        </div>
     </div>
 </div>
-
 @endsection
 @section('js')
         <!-- INTERNAL FORN WIZARD JS-->
         <script src="{{URL::asset('assets/plugins/accordion/accordion.min.js')}}"></script>
         <script src="{{URL::asset('assets/plugins/accordion/accordion.js')}}"></script>
-
 		<script src="{{URL::asset('assets/plugins/formwizard/jquery.smartWizard.js')}}"></script>
 		<script src="{{URL::asset('assets/plugins/formwizard/fromwizard.js')}}"></script>
-
 		<!-- INTERNAL ACCORDION-WIZARD FORM JS -->
 		<script src="{{URL::asset('assets/plugins/accordion-Wizard-Form/jquery.accordion-wizard.min.js')}}"></script>
-
-
         <script src="{{URL::asset('assets/js/advancedform.js')}}"></script>
         <script src="{{URL::asset('assets/plugins/multipleselect/multiple-select.js')}}"></script>
         <script src="{{URL::asset('assets/plugins/multipleselect/multi-select.js')}}"></script>
-
-
 @endsection
-
 <input id="long" type="hidden" value="{{$crime->longitude}}">
 <input id="lat" type="hidden" value="{{$crime->latitude}}">
 @push('ajax_crud')
-
 <script type="text/javascript">
     // On initialise la latitude et la longitude de Paris (centre de la carte)
     var lat =parseFloat(document.getElementById('lat').value) ;
     var lon =parseFloat(document.getElementById('long').value);
-
     var macarte = null;
     // Fonction d'initialisation de la carte
     function initMap() {
@@ -262,14 +273,10 @@ initMap();
     };
 </script>
 {{-- <script src="{{asset('js/jquery19.js')}}"></script> --}}
-
 <script src="{{asset('js/sweetalert.js')}}"></script>
 <link href="{{URL::asset('assets/plugins/select2/select2.min.css')}}" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
-
 <script src="{{asset('js/ajax.js')}}"></script>
-
-
 <script>
     // In your Javascript (external .js resource or <script> tag)
 $(document).ready(function() {
@@ -281,7 +288,7 @@ $(document).ready(function() {
     // $('#mySelect2confiscation').find(':selected');accordionjsrefresh-accordeon
         window.addEventListener('refresh-accordeon', event => {
             // $('.js-example-basic-single').select2();
-            $('.demo-accordion').accordion();
+            // $('.demo-accordion').accordion();
         });
 });
 </script>

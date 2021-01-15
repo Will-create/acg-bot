@@ -155,7 +155,7 @@ unset($__errorArgs, $__bag); ?>
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="form-label" for="travail">Profession <strong class="text-danger"></strong></label>
-                        <input class="form-control" name="travail" placeholder="Réference" type="text"
+                        <input class="form-control" name="travail" placeholder="Profession" type="text"
                             value="<?php echo e(old('travail') ?? $auteur->travail); ?>">
                         <?php $__errorArgs = ['travail'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -174,8 +174,8 @@ unset($__errorArgs, $__bag); ?>
 
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label class="form-label" for="revenue">Revenue <strong class="text-danger"></strong></label>
-                        <input class="form-control" name="revenue" placeholder="Réference" type="text"
+                        <label class="form-label" for="revenue">Revenue Mensuel <strong class="text-danger"></strong></label>
+                        <input class="form-control" name="revenue" placeholder="Revenue Mensuel" type="text"
                             value="<?php echo e(old('revenue') ?? $auteur->revenue); ?>">
                         <?php $__errorArgs = ['revenue'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');

@@ -5,7 +5,6 @@
     <form wire:submit.prevent="submit">
 
 <div class="row">
-
     <div class="col-md-5">
         <div class="form-group">
             <label>   Règne  <span class="text-danger">*</span></label>
@@ -18,7 +17,6 @@
     </div>
     <input type="hidden"  wire:model="crime_id" value="5" >
     @error('crime_id') <span class="error">{{ $message }}</span> @enderror
-
     <div class="col-md-5">
         <div>
             <label>   Espèce  <span class="text-danger">*</span></label>

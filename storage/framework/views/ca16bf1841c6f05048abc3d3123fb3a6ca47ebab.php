@@ -49,36 +49,38 @@
 
                     </dd>
                     <dt>Localité d'appréhension :</dt>
-                    <dd> <?php echo e(ucFirst($crime->service_investigateur ? $crime->service_investigateur->designation: ' ')); ?></dd>
+                    <dd>
+                        <?php echo e(ucFirst($crime->paysApprehension->nom)); ?><?php echo e(ucFirst($crime->localite_aprrehension->nom ?? '/'.$crime->localite->nom)); ?>
+
+                    </dd>
                     <dt>Service investigateur :</dt>
-                    <dd>
-                        <?php echo e(ucFirst($crime->localite_aprrehension)); ?>
+                    <dd> 
+                        <?php echo e(ucFirst($crime->service_investigateur->designation ?? $crime->service_investigateur->designation)); ?>
 
                     </dd>
-                    <dt>Espèce impliquées :</dt>
-                    <dd>
-                        <?php echo e(ucFirst($crime->localite_aprrehension)); ?>
-
-                    </dd>
+                    
                 </dl>
             </div>
         </div>
         <div class:="tab-content">
             <div class="tab-pane" id="tab-51">
                 <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Commentaires</h3>
+                    </div>
                     <div class="card-body">
                         <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('comment',['crime'  => $crime,'commentaires' => $commentaires])->html();
-} elseif ($_instance->childHasBeenRendered('8Th5tmD')) {
-    $componentId = $_instance->getRenderedChildComponentId('8Th5tmD');
-    $componentTag = $_instance->getRenderedChildComponentTagName('8Th5tmD');
+} elseif ($_instance->childHasBeenRendered('wpmkEaf')) {
+    $componentId = $_instance->getRenderedChildComponentId('wpmkEaf');
+    $componentTag = $_instance->getRenderedChildComponentTagName('wpmkEaf');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('8Th5tmD');
+    $_instance->preserveRenderedChild('wpmkEaf');
 } else {
     $response = \Livewire\Livewire::mount('comment',['crime'  => $crime,'commentaires' => $commentaires]);
     $html = $response->html();
-    $_instance->logRenderedChild('8Th5tmD', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('wpmkEaf', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -86,15 +88,15 @@ echo $html;
                         <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('commentaire',['crime'  => $crime,'commentaires' => $commentaires])->html();
-} elseif ($_instance->childHasBeenRendered('XOe2AB6')) {
-    $componentId = $_instance->getRenderedChildComponentId('XOe2AB6');
-    $componentTag = $_instance->getRenderedChildComponentTagName('XOe2AB6');
+} elseif ($_instance->childHasBeenRendered('EpKLXr0')) {
+    $componentId = $_instance->getRenderedChildComponentId('EpKLXr0');
+    $componentTag = $_instance->getRenderedChildComponentTagName('EpKLXr0');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('XOe2AB6');
+    $_instance->preserveRenderedChild('EpKLXr0');
 } else {
     $response = \Livewire\Livewire::mount('commentaire',['crime'  => $crime,'commentaires' => $commentaires]);
     $html = $response->html();
-    $_instance->logRenderedChild('XOe2AB6', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('EpKLXr0', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -130,15 +132,15 @@ echo $html;
                                             <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('regne-espece', ['crime'  => $crime])->html();
-} elseif ($_instance->childHasBeenRendered('iOGYBek')) {
-    $componentId = $_instance->getRenderedChildComponentId('iOGYBek');
-    $componentTag = $_instance->getRenderedChildComponentTagName('iOGYBek');
+} elseif ($_instance->childHasBeenRendered('H4pPcES')) {
+    $componentId = $_instance->getRenderedChildComponentId('H4pPcES');
+    $componentTag = $_instance->getRenderedChildComponentTagName('H4pPcES');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('iOGYBek');
+    $_instance->preserveRenderedChild('H4pPcES');
 } else {
     $response = \Livewire\Livewire::mount('regne-espece', ['crime'  => $crime]);
     $html = $response->html();
-    $_instance->logRenderedChild('iOGYBek', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('H4pPcES', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -255,38 +257,75 @@ echo $html;
                 </div>
             </div>
         </div>
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title" >Options</h3>
+                
+           </div>
+            <div class="card-body">
+              <div class="row">
+                  <div class="col-md-6">
+                    <?php
+if (! isset($_instance)) {
+    $html = \Livewire\Livewire::mount('veto',['crime'  => $crime])->html();
+} elseif ($_instance->childHasBeenRendered('qAUvrKO')) {
+    $componentId = $_instance->getRenderedChildComponentId('qAUvrKO');
+    $componentTag = $_instance->getRenderedChildComponentTagName('qAUvrKO');
+    $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
+    $_instance->preserveRenderedChild('qAUvrKO');
+} else {
+    $response = \Livewire\Livewire::mount('veto',['crime'  => $crime]);
+    $html = $response->html();
+    $_instance->logRenderedChild('qAUvrKO', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+}
+echo $html;
+?>
+                  </div>
+                  <div class="col-md-6">
+                    <?php
+if (! isset($_instance)) {
+    $html = \Livewire\Livewire::mount('validate',['crime'  => $crime])->html();
+} elseif ($_instance->childHasBeenRendered('1nZf7Vo')) {
+    $componentId = $_instance->getRenderedChildComponentId('1nZf7Vo');
+    $componentTag = $_instance->getRenderedChildComponentTagName('1nZf7Vo');
+    $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
+    $_instance->preserveRenderedChild('1nZf7Vo');
+} else {
+    $response = \Livewire\Livewire::mount('validate',['crime'  => $crime]);
+    $html = $response->html();
+    $_instance->logRenderedChild('1nZf7Vo', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+}
+echo $html;
+?>
+
+                  </div>
+                  
+
+              </div>
+            </div>
+        </div>
     </div>
 </div>
-
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('js'); ?>
         <!-- INTERNAL FORN WIZARD JS-->
         <script src="<?php echo e(URL::asset('assets/plugins/accordion/accordion.min.js')); ?>"></script>
         <script src="<?php echo e(URL::asset('assets/plugins/accordion/accordion.js')); ?>"></script>
-
 		<script src="<?php echo e(URL::asset('assets/plugins/formwizard/jquery.smartWizard.js')); ?>"></script>
 		<script src="<?php echo e(URL::asset('assets/plugins/formwizard/fromwizard.js')); ?>"></script>
-
 		<!-- INTERNAL ACCORDION-WIZARD FORM JS -->
 		<script src="<?php echo e(URL::asset('assets/plugins/accordion-Wizard-Form/jquery.accordion-wizard.min.js')); ?>"></script>
-
-
         <script src="<?php echo e(URL::asset('assets/js/advancedform.js')); ?>"></script>
         <script src="<?php echo e(URL::asset('assets/plugins/multipleselect/multiple-select.js')); ?>"></script>
         <script src="<?php echo e(URL::asset('assets/plugins/multipleselect/multi-select.js')); ?>"></script>
-
-
 <?php $__env->stopSection(); ?>
-
 <input id="long" type="hidden" value="<?php echo e($crime->longitude); ?>">
 <input id="lat" type="hidden" value="<?php echo e($crime->latitude); ?>">
 <?php $__env->startPush('ajax_crud'); ?>
-
 <script type="text/javascript">
     // On initialise la latitude et la longitude de Paris (centre de la carte)
     var lat =parseFloat(document.getElementById('lat').value) ;
     var lon =parseFloat(document.getElementById('long').value);
-
     var macarte = null;
     // Fonction d'initialisation de la carte
     function initMap() {
@@ -307,14 +346,10 @@ initMap();
     };
 </script>
 
-
 <script src="<?php echo e(asset('js/sweetalert.js')); ?>"></script>
 <link href="<?php echo e(URL::asset('assets/plugins/select2/select2.min.css')); ?>" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
-
 <script src="<?php echo e(asset('js/ajax.js')); ?>"></script>
-
-
 <script>
     // In your Javascript (external .js resource or <script> tag)
 $(document).ready(function() {
@@ -326,7 +361,7 @@ $(document).ready(function() {
     // $('#mySelect2confiscation').find(':selected');accordionjsrefresh-accordeon
         window.addEventListener('refresh-accordeon', event => {
             // $('.js-example-basic-single').select2();
-            $('.demo-accordion').accordion();
+            // $('.demo-accordion').accordion();
         });
 });
 </script>

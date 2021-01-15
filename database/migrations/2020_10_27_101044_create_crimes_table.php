@@ -30,6 +30,7 @@ class CreateCrimesTable extends Migration
             $table->string('latitude', 25)->nullable();
             $table->unsignedBigInteger('gestion_des_saisies')->nullable();
             $table->boolean('veto')->nullable();
+            $table->boolean('valide')->nullable();
             $table->boolean('lien_terrorisme')->default(false);
             $table->string('victime', 100)->nullable();
             $table->unsignedBigInteger('aire_protegee_id')->nullable();

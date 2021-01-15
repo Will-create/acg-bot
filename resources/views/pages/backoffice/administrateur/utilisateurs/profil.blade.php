@@ -64,10 +64,6 @@
                         </span>
                         @enderror
                     </div>
-                    
-                    
-                    
-                    
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
@@ -123,7 +119,6 @@
         <button type="submit" class="btn btn-primary"> <span>
             <i class="fe fe-save"></i>
         </span> Mettre à jour</button>
-
     </div>
 </form>
 @endsection

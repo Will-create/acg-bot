@@ -18,7 +18,7 @@ class Crime extends Model
         return $this->hasOne('App\Models\TypeCrime','id', 'type_crime_id');
     }
     public function localite(){
-        return $this->hasOne('App\Models\Localite','type_crime_id','id');
+        return $this->belongsTo('App\Models\Localite','localite_apprehension','id');
     }
     public function auteurs(){
         return $this->hasMany(CrimeAuteur::class);

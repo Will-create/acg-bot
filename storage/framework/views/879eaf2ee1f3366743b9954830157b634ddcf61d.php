@@ -5,7 +5,6 @@
     <form wire:submit.prevent="submit">
 
 <div class="row">
-
     <div class="col-md-5">
         <div class="form-group">
             <label>   Règne  <span class="text-danger">*</span></label>
@@ -25,7 +24,6 @@ $message = $__bag->first($__errorArgs[0]); ?> <span class="error"><?php echo e($
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
-
     <div class="col-md-5">
         <div>
             <label>   Espèce  <span class="text-danger">*</span></label>

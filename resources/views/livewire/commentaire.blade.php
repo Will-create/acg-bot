@@ -1,9 +1,6 @@
-<div>
 
     <div class="row m-5">
-        <form wire:submit.prevent="submit" >
-            <div class="row">
-                <div>
+            <form wire:submit.prevent="submit" class="row justify-content-center" >
                     <div class="form-group">
                         <textarea wire:model.lazy="commentaire" rows="2" type="text" class="form-control" name="commentaire"
                             placeholder="Commentaire" id="commentaire"
@@ -14,14 +11,8 @@
                                 </span>
                             @enderror
                     </div>
-                </div>
-            </div>
-            <input type="hidden" wire:model="crime_id" name="crime_id" value="{{$crime->id}}">
-            <div class="text-right">
+                <input type="hidden" wire:model="crime_id" name="crime_id" value="{{$crime->id}}">
                 <button class="btn btn-primary" type="submit"> <i class="fa fa-plus" aria-hidden="true"></i> Ajouter</button> 
-            </div>
-            <br>
-        </form>
+            </form>
     </div>
             
-</div>
