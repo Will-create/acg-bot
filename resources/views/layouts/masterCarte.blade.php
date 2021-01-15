@@ -16,11 +16,7 @@
     </head>
 
 <body class="app sidebar-mini">
-    <style type="text/css">
-        #map{ /* la carte DOIT avoir une hauteur sinon elle n'apparaît pas */
-            height:400px;
-        }
-    </style>
+    
     <!-- GLOABAL LOADER -->
     <div id="global-loader">
         <img src="{{URL::asset('assets/images/loader.svg')}}" class="loader-img" alt="Loader">

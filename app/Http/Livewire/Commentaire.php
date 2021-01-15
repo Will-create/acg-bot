@@ -17,7 +17,6 @@ class Commentaire extends Component
     protected $rules = [
         'commentaire' => 'required',
         'crime_id' => 'required'
-
     ];
     public function vider(){
         $this->commentaire = "";
@@ -25,7 +24,6 @@ class Commentaire extends Component
     public function mount()
     {
         $this->crime_id = $this->crime->id;
-        $this->dispatchBrowserEvent('contentChanged');
 
     }
 
@@ -39,8 +37,9 @@ class Commentaire extends Component
             'par' => Auth::user()->id,
         ]);
         $this->vider();
-        session()->flash('commentaire', 'Commentaire ajoutée avec succès');
-        session()->flash('section', 'commentaire');
+        $this->emit('rafraichir',$this->crime->id);
+        $this->dispatchBrowserEvent('refresh-accordeon');
+        
     }
 
     public function render()

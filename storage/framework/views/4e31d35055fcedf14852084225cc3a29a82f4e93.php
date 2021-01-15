@@ -52,6 +52,42 @@
     <?php echo csrf_field(); ?>
     <?php echo $__env->make('pages.backoffice.auteurs._form', ['btnAction' => $btnAction, 'auteur' => $auteur], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     </form>
+
+        <?php if((Route::currentRouteName() == 'crime_auteurs.show')): ?>
+        <div class="text-right">
+            <button type="button" class="btn btn-outline-danger  mb-1" data-toggle="modal" data-target="#exampleModalDelete<?php echo e($auteur->id); ?>"><i class="fa fa-trash"></i> Supprimer</button>
+        </div>
+        <div class="modal" id="exampleModalDelete<?php echo e($auteur->id); ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalDelete" aria-hidden="true">
+            <div class="modal-dialog text-right" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalDelete">Suppression de l'auteur  <span class="text-success"> <?php echo e($auteur->nom. ' '. $auteur->prenom); ?></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>  Voullez-vous supprimer cet auteur ?
+                        </p>
+                    </div>
+                    <div class="modal-footer text-right">
+                        <form action="<?php echo e(route('crime_auteurs.destroy', $auteur)); ?>" method="POST">
+                            <?php echo csrf_field(); ?>
+                            <?php echo method_field('DELETE'); ?>
+                            <button type="submit" class="btn btn-danger ">
+                                <i class="fa fa-trash"></i>
+                            <span>Confirmer la suppression</span>
+                            </button>
+                            <button type="reset" class="btn btn-success" data-dismiss="modal">
+                                <i class="fa fa-times"></i>
+                                            <span>Annuler</span>
+                            </button>
+                            </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php endif; ?>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('js'); ?>
     <script src="<?php echo e(URL::asset('assets/plugins/fileuploads/js/fileupload.js')); ?>"></script>

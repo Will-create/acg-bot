@@ -62,10 +62,18 @@
         </div>
         <div class:="tab-content">
             <div class="tab-pane" id="tab-51">
-                @livewire('commentaire',['crime'  => $crime,'commentaires' => $commentaires])
+                <div class="card">
+                    <div class="card-body">
+                        @livewire('comment',['crime'  => $crime,'commentaires' => $commentaires])
+                        
+                        @livewire('commentaire',['crime'  => $crime,'commentaires' => $commentaires])
+                    </div>
+                
             </div>
          </div>
+        </div>
     </div>
+
 
     @php
              $crimeEspeces =  \App\Models\CrimeEspece::latest()->where('crime_id', $crime->id)->get()
@@ -178,6 +186,26 @@
                                             @endif
                                         </div>
                                     </li>
+                                    <li >
+                                        <div>
+                                            <h3>Localisation</h3>
+
+                                        </div>
+                                        <div>
+                                        
+                                            <div class="text-right">
+                                                @if ($crime->longitude != '')
+                                                
+                                                <div id="map"></div>
+                                               @else
+                                               <small class="text-danger">
+                                                   Aucune  localisation disponible
+                                               </small>
+                                                @endif
+                                            </div>
+                                            
+                                        </div>
+                                    </li>
                                 </ul>
                             </div>
                     </div><!-- COL-END -->
@@ -207,29 +235,57 @@
 
 @endsection
 
-
+<input id="long" type="hidden" value="{{$crime->longitude}}">
+<input id="lat" type="hidden" value="{{$crime->latitude}}">
 @push('ajax_crud')
+
+<script type="text/javascript">
+    // On initialise la latitude et la longitude de Paris (centre de la carte)
+    var lat =parseFloat(document.getElementById('lat').value) ;
+    var lon =parseFloat(document.getElementById('long').value);
+
+    var macarte = null;
+    // Fonction d'initialisation de la carte
+    function initMap() {
+        // Créer l'objet "macarte" et l'insèrer dans l'élément HTML qui a l'ID "map"
+        macarte = L.map('map').setView([lon, lat], 6);
+        // Leaflet ne récupère pas les cartes (tiles) sur un serveur par défaut. Nous devons lui préciser où nous souhaitons les récupérer. Ici, openstreetmap.fr
+        L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
+            // Il est toujours bien de laisser le lien vers la source des données
+            attribution: 'données © <a href="//osm.org/copyright">OpenStreetMap</a>/ODbL - rendu <a href="//openstreetmap.fr">UICN</a>',
+            minZoom: 1,
+            maxZoom: 20
+        }).addTo(macarte);
+        var marker = L.marker([lon,lat]).addTo(macarte);
+    }
+    window.onload = function(){
+// Fonction d'initialisation qui s'exécute lorsque le DOM est chargé
+initMap();
+    };
+</script>
 {{-- <script src="{{asset('js/jquery19.js')}}"></script> --}}
+
 <script src="{{asset('js/sweetalert.js')}}"></script>
 <link href="{{URL::asset('assets/plugins/select2/select2.min.css')}}" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 
 <script src="{{asset('js/ajax.js')}}"></script>
 
+
 <script>
     // In your Javascript (external .js resource or <script> tag)
 $(document).ready(function() {
-    $('.js-example-basic-single').select2();
-    $('#mySelect2').select2('data');
-    $('#mySelect2').find(':selected');
-    $('.js-example-basic-confiscation').select2();
+    // $('.js-example-basic-single').select2();
+    // $('#mySelect2').select2('data');
+    // $('#mySelect2').find(':selected');
+    // $('.js-example-basic-confiscation').select2();;
     // $('#mySelect2confiscation').select2('data');
-    // $('#mySelect2confiscation').find(':selected');accordionjs
-});
-        window.addEventListener('contentChanged', event => {
-            $('.js-example-basic-single').select2();
-            $('.accordionjs').accordionjs();
+    // $('#mySelect2confiscation').find(':selected');accordionjsrefresh-accordeon
+        window.addEventListener('refresh-accordeon', event => {
+            // $('.js-example-basic-single').select2();
+            $('.demo-accordion').accordion();
         });
+});
 </script>
 @endpush
 @push('livewirescript')

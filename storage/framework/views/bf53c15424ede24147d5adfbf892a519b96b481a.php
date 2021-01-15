@@ -174,25 +174,6 @@ unset($__errorArgs, $__bag); ?>
 
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label class="form-label" for="adresse">Adresse <strong class="text-danger">*</strong> </label>
-                        <input type="text" class="form-control" name="adresse" placeholder="Adresse" id="adresse"
-                            value="<?php echo e(old('adresse') ?? $auteur->adresse); ?>" required>
-                        <?php $__errorArgs = ['adresse'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?>
-                        <span class="helper-text red-text">
-                            <strong><?php echo e($message); ?></strong>
-                        </span>
-                        <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
                         <label class="form-label" for="revenue">Revenue <strong class="text-danger"></strong></label>
                         <input class="form-control" name="revenue" placeholder="Réference" type="text"
                             value="<?php echo e(old('revenue') ?? $auteur->revenue); ?>">
@@ -209,6 +190,9 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                     </div>
+                </div>
+                <div class="col-md-4">
+                    
                 </div>
             </div>
         </div>
@@ -276,65 +260,52 @@ unset($__errorArgs, $__bag); ?>
             </div>
         </div>
         
-
-
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label class="form-label" for="affaire_judiciaire">Précédents judiciaires<strong
-                                class="text-danger"></strong>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label" for="adresse">Adresse <strong class="text-danger">*</strong> </label>
                         </label>
-                        <textarea rows="5" type="text" class="form-control" name="affaire_judiciaire"
-                            placeholder="Précédents judiciaires" id="affaire_judiciaire"
-                            ><?php echo e(old('affaire_judiciaire') ?? $auteur->affaire_judiciaire); ?></textarea>
-                        <?php $__errorArgs = ['affaire_judiciaire'];
+                        <textarea rows="5" type="text" class="form-control" name="addresse"
+                            placeholder="Précédents judiciaires" id="addresse"
+                            ><?php echo e(old('addresse') ?? $auteur->addresse); ?></textarea>
+                            <?php $__errorArgs = ['adresse'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                        <span class="helper-text red-text">
-                            <strong><?php echo e($message); ?></strong>
-                        </span>
-                        <?php unset($message);
+                            <span class="helper-text red-text">
+                                <strong><?php echo e($message); ?></strong>
+                            </span>
+                            <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
-                    </div>
-                </div>
-                </div>
-                <div class="modal-footer">
-                    <?php if((Route::currentRouteName() == 'crime_auteurs.show')): ?>
-                    <button type="button" class="btn btn-outline-danger  mb-1" data-toggle="modal" data-target="#exampleModalDelete<?php echo e($auteur->id); ?>"><i class="fa fa-trash"></i> Supprimer</button>
-                    <div class="modal" id="exampleModalDelete<?php echo e($auteur->id); ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalDelete" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalDelete">Suppression de l'auteur  <span class="text-success"> <?php echo e($auteur->nom. ' '. $auteur->prenom); ?></h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">×</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <p>  Voullez-vous supprimer cet auteur ?
-                                    </p>
-                                </div>
-                                <div class="modal-footer">
-                                    <form action="<?php echo e(route('crime_auteurs.destroy', $auteur)); ?>" method="POST">
-                                        <?php echo csrf_field(); ?>
-                                        <?php echo method_field('DELETE'); ?>
-                                        <button type="submit" class="btn btn-danger ">
-                                            <i class="fa fa-trash"></i>
-                                        <span>Confirmer la suppression</span>
-                                        </button>
-                                        <button type="reset" class="btn btn-success" data-dismiss="modal">
-                                            <i class="fa fa-times"></i>
-                                                        <span>Annuler</span>
-                                        </button>
-                                        </form>
-                                </div>
-                            </div>
                         </div>
                     </div>
-                    <?php endif; ?>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label" for="affaire_judiciaire">Précédents judiciaires<strong
+                                    class="text-danger"></strong>
+                            </label>
+                            <textarea rows="5" type="text" class="form-control" name="affaire_judiciaire"
+                                placeholder="Précédents judiciaires" id="affaire_judiciaire"
+                                ><?php echo e(old('affaire_judiciaire') ?? $auteur->affaire_judiciaire); ?></textarea>
+                            <?php $__errorArgs = ['affaire_judiciaire'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                            <span class="helper-text red-text">
+                                <strong><?php echo e($message); ?></strong>
+                            </span>
+                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                        </div>
+                    </div>
+
+                </div>
+
 
                     <a href="<?php echo e(route('crimes.show', $auteur->crime ? $auteur->crime->uuid : $crimeUuid)); ?>" onclick="cibleur('auteur')" class="btn btn-dark"> <i class="fa fa-times"
                             aria-hidden="true"></i>
@@ -342,7 +313,8 @@ unset($__errorArgs, $__bag); ?>
                     <button type="submit" class="btn btn-primary"><span>
                             <i class="fe fe-save"></i>
                         </span> <?php echo e($btnAction); ?></button>
-                </div>
+
+                        
                 </div>
                 </div>
 <?php /**PATH /home/louisbertson/Desktop/criminalite/resources/views/pages/backoffice/auteurs/_form.blade.php ENDPATH**/ ?>

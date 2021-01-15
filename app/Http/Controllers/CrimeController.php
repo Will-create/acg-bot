@@ -181,6 +181,10 @@ class CrimeController extends Controller
     public function show( $crimeUuid)
     {
         $crime =Crime::where('uuid', $crimeUuid)->with('type','armes','service_investigateur')->first();
+        function openstreetmap_url($lon, $lat, $zoom=13) {
+            $url = 'https:⁄⁄www.openstreetmap.org/?mlat='.$lat.'&amp;mlon='.$lon.'#map='.$zoom.'/'.$lat.'/'.$lon;
+            return $url;
+        }
         return view('pages.backoffice.crimes.show',
         [
             'crime'  => $crime,
@@ -188,7 +192,8 @@ class CrimeController extends Controller
             'armes'  => Arme::where('crime_id',$crime->id)->orderBy('created_at','desc')->get(),
             'commentaires'  => Commentaire::where('crime_id',$crime->id)->orderBy('created_at','desc')->get(),
             'modeReglements'        => ModeReglement::all(),
-            'suites'                => DecisionJustice::all()
+            'suites'                => DecisionJustice::all(),
+            'carte'                 => $crime->longitude ? openstreetmap_url($crime->longitude,$crime->latitude) : ''  
             ]);
 
         

@@ -1,20 +1,19 @@
-@extends('layouts.master4')
-@section('page-header')
+<?php $__env->startSection('page-header'); ?>
                 <!-- PAGE-HEADER -->
-                @include('partials._notification')
+                <?php echo $__env->make('partials._notification', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
 				<div class="page-header">
 					<div>
                     <h1 class="page-title">Details d'unité de lois </h1>
 						<ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{route('accueil')}}">Accueil</a></li>
-                            <li class="breadcrumb-item" aria-current="page"><a href="{{route('unites.index')}}">Unités</a></li>
-                            <li class="breadcrumb-item active" aria-current="page"><span class="text-dark"></span>{{$unite->designation}}</li>
+                        <li class="breadcrumb-item"><a href="<?php echo e(route('accueil')); ?>">Accueil</a></li>
+                            <li class="breadcrumb-item" aria-current="page"><a href="<?php echo e(route('unites.index')); ?>">Unités</a></li>
+                            <li class="breadcrumb-item active" aria-current="page"><span class="text-dark"></span><?php echo e($unite->designation); ?></li>
 
 						</ol>
 					</div>
 					<div class="ml-auto pageheader-btn">
-                    <a class="btn btn-primary" href="{{route('unites.index')}}"  >  <span>
+                    <a class="btn btn-primary" href="<?php echo e(route('unites.index')); ?>"  >  <span>
                             <i class="fe fe-list"></i>
                         </span>
                         Toutes les unités</a>
@@ -25,8 +24,8 @@
 					</div>
 				</div>
 				<!-- PAGE-HEADER END -->
-@endsection
-@section('content')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
 <!-- ROW-2 END -->
 
 <div class="row">
@@ -35,36 +34,36 @@
         <div class="card-body">
             <div id="profile-log-switch">
                 <div class="media-heading text-dark">
-                    <h5><strong>{{ucfirst($unite->designation)}}</strong></h5>
+                    <h5><strong><?php echo e(ucfirst($unite->designation)); ?></strong></h5>
                 </div>
                 <div class="table-responsive ">
                     <table class="table row table-borderless table-sm">
                         <tbody class="col-lg-12 col-xl-6 p-2 ">
                             <tr>
-                            <td><strong>Type d'unite : </strong><a  data-toggle="tooltip" data-placement="right" title="Cliquer pour afficher les détails" class="text-dark" href="{{route('type_unites.show',$unite->type->uuid)}}">{{ucfirst($unite->type->nom)}}</a></td>
+                            <td><strong>Type d'unite : </strong><a  data-toggle="tooltip" data-placement="right" title="Cliquer pour afficher les détails" class="text-dark" href="<?php echo e(route('type_unites.show',$unite->type->uuid)); ?>"><?php echo e(ucfirst($unite->type->nom)); ?></a></td>
                             </tr>
                             <tr>
-                            <td><strong>Pays : </strong> <a  data-toggle="tooltip" data-placement="right" title="Cliquer pour afficher les détails" class="text-dark" href="{{route('pays.show',$unite->pays->uuid)}}">{{$unite->pays->nom}}</a></td>
+                            <td><strong>Pays : </strong> <a  data-toggle="tooltip" data-placement="right" title="Cliquer pour afficher les détails" class="text-dark" href="<?php echo e(route('pays.show',$unite->pays->uuid)); ?>"><?php echo e($unite->pays->nom); ?></a></td>
                             </tr>
                             <tr>
-                            <td><strong>Localité : </strong><a  data-toggle="tooltip" data-placement="right" title="Cliquer pour afficher les détails" class="text-dark" href="{{route('localites.show',$unite->localite->uuid)}}">{{$unite->localite->nom}}</a></td>
+                            <td><strong>Localité : </strong><a  data-toggle="tooltip" data-placement="right" title="Cliquer pour afficher les détails" class="text-dark" href="<?php echo e(route('localites.show',$unite->localite->uuid)); ?>"><?php echo e($unite->localite->nom); ?></a></td>
                             </tr>
                             <tr>
-                                <td><strong>Administratutelle : </strong> {{ucfirst($unite->administration_tutelle)}}</td>
+                                <td><strong>Administratutelle : </strong> <?php echo e(ucfirst($unite->administration_tutelle)); ?></td>
                              </tr>
                         </tbody>
                         <tbody class="col-lg-12 col-xl-6 p-0">
                             <tr>
-                            <td><strong>Adresse : </strong> {{$unite->adresse}}</td>
+                            <td><strong>Adresse : </strong> <?php echo e($unite->adresse); ?></td>
                             </tr>
                             <tr>
-                                <td><strong>Téléphone : </strong>{{$unite->tel}}</td>
+                                <td><strong>Téléphone : </strong><?php echo e($unite->tel); ?></td>
                             </tr>
                             <tr>
-                                <td><strong>Téléphone 2: </strong>{{$unite->tel2}}</td>
+                                <td><strong>Téléphone 2: </strong><?php echo e($unite->tel2); ?></td>
                             </tr>
                             <tr>
-                            <td><strong>Responsable : </strong> <a  data-toggle="tooltip" data-placement="right" title="Cliquer pour afficher les détails" class="text-dark" href="{{route('utilisateurs.show',$unite->responsable->uuid)}}">{{ucfirst($unite->responsable->nom)}} {{ucfirst($unite->responsable->prenom)}}</a> </td>
+                            <td><strong>Responsable : </strong> <a  data-toggle="tooltip" data-placement="right" title="Cliquer pour afficher les détails" class="text-dark" href="<?php echo e(route('utilisateurs.show',$unite->responsable->uuid)); ?>"><?php echo e(ucfirst($unite->responsable->nom)); ?> <?php echo e(ucfirst($unite->responsable->prenom)); ?></a> </td>
                             </tr>
 
 
@@ -87,17 +86,17 @@
                 <div class="table-responsive ">
                     <table class="table row table-borderless table-sm">
                         <tbody class="col-lg-12 col-xl-6 p-0">
-                            @php
+                            <?php
                                 $i=1;
-                            @endphp
+                            ?>
                             <tr>
-                            <td><strong class="pl-2" >Responsable : </strong> <a  data-toggle="tooltip" data-placement="right" title="Cliquer pour afficher les détails" class="text-dark" href="{{route('utilisateurs.show',$unite->responsable->uuid)}}">{{ucfirst($unite->responsable->nom)}} {{ucfirst($unite->responsable->prenom)}}</a> </td>
+                            <td><strong class="pl-2" >Responsable : </strong> <a  data-toggle="tooltip" data-placement="right" title="Cliquer pour afficher les détails" class="text-dark" href="<?php echo e(route('utilisateurs.show',$unite->responsable->uuid)); ?>"><?php echo e(ucfirst($unite->responsable->nom)); ?> <?php echo e(ucfirst($unite->responsable->prenom)); ?></a> </td>
                             </tr>
-                            @foreach ($agents as $agent)
+                            <?php $__currentLoopData = $agents; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $agent): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <tr>
-                                <td><strong class="pl-2">{{$i++}}</strong> <a  data-toggle="tooltip" data-placement="right" title="Cliquer pour afficher les détails" class="text-dark" href="{{route('utilisateurs.show',$agent->uuid)}}">{{ucfirst($agent->nom)}} {{ucfirst($agent->prenom)}}, {{formatel($agent->tel)}}</a> </td>
+                                <td><strong class="pl-2"><?php echo e($i++); ?></strong> <a  data-toggle="tooltip" data-placement="right" title="Cliquer pour afficher les détails" class="text-dark" href="<?php echo e(route('utilisateurs.show',$agent->uuid)); ?>"><?php echo e(ucfirst($agent->nom)); ?> <?php echo e(ucfirst($agent->prenom)); ?>, <?php echo e(formatel($agent->tel)); ?></a> </td>
                                 </tr>
-                            @endforeach
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </tbody>
                     </table>
                 </div>
@@ -114,7 +113,7 @@
                 <h3 class="card-title">Logo</h3>
             </div>
             <div class="card-body">
-            <img src="{{ asset('storage').'/'.$unite->logo}}" style="min-width:100%; object-fit:cover; object-position: 50% 50%;" alt="" srcset="">
+            <img src="<?php echo e(asset('storage').'/'.$unite->logo); ?>" style="min-width:100%; object-fit:cover; object-position: 50% 50%;" alt="" srcset="">
 
             </div>
         </div>
@@ -123,7 +122,7 @@
                 <h3 class="card-title">Photo de Couverture</h3>
             </div>
             <div class="card-body">
-            <img src="{{ asset('storage').'/'.$unite->photo_couverture}}" style="min-width:100%; object-fit:cover; object-position: 50% 50%;" alt="" srcset="">
+            <img src="<?php echo e(asset('storage').'/'.$unite->photo_couverture); ?>" style="min-width:100%; object-fit:cover; object-position: 50% 50%;" alt="" srcset="">
 
             </div>
         </div>
@@ -144,22 +143,22 @@
 <div class="row">
     <div class="col-md-6"></div>
     <div class="col-md-6 mb-4">
-        <a href="{{ route('unites.index') }}" class="btn btn-dark"> <span>
+        <a href="<?php echo e(route('unites.index')); ?>" class="btn btn-dark"> <span>
                 <i class="fe fe-close"></i>
             </span><i class="fa fa-times"></i> Retour</a>
 
-        <a href="{{ route('unites.edit', $unite->uuid) }}" class="btn btn-primary">
+        <a href="<?php echo e(route('unites.edit', $unite->uuid)); ?>" class="btn btn-primary">
             <i class="fa fa-edit"></i> Modifier</a>
         <button type="button" class="btn btn-danger  mb-1" data-toggle="modal"
-            data-target="#exampleModalDelete{{ $unite->id }}"><i class="fa fa-trash"></i> Supprimer</button>
+            data-target="#exampleModalDelete<?php echo e($unite->id); ?>"><i class="fa fa-trash"></i> Supprimer</button>
     </div>
 </div>
-<div class="modal" id="exampleModalDelete{{ $unite->id }}" tabindex="-1" role="dialog"
+<div class="modal" id="exampleModalDelete<?php echo e($unite->id); ?>" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalDelete" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalDelete">Suppression de {{ $unite->designation }}</h5>
+                <h5 class="modal-title" id="exampleModalDelete">Suppression de <?php echo e($unite->designation); ?></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -169,9 +168,9 @@
                 </p>
             </div>
             <div class="modal-footer">
-                <form action="{{ route('unites.destroy', $unite->uuid) }}" method="POST">
-                    @csrf
-                    @method('DELETE')
+                <form action="<?php echo e(route('unites.destroy', $unite->uuid)); ?>" method="POST">
+                    <?php echo csrf_field(); ?>
+                    <?php echo method_field('DELETE'); ?>
                     <button type="submit" class="btn btn-danger ">
                         <i class="fa fa-trash"></i>
                         <span>Confirmer</span>
@@ -187,8 +186,8 @@
         </div>
     </div>
 </div>
-<input id="long" type="hidden" value="{{$unite->long}}">
-<input id="lat" type="hidden" value="{{$unite->lat}}">
+<input id="long" type="hidden" value="<?php echo e($unite->long); ?>">
+<input id="lat" type="hidden" value="<?php echo e($unite->lat); ?>">
 <script type="text/javascript">
     // On initialise la latitude et la longitude de Paris (centre de la carte)
     var lat =parseFloat(document.getElementById('lat').value) ;
@@ -215,4 +214,6 @@ initMap();
 </script>
 
 
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.master4', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /home/louisbertson/Desktop/criminalite/resources/views/pages/backoffice/unites/show.blade.php ENDPATH**/ ?>

@@ -1,5 +1,6 @@
 <div>
 
+<<<<<<< HEAD
     <div class="card">
         <div class="card-body">
             <ul class="demo-accordion accordionjs m-0" data-active-index="false">
@@ -71,4 +72,30 @@
                                 </form>
                             </div>
                         </div>
+=======
+    <div class="row m-5">
+        <form wire:submit.prevent="submit" >
+            <div class="row">
+                <div>
+                    <div class="form-group">
+                        <textarea wire:model.lazy="commentaire" rows="2" type="text" class="form-control" name="commentaire"
+                            placeholder="Commentaire" id="commentaire"
+                        ></textarea>
+                                @error('commentaire')
+                            <span class="helper-text red-text">
+                                <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                    </div>
+                </div>
+            </div>
+            <input type="hidden" wire:model="crime_id" name="crime_id" value="{{$crime->id}}">
+            <div class="text-right">
+                <button class="btn btn-primary" type="submit"> <i class="fa fa-plus" aria-hidden="true"></i> Ajouter</button> 
+            </div>
+            <br>
+        </form>
+    </div>
+            
+>>>>>>> 9ea9ea8a7a5591105f470cd3daa307b069f012ab
 </div>

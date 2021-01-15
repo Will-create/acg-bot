@@ -2,11 +2,13 @@
 
 namespace Database\Seeders;
 
-use App\Models\Espece;
-use App\Models\Ordre;
-use Illuminate\Database\Seeder;
 use Faker\Factory;
+use App\Models\Ordre;
+use App\Models\Espece;
+use GuzzleHttp\Client;
 use Illuminate\Support\Str;
+use Illuminate\Database\Seeder;
+
 class EspeceVegetalTableSeeder extends Seeder
 {
     /**
@@ -16,33 +18,48 @@ class EspeceVegetalTableSeeder extends Seeder
      */
     public function run()
     {
+        
         $faker = Factory::create();
         \Bezhanov\Faker\ProviderCollectionHelper::addAllProvidersTo($faker);
         $faker->addProvider(new \Bezhanov\Faker\Provider\Species($faker));
-        for ($i=0; $i <0 ; $i++) {
-            Espece::create([
-                'nom'                   => $faker->bird,
-                'uuid'                  => Str::uuid(),
-                'photo'                 => $faker->file($sourceDir = 'D:/switch_maker/war_crimes/public/espece_animal', $targetDir = 'storage/app/public/espece_uploads', false),
-                'famille'               => $faker->bird,
-                'regne'                 => 'animal',
-                'nom_scientifique'      => $faker->bird,
-                'ordre_id'              => Ordre::inRandomOrder()->first()->id
-            ]);
-        }
-        for ($i=0; $i <10 ; $i++) {
-            Espece::create([
-                'nom'                   => $faker->name,
-                'uuid'                  => Str::uuid(),
-                'photo'                 => 'espece_uploads/'.$faker->file($sourceDir = 'D:/switch_maker/war_crimes/public/espece_vegetal', $targetDir = 'storage/app/public/espece_uploads', false),
-                'famille'               => $faker->name,
-                'regne'                 =>'végétal',
-                'nom_scientifique'      => $faker->name,
-                'ordre_id'              => Ordre::inRandomOrder()->first()->id
-            ]);
-        }
 
+        $client = new Client();
+        $url = "http://apiv3.iucnredlist.org/api/v3/species/page/1?token=9bb4facb6d23f48efbf424bb05c0c1ef1cf6f468393bc745d42179ac4aca5fee";
+        $response = $client->request('GET', $url, [
+            'verify'  => false,
+        ]);
+        $especesbody = json_decode($response->getBody());
+        $especes = $especesbody->result;
 
+        for ($i=0; $i <140 ; $i++) {
+            $num = rand(1,count($especes));
+            $espece= $especes[$num];
+            if (isset($espece)){
+                if( $espece->kingdom_name == "PLANTAE"){
+                    Espece::create([
+                        'nom'                   => $espece->phylum_name,
+                        'uuid'                  => Str::uuid(),
+                        'photo'                 => 'espece_uploads/'.$faker->file($sourceDir = '/home/louisbertson/Desktop/criminalite/public/espece_vegetal', $targetDir = '/home/louisbertson/Desktop/criminalite/public/storage/espece_uploads', $targetDir = '/home/louisbertson/Desktop/criminalite/public/storage/espece_uploads', false),
+                        'famille'               => $espece->family_name,
+                        'regne'                 =>'végétal',
+                        'nom_scientifique'      => $espece->scientific_name,
+                        'ordre_id'              => Ordre::inRandomOrder()->first()->id
+                    ]);
+                }else{
+                    Espece::create([
+                        'nom'                   => $espece->phylum_name,
+                        'uuid'                  => Str::uuid(),
+                        'photo'                 => $faker->file($sourceDir = '/home/louisbertson/Desktop/criminalite/public/espece_animal', $targetDir = '/home/louisbertson/Desktop/criminalite/public/storage/espece_uploads', false),
+                        'famille'               => $espece->family_name,
+                        'regne'                 => 'animal',
+                        'nom_scientifique'      => $espece->scientific_name,
+                        'ordre_id'              => Ordre::inRandomOrder()->first()->id
+                    ]);
+                }
+
+            }
+            
+            
+        }
     }
-
 }
