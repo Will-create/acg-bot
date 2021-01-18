@@ -165,7 +165,7 @@
 
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label class="form-label" for="revenue">Revenue Mensuel <strong class="text-danger"></strong></label>
+                        <label class="form-label" for="revenue">Revenue Mensuel en XOF <strong class="text-danger"></strong></label>
                         <input class="form-control" name="revenue" placeholder="Revenue Mensuel" type="text"
                             value="{{old('revenue') ?? $auteur->revenue}}">
                         @error('revenue')
@@ -176,7 +176,7 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    
+
                 </div>
             </div>
         </div>
@@ -188,10 +188,10 @@
         </div>
         <div class="col-md-12">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="row">
                         <div class="form-group">
-                            <label for="">Voyageur internationnal? </label>
+                            <label for="">Voyageur internationnal : </label>
                             <label for="voyageur_international">
                                 <input type="radio" @if(!$auteur->voyageur_international || $auteur->voyageur_international == 0)  checked @endif name="voyageur_international" value="0"
                                     id="voyageur_international">
@@ -208,16 +208,35 @@
                     </span>
                     @enderror
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="row">
                         <div class="form-group">
-                            <label for="">Education ?</label>
+                            <label for="">Education :</label>
                             <label for="cnib">
                                 <input type="radio"  @if(!$auteur->education || $auteur->education == 0) checked @endif   name="education" id="cnib" value="0">
                                 Non
                             </label>
                             <label for="passport">
                                 <input type="radio" @if($auteur->education && $auteur->education == 1) checked @endif name="education" value="1">
+                                Oui
+                        </div>
+                    </div>
+                    @error('education')
+                    <span class="helper-text red-text">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                </div>
+                <div class="col-md-">
+                    <div class="row">
+                        <div class="form-group">
+                            <label for="">En lien avec le terrorisme :</label>
+                            <label for="terrorisme">
+                                <input type="radio"  @if(!$auteur->terrorisme || $auteur->terrorisme == 0) checked @endif   name="terrorisme" id="cnib" value="0">
+                                Non
+                            </label>
+                            <label for="passport">
+                                <input type="radio" @if($auteur->terrorisme && $auteur->terrorisme == 1) checked @endif name="terrorisme" value="1">
                                 Oui
                         </div>
                     </div>
@@ -275,11 +294,11 @@
                 </div> --}}
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="form-label" for="adresse">Adresse <strong class="text-danger">*</strong> </label>
+                            <label class="form-label" for="adresse">Adresse complète ( adresse, ville, pays ) <strong class="text-danger">*</strong> </label>
                         </label>
-                        <textarea rows="5" type="text" class="form-control" name="addresse"
-                            placeholder="Précédents judiciaires" id="addresse"
-                            >{{ old('addresse') ?? $auteur->addresse }}</textarea>
+                        <textarea rows="5" type="text" class="form-control" name="adresse"
+                            placeholder="Précédents judiciaires" id="adresse"
+                            >{{ old('adresse') ?? $auteur->adresse }}</textarea>
                             @error('adresse')
                             <span class="helper-text red-text">
                                 <strong>{{ $message }}</strong>
@@ -313,6 +332,6 @@
                             <i class="fe fe-save"></i>
                         </span> {{ $btnAction }}</button>
 
-                        
+
                 </div>
                 </div>

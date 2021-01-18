@@ -21,7 +21,8 @@
                     <h1 class="page-title"></h1>
                     <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="<?php echo e(route('accueil')); ?>">Accueil</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Nouveau</li>
+                    <li class="breadcrumb-item"> <a href="<?php echo e(route('crimes.index')); ?>"> Crimes </a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Détails crime</li>
                     </ol>
                 </div>
                 <div class="ml-auto pageheader-btn">
@@ -49,40 +50,64 @@
 
                     </dd>
                     <dt>Localité d'appréhension :</dt>
-                    <dd> <?php echo e(ucFirst($crime->service_investigateur ? $crime->service_investigateur->designation: ' ')); ?></dd>
+                    <dd>
+                        <?php echo e(ucFirst($crime->paysApprehension->nom)); ?><?php echo e(ucFirst($crime->localite_aprrehension->nom ?? '/'.$crime->localite->nom)); ?>
+
+                    </dd>
                     <dt>Service investigateur :</dt>
                     <dd>
-                        <?php echo e(ucFirst($crime->localite_aprrehension)); ?>
+                        <?php echo e(ucFirst($crime->service_investigateur->designation ?? $crime->service_investigateur->designation)); ?>
 
                     </dd>
-                    <dt>Espèce impliquées :</dt>
-                    <dd>
-                        <?php echo e(ucFirst($crime->localite_aprrehension)); ?>
 
-                    </dd>
                 </dl>
             </div>
         </div>
         <div class:="tab-content">
             <div class="tab-pane" id="tab-51">
-                <?php
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Commentaires</h3>
+                    </div>
+                    <div class="card-body">
+                        <?php
 if (! isset($_instance)) {
-    $html = \Livewire\Livewire::mount('commentaire',['crime'  => $crime,'commentaires' => $commentaires])->html();
-} elseif ($_instance->childHasBeenRendered('JWeKS4E')) {
-    $componentId = $_instance->getRenderedChildComponentId('JWeKS4E');
-    $componentTag = $_instance->getRenderedChildComponentTagName('JWeKS4E');
+    $html = \Livewire\Livewire::mount('comment',['crime'  => $crime,'commentaires' => $commentaires])->html();
+} elseif ($_instance->childHasBeenRendered('hKO5eqv')) {
+    $componentId = $_instance->getRenderedChildComponentId('hKO5eqv');
+    $componentTag = $_instance->getRenderedChildComponentTagName('hKO5eqv');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('JWeKS4E');
+    $_instance->preserveRenderedChild('hKO5eqv');
 } else {
-    $response = \Livewire\Livewire::mount('commentaire',['crime'  => $crime,'commentaires' => $commentaires]);
+    $response = \Livewire\Livewire::mount('comment',['crime'  => $crime,'commentaires' => $commentaires]);
     $html = $response->html();
-    $_instance->logRenderedChild('JWeKS4E', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('hKO5eqv', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
+
+                        <?php
+if (! isset($_instance)) {
+    $html = \Livewire\Livewire::mount('commentaire',['crime'  => $crime,'commentaires' => $commentaires])->html();
+} elseif ($_instance->childHasBeenRendered('35POT1X')) {
+    $componentId = $_instance->getRenderedChildComponentId('35POT1X');
+    $componentTag = $_instance->getRenderedChildComponentTagName('35POT1X');
+    $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
+    $_instance->preserveRenderedChild('35POT1X');
+} else {
+    $response = \Livewire\Livewire::mount('commentaire',['crime'  => $crime,'commentaires' => $commentaires]);
+    $html = $response->html();
+    $_instance->logRenderedChild('35POT1X', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+}
+echo $html;
+?>
+                    </div>
+
             </div>
          </div>
+        </div>
     </div>
+
 
     <?php
              $crimeEspeces =  \App\Models\CrimeEspece::latest()->where('crime_id', $crime->id)->get()
@@ -108,15 +133,15 @@ echo $html;
                                             <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('regne-espece', ['crime'  => $crime])->html();
-} elseif ($_instance->childHasBeenRendered('JT5PIyH')) {
-    $componentId = $_instance->getRenderedChildComponentId('JT5PIyH');
-    $componentTag = $_instance->getRenderedChildComponentTagName('JT5PIyH');
+} elseif ($_instance->childHasBeenRendered('Qm2hijv')) {
+    $componentId = $_instance->getRenderedChildComponentId('Qm2hijv');
+    $componentTag = $_instance->getRenderedChildComponentTagName('Qm2hijv');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('JT5PIyH');
+    $_instance->preserveRenderedChild('Qm2hijv');
 } else {
     $response = \Livewire\Livewire::mount('regne-espece', ['crime'  => $crime]);
     $html = $response->html();
-    $_instance->logRenderedChild('JT5PIyH', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('Qm2hijv', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -125,14 +150,14 @@ echo $html;
                                     </li>
                                     <li class="<?php if(Session::has('section')  &&  (session('section') == "auteur")): ?> acc_active <?php endif; ?>">
                                         <div>
-                                            <h3>Auteurs du crimes</h3>
+                                            <h3>Auteurs et complices</h3>
                                             <span class="nom_item_par_collapse badge badge-danger"> <?php echo e(count($crime->auteurs)); ?> </span>
 
                                         </div>
 
                                         <div>
                                             <?php echo $__env->make('partials._notify',['nom'  => 'auteur'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-                                           
+
                                             <div class="text-right">
                                                 <a href="<?php echo e(route('crime_auteurs.create', ['crime' => $crime->uuid])); ?>" class="btn btn-primary"> <i class="fa fa-plus" aria-hidden="true"></i> Ajouter</a>
                                             </div>
@@ -166,7 +191,7 @@ echo $html;
                                     </li>
                                     <li class="<?php if(Session::has('section')  &&  (session('section') == "arme")): ?> acc_active <?php endif; ?>">
                                         <div>
-                                            <h3>Armes matérielles</h3>
+                                            <h3>Armes / matériels</h3>
                                             <span class="nom_item_par_collapse badge badge-danger"> <?php echo e(count($crime->armes)); ?> </span>
 
                                         </div>
@@ -209,58 +234,147 @@ echo $html;
                                             <?php endif; ?>
                                         </div>
                                     </li>
+                                    <li >
+                                        <div>
+                                            <h3>Localisation</h3>
+
+                                        </div>
+                                        <div>
+
+                                            <div class="text-right">
+                                                <?php if($crime->longitude != ''): ?>
+
+                                                <div id="map"></div>
+                                               <?php else: ?>
+                                               <small class="text-danger">
+                                                   Aucune  localisation disponible
+                                               </small>
+                                                <?php endif; ?>
+                                            </div>
+
+                                        </div>
+                                    </li>
                                 </ul>
                             </div>
                     </div><!-- COL-END -->
                 </div>
             </div>
         </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title" >Options de la publication</h3>
+
+           </div>
+            <div class="card-body">
+              <div class="row">
+        <?php if(Auth::user()->role->designation == "Coordonnateur Régional" || Auth::user()->role->designation == "Coordonnateur National"): ?>
+
+                  <div class="col-md-6">
+                    <?php
+if (! isset($_instance)) {
+    $html = \Livewire\Livewire::mount('veto',['crime'  => $crime])->html();
+} elseif ($_instance->childHasBeenRendered('fJNLdlv')) {
+    $componentId = $_instance->getRenderedChildComponentId('fJNLdlv');
+    $componentTag = $_instance->getRenderedChildComponentTagName('fJNLdlv');
+    $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
+    $_instance->preserveRenderedChild('fJNLdlv');
+} else {
+    $response = \Livewire\Livewire::mount('veto',['crime'  => $crime]);
+    $html = $response->html();
+    $_instance->logRenderedChild('fJNLdlv', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+}
+echo $html;
+?>
+                  </div>
+        <?php endif; ?>
+
+        <?php if(Auth::user()->role->designation == "Chef d’Unité"): ?>
+
+                  <div class="col-md-6">
+                    <?php
+if (! isset($_instance)) {
+    $html = \Livewire\Livewire::mount('validate',['crime'  => $crime])->html();
+} elseif ($_instance->childHasBeenRendered('0yCeZtE')) {
+    $componentId = $_instance->getRenderedChildComponentId('0yCeZtE');
+    $componentTag = $_instance->getRenderedChildComponentTagName('0yCeZtE');
+    $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
+    $_instance->preserveRenderedChild('0yCeZtE');
+} else {
+    $response = \Livewire\Livewire::mount('validate',['crime'  => $crime]);
+    $html = $response->html();
+    $_instance->logRenderedChild('0yCeZtE', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+}
+echo $html;
+?>
+
+                  </div>
+<?php endif; ?>
+
+              </div>
+            </div>
+        </div>
+
     </div>
 </div>
-
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('js'); ?>
         <!-- INTERNAL FORN WIZARD JS-->
         <script src="<?php echo e(URL::asset('assets/plugins/accordion/accordion.min.js')); ?>"></script>
         <script src="<?php echo e(URL::asset('assets/plugins/accordion/accordion.js')); ?>"></script>
-
 		<script src="<?php echo e(URL::asset('assets/plugins/formwizard/jquery.smartWizard.js')); ?>"></script>
 		<script src="<?php echo e(URL::asset('assets/plugins/formwizard/fromwizard.js')); ?>"></script>
-
 		<!-- INTERNAL ACCORDION-WIZARD FORM JS -->
 		<script src="<?php echo e(URL::asset('assets/plugins/accordion-Wizard-Form/jquery.accordion-wizard.min.js')); ?>"></script>
-
-
         <script src="<?php echo e(URL::asset('assets/js/advancedform.js')); ?>"></script>
         <script src="<?php echo e(URL::asset('assets/plugins/multipleselect/multiple-select.js')); ?>"></script>
         <script src="<?php echo e(URL::asset('assets/plugins/multipleselect/multi-select.js')); ?>"></script>
-
-
 <?php $__env->stopSection(); ?>
-
-
+<input id="long" type="hidden" value="<?php echo e($crime->longitude); ?>">
+<input id="lat" type="hidden" value="<?php echo e($crime->latitude); ?>">
 <?php $__env->startPush('ajax_crud'); ?>
+<script type="text/javascript">
+    // On initialise la latitude et la longitude de Paris (centre de la carte)
+    var lat =parseFloat(document.getElementById('lat').value) ;
+    var lon =parseFloat(document.getElementById('long').value);
+    var macarte = null;
+    // Fonction d'initialisation de la carte
+    function initMap() {
+        // Créer l'objet "macarte" et l'insèrer dans l'élément HTML qui a l'ID "map"
+        macarte = L.map('map').setView([lon, lat], 6);
+        // Leaflet ne récupère pas les cartes (tiles) sur un serveur par défaut. Nous devons lui préciser où nous souhaitons les récupérer. Ici, openstreetmap.fr
+        L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
+            // Il est toujours bien de laisser le lien vers la source des données
+            attribution: 'données © <a href="//osm.org/copyright">OpenStreetMap</a>/ODbL - rendu <a href="//openstreetmap.fr">UICN</a>',
+            minZoom: 1,
+            maxZoom: 20
+        }).addTo(macarte);
+        var marker = L.marker([lon,lat]).addTo(macarte);
+    }
+    window.onload = function(){
+// Fonction d'initialisation qui s'exécute lorsque le DOM est chargé
+initMap();
+    };
+</script>
 
 <script src="<?php echo e(asset('js/sweetalert.js')); ?>"></script>
 <link href="<?php echo e(URL::asset('assets/plugins/select2/select2.min.css')); ?>" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
-
 <script src="<?php echo e(asset('js/ajax.js')); ?>"></script>
-
 <script>
     // In your Javascript (external .js resource or <script> tag)
 $(document).ready(function() {
-    $('.js-example-basic-single').select2();
-    $('#mySelect2').select2('data');
-    $('#mySelect2').find(':selected');
-    $('.js-example-basic-confiscation').select2();
+    // $('.js-example-basic-single').select2();
+    // $('#mySelect2').select2('data');
+    // $('#mySelect2').find(':selected');
+    // $('.js-example-basic-confiscation').select2();;
     // $('#mySelect2confiscation').select2('data');
-    // $('#mySelect2confiscation').find(':selected');accordionjs
-});
-        window.addEventListener('contentChanged', event => {
-            $('.js-example-basic-single').select2();
-            $('.accordionjs').accordionjs();
+    // $('#mySelect2confiscation').find(':selected');accordionjsrefresh-accordeon
+        window.addEventListener('refresh-accordeon', event => {
+            // $('.js-example-basic-single').select2();
+            // $('.demo-accordion').accordion();
         });
+});
 </script>
 <?php $__env->stopPush(); ?>
 <?php $__env->startPush('livewirescript'); ?>

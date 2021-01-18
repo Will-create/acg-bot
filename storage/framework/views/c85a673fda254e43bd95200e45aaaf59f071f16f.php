@@ -1,4 +1,3 @@
-
 <?php $__env->startSection('css'); ?>
         <!-- FORN WIZARD CSS -->
 		<link href="<?php echo e(URL::asset('assets/plugins/select2/select2.min.css')); ?>" rel="stylesheet" />
@@ -21,6 +20,7 @@
                     <h1 class="page-title">Règlement de crime</h1>
                     <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="<?php echo e(route('accueil')); ?>">Accueil</a></li>
+                        <li class="breadcrumb-item" > <a href="#">Règlement</a> </li>
                         <li class="breadcrumb-item active" aria-current="page">Nouveau</li>
                     </ol>
                 </div>
@@ -47,15 +47,15 @@
 <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('reglement', ['modeReglements'  => $modeReglements, 'suites'   => $suites, 'crime' => $crime])->html();
-} elseif ($_instance->childHasBeenRendered('XKeNTg5')) {
-    $componentId = $_instance->getRenderedChildComponentId('XKeNTg5');
-    $componentTag = $_instance->getRenderedChildComponentTagName('XKeNTg5');
+} elseif ($_instance->childHasBeenRendered('WHRDkcP')) {
+    $componentId = $_instance->getRenderedChildComponentId('WHRDkcP');
+    $componentTag = $_instance->getRenderedChildComponentTagName('WHRDkcP');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('XKeNTg5');
+    $_instance->preserveRenderedChild('WHRDkcP');
 } else {
     $response = \Livewire\Livewire::mount('reglement', ['modeReglements'  => $modeReglements, 'suites'   => $suites, 'crime' => $crime]);
     $html = $response->html();
-    $_instance->logRenderedChild('XKeNTg5', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('WHRDkcP', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>

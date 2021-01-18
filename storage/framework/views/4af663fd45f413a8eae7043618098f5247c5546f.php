@@ -34,7 +34,7 @@
 
 								<img src="<?php echo e(asset('images/logo_yelli.png')); ?>" class="header-brand-img" alt="">
 
-								
+
 
 							</div>
 						</div>
@@ -48,4 +48,4 @@
 		</body>
 
 </html>
-<?php /**PATH /home/louisbertson/Desktop/criminalite/resources/views/layouts/masterLogin.blade.php ENDPATH**/ ?>
+<?php /**PATH D:/switch_maker/war_crimes/resources/views/layouts/masterLogin.blade.php ENDPATH**/ ?>

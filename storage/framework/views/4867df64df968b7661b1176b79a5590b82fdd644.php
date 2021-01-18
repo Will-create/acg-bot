@@ -1,6 +1,6 @@
 <div>
-        
-       
+
+
         <?php if($crime->veto == 0): ?>
         <div class="form-group">
             <div class="form-label">Véto</div>
@@ -10,7 +10,7 @@
                 <span class="custom-switch-description"></span>
             </label>
         </div>
-        
+
         <?php else: ?>
         <div class="form-group">
             <div class="form-label">Véto</div>
@@ -20,7 +20,7 @@
                 <span class="custom-switch-description"></span>
             </label>
         </div>
-       
+
         <?php endif; ?>
         <div class="row">
             <div wire:loading wire:target="toggler">
@@ -28,4 +28,4 @@
            </div>
          </div>
 </div>
-<?php /**PATH /home/louisbertson/Desktop/criminalite/resources/views/livewire/veto.blade.php ENDPATH**/ ?>
+<?php /**PATH D:/switch_maker/war_crimes/resources/views/livewire/veto.blade.php ENDPATH**/ ?>

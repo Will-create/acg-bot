@@ -60,4 +60,4 @@
 </body>
 
 </html>
-<?php /**PATH /home/louisbertson/Desktop/criminalite/resources/views/layouts/master4.blade.php ENDPATH**/ ?>
+<?php /**PATH D:/switch_maker/war_crimes/resources/views/layouts/master4.blade.php ENDPATH**/ ?>

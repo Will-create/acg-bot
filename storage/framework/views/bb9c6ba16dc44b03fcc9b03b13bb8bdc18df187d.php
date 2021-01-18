@@ -18,15 +18,15 @@
                                     <div class="">
                                             <div style=" background: none;
                                             padding: 0rem 0.5rem;" class="row justify-content-center" id="heading<?php echo e($commentaire->id); ?>">
-                                                
+
                                                 <span  style="width:5px; height:20px;position: relative; left:-74px;top:-27px;" class="<?php echo e($commentaire->auteur->id == Auth()->user()->id ? 'badge badge-success rounded-circle' : ''); ?> row justify-content-center align-items-center m-0"> <small></small> </span>
                                                 <a href="<?php echo e(route('utilisateurs.show', $commentaire->auteur->uuid)); ?>" data-toggle="tooltip" data-placement="top" title="<?php echo e($commentaire->auteur->nom); ?> <?php echo e($commentaire->auteur->prenom); ?>(<?php echo e($commentaire->auteur->role->designation); ?>)">
                                                     <div><img   src="<?php echo e(asset( 'storage/'.$commentaire->auteur->profile_photo_path)); ?>" alt="user" height="60" width="60" class="rounded-circle"></div>
                                                 </a>
                                                 <button class="btn btn-link" data-toggle="collapse" data-target="#collapse<?php echo e($commentaire->id); ?>" aria-expanded="true" aria-controls="collapse<?php echo e($commentaire->id); ?>">
-                                                    
+
                                                     <div class="text-dark">
-                                                        <?php echo e(ucfirst(substr($commentaire->commentaire, 0,66))); ?>... 
+                                                        <?php echo e(ucfirst(substr($commentaire->commentaire, 0,66))); ?>...
                                                     </div>
                                                 </button>
                                             </div>
@@ -36,13 +36,13 @@
                                                 <div class="comment-text w-100">
                                                     <div class="comment-footer">
                                                         <span class="m-b-15 d-block" style="background-color: rgb(241, 255, 251); border-radius:.5em; padding:1.5em; text-align:center;">
-                                                            <?php echo e(ucfirst($commentaire->commentaire)); ?> 
-                                                        </span> 
+                                                            <?php echo e(ucfirst($commentaire->commentaire)); ?>
+                                                        </span>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <span class="text-muted float-right"><?php echo e($commentaire->created_at->format(' d M Y h:i:s')); ?></span> 
-                                        </a> 
+                                            <span class="text-muted float-right"><?php echo e($commentaire->created_at->format(' d M Y h:i:s')); ?></span>
+                                        </a>
                                         </div>
                                     </div>
                                     </div>
@@ -51,7 +51,7 @@
                             <?php endif; ?>
                         </div>
         </li>
-    
+
     </ul>
 </div>
-<?php /**PATH /home/louisbertson/Desktop/criminalite/resources/views/livewire/comment.blade.php ENDPATH**/ ?>
+<?php /**PATH D:/switch_maker/war_crimes/resources/views/livewire/comment.blade.php ENDPATH**/ ?>

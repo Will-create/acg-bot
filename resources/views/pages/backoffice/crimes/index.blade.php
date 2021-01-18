@@ -34,6 +34,9 @@
 @include('partials._notification')
 <!-- ROW-1 OPEN -->
 <div class="row">
+    {{-- <div class="col-md-6">
+        <iframe src="http://localhost:5601/app/dashboards#/create?embed=true&_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-15m,to:now))&_a=(description:'',filters:!(),fullScreenMode:!f,options:(hidePanelTitles:!f,useMargins:!t),panels:!((embeddableConfig:(title:'Nombre%20de%20crime%20par%20pays'),gridData:(h:15,i:e15a6015-5ed9-4ed5-b621-45c7ac804a4f,w:24,x:0,y:0),id:'89cdd4e0-5745-11eb-9f9a-016191b0374e',panelIndex:e15a6015-5ed9-4ed5-b621-45c7ac804a4f,title:'Nombre%20de%20crime%20par%20pays',type:visualization,version:'7.9.3')),query:(language:kuery,query:''),timeRestore:!f,title:'',viewMode:edit)" height="600" width="800"></iframe>
+    </div> --}}
     <div class="col-md-12 col-lg-12">
         <div class="card">
             <div class="card-header">
@@ -48,6 +51,7 @@
                         <thead>
                             <tr>
                                 <th class="wd-15p">Ordre</th>
+                                
                                 <th class="wd-15p">Pays d'appréhension</th>
                                 <th class="wd-15p">Nombre d'espèces impliquées</th>
                                 <th class="wd-15p">Règlement</th>

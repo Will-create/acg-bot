@@ -52,4 +52,4 @@
           </div>
     </div>
     </div>
-<?php /**PATH /home/louisbertson/Desktop/criminalite/resources/views/livewire/crime-espece.blade.php ENDPATH**/ ?>
+<?php /**PATH D:/switch_maker/war_crimes/resources/views/livewire/crime-espece.blade.php ENDPATH**/ ?>

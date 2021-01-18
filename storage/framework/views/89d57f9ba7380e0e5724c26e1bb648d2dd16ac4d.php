@@ -8,7 +8,7 @@
             <span class="custom-switch-description"></span>
         </label>
     </div>
-    
+
     <?php else: ?>
     <div class="form-group">
         <div class="form-label">Valide</div>
@@ -25,4 +25,4 @@
        </div>
      </div>
 </div>
-<?php /**PATH /home/louisbertson/Desktop/criminalite/resources/views/livewire/validate.blade.php ENDPATH**/ ?>
+<?php /**PATH D:/switch_maker/war_crimes/resources/views/livewire/validate.blade.php ENDPATH**/ ?>

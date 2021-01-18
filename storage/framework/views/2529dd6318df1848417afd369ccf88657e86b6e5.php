@@ -78,7 +78,7 @@ unset($__errorArgs, $__bag); ?>
     </div>
     <div class="col-md-6 <?php if(!$displayAmende): ?> d-none <?php endif; ?>" >
         <div class="form-group">
-            <label>   Amende  <span class="text-danger">*</span></label>
+            <label>   Amende en XOF <span class="text-danger">*</span></label>
                <input type="number" name="amende" id="" wire:model="amende" class="form-control" min="0">
                   <?php $__errorArgs = ['amende'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');

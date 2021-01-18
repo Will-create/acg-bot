@@ -23,7 +23,7 @@
                             </a>
                             <ul class="slide-menu">
                             <li><a class="slide-item" href="<?php echo e(route('crimes.index')); ?>"><span>Tous les crimes</span></a></li>
-                            
+
                             <li class="slide">
                                 <a class="side-menu__item" data-toggle="slide" href="#">
                                     <span class="side-menu__label">Types de Crime</span><i class="angle fa fa-angle-right"></i>
@@ -47,9 +47,9 @@
                                 <li><a class="slide-item" href="<?php echo e(route('especes.index')); ?>"><span>Toutes les espèces</span></a></li>
                                 <li><a class="slide-item" href="<?php echo e(route('especes.regne.show', ['regne' => 'animal'])); ?>"><span>Les espèces animales</span></a></li>
                                 <li><a class="slide-item" href="<?php echo e(route('especes.regne.show', ['regne' => 'vegetal'])); ?>"><span>Les espèces végétales</span></a></li>
-                                
 
-                                
+
+
                             </ul>
                         </li>
                         <li class="slide">
@@ -126,7 +126,7 @@
                                 <li><a class="slide-item" href="#"><span>Nouveau </span></a></li>
                             </ul>
                         </li>
-                        
+
                         <li class="slide">
                             <a class="side-menu__item" data-toggle="slide" href="#">
                                 <i class="mdi mdi-archive aide-icon"  ></i>
@@ -155,7 +155,7 @@
                             </a>
                             <ul class="slide-menu">
                                 <li><a class="slide-item" href="<?php echo e(route('armes.index')); ?>"><span>Toutes les armes de crime</span></a></li>
-                                
+
                                 <li><a class="slide-item" href="<?php echo e(route('armes.create')); ?>"><span>Nouvelle arme de crime</span></a></li>
                             </ul>
                         </li>
@@ -184,4 +184,4 @@
                     </ul>
                     <br><br><br><br>
                 </aside>
-<?php /**PATH /home/louisbertson/Desktop/criminalite/resources/views/layouts/aside-menu-admin.blade.php ENDPATH**/ ?>
+<?php /**PATH D:/switch_maker/war_crimes/resources/views/layouts/aside-menu-admin.blade.php ENDPATH**/ ?>

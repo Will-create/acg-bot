@@ -18,7 +18,7 @@
 									</div>
 								</div>
 							</div>
-							
+
 						</div>
 					</div>
 				</div>
@@ -36,7 +36,7 @@
 									</div>
 								</div>
 							</div>
-							
+
 						</div>
 					</div>
 				</div>
@@ -54,7 +54,7 @@
 									</div>
 								</div>
 							</div>
-							
+
 						</div>
 					</div>
 				</div>
@@ -72,7 +72,7 @@
 									</div>
 								</div>
 							</div>
-							
+
 						</div>
 					</div>
 				</div>
@@ -93,7 +93,7 @@
                                     <a href="<?php echo e(route('profil')); ?>" class="btn btn-primary mt-1 mb-1 btn-sm" data-toggle="tooltip" data-placement="top" title=" Voir mon profil " > <i class="zmdi zmdi-eye text-white"></i> Voir le profil</a>
 
 
-                                    
+
                                     </div>
                                 </div>
                             </div>
@@ -130,11 +130,11 @@
                                         <td><?php echo e($coordonateur->prenom); ?></td>
                                         <td><?php echo e($coordonateur->tel); ?></td>
 											<td>
-                                                
+
                                             <button type="button" class="badge handleAcount <?php echo e($coordonateur->actif ?  'badge-success':'badge-danger'); ?>" data-toggle="tooltip" data-placement="top" title="<?php echo e($coordonateur->actif ? 'Cliquer pour désactiver':'Cliquer pour activer'); ?>" data-status="<?php echo e($coordonateur->actif ? 'Désactiver':'Activer'); ?>"   data-url="<?php echo e(route('gerer-utilisateur', $coordonateur)); ?>" data-toggle="modal" data-clocation="<?php echo e(url()->current()); ?>"
                                                     data-target="#exampleModalDelete<?php echo e($coordonateur->id); ?>" style="border:none">  <?php echo e($coordonateur->actif ? 'Ativé':'Désactivé'); ?></button>
 
-                                                
+
                                             </td>
 
 										</tr>
@@ -159,10 +159,10 @@
 		<script src="<?php echo e(URL::asset('assets/plugins/peitychart/jquery.peity.min.js')); ?>"></script>
 		<script src="<?php echo e(URL::asset('assets/plugins/peitychart/peitychart.init.js')); ?>"></script>
 		<!-- INTERNAL APEXCHART JS -->
-		
+
 
 		<!--INTERNAL  INDEX JS -->
-		
+
 <?php $__env->stopSection(); ?>
 <?php $__env->startPush('ajax_crud'); ?>
 <script src="<?php echo e(asset('js/sweetalert.js')); ?>"></script>
@@ -250,4 +250,4 @@
 </script>
 <?php $__env->stopPush(); ?>
 
-<?php echo $__env->make('layouts.master4', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /home/louisbertson/Desktop/criminalite/resources/views/pages/backoffice/administrateur/dasboard-admin.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.master4', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:/switch_maker/war_crimes/resources/views/pages/backoffice/administrateur/dasboard-admin.blade.php ENDPATH**/ ?>

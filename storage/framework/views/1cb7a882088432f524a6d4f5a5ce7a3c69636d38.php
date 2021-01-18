@@ -1,5 +1,5 @@
 
-  
+
                             <div class="row m-5">
                                 <form wire:submit.prevent="submit" class="row justify-content-center" >
                                         <div class="form-group">
@@ -20,10 +20,10 @@ endif;
 unset($__errorArgs, $__bag); ?>
                                         </div>
                                     <input type="hidden" wire:model="crime_id" name="crime_id" value="<?php echo e($crime->id); ?>">
-                                    <button class="btn btn-primary" type="submit"> <i class="fa fa-plus" aria-hidden="true"></i> Ajouter</button> 
+                                    <button class="btn btn-primary" type="submit"> <i class="fa fa-plus" aria-hidden="true"></i> Ajouter</button>
                                 </form>
                         </div>
-                            
-                        
 
-    <?php /**PATH /home/louisbertson/Desktop/criminalite/resources/views/livewire/commentaire.blade.php ENDPATH**/ ?>
+
+
+    <?php /**PATH D:/switch_maker/war_crimes/resources/views/livewire/commentaire.blade.php ENDPATH**/ ?>

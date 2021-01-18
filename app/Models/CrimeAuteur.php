@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class CrimeAuteur extends Model
 {
     use HasFactory;
-    protected $fillable=['nom','crime_id','uuid','prenom','adresse','type','date_naiss','genre','education','voyageur_international','revenue','nationalite','affaire_juduciaire'];
+    protected $fillable=['nom','crime_id','uuid','prenom','adresse','type','date_naiss','genre','education','voyageur_international','revenue','nationalite','affaire_juduciaire', 'terrorisme'];
     public function getRouteKeyName(){
         return 'uuid';
     }

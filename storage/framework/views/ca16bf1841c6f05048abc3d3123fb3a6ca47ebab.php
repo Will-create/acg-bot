@@ -54,11 +54,11 @@
 
                     </dd>
                     <dt>Service investigateur :</dt>
-                    <dd> 
+                    <dd>
                         <?php echo e(ucFirst($crime->service_investigateur->designation ?? $crime->service_investigateur->designation)); ?>
 
                     </dd>
-                    
+
                 </dl>
             </div>
         </div>
@@ -84,7 +84,7 @@ if (! isset($_instance)) {
 }
 echo $html;
 ?>
-                        
+
                         <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('commentaire',['crime'  => $crime,'commentaires' => $commentaires])->html();
@@ -101,7 +101,7 @@ if (! isset($_instance)) {
 echo $html;
 ?>
                     </div>
-                
+
             </div>
          </div>
         </div>
@@ -156,7 +156,7 @@ echo $html;
 
                                         <div>
                                             <?php echo $__env->make('partials._notify',['nom'  => 'auteur'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-                                           
+
                                             <div class="text-right">
                                                 <a href="<?php echo e(route('crime_auteurs.create', ['crime' => $crime->uuid])); ?>" class="btn btn-primary"> <i class="fa fa-plus" aria-hidden="true"></i> Ajouter</a>
                                             </div>
@@ -209,13 +209,13 @@ echo $html;
                                     </li>
                                     <li class="<?php if(Session::has('section')  &&  (session('section') == "reglement")): ?> acc_active <?php endif; ?>">
                                         <div>
-                                            
+
                                             <h3>Réglements</h3>
                                             <span class="nom_item_par_collapse badge badge-danger"> <?php echo e(count($crime->reglement)); ?> </span>
 
                                         </div>
                                         <div>
-                                            
+
                                             <?php echo $__env->make('partials._notify',['nom'  => 'reglement'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
                                             <div class="text-right">
@@ -239,10 +239,10 @@ echo $html;
 
                                         </div>
                                         <div>
-                                        
+
                                             <div class="text-right">
                                                 <?php if($crime->longitude != ''): ?>
-                                                
+
                                                 <div id="map"></div>
                                                <?php else: ?>
                                                <small class="text-danger">
@@ -250,7 +250,7 @@ echo $html;
                                                </small>
                                                 <?php endif; ?>
                                             </div>
-                                            
+
                                         </div>
                                     </li>
                                 </ul>
@@ -262,7 +262,7 @@ echo $html;
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title" >Options</h3>
-                
+
            </div>
             <div class="card-body">
               <div class="row">
@@ -301,7 +301,7 @@ echo $html;
 ?>
 
                   </div>
-                  
+
 
               </div>
             </div>
@@ -373,4 +373,4 @@ $(document).ready(function() {
 
 <?php $__env->stopPush(); ?>
 
-<?php echo $__env->make('layouts.master4', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /home/louisbertson/Desktop/criminalite/resources/views/pages/backoffice/crimes/show.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.master4', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:/switch_maker/war_crimes/resources/views/pages/backoffice/crimes/show.blade.php ENDPATH**/ ?>

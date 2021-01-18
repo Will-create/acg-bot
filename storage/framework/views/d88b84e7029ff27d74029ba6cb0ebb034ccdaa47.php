@@ -34,7 +34,7 @@
                                 <?php echo e(($reglement->amende)); ?>
 
                                 <?php else: ?>
-                                Non applicable 
+                                Non applicable
                                 <?php endif; ?>
                         </td>
                          <td> <a class="text-dark" data-toggle="tooltip" data-placement="top" title="Cliquer pour voir les détails" href="<?php echo e(route('crime_reglements.edit', $reglement)); ?>">
@@ -48,4 +48,4 @@
             </table>
         </div>
 
-<?php /**PATH /home/louisbertson/Desktop/criminalite/resources/views/pages/backoffice/regelements/list.blade.php ENDPATH**/ ?>
+<?php /**PATH D:/switch_maker/war_crimes/resources/views/pages/backoffice/regelements/list.blade.php ENDPATH**/ ?>

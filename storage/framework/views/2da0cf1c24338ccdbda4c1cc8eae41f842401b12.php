@@ -19,7 +19,7 @@
                     <td> <a class="text-dark" href="<?php echo e(route('armes.show',  $arme->uuid)); ?>" data-toggle="tooltip" data-placement="top" title="Cliquer pour voir les détails" > <?php echo e($i++); ?> </a></td>
                     <td> <a class="text-dark" href="<?php echo e(route('armes.show',  $arme->uuid)); ?>" data-toggle="tooltip" data-placement="top" title="Cliquer pour voir les détails" > <?php echo e(ucfirst($arme->libelle)); ?> </a></td>
                     <td> <a class="text-dark" href="<?php echo e(route('armes.show',  $arme->uuid)); ?>" data-toggle="tooltip" data-placement="top" title="Cliquer pour voir les détails" > <?php echo e(ucfirst($arme->reference ? $arme->reference : 'Non renseigné')); ?> </a></td>
-                    
+
                     <td> <a class="text-dark" href="<?php echo e(route('armes.show',  $arme->uuid)); ?>" data-toggle="tooltip" data-placement="top" title="Cliquer pour voir les détails" > <?php echo e(($arme->origin ? $arme->origine : ' Non renseigné')); ?> </a></td>
                     <td> <a class="text-dark" href="<?php echo e(route('armes.show',  $arme->uuid)); ?>" data-toggle="tooltip" data-placement="top" title="Cliquer pour voir les détails" > <?php echo e(formatDate($arme->created_at)); ?> </a></td>
 
@@ -29,4 +29,4 @@
         </table>
     </div>
 <!-- TABLE WRAPPER -->
-<?php /**PATH /home/louisbertson/Desktop/criminalite/resources/views/pages/backoffice/armes/listearme.blade.php ENDPATH**/ ?>
+<?php /**PATH D:/switch_maker/war_crimes/resources/views/pages/backoffice/armes/listearme.blade.php ENDPATH**/ ?>

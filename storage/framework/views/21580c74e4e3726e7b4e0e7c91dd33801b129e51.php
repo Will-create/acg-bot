@@ -38,4 +38,4 @@
                 </tbody>
             </table>
         </div>
-        <?php /**PATH /home/louisbertson/Desktop/criminalite/resources/views/pages/backoffice/auteurs/crimeAuteu.blade.php ENDPATH**/ ?>
+        <?php /**PATH D:/switch_maker/war_crimes/resources/views/pages/backoffice/auteurs/crimeAuteu.blade.php ENDPATH**/ ?>

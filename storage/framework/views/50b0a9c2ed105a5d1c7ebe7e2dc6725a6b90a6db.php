@@ -109,4 +109,4 @@
         </script>
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('layouts.master4', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /home/louisbertson/Desktop/criminalite/resources/views/pages/backoffice/crimes/index.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.master4', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:/switch_maker/war_crimes/resources/views/pages/backoffice/crimes/index.blade.php ENDPATH**/ ?>

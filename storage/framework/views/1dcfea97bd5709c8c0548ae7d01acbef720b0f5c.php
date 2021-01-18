@@ -22,8 +22,8 @@
 		<!-- COLOR SKIN CSS -->
 		<link id="theme" rel="stylesheet" type="text/css" media="all" href="<?php echo e(URL::asset('assets/colors/color1.css')); ?>" />
 
-		
 
-		
 
-		<?php /**PATH /home/louisbertson/Desktop/criminalite/resources/views/layouts/custom-head.blade.php ENDPATH**/ ?>
+
+
+		<?php /**PATH D:/switch_maker/war_crimes/resources/views/layouts/custom-head.blade.php ENDPATH**/ ?>

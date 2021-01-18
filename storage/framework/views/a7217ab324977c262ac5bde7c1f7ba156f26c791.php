@@ -6,7 +6,7 @@
                     <tr>
                         <th>Mode</th>
                         <th>Decision de justice</th>
-                        <th>Amende</th>
+                        <th>Amende en XOF</th>
                         <th>Date d'ajout</th>
                     </tr>
                 </thead>
@@ -31,10 +31,10 @@
                         <td>
                             <?php if( $reglement->suite &&  $reglement->suite->decision == "Condamnation du prévenu à une amende" || $reglement->mode->mode == "Transaction forestière"): ?>
                             <a class="text-dark" data-toggle="tooltip" data-placement="top" title="Cliquer pour voir les détails" href="<?php echo e(route('crime_reglements.edit', $reglement)); ?>">
-                                <?php echo e(($reglement->amende)); ?>
+                                <?php echo e(formatMontant($reglement->amende)); ?>
 
                                 <?php else: ?>
-                                Non applicable 
+                                Non applicable
                                 <?php endif; ?>
                         </td>
                          <td> <a class="text-dark" data-toggle="tooltip" data-placement="top" title="Cliquer pour voir les détails" href="<?php echo e(route('crime_reglements.edit', $reglement)); ?>">

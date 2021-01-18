@@ -59,7 +59,7 @@
                                     <dd> {{$arme->remarques}}
                                     </dd>
                                     <dt>Crime :</dt>
-                                    <dd>  <a class="text-dark" href="{{route('crimes.show', $arme->crime->uuid)}}">{{ucFirst($arme->crime->localite_apprehension)}}</a></dd>
+                                    <dd>  <a class="text-dark" href="{{route('crimes.show', $arme->crime->uuid)}}">{{ucFirst($arme->crime->type ? $arme->crime->type->nom . ' à    '. $arme->crime->localite->nom : '' )}}</a></dd>
                                 </dl>
                                         <br><br>
                             </div>
@@ -81,7 +81,7 @@
                                     @if ($autres->count() == 1)
                                     <span class="">Aucune autre arme n'est utilisée que celle-la</span>
                                     @endif
-                                        
+
                                     @endforeach
                                 </div>
                             </div>

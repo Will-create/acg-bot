@@ -169,7 +169,7 @@
                                 <li><a class="slide-item" href="{{route('armes.create')}}"><span>Nouvelle arme de crime</span></a></li>
                             </ul>
                         </li>
-                        <li class="slide">
+                        {{-- <li class="slide">
                             <a class="side-menu__item" data-toggle="slide" href="#">
                                 <i class="mdi mdi-message aide-icon"  ></i>
                                 <span class="side-menu__label">Commentaires</span><i class="angle fa fa-angle-right"></i>
@@ -179,7 +179,7 @@
                                 <li><a class="slide-item" href="{{route('commentaires.filter')}}"><span>Les commentaires par crime</span></a></li>
                                 <li><a class="slide-item" href="{{route('commentaires.create')}}"><span>Nouveau commentaire</span></a></li>
                             </ul>
-                        </li>
+                        </li> --}}
                         <li class="slide">
                             <a class="side-menu__item" data-toggle="slide" href="#">
                                 <i class="mdi mdi-message aide-icon"  ></i>

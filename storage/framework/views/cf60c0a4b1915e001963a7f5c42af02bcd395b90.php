@@ -8,4 +8,4 @@
         </div>
     </div>
 </footer>
-<!-- FOOTER END --><?php /**PATH /home/louisbertson/Desktop/criminalite/resources/views/layouts/footer.blade.php ENDPATH**/ ?>
+<!-- FOOTER END --><?php /**PATH D:/switch_maker/war_crimes/resources/views/layouts/footer.blade.php ENDPATH**/ ?>

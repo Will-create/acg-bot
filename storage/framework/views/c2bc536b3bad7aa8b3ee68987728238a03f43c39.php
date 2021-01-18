@@ -12,4 +12,4 @@
 
 </div>
 <?php endif; ?>
-<?php /**PATH /home/louisbertson/Desktop/criminalite/resources/views/partials/_notify.blade.php ENDPATH**/ ?>
+<?php /**PATH D:/switch_maker/war_crimes/resources/views/partials/_notify.blade.php ENDPATH**/ ?>

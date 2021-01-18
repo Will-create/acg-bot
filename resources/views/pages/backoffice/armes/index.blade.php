@@ -23,13 +23,12 @@
 							<li class="breadcrumb-item active" aria-current="page">Les armes de crime</li>
 						</ol>
 					</div>
-					<div class="ml-auto pageheader-btn">
+					{{-- <div class="ml-auto pageheader-btn">
                     <a class="btn btn-primary" href="{{route('armes.create')}}">  <span>
                             <i class="fe fe-plus"></i>
                         </span>
                     Ajouter une arme</a>
-                    </button>
-					</div>
+					</div> --}}
 				</div>
 				<!-- PAGE-HEADER END -->
 @endsection

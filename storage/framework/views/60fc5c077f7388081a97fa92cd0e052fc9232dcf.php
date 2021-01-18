@@ -36,4 +36,4 @@
         </div>
     </body>
 </html>
-<?php /**PATH /home/louisbertson/Desktop/criminalite/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/views/minimal.blade.php ENDPATH**/ ?>
+<?php /**PATH D:/switch_maker/war_crimes/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/views/minimal.blade.php ENDPATH**/ ?>

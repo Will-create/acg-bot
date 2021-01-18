@@ -59,4 +59,4 @@ unset($__errorArgs, $__bag); ?>
 </div>
 <?php echo $__env->make('livewire.crime-espece', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 </div>
-<?php /**PATH /home/louisbertson/Desktop/criminalite/resources/views/livewire/regne-espece.blade.php ENDPATH**/ ?>
+<?php /**PATH D:/switch_maker/war_crimes/resources/views/livewire/regne-espece.blade.php ENDPATH**/ ?>

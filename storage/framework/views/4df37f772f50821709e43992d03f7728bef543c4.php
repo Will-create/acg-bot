@@ -21,4 +21,4 @@
 		<script src="<?php echo e(URL::asset('assets/plugins/scroll-bar/jquery.mCustomScrollbar.concat.min.js')); ?>"></script>
 		<?php echo $__env->yieldContent('js'); ?>
 		<!-- CUSTOM JS-->
-		<script src="<?php echo e(URL::asset('assets/js/custom.js')); ?>"></script><?php /**PATH /home/louisbertson/Desktop/criminalite/resources/views/layouts/custom-footer-scripts.blade.php ENDPATH**/ ?>
+		<script src="<?php echo e(URL::asset('assets/js/custom.js')); ?>"></script><?php /**PATH D:/switch_maker/war_crimes/resources/views/layouts/custom-footer-scripts.blade.php ENDPATH**/ ?>

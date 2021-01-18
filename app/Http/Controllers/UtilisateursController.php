@@ -31,15 +31,15 @@ class UtilisateursController extends Controller
 
         switch (Auth::user()->role->designation) {
             case 'Chef d’Unité':
-                $utilisateurs  = User::where('role_id', Role::where('designation', 'Agent d’une Unité')->first()->id)->where('pay_id', Auth::user()->pay->id)->latest()->get();
+                $utilisateurs  = User::where('role_id', Role::where('designation', 'Agent d’une Unité')->first()->id)->where('pay_id', Auth::user()->pays->id)->latest()->get();
                 break;
             case 'Coordonnateur National':
                 $role_id = Role::whereIn('designation', ['Chef d’Unité', 'Agent d’une Unité'])->pluck('id');
-                $utilisateurs  = User::where('pay_id', Auth::user()->pay->id)->whereIn('role_id', $role_id)->latest()->get();
+                $utilisateurs  = User::where('pay_id', Auth::user()->pays->id)->whereIn('role_id', $role_id)->latest()->get();
                 break;
             case 'Coordonnateur Régional':
                 $role_id = Role::whereIn('designation', ['Chef d’Unité', 'Agent d’une Unité', 'Coordonnateur National'])->pluck('id');
-                $utilisateurs  = User::where('pay_id', Auth::user()->pay->id)->whereIn('role_id', $role_id)->latest()->get();
+                $utilisateurs  = User::where('pay_id', Auth::user()->pays->id)->whereIn('role_id', $role_id)->latest()->get();
                 $utilisateurs  = User::latest()->get();
                 break;
             case 'Administrateur Général':
@@ -74,12 +74,12 @@ class UtilisateursController extends Controller
                 break;
             case 'Coordonnateur National':
                 $roles = Role::where('designation', 'Chef d’Unité')->first();
-                $pays = Pay::where('nom', Auth::user()->pay->nom)->first();
+                $pays = Pay::where('nom', Auth::user()->pays->nom)->first();
                 $unites = Unite::where('pays_id', $pays->id)->get();
                 break;
             case 'Chef d’Unité':
                 $roles = Role::where('designation', 'Agent d’une Unité')->first();
-                $pays = Pay::where('nom', Auth::user()->pay->nom)->first();
+                $pays = Pay::where('nom', Auth::user()->pays->nom)->first();
                 // $unites = Unite::where('pays_id', $pays->id)->get();
                 break;
 
@@ -144,7 +144,7 @@ class UtilisateursController extends Controller
 
 
     public function show($uuid)
-    {   
+    {
 
         $utilisateur = User::where('uuid',$uuid)->with('unite','localite','pays')->first();
         return view('pages.backoffice.administrateur.utilisateurs.show', compact('utilisateur'));

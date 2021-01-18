@@ -52,4 +52,4 @@
 		<script src="<?php echo e(URL::asset('assets/js/fakeLoader.min.js')); ?>"></script>
 		<script src="<?php echo e(URL::asset('assets/js/custom.js')); ?>"></script>
 		<script src="<?php echo e(URL::asset('js/axios.js')); ?>"></script>
-		<?php /**PATH /home/louisbertson/Desktop/criminalite/resources/views/layouts/footer-scripts.blade.php ENDPATH**/ ?>
+		<?php /**PATH D:/switch_maker/war_crimes/resources/views/layouts/footer-scripts.blade.php ENDPATH**/ ?>

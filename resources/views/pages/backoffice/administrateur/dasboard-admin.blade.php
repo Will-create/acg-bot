@@ -4,7 +4,7 @@
 @include('partials._notification')
 
 			<!-- Row -->
-			<div class="row">
+			{{-- <div class="row">
 				<div class="col-xl-3 col-sm-6">
 					<div class="card">
 						<div class="card-body">
@@ -20,8 +20,7 @@
 									</div>
 								</div>
 							</div>
-							{{-- <span class="fs-12 text-muted"> <strong>2.6%</strong><i class="mdi mdi-arrow-up"></i> <span class="text-muted fs-12 ml-0 mt-1">than last week</span></span> --}}
-						</div>
+ 						</div>
 					</div>
 				</div>
 				<div class="col-xl-3 col-sm-6">
@@ -38,8 +37,7 @@
 									</div>
 								</div>
 							</div>
-							{{-- <span class="fs-12 text-muted"> <strong>23</strong><i class="mdi mdi-arrow-down"></i> <span class="text-muted fs-12 ml-0 mt-1">Ajoutés ce mois</span></span> --}}
-						</div>
+ 						</div>
 					</div>
 				</div>
 				<div class="col-xl-3 col-sm-6">
@@ -56,8 +54,7 @@
 									</div>
 								</div>
 							</div>
-							{{-- <span class="fs-12 text-muted"> <strong>0.15%</strong><i class="mdi mdi-arrow-down"></i> <span class="text-muted fs-12 ml-0 mt-1">Signalés ce mois</span></span> --}}
-						</div>
+ 						</div>
 					</div>
 				</div>
 				<div class="col-xl-3 col-sm-6">
@@ -74,8 +71,7 @@
 									</div>
 								</div>
 							</div>
-							{{-- <span class="fs-12 text-muted"> <strong>1.05%</strong><i class="mdi mdi-arrow-up"></i> <span class="text-muted fs-12 ml-0 mt-1">than last week</span></span> --}}
-						</div>
+ 						</div>
 					</div>
 				</div>
 			</div>
@@ -95,7 +91,7 @@
                                     <a href="{{route('profil')}}" class="btn btn-primary mt-1 mb-1 btn-sm" data-toggle="tooltip" data-placement="top" title=" Voir mon profil " > <i class="zmdi zmdi-eye text-white"></i> Voir le profil</a>
 
 
-                                    {{-- <a href="http://localhost:5000/utilisateurs/9fb2ae90-f991-46c2-a03e-037039442b45/edit" class="btn btn-primary mt-1 mb-1 btn-sm"> <i class="zmdi zmdi-edit text-white"></i>  Editer le profile </a> --}}
+                                    {{-- <a href="http://localhost:5000/utilisateurs/9fb2ae90-f991-46c2-a03e-037039442b45/edit" class="btn btn-primary mt-1 mb-1 btn-sm"> <i class="zmdi zmdi-edit text-white"></i>  Editer le profile </a>
                                     </div>
                                 </div>
                             </div>
@@ -131,11 +127,11 @@
                                         <td>{{$coordonateur->prenom}}</td>
                                         <td>{{$coordonateur->tel}}</td>
 											<td>
-                                                {{-- <button type="button" class="badge {{$coordonateur->actif ? 'badge-success':'badge-danger'}}" style="border:none">{{$coordonateur->actif ? 'Ativé':'Désactivé'}}</button> --}}
+                                                {{-- <button type="button" class="badge {{$coordonateur->actif ? 'badge-success':'badge-danger'}}" style="border:none">{{$coordonateur->actif ? 'Ativé':'Désactivé'}}</button>
                                             <button type="button" class="badge handleAcount {{$coordonateur->actif ?  'badge-success':'badge-danger'}}" data-toggle="tooltip" data-placement="top" title="{{$coordonateur->actif ? 'Cliquer pour désactiver':'Cliquer pour activer'}}" data-status="{{$coordonateur->actif ? 'Désactiver':'Activer'}}"   data-url="{{route('gerer-utilisateur', $coordonateur)}}" data-toggle="modal" data-clocation="{{url()->current()}}"
                                                     data-target="#exampleModalDelete{{$coordonateur->id}}" style="border:none">  {{$coordonateur->actif ? 'Ativé':'Désactivé'}}</button>
 
-                                                {{-- <a href="{{route('gerer-utilisateur', $coordonateur)}}" class="badge {{$coordonateur->actif ? 'badge-success':'badge-danger'}}" data-toggle="tooltip" data-placement="top" title="{{$coordonateur->actif ? 'Cliquer pour désactiver':'Cliquer pour activer'}}">{{$coordonateur->actif ? 'Ativé':'Désactivé'}}  </a> --}}
+                                                {{-- <a href="{{route('gerer-utilisateur', $coordonateur)}}" class="badge {{$coordonateur->actif ? 'badge-success':'badge-danger'}}" data-toggle="tooltip" data-placement="top" title="{{$coordonateur->actif ? 'Cliquer pour désactiver':'Cliquer pour activer'}}">{{$coordonateur->actif ? 'Ativé':'Désactivé'}}  </a>
                                             </td>
 
 										</tr>
@@ -149,7 +145,8 @@
 					</div>
 				</div>
 
-			</div>
+            </div> --}}
+            <iframe src="http://localhost:5601/app/dashboards#/view/10aa9a50-5748-11eb-9f9a-016191b0374e?embed=true&_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-15m,to:now))&_a=(description:'',filters:!(),fullScreenMode:!f,options:(hidePanelTitles:!f,useMargins:!t),query:(language:kuery,query:''),timeRestore:!f,title:'Dashboard%20crime',viewMode:view)&hide-filter-bar=true" style="width: 80vw;height:110vh"></iframe>
 @endsection
 @section('js')
 		<!-- INTERNAL CHARTJS CHART JS -->

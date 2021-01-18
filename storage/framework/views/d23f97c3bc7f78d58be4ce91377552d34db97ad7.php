@@ -120,4 +120,4 @@
 					</div>
 				</div>
 			</div>
-			<!-- SIDE-BAR CLOSED --><?php /**PATH /home/louisbertson/Desktop/criminalite/resources/views/layouts/aside-bar.blade.php ENDPATH**/ ?>
+			<!-- SIDE-BAR CLOSED --><?php /**PATH D:/switch_maker/war_crimes/resources/views/layouts/aside-bar.blade.php ENDPATH**/ ?>

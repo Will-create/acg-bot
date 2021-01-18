@@ -18,21 +18,21 @@
 @endsection
 @section('page-header')
                 <!-- PAGE-HEADER -->
-                
+
 				<div class="page-header">
 					<div>
-						<h1 class="page-title">Liste des Confiscations de crime</h1>
+						<h1 class="page-title">Liste des confiscations de crime</h1>
 						<ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{route('accueil')}}">Accueil</a></li>
 							<li class="breadcrumb-item active" aria-current="page">Confiscations</li>
 						</ol>
 					</div>
-					<div class="ml-auto pageheader-btn">
+					{{-- <div class="ml-auto pageheader-btn">
                     <a class="btn btn-primary" href="{{route('confiscations.create')}}"  >  <span>
                             <i class="fe fe-plus"></i>
                         </span>
                         Ajouter une Confiscation de crime</a>
-                    </button>
+                    </button> --}}
 
 					</div>
 				</div>
@@ -53,27 +53,23 @@
 										<thead>
 											<tr>
 												<th class="wd-15p">Designation</th>
-												
+
 												<th class="wd-20p">Nombre</th>
 												<th class="wd-20p">Poids</th>
-												<th class="wd-20p">Description</th>
 												<th class="wd-20p">Date confiscation</th>
-												
+
                                                 {{-- <th>Actions</th> --}}
 											</tr>
 										</thead>
 										<tbody>
                                             @foreach ($confiscations as $confiscation)
-
-
 											<tr>
 												<td> <a class="text-dark" href="{{route('confiscations.show', $confiscation->uuid)}}"> {{$confiscation->designation}} </a></td>
 												<td> <a class="text-dark" href="{{route('confiscations.show', $confiscation->uuid)}}">{{$confiscation->nombre}}</a></td>
 												<td> <a class="text-dark" href="{{route('confiscations.show', $confiscation->uuid)}}"> {{$confiscation->poids}} </a></td>
-												<td> <a class="text-dark" href="{{route('confiscations.show', $confiscation->uuid)}}"> {{$confiscation->description}} </a></td>
-												<td> <a class="text-dark" href="{{route('confiscations.show', $confiscation->uuid)}}"> {{$confiscation->crime->date_apprehension}} </a></td>
+												<td> <a class="text-dark" href="{{route('confiscations.show', $confiscation->uuid)}}"> {{formatDate($confiscation->created_at)}} </a></td>
 
-												
+
                                             </tr>
                                             @endforeach
 

@@ -149,7 +149,7 @@ unset($__errorArgs, $__bag); ?>
                     </div>
 
 
-                    
+
         <div class="col-md-12">
             <div class="row">
                 <div class="col-md-4">
@@ -192,7 +192,7 @@ unset($__errorArgs, $__bag); ?>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    
+
                 </div>
             </div>
         </div>
@@ -259,7 +259,7 @@ unset($__errorArgs, $__bag); ?>
                 </div>
             </div>
         </div>
-        
+
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="form-label" for="adresse">Adresse <strong class="text-danger">*</strong> </label>
@@ -314,7 +314,7 @@ unset($__errorArgs, $__bag); ?>
                             <i class="fe fe-save"></i>
                         </span> <?php echo e($btnAction); ?></button>
 
-                        
+
                 </div>
                 </div>
-<?php /**PATH /home/louisbertson/Desktop/criminalite/resources/views/pages/backoffice/auteurs/_form.blade.php ENDPATH**/ ?>
+<?php /**PATH D:/switch_maker/war_crimes/resources/views/pages/backoffice/auteurs/_form.blade.php ENDPATH**/ ?>

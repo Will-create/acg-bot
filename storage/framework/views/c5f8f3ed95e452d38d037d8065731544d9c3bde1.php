@@ -1,4 +1,3 @@
-
 <?php $__env->startSection('css'); ?>
         <!-- INTERNAL SELECT2 CSS -->
 		<link href="<?php echo e(URL::asset('assets/plugins/fileuploads/css/fileupload.css')); ?>" rel="stylesheet" type="text/css" />
@@ -60,7 +59,7 @@
 
                                     </dd>
                                     <dt>Crime :</dt>
-                                    <dd>  <a class="text-dark" href="<?php echo e(route('crimes.show', $arme->crime->uuid)); ?>"><?php echo e(ucFirst($arme->crime->localite_apprehension)); ?></a></dd>
+                                    <dd>  <a class="text-dark" href="<?php echo e(route('crimes.show', $arme->crime->uuid)); ?>"><?php echo e(ucFirst($arme->crime->type ? $arme->crime->type->nom . ' à    '. $arme->crime->localite->nom : '' )); ?></a></dd>
                                 </dl>
                                         <br><br>
                             </div>
@@ -82,7 +81,7 @@
                                     <?php if($autres->count() == 1): ?>
                                     <span class="">Aucune autre arme n'est utilisée que celle-la</span>
                                     <?php endif; ?>
-                                        
+
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </div>
                             </div>

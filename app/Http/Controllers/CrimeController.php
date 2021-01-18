@@ -26,7 +26,32 @@ class CrimeController extends Controller
 
     public function index()
     {
-        return view('pages.backoffice.crimes.index', ['crimes'  => Crime::all()]);
+        switch (Auth::user()->role->designation) {
+            case 'Agent d’une Unité':
+                $crimes  =  Crime::where('pays_apprehension', Auth::user()->pays->id)->get();
+        return view('pages.backoffice.crimes.index-agent', compact('crimes'));
+             break;
+            case 'Chef d’Unité':
+                $crimes  =  Crime::where('pays_apprehension', Auth::user()->pays->id)->get();
+        return view('pages.backoffice.crimes.index-agent', compact('crimes'));
+
+            break;
+
+            case 'Coordonnateur National':
+                $crimes  =  Crime::where('pays_apprehension', Auth::user()->pays->id)->get();
+                return view('pages.backoffice.crimes.index-agent', compact('crimes'));
+
+            break;
+            case 'Coordonnateur Régional':
+                $crimes  =  Crime::all();
+            break;
+            case 'Administrateur Général':
+                $crimes  =  Crime::all();
+             break;
+
+
+        }
+        return view('pages.backoffice.crimes.index', compact('crimes'));
     }
 
 
@@ -193,10 +218,10 @@ class CrimeController extends Controller
             'commentaires'  => Commentaire::where('crime_id',$crime->id)->orderBy('created_at','desc')->get(),
             'modeReglements'        => ModeReglement::all(),
             'suites'                => DecisionJustice::all(),
-            'carte'                 => $crime->longitude ? openstreetmap_url($crime->longitude,$crime->latitude) : ''  
+            'carte'                 => $crime->longitude ? openstreetmap_url($crime->longitude,$crime->latitude) : ''
             ]);
 
-        
+
     }
 
     /**

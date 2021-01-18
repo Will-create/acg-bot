@@ -40,7 +40,7 @@
                                 <div class="dropdown profile-1">
                                     <a href="#" data-toggle="dropdown" class="nav-link pl-2 pr-2  leading-none d-flex">
                                         <span>
-                                            
+
                                             <img src="<?php echo e(asset('storage/'. Auth::user()->profile_photo_path)); ?>" alt="profile-user" class="avatar  mr-xl-3 profile-user brround cover-image">
                                         </span>
 
@@ -72,4 +72,4 @@
                     </div>
                 </div>
                 <!-- responsive-navbar -->
-<?php /**PATH /home/louisbertson/Desktop/criminalite/resources/views/layouts/header.blade.php ENDPATH**/ ?>
+<?php /**PATH D:/switch_maker/war_crimes/resources/views/layouts/header.blade.php ENDPATH**/ ?>

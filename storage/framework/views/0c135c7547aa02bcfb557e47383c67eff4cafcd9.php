@@ -36,4 +36,4 @@
         <link id="theme" rel="stylesheet" type="text/css" media="all" href="<?php echo e(URL::asset('assets/colors/color1.css')); ?>" />
 
         <?php echo $__env->yieldPushContent('livewire'); ?>
-<?php /**PATH /home/louisbertson/Desktop/criminalite/resources/views/layouts/head.blade.php ENDPATH**/ ?>
+<?php /**PATH D:/switch_maker/war_crimes/resources/views/layouts/head.blade.php ENDPATH**/ ?>
