@@ -1,4 +1,3 @@
-
 <?php $__env->startSection('css'); ?>
         <!-- INTERNAL SELECT2 CSS -->
 		<link href="<?php echo e(URL::asset('assets/plugins/fileuploads/css/fileupload.css')); ?>" rel="stylesheet" type="text/css" />
@@ -31,7 +30,7 @@
                     <a class="btn btn-primary" href="<?php echo e(route('utilisateurs.create')); ?>"  >  <span>
                             <i class="fe fe-plus"></i>
                         </span>
-                        Ajouter un utilisateur</a>
+                        Ajouter un agent</a>
                     </button>
 					</div>
 				</div>
@@ -45,35 +44,41 @@
 					<div class="col-md-12 col-lg-12">
 						<div class="card">
 							<div class="card-header">
-								<h3 class="card-title">Liste des utilisateurs</h3>
+								<h3 class="card-title">Liste des agents</h3>
 							</div>
 							<div class="card-body">
 								<div class="table-responsive">
-									<table id="data-table1" class="table table-striped table-bordered text-nowrap w-100 table-sm">
-										<thead>
-											<tr>
-												<th class="wd-15p">Nom</th>
-												<th class="wd-15p">Prénom</th>
-												<th class="wd-20p">Email</th>
-												<th class="wd-20p">Role</th>
-												<th class="wd-15p">Téléphone</th>
-                                                
-											</tr>
-										</thead>
-										<tbody>
-                                            <?php $__currentLoopData = $utilisateurs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $utilisateur): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-											<tr>
-												<td> <a class="text-dark" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails de l'utilisateur" href="<?php echo e(route('utilisateurs.show', $utilisateur)); ?>"> <?php echo e($utilisateur->nom); ?> </a></td>
-												<td> <a class="text-dark" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails de l'utilisateur" href="<?php echo e(route('utilisateurs.show', $utilisateur)); ?>"><?php echo e($utilisateur->prenom); ?> </a></td>
-												<td> <a class="text-dark" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails de l'utilisateur" href="<?php echo e(route('utilisateurs.show', $utilisateur)); ?>"><?php echo e($utilisateur->email); ?> </a></td>
-												<td> <a class="text-dark" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails de l'utilisateur" href="<?php echo e(route('utilisateurs.show', $utilisateur)); ?>"><?php echo e($utilisateur->role->designation); ?> </a></td>
-                       <td> <a class="text-dark" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails de l'utilisateur" href="<?php echo e(route('utilisateurs.show', $utilisateur)); ?>"><?php echo e($utilisateur->tel); ?> </a></td>
-                                                
-                                            </tr>
-                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+								<?php if(count($utilisateurs) > 0): ?>
+                                <table id="data-table1" class="table table-striped table-bordered text-nowrap w-100 table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th class="wd-15p">Nom</th>
+                                            <th class="wd-15p">Prénom</th>
+                                            <th class="wd-20p">Email</th>
+                                            <th class="wd-20p">Role</th>
+                                            <th class="wd-15p">Téléphone</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php $__currentLoopData = $utilisateurs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $utilisateur): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <tr>
+                                            <td> <a class="text-dark" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails de l'utilisateur" href="<?php echo e(route('utilisateurs.show', $utilisateur)); ?>"> <?php echo e($utilisateur->nom); ?> </a></td>
+                                            <td> <a class="text-dark" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails de l'utilisateur" href="<?php echo e(route('utilisateurs.show', $utilisateur)); ?>"><?php echo e($utilisateur->prenom); ?> </a></td>
+                                            <td> <a class="text-dark" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails de l'utilisateur" href="<?php echo e(route('utilisateurs.show', $utilisateur)); ?>"><?php echo e($utilisateur->email); ?> </a></td>
+                                            <td> <a class="text-dark" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails de l'utilisateur" href="<?php echo e(route('utilisateurs.show', $utilisateur)); ?>"><?php echo e($utilisateur->role->designation); ?> </a></td>
+                   <td> <a class="text-dark" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails de l'utilisateur" href="<?php echo e(route('utilisateurs.show', $utilisateur)); ?>"><?php echo e($utilisateur->tel); ?> </a></td>
+                                            
+                                        </tr>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
-										</tbody>
-									</table>
+                                    </tbody>
+                                </table>
+                                <?php else: ?>
+<div class="text-center">
+    <span>Aucun agent ajouté</span>
+</div>
+                                <?php endif; ?>
 								</div>
 							</div>
 							<!-- TABLE WRAPPER -->

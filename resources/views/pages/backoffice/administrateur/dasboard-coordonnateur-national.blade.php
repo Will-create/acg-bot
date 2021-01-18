@@ -11,7 +11,7 @@
 						<div class="card-body">
 							<div class="row mb-1">
 								<div class="col">
-									<p class="mb-1">Utilisateurs</p>
+									<p class="mb-1">Utilisateur{{count($utilisateurs) > 0 ? 's' : ''}}</p>
 									<h3 class="mb-0 number-font">{{count($utilisateurs)}}</h3>
 								</div>
 								<div class="col-auto mb-0">
@@ -30,8 +30,8 @@
 						<div class="card-body">
 							<div class="row mb-1">
 								<div class="col">
-									<p class="mb-1">Espaces</p>
-									<h3 class="mb-0 number-font">587 3652</h3>
+									<p class="mb-1">Aire{{$airesprotegers > 0 ? 's' : ''}} protégée{{$airesprotegers > 0 ? 's' : ''}}</p>
+                                <h3 class="mb-0 number-font">{{$airesprotegers}}</h3>
 								</div>
 								<div class="col-auto mb-0">
 									<div class="dash-icon text-secondary1">
@@ -48,8 +48,8 @@
 						<div class="card-body">
 							<div class="row mb-1">
 								<div class="col">
-									<p class="mb-1">Crimes</p>
-									<h3 class="mb-0 number-font">58</h3>
+									<p class="mb-1">Crime{{$crimes > 0 ? 's' : ''}}</p>
+									<h3 class="mb-0 number-font">{{$crimes}}</h3>
 								</div>
 								<div class="col-auto mb-0">
 									<div class="dash-icon text-secondary">
@@ -66,8 +66,8 @@
 						<div class="card-body">
 							<div class="row mb-1">
 								<div class="col">
-									<p class="mb-1">Espèces</p>
-									<h3 class="mb-0 number-font">10 523</h3>
+                                <p class="mb-1">Unite{{$unites > 0 ? 's' : ''}} de loi {{$unites > 0 ? 's' : ''}}</p>
+									<h3 class="mb-0 number-font">{{$unites}}</h3>
 								</div>
 								<div class="col-auto mb-0">
 									<div class="dash-icon text-warning">
@@ -92,8 +92,8 @@
                                     <div class="user-wrap">
                                     <h4 class="mb-1">{{Auth::user()->nom. ' '. Auth::user()->prenom}}</h4>
                                     <h6 class=" mb-4"> <i class="fa fa-envelope"> </i> {{Auth::user()->email}} </h6>
-                                    <h6 class="text-muted mb-4"> Adminsitrateur Général de la plateforme</h6>
-                                    <a href="#" class="btn btn-primary mt-1 mb-1 btn-sm"> <i class="zmdi zmdi-eye text-white"></i> Voir le profil</a>
+                                    <h6 class="text-muted mb-4"> Coordonateur national</h6>
+                                    <a href="{{route('profil')}}" class="btn btn-primary mt-1 mb-1 btn-sm"> <i class="zmdi zmdi-eye text-white"></i> Voir le profil</a>
 
 
                                     {{-- <a href="http://localhost:5000/utilisateurs/9fb2ae90-f991-46c2-a03e-037039442b45/edit" class="btn btn-primary mt-1 mb-1 btn-sm"> <i class="zmdi zmdi-edit text-white"></i>  Editer le profile </a> --}}
@@ -107,14 +107,14 @@
 				<div class="col-sm-12 col-md-12 col-lg-8 col-xl-8">
 					<div class="card">
 						<div class="card-header">
-							<h3 class="card-title">Les coordonnateurs nationaux</h3>
+							<h3 class="card-title">Liste des agents</h3>
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
-								<table class="table table-bordered table-hover text-nowrap mb-0">
+                                @if (count($utilisateurs)  > 0)
+                                <table class="table table-bordered table-hover text-nowrap mb-0">
 									<thead>
 										<tr>
-											<th>Pays</th>
 											<th>Nom</th>
 											<th>Prenom</th>
 											<th>tel</th>
@@ -122,7 +122,7 @@
 										</tr>
 									</thead>
 									<tbody>
-                                       {{-- @forelse ($coordonateurs as $coordonateur)
+                                       @forelse ($utilisateurs as $coordonateur)
 
 
 										<tr>
@@ -140,8 +140,12 @@
                                         @empty
                                         aucune donné
                                        @endforelse
-									</tbody> --}}
+									</tbody>
 								</table>
+                                @else
+Aucun agent pour votre pays
+                                @endif
+
 							</div>
 						</div>
 					</div>

@@ -9,7 +9,7 @@
 						<div class="card-body">
 							<div class="row mb-1">
 								<div class="col">
-									<p class="mb-1">Utilisateurs</p>
+									<p class="mb-1">Utilisateur<?php echo e(count($utilisateurs) > 0 ? 's' : ''); ?></p>
 									<h3 class="mb-0 number-font"><?php echo e(count($utilisateurs)); ?></h3>
 								</div>
 								<div class="col-auto mb-0">
@@ -28,8 +28,8 @@
 						<div class="card-body">
 							<div class="row mb-1">
 								<div class="col">
-									<p class="mb-1">Espaces</p>
-									<h3 class="mb-0 number-font">587 3652</h3>
+									<p class="mb-1">Aire<?php echo e($airesprotegers > 0 ? 's' : ''); ?> protégée<?php echo e($airesprotegers > 0 ? 's' : ''); ?></p>
+                                <h3 class="mb-0 number-font"><?php echo e($airesprotegers); ?></h3>
 								</div>
 								<div class="col-auto mb-0">
 									<div class="dash-icon text-secondary1">
@@ -46,8 +46,8 @@
 						<div class="card-body">
 							<div class="row mb-1">
 								<div class="col">
-									<p class="mb-1">Crimes</p>
-									<h3 class="mb-0 number-font">58</h3>
+									<p class="mb-1">Crime<?php echo e($crimes > 0 ? 's' : ''); ?></p>
+									<h3 class="mb-0 number-font"><?php echo e($crimes); ?></h3>
 								</div>
 								<div class="col-auto mb-0">
 									<div class="dash-icon text-secondary">
@@ -64,8 +64,8 @@
 						<div class="card-body">
 							<div class="row mb-1">
 								<div class="col">
-									<p class="mb-1">Espèces</p>
-									<h3 class="mb-0 number-font">10 523</h3>
+                                <p class="mb-1">Unite<?php echo e($unites > 0 ? 's' : ''); ?> de loi <?php echo e($unites > 0 ? 's' : ''); ?></p>
+									<h3 class="mb-0 number-font"><?php echo e($unites); ?></h3>
 								</div>
 								<div class="col-auto mb-0">
 									<div class="dash-icon text-warning">
@@ -90,8 +90,8 @@
                                     <div class="user-wrap">
                                     <h4 class="mb-1"><?php echo e(Auth::user()->nom. ' '. Auth::user()->prenom); ?></h4>
                                     <h6 class=" mb-4"> <i class="fa fa-envelope"> </i> <?php echo e(Auth::user()->email); ?> </h6>
-                                    <h6 class="text-muted mb-4"> Adminsitrateur Général de la plateforme</h6>
-                                    <a href="#" class="btn btn-primary mt-1 mb-1 btn-sm"> <i class="zmdi zmdi-eye text-white"></i> Voir le profil</a>
+                                    <h6 class="text-muted mb-4"> Coordonateur national</h6>
+                                    <a href="<?php echo e(route('profil')); ?>" class="btn btn-primary mt-1 mb-1 btn-sm"> <i class="zmdi zmdi-eye text-white"></i> Voir le profil</a>
 
 
                                     
@@ -105,14 +105,14 @@
 				<div class="col-sm-12 col-md-12 col-lg-8 col-xl-8">
 					<div class="card">
 						<div class="card-header">
-							<h3 class="card-title">Les coordonnateurs nationaux</h3>
+							<h3 class="card-title">Liste des agents</h3>
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
-								<table class="table table-bordered table-hover text-nowrap mb-0">
+                                <?php if(count($utilisateurs)  > 0): ?>
+                                <table class="table table-bordered table-hover text-nowrap mb-0">
 									<thead>
 										<tr>
-											<th>Pays</th>
 											<th>Nom</th>
 											<th>Prenom</th>
 											<th>tel</th>
@@ -120,8 +120,31 @@
 										</tr>
 									</thead>
 									<tbody>
-                                       
+                                       <?php $__empty_1 = true; $__currentLoopData = $utilisateurs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $coordonateur): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+
+
+										<tr>
+											<td>
+												<img src="http://localhost:5003/assets/images/users/3.jpg" alt="profile-user" class="brround  avatar-sm w-32 mr-2">
+												<?php echo e($coordonateur->pay->nom); ?>
+
+											</td>
+                                        <td><?php echo e($coordonateur->nom); ?></td>
+                                        <td><?php echo e($coordonateur->prenom); ?></td>
+                                        <td><?php echo e($coordonateur->tel); ?></td>
+											<td>
+												<button type="button" class="badge <?php echo e($coordonateur->actif ? 'badge-success':'badge-danger'); ?> "><?php echo e($coordonateur->actif ? 'Ativé':'Désactivé'); ?></button>
+											</td>
+										</tr>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                                        aucune donné
+                                       <?php endif; ?>
+									</tbody>
 								</table>
+                                <?php else: ?>
+Aucun agent pour votre pays
+                                <?php endif; ?>
+
 							</div>
 						</div>
 					</div>

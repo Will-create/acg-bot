@@ -34,20 +34,26 @@ class AdminNavigationController extends Controller
             case 'Coordonnateur National':
                 $role_id = Role::whereIn('designation', ['Chef d’Unité', 'Agent d’une Unité'])->pluck('id');
                 $utilisateurs  = User::where('pay_id', Auth::user()->pays->id)->whereIn('role_id', $role_id)->latest()->get();
-                return view('pages.backoffice.administrateur.dasboard-coordonnateur-national', compact('utilisateurs'));
+                $crimes  = Crime::where('pays_apprehension', Auth::user()->pays->id)->count();
+                $airesprotegers  = AireProtegee::where('pays_id', Auth::user()->pays->id)->latest()->count();
+                $unites  = Unite::where('pays_id', Auth::user()->pays->id)->latest()->count();
+                return view('pages.backoffice.administrateur.dasboard-coordonnateur-national', compact('utilisateurs', 'crimes', 'unites', 'airesprotegers'));
 
             break;
             case 'Coordonnateur Régional':
                 $role_id = Role::whereIn('designation', ['Chef d’Unité', 'Agent d’une Unité'])->pluck('id');
                 $utilisateurs  = User::where('pay_id', Auth::user()->pays->id)->whereIn('role_id', $role_id)->latest()->get();
                 $coordonateurs = User::where('role_id', Role::where('designation', 'Coordonnateur National')->first()->id)->get();
-                return view('pages.backoffice.administrateur.dasboard-coodonnateur-regional', compact('utilisateurs', 'coordonateurs'));
+                $airesprotegers  = AireProtegee::orderBy('libelle', 'DESC')->get();
+                $unites  = Unite::count();
+                $crimes  = Crime::count();
+                return view('pages.backoffice.administrateur.dasboard-coodonnateur-regional', compact('utilisateurs', 'coordonateurs', 'airesprotegers', 'unites', 'crimes'));
             break;
             case 'Administrateur Général':
                 $utilisateurs  = User::latest()->get();
                 $airesprotegers  = AireProtegee::orderBy('libelle', 'DESC')->get();
-                $crimes  = Crime::count();
                 $unites  = Unite::count();
+                $crimes  = Crime::count();
                 $coordonateurs = User::where('role_id', Role::where('designation', 'Coordonnateur National')->first()->id)->get();
                 return view('pages.backoffice.administrateur.dasboard-admin', compact('utilisateurs', 'coordonateurs', 'airesprotegers', 'crimes', 'unites'));
             break;

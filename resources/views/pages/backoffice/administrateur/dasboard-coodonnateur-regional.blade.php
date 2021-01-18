@@ -11,8 +11,8 @@
 						<div class="card-body">
 							<div class="row mb-1">
 								<div class="col">
-									<p class="mb-1">Utilisateurs</p>
-									<h3 class="mb-0 number-font">{{count($utilisateurs)}}</h3>
+                                <p class="mb-1">Utilisateur{{$utilisateurs>0 ? 's' : ''}}</p>
+									<h3 class="mb-0 number-font">{{ ($utilisateurs)}}</h3>
 								</div>
 								<div class="col-auto mb-0">
 									<div class="dash-icon text-orange">
@@ -21,7 +21,7 @@
 									</div>
 								</div>
 							</div>
-							<span class="fs-12 text-muted"> <strong>2.6%</strong><i class="mdi mdi-arrow-up"></i> <span class="text-muted fs-12 ml-0 mt-1">than last week</span></span>
+							{{-- <span class="fs-12 text-muted"> <strong>2.6%</strong><i class="mdi mdi-arrow-up"></i> <span class="text-muted fs-12 ml-0 mt-1">than last week</span></span> --}}
 						</div>
 					</div>
 				</div>
@@ -30,8 +30,8 @@
 						<div class="card-body">
 							<div class="row mb-1">
 								<div class="col">
-									<p class="mb-1">Espaces</p>
-									<h3 class="mb-0 number-font">587 3652</h3>
+									<p class="mb-1">Espace{{$airesprotegers>0 ? 's' : ''}}</p>
+									<h3 class="mb-0 number-font">{{$airesprotegers}}</h3>
 								</div>
 								<div class="col-auto mb-0">
 									<div class="dash-icon text-secondary1">
@@ -39,7 +39,7 @@
 									</div>
 								</div>
 							</div>
-							<span class="fs-12 text-muted"> <strong>23</strong><i class="mdi mdi-arrow-down"></i> <span class="text-muted fs-12 ml-0 mt-1">Ajoutés ce mois</span></span>
+							{{-- <span class="fs-12 text-muted"> <strong>23</strong><i class="mdi mdi-arrow-down"></i> <span class="text-muted fs-12 ml-0 mt-1">Ajoutés ce mois</span></span> --}}
 						</div>
 					</div>
 				</div>
@@ -48,8 +48,8 @@
 						<div class="card-body">
 							<div class="row mb-1">
 								<div class="col">
-									<p class="mb-1">Crimes</p>
-									<h3 class="mb-0 number-font">58</h3>
+									<p class="mb-1">Crime{{$airesprotegers>0 ? 's' : ''}}</p>
+									<h3 class="mb-0 number-font">{{$crimes}}</h3>
 								</div>
 								<div class="col-auto mb-0">
 									<div class="dash-icon text-secondary">
@@ -57,7 +57,7 @@
 									</div>
 								</div>
 							</div>
-							<span class="fs-12 text-muted"> <strong>0.15%</strong><i class="mdi mdi-arrow-down"></i> <span class="text-muted fs-12 ml-0 mt-1">Signalés ce mois</span></span>
+							{{-- <span class="fs-12 text-muted"> <strong>0.15%</strong><i class="mdi mdi-arrow-down"></i> <span class="text-muted fs-12 ml-0 mt-1">Signalés ce mois</span></span> --}}
 						</div>
 					</div>
 				</div>
@@ -66,8 +66,8 @@
 						<div class="card-body">
 							<div class="row mb-1">
 								<div class="col">
-									<p class="mb-1">Espèces</p>
-									<h3 class="mb-0 number-font">10 523</h3>
+									<p class="mb-1">Unite de loi</p>
+									<h3 class="mb-0 number-font">{{$unites}}</h3>
 								</div>
 								<div class="col-auto mb-0">
 									<div class="dash-icon text-warning">
@@ -75,7 +75,7 @@
 									</div>
 								</div>
 							</div>
-							<span class="fs-12 text-muted"> <strong>1.05%</strong><i class="mdi mdi-arrow-up"></i> <span class="text-muted fs-12 ml-0 mt-1">than last week</span></span>
+							{{-- <span class="fs-12 text-muted"> <strong>1.05%</strong><i class="mdi mdi-arrow-up"></i> <span class="text-muted fs-12 ml-0 mt-1">than last week</span></span> --}}
 						</div>
 					</div>
 				</div>

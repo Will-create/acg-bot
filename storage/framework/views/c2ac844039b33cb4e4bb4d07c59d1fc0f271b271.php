@@ -1,4 +1,3 @@
-
 <?php $__env->startSection('css'); ?>
         <!-- INTERNAL SELECT2 CSS -->
 		<link href="<?php echo e(URL::asset('assets/plugins/fileuploads/css/fileupload.css')); ?>" rel="stylesheet" type="text/css" />
@@ -18,20 +17,25 @@
 <?php $__env->startSection('page-header'); ?>
                 <!-- PAGE-HEADER -->
                 <?php echo $__env->make('partials._notification', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-				<div class="page-headesupprr">
+				<div class="page-header">
 					<div>
-						<h1 class="page-title">Liste des utilisateurs</h1>
+                   <?php if(Auth::user()->role->designation == "Administrateur Général"): ?>
+
+                        <h1 class="page-title">Liste des utilisateurs</h1>
+                        <?php endif; ?>
 						<ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="<?php echo e(route('accueil')); ?>">Accueil</a></li>
 							<li class="breadcrumb-item active" aria-current="page"><?php echo e($utilisateur->nom. ' ' .$utilisateur->prenom); ?></li>
 						</ol>
 					</div>
 					<div class="ml-auto pageheader-btn">
-                    <a class="btn btn-primary" href="<?php echo e(route('utilisateurs.index')); ?>" data-toggle="tooltip" data-placement="top" title="Revenir sur la liste des utilisateurs">  <span>
-                            <i class="fe fe-list"></i>
-                        </span>
-                        Les utilisateurs</a>
-                    </button>
+                   <?php if(Auth::user()->role->designation == "Administrateur Général"): ?>
+                   <a class="btn btn-primary" href="<?php echo e(route('utilisateurs.index')); ?>" data-toggle="tooltip" data-placement="top" title="Revenir sur la liste des utilisateurs">  <span>
+                    <i class="fe fe-list"></i>
+                </span>
+                Les utilisateurs
+            </a>
+                   <?php endif; ?>
 					</div>
 				</div>
 				<!-- PAGE-HEADER END -->

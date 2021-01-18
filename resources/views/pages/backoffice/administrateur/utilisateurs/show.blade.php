@@ -18,20 +18,25 @@
 @section('page-header')
                 <!-- PAGE-HEADER -->
                 @include('partials._notification')
-				<div class="page-headesupprr">
+				<div class="page-header">
 					<div>
-						<h1 class="page-title">Liste des utilisateurs</h1>
+                   @if (Auth::user()->role->designation == "Administrateur Général")
+
+                        <h1 class="page-title">Liste des utilisateurs</h1>
+                        @endif
 						<ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{route('accueil')}}">Accueil</a></li>
 							<li class="breadcrumb-item active" aria-current="page">{{$utilisateur->nom. ' ' .$utilisateur->prenom}}</li>
 						</ol>
 					</div>
 					<div class="ml-auto pageheader-btn">
-                    <a class="btn btn-primary" href="{{route('utilisateurs.index')}}" data-toggle="tooltip" data-placement="top" title="Revenir sur la liste des utilisateurs">  <span>
-                            <i class="fe fe-list"></i>
-                        </span>
-                        Les utilisateurs</a>
-                    </button>
+                   @if (Auth::user()->role->designation == "Administrateur Général")
+                   <a class="btn btn-primary" href="{{route('utilisateurs.index')}}" data-toggle="tooltip" data-placement="top" title="Revenir sur la liste des utilisateurs">  <span>
+                    <i class="fe fe-list"></i>
+                </span>
+                Les utilisateurs
+            </a>
+                   @endif
 					</div>
 				</div>
 				<!-- PAGE-HEADER END -->
