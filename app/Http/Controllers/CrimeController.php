@@ -26,19 +26,27 @@ class CrimeController extends Controller
 
     public function index()
     {
-        return view('pages.backoffice.crimes.index', ['crimes'  => Crime::all()]);
+        $titrePage = "Liste de tous les crimes";
+        return view('pages.backoffice.crimes.index', [
+            'crimes'  => Crime::all(),
+            'titrePage'=>$titrePage  
+            ]);
     }
 
 
     public function create()
     {
+        $titrePage = "Ajout d'un nouveau crime environnemental";
+
         return view('pages.backoffice.crimes.create'
         ,[
             'pays'                           => Pay::all(),
             'unites'                         => Unite::all(),
             // 'especes'                        => Espece::all(),
             'typeCrimes'                     => TypeCrime::all(),
-            'aires'                          => AireProtegee::all()
+            'aires'                          => AireProtegee::all(),
+            'titrePage'                      =>$titrePage  
+
         ]
     );
 
@@ -185,6 +193,8 @@ class CrimeController extends Controller
             $url = 'https:⁄⁄www.openstreetmap.org/?mlat='.$lat.'&amp;mlon='.$lon.'#map='.$zoom.'/'.$lat.'/'.$lon;
             return $url;
         }
+        $titrePage = "Détails d'un crime environnemental";
+
         return view('pages.backoffice.crimes.show',
         [
             'crime'  => $crime,
@@ -193,10 +203,9 @@ class CrimeController extends Controller
             'commentaires'  => Commentaire::where('crime_id',$crime->id)->orderBy('created_at','desc')->get(),
             'modeReglements'        => ModeReglement::all(),
             'suites'                => DecisionJustice::all(),
+            'titrePage'             => $titrePage,
             'carte'                 => $crime->longitude ? openstreetmap_url($crime->longitude,$crime->latitude) : ''  
             ]);
-
-        
     }
 
     /**

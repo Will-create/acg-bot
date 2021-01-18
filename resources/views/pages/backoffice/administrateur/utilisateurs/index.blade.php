@@ -21,7 +21,7 @@
                 @include('partials._notification')
 				<div class="page-header">
 					<div>
-						<h1 class="page-title">Liste des utilisateurs</h1>
+						<h1 class="page-title">{{$titrePage}}</h1>
 						<ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{route('accueil')}}">Accueil</a></li>
 							<li class="breadcrumb-item active" aria-current="page">utilisateurs</li>

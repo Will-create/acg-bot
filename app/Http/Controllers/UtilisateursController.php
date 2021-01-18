@@ -20,7 +20,6 @@ class UtilisateursController extends Controller
     {
         $this->middleware('auth');
     }
-
     /**
      * Display a listing of the resource.
      *
@@ -28,6 +27,7 @@ class UtilisateursController extends Controller
      */
     public function index()
     {
+        $titrePage = "Liste de tous les utilisateurs";
 
         switch (Auth::user()->role->designation) {
             case 'Chef d’Unité':
@@ -50,9 +50,8 @@ class UtilisateursController extends Controller
                 break;
         }
 
-        return view('pages.backoffice.administrateur.utilisateurs.index', compact('utilisateurs'));
+        return view('pages.backoffice.administrateur.utilisateurs.index', compact('utilisateurs','titrePage'));
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -87,9 +86,10 @@ class UtilisateursController extends Controller
                 abort(404);
                 break;
         }
-        return view('pages.backoffice.administrateur.utilisateurs.create', compact('roles', 'unites', 'localites', 'pays', 'utilisateur'));
-    }
+        $titrePage = "Ajout d'un utilisateur";
 
+        return view('pages.backoffice.administrateur.utilisateurs.create', compact('roles', 'unites', 'localites', 'pays', 'utilisateur','titrePage'));
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -98,7 +98,6 @@ class UtilisateursController extends Controller
      */
     public function store(Request $request)
     {
-
         $data =   $request->validate([
             'nom'                       => ['required', 'string', 'max:255'],
             'prenom'                    => ['required', 'string', 'max:255'],
@@ -141,37 +140,32 @@ class UtilisateursController extends Controller
 
         return redirect()->route('utilisateurs.show', $user->uuid);
     }
-
-
     public function show($uuid)
     {   
+        $titrePage = "Détail d'un utilisateur";
 
         $utilisateur = User::where('uuid',$uuid)->with('unite','localite','pays')->first();
-        return view('pages.backoffice.administrateur.utilisateurs.show', compact('utilisateur'));
+        return view('pages.backoffice.administrateur.utilisateurs.show', compact('utilisateur','titrePage'));
     }
-
     public function edit(User $utilisateur)
     {
+        $titrePage = "Modification des informations d'un utilisateur";
+
         $roles = Role::whereIn('designation', ['Coordonnateur Régional', 'Coordonnateur National'])->get();
         $unites = Unite::all();
         $localites = Localite::all();
         $pays = Pay::all();
-        return view('pages.backoffice.administrateur.utilisateurs.edit', compact('roles', 'unites', 'localites', 'pays', 'utilisateur'));
+        return view('pages.backoffice.administrateur.utilisateurs.edit', compact('roles', 'unites', 'localites', 'pays', 'utilisateur','titrePage'));
     }
-
-
     public function update(Request $request, User $utilisateur)
     {
-
         $previousUrl = str_replace(url('/'), '', url()->previous());
-
         $path = null;
         if ($request->profile_photo_path) {
             $path = $request->profile_photo_path->store('profile_photo_path');
         } else {
             $path = $utilisateur->profile_photo_path;
         }
-
         if ($previousUrl ==  '/user/profil') {
             $data =   $request->validate([
                 'nom'                       => ['required', 'string', 'max:255'],
@@ -199,7 +193,6 @@ class UtilisateursController extends Controller
                 'pay_id'                    => ['required'],
                 'profile_photo_path'        => ['nullable', 'mimes:jpeg,jpg,png,gif', 'max:10000'],
             ]);
-
             $utilisateur->update([
                 'nom'                       => $request['nom'],
                 'prenom'                    => $request['prenom'],
@@ -211,9 +204,6 @@ class UtilisateursController extends Controller
                 'profile_photo_path'        => $path
             ]);
         }
-
-
-
         if ($previousUrl ==  '/user/profile') {
             $request->session()->flash('status', 'Votre profil a été mis à jour');
             return redirect()->back();
@@ -263,16 +253,24 @@ class UtilisateursController extends Controller
 
     public function profil()
     {
-        return view('pages.backoffice.administrateur.utilisateurs.profil', ['user' => Auth::user()]);
+        $titrePage = "Informations d'un utilisateur";
+
+        return view('pages.backoffice.administrateur.utilisateurs.profil', [
+            'user' => Auth::user(),
+            'titrePage' => $titrePage
+            ]);
     }
     public function edit_password()
     {
-        return view('pages.backoffice.administrateur.utilisateurs.edit-password');
+        $titrePage = "Modificationdes identifiants d'un utilisateur";
+        return view('pages.backoffice.administrateur.utilisateurs.edit-password',[
+            'titrePage' => $titrePage
+
+        ]);
     }
     public function change_password(Request $request)
     {
         $user = Auth::User();
-
         $request->validate([
             "current_password"                       => 'required',
             "new_password"                           => 'required|confirmed',

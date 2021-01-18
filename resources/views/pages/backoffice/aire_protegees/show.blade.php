@@ -9,7 +9,7 @@
 						<ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{route('accueil')}}">Accueil</a></li>
                             <li class="breadcrumb-item" aria-current="page"><a href="{{route('aire_protegees.index')}}">Aires protégées</a></li>                           
-                            <li class="breadcrumb-item active" aria-current="page"><span class="text-dark"></span>{{$aire->libelle}}</li>
+                            <li class="breadcrumb-item active" aria-current="page"><span class="text-dark"></span>{{$titrePage}}</li>
                             
 						</ol>
 					</div>

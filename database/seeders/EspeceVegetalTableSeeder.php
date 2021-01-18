@@ -30,7 +30,9 @@ class EspeceVegetalTableSeeder extends Seeder
         ]);
         $especesbody = json_decode($response->getBody());
         $especes = $especesbody->result;
-
+        $animaux = [
+            '',
+        ];
         for ($i=0; $i <140 ; $i++) {
             $num = rand(1,count($especes));
             $espece= $especes[$num];

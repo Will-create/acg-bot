@@ -17,8 +17,9 @@ class TypeUniteController extends Controller
     }
     public function index()
     {
+        $titrePage = "Liste de toutes les types  de crime";
         $types=TypeUnite::orderBy('nom','asc')->get();
-        return view('pages.backoffice.type_unites.index',compact('types'));
+        return view('pages.backoffice.type_unites.index',compact('types','titrePage'));
     }
 
     public function create()
@@ -46,12 +47,14 @@ class TypeUniteController extends Controller
     }
     public function show($uuid)
     {
+        $titrePage = "Liste de toutes les types  d'unité : ";
+
         return view('pages.backoffice.type_unites.show',[
             'type'   => TypeUnite::where('uuid',$uuid)->first(),
-            'unites' =>Unite::where('type_unite_id',TypeUnite::where('uuid',$uuid)->first()->id)->get()
+            'unites' =>Unite::where('type_unite_id',TypeUnite::where('uuid',$uuid)->first()->id)->get(),
+            'titrePage' => $titrePage.TypeUnite::where('uuid',$uuid)->first()->nom
         ]);
     }
-
     public function edit($uuid)
     {
         return view('pages.backoffice.type_unites.createdit', [

@@ -17,8 +17,9 @@ class LocaliteController extends Controller
     }
     public function index()
     {
+        $titrePage = "Liste de toutes les localités ";
         $localites=Localite::orderBy('pays_id','asc')->get();
-        return view('pages.backoffice.localites.index',compact('localites'));
+        return view('pages.backoffice.localites.index',compact('localites','titrePage'));
     }
     public function create()
     {
@@ -46,35 +47,42 @@ class LocaliteController extends Controller
     
     public function show(Localite $localite)
     {
+        $titrePage = "Détails d'une localité";
+
         return view('pages.backoffice.localites.show',[
             'localite'   => $localite,
             'unites'   =>Unite::where('localite_id',$localite->id)->get(),
+            'titrePage' => $titrePage
+
             
         ]);
     }
 
     public function filter()
     {  
+        $titrePage = "Liste des localités par pays";
         $p = 1;
         $pay=Pay::where('id',$p )->first();
         return view('pages.backoffice.localites.filter', [
             'localites'                    =>Localite::where('pays_id',$pay->id)->get(),
             'pays'                         =>Pay::all(),
-            'pay'                          =>$pay
+            'pay'                          =>$pay,
+            'titrePage'                    => $titrePage
+
         ]);
     }
-
     public function filtreur($p)
     {  
+        $titrePage = "Liste des localités par pays";
         $pay=Pay::where('id',$p )->first();
-      
         return response()->json([
             'localites'                    =>Localite::where('pays_id',$pay->id)->with('pay')->get(),
             'pays'                         =>Pay::all(),
-            'pay'                          =>$pay
+            'pay'                          =>$pay,
+            'titrePage'                   => $titrePage
+
         ]);
     }
-
     public function edit(Localite $localite)
     {
         return view('pages.backoffice.localites.createdit', [
@@ -85,7 +93,6 @@ class LocaliteController extends Controller
         ]);
     }
     
- 
     public function update(Request $request, Localite $localite)
     {
         $data=request()->validate([

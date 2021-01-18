@@ -23,27 +23,36 @@ class UniteController extends Controller
     public function index()
     {
         $unites=Unite::orderBy('designation','asc')->get();
-        return view('pages.backoffice.unites.index',compact('unites'));
+        $titrePage = "Liste de toutes les unités de lois";
+
+        return view('pages.backoffice.unites.index',compact('unites','titrePage'));
     }
     public function filter()
     {
+        $titrePage = "Liste de toutes les unités de par pays";
+
         $p = 1;
         $pay=Pay::where('id',$p )->first();
         return view('pages.backoffice.unites.filter', [
-            'unites'                    =>Unite::where('pays_id',$pay->id)->with(['pays','type'])->get(),
+            'unites'                       =>Unite::where('pays_id',$pay->id)->with(['pays','type'])->get(),
             'pays'                         =>Pay::orderBy('nom','asc')->get(),
-            'pay'                          =>$pay
+            'pay'                          =>$pay,
+            'titrePage' => $titrePage
+
         ]);
     }
 
     public function filtreur($p)
     {
+        $titrePage = "Liste de toutes les unités par pays";
+
         $pay=Pay::where('id',$p )->first();
 
         return response()->json([
             'unites'                    =>Unite::where('pays_id',$pay->id)->with('pays','type','localite')->get(),
             'pays'                         =>Pay::orderBy('nom','asc')->get(),
-            'pay'                          =>$pay
+            'pay'                          =>$pay,
+            'titrePage' => $titrePage
         ]);
     }
     public function create()
@@ -114,9 +123,10 @@ class UniteController extends Controller
             $url = 'https:⁄⁄www.openstreetmap.org/?mlat='.$lat.'&amp;mlon='.$lon.'#map='.$zoom.'/'.$lat.'/'.$lon;
             return $url;
         }
+        $titrePage = "Liste de toutes les unités de lois";
         $agents= U::where('unite_id',$unite->id)->get();
         $carte=openstreetmap_url($unite->long,$unite->lat);
-        return view('pages.backoffice.unites.show', compact('unite','carte','agents'));
+        return view('pages.backoffice.unites.show', compact('unite','carte','agents','titrePage'));
     }
     public function edit(Unite $unite)
     {

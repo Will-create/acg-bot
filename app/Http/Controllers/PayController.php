@@ -19,14 +19,16 @@ class PayController extends Controller
     }
 
     public function index()
-    {
+    { 
+        $titrePage = "Liste de toutes les pays ";
         return view('pages.backoffice.pays.index', [
-            'pays'                    =>Pay::all()
+            'pays'                    =>Pay::all(),
+            'titrePage' => $titrePage
         ]);
-
     }
     public function create()
     {
+
         return view('pages.backoffice.pays.createdit', [
             'pays' => new Pay(),
             'titrePage' => "Ajout d'un nouveau pays",
@@ -35,11 +37,14 @@ class PayController extends Controller
     }
     public function show($uuid)
     {
+        $titrePage = "Détails d'un  pays : ";
+
         return view('pages.backoffice.pays.show',[
-            'pays'   => $pay = Pay::where('uuid',$uuid)->with('localites')->first(),
+            'pays'        => $pay = Pay::where('uuid',$uuid)->with('localites')->first(),
             'unites'      => Unite::where('pays_id',$pay->id)->get(),
             'aires'       => AireProtegee::where('pays_id',$pay->id)->get(),
             'localites'   => Localite::where('pays_id',$pay->id)->get(),
+            'titrePage'   => $titrePage.$pay->nom
         ]);
     }
     public function store(Request $request)
@@ -68,7 +73,7 @@ class PayController extends Controller
     {
         return view('pages.backoffice.pays.createdit', [
             'pays'      =>Pay::where('uuid', $uuid)->first(),
-            'titrePage' => "Mise à jour ".Pay::where('uuid', $uuid)->first()->designation,
+            'titrePage' => "Mise à jour ".Pay::where('uuid', $uuid)->first()->nom,
             'btnAction' => "Mettre à jour"
         ]);
     }

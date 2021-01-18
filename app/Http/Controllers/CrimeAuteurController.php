@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pay;
+use App\Models\Role;
 use App\Models\Crime;
 use App\Models\Localite;
 use App\Models\User as U;
+use App\Models\Commentaire;
 use App\Models\CrimeAuteur;
-use App\Models\Pay;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
@@ -92,7 +94,7 @@ class CrimeAuteurController extends Controller
         return view('pages.backoffice.commentaires.filter', [
             'commentaires'                    =>CrimeAuteur::where('crime_id',$crime->id)->get(),
             'crimes'                         =>Crime::all(),
-            'titrePage' => "Ajout d'un nouvel auteur de crime",
+            'titrePage' => "Liste des auteurs par crime",
             'crime'                          =>$crime
         ]);
     }
@@ -104,7 +106,9 @@ class CrimeAuteurController extends Controller
             'commentaires'                   => CrimeAuteur::where('crime_id',$crime->id)->with('auteur','destinataire','crime')->get(),
             'crimes'                         =>Crime::all(),
             'roles'                          =>Role::all(),
-            'crime'                          =>$crime
+            'crime'                          =>$crime,
+            'titrePage' => "Liste des auteurs par crime"
+
         ]);
     }
 

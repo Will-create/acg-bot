@@ -20,10 +20,11 @@ class EspeceController extends Controller
     public function index()
     {
         $especes=Espece::orderBy('nom','asc')->get();
-        $titre = 'Liste des espèces';
+        $titre = 'Liste de toutes les espèces';
+        $titrePage = 'Liste de toutes les espèces';
         $subtitle = 'Espèces';
         $regne = null;
-        return view('pages.backoffice.especes.index',compact('especes', 'titre', 'subtitle', 'regne'));
+        return view('pages.backoffice.especes.index',compact('especes', 'titre', 'subtitle', 'regne','titrePage'));
     }
     public function regne($regne)
     {
@@ -46,7 +47,6 @@ class EspeceController extends Controller
 
         return view('pages.backoffice.especes.index',compact('especes', 'titre', 'subtitle','regne'));
     }
-
     public function create($regne = null)
     {
         return view('pages.backoffice.especes.createdit', [
@@ -81,15 +81,19 @@ class EspeceController extends Controller
           $espece->ordre_id=$data['ordre_id'];
           $espece->nom_scientifique=$data['nom_scientifique'];
           $espece->uuid=Str::uuid();
-         $espece->save();
+          $espece->save();
           $request->session()->flash('status', 'Espèce ajoutée avec succès');
           return redirect()->route('especes.show', $espece->uuid);
     }
     public function show($uuid)
     {
+        $titrePage = "Détails d'un type de règlement de crime";
+
         return view('pages.backoffice.especes.show',[
             'espece'   => Espece::where('uuid',$uuid)->first(),
-            'crimes' => Crime::where('espece_id',Espece::where('uuid',$uuid)->first()->id )->get()
+            'crimes' => Crime::where('espece_id',Espece::where('uuid',$uuid)->first()->id )->get(),
+            'titrePage'                   => $titrePage,
+
         ]);
     }
     public function edit($uuid)

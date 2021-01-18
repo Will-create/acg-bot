@@ -25,9 +25,9 @@
                 <li class="breadcrumb-item"><a href="{{ route('accueil') }}">Accueil</a></li>
                 <li class="breadcrumb-item"><a href="{{ route('crime_auteurs.index') }}">Auteurs de crime</a></li>
                 @if(Route::currentRouteName() == 'crime_auteurs.create')
-                <li class="breadcrumb-item active" aria-current="page"> Nouvel auteur de crime </li>
+                <li class="breadcrumb-item active" aria-current="page"> {{$titrePage}}</li>
                 @else
-                <li class="breadcrumb-item active" aria-current="page"> Mise à jour</li>
+                <li class="breadcrumb-item active" aria-current="page">{{$titrePage}}</li>
 
                 @endif
             </ol>
