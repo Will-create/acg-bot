@@ -46,7 +46,7 @@ class UserTableSeeder extends Seeder
                 'titre'                 => $faker->title,
                 'actif'                 => true,
                 'role_id'               => $role->id,
-                'profile_photo_path'                 => 'profile_photo_path/'.$faker->file($sourceDir = 'public\images\user', $targetDir = 'storage\app\public\profile_photo_path', false),
+                'profile_photo_path'                 => 'profile_photo_path/'.$faker->file($sourceDir = 'public/images/user', $targetDir = 'storage/app/public/profile_photo_path', false),
                 'prenom'                => $faker->lastName,
                 'email'                 => $faker->freeEmail,
                 'tel'                   => $faker->phoneNumber,
