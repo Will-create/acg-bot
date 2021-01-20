@@ -52,7 +52,7 @@
                                         <img class="" src="<?php echo e(asset('storage/'. $utilisateur->profile_photo_path)); ?>" alt="img">
                                     </div>
                                     <div class="user-wrap">
-                                    <h4 class="mb-1"><?php echo e($utilisateur->nom. ' ' . $utilisateur->prenom); ?></h4>
+                                    <h4 class="mb-1"><?php echo e(ucfirst($utilisateur->nom). ' ' . ucFirst($utilisateur->prenom)); ?></h4>
                                         <h6 class="text-muted mb-4">Ajouté le : <?php echo e(formatDate($utilisateur->created_at)); ?></h6>
 <?php if($utilisateur->actif == true): ?>
 <a  <?php if($utilisateur->id != Auth::user()->id &&  Auth::user()->role->designation == "Administrateur Général"): ?>  data-toggle="tooltip" data-placement="top" title="Cliquer pour désactiver"  href="<?php echo e(route('gerer-utilisateur', $utilisateur)); ?>" <?php endif; ?>  class="btn btn-success mt-1 mb-1 btn-sm"  > <i class="zmdi zmdi-rss text-white"></i> Compte  activé </a>
@@ -175,9 +175,9 @@
                                                         <td><strong>Localité :</strong> <?php echo e(Ucfirst($utilisateur->localite->nom)); ?></td>
                                                     </tr>
 
-                                                      <?php if($utilisateur->unite): ?>
+                                                      <?php if($utilisateur->unite_id): ?>
                                                     <tr>
-                                                        <td>  <strong>Unité :</strong> <a href="<?php echo e(route('unites.show', $utilisateur->unite->uuid)); ?>" class="text-dark" data-toggle="tooltip" data-placement="top" title="Voir les détails de l'unité">     <?php echo e($utilisateur->unite->designation); ?> </a></td>
+                                                        <td>  <strong>Unité :</strong> <a href="<?php echo e(route('unites.show', $utilisateur->uniteagent->uuid)); ?>" class="text-dark" data-toggle="tooltip" data-placement="top" title="Voir les détails de l'unité">     <?php echo e($utilisateur->uniteagent->designation); ?> </a></td>
                                                         </tr>
                                                     <?php else: ?>
                                                      <tr>

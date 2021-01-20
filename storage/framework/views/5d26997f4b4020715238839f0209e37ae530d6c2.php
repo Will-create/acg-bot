@@ -1,7 +1,7 @@
 		<!-- FAVICON -->
 		<link rel="shortcut icon" type="image/x-icon" href="<?php echo e(asset('assets/logo.jpeg')); ?>" />
 		<!-- TITLE -->
-		<title>PayMass Faso</title>
+		<title>Lutte contre la criminalité environnementale en Afrique de l'OUEST</title>
 		<!-- BOOTSTRAP CSS -->
 		<link href="<?php echo e(URL::asset('assets/plugins/bootstrap/css/bootstrap.min.css')); ?>" rel="stylesheet" />
 		<!-- STYLE CSS -->

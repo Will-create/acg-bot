@@ -115,8 +115,10 @@
 
                                </div>
                                 <div class="row" style="margin-top: 28px">
+                                    @if (Auth::user()->role->designation == "Chef d’Unité" || Auth::user()->role->designation == "Agent d’une Unité")
 
                                         <button type="submit" class="btn btn-primary">Mettre à jour</button>
+                                        @endif
                                 </div>
                             </form>
                             <div wire:loading wire:target="submit">

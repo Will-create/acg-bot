@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('css'); ?>
         <!-- INTERNAL SELECT2 CSS -->
 		<link href="<?php echo e(URL::asset('assets/plugins/fileuploads/css/fileupload.css')); ?>" rel="stylesheet" type="text/css" />
@@ -45,13 +43,13 @@
 					<div class="col-md-12 col-lg-12">
 						<div class="card">
 							<div class="card-header">
-								<h3 class="card-title">Liste des types d'unité</h3>
+								<h3 class="card-title">Liste des types de crime</h3>
 							</div>
 							<div class="card-body">
 								<div class="table-responsive">
 									<table id="data-table1" class="table table-striped table-bordered text-nowrap w-100 table-sm">
 										<thead>
-											<tr>	
+											<tr>
 												<th class="wd-15p">Designation</th>
 												<th class="wd-30p">Description</th>
                                                 

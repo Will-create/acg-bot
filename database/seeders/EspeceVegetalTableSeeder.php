@@ -30,11 +30,22 @@ class EspeceVegetalTableSeeder extends Seeder
         ]);
         $especesbody = json_decode($response->getBody());
         $especes = $especesbody->result;
+<<<<<<< HEAD
         for ($i = 0; $i < 140; $i++) {
             $num = rand(1, count($especes));
             $espece = $especes[$num];
             if (isset($espece)) {
                 if ($espece->kingdom_name == "PLANTAE") {
+=======
+        $animaux = [
+            '',
+        ];
+        for ($i=0; $i <140 ; $i++) {
+            $num = rand(1,count($especes));
+            $espece= $especes[$num];
+            if (isset($espece)){
+                if( $espece->kingdom_name == "PLANTAE"){
+>>>>>>> 6f69a2cd717502fd5541324aedc994659d7979a8
                     Espece::create([
                         'nom'                   => $espece->scientific_name,
                         'uuid'                  => Str::uuid(),

@@ -65,7 +65,7 @@
 
                             <option {{$confiscation->condition == 'frais' ? 'selected' : '' }} value="frais">Frais</option>
                             <option {{$confiscation->condition == 'vivant' ? 'selected' : '' }} value="vivant">Vivant</option>
-                        
+
                         </select>
                         @error('condition')
                         <span class="helper-text red-text">
@@ -99,10 +99,10 @@
                         @enderror
                     </div>
                 </div>
-        
+
             </div>
             <div class="row">
-                
+
                 <div class="col-md-12">
                     <div class="form-group">
                         <label class="form-label" for="adresse">Description <strong class="text-danger"></strong></label>
@@ -117,12 +117,14 @@
             </div>
         </div>
     </div>
-    
+
     <div class="modal-footer">
+   @if (Auth::user()->role->designation == "Chef d’Unité" || Auth::user()->role->designation == "Agent d’une Unité")
+
         <button type="submit" class="btn btn-primary"> <span>
             <i class="fe fe-save"></i>
         </span> Mettre à jour</button>
-
+@endif
     </div>
 </form>
 @stop

@@ -104,33 +104,26 @@
                 </div>
 				<div class="col-sm-12 col-md-12 col-lg-8 col-xl-8">
 					<div class="card">
-						<div class="card-header">
-							<h3 class="card-title">Liste des agents</h3>
+						<div class="card-header d-spaece-around">
+                            <h3 class="card-title">Liste des agents</h3>
+                           <a href="<?php echo e(route('utilisateurs.index')); ?>" class="btn btn-sm btn-primary"> Tous les agents </a>
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
-                                <?php if(count($utilisateurs)  > 0): ?>
+                                <?php if(count($utilisateur2)  > 0): ?>
                                 <table class="table table-bordered table-hover text-nowrap mb-0">
 									<thead>
 										<tr>
-											<th>Nom</th>
-											<th>Prenom</th>
+											<th>Nom complet</th>
 											<th>tel</th>
 											<th>Statut</th>
 										</tr>
 									</thead>
 									<tbody>
-                                       <?php $__empty_1 = true; $__currentLoopData = $utilisateurs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $coordonateur): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
-
-
+                                       <?php $__empty_1 = true; $__currentLoopData = $utilisateur2; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $coordonateur): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
 										<tr>
-											<td>
-												<img src="http://localhost:5003/assets/images/users/3.jpg" alt="profile-user" class="brround  avatar-sm w-32 mr-2">
-												<?php echo e($coordonateur->pay->nom); ?>
-
-											</td>
-                                        <td><?php echo e($coordonateur->nom); ?></td>
-                                        <td><?php echo e($coordonateur->prenom); ?></td>
+											
+                                        <td><?php echo e($coordonateur->nom. ' '. $coordonateur->prenom); ?></td>
                                         <td><?php echo e($coordonateur->tel); ?></td>
 											<td>
 												<button type="button" class="badge <?php echo e($coordonateur->actif ? 'badge-success':'badge-danger'); ?> "><?php echo e($coordonateur->actif ? 'Ativé':'Désactivé'); ?></button>

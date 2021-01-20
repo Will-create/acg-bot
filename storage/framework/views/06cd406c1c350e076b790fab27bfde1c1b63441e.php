@@ -332,6 +332,7 @@ unset($__errorArgs, $__bag); ?>
 
                 </div>
 
+                <?php if(Auth::user()->role->designation == "Chef d’Unité" || Auth::user()->role->designation == "Agent d’une Unité"): ?>
 
                     <a href="<?php echo e(route('crimes.show', $auteur->crime ? $auteur->crime->uuid : $crimeUuid)); ?>" onclick="cibleur('auteur')" class="btn btn-dark"> <i class="fa fa-times"
                             aria-hidden="true"></i>
@@ -340,7 +341,7 @@ unset($__errorArgs, $__bag); ?>
                             <i class="fe fe-save"></i>
                         </span> <?php echo e($btnAction); ?></button>
 
-
+<?php endif; ?>
                 </div>
                 </div>
 <?php /**PATH D:\switch_maker\war_crimes\resources\views/pages/backoffice/auteurs/_form.blade.php ENDPATH**/ ?>

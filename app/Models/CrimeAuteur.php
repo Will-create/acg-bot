@@ -16,6 +16,9 @@ class CrimeAuteur extends Model
     public function crime(){
         return $this->belongsTo(Crime::class);
     }
+    public function crimes(){
+        return $this->belongsTo(Crime::class);
+    }
     public function reglements()
     {
         return $this->hasMany(crimeTypeReglement::class, 'auteur_id');

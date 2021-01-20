@@ -16,8 +16,9 @@ class TypeCrimeController extends Controller
     }
     public function index()
     {
+        $titrePage = "Liste de tous les types  de crime";
         $types=TypeCrime::orderBy('nom','asc')->get();
-        return view('pages.backoffice.type_crimes.index',compact('types'));
+        return view('pages.backoffice.type_crimes.index',compact('types','titrePage'));
     }
     public function create()
     {
@@ -43,9 +44,11 @@ class TypeCrimeController extends Controller
     }
     public function show($uuid)
     {
+        $titrePage = "Détails d'un type  de crime : ";
         return view('pages.backoffice.type_crimes.show',[
             'type'   => TypeCrime::where('uuid',$uuid)->first(),
-            'unites' =>Unite::where('type_unite_id',TypeCrime::where('uuid',$uuid)->first()->id)->get()
+            'unites' =>Unite::where('type_unite_id',TypeCrime::where('uuid',$uuid)->first()->id)->get(),
+            'titrePage' => $titrePage.TypeCrime::where('uuid',$uuid)->first()->nom
         ]);
     }
 

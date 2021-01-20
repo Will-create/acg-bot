@@ -10,7 +10,10 @@
                     <th>Ordre</th>
                     <th>Désignation</th>
                     <th>Date d'ajout</th>
+   <?php if(Auth::user()->role->designation == "Chef d’Unité" || Auth::user()->role->designation == "Agent d’une Unité"): ?>
+
                     <th></th>
+                    <?php endif; ?>
                 </tr>
             </thead>
             <tbody>
@@ -37,9 +40,12 @@
 
                     <td><?php echo e(formatDate($crimeEspece->created_at)); ?></td>
                     </a>
+   <?php if(Auth::user()->role->designation == "Chef d’Unité" || Auth::user()->role->designation == "Agent d’une Unité"): ?>
+
                     <td>
                         <button style="border: unset!important;" wire:click="delete(<?php echo e($crimeEspece->id); ?>)"> <i class="fa fa-trash text-danger"></i> </button>
                     </td>
+                    <?php endif; ?>
                 </tr>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 

@@ -10,7 +10,10 @@
                     <th>Ordre</th>
                     <th>Désignation</th>
                     <th>Date d'ajout</th>
+   @if (Auth::user()->role->designation == "Chef d’Unité" || Auth::user()->role->designation == "Agent d’une Unité")
+
                     <th></th>
+                    @endif
                 </tr>
             </thead>
             <tbody>
@@ -35,9 +38,12 @@
 
                     <td>{{formatDate($crimeEspece->created_at)}}</td>
                     </a>
+   @if (Auth::user()->role->designation == "Chef d’Unité" || Auth::user()->role->designation == "Agent d’une Unité")
+
                     <td>
                         <button style="border: unset!important;" wire:click="delete({{$crimeEspece->id}})"> <i class="fa fa-trash text-danger"></i> </button>
                     </td>
+                    @endif
                 </tr>
                 @endforeach
 

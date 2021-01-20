@@ -23,20 +23,20 @@ class CrimeConfiscationController extends Controller
 
 
         return view('pages.backoffice.confiscations.index',[
-            'confiscations'                     => crimeConfiscation::with('crime')->orderBy('designation', 'asc')->get()
+            'confiscations'                     => crimeConfiscation::with('crime')->orderBy('designation', 'asc')->get(),
+            'titrePage' => "Liste de tous les produits confisqués"
         ]);
     }
 
 
     public function create($crime = null)
     {
-
         return view('pages.backoffice.confiscations.form',[
-            'crime'                     => $crime
+            'crime'                     => $crime,
+            'titrePage' => "Ajout d'un nouveau produit confisqué"
             // 'crimes'                     => Crime::with('paysApprehension','service_investigateur')->orderBy('pays_apprehension', 'asc')->get()
         ]);
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -52,8 +52,7 @@ class CrimeConfiscationController extends Controller
             'nombre'                         => ['nullable','integer'],
             'poids'                          => ['nullable','integer'],
           ]);
-            $crime = Crime::where('uuid', $request->crime)->first();
-
+          $crime = Crime::where('uuid', $request->crime)->first();
           $confiscation= new crimeConfiscation;
           $confiscation->uuid=Str::uuid();
           $confiscation->designation=$data['designation'];
@@ -66,7 +65,6 @@ class CrimeConfiscationController extends Controller
           $request->session()->flash('section', 'confiscation');
           return redirect()->route('crimes.show', $crime->uuid);
     }
-
     /**
      * Display the specified resource.
      *
@@ -74,10 +72,10 @@ class CrimeConfiscationController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(crimeConfiscation $confiscation)
-    {
-        return view('pages.backoffice.confiscations.show', compact('confiscation'));
+    {   
+        $titrePage = "Détails d'un produit confisqué";
+        return view('pages.backoffice.confiscations.show', compact('confiscation','titrePage'));
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -86,13 +84,12 @@ class CrimeConfiscationController extends Controller
      */
     public function edit(crimeConfiscation $confiscation)
     {
-
         return view('pages.backoffice.confiscations.edit',[
             'crimes'                     => Crime::with('paysApprehension','service_investigateur')->orderBy('pays_apprehension', 'asc')->get(),
-            'confiscation'               => $confiscation
+            'confiscation'               => $confiscation,
+            'titrePage' => "Mise à  jours d'un produits confisqué : ".$confiscation->designation
         ]);
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -102,18 +99,13 @@ class CrimeConfiscationController extends Controller
      */
     public function update(Request $request, crimeConfiscation $confiscation)
     {
-
-
         $data=request()->validate([
             'designation'                    => ['required','string','max:255','min:3'],
             'description'                    => ['nullable','string','min:3'],
             'nombre'                         => ['nullable','integer'],
             'poids'                          => ['nullable','integer'],
             'condition'                      => ['required'],
-
           ]);
-
-
           $confiscation->designation=$request['designation'];
           $confiscation->nombre =$request['nombre'];
           $confiscation->description =$request['description'];
@@ -124,19 +116,15 @@ class CrimeConfiscationController extends Controller
           $request->session()->flash('section', 'confiscation');
           return redirect()->route('crimes.show', $confiscation->crime->uuid);
     }
-
-
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Unite  $unite
      * @return \Illuminate\Http\Response
      */
-
     public function destroy(Request $request, crimeConfiscation $confiscation)
     {
         $confiscation->delete();
-
         return redirect()->route('confiscations.index')->with('status','Confiscation supprimée avec succès');
     }
 }

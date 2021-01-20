@@ -1,4 +1,3 @@
-
 <?php $__env->startSection('css'); ?>
         <!-- FORN WIZARD CSS -->
 		<link href="<?php echo e(URL::asset('assets/plugins/select2/select2.min.css')); ?>" rel="stylesheet" />
@@ -52,7 +51,7 @@
                                         <form method="POST"   id="form_setp_1">
                                             <?php echo csrf_field(); ?>
                                         <div class="row">
-                                            <div class="col-md-6">
+                                            <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label>   Type de crime  <span class="text-danger">*</span></label>
                                                     <select name="type_id"  class="form-control custom-select select2">
@@ -66,21 +65,7 @@
                                                 </div>
                                             </div>
 
-                                            <?php
-if (! isset($_instance)) {
-    $html = \Livewire\Livewire::mount('crime')->html();
-} elseif ($_instance->childHasBeenRendered('Pp3qhFg')) {
-    $componentId = $_instance->getRenderedChildComponentId('Pp3qhFg');
-    $componentTag = $_instance->getRenderedChildComponentTagName('Pp3qhFg');
-    $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('Pp3qhFg');
-} else {
-    $response = \Livewire\Livewire::mount('crime');
-    $html = $response->html();
-    $_instance->logRenderedChild('Pp3qhFg', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
-}
-echo $html;
-?>
+                                            
 
                                         </div>
                                         <div class="row">

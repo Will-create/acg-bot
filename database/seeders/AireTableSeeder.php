@@ -28,8 +28,15 @@ class AireTableSeeder extends Seeder
     }
     public function run()
     {
+
+
+
         $faker=Factory::create();
         $pays=Pay::all();
+        $aires = [
+            '',
+            
+        ];
         $localites=Localite::all();
         //Unite::truncate();
         foreach($localites as $localite){

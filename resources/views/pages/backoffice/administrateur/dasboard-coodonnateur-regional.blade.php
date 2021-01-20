@@ -30,7 +30,7 @@
 						<div class="card-body">
 							<div class="row mb-1">
 								<div class="col">
-									<p class="mb-1">Espace{{$airesprotegers>0 ? 's' : ''}}</p>
+									<p class="mb-1">Aire{{$airesprotegers>0 ? 's' : ''}} protégée{{$airesprotegers>0 ? 's' : ''}}</p>
 									<h3 class="mb-0 number-font">{{$airesprotegers}}</h3>
 								</div>
 								<div class="col-auto mb-0">
@@ -66,7 +66,7 @@
 						<div class="card-body">
 							<div class="row mb-1">
 								<div class="col">
-									<p class="mb-1">Unite de loi</p>
+									<p class="mb-1">Unite{{$unites > 0 ? 's' : ''}} de loi</p>
 									<h3 class="mb-0 number-font">{{$unites}}</h3>
 								</div>
 								<div class="col-auto mb-0">
@@ -91,9 +91,9 @@
 
                                     </div>
                                     <div class="user-wrap">
-                                    <h4 class="mb-1">{{Auth::user()->nom. ' '. Auth::user()->prenom}}</h4>
+                                    <h4 class="mb-1">{{ucFirst(Auth::user()->nom). ' '. ucFirst(Auth::user()->prenom)}}</h4>
                                     <h6 class=" mb-4"> <i class="fa fa-envelope"> </i> {{Auth::user()->email}} </h6>
-                                    <h6 class="text-muted mb-4"> Adminsitrateur Général de la plateforme</h6>
+                                    <h6 class="text-muted mb-4"> Coordonateur régional</h6>
                                     <a href="{{route('profil')}}" class="btn btn-primary mt-1 mb-1 btn-sm"> <i class="zmdi zmdi-eye text-white"></i> Voir le profil</a>
 
 
@@ -107,8 +107,9 @@
                 </div>
 				<div class="col-sm-12 col-md-12 col-lg-8 col-xl-8">
 					<div class="card">
-						<div class="card-header">
-							<h3 class="card-title">Les coordonnateurs nationaux</h3>
+						<div class="card-header d-spaece-around">
+                            <h3 class="card-title">Liste des agents</h3>
+                           <a href="{{route('utilisateurs.index')}}" class="btn btn-sm btn-primary"> Tous les agents </a>
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">

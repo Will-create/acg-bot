@@ -63,7 +63,7 @@
 												<td> <a class="text-dark" href="{{route('crime_auteurs.show',  $auteur->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" > {{$auteur->nom}}</a></td>
 												<td> <a class="text-dark" href="{{route('crime_auteurs.show',  $auteur->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" >{{$auteur->prenom}}</a></td>
 												<td> <a class="text-dark" href="{{route('crime_auteurs.show',  $auteur->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" >{{$auteur->genre}}</a></td>
-												<td> <a class="text-dark" href="{{route('crime_auteurs.show',  $auteur->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" > {{$auteur->pays->nom}}/{{$auteur->localite->nom}}</a></td>
+												<td> <a class="text-dark" href="{{route('crime_auteurs.show',  $auteur->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" > {{$auteur->nationalite}}</a></td>
                                             </tr>
                                             @endforeach
 										</tbody>

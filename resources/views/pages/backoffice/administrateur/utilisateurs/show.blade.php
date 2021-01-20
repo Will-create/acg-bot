@@ -53,7 +53,7 @@
                                         <img class="" src="{{asset('storage/'. $utilisateur->profile_photo_path)}}" alt="img">
                                     </div>
                                     <div class="user-wrap">
-                                    <h4 class="mb-1">{{$utilisateur->nom. ' ' . $utilisateur->prenom}}</h4>
+                                    <h4 class="mb-1">{{ucfirst($utilisateur->nom). ' ' . ucFirst($utilisateur->prenom)}}</h4>
                                         <h6 class="text-muted mb-4">Ajouté le : {{formatDate($utilisateur->created_at)}}</h6>
 @if ($utilisateur->actif == true)
 <a  @if($utilisateur->id != Auth::user()->id &&  Auth::user()->role->designation == "Administrateur Général")  data-toggle="tooltip" data-placement="top" title="Cliquer pour désactiver"  href="{{route('gerer-utilisateur', $utilisateur)}}" @endif  class="btn btn-success mt-1 mb-1 btn-sm"  > <i class="zmdi zmdi-rss text-white"></i> Compte  activé </a>
@@ -176,9 +176,9 @@
                                                         <td><strong>Localité :</strong> {{Ucfirst($utilisateur->localite->nom)}}</td>
                                                     </tr>
 
-                                                      @if ($utilisateur->unite)
+                                                      @if ($utilisateur->unite_id)
                                                     <tr>
-                                                        <td>  <strong>Unité :</strong> <a href="{{route('unites.show', $utilisateur->unite->uuid)}}" class="text-dark" data-toggle="tooltip" data-placement="top" title="Voir les détails de l'unité">     {{$utilisateur->unite->designation}} </a></td>
+                                                        <td>  <strong>Unité :</strong> <a href="{{route('unites.show', $utilisateur->uniteagent->uuid)}}" class="text-dark" data-toggle="tooltip" data-placement="top" title="Voir les détails de l'unité">     {{$utilisateur->uniteagent->designation}} </a></td>
                                                         </tr>
                                                     @else
                                                      <tr>

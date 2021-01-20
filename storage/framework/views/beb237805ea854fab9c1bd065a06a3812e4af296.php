@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('css'); ?>
         <!-- INTERNAL SELECT2 CSS -->
 		<link href="<?php echo e(URL::asset('assets/plugins/fileuploads/css/fileupload.css')); ?>" rel="stylesheet" type="text/css" />
@@ -27,7 +25,7 @@
 							<li class="breadcrumb-item active" aria-current="page">Unités</li>
 						</ol>
                     </div>
-                    
+
 					<div class="ml-auto pageheader-btn">
                     <a class="btn btn-primary" href="<?php echo e(route('unites.create')); ?>"  >  <span>
                             <i class="fe fe-plus"></i>
@@ -50,7 +48,8 @@
 							</div>
 							<div class="card-body">
 								<div class="table-responsive">
-									<table id="data-table1" class="table table-striped table-bordered text-nowrap w-100 table-sm">
+									<?php if(count($unites) > 0): ?>
+                                    <table id="data-table1" class="table table-striped table-bordered text-nowrap w-100 table-sm">
 										<thead>
 											<tr>
 												<th class="wd-15p">Dénomination</th>
@@ -76,6 +75,12 @@
 
 										</tbody>
 									</table>
+                                    <?php else: ?>
+<div class="text-center">
+
+    <span> <?php echo e(Auth::user()->role->designation == "Administrateur Général" ? ' Aucune unités à afficher' : ' Aucune unités pour votre pays'); ?>  </span>
+</div>
+                                    <?php endif; ?>
 								</div>
 							</div>
 							<!-- TABLE WRAPPER -->

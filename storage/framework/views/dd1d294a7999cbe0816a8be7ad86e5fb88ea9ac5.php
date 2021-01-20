@@ -143,8 +143,10 @@ unset($__errorArgs, $__bag); ?>
 
                                </div>
                                 <div class="row" style="margin-top: 28px">
+                                    <?php if(Auth::user()->role->designation == "Chef d’Unité" || Auth::user()->role->designation == "Agent d’une Unité"): ?>
 
                                         <button type="submit" class="btn btn-primary">Mettre à jour</button>
+                                        <?php endif; ?>
                                 </div>
                             </form>
                             <div wire:loading wire:target="submit">

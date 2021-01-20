@@ -1,4 +1,3 @@
-
 <?php $__env->startSection('css'); ?>
     <!-- INTERNAL SELECT2 CSS -->
     <link href="<?php echo e(URL::asset('assets/plugins/fileuploads/css/fileupload.css')); ?>" rel="stylesheet" type="text/css" />
@@ -25,9 +24,9 @@
                 <li class="breadcrumb-item"><a href="<?php echo e(route('accueil')); ?>">Accueil</a></li>
                 <li class="breadcrumb-item"><a href="<?php echo e(route('crime_auteurs.index')); ?>">Auteurs de crime</a></li>
                 <?php if(Route::currentRouteName() == 'crime_auteurs.create'): ?>
-                <li class="breadcrumb-item active" aria-current="page"> Nouvel auteur de crime </li>
+                <li class="breadcrumb-item active" aria-current="page"> <?php echo e($titrePage); ?></li>
                 <?php else: ?>
-                <li class="breadcrumb-item active" aria-current="page"> Mise à jour</li>
+                <li class="breadcrumb-item active" aria-current="page"><?php echo e($titrePage); ?></li>
 
                 <?php endif; ?>
             </ol>
@@ -36,8 +35,7 @@
             <a class="btn btn-primary" href="<?php echo e(route('crimes.show', $auteur->crime ? $auteur->crime->uuid : $crimeUuid)); ?>"> <span>
                     <i class="fe fe-list"></i>
                 </span> Revenir au crime</a>
-            </button>
-
+ 
         </div>
     </div>
     <!-- PAGE-HEADER END -->

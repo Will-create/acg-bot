@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('css'); ?>
         <!-- INTERNAL SELECT2 CSS -->
 		<link href="<?php echo e(URL::asset('assets/plugins/fileuploads/css/fileupload.css')); ?>" rel="stylesheet" type="text/css" />
@@ -72,7 +70,7 @@ unset($__errorArgs, $__bag); ?>
 
                             <option <?php echo e($confiscation->condition == 'frais' ? 'selected' : ''); ?> value="frais">Frais</option>
                             <option <?php echo e($confiscation->condition == 'vivant' ? 'selected' : ''); ?> value="vivant">Vivant</option>
-                        
+
                         </select>
                         <?php $__errorArgs = ['condition'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -127,10 +125,10 @@ endif;
 unset($__errorArgs, $__bag); ?>
                     </div>
                 </div>
-        
+
             </div>
             <div class="row">
-                
+
                 <div class="col-md-12">
                     <div class="form-group">
                         <label class="form-label" for="adresse">Description <strong class="text-danger"></strong></label>
@@ -152,12 +150,14 @@ unset($__errorArgs, $__bag); ?>
             </div>
         </div>
     </div>
-    
+
     <div class="modal-footer">
+   <?php if(Auth::user()->role->designation == "Chef d’Unité" || Auth::user()->role->designation == "Agent d’une Unité"): ?>
+
         <button type="submit" class="btn btn-primary"> <span>
             <i class="fe fe-save"></i>
         </span> Mettre à jour</button>
-
+<?php endif; ?>
     </div>
 </form>
 <?php $__env->stopSection(); ?>

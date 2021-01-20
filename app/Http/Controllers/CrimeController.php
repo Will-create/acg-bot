@@ -26,20 +26,22 @@ class CrimeController extends Controller
 
     public function index()
     {
+        $titrePage = "Liste de tous les crimes";
+
         switch (Auth::user()->role->designation) {
             case 'Agent d’une Unité':
                 $crimes  =  Crime::where('pays_apprehension', Auth::user()->pays->id)->get();
-        return view('pages.backoffice.crimes.index-agent', compact('crimes'));
+        return view('pages.backoffice.crimes.index-agent', compact('crimes', 'titrePage'));
              break;
             case 'Chef d’Unité':
                 $crimes  =  Crime::where('pays_apprehension', Auth::user()->pays->id)->get();
-        return view('pages.backoffice.crimes.index-agent', compact('crimes'));
+        return view('pages.backoffice.crimes.index-agent', compact('crimes', 'titrePage'));
 
             break;
 
             case 'Coordonnateur National':
                 $crimes  =  Crime::where('pays_apprehension', Auth::user()->pays->id)->get();
-                return view('pages.backoffice.crimes.index-agent', compact('crimes'));
+                return view('pages.backoffice.crimes.index-agent', compact('crimes', 'titrePage'));
 
             break;
             case 'Coordonnateur Régional':
@@ -49,21 +51,27 @@ class CrimeController extends Controller
                 $crimes  =  Crime::all();
              break;
 
-
         }
-        return view('pages.backoffice.crimes.index', compact('crimes'));
+        return view('pages.backoffice.crimes.index', [
+            'crimes'  => Crime::all(),
+            'titrePage'=>$titrePage
+            ]);
     }
 
 
     public function create()
     {
+        $titrePage = "Ajout d'un nouveau crime environnemental";
+
         return view('pages.backoffice.crimes.create'
         ,[
             'pays'                           => Pay::all(),
             'unites'                         => Unite::all(),
             // 'especes'                        => Espece::all(),
             'typeCrimes'                     => TypeCrime::all(),
-            'aires'                          => AireProtegee::all()
+            'aires'                          => AireProtegee::all(),
+            'titrePage'                      =>$titrePage
+
         ]
     );
 
@@ -85,7 +93,7 @@ class CrimeController extends Controller
             'localite_apprehension'                 => ['required','string','max:255','min:3'],
             'latitude'                              => ['nullable','string','max:255','min:8'],
             'longitude'                             => ['nullable','string','max:255','min:8'],
-            'espece'                                => ['required','integer'],
+            'espece'                                => ['nullable','integer'],
             'pays_origine_produit'                          => ['required','integer'],
             'pays_destination'                              => ['required','integer'],
              ]);
@@ -101,7 +109,7 @@ class CrimeController extends Controller
              $crime->uuid                            = Str::uuid();
              $crime->save();
             $request->session()->flash('status', 'Informations enregistrées avec succès');
-             return response()->json(['data' => $crime]);
+             return response()->json($crime);
 
 
 
@@ -210,6 +218,8 @@ class CrimeController extends Controller
             $url = 'https:⁄⁄www.openstreetmap.org/?mlat='.$lat.'&amp;mlon='.$lon.'#map='.$zoom.'/'.$lat.'/'.$lon;
             return $url;
         }
+        $titrePage = "Détails d'un crime environnemental";
+
         return view('pages.backoffice.crimes.show',
         [
             'crime'  => $crime,
@@ -218,10 +228,9 @@ class CrimeController extends Controller
             'commentaires'  => Commentaire::where('crime_id',$crime->id)->orderBy('created_at','desc')->get(),
             'modeReglements'        => ModeReglement::all(),
             'suites'                => DecisionJustice::all(),
+            'titrePage'             => $titrePage,
             'carte'                 => $crime->longitude ? openstreetmap_url($crime->longitude,$crime->latitude) : ''
             ]);
-
-
     }
 
     /**

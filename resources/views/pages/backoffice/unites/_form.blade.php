@@ -38,12 +38,17 @@
                             </div>
                         <div class="form-group">
                             <label class="form-label" for="organisation">Pays <strong class="text-danger">*</strong></label>
-                            <select onchange="lier(this.value)" id="select"  name="pays_id" id="pays_id" class="form-control custom-select select2" required>
-                                <option  value="{{Route::currentRouteName() == 'unites.edit' ? $unite->pays->id : '' }}" {{Route::currentRouteName() == 'unites.edit' ? '' : 'disabled' }} selected >{{Route::currentRouteName() == 'unites.edit' ? $unite->pays->nom : 'Sélectionner' }}</option>
-                                @foreach ($pays as $pay)
-                            <option  id="{{$pay->id}}" value="{{$pay->id}}">{{$pay->nom}}</option>
-                                @endforeach
-                            </select>
+                          @if (Auth::user()->role->designation == 'Administrateur Général' || Auth::user()->role->designation == 'Coordonnateur Régional')
+                          <select onchange="lier(this.value)" id="select"  name="pays_id" id="pays_id" class="form-control custom-select select2" required>
+                            <option  value="{{Route::currentRouteName() == 'unites.edit' ? $unite->pays->id : '' }}" {{Route::currentRouteName() == 'unites.edit' ? '' : 'disabled' }} selected >{{Route::currentRouteName() == 'unites.edit' ? $unite->pays->nom : 'Sélectionner' }}</option>
+                            @foreach ($pays as $pay)
+                        <option  id="{{$pay->id}}" value="{{$pay->id}}">{{$pay->nom}}</option>
+                            @endforeach
+                        </select>
+                          @else
+                    <input type="hidden" name="pays_id" class="form-control" value="{{Auth::user()->pay->id}}">
+                    <input type="text"   class="form-control" value="{{Auth::user()->pay->nom}}" readonly>
+                          @endif
                             @error('pays_id')
                             <span class="helper-text red-text">
                                 <strong>{{ $message }}</strong>
@@ -52,9 +57,21 @@
                         </div>
                         <div class="form-group">
                             <label class="form-label" for="organisation">Localité <strong class="text-danger">*</strong></label>
+                          @if (Auth::user()->role->designation == 'Administrateur Général' || Auth::user()->role->designation == 'Coordonnateur Régional')
+
                             <select name="localite_id" id="localite_id" class="form-control custom-select select2" required>
                                 <option value="{{Route::currentRouteName() == 'unites.edit' ? $unite->localite->id : '' }}" {{Route::currentRouteName() == 'unites.edit' ? '' : 'disabled' }} selected >{{Route::currentRouteName() == 'unites.edit' ? $unite->localite->nom.', ('.$unite->localite->pay->nom.')'  : 'Sélectionner' }}</option>
                             </select>
+                            @else
+                            <select name="localite_id" id="localite_id" class="form-control custom-select select2" required>
+                                <option value="" selected disabled> Selectionner </option>
+@foreach (Auth::user()->pay->localites as $localiter)
+                            <option value="{{$localiter->id}}">{{$localiter->nom}}</option>
+@endforeach
+                                {{-- <option value="{{Route::currentRouteName() == 'unites.edit' ? $unite->localite->id : '' }}" {{Route::currentRouteName() == 'unites.edit' ? '' : 'disabled' }} selected >{{Route::currentRouteName() == 'unites.edit' ? $unite->localite->nom.', ('.$unite->localite->pay->nom.')'  : 'Sélectionner' }}</option> --}}
+                            </select>
+                            @endif
+
                             @error('localite_id')
                             <span class="helper-text red-text">
                                 <strong>{{ $message }}</strong>

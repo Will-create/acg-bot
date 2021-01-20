@@ -20,7 +20,7 @@
                 @include('partials._notification')
 				<div class="page-header">
 					<div>
-						<h1 class="page-title">Détails d'une espèce</h1>
+						<h1 class="page-title">{{$espece->nom}}</h1>
 						<ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{route('accueil')}}">Accueil</a></li>
                         <li class="breadcrumb-item" aria-current="page"><a href="{{route('especes.index')}}">Espèces</a></li>
@@ -56,6 +56,8 @@
                             <div  id="profile-log-switch">
 
                                 <dl class="dl">
+                                    <dt>Nom  :</dt>
+                                    <dd> {{$espece->nom}} </dd>
                                     <dt>Famille :</dt>
                                     <dd> {{$espece->famille}} </dd>
                                     <dt>Nom Scientifique :</dt>

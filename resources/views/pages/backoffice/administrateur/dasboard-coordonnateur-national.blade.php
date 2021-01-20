@@ -106,32 +106,29 @@
                 </div>
 				<div class="col-sm-12 col-md-12 col-lg-8 col-xl-8">
 					<div class="card">
-						<div class="card-header">
-							<h3 class="card-title">Liste des agents</h3>
+						<div class="card-header d-spaece-around">
+                            <h3 class="card-title">Liste des agents</h3>
+                           <a href="{{route('utilisateurs.index')}}" class="btn btn-sm btn-primary"> Tous les agents </a>
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
-                                @if (count($utilisateurs)  > 0)
+                                @if (count($utilisateur2)  > 0)
                                 <table class="table table-bordered table-hover text-nowrap mb-0">
 									<thead>
 										<tr>
-											<th>Nom</th>
-											<th>Prenom</th>
+											<th>Nom complet</th>
 											<th>tel</th>
 											<th>Statut</th>
 										</tr>
 									</thead>
 									<tbody>
-                                       @forelse ($utilisateurs as $coordonateur)
-
-
+                                       @forelse ($utilisateur2 as $coordonateur)
 										<tr>
-											<td>
+											{{-- <td>
 												<img src="http://localhost:5003/assets/images/users/3.jpg" alt="profile-user" class="brround  avatar-sm w-32 mr-2">
 												{{$coordonateur->pay->nom}}
-											</td>
-                                        <td>{{$coordonateur->nom}}</td>
-                                        <td>{{$coordonateur->prenom}}</td>
+											</td> --}}
+                                        <td>{{$coordonateur->nom. ' '. $coordonateur->prenom}}</td>
                                         <td>{{$coordonateur->tel}}</td>
 											<td>
 												<button type="button" class="badge {{$coordonateur->actif ? 'badge-success':'badge-danger'}} ">{{$coordonateur->actif ? 'Ativé':'Désactivé'}}</button>

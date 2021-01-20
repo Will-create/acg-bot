@@ -324,6 +324,7 @@
 
                 </div>
 
+                @if (Auth::user()->role->designation == "Chef d’Unité" || Auth::user()->role->designation == "Agent d’une Unité")
 
                     <a href="{{ route('crimes.show', $auteur->crime ? $auteur->crime->uuid : $crimeUuid) }}" onclick="cibleur('auteur')" class="btn btn-dark"> <i class="fa fa-times"
                             aria-hidden="true"></i>
@@ -332,6 +333,6 @@
                             <i class="fe fe-save"></i>
                         </span> {{ $btnAction }}</button>
 
-
+@endif
                 </div>
                 </div>

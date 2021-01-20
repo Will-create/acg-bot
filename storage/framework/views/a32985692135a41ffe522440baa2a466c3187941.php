@@ -1,4 +1,3 @@
-
 <?php $__env->startSection('css'); ?>
 <!-- INTERNAL SELECT2 CSS -->
 <link href="<?php echo e(URL::asset('assets/plugins/fileuploads/css/fileupload.css')); ?>" rel="stylesheet" type="text/css" />
@@ -20,17 +19,17 @@
 <?php echo $__env->make('partials._notification', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 <div class="page-header">
     <div>
-        <h1 class="page-title">Liste des utilisateurs</h1>
+        <h1 class="page-title">Liste des agents </h1>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="<?php echo e(route('accueil')); ?>">Accueil</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Nouveau</li>
+            <li class="breadcrumb-item active" aria-current="page"><?php echo e($titrePage); ?></li>
         </ol>
     </div>
     <div class="ml-auto pageheader-btn">
         <a class="btn btn-primary" href="<?php echo e(route('utilisateurs.index')); ?>"> <span>
                 <i class="fe fe-list"></i>
             </span>
-            Les utilisateurs</a>
+            Les agents</a>
         </button>
 
     </div>

@@ -31,11 +31,15 @@ class CrimeTypeReglementController extends Controller
      */
     public function create($crime = null)
     {
+        $titrePage = "Ajout d'un nouveau type de crime";
+
         return view('pages.backoffice.regelements.create',
         [
             'crime'   => Crime::where('uuid', $crime)->first(),
             'modeReglements'  => ModeReglement::all(),
             'suites'  => DecisionJustice::all(),
+            'titrePage'             => $titrePage,
+
         ]
     );
     }
@@ -70,10 +74,13 @@ class CrimeTypeReglementController extends Controller
      */
     public function edit($crimeTypeReglement)
     {
+        $titrePage = "Mise à jours nouveau type de règlement";
+        
         return view('pages.backoffice.regelements.edit', [
             'crimeTypeReglement'        => crimeTypeReglement::where('id', $crimeTypeReglement)->first(),
             'modeReglements'  => ModeReglement::all(),
             'suites'  => DecisionJustice::all(),
+            'titrePage'             => $titrePage,
         ]);
     }
 
@@ -101,7 +108,7 @@ class CrimeTypeReglementController extends Controller
             'auteur_id' => $request->auteur,
             'amende' => $request->amende,
         ]);
-        session()->flash('reglement', 'Règlement ejouté avec succès');
+        session()->flash('reglement', 'Règlement ajouté avec succès');
         session()->flash('section', 'reglement');
         return redirect()->route('crimes.show', $reglement->crime->uuid);
 

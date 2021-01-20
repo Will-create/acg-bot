@@ -22,11 +22,11 @@
 						<h1 class="page-title">Liste des aires protégées</h1>
 						<ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{route('accueil')}}">Accueil</a></li>
-							<li class="breadcrumb-item active" aria-current="page">Aires protégées</li>
+							<li class="breadcrumb-item active" aria-current="page">{{$titrePage}}</li>
 						</ol>
 					</div>
 					<div class="ml-auto pageheader-btn">
-                <a class="btn btn-primary" href="{{route('aire_protegees.create')}}"  >  <span>
+                <a class="btn btn-primary" href="{{route('aire_protegees.create')}}" >  <span>
                             <i class="fe fe-plus"></i>
                         </span>
                         Ajouter une Aire protégées</a>

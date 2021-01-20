@@ -50,7 +50,7 @@
                     </dd>
                     <dt>Localité d'appréhension :</dt>
                     <dd>
-                        {{ucFirst($crime->paysApprehension->nom)}}{{ucFirst($crime->localite_aprrehension->nom ?? '/'.$crime->localite->nom)}}
+                        {{ucFirst($crime->paysApprehension->nom)}}{{ucFirst($crime->localite ? $crime->localite->nom: $crime->localite_apprehension)}}
                     </dd>
                     <dt>Service investigateur :</dt>
                     <dd>
@@ -99,6 +99,7 @@
                                         </div>
                                         <div>
                                             @include('partials._notify',['nom'  => 'espece'])
+
                                             @livewire('regne-espece', ['crime'  => $crime])
                                              <br>
                                         </div>
@@ -114,7 +115,10 @@
                                             @include('partials._notify',['nom'  => 'auteur'])
 
                                             <div class="text-right">
+   @if (Auth::user()->role->designation == "Chef d’Unité" || Auth::user()->role->designation == "Agent d’une Unité")
+
                                                 <a href="{{route('crime_auteurs.create', ['crime' => $crime->uuid])}}" class="btn btn-primary"> <i class="fa fa-plus" aria-hidden="true"></i> Ajouter</a>
+                                                @endif
                                             </div>
                                             <br>
                                             @if (count($crime->auteurs) > 0)
@@ -134,7 +138,10 @@
                                             @include('partials._notify',['nom'  => 'confiscation'])
 
                                             <div class="text-right">
+   @if (Auth::user()->role->designation == "Chef d’Unité" || Auth::user()->role->designation == "Agent d’une Unité")
+
                                                 <a href="{{route('confiscations.create', ['crime' => $crime->uuid])}}" class="btn btn-primary"> <i class="fa fa-plus" aria-hidden="true"></i> Ajouter</a>
+                                                @endif
                                             </div>
                                             <br>
                                             @if (count($crime->confiscations) > 0)
@@ -156,7 +163,10 @@
                                         @include('partials._notify',['nom'  => 'arme'])
 
                                                 <div class="text-right">
+   @if (Auth::user()->role->designation == "Chef d’Unité" || Auth::user()->role->designation == "Agent d’une Unité")
+
                                                     <a href="{{route('crime.armes.create', ['crime' => $crime])}}" class="btn btn-primary"> <i class="fa fa-plus" aria-hidden="true"></i> Ajouter</a>
+                                                    @endif
                                                 </div>
                                                 <br>
                                                 @include('pages.backoffice.armes.listearme', ['armes' => $armes])
@@ -176,7 +186,10 @@
 
                                             <div class="text-right">
                                                 @if (count($crime->auteurs) > 0)
+                @if (Auth::user()->role->designation == "Chef d’Unité" || Auth::user()->role->designation == "Agent d’une Unité")
+
                                                 <a href="{{route('crime_reglements.create', ['crime'   => $crime->uuid])}}" class="btn btn-primary"> <i class="fa fa-plus" aria-hidden="true"></i> Ajouter</a>
+                                                @endif
                                                 <br>
                                                @else
                                                <small class="text-danger">
@@ -230,7 +243,7 @@
                   </div>
         @endif
 
-        @if (Auth::user()->role->designation == "Chef d’Unité")
+        @if (Auth::user()->role->designation == "Chef d’Unité" || Auth::user()->role->designation == "Agent d’une Unité")
 
                   <div class="col-md-6">
                     @livewire('validate',['crime'  => $crime])

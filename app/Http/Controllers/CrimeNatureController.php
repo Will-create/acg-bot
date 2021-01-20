@@ -21,7 +21,9 @@ class CrimeNatureController extends Controller
     public function index()
     {
         $naturesCrimes = TypeCrime::latest()->get();
-        return view('pages.backoffice.natureCrime.index', compact('naturesCrimes'));
+        $titrePage = "Liste de toutes les natures de crime";
+
+        return view('pages.backoffice.natureCrime.index', compact('naturesCrimes','titrePage'));
     }
 
     /**
@@ -51,7 +53,6 @@ class CrimeNatureController extends Controller
                 'nom'            => $request->nom,
                 'description'       => $request->description,
                 'uuid'              => Str::uuid(),
-
         ]);
      return response()->json();
         $request->session()->flash('status', 'Informations sauvégardées avec succès');
@@ -112,7 +113,7 @@ class CrimeNatureController extends Controller
     {
         $nature_crime = TypeCrime::find($ncrime);
         $nature_crime->delete();
-        $request->session()->flash('warning', 'La donnéés a été bien supprimée');
+        $request->session()->flash('warning', 'La donnéé a été bien supprimée');
         return redirect()->route('nature_crimes.index');
     }
 }

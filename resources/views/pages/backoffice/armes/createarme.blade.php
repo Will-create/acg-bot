@@ -24,7 +24,7 @@
             <h1 class="page-title"> {!! $titrePage !!} </h1>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('accueil') }}">Accueil</a></li>
-                <li class="breadcrumb-item active" aria-current="page"> Nouvelle arme </li>
+                <li class="breadcrumb-item active" aria-current="page">{{$titrePage}}</li>
                 
             </ol>
         </div>

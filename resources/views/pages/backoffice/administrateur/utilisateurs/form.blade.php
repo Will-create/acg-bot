@@ -31,8 +31,8 @@
                     @endif
                         @if (Auth::user()->role->designation == 'Chef d’Unité' || Auth::user()->role->designation ==
                         'Coordonnateur National')
-                        <option value="{{$pays->id}}" selected> {{$pays->nom}}</option>
-                        <input type="hidden" id="selected_pays" value="{{route('ville_by_country', $pays->id)}}">
+                        <option value="{{Auth::user()->pay->id}}" selected> {{Auth::user()->pay->nom}}</option>
+                        <input type="hidden" id="selected_pays" value="{{route('ville_by_country', Auth::user()->pay->id)}}">
                         @else
                         @if (!$utilisateur->pay)
                         <option value="" selected disabled> Sélectionner</option>
@@ -119,7 +119,10 @@
                     <option value="" selected disabled> Sélectionner</option>
 
                     @foreach ($unites as $unite)
-                    <option value="{{$unite->id}}">{{$unite->designation}}</option>
+                    <option value="{{$unite->id}}" @if ($utilisateur->unite_id && $utilisateur->unite_id == $unite->id )
+selected
+                    @endif >
+                    {{$unite->designation}}</option>
                     @endforeach
                 </select>
                 @error('organisation')
@@ -136,25 +139,28 @@
         <div class="form-group">
             <label class="form-label" for="organisation">Role <strong class="text-danger">*</strong></label>
             <select name="role_id" id="" class="form-control custom-select select2">
-                @if ($utilisateur->role)
-             <option value="{{$utilisateur->role->id}}" selected> {{$utilisateur->role->designation}} </option>
-                @endif
+
                 @if (Auth::user()->role->designation == 'Chef d’Unité' || Auth::user()->role->designation ==
                 'Coordonnateur Régional' || Auth::user()->role->designation == 'Coordonnateur National')
                 <option value="{{$roles->id}}" selected> {{$roles->designation}}</option>
                 @else
                 @if (!$utilisateur->role)
                 <option value="" selected disabled> Sélectionner</option>
-
                 @endif
+                @if ($utilisateur->role->designation != "Agent d’une Unité" && $utilisateur->role->designation != "Chef d’Unité")
+                @if ($utilisateur->role)
+                <option value="{{$utilisateur->role->id}}" selected> {{$utilisateur->role->designation}} </option>
+                   @endif
                 @foreach ($roles as $role)
                 @php
+
                     if($utilisateur->role && $utilisateur->role->id == $role->id) {
                         continue;
                     }
                 @endphp
                 <option value="{{$role->id}}">{{$role->designation}}</option>
                 @endforeach
+                @endif
                 @endif
             </select>
             @error('organisation')

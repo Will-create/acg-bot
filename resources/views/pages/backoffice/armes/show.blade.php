@@ -23,15 +23,15 @@
 			            <h1 class="page-title">Détails d'une Arme de crime</h1>
 						<ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{route('accueil')}}">Accueil</a></li>
-                        <li class="breadcrumb-item" aria-current="page"><a href="{{route('armes.index')}}">Armes de crime</a></li>
+                        <li class="breadcrumb-item" aria-current="page">
+                            <a href="{{route('armes.index')}}">Armes de crime</a></li>
 							<li class="breadcrumb-item active" aria-current="page">{{$arme->nom}}</li>
 						</ol>
 					</div>
 					<div class="ml-auto pageheader-btn">
-                    <a class="btn btn-primary" href="{{route('armes.index')}}"><span>
+                        <a class="btn btn-primary" href="{{ route('crimes.show', $arme->crime ? $arme->crime->uuid : $crimeUuid) }}"> <span>
                             <i class="fe fe-list"></i>
-                        </span>
-                        Toutes les armes de crime</a>
+                        </span> Revenir au crime</a>
                     </button>
 					</div>
 				</div>
@@ -89,6 +89,8 @@
                     </div>
                 </div><!-- COL-END -->
             </div>
+   @if (Auth::user()->role->designation == "Chef d’Unité" || Auth::user()->role->designation == "Agent d’une Unité")
+
             <div class="row">
                 <div class="col-md-6"></div>
                 <div class="col-md-6 mb-4">
@@ -103,6 +105,7 @@
                         data-target="#exampleModalDelete{{ $arme->id }}"><i class="fa fa-trash"></i> Supprimer</button>
                 </div>
             </div>
+            @endif
             <div class="modal" id="exampleModalDelete{{ $arme->id }}" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalDelete" aria-hidden="true">
                 <div class="modal-dialog" role="document">

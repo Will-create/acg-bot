@@ -1,3 +1,4 @@
+
 <?php $__env->startSection('css'); ?>
         <!-- INTERNAL SELECT2 CSS -->
 		<link href="<?php echo e(URL::asset('assets/plugins/fileuploads/css/fileupload.css')); ?>" rel="stylesheet" type="text/css" />
@@ -20,7 +21,7 @@
                 <?php echo $__env->make('partials._notification', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 				<div class="page-header">
 					<div>
-						<h1 class="page-title">Liste des utilisateurs</h1>
+						<h1 class="page-title"><?php echo e($titrePage); ?></h1>
 						<ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="<?php echo e(route('accueil')); ?>">Accueil</a></li>
 							<li class="breadcrumb-item active" aria-current="page">utilisateurs</li>

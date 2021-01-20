@@ -18,7 +18,7 @@
 						<h1 class="page-title">Liste des crimes </h1>
 						<ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="<?php echo e(route('accueil')); ?>">Accueil</a></li>
-							<li class="breadcrumb-item active" aria-current="page">crime environnemental</li>
+							<li class="breadcrumb-item active" aria-current="page">Crime environnemental</li>
 						</ol>
 					</div>
 					<div class="ml-auto pageheader-btn">
@@ -47,9 +47,10 @@
                         <thead>
                             <tr>
                                 <th class="wd-15p">Ordre</th>
+
                                 <th class="wd-15p">Pays d'appréhension</th>
-                                <th class="wd-15p">Nombre d'espèces impliquées</th>
-                                <th class="wd-15p">Règlement</th>
+                                <th class="wd-15p">Eespèces impliquées</th>
+                                <th class="wd-15p">Nombre de règlement</th>
                                 <th class="wd-15p">Confiscation</th>
                                 <th class="wd-15p" >Service investigateur</th>
                             </tr>
@@ -62,7 +63,18 @@
                             <tr>
                                 <td><?php echo e($i++); ?></td>
                                 <td> <a class="text-dark" href="<?php echo e(route('crimes.show', $crime->uuid)); ?>"> <?php echo e($crime->paysApprehension ? ucfirst($crime->paysApprehension->nom) : ''); ?> </a></td>
-                                <td> <a class="text-dark" href="<?php echo e(route('crimes.show', $crime->uuid)); ?>"> <?php echo e(count($crimeEspeces)); ?> </a></td>
+                                <td> <a class="text-dark" href="<?php echo e(route('crimes.show', $crime->uuid)); ?>">
+                                    <?php $__currentLoopData = $crime->especes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $especeImplique): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <?php if(!$loop->last): ?>
+                                    <?php echo e($especeImplique->nom . ' , '); ?>
+
+<?php else: ?>
+<?php echo e($especeImplique->nom . ' ;'); ?>
+
+
+                                    <?php endif; ?>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                </a></td>
                                 <td> <a class="text-dark" href="<?php echo e(route('crimes.show', $crime->uuid)); ?>"> <?php echo e($crime->reglement  ? count($crime->reglement)  :''); ?></a></td>
                                 <td> <a class="text-dark" href="<?php echo e(route('crimes.show', $crime->uuid)); ?>"> <?php echo e($crime->confiscations  ? count($crime->confiscations)  :''); ?></a></td>
                                 <td> <a class="text-dark" href="<?php echo e(route('crimes.show', $crime->uuid)); ?>"> <?php echo e($crime->service_investigateur ?  $crime->service_investigateur->designation  :''); ?></a></td>

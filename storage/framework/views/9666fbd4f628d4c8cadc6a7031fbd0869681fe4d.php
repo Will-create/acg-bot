@@ -45,8 +45,8 @@ unset($__errorArgs, $__bag); ?>
                     <?php endif; ?>
                         <?php if(Auth::user()->role->designation == 'Chef d’Unité' || Auth::user()->role->designation ==
                         'Coordonnateur National'): ?>
-                        <option value="<?php echo e($pays->id); ?>" selected> <?php echo e($pays->nom); ?></option>
-                        <input type="hidden" id="selected_pays" value="<?php echo e(route('ville_by_country', $pays->id)); ?>">
+                        <option value="<?php echo e(Auth::user()->pay->id); ?>" selected> <?php echo e(Auth::user()->pay->nom); ?></option>
+                        <input type="hidden" id="selected_pays" value="<?php echo e(route('ville_by_country', Auth::user()->pay->id)); ?>">
                         <?php else: ?>
                         <?php if(!$utilisateur->pay): ?>
                         <option value="" selected disabled> Sélectionner</option>
@@ -168,7 +168,10 @@ unset($__errorArgs, $__bag); ?>
                     <option value="" selected disabled> Sélectionner</option>
 
                     <?php $__currentLoopData = $unites; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $unite): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <option value="<?php echo e($unite->id); ?>"><?php echo e($unite->designation); ?></option>
+                    <option value="<?php echo e($unite->id); ?>" <?php if($utilisateur->unite_id && $utilisateur->unite_id == $unite->id ): ?>
+selected
+                    <?php endif; ?> >
+                    <?php echo e($unite->designation); ?></option>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </select>
                 <?php $__errorArgs = ['organisation'];
@@ -192,25 +195,28 @@ unset($__errorArgs, $__bag); ?>
         <div class="form-group">
             <label class="form-label" for="organisation">Role <strong class="text-danger">*</strong></label>
             <select name="role_id" id="" class="form-control custom-select select2">
-                <?php if($utilisateur->role): ?>
-             <option value="<?php echo e($utilisateur->role->id); ?>" selected> <?php echo e($utilisateur->role->designation); ?> </option>
-                <?php endif; ?>
+
                 <?php if(Auth::user()->role->designation == 'Chef d’Unité' || Auth::user()->role->designation ==
                 'Coordonnateur Régional' || Auth::user()->role->designation == 'Coordonnateur National'): ?>
                 <option value="<?php echo e($roles->id); ?>" selected> <?php echo e($roles->designation); ?></option>
                 <?php else: ?>
                 <?php if(!$utilisateur->role): ?>
                 <option value="" selected disabled> Sélectionner</option>
-
                 <?php endif; ?>
+                <?php if($utilisateur->role->designation != "Agent d’une Unité" && $utilisateur->role->designation != "Chef d’Unité"): ?>
+                <?php if($utilisateur->role): ?>
+                <option value="<?php echo e($utilisateur->role->id); ?>" selected> <?php echo e($utilisateur->role->designation); ?> </option>
+                   <?php endif; ?>
                 <?php $__currentLoopData = $roles; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $role): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <?php
+
                     if($utilisateur->role && $utilisateur->role->id == $role->id) {
                         continue;
                     }
                 ?>
                 <option value="<?php echo e($role->id); ?>"><?php echo e($role->designation); ?></option>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                <?php endif; ?>
                 <?php endif; ?>
             </select>
             <?php $__errorArgs = ['organisation'];

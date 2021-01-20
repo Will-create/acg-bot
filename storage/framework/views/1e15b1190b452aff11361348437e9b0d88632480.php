@@ -19,7 +19,7 @@
 
 				<div class="page-header">
 					<div>
-						<h1 class="page-title">Liste des Confiscations de crime</h1>
+						<h1 class="page-title">Liste des confiscations de crime</h1>
 						<ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="<?php echo e(route('accueil')); ?>">Accueil</a></li>
 							<li class="breadcrumb-item active" aria-current="page">Confiscations</li>

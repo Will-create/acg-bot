@@ -45,22 +45,19 @@
 
                         <li class="slide">
                             <a class="side-menu__item" data-toggle="slide" href="#">
-                                <i class="mdi mdi-rss aide-icon"  ></i>
-                                <span class="side-menu__label">Espèce Animal</span><i class="angle fa fa-angle-right"></i>
+
+
+                                <i class="mdi mdi-barley aide-icon"  ></i>
+
+                                <span class="side-menu__label">Espèces</span><i class="angle fa fa-angle-right"></i>
                             </a>
                             <ul class="slide-menu">
-                                <li><a class="slide-item" href="#"><span>Les espèce Animal</span></a></li>
-                                <li><a class="slide-item" href="#"><span>Ajouter un espèce animal </span></a></li>
-                            </ul>
-                        </li>
-                        <li class="slide">
-                            <a class="side-menu__item" data-toggle="slide" href="#">
-                                <i class="mdi mdi-rss aide-icon"  ></i>
-                                <span class="side-menu__label">Espèce végétal</span><i class="angle fa fa-angle-right"></i>
-                            </a>
-                            <ul class="slide-menu">
-                                <li><a class="slide-item" href="#"><span>Tous les espèces</span></a></li>
-                                <li><a class="slide-item" href="#"><span>Ajouter un espèce végétal </span></a></li>
+                                <li><a class="slide-item" href="<?php echo e(route('especes.index')); ?>"><span>Toutes les espèces</span></a></li>
+                                <li><a class="slide-item" href="<?php echo e(route('especes.regne.show', ['regne' => 'animal'])); ?>"><span>Les espèces animales</span></a></li>
+                                <li><a class="slide-item" href="<?php echo e(route('especes.regne.show', ['regne' => 'vegetal'])); ?>"><span>Les espèces végétales</span></a></li>
+                                
+
+                                
                             </ul>
                         </li>
                         <li class="slide">

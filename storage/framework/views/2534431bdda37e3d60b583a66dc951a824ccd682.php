@@ -1,4 +1,3 @@
-
 <?php $__env->startSection('css'); ?>
         <!-- INTERNAL SELECT2 CSS -->
 		<link href="<?php echo e(URL::asset('assets/plugins/fileuploads/css/fileupload.css')); ?>" rel="stylesheet" type="text/css" />
@@ -20,7 +19,7 @@
                 <?php echo $__env->make('partials._notification', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 				<div class="page-header">
 					<div>
-						<h1 class="page-title">Détails d'une espèce</h1>
+						<h1 class="page-title"><?php echo e($espece->nom); ?></h1>
 						<ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="<?php echo e(route('accueil')); ?>">Accueil</a></li>
                         <li class="breadcrumb-item" aria-current="page"><a href="<?php echo e(route('especes.index')); ?>">Espèces</a></li>
@@ -56,6 +55,8 @@
                             <div  id="profile-log-switch">
 
                                 <dl class="dl">
+                                    <dt>Nom  :</dt>
+                                    <dd> <?php echo e($espece->nom); ?> </dd>
                                     <dt>Famille :</dt>
                                     <dd> <?php echo e($espece->famille); ?> </dd>
                                     <dt>Nom Scientifique :</dt>
