@@ -165,7 +165,7 @@
                                                 </tbody>
                                                 <tbody class="col-lg-6 col-xl-6 p-0">
 
-
+                                                <a href="{{route('confirmation', ['param' => 2])}}" class="btn btn-primary"> Confirmation </a>
                                                     <tr>
                                                         <td><strong>Téléphone :</strong> {{ ($utilisateur->tel)}} </td>
                                                     </tr>
