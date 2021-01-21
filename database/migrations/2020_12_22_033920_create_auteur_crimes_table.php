@@ -15,10 +15,11 @@ class CreateAuteurCrimesTable extends Migration
     {
         Schema::create('auteur_crimes', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('auteur_id');
-            $table->unsignedBigInteger('crime_id');
-            $table->foreign('auteur_id')->references('id')->on('crime_auteurs')->onDelete('restrict')->onUpdate('restrict');
-            $table->foreign('crime_id')->references('id')->on('crimes')->onDelete('restrict')->onUpdate('restrict');
+            $table->foreignId('auteur_id');
+            $table->foreignId('crime_id');
+
+            // $table->foreign('auteur_id')->references('id')->on('crime_auteurs')->onDelete('restrict')->onUpdate('restrict');
+            // $table->foreign('crime_id')->references('id')->on('crimes')->onDelete('restrict')->onUpdate('restrict');
             $table->timestamps();
         });
     }

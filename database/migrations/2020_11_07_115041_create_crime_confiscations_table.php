@@ -21,9 +21,10 @@ class CreateCrimeConfiscationsTable extends Migration
             $table->unsignedInteger('poids')->nullable();
             $table->enum('condition', ['frais', 'vivant']);
             $table->text('description')->nullable();
-            $table->unsignedBigInteger('crime_id');
-            $table->foreign('crime_id')->references('id')->on('crimes')->onDelete('restrict')
-            ->onUpdate('restrict');
+            $table->foreignId('crime_id');
+
+            // $table->foreign('crime_id')->references('id')->on('crimes')->onDelete('restrict')
+            // ->onUpdate('restrict');
             $table->timestamps();
         });
     }

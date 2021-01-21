@@ -21,14 +21,14 @@ class CreateAireProtegeesTable extends Migration
             $table->string('nom_responsable', 100);
             $table->string('prenom_responsable', 100);
             $table->text('adresse');
-            $table->unsignedBigInteger('pays_id');
+            $table->foreignId('pays_id');
             $table->string('tel',45);
             $table->text('map')->nullable();
             $table->text('logo')->nullable();
             $table->text('image_couverture')->nullable();
             $table->timestamps();
-            $table->foreign('pays_id')->references('id')->on('pays')->onDelete('restrict')
-            ->onUpdate('restrict');
+            // $table->foreign('pays_id')->references('id')->on('pays')->onDelete('restrict')
+            // ->onUpdate('restrict');
         });
     }
     /**
