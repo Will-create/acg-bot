@@ -18,9 +18,9 @@ class CreateCrimeAuteursTable extends Migration
             $table->id();
             $table->uuid('uuid');
             $table->integer('revenue');
-            $table->unsignedBigInteger('localite_id')->nullable();
-            $table->unsignedBigInteger('crime_id')->nullable();
-            $table->unsignedBigInteger('pays_id')->nullable();
+            $table->foreignId('localite_id')->nullable();
+            $table->foreignId('crime_id')->nullable();
+            $table->foreignId('pays_id')->nullable();
             $table->string('nom', 50);
             $table->string('prenom', 60);
             $table->string('nationalite', 25);
@@ -33,11 +33,12 @@ class CreateCrimeAuteursTable extends Migration
             $table->date('date_naiss');
             $table->boolean('voyageur_international');
             $table->boolean('education');
-            $table->boolean('terrorisme');
+            $table->boolean('terrorisme')->nullable();
             $table->timestamps();
-            $table->foreign('pays_id')->references('id')->on('pays')->onDelete('restrict')->onUpdate('restrict');
-            $table->foreign('localite_id')->references('id')->on('localites')->onDelete('restrict')->onUpdate('restrict');
-            $table->foreign('crime_id')->references('id')->on('crimes')->onDelete('restrict')->onUpdate('restrict');
+
+            // $table->foreign('pays_id')->references('id')->on('pays')->onDelete('restrict')->onUpdate('restrict');
+            // $table->foreign('localite_id')->references('id')->on('localites')->onDelete('restrict')->onUpdate('restrict');
+            // $table->foreign('crime_id')->references('id')->on('crimes')->onDelete('restrict')->onUpdate('restrict');
         });
     }
     /**

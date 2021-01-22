@@ -15,18 +15,18 @@ class CreateCrimeTypeReglementsTable extends Migration
     {
         Schema::create('crime_type_reglements', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('mode_id');
-            $table->unsignedBigInteger('suite_id')->nullable();
-            $table->unsignedBigInteger('crime_id');
-            $table->unsignedBigInteger('auteur_id');
+            $table->foreignId('mode_id');
+            $table->foreignId('suite_id')->nullable();
+            $table->foreignId('crime_id');
+            $table->foreignId('auteur_id');
             $table->integer('amende')->nullable();
             $table->timestamps();
 
-            $table->foreign('crime_id')->references('id')->on('crimes')->onDelete('restrict')
-            ->onUpdate('restrict');
+            // $table->foreign('crime_id')->references('id')->on('crimes')->onDelete('restrict')
+            // ->onUpdate('restrict');
 
-            $table->foreign('auteur_id')->references('id')->on('crime_auteurs')->onDelete('restrict')
-            ->onUpdate('restrict');
+            // $table->foreign('auteur_id')->references('id')->on('crime_auteurs')->onDelete('restrict')
+            // ->onUpdate('restrict');
         });
     }
 

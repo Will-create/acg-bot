@@ -1,0 +1,23 @@
+image: composer:2.0
+
+
+pipelines:
+  branches:
+      preprod:
+        - step:
+            name: Create artifact
+            script:
+               - git archive --format=tar.gz preprod -o warcrimes.tar.gz
+            artifacts:
+               - warcrimes.tar.gz
+        - step:
+            name: Development
+            script:
+              - pipe: atlassian/heroku-deploy:1.2.1
+                variables:
+                  HEROKU_API_KEY: 'e9cf8760-1d3f-48ef-98c2-4b7522ed0098'
+                  HEROKU_APP_NAME: 'uicncrime'
+                  ZIP_FILE: 'warcrimes.tar.gz'
+                  WAIT: 'true'
+            caches:
+              - composer

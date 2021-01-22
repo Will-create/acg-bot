@@ -15,7 +15,7 @@ class CreateDecisionJusticesTable extends Migration
     {
         Schema::create('decision_justices', function (Blueprint $table) {
             $table->id();
-            $table->string('decision');
+            $table->string('decision'); 
             $table->text('description')->nullable();
             $table->timestamps();
         });

@@ -30,13 +30,6 @@ class EspeceVegetalTableSeeder extends Seeder
         ]);
         $especesbody = json_decode($response->getBody());
         $especes = $especesbody->result;
-<<<<<<< HEAD
-        for ($i = 0; $i < 140; $i++) {
-            $num = rand(1, count($especes));
-            $espece = $especes[$num];
-            if (isset($espece)) {
-                if ($espece->kingdom_name == "PLANTAE") {
-=======
         $animaux = [
             '',
         ];
@@ -45,11 +38,10 @@ class EspeceVegetalTableSeeder extends Seeder
             $espece= $especes[$num];
             if (isset($espece)){
                 if( $espece->kingdom_name == "PLANTAE"){
->>>>>>> 6f69a2cd717502fd5541324aedc994659d7979a8
                     Espece::create([
                         'nom'                   => $espece->scientific_name,
                         'uuid'                  => Str::uuid(),
-                        'photo'                 => 'espece_uploads/' . $faker->file($sourceDir = 'D:\switch_maker\war_crimes\public\espece_vegetal', $targetDir = 'D:\switch_maker\war_crimes\storage\app\public\espece_uploads', false),
+                        'photo'                 => 'espece_uploads/' .$faker->file('public/espece_vegetal', 'storage/app/public/espece_uploads', false),
                         'famille'               => $espece->family_name,
                         'regne'                 => 'végétal',
                         'nom_scientifique'      => $espece->scientific_name,
@@ -59,7 +51,7 @@ class EspeceVegetalTableSeeder extends Seeder
                     Espece::create([
                         'nom'                   => $espece->phylum_name,
                         'uuid'                  => Str::uuid(),
-                        'photo'                 => $faker->file($sourceDir = 'D:\switch_maker\war_crimes\public\espece_animal', $targetDir = 'D:\switch_maker\war_crimes\public\storage\espece_uploads', false),
+                        'photo'                 => 'espece_uploads/' .$faker->file('public/espece_animal',   'storage/app/public/espece_uploads', false),
                         'famille'               => $espece->family_name,
                         'regne'                 => 'animal',
                         'nom_scientifique'      => $espece->scientific_name,
