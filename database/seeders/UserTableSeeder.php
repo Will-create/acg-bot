@@ -46,12 +46,12 @@ class UserTableSeeder extends Seeder
                 'titre'                 => $faker->title,
                 'actif'                 => true,
                 'role_id'               => $role->id,
-                'profile_photo_path'                 => 'profile_photo_path/'.$faker->file($sourceDir = 'public/images/user', $targetDir = 'storage/app/public/profile_photo_path', false),
+                'profile_photo_path'    => 'profile_photo_path/'.$faker->file( 'public/images/user', 'storage/app/public/profile_photo_path', false),
                 'prenom'                => $faker->lastName,
-                'email'                 => $faker->freeEmail,
+                'email'                 => $faker->unique()->freeEmail,
                 'tel'                   => $faker->phoneNumber,
                 'password'              => Hash::make('00000000'),
-                'localite_id'              => $faker->numberBetween($min = 1, $max = 5),
+                'localite_id'              => $faker->numberBetween(1, 5),
                 'uuid'                  => Str::uuid(),
                 'pay_id'                => rand(1,16)
             ]);

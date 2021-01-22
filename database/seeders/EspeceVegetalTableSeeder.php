@@ -41,7 +41,7 @@ class EspeceVegetalTableSeeder extends Seeder
                     Espece::create([
                         'nom'                   => $espece->scientific_name,
                         'uuid'                  => Str::uuid(),
-                        'photo'                 => 'espece_uploads/' . $faker->file($sourceDir = 'public\espece_vegetal', $targetDir = 'storage\app\public\espece_uploads', false),
+                        'photo'                 => 'espece_uploads/' .$faker->file('public\espece_vegetal', 'storage\app\public\espece_uploads', false),
                         'famille'               => $espece->family_name,
                         'regne'                 => 'végétal',
                         'nom_scientifique'      => $espece->scientific_name,
@@ -49,10 +49,9 @@ class EspeceVegetalTableSeeder extends Seeder
                     ]);
                 } else {
                     Espece::create([
-                        
                         'nom'                   => $espece->phylum_name,
                         'uuid'                  => Str::uuid(),
-                        'photo'                 => $faker->file($sourceDir = 'public\espece_animal', $targetDir = 'storage\app\public\espece_uploads', false),
+                        'photo'                 => 'espece_uploads/' .$faker->file('public\espece_animal',   'storage\app\public\espece_uploads', false),
                         'famille'               => $espece->family_name,
                         'regne'                 => 'animal',
                         'nom_scientifique'      => $espece->scientific_name,

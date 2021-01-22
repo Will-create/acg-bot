@@ -33,7 +33,7 @@ class CreateCrimeAuteursTable extends Migration
             $table->date('date_naiss');
             $table->boolean('voyageur_international');
             $table->boolean('education');
-            $table->boolean('terrorisme');
+            $table->boolean('terrorisme')->nullable();
             $table->timestamps();
 
             // $table->foreign('pays_id')->references('id')->on('pays')->onDelete('restrict')->onUpdate('restrict');
