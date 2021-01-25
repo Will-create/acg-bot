@@ -40,7 +40,7 @@ class UtilisateursController extends Controller
             case 'Coordonnateur Régional':
                 $role_id = Role::whereIn('designation', ['Chef d’Unité', 'Agent d’une Unité', 'Coordonnateur National'])->pluck('id');
                 $utilisateurs  = User::where('pay_id', Auth::user()->pays->id)->whereIn('role_id', $role_id)->latest()->get();
-                $utilisateurs  = User::latest()->get();
+                // $utilisateurs  = User::latest()->get();
                 break;
             case 'Administrateur Général':
                 $utilisateurs  = User::latest()->get();
@@ -155,14 +155,12 @@ class UtilisateursController extends Controller
     public function edit(User $utilisateur)
     {
         $titrePage = "Modification des informations d'un utilisateur";
-
         switch (Auth::user()->role->designation) {
             case 'Administrateur Général':
                 $roles = Role::whereIn('designation', ['Coordonnateur Régional', 'Coordonnateur National'])->get();
                 break;
             case 'Coordonnateur Régional':
                 $roles = Role::where('designation', $utilisateur->role->designation)->first();
-
 
                 break;
             case 'Coordonnateur National':
