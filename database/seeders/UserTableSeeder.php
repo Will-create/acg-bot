@@ -39,6 +39,20 @@ class UserTableSeeder extends Seeder
             'uuid'                  => Str::uuid(),
             'pay_id'                => rand(1,16)
         ]);
+        User::create([
+            'nom'                   => $faker->firstName,
+            'titre'                 => $faker->title,
+            'actif'                 => true,
+            'role_id'               => 2,
+            'profile_photo_path'    => "/images/pngs/bg-l.png",
+            'prenom'                => $faker->lastName,
+            'email'                 => ' agent@uicn.com',
+            'tel'                   => $faker->phoneNumber,
+            'password'              => Hash::make('00000000'),
+            'localite_id'              => $faker->numberBetween($min = 1, $max = 5),
+            'uuid'                  => Str::uuid(),
+            'pay_id'                => rand(1,16)
+        ]);
         foreach ($roles as $key => $role) {
         for ($i=0; $i <100 ; $i++) {
             $user =   User::create([
