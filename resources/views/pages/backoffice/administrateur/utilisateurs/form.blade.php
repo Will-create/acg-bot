@@ -29,7 +29,7 @@
                     @if ($utilisateur->pay)
                     <option value="{{$utilisateur->pay->id}}" selected> {{$utilisateur->pay->nom}}</option>
                     @endif
-                        @if (Auth::user()->role->designation == 'Chef d’Unité' || Auth::user()->role->designation ==
+                        @if (Auth::user()->role->designation == 'Chef d’Unitpé' || Auth::user()->role->designation ==
                         'Coordonnateur National')
                         <option value="{{Auth::user()->pay->id}}" selected> {{Auth::user()->pay->nom}}</option>
                         <input type="hidden" id="selected_pays" value="{{route('ville_by_country', Auth::user()->pay->id)}}">
@@ -99,7 +99,6 @@
                     <select name="localite_id" id="ville_id" class="form-control custom-select select2">
                         @if ($utilisateur->localite)
                     <option value="{{$utilisateur->localite}}" selected > {{$utilisateur->localite->nom}}</option>
-
                         @else
                         <option value="" selected disabled> Sélectionner</option>
 

@@ -72,7 +72,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>   Date d'apprehension  <span class="text-danger">*</span></label>
-                                                    <input type="date" name="date_apprehension"  class="form-control">
+                                                    <input type="date" name="date_apprehension"  class="form-control" max="{{date('Y-m-d')}}">
                                                 </div>
                                             </div>
 
@@ -100,7 +100,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                <div class="form-group">
-                                               <label for="pays_origine_produit"> Pays d'origine du produit <span class="text-danger">*</span> </label>
+                                               <label for="pays_origine_produit"> Pays d'origine du produit <span class="text-danger"></span> </label>
                                                <select name="pays_origine_produit"  class="form-control select2">
                                                    <option value="" disabled selected> Sélectionnez</option>
                                                    @forelse ($pays as $pays_origine)
@@ -113,7 +113,7 @@
                                         </div>
                                             <div class="col-md-6">
                                                <div class="form-group">
-                                               <label for="pays_destination"> Pays de destination du produit <span class="text-danger">*</span> </label>
+                                               <label for="pays_destination"> Pays de destination du produit <span class="text-danger"></span> </label>
                                                <select name="pays_destination"  class="form-control select2">
                                                    <option value="" disabled selected> Sélectionnez</option>
                                                    @forelse ($pays as $pays_destination)

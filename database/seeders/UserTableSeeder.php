@@ -69,6 +69,10 @@ class UserTableSeeder extends Seeder
                 'uuid'                  => Str::uuid(),
                 'pay_id'                => rand(1,16)
             ]);
+            // if ($user->role->designation == "Agent d’une Unité" || $user->role->designation == "Chef d’Unité") {
+            // $user->unite_id  = Unite::inrandomOrder()->first()->id;
+            // }
+
         }
 
             // if($user->role->designation == "Chef d’Unité" || $user->role->designation == "Agent d’une Unité")

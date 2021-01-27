@@ -94,8 +94,8 @@ class CrimeController extends Controller
             'latitude'                              => ['nullable','string','max:255','min:8'],
             'longitude'                             => ['nullable','string','max:255','min:8'],
             'espece'                                => ['nullable','integer'],
-            'pays_origine_produit'                          => ['required','integer'],
-            'pays_destination'                              => ['required','integer'],
+            'pays_origine_produit'                  => ['nullable','integer'],
+            'pays_destination'                      => ['nullable','integer'],
              ]);
              $crime = new Crime;
              $crime->type_crime_id                   = $request->type_id;
@@ -105,7 +105,7 @@ class CrimeController extends Controller
              $crime->latitude                        = $request->latitude;
              $crime->localite_apprehension           = $request->localite_apprehension;
              $crime->longitude                       = $request->longitude;
-             $crime->espece_id                          = $request->espece;
+            $crime->espece_id                        = $request->espece;
              $crime->uuid                            = Str::uuid();
              $crime->save();
             $request->session()->flash('status', 'Informations enregistrées avec succès');
@@ -139,7 +139,6 @@ class CrimeController extends Controller
                         'pays_destination'                              => ['required','integer'],
                         'aire_protegee_id'                              => ['nullable','integer'],
                         'date_abattage'                                 => ['required','date'],
-
                         ]);
                         $crime->pays_origine_produit                    = $request->pays_origine_produit;
                         $crime->pays_destination                        = $request->pays_destination;
