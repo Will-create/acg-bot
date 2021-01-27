@@ -37,5 +37,4 @@
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </tbody>
             </table>
-        </div>
-        <?php /**PATH /home/louisbertson/Desktop/criminalite/resources/views/pages/backoffice/auteurs/crimeAuteu.blade.php ENDPATH**/ ?>
+        </div><?php /**PATH /home/louisbertson/Desktop/criminalite/resources/views/pages/backoffice/auteurs/crimeAuteu.blade.php ENDPATH**/ ?>

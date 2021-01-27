@@ -71557,7 +71557,7 @@ var App = /*#__PURE__*/function (_Component) {
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["BrowserRouter"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
-        patch: "/test",
+        patch: "/crimes_create",
         component: _Crime__WEBPACK_IMPORTED_MODULE_3__["default"]
       }));
     }
@@ -71635,8 +71635,9 @@ var Crime = /*#__PURE__*/function (_Component) {
     _this.state = {
       pays: [],
       pays_appréhension: ''
-    };
-    _this.pays_appréhension = _this.pays_appréhension.bind(_assertThisInitialized(_this));
+    }; // this.pays_appréhension=this.pays_appréhension.bind(this);
+
+    console.log('le teste');
     return _this;
   }
 
@@ -71654,10 +71655,7 @@ var Crime = /*#__PURE__*/function (_Component) {
     }
   }, {
     key: "pays_appr\xE9hension",
-    value: function pays_apprHension(e) {
-      this.setState({
-        pays_appréhension: e.target.value
-      });
+    value: function pays_apprHension(e) {// this.setState({pays_appréhension:e.target.value})
     }
   }, {
     key: "render",
@@ -71736,7 +71734,6 @@ var Crime = /*#__PURE__*/function (_Component) {
         "class": "text-danger"
       }, "*")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_validation_build_input__WEBPACK_IMPORTED_MODULE_3___default.a, {
         type: "date",
-        onChange: this.onChange.date_apprehension,
         id: "",
         "class": "form-control"
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -72093,8 +72090,8 @@ var Crime = /*#__PURE__*/function (_Component) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\Switch Maker\criminalite\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\Switch Maker\criminalite\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/louisbertson/Desktop/criminalite/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/louisbertson/Desktop/criminalite/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

@@ -18,7 +18,10 @@ class Localite extends Model
         return $this->belongsTo('App\Models\Pay','pays_id', 'id');
     }
     public function unites(){
-        return $this->belongsTo('App\Models\Unite','unite_id', 'id');
+        return $this->hasMany('App\Models\Unite','localite_id', 'id');
+    }
+    public function crimes(){
+        return $this->hasMany('App\Models\Crime','localite_apprehension', 'id');
     }
     
 }

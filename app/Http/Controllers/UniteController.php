@@ -1,19 +1,15 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use App\Models\Unite;
 use App\Models\Restriction;
 use App\Models\Pay;
 use App\Models\User as U;
 use App\Models\Localite;
-
 use App\Models\TypeUnite;
 use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
-
 class UniteController extends Controller
 {
     public function __construct()
@@ -30,7 +26,6 @@ class UniteController extends Controller
     public function filter()
     {
         $titrePage = "Liste de toutes les unités de par pays";
-
         $p = 1;
         $pay=Pay::where('id',$p )->first();
         return view('pages.backoffice.unites.filter', [
@@ -57,7 +52,6 @@ class UniteController extends Controller
     }
     public function create()
     {
-
         return view('pages.backoffice.unites.createdit', [
             'unite' => new Unite(),
             'localites' => Localite::with('pay')->orderBy('pays_id', 'asc')->get(),

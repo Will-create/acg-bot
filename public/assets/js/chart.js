@@ -3,7 +3,7 @@ var color = Chart.helpers.color;
 		return {
 			type: 'line',
 			data: {
-				labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+				labels: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet'],
 				datasets: [{
 					label: 'My First dataset',
 					data: [
@@ -20,14 +20,12 @@ var color = Chart.helpers.color;
 					borderWidth: 1
 				}]
 			},
-			
 			options: {
 				responsive: true,
 				maintainAspectRatio: false,
 				legend: {
 					position: 'bottom',
 				},
-				
 				scales: {
 					xAxes: [{
 						display: true,
@@ -48,7 +46,6 @@ var color = Chart.helpers.color;
 			}
 		};
 	}
-
 	window.onload = function() {
 		[{
 			id: 'chart-legend-top',
