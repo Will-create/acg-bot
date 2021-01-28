@@ -119,20 +119,25 @@ class WelcomeController extends Controller
     public function crime(){
         $pays = Pay::with('crimes')->get();
         return view('pages.frontoffice.crimes',[
-            'pays' =>$pays
+            'pays' =>$pays,
+            'nom' =>'Crimes environnementaux'
+
         ]);
     }
     public function animale(){
         $pays = Pay::with('crimes')->get();
         return view('pages.frontoffice.espece',[
-            'pays' =>$pays
+            'pays' =>$pays,
+            'nom' =>'Espèces animales'
             
         ]);
     }
     public function vegetale(){
         $pays = Pay::with('crimes')->get();
         return view('pages.frontoffice.espece',[
-            'pays' =>$pays
+            'pays' =>$pays,
+            'nom' =>'Espèces végztales'
+            
             
         ]);
     }
@@ -143,6 +148,4 @@ class WelcomeController extends Controller
             'nom' =>$nom
         ]);
     }
-
-    
 }

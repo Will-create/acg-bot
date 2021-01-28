@@ -235,6 +235,51 @@
         </div>
     </div>
 </div>
+<div class="row">
+    <div class="col-md-6"></div>
+    <div class="col-md-6 mb-4">
+        <a href="{{ route('crimes.index') }}" class="btn btn-dark"> <span>
+                <i class="fe fe-close"></i>
+            </span><i class="fa fa-times"></i> Retour</a>
+
+        <a href="{{ route('crimes.edit', $crime->uuid) }}" class="btn btn-primary">
+            <i class="fa fa-edit"></i> Modifier</a>
+
+        <button type="button" class="btn btn-danger  mb-1" data-toggle="modal"
+            data-target="#exampleModalDelete{{ $crime->id }}"><i class="fa fa-trash"></i></button>
+    </div>
+</div>
+<div class="modal" id="exampleModalDelete{{ $crime->id }}" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalDelete" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalDelete">Suppression de {{ $crime->nom }}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p> Etes-vous sûr de bien vouloir supprimer ce  ?
+                </p>
+            </div>
+            <div class="modal-footer">
+                <form action="{{ route('crimes.destroy', $crime->uuid) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger ">
+                        <i class="fa fa-trash"></i>
+                        <span>Confirmer</span>
+                    </button>
+                    <button type="reset" class="btn btn-success" data-dismiss="modal">
+                        <i class="fa fa-times"></i>
+                        <span>Annuler</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 @section('js')
         <!-- INTERNAL FORN WIZARD JS-->

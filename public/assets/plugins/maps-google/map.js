@@ -15,21 +15,23 @@ $(function() {
     });
   })
   $(function() {
-    $("#map3").googleMap();
+    $("#map3").googleMap({
+      zoom: 14, // Initial zoom level (optional)
+    });
     
     // Marker 1
     $("#map3").addMarker({
-    	 coords: [51.534287, -0.033580]
+    	 coords: [12.534287, 15.033580]
     });
     
     // Marker 2
     $("#map3").addMarker({
-    	 coords: [51.507351, -0.127758]
+    	 coords: [12.507351, 15.127758]
     });
 	
     // Marker 3
     $("#map3").addMarker({
-        coords: [37.089462, -95.710452]
+        coords: [12.089462, 15.710452]
     });
   })
     $(function() {
