@@ -211,7 +211,7 @@ class UtilisateursController extends Controller
                 'profile_photo_path'        => $path
             ]);
         } else {
-            $data =   $request->validate([
+             $data =   $request->validate([
                 'nom'                       => ['required', 'string', 'max:255'],
                 'prenom'                    => ['required', 'string', 'max:255'],
                 'tel'                       => 'required|string|min:8|max:20|unique:users,tel,' . $utilisateur->id,
@@ -221,16 +221,25 @@ class UtilisateursController extends Controller
                 'pay_id'                    => ['required'],
                 'profile_photo_path'        => ['nullable', 'mimes:jpeg,jpg,png,gif', 'max:10000'],
             ]);
-            $utilisateur->update([
-                'nom'                       => $request['nom'],
-                'prenom'                    => $request['prenom'],
-                'tel'                       => $request['tel'],
-                'email'                     => $request['email'],
-                'role_id'                   => $request['role_id'],
-                'unite_id'                  => $request['unite_id'],
-                'titre'                     => $request['titre'],
-                'profile_photo_path'        => $path
-            ]);
+            // $utilisateur->update([
+            //     'nom'                       => $request['nom'],
+            //     'prenom'                    => $request['prenom'],
+            //     'tel'                       => $request['tel'],
+            //     'email'                     => $request['email'],
+            //     'role_id'                   => $request['role_id'],
+            //     'unite_id'                  => $request['unite_id'],
+            //     'titre'                     => $request['titre'],
+            //     'profile_photo_path'        => $path
+            // ]);
+            $utilisateur->nom                   = $request->nom;
+            $utilisateur->prenom                = $request->prenom;
+            $utilisateur->tel                   = $request->tel;
+            $utilisateur->email                 = $request->email;
+            $utilisateur->role_id               = $request->role_id;
+            $utilisateur->titre                 = $request->titre;
+            $utilisateur->profile_photo_path    = $request->path;
+            $utilisateur->save();
+
         }
         if ($previousUrl ==  '/user/profile') {
             $request->session()->flash('status', 'Votre profil a été mis à jour');
