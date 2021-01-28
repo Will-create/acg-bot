@@ -51,9 +51,8 @@ class Crime extends Model
     public function commentaires(){
         return $this->hasMany('App\Models\Commentaire','crime_id','id');
     }
-
     public function especes(){
-        return $this->belongsToMany(Espece::class,'crime_especes');
+        return $this->belongsToMany(Espece::class,'crime_especes','crime_id','espece_id');
     }
     public function reglement()
     {

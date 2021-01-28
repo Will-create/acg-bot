@@ -24,10 +24,6 @@ class CrimeTableSeeder extends Seeder
      *
      * @return void
      */
-
-
-
-
     public function run()
     {
         $faker = Factory::create();
@@ -49,7 +45,7 @@ class CrimeTableSeeder extends Seeder
                 'pays_destination' => rand(1, count($pays)),
                 'pays_origine_produit' => rand(1, count($pays)),
                 'services_investigateurs' => rand(1, count($unites)),
-                'date_apprehension' => $faker->date(),
+                'date_apprehension' => $faker->dateTimeBetween('-12 years', 'now'),
                 'date_abattage' => $faker->date(),
                 'localite_apprehension' => rand(1, count($localites)),
                 'longitude' => $faker->longitude(-6, 12),
@@ -60,8 +56,7 @@ class CrimeTableSeeder extends Seeder
                 'victime' => $faker->firstName . ' ' . $faker->lastName,
                 'aire_protegee_id' => rand(1, count($aires)),
             ]);
-
-
         }
+        
     }
 }

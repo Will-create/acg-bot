@@ -1437,7 +1437,6 @@ for (var func in conversions) {
       return conversions[func](arg);
     }
   })(func);
-
   var pair = /(\w+)2(\w+)/.exec(func),
       from = pair[1],
       to = pair[2];
@@ -1461,12 +1460,10 @@ for (var func in conversions) {
   })(func);
 }
 
-
 /* Converter does lazy conversion and caching */
 var Converter = function() {
    this.convs = {};
 };
-
 /* Either get the values for a space or
   set the values for a space, depending on args */
 Converter.prototype.routeSpace = function(space, args) {
@@ -1479,7 +1476,6 @@ Converter.prototype.routeSpace = function(space, args) {
    if (typeof values == "number") {
       values = Array.prototype.slice.call(args);        
    }
-
    return this.setValues(space, values);
 };
   
@@ -2113,16 +2109,13 @@ module.exports = function(Chart) {
 			var stack = meta.stack;
 			var start = 0;
 			var i, imeta, ivalue, base, head, size;
-
 			if (stacked || (stacked === undefined && stack !== undefined)) {
 				for (i = 0; i < datasetIndex; ++i) {
 					imeta = chart.getDatasetMeta(i);
-
 					if (imeta.bar &&
 						imeta.stack === stack &&
 						imeta.controller.getValueScaleId() === scale.id &&
 						chart.isDatasetVisible(i)) {
-
 						ivalue = scale.getRightValue(datasets[i].data[index]);
 						if ((value < 0 && ivalue < 0) || (value >= 0 && ivalue > 0)) {
 							start += ivalue;
@@ -2130,11 +2123,9 @@ module.exports = function(Chart) {
 					}
 				}
 			}
-
 			base = scale.getPixelForValue(start);
 			head = scale.getPixelForValue(start + value);
 			size = (head - base) / 2;
-
 			return {
 				size: size,
 				base: base,
@@ -2142,7 +2133,6 @@ module.exports = function(Chart) {
 				center: head + size / 2
 			};
 		},
-
 		/**
 		 * @private
 		 */
@@ -2156,7 +2146,6 @@ module.exports = function(Chart) {
 			var start = ruler.start;
 			var end = ruler.end;
 			var leftSampleSize, rightSampleSize, leftCategorySize, rightCategorySize, fullBarSize, size;
-
 			if (length === 1) {
 				leftSampleSize = base > start ? base - start : end - base;
 				rightSampleSize = base < end ? end - base : base - start;
@@ -2174,20 +2163,16 @@ module.exports = function(Chart) {
 					}
 				}
 			}
-
 			leftCategorySize = leftSampleSize * options.categoryPercentage;
 			rightCategorySize = rightSampleSize * options.categoryPercentage;
 			fullBarSize = (leftCategorySize + rightCategorySize) / ruler.stackCount;
 			size = fullBarSize * options.barPercentage;
-
 			size = Math.min(
 				helpers.valueOrDefault(options.barThickness, size),
 				helpers.valueOrDefault(options.maxBarThickness, Infinity));
-
 			base -= leftCategorySize;
 			base += fullBarSize * stackIndex;
 			base += (fullBarSize - size) / 2;
-
 			return {
 				size: size,
 				base: base,
@@ -2215,31 +2200,26 @@ module.exports = function(Chart) {
 
 			helpers.canvas.unclipArea(chart.ctx);
 		},
-
 		setHoverStyle: function(rectangle) {
 			var dataset = this.chart.data.datasets[rectangle._datasetIndex];
 			var index = rectangle._index;
 			var custom = rectangle.custom || {};
 			var model = rectangle._model;
-
 			model.backgroundColor = custom.hoverBackgroundColor ? custom.hoverBackgroundColor : helpers.valueAtIndexOrDefault(dataset.hoverBackgroundColor, index, helpers.getHoverColor(model.backgroundColor));
 			model.borderColor = custom.hoverBorderColor ? custom.hoverBorderColor : helpers.valueAtIndexOrDefault(dataset.hoverBorderColor, index, helpers.getHoverColor(model.borderColor));
 			model.borderWidth = custom.hoverBorderWidth ? custom.hoverBorderWidth : helpers.valueAtIndexOrDefault(dataset.hoverBorderWidth, index, model.borderWidth);
 		},
-
 		removeHoverStyle: function(rectangle) {
 			var dataset = this.chart.data.datasets[rectangle._datasetIndex];
 			var index = rectangle._index;
 			var custom = rectangle.custom || {};
 			var model = rectangle._model;
 			var rectangleElementOptions = this.chart.options.elements.rectangle;
-
 			model.backgroundColor = custom.backgroundColor ? custom.backgroundColor : helpers.valueAtIndexOrDefault(dataset.backgroundColor, index, rectangleElementOptions.backgroundColor);
 			model.borderColor = custom.borderColor ? custom.borderColor : helpers.valueAtIndexOrDefault(dataset.borderColor, index, rectangleElementOptions.borderColor);
 			model.borderWidth = custom.borderWidth ? custom.borderWidth : helpers.valueAtIndexOrDefault(dataset.borderWidth, index, rectangleElementOptions.borderWidth);
 		}
 	});
-
 	Chart.controllers.horizontalBar = Chart.controllers.bar.extend({
 		/**
 		 * @private
@@ -2247,7 +2227,6 @@ module.exports = function(Chart) {
 		getValueScaleId: function() {
 			return this.getMeta().xAxisID;
 		},
-
 		/**
 		 * @private
 		 */

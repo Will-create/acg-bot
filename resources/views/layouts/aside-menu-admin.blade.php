@@ -91,9 +91,6 @@
                                     </li>
                             </ul>
                         </li>
-
-
-
                         <li>
                             <h3>Configurations</h3>
                         </li>

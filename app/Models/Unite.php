@@ -41,7 +41,7 @@ class Unite extends Model
         return $this->belongsTo('App\Models\User','responsable_id');
     }
     public function crimes(){
-        return $this->hasMany('App\Models\Crime','unite_id','id');
+        return $this->hasMany('App\Models\Crime','services_investigateurs','id');
     }
     public function users(){
         return $this->hasMany('App\Models\Users','unite_id','id');

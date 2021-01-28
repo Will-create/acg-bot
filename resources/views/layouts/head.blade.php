@@ -22,9 +22,8 @@
 		<link href="{{URL::asset('assets/css/icons.css')}}" rel="stylesheet" />
 
 		<!--- CUSTOM CSS -->
-		<link href="{{URL::asset('css/custom.css')}}" rel="stylesheet" />
-				@yield('css')
-        		<!-- FORN WIZARD CSS -->
+		@yield('css')
+		<!-- FORN WIZARD CSS -->
 		<link href="{{URL::asset('assets/plugins/formwizard/smart_wizard.css')}}" rel="stylesheet">
 		<link href="{{URL::asset('assets/plugins/formwizard/smart_wizard_theme_arrows.css')}}" rel="stylesheet">
 		<link href="{{URL::asset('assets/plugins/formwizard/smart_wizard_theme_circles.css')}}" rel="stylesheet">
@@ -33,6 +32,13 @@
 		<!-- SIDEBAR CSS -->
 		<link href="{{URL::asset('assets/plugins/sidebar/sidebar.css')}}" rel="stylesheet">
 		<!-- COLOR SKIN CSS -->
+		<script src="{{URL::asset('js/axios.js')}}"></script>
+		<script src="https://unpkg.com/chart.js@2.9.3/dist/Chart.min.js"></script>
+		<script src="https://unpkg.com/@chartisan/chartjs@^2.1.0/dist/chartisan_chartjs.umd.js"></script>
+		<script src="{{URL::asset('assets/js/apexcharts.js')}}"></script>
+		
         <link id="theme" rel="stylesheet" type="text/css" media="all" href="{{URL::asset('assets/colors/color1.css')}}" />
+		<link href="{{URL::asset('css/custom.css')}}" rel="stylesheet" />
+		<script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
 
         @stack('livewire')

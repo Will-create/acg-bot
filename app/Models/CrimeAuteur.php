@@ -23,4 +23,8 @@ class CrimeAuteur extends Model
     {
         return $this->hasMany(crimeTypeReglement::class, 'auteur_id');
     }
+    public function pays()
+    {
+        return $this->belongsTo('App\Models\Pay', 'pays_id','id');
+    }
 }

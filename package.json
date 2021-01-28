@@ -25,6 +25,8 @@
         "sass-loader": "^8.0.0"
     },
     "dependencies": {
+        "@chartisan/chartjs": "^2.1.0",
+        "chart.js": "^2.9.4",
         "react-router-dom": "^5.2.0",
         "react-validation": "^3.0.7",
         "vue": "^2.6.12"

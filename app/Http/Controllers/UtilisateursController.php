@@ -249,7 +249,6 @@ class UtilisateursController extends Controller
      */
     public function destroy(User $utilisateur, Request $request)
     {
-
         $restriction = new Restriction;
         $restrictions = $restriction->check($utilisateur->id, [
             ['foreignkey' => 'responsable_id', 'modelname' => 'unite'],
@@ -260,7 +259,7 @@ class UtilisateursController extends Controller
             $utilisateur->delete();
             $request->session()->flash('warning', 'Utilisateur supprimé avec succes');
             return redirect()->route('utilisateurs.index');
-        }
+           }
     }
     public function gerer(User $utilisateur, Request $request)
     {
@@ -279,7 +278,6 @@ class UtilisateursController extends Controller
             return redirect()->route('utilisateurs.show', $utilisateur->uuid);
         }
     }
-
     public function profil()
     {
         $titrePage = "Informations d'un utilisateur";
@@ -294,7 +292,6 @@ class UtilisateursController extends Controller
         $titrePage = "Modificationdes identifiants d'un utilisateur";
         return view('pages.backoffice.administrateur.utilisateurs.edit-password', [
             'titrePage' => $titrePage
-
         ]);
     }
     public function change_password(Request $request)

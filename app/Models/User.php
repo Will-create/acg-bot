@@ -47,7 +47,7 @@ class User extends Authenticatable
     }
     public function unite()
     {
-        return $this->hasOne('App\Models\Unite', 'responsable_id', 'id');
+        return $this->belongsTo('App\Models\Unite', 'unite_id', 'id');
     }
     public function uniteagent()
     {

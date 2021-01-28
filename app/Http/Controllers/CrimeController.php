@@ -241,9 +241,19 @@ class CrimeController extends Controller
      */
     public function edit(Crime $crime)
     {
-        //
-    }
+        $titrePage = "Mise a jour d'un crime environnemental";
 
+        return view('pages.backoffice.crimes.create'
+        ,[
+            'pays'                           => Pay::all(),
+            'unites'                         => Unite::all(),
+            // 'especes'                        => Espece::all(),
+            'typeCrimes'                     => TypeCrime::all(),
+            'aires'                          => AireProtegee::all(),
+            'titrePage'                      =>$titrePage  
+        ]
+    );
+    }
     /**
      * Update the specified resource in storage.
      *

@@ -11,9 +11,7 @@ span.helper-text.red-text {
 }
 .iti.iti--allow-dropdown {
     width: 100%;
-
 }
-
 .aide-icon{
     font-size: 21px;
     padding-right: 13px;
@@ -78,6 +76,12 @@ img.user-prfil-image {
     display: flex !important;
     justify-content: space-between;
 }
+.banner {
+	background-image: linear-gradient(to right, rgba(2, 96, 173, 0.931) 0%, rgba(93, 247, 239, 0.774) 100%), url('../images/pngs/bg.png');
+	background-size: cover;
+	position: relative;
+	overflow: hidden;
+  }
 .card-header.d-spaece-around {
     justify-content: space-between;
 }

@@ -21,7 +21,6 @@ class CreateTypeCrimesTable extends Migration
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      *

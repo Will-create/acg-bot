@@ -10,7 +10,12 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 // Route::prefix('74uAExW4d')->group(function () {
     // Route::get('/',                                             'AdminNavigationController@accueil')->name('bienvenue');
-    Route::get('/',                                      'AdminNavigationController@accueil')->name('accueil');
+    Route::get('/',                                      'WelcomeController@index')->name('welcome');
+    Route::get('/criminalites/',                          'WelcomeController@crime')->name('welcome.crime');
+    Route::get('/criminalites/{nompays}/{uuidpays}',                          'WelcomeController@pays')->name('welcome.pays');
+    Route::get('/especes/especes_animales',                                  'WelcomeController@animale')->name('welcome.especes.animale');
+    Route::get('/especes/especes_vegetale',                                  'WelcomeController@vegetale')->name('welcome.especes.vegetale');   
+    Route::get('/admin',                                      'AdminNavigationController@accueil')->name('accueil');
     Route::resource('utilisateurs',                             'UtilisateursController');
     Route::resource('roles',                                    'RoleController');
     Route::get('utilisateurs/gerer/{utilisateur}',              'UtilisateursController@gerer')->name('gerer-utilisateur');
@@ -27,6 +32,8 @@ Auth::routes();
     Route::get('/aire_protegees/api/filtreur/{pays}','AireProtegeeController@filtreur');
     Route::get('/commentaires/api/filtreur/{crime}','CommentaireController@filtreur');
     Route::get('/crime_auteurs/api/filtreur/{crime}','CrimeAuteurController@filtreur');
+    Route::get('/uinc/api/stats','WelcomeController@countrystats')->name('stats.countries');
+    Route::get('/uinc/api/stats','WelcomeController@countrystats')->name('stats.countries');
     Route::resource('/pays','PayController');
     Route::resource('unites', 'UniteController');
     Route::resource('localites', 'LocaliteController');
@@ -42,16 +49,19 @@ Auth::routes();
     Route::resource('confiscations', 'CrimeConfiscationController')->except('create');
     Route::get('confiscations/create/{crime?}', 'CrimeConfiscationController@create')->name('confiscations.create');
     Route::get('crime/armes/create/{crime}', 'ArmeController@createarme')->name('crime.armes.create');
-
     Route::resource('type_crimes', 'TypeCrimeController');
     Route::resource('type_unites', 'TypeUniteController');
     Route::get('/user/profil', 'UtilisateursController@profil')->name('profil');
-    Route::get('/user/password/edit', 'UtilisateursController@edit_password')->name('edit_password');
+    Route::get('/user/password/edit', 'UtilisateursController@edit
+    _password')->name('edit_password');
     Route::patch('/user/password/edit', 'UtilisateursController@change_password')->name('change_password');
     Route::get('/pays/ville/{pay_id}', 'LocaliteController@ville_by_country')->name('ville_by_country');
     Route::resource('crime_reglements', 'CrimeTypeReglementController')->except('create');
     Route::get('crime_reglements/create/{crime?}', 'CrimeTypeReglementController@create')->name('crime_reglements.create');
     Route::view('/{patch?}', 'layouts.masterreact');
     Route::post('crimes/show/cibler/{nom}','Controller@cibleur');
-
     // });
+
+
+    //les routes du frontoffice
+    
