@@ -46,12 +46,12 @@ class EspeceVegetalTableSeeder extends Seeder
                         'regne'                 => 'végétal',
                         'nom_scientifique'      => $espece->scientific_name,
                         'ordre_id'              => Ordre::inRandomOrder()->first()->id
-                    ]);
+                        ]);
                 } else {
                     Espece::create([
                         'nom'                   => $espece->phylum_name,
                         'uuid'                  => Str::uuid(),
-                        'photo'                 => 'espece_uploads/' .$faker->file('public/espece_animal',   'storage/app/public/espece_uploads', false),
+                        'photo'                 => 'espece_uploads/' .$faker->file('public/espece_animal',   'storage/app/public/espece_anumal_uploads', false),
                         'famille'               => $espece->family_name,
                         'regne'                 => 'animal',
                         'nom_scientifique'      => $espece->scientific_name,

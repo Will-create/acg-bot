@@ -29,7 +29,7 @@
                     @if ($utilisateur->pay)
                     <option value="{{$utilisateur->pay->id}}" selected> {{$utilisateur->pay->nom}}</option>
                     @endif
-                        @if (Auth::user()->role->designation == 'Chef d’Unité' || Auth::user()->role->designation ==
+                        @if (Auth::user()->role->designation == 'Chef d’Unitpé' || Auth::user()->role->designation ==
                         'Coordonnateur National')
                         <option value="{{Auth::user()->pay->id}}" selected> {{Auth::user()->pay->nom}}</option>
                         <input type="hidden" id="selected_pays" value="{{route('ville_by_country', Auth::user()->pay->id)}}">
@@ -99,7 +99,6 @@
                     <select name="localite_id" id="ville_id" class="form-control custom-select select2">
                         @if ($utilisateur->localite)
                     <option value="{{$utilisateur->localite}}" selected > {{$utilisateur->localite->nom}}</option>
-
                         @else
                         <option value="" selected disabled> Sélectionner</option>
 
@@ -134,35 +133,49 @@ selected
             @endif
 
     </div>
-    <div class="col-md-12">
+     <div class="col-md-12">
         @if (Auth::user()->role->designation != 'Coordonnateur National' && Auth::user()->role->designation != 'Chef d’Unité')
         <div class="form-group">
             <label class="form-label" for="organisation">Role <strong class="text-danger">*</strong></label>
             <select name="role_id" id="" class="form-control custom-select select2">
+                @switch(Auth::user()->role->designation)
+                @case('Administrateur Général')
+                @if ($utilisateur->role && ($utilisateur->role->designation == "Agent d’une Unité" || $utilisateur->role->designation == "Chef d’Unité"))
+                 <option value="{{$utilisateur->role->id}}" selected> {{$utilisateur->role->designation}} </option>
+                 @else
+                 <option value="" selected disabled> Sélectionner</option>
+                @foreach ($roles as $role)
+                <option value="{{$role->id}}" @if($utilisateur->role && $utilisateur->role->id == $role->id) selected @endif>{{$role->designation}}</option>
+                @endforeach
+                @endif
+                    @break
 
-                @if (Auth::user()->role->designation == 'Chef d’Unité' || Auth::user()->role->designation ==
-                'Coordonnateur Régional' || Auth::user()->role->designation == 'Coordonnateur National')
+                @case('Coordonnateur Régional')
+                <option value="{{$roles->id}}"> {{$roles->designation}}</option>
+                @break
+                @case('Coordonnateur National')
+                <option value="{{$roles->id}}"> {{$roles->designation}}</option>
+                @break
+                @case('Chef d’Unité')
+                <option value="{{$roles->id}}"> {{$roles->designation}}</option>
+                @break
+
+                @default
+                    Default case...
+            @endswitch
+
+
+{{--
+                @if (Auth::user()->role->designation != 'Administrateur Général')
                 <option value="{{$roles->id}}" selected> {{$roles->designation}}</option>
                 @else
                 @if (!$utilisateur->role)
-                <option value="" selected disabled> Sélectionner</option>
                 @endif
-                @if ($utilisateur->role->designation != "Agent d’une Unité" && $utilisateur->role->designation != "Chef d’Unité")
-                @if ($utilisateur->role)
-                <option value="{{$utilisateur->role->id}}" selected> {{$utilisateur->role->designation}} </option>
-                   @endif
-                @foreach ($roles as $role)
-                @php
 
-                    if($utilisateur->role && $utilisateur->role->id == $role->id) {
-                        continue;
-                    }
-                @endphp
-                <option value="{{$role->id}}">{{$role->designation}}</option>
-                @endforeach
                 @endif
-                @endif
+                @endif --}}
             </select>
+
             @error('organisation')
             <span class="helper-text red-text">
                 <strong>{{ $message }}</strong>
