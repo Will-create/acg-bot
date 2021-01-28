@@ -52,7 +52,9 @@ class UniteTableSeeder extends Seeder
                         ->orWhere('roles.id', 'Chef d’Unité')
                         ->get();
                         foreach ($users as $key => $user) {
-                            $user->unite_id  = Unite::inrandomOrder()->first()->id;
+                            $user->update([
+                                    'unite_id'      => Unite::inRandomOrder()->first()->id
+                                 ]);
                         }
     }
 }
