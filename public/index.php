@@ -1,6 +1,6 @@
 <?php
 /*
-Project         :   Yoha – Laravel UI Admin Template 
+Project         :   Yoha – Laravel UI Admin Template
 @package        :   Laravel
 Laravel Version :   8.9.0
 PHP Version     :   7.4.10

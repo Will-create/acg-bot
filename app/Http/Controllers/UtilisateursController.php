@@ -31,15 +31,15 @@ class UtilisateursController extends Controller
 
         switch (Auth::user()->role->designation) {
             case 'Chef d’Unité':
-                $utilisateurs  = User::where('role_id', Role::where('designation', 'Agent d’une Unité')->first()->id)->where('pay_id', Auth::user()->pay->id)->latest()->get();
+                $utilisateurs  = User::where('role_id', Role::where('designation', 'Agent d’une Unité')->first()->id)->where('pay_id', Auth::user()->pays->id)->latest()->get();
                 break;
             case 'Coordonnateur National':
                 $role_id = Role::whereIn('designation', ['Chef d’Unité', 'Agent d’une Unité'])->pluck('id');
-                $utilisateurs  = User::where('pay_id', Auth::user()->pay->id)->whereIn('role_id', $role_id)->latest()->get();
+                $utilisateurs  = User::where('pay_id', Auth::user()->pays->id)->whereIn('role_id', $role_id)->latest()->get();
                 break;
             case 'Coordonnateur Régional':
                 $role_id = Role::whereIn('designation', ['Chef d’Unité', 'Agent d’une Unité', 'Coordonnateur National'])->pluck('id');
-                $utilisateurs  = User::where('pay_id', Auth::user()->pay->id)->whereIn('role_id', $role_id)->latest()->get();
+                $utilisateurs  = User::where('pay_id', Auth::user()->pays->id)->whereIn('role_id', $role_id)->latest()->get();
                 $utilisateurs  = User::latest()->get();
                 break;
             case 'Administrateur Général':
@@ -50,19 +50,19 @@ class UtilisateursController extends Controller
                 break;
         }
 
-        return view('pages.backoffice.administrateur.utilisateurs.index', compact('utilisateurs','titrePage'));
+        return view('pages.backoffice.administrateur.utilisateurs.index', compact('utilisateurs', 'titrePage'));
     }
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         $unites = Unite::all();
         $localites = Localite::all();
         $pays = Pay::all();
-       $utilisateur = new User();
+        $utilisateur = new User();
 
         switch (Auth::user()->role->designation) {
             case 'Administrateur Général':
@@ -73,12 +73,17 @@ class UtilisateursController extends Controller
                 break;
             case 'Coordonnateur National':
                 $roles = Role::where('designation', 'Chef d’Unité')->first();
-                $pays = Pay::where('nom', Auth::user()->pay->nom)->first();
-                $unites = Unite::where('pays_id', $pays->id)->get();
+                $unites = Unite::where('pays_id',  Auth::user()->pays->id)->get();
+                $unites = Unite::where('pays_id', Auth::user()->pay->id)->orderBy('designation', 'asc')->count();
+                if ($unites < 1) {
+                    $request->session()->flash('warning', " Accès refusé, <br> Veuiilez d'abord ajouter une unité à votre pays");
+                    return redirect()->route('unites.create');
+                }
+                // dd(Auth::user()->pays->id);
                 break;
             case 'Chef d’Unité':
                 $roles = Role::where('designation', 'Agent d’une Unité')->first();
-                $pays = Pay::where('nom', Auth::user()->pay->nom)->first();
+                $pays = Pay::where('nom', Auth::user()->pays->nom)->first();
                 // $unites = Unite::where('pays_id', $pays->id)->get();
                 break;
 
@@ -86,9 +91,9 @@ class UtilisateursController extends Controller
                 abort(404);
                 break;
         }
-        $titrePage = "Ajout d'un utilisateur";
+        $titrePage = "Ajout d'un agent";
 
-        return view('pages.backoffice.administrateur.utilisateurs.create', compact('roles', 'unites', 'localites', 'pays', 'utilisateur','titrePage'));
+        return view('pages.backoffice.administrateur.utilisateurs.create', compact('roles', 'unites', 'localites', 'pays', 'utilisateur', 'titrePage'));
     }
     /**
      * Store a newly created resource in storage.
@@ -103,9 +108,9 @@ class UtilisateursController extends Controller
             'prenom'                    => ['required', 'string', 'max:255'],
             'tel'                       => ['required', 'string', 'min:8', 'max:20'],
             'email'                     => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'role_id'                   => ['required','integer'],
-            'pay_id'                    => ['required','integer'],
-            'localite_id'               => ['required','integer'],
+            'role_id'                   => ['required', 'integer'],
+            'pay_id'                    => ['required', 'integer'],
+            'localite_id'               => ['required', 'integer'],
             'unite_id'                  => ['nullable'],
             'titre'                     => ['nullable', 'string', 'max:100'],
             'profile_photo_path'        => ['nullable', 'mimes:jpeg,jpg,png,gif', 'required', 'max:10000'],
@@ -141,20 +146,45 @@ class UtilisateursController extends Controller
         return redirect()->route('utilisateurs.show', $user->uuid);
     }
     public function show($uuid)
-    {   
+    {
         $titrePage = "Détail d'un utilisateur";
 
-        $utilisateur = User::where('uuid',$uuid)->with('unite','localite','pays')->first();
-        return view('pages.backoffice.administrateur.utilisateurs.show', compact('utilisateur','titrePage'));
+        $utilisateur = User::where('uuid', $uuid)->with('unite', 'localite', 'pays')->first();
+        return view('pages.backoffice.administrateur.utilisateurs.show', compact('utilisateur', 'titrePage'));
     }
     public function edit(User $utilisateur)
     {
         $titrePage = "Modification des informations d'un utilisateur";
-        $roles = Role::whereIn('designation', ['Coordonnateur Régional', 'Coordonnateur National'])->get();
+
+        switch (Auth::user()->role->designation) {
+            case 'Administrateur Général':
+                $roles = Role::whereIn('designation', ['Coordonnateur Régional', 'Coordonnateur National'])->get();
+                break;
+            case 'Coordonnateur Régional':
+                $roles = Role::where('designation', $utilisateur->role->designation)->first();
+
+
+                break;
+            case 'Coordonnateur National':
+                $roles = Role::where('designation', 'Chef d’Unité')->first();
+                $unites = Unite::where('pays_id',  Auth::user()->pays->id)->get();
+                $unites = Unite::where('pays_id', Auth::user()->pay->id)->orderBy('designation', 'asc')->count();
+                break;
+            case 'Chef d’Unité':
+                $roles = Role::where('designation', 'Agent d’une Unité')->first();
+                $pays = Pay::where('nom', Auth::user()->pays->nom)->first();
+                // $unites = Unite::where('pays_id', $pays->id)->get();
+                break;
+
+            default:
+                abort(404);
+                break;
+        }
+
         $unites = Unite::all();
         $localites = Localite::all();
         $pays = Pay::all();
-        return view('pages.backoffice.administrateur.utilisateurs.edit', compact('roles', 'unites', 'localites', 'pays', 'utilisateur','titrePage'));
+        return view('pages.backoffice.administrateur.utilisateurs.edit', compact('roles', 'unites', 'localites', 'pays', 'utilisateur', 'titrePage'));
     }
     public function update(Request $request, User $utilisateur)
     {
@@ -172,6 +202,7 @@ class UtilisateursController extends Controller
                 'tel'                       => 'required|string|min:8|max:20|unique:users,tel,' . $utilisateur->id,
                 'email'                     => 'required|email|max:255|unique:users,email,' . $utilisateur->id,
                 'profile_photo_path'        => 'nullable',
+                'unite_id'                   => 'nullable',
             ]);
             $utilisateur->update([
                 'nom'                       => $request['nom'],
@@ -219,12 +250,12 @@ class UtilisateursController extends Controller
     public function destroy(User $utilisateur, Request $request)
     {
         $restriction = new Restriction;
-        $restrictions = $restriction->check($utilisateur->id,[
-            ['foreignkey'=>'responsable_id','modelname'=>'unite'],
+        $restrictions = $restriction->check($utilisateur->id, [
+            ['foreignkey' => 'responsable_id', 'modelname' => 'unite'],
         ]);
-           if ($restrictions){
-            return redirect()->back()->with('danger',$restrictions['message']);
-           }else{
+        if ($restrictions) {
+            return redirect()->back()->with('danger', $restrictions['message']);
+        } else {
             $utilisateur->delete();
             $request->session()->flash('warning', 'Utilisateur supprimé avec succes');
             return redirect()->route('utilisateurs.index');
@@ -232,20 +263,20 @@ class UtilisateursController extends Controller
     }
     public function gerer(User $utilisateur, Request $request)
     {
-       if ($utilisateur->actif == true) {
-        $utilisateur->actif = false;
-        $utilisateur->save();
-        $request->session()->flash('warning', 'Le compte de l\'utilisateur a été désactivé');
-        return redirect()->back();
+        if ($utilisateur->actif == true) {
+            $utilisateur->actif = false;
+            $utilisateur->save();
+            $request->session()->flash('warning', 'Le compte de l\'utilisateur a été désactivé');
+            return redirect()->back();
 
-        return redirect()->route('utilisateurs.show', $utilisateur->uuid);
-       } else {
-        $utilisateur->actif = true;
-        $utilisateur->save();
-        $request->session()->flash('status', 'Le compte de l\'utilisateur a été activé');
-        return redirect()->back();
-        return redirect()->route('utilisateurs.show', $utilisateur->uuid);
-       }
+            return redirect()->route('utilisateurs.show', $utilisateur->uuid);
+        } else {
+            $utilisateur->actif = true;
+            $utilisateur->save();
+            $request->session()->flash('status', 'Le compte de l\'utilisateur a été activé');
+            return redirect()->back();
+            return redirect()->route('utilisateurs.show', $utilisateur->uuid);
+        }
     }
     public function profil()
     {
@@ -254,12 +285,12 @@ class UtilisateursController extends Controller
         return view('pages.backoffice.administrateur.utilisateurs.profil', [
             'user' => Auth::user(),
             'titrePage' => $titrePage
-            ]);
+        ]);
     }
     public function edit_password()
     {
         $titrePage = "Modificationdes identifiants d'un utilisateur";
-        return view('pages.backoffice.administrateur.utilisateurs.edit-password',[
+        return view('pages.backoffice.administrateur.utilisateurs.edit-password', [
             'titrePage' => $titrePage
         ]);
     }

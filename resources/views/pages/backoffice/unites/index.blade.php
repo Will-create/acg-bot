@@ -27,7 +27,7 @@
 							<li class="breadcrumb-item active" aria-current="page">Unités</li>
 						</ol>
                     </div>
-                    
+
 					<div class="ml-auto pageheader-btn">
                     <a class="btn btn-primary" href="{{route('unites.create')}}"  >  <span>
                             <i class="fe fe-plus"></i>
@@ -50,7 +50,8 @@
 							</div>
 							<div class="card-body">
 								<div class="table-responsive">
-									<table id="data-table1" class="table table-striped table-bordered text-nowrap w-100 table-sm">
+									@if (count($unites) > 0)
+                                    <table id="data-table1" class="table table-striped table-bordered text-nowrap w-100 table-sm">
 										<thead>
 											<tr>
 												<th class="wd-15p">Dénomination</th>
@@ -76,6 +77,12 @@
 
 										</tbody>
 									</table>
+                                    @else
+<div class="text-center">
+
+    <span> {{Auth::user()->role->designation == "Administrateur Général" ? ' Aucune unités à afficher' : ' Aucune unités pour votre pays'}}  </span>
+</div>
+                                    @endif
 								</div>
 							</div>
 							<!-- TABLE WRAPPER -->

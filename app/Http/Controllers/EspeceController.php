@@ -43,7 +43,7 @@ class EspeceController extends Controller
               abort(404);
                 break;
         }
-        $titre = 'Liste des espèses '. $regne.'s';
+        $titre = 'Liste des espèces '. $regne.'es';
 
         return view('pages.backoffice.especes.index',compact('especes', 'titre', 'subtitle','regne'));
     }
@@ -65,7 +65,7 @@ class EspeceController extends Controller
             'regne'=> ['required','string','max:255'],
             'ordre_id'=> ['required','integer'],
             'nom_scientifique'=> ['required','string','max:255','min:3'],
-            'photo'=> ['required'],
+            'photo'=> ['nullable'],
           ]);
             $espece= new Espece;
           if($request->hasFile('photo')){

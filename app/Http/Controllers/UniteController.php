@@ -10,6 +10,8 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 class UniteController extends Controller
 {
     public function __construct()
@@ -18,7 +20,27 @@ class UniteController extends Controller
     }
     public function index()
     {
+        switch (Auth::user()->role->designation) {
+            case 'Administrateur Général':
         $unites=Unite::orderBy('designation','asc')->get();
+
+                 break;
+            case 'Coordonnateur Régional':
+        $unites=Unite::orderBy('designation','asc')->get();
+
+                 break;
+            case 'Coordonnateur National':
+        $unites=Unite::where('pays_id', Auth::user()->pay->id)->orderBy('designation','asc')->get();
+
+                 break;
+            case 'Chef d’Unité':
+                 // $unites = Unite::wh ere('pays_id', $pays->id)->get();
+                break;
+
+            default:
+                abort(404);
+                break;
+        }
         $titrePage = "Liste de toutes les unités de lois";
 
         return view('pages.backoffice.unites.index',compact('unites','titrePage'));

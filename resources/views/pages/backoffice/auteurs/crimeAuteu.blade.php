@@ -7,7 +7,7 @@
                 <thead>
                     <tr>
                         <th>Ordre</th>
-                        <th>Nom  et prénom</th>
+                        <th>Nom  complet</th>
                         <th>Qualité</th>
                         <th>Date d'ajout</th>
                     </tr>

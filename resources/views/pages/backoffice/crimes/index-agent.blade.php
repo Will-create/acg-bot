@@ -20,7 +20,7 @@
 						<h1 class="page-title">Liste des crimes </h1>
 						<ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{route('accueil')}}">Accueil</a></li>
-							<li class="breadcrumb-item active" aria-current="page">Crime environnemental</li>
+							<li class="breadcrumb-item active" aria-current="page">crime environnemental</li>
 						</ol>
 					</div>
 					<div class="ml-auto pageheader-btn">
@@ -51,10 +51,8 @@
                         <thead>
                             <tr>
                                 <th class="wd-15p">Ordre</th>
-
-                                <th class="wd-15p">Pays d'appréhension</th>
-                                <th class="wd-15p">Eespèces impliquées</th>
-                                <th class="wd-15p">Nombre de règlement</th>
+                                 <th class="wd-15p">Eespèces impliquées</th>
+                                <th class="wd-15p">Règlement</th>
                                 <th class="wd-15p">Confiscation</th>
                                 <th class="wd-15p" >Service investigateur</th>
                             </tr>
@@ -66,8 +64,7 @@
                             @endphp
                             <tr>
                                 <td>{{$i++}}</td>
-                                <td> <a class="text-dark" href="{{route('crimes.show', $crime->uuid)}}"> {{$crime->paysApprehension ? ucfirst($crime->paysApprehension->nom) : ''}} </a></td>
-                                <td> <a class="text-dark" href="{{route('crimes.show', $crime->uuid)}}">
+                                 <td> <a class="text-dark" href="{{route('crimes.show', $crime->uuid)}}">
                                     @foreach ($crime->especes as $especeImplique)
                                     @if (!$loop->last)
                                     {{$especeImplique->nom . ' , '}}
@@ -76,7 +73,7 @@
 
                                     @endif
                                     @endforeach
-                                </a></td>
+                                 </a></td>
                                 <td> <a class="text-dark" href="{{route('crimes.show', $crime->uuid)}}"> {{ $crime->reglement  ? count($crime->reglement)  :''}}</a></td>
                                 <td> <a class="text-dark" href="{{route('crimes.show', $crime->uuid)}}"> {{ $crime->confiscations  ? count($crime->confiscations)  :''}}</a></td>
                                 <td> <a class="text-dark" href="{{route('crimes.show', $crime->uuid)}}"> {{$crime->service_investigateur ?  $crime->service_investigateur->designation  :''}}</a></td>

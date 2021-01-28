@@ -27,9 +27,34 @@ class CrimeController extends Controller
     public function index()
     {
         $titrePage = "Liste de tous les crimes";
+
+        switch (Auth::user()->role->designation) {
+            case 'Agent d’une Unité':
+                $crimes  =  Crime::where('pays_apprehension', Auth::user()->pays->id)->get();
+        return view('pages.backoffice.crimes.index-agent', compact('crimes', 'titrePage'));
+             break;
+            case 'Chef d’Unité':
+                $crimes  =  Crime::where('pays_apprehension', Auth::user()->pays->id)->get();
+        return view('pages.backoffice.crimes.index-agent', compact('crimes', 'titrePage'));
+
+            break;
+
+            case 'Coordonnateur National':
+                $crimes  =  Crime::where('pays_apprehension', Auth::user()->pays->id)->get();
+                return view('pages.backoffice.crimes.index-agent', compact('crimes', 'titrePage'));
+
+            break;
+            case 'Coordonnateur Régional':
+                $crimes  =  Crime::all();
+            break;
+            case 'Administrateur Général':
+                $crimes  =  Crime::all();
+             break;
+
+        }
         return view('pages.backoffice.crimes.index', [
             'crimes'  => Crime::all(),
-            'titrePage'=>$titrePage  
+            'titrePage'=>$titrePage
             ]);
     }
 
@@ -45,7 +70,7 @@ class CrimeController extends Controller
             // 'especes'                        => Espece::all(),
             'typeCrimes'                     => TypeCrime::all(),
             'aires'                          => AireProtegee::all(),
-            'titrePage'                      =>$titrePage  
+            'titrePage'                      =>$titrePage
 
         ]
     );
@@ -68,7 +93,7 @@ class CrimeController extends Controller
             'localite_apprehension'                 => ['required','string','max:255','min:3'],
             'latitude'                              => ['nullable','string','max:255','min:8'],
             'longitude'                             => ['nullable','string','max:255','min:8'],
-            'espece'                                => ['required','integer'],
+            'espece'                                => ['nullable','integer'],
             'pays_origine_produit'                          => ['required','integer'],
             'pays_destination'                              => ['required','integer'],
              ]);
@@ -84,7 +109,7 @@ class CrimeController extends Controller
              $crime->uuid                            = Str::uuid();
              $crime->save();
             $request->session()->flash('status', 'Informations enregistrées avec succès');
-             return response()->json(['data' => $crime]);
+             return response()->json($crime);
 
 
 
@@ -204,7 +229,7 @@ class CrimeController extends Controller
             'modeReglements'        => ModeReglement::all(),
             'suites'                => DecisionJustice::all(),
             'titrePage'             => $titrePage,
-            'carte'                 => $crime->longitude ? openstreetmap_url($crime->longitude,$crime->latitude) : ''  
+            'carte'                 => $crime->longitude ? openstreetmap_url($crime->longitude,$crime->latitude) : ''
             ]);
     }
 

@@ -50,6 +50,7 @@ class CrimeAuteurController extends Controller
             'nationalite'               => ['required', 'string', 'max:255'],
             'revenue'                   => ['numeric', 'min:100', 'max:500000000'],
             'education'                 => ['required', 'string'],
+            'terrorisme'                 => ['required', 'string'],
             'voyageur_international'    => ['required','integer'],
             'affaire_judiciaire'        => ['nullable','string'],
           ]);
@@ -68,6 +69,7 @@ class CrimeAuteurController extends Controller
           $auteur->voyageur_international =$data['voyageur_international'];
           $auteur->affaire_judiciaire =$data['affaire_judiciaire'];
           $auteur->adresse =$data['adresse'];
+          $auteur->terrorisme =$data['terrorisme'];
           $auteur->crime_id =$crime->id;
           $auteur->save();
           $request->session()->flash('auteur', 'Auteur ajouté avec succès');
@@ -126,10 +128,11 @@ class CrimeAuteurController extends Controller
 
     public function update(Request $request,  $auteurUuid)
     {
+        // dd($request->all());
         $data=request()->validate([
             'nom'                       => ['required', 'string', 'max:255'],
             'prenom'                    => ['required', 'string', 'max:255'],
-            'adresse'                    => ['required', 'string', 'max:500'],
+            'adresse'                  => ['nullable', 'string', 'max:500'],
             'genre'                     => ['required', 'string', 'max:255'],
             'type'                      => ['required', 'string', 'max:255'],
             'travail'                   => ['required', 'string', 'max:255'],
@@ -137,22 +140,24 @@ class CrimeAuteurController extends Controller
             'nationalite'               => ['required', 'string', 'max:255'],
             'revenue'                   => ['numeric', 'min:100', 'max:500000000'],
             'education'                 => ['required', 'string'],
+            'terrorisme'                => ['required', 'string'],
             'voyageur_international'    => ['required','integer'],
             'affaire_judiciaire'        => ['nullable','string'],
           ]);
-          $auteur=   CrimeAuteur::where('uuid', $auteurUuid)->first();
-          $auteur->nom=$data['nom'];
-          $auteur->prenom=$data['prenom'];
-          $auteur->genre=$data['genre'];
-          $auteur->travail=$data['travail'];
-          $auteur->type=$data['type'];
-          $auteur->date_naiss =$data['date_naiss'];
-          $auteur->nationalite =$data['nationalite'];
-          $auteur->revenue =$data['revenue'];
-          $auteur->education =$data['education'];
-          $auteur->voyageur_international =$data['voyageur_international'];
-          $auteur->affaire_judiciaire =$data['affaire_judiciaire'];
-          $auteur->adresse =$data['adresse'];
+          $auteur                                 =CrimeAuteur::where('uuid', $auteurUuid)->first();
+          $auteur->nom                            =$data['nom'];
+          $auteur->prenom                         =$data['prenom'];
+          $auteur->genre                          =$data['genre'];
+          $auteur->travail                        =$data['travail'];
+          $auteur->type                           =$data['type'];
+          $auteur->date_naiss                     =$data['date_naiss'];
+          $auteur->nationalite                    =$data['nationalite'];
+          $auteur->revenue                        =$data['revenue'];
+          $auteur->education                      =$data['education'];
+          $auteur->voyageur_international         =$data['voyageur_international'];
+          $auteur->affaire_judiciaire             =$data['affaire_judiciaire'];
+          $auteur->adresse                        =$data['adresse'];
+          $auteur->terrorisme                      =$data['terrorisme'];
           $auteur->update();
           $request->session()->flash('status', 'Auteur ajouté avec succès');
           $request->session()->flash('section', 'auteur');

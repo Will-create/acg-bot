@@ -64,8 +64,8 @@ img.user-prfil-image {
     margin-right: auto;
     display: block;
 }
-.dl dt{float:left;width:32%;padding: 0!important;overflow:hidden;clear:left;text-align:right;text-overflow:ellipsis;white-space:nowrap;line-height: 1rem;font-size: .9em;}
-.dl dd{margin-left: 35%;line-height: 1rem;font-size: .9em;}
+.dl dt{float:left;width:41%;padding: 0!important;overflow:hidden;clear:left;text-align:right;text-overflow:ellipsis;white-space:nowrap;line-height: 1rem;font-size: .9em;}
+.dl dd{margin-left: 44%;line-height: 1rem;font-size: .9em;}
 .dl-crime dt{float:left;width:46%;padding: 0!important;overflow:hidden;clear:left;text-align:right;text-overflow:ellipsis;white-space:nowrap;line-height: 1rem;font-size: .9em;}
 .dl-crime dd{margin-left: 48%;line-height: 1rem;font-size: .9em;}
 .nom_item_par_collapse{
@@ -82,3 +82,11 @@ img.user-prfil-image {
 	position: relative;
 	overflow: hidden;
   }
+.card-header.d-spaece-around {
+    justify-content: space-between;
+}
+svg.iconify {
+    font-size: x-large;
+    /* padding-right: 71px; */
+    margin-right: 5px;
+}

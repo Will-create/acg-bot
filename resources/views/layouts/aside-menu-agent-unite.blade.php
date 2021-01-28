@@ -55,7 +55,7 @@
 
 
 
-                        <li>
+                        {{-- <li>
                             <h3>Configurations</h3>
                         </li>
 
@@ -88,17 +88,8 @@
                                 <li><a class="slide-item" href="#"><span>Tous les pays</span></a></li>
                                 <li><a class="slide-item" href="#"><span>Nouveau </span></a></li>
                             </ul>
-                        </li>
-                        {{-- <li class="slide">
-                            <a class="side-menu__item" data-toggle="slide" href="#">
-                                <i class="mdi mdi-rss aide-icon"  ></i>
-                                <span class="side-menu__label">Villes</span><i class="angle fa fa-angle-right"></i>
-                            </a>
-                            <ul class="slide-menu">
-                                <li><a class="slide-item" href="{{route('villes.index')}}"><span>Toutes les villes</span></a></li>
-                                <li><a class="slide-item" href="{{route('villes.create')}}"><span>Nouveau </span></a></li>
-                            </ul>
                         </li> --}}
+
                     </ul>
                 </aside>
 

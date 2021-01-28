@@ -197,9 +197,9 @@ $('body').on('click', '#submit1', function (event) {
       //  console.log(uuid2)
       document.querySelector('#loader').classList.add('d-none');
       document.querySelector('#smartwizard').classList.remove('d-none');
-      var url = '/crimes/create#step-2';
-      // location.href = url;
-      console.log(data);
+      var url = '/crimes/' + data.uuid;
+      location.href = url;
+      console.log(data)
       swal({
           position: 'center',
           icon: 'success',

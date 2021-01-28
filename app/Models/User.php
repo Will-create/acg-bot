@@ -49,11 +49,19 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Models\Unite', 'unite_id', 'id');
     }
+    public function uniteagent()
+    {
+        return $this->hasOne('App\Models\Unite', 'id', 'unite_id');
+    }
     public function localite()
     {
         return $this->belongsTo('App\Models\Localite', 'localite_id', 'id');
     }
     public function pays()
+    {
+        return $this->belongsTo('App\Models\Pay', 'pay_id','id');
+    }
+    public function pay()
     {
         return $this->belongsTo('App\Models\Pay', 'pay_id','id');
     }

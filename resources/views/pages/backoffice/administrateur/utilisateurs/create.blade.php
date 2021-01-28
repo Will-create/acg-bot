@@ -20,7 +20,7 @@
 @include('partials._notification')
 <div class="page-header">
     <div>
-        <h1 class="page-title">Liste des utilisateurs </h1>
+        <h1 class="page-title">Liste des agents </h1>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{route('accueil')}}">Accueil</a></li>
             <li class="breadcrumb-item active" aria-current="page">{{$titrePage}}</li>
@@ -30,7 +30,7 @@
         <a class="btn btn-primary" href="{{route('utilisateurs.index')}}"> <span>
                 <i class="fe fe-list"></i>
             </span>
-            Les utilisateurs</a>
+            Les agents</a>
         </button>
 
     </div>

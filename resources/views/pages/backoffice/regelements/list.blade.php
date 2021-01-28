@@ -6,7 +6,7 @@
                     <tr>
                         <th>Mode</th>
                         <th>Decision de justice</th>
-                        <th>Amende</th>
+                        <th>Amende en XOF</th>
                         <th>Date d'ajout</th>
                     </tr>
                 </thead>
@@ -29,9 +29,9 @@
                         <td>
                             @if ( $reglement->suite &&  $reglement->suite->decision == "Condamnation du prévenu à une amende" || $reglement->mode->mode == "Transaction forestière")
                             <a class="text-dark" data-toggle="tooltip" data-placement="top" title="Cliquer pour voir les détails" href="{{route('crime_reglements.edit', $reglement)}}">
-                                {{ ($reglement->amende)}}
+                                {{ formatMontant($reglement->amende)}}
                                 @else
-                                Non applicable 
+                                Non applicable
                                 @endif
                         </td>
                          <td> <a class="text-dark" data-toggle="tooltip" data-placement="top" title="Cliquer pour voir les détails" href="{{route('crime_reglements.edit', $reglement)}}">

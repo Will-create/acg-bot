@@ -31,7 +31,7 @@
                     <a class="btn btn-primary" href="{{route('utilisateurs.create')}}"  >  <span>
                             <i class="fe fe-plus"></i>
                         </span>
-                        Ajouter un utilisateur</a>
+                        Ajouter un agent</a>
                     </button>
 					</div>
 				</div>
@@ -45,40 +45,46 @@
 					<div class="col-md-12 col-lg-12">
 						<div class="card">
 							<div class="card-header">
-								<h3 class="card-title">Liste des utilisateurs</h3>
+								<h3 class="card-title">Liste des agents</h3>
 							</div>
 							<div class="card-body">
 								<div class="table-responsive">
-									<table id="data-table1" class="table table-striped table-bordered text-nowrap w-100 table-sm">
-										<thead>
-											<tr>
-												<th class="wd-15p">Nom</th>
-												<th class="wd-15p">Prénom</th>
-												<th class="wd-20p">Email</th>
-												<th class="wd-20p">Role</th>
-												<th class="wd-15p">Téléphone</th>
-                                                {{-- <th>Actions</th> --}}
-											</tr>
-										</thead>
-										<tbody>
-                                            @foreach ($utilisateurs as $utilisateur)
-											<tr>
-												<td> <a class="text-dark" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails de l'utilisateur" href="{{route('utilisateurs.show', $utilisateur)}}"> {{$utilisateur->nom}} </a></td>
-												<td> <a class="text-dark" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails de l'utilisateur" href="{{route('utilisateurs.show', $utilisateur)}}">{{$utilisateur->prenom}} </a></td>
-												<td> <a class="text-dark" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails de l'utilisateur" href="{{route('utilisateurs.show', $utilisateur)}}">{{$utilisateur->email}} </a></td>
-												<td> <a class="text-dark" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails de l'utilisateur" href="{{route('utilisateurs.show', $utilisateur)}}">{{$utilisateur->role->designation}} </a></td>
-                       <td> <a class="text-dark" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails de l'utilisateur" href="{{route('utilisateurs.show', $utilisateur)}}">{{$utilisateur->tel}} </a></td>
-                                                {{-- <td>
-                                                    <a href="{{route('gerer-utilisateur', $utilisateur)}}" class="badge {{$utilisateur->actif ? 'badge-success':'badge-danger'}}" title="{{$utilisateur->actif ? 'Cliquer pour désactiver':'CLiquer pour activer'}}">{{$utilisateur->actif ? 'Ativé':'Désactivé'}}  </a>
-                                                    <button type="button" class="badge handleAcount {{$utilisateur->actif ?  'badge-success':'badge-danger'}}" data-toggle="tooltip" data-placement="top" title="{{$utilisateur->actif ? 'Cliquer pour désactiver':'Cliquer pour activer'}}" data-status="{{$utilisateur->actif ? 'Désactiver':'Activer'}}"   data-url="{{route('gerer-utilisateur', $utilisateur)}}" data-toggle="modal" data-clocation="{{url()->current()}}"
-                                                         style="border:none">  {{$utilisateur->actif ? 'Ativé':'Désactivé'}}</button>
-                                                    <a href="{{route('gerer-utilisateur', $utilisateur)}}" class="badge {{$utilisateur->actif ? 'badge-success':'badge-danger'}}" data-toggle="tooltip" data-placement="top" title="{{$utilisateur->actif ? 'Cliquer pour désactiver':'Cliquer pour activer'}}">{{$utilisateur->actif ? 'Ativé':'Désactivé'}}  </a>
-                                                </td> --}}
-                                            </tr>
-                                            @endforeach
+								@if (count($utilisateurs) > 0)
+                                <table id="data-table1" class="table table-striped table-bordered text-nowrap w-100 table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th class="wd-15p">Nom</th>
+                                            <th class="wd-15p">Prénom</th>
+                                            <th class="wd-20p">Email</th>
+                                            <th class="wd-20p">Role</th>
+                                            <th class="wd-15p">Téléphone</th>
+                                            {{-- <th>Actions</th> --}}
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($utilisateurs as $utilisateur)
+                                        <tr>
+                                            <td> <a class="text-dark" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails de l'utilisateur" href="{{route('utilisateurs.show', $utilisateur)}}"> {{$utilisateur->nom}} </a></td>
+                                            <td> <a class="text-dark" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails de l'utilisateur" href="{{route('utilisateurs.show', $utilisateur)}}">{{$utilisateur->prenom}} </a></td>
+                                            <td> <a class="text-dark" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails de l'utilisateur" href="{{route('utilisateurs.show', $utilisateur)}}">{{$utilisateur->email}} </a></td>
+                                            <td> <a class="text-dark" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails de l'utilisateur" href="{{route('utilisateurs.show', $utilisateur)}}">{{$utilisateur->role->designation}} </a></td>
+                   <td> <a class="text-dark" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails de l'utilisateur" href="{{route('utilisateurs.show', $utilisateur)}}">{{$utilisateur->tel}} </a></td>
+                                            {{-- <td>
+                                                <a href="{{route('gerer-utilisateur', $utilisateur)}}" class="badge {{$utilisateur->actif ? 'badge-success':'badge-danger'}}" title="{{$utilisateur->actif ? 'Cliquer pour désactiver':'CLiquer pour activer'}}">{{$utilisateur->actif ? 'Ativé':'Désactivé'}}  </a>
+                                                <button type="button" class="badge handleAcount {{$utilisateur->actif ?  'badge-success':'badge-danger'}}" data-toggle="tooltip" data-placement="top" title="{{$utilisateur->actif ? 'Cliquer pour désactiver':'Cliquer pour activer'}}" data-status="{{$utilisateur->actif ? 'Désactiver':'Activer'}}"   data-url="{{route('gerer-utilisateur', $utilisateur)}}" data-toggle="modal" data-clocation="{{url()->current()}}"
+                                                     style="border:none">  {{$utilisateur->actif ? 'Ativé':'Désactivé'}}</button>
+                                                <a href="{{route('gerer-utilisateur', $utilisateur)}}" class="badge {{$utilisateur->actif ? 'badge-success':'badge-danger'}}" data-toggle="tooltip" data-placement="top" title="{{$utilisateur->actif ? 'Cliquer pour désactiver':'Cliquer pour activer'}}">{{$utilisateur->actif ? 'Ativé':'Désactivé'}}  </a>
+                                            </td> --}}
+                                        </tr>
+                                        @endforeach
 
-										</tbody>
-									</table>
+                                    </tbody>
+                                </table>
+                                @else
+<div class="text-center">
+    <span>Aucun agent ajouté</span>
+</div>
+                                @endif
 								</div>
 							</div>
 							<!-- TABLE WRAPPER -->

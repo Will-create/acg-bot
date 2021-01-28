@@ -51,7 +51,7 @@
                                         <form method="POST"   id="form_setp_1">
                                             @csrf
                                         <div class="row">
-                                            <div class="col-md-6">
+                                            <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label>   Type de crime  <span class="text-danger">*</span></label>
                                                     <select name="type_id"  class="form-control custom-select select2">
@@ -65,7 +65,7 @@
                                                 </div>
                                             </div>
 
-                                            @livewire('crime')
+                                            {{-- @livewire('crime') --}}
 
                                         </div>
                                         <div class="row">

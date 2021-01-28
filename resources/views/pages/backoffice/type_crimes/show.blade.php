@@ -46,7 +46,7 @@
                 <div class="card-header">
                     <div class="float-left">
                         <div class="media-heading">
-                            <h5><strong>Details de {{ ucfirst($type->nom) }}</strong></h5>
+                            <h5><strong> {{ ucfirst($type->nom) }}</strong></h5>
                         </div>
                     </div>
                     <div class="clearfix"></div>

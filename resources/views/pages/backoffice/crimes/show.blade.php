@@ -21,7 +21,8 @@
                     <h1 class="page-title"></h1>
                     <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{route('accueil')}}">Accueil</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Nouveau</li>
+                    <li class="breadcrumb-item"> <a href="{{route('crimes.index')}}"> Crimes </a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Détails crime</li>
                     </ol>
                 </div>
                 <div class="ml-auto pageheader-btn">
@@ -49,13 +50,13 @@
                     </dd>
                     <dt>Localité d'appréhension :</dt>
                     <dd>
-                        {{ucFirst($crime->paysApprehension->nom)}}{{ucFirst($crime->localite_aprrehension->nom ?? '/'.$crime->localite->nom)}}
+                        {{ucFirst($crime->paysApprehension->nom)}}{{ucFirst($crime->localite ? $crime->localite->nom: $crime->localite_apprehension)}}
                     </dd>
                     <dt>Service investigateur :</dt>
-                    <dd> 
+                    <dd>
                         {{ucFirst($crime->service_investigateur->designation ?? $crime->service_investigateur->designation)}}
                     </dd>
-                    
+
                 </dl>
             </div>
         </div>
@@ -67,10 +68,10 @@
                     </div>
                     <div class="card-body">
                         @livewire('comment',['crime'  => $crime,'commentaires' => $commentaires])
-                        
+
                         @livewire('commentaire',['crime'  => $crime,'commentaires' => $commentaires])
                     </div>
-                
+
             </div>
          </div>
         </div>
@@ -98,22 +99,26 @@
                                         </div>
                                         <div>
                                             @include('partials._notify',['nom'  => 'espece'])
+
                                             @livewire('regne-espece', ['crime'  => $crime])
                                              <br>
                                         </div>
                                     </li>
                                     <li class="@if(Session::has('section')  &&  (session('section') == "auteur")) acc_active @endif">
                                         <div>
-                                            <h3>Auteurs du crimes</h3>
+                                            <h3>Auteurs et complices</h3>
                                             <span class="nom_item_par_collapse badge badge-danger"> {{count($crime->auteurs)}} </span>
 
                                         </div>
 
                                         <div>
                                             @include('partials._notify',['nom'  => 'auteur'])
-                                           
+
                                             <div class="text-right">
+   @if (Auth::user()->role->designation == "Chef d’Unité" || Auth::user()->role->designation == "Agent d’une Unité")
+
                                                 <a href="{{route('crime_auteurs.create', ['crime' => $crime->uuid])}}" class="btn btn-primary"> <i class="fa fa-plus" aria-hidden="true"></i> Ajouter</a>
+                                                @endif
                                             </div>
                                             <br>
                                             @if (count($crime->auteurs) > 0)
@@ -133,7 +138,10 @@
                                             @include('partials._notify',['nom'  => 'confiscation'])
 
                                             <div class="text-right">
+   @if (Auth::user()->role->designation == "Chef d’Unité" || Auth::user()->role->designation == "Agent d’une Unité")
+
                                                 <a href="{{route('confiscations.create', ['crime' => $crime->uuid])}}" class="btn btn-primary"> <i class="fa fa-plus" aria-hidden="true"></i> Ajouter</a>
+                                                @endif
                                             </div>
                                             <br>
                                             @if (count($crime->confiscations) > 0)
@@ -145,7 +153,7 @@
                                     </li>
                                     <li class="@if(Session::has('section')  &&  (session('section') == "arme")) acc_active @endif">
                                         <div>
-                                            <h3>Armes matérielles</h3>
+                                            <h3>Armes / matériels</h3>
                                             <span class="nom_item_par_collapse badge badge-danger"> {{ count($crime->armes)}} </span>
 
                                         </div>
@@ -155,7 +163,10 @@
                                         @include('partials._notify',['nom'  => 'arme'])
 
                                                 <div class="text-right">
+   @if (Auth::user()->role->designation == "Chef d’Unité" || Auth::user()->role->designation == "Agent d’une Unité")
+
                                                     <a href="{{route('crime.armes.create', ['crime' => $crime])}}" class="btn btn-primary"> <i class="fa fa-plus" aria-hidden="true"></i> Ajouter</a>
+                                                    @endif
                                                 </div>
                                                 <br>
                                                 @include('pages.backoffice.armes.listearme', ['armes' => $armes])
@@ -175,7 +186,10 @@
 
                                             <div class="text-right">
                                                 @if (count($crime->auteurs) > 0)
+                @if (Auth::user()->role->designation == "Chef d’Unité" || Auth::user()->role->designation == "Agent d’une Unité")
+
                                                 <a href="{{route('crime_reglements.create', ['crime'   => $crime->uuid])}}" class="btn btn-primary"> <i class="fa fa-plus" aria-hidden="true"></i> Ajouter</a>
+                                                @endif
                                                 <br>
                                                @else
                                                <small class="text-danger">
@@ -194,10 +208,10 @@
 
                                         </div>
                                         <div>
-                                        
+
                                             <div class="text-right">
                                                 @if ($crime->longitude != '')
-                                                
+
                                                 <div id="map"></div>
                                                @else
                                                <small class="text-danger">
@@ -205,7 +219,7 @@
                                                </small>
                                                 @endif
                                             </div>
-                                            
+
                                         </div>
                                     </li>
                                 </ul>
@@ -214,25 +228,33 @@
                 </div>
             </div>
         </div>
+
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title" >Options</h3>
-                
+                <h3 class="card-title" >Options de la publication</h3>
+
            </div>
             <div class="card-body">
               <div class="row">
+        @if (Auth::user()->role->designation == "Coordonnateur Régional" || Auth::user()->role->designation == "Coordonnateur National")
+
                   <div class="col-md-6">
                     @livewire('veto',['crime'  => $crime])
                   </div>
+        @endif
+
+        @if (Auth::user()->role->designation == "Chef d’Unité" || Auth::user()->role->designation == "Agent d’une Unité")
+
                   <div class="col-md-6">
                     @livewire('validate',['crime'  => $crime])
 
                   </div>
-                  
+@endif
 
               </div>
             </div>
         </div>
+
     </div>
 </div>
 <div class="row">

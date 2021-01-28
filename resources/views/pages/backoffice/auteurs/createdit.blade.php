@@ -36,8 +36,7 @@
             <a class="btn btn-primary" href="{{ route('crimes.show', $auteur->crime ? $auteur->crime->uuid : $crimeUuid) }}"> <span>
                     <i class="fe fe-list"></i>
                 </span> Revenir au crime</a>
-            </button>
-
+ 
         </div>
     </div>
     <!-- PAGE-HEADER END -->

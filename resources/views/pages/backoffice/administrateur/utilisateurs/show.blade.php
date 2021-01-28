@@ -18,20 +18,25 @@
 @section('page-header')
                 <!-- PAGE-HEADER -->
                 @include('partials._notification')
-				<div class="page-headesupprr">
+				<div class="page-header">
 					<div>
-						<h1 class="page-title">Liste des utilisateurs</h1>
+                   @if (Auth::user()->role->designation == "Administrateur Général")
+
+                        <h1 class="page-title">Liste des utilisateurs</h1>
+                        @endif
 						<ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{route('accueil')}}">Accueil</a></li>
 							<li class="breadcrumb-item active" aria-current="page">{{$utilisateur->nom. ' ' .$utilisateur->prenom}}</li>
 						</ol>
 					</div>
 					<div class="ml-auto pageheader-btn">
-                    <a class="btn btn-primary" href="{{route('utilisateurs.index')}}" data-toggle="tooltip" data-placement="top" title="Revenir sur la liste des utilisateurs">  <span>
-                            <i class="fe fe-list"></i>
-                        </span>
-                        Les utilisateurs</a>
-                    </button>
+                   @if (Auth::user()->role->designation == "Administrateur Général")
+                   <a class="btn btn-primary" href="{{route('utilisateurs.index')}}" data-toggle="tooltip" data-placement="top" title="Revenir sur la liste des utilisateurs">  <span>
+                    <i class="fe fe-list"></i>
+                </span>
+                Les utilisateurs
+            </a>
+                   @endif
 					</div>
 				</div>
 				<!-- PAGE-HEADER END -->
@@ -48,7 +53,7 @@
                                         <img class="" src="{{asset('storage/'. $utilisateur->profile_photo_path)}}" alt="img">
                                     </div>
                                     <div class="user-wrap">
-                                    <h4 class="mb-1">{{$utilisateur->nom. ' ' . $utilisateur->prenom}}</h4>
+                                    <h4 class="mb-1">{{ucfirst($utilisateur->nom). ' ' . ucFirst($utilisateur->prenom)}}</h4>
                                         <h6 class="text-muted mb-4">Ajouté le : {{formatDate($utilisateur->created_at)}}</h6>
 @if ($utilisateur->actif == true)
 <a  @if($utilisateur->id != Auth::user()->id &&  Auth::user()->role->designation == "Administrateur Général")  data-toggle="tooltip" data-placement="top" title="Cliquer pour désactiver"  href="{{route('gerer-utilisateur', $utilisateur)}}" @endif  class="btn btn-success mt-1 mb-1 btn-sm"  > <i class="zmdi zmdi-rss text-white"></i> Compte  activé </a>
@@ -171,9 +176,9 @@
                                                         <td><strong>Localité :</strong> {{Ucfirst($utilisateur->localite->nom)}}</td>
                                                     </tr>
 
-                                                      @if ($utilisateur->unite)
+                                                      @if ($utilisateur->unite_id)
                                                     <tr>
-                                                        <td>  <strong>Unité :</strong> <a href="{{route('unites.show', $utilisateur->unite->uuid)}}" class="text-dark" data-toggle="tooltip" data-placement="top" title="Voir les détails de l'unité">     {{$utilisateur->unite->designation}} </a></td>
+                                                        <td>  <strong>Unité :</strong> <a href="{{route('unites.show', $utilisateur->uniteagent->uuid)}}" class="text-dark" data-toggle="tooltip" data-placement="top" title="Voir les détails de l'unité">     {{$utilisateur->uniteagent->designation}} </a></td>
                                                         </tr>
                                                     @else
                                                      <tr>
