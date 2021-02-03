@@ -39,13 +39,12 @@ class AireProtegeeController extends Controller
 
     public function filtreur($p)
     {
-        $pay = Pay::where('id', $p)->first();
 
         return response()->json([
-            'aires'                        => AireProtegee::where('pays_id', $pay->id)->with('pays')->orderBy('libelle', 'asc')->get(),
+            'aires'                        => AireProtegee::where('pays_id', Pay::where('id', $p)->first()->id)->with('pays')->orderBy('libelle', 'asc')->get(),
             'pays'                         => Pay::orderBy('nom', 'asc')->get(),
-            'pay'                          => $pay,
-            'titrePage' => "Liste de aires protégées par pays"
+            'pay'                          => Pay::where('id', $p)->first(),
+            'titrePage'                    => "Liste de aires protégées par pays"
         ]);
     }
     public function create()

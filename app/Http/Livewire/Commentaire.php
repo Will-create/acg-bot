@@ -15,7 +15,7 @@ class Commentaire extends Component
 
     public $crime_id;
     protected $rules = [
-        'commentaire' => 'required|min:25',
+        'commentaire' => 'required|min:3',
         'crime_id' => 'required'
     ];
     public function vider(){

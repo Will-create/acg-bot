@@ -50,7 +50,6 @@ class CommentaireController extends Controller
           $request->session()->flash('status', 'Commentaire ajouté avec succès !');
           return redirect()->route('crimes.show',$crime->uuid);
     }
-    
     public function show(Commentaire $commentaire)
     {
         return view('pages.backoffice.commentaires.show',[
@@ -59,11 +58,8 @@ class CommentaireController extends Controller
             'autres'   =>Commentaire::where('crime_id',$commentaire->crime->id)->get(),
             'autres'   =>Commentaire::where('crime_id',$commentaire->crime->id)->get(),
             'titrePage' => "Détails d'un commentaire"
-
-            
         ]);
     }
-
     public function filter()
     {  
         $p = 1;
@@ -72,16 +68,13 @@ class CommentaireController extends Controller
             'commentaires'                    =>Commentaire::where('crime_id',$crime->id)->get(),
             'crimes'                         =>Crime::all(),
             'crime'                          =>$crime,
-            'titrePage' => "Liste des commentaires par crime"
+            'titrePage'                      => "Liste des commentaires par crime"
 
         ]);
     }
-
     public function filtreur($p)
     {  
         $crime=Crime::where('id',$p )->first();
-        
-      
         return response()->json([
             'commentaires'                   => Commentaire::where('crime_id',$crime->id)->with('auteur','destinataire','crime')->get(),
             'crimes'                         =>Crime::all(),
@@ -91,7 +84,6 @@ class CommentaireController extends Controller
 
         ]);
     }
-
     public function edit(Commentaire $commentaire)
     {
         return view('pages.backoffice.commentaires.createdit', [
@@ -102,8 +94,6 @@ class CommentaireController extends Controller
             'btnAction' => "Mettre à jour"
         ]);
     }
-    
- 
     public function update(Request $request, Commentaire $commentaire)
     {
         $data=request()->validate([

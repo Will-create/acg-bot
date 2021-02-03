@@ -2,22 +2,16 @@
 @section('css')
 		<!-- INTERNAL  FILE UPLODE CSS -->
 		<link href="{{URL::asset('assets/plugins/fileuploads/css/fileupload.css')}}" rel="stylesheet" type="text/css" />
-
 		<!-- INTERNAL SELECT2 CSS -->
 		<link href="{{URL::asset('assets/plugins/select2/select2.min.css')}}" rel="stylesheet" />
-
 		<!-- INTERNAL BOOTSTRAP-DATERANGEPICKER CSS -->
 		<link rel="stylesheet" href="{{URL::asset('assets/plugins/bootstrap-daterangepicker/daterangepicker.css')}}">
-
 		<!-- INTERNAL  TIME PICKER CSS -->
 		<link href="{{URL::asset('assets/plugins/time-picker/jquery.timepicker.css')}}" rel="stylesheet" />
-
 		<!-- INTERNAL  DATE PICKER CSS-->
 		<link href="{{URL::asset('assets/plugins/date-picker/spectrum.css')}}" rel="stylesheet" />
-
 		<!-- INTERNAL  MULTI SELECT CSS -->
 		<link rel="stylesheet" href="{{URL::asset('assets/plugins/multipleselect/multiple-select.css')}}">
-
 		<!-- INTERNAL TELEPHONE CSS-->
 		<link rel="stylesheet" href="{{URL::asset('assets/plugins/telephoneinput/telephoneinput.css')}}">
 @endsection

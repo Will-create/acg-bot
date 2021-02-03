@@ -10,6 +10,30 @@
                         <li>
                             <h3>{{Auth::user()->role->designation}}</h3>
                         </li>
+                        <li>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-8">
+                                    <div class="wideget-user text-center">
+                                        <div class="wideget-user-desc">
+                                            <div class="wideget-user-img">
+                                                <a href="{{route('profil')}}">
+                                                    <img class="" src="{{asset('storage/'.Auth::user()->profile_photo_path)}}" alt="img">
+                                                </a>
+                                            </div>
+                                            <div class="user-wrap">
+                                                <a href="{{route('profil')}}">
+                                                    <h4 class="mb-1">{{ucfirst(Auth::user()->nom). ' ' . ucFirst(Auth::user()->prenom)}}</h4>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2"></div>
+                            </div>
+                            <br>
+                        </li>
 				        <li class="slide">
                         <a class="side-menu__item" data-toggle=" " href="{{route('accueil')}}">
 				                <i class="mdi mdi-home aide-icon"></i>
@@ -19,7 +43,7 @@
 				        </li>
                         <li class="slide">
                             <a class="side-menu__item" data-toggle="slide" href="#">
-                                <i class="mdi mdi-rss aide-icon"  ></i>
+                                <i class="mdi mdi-barley aide-icon"  ></i>
                                 <span class="side-menu__label">Espèce Animal</span><i class="angle fa fa-angle-right"></i>
                             </a>
                             <ul class="slide-menu">

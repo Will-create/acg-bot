@@ -12,7 +12,8 @@
                         </li>
 				        <li class="slide">
                         <a class="side-menu__item" data-toggle=" " href="<?php echo e(route('accueil')); ?>">
-				                <i class="mdi mdi-apps aide-icon"></i>
+                                <i class="mdi mdi-apps aide-icon"></i>
+                                
 				                <span class="side-menu__label">Tableau de board</span>
 				            </a>
                         </li>
@@ -115,7 +116,8 @@
                                     </li>
                         <li class="slide">
                             <a class="side-menu__item" data-toggle="slide" href="#">
-                                <i class="mdi mdi-rss aide-icon"  ></i>
+                                
+                                <span class="iconify" data-icon="bx:bx-category" data-inline="false"></span>
                                 <span class="side-menu__label">Natures de crimes</span><i class="angle fa fa-angle-right"></i>
                             </a>
                             <ul class="slide-menu">
@@ -131,12 +133,13 @@
                             </a>
                             <ul class="slide-menu">
                                 <li><a class="slide-item" href="<?php echo e(route('confiscations.index')); ?>"><span>Toutes les confiscations</span></a></li>
-                                <li><a class="slide-item" href="<?php echo e(route('confiscations.create')); ?>"><span>Nouvelle confiscation</span></a></li>
+                                
                             </ul>
                         </li>
                         <li class="slide">
                             <a class="side-menu__item" data-toggle="slide" href="#">
-                                <i class="mdi mdi- aide-icon"  ></i>
+                                
+                                <span class="iconify" data-icon="emojione:map-of-japan" data-inline="false"></span>
                                 <span class="side-menu__label">Aires protégées </span><i class="angle fa fa-angle-right"></i>
                             </a>
                             <ul class="slide-menu">
@@ -147,35 +150,27 @@
                         </li>
                         <li class="slide">
                             <a class="side-menu__item" data-toggle="slide" href="#">
-                                <i class="mdi mdi-arrow aide-icon"  ></i>
+                                
+                                <span class="iconify" data-icon="wpf:swiss-army-knife" data-inline="false"></span>
                                 <span class="side-menu__label">Armes </span><i class="angle fa fa-angle-right"></i>
                             </a>
                             <ul class="slide-menu">
                                 <li><a class="slide-item" href="<?php echo e(route('armes.index')); ?>"><span>Toutes les armes de crime</span></a></li>
                                 
-                                <li><a class="slide-item" href="<?php echo e(route('armes.create')); ?>"><span>Nouvelle arme de crime</span></a></li>
+                                
                             </ul>
                         </li>
+                        
                         <li class="slide">
                             <a class="side-menu__item" data-toggle="slide" href="#">
-                                <i class="mdi mdi-message aide-icon"  ></i>
-                                <span class="side-menu__label">Commentaires</span><i class="angle fa fa-angle-right"></i>
-                            </a>
-                            <ul class="slide-menu">
-                                <li><a class="slide-item" href="<?php echo e(route('commentaires.index')); ?>"><span>Tous les commentaires</span></a></li>
-                                <li><a class="slide-item" href="<?php echo e(route('commentaires.filter')); ?>"><span>Les commentaires par crime</span></a></li>
-                                <li><a class="slide-item" href="<?php echo e(route('commentaires.create')); ?>"><span>Nouveau commentaire</span></a></li>
-                            </ul>
-                        </li>
-                        <li class="slide">
-                            <a class="side-menu__item" data-toggle="slide" href="#">
-                                <i class="mdi mdi-message aide-icon"  ></i>
+				                <i class="mdi mdi-account-multiple aide-icon"></i>
+
                                 <span class="side-menu__label">Auteurs de crime</span><i class="angle fa fa-angle-right"></i>
                             </a>
                             <ul class="slide-menu">
                                 <li><a class="slide-item" href="<?php echo e(route('crime_auteurs.index')); ?>"><span>Tous les auteurs</span></a></li>
-                                <li><a class="slide-item" href="<?php echo e(route('crime_auteurs.filter')); ?>"><span>Les auteurs par crime</span></a></li>
-                                <li><a class="slide-item" href="<?php echo e(route('crime_auteurs.create')); ?>"><span>Nouvel auteur</span></a></li>
+                                
+                                
                             </ul>
                         </li>
                     </ul>

@@ -88,6 +88,9 @@
                                                 <div class="form-group">
                                                     <label> Longitude  <span class="text-danger"></span></label>
                                                     <input type="text" name="longitude" id="longitude" class="form-control" placeholder=" Ex. 12.336770681743598">
+                                                    <div class="row ml-1">
+                                                        <a href="https://www.google.com/maps" target="_blank">Trouver une position</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -126,7 +129,7 @@
                                         </div>
                                         </div>
                                         <div class="text-right">
-                                    <button type="submit" class="btn btn-primary" id="submit1"> Enregistrer</button>
+                                    <button type="submit" class="btn btn-primary" id="submit1">Poursuivre</button>
 
                                         </div>
                                         </form>
@@ -143,10 +146,8 @@
 		<!-- INTERNAL FORN WIZARD JS-->
 		<script src="{{URL::asset('assets/plugins/formwizard/jquery.smartWizard.js')}}"></script>
 		<script src="{{URL::asset('assets/plugins/formwizard/fromwizard.js')}}"></script>
-
 		<!-- INTERNAL ACCORDION-WIZARD FORM JS -->
 		<script src="{{URL::asset('assets/plugins/accordion-Wizard-Form/jquery.accordion-wizard.min.js')}}"></script>
-
         <!--INTERNAL  ADVANCED FORM JS -->
         	<!--INTERNAL  FORMELEMENTS JS -->
 		{{-- <script src="{{URL::asset('assets/js/form-elements.js')}}"></script> --}}

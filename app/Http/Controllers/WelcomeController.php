@@ -8,11 +8,7 @@ use App\Models\User;
 use App\Models\Crime;
 use App\Models\Unite;
 use App\Models\Espece;
-use App\Models\Localite;
-use App\Models\CrimeAuteur;
 use App\Models\AireProtegee;
-use Illuminate\Http\Request;
-
 class WelcomeController extends Controller
 {
     public function index(){
@@ -119,9 +115,8 @@ class WelcomeController extends Controller
     public function crime(){
         $pays = Pay::with('crimes')->get();
         return view('pages.frontoffice.crimes',[
-            'pays' =>$pays,
-            'nom' =>'Crimes environnementaux'
-
+            'pays' =>         $pays,
+            'nom' =>          'Crimes environnementaux'
         ]);
     }
     public function animale(){
@@ -129,16 +124,13 @@ class WelcomeController extends Controller
         return view('pages.frontoffice.espece',[
             'pays' =>$pays,
             'nom' =>'Espèces animales'
-            
         ]);
     }
     public function vegetale(){
         $pays = Pay::with('crimes')->get();
         return view('pages.frontoffice.espece',[
             'pays' =>$pays,
-            'nom' =>'Espèces végztales'
-            
-            
+            'nom' =>'Espèces végétales'
         ]);
     }
     public function pays($nom,$uuid){
@@ -149,3 +141,5 @@ class WelcomeController extends Controller
         ]);
     }
 }
+
+

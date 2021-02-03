@@ -1,7 +1,7 @@
 		<!-- FAVICON -->
 		<link rel="shortcut icon" type="image/x-icon" href="<?php echo e(asset('assets/logo.jpeg')); ?>" />
 		<!-- TITLE -->
-		<title>UICN-PACO Plateforme de lutte contre la criminalité environnementale dans l'espace Afrique de l'Ouest</title>
+		<title>Lutte contre la criminalité environnementale en Afrique de l'OUEST</title>
 		<!-- BOOTSTRAP CSS -->
 		<link href="<?php echo e(URL::asset('assets/plugins/bootstrap/css/bootstrap.min.css')); ?>" rel="stylesheet" />
 		<!-- STYLE CSS -->
@@ -11,16 +11,12 @@
 
 		<!-- SIDE-MENU CSS -->
 		<link href="<?php echo e(URL::asset('assets/css/sidemenu.css')); ?>" rel="stylesheet">
-
 		<!--PERFECT SCROLL CSS-->
 		<link href="<?php echo e(URL::asset('assets/plugins/p-scroll/perfect-scrollbar.css')); ?>" rel="stylesheet" />
-
 		<!-- CUSTOM SCROLL BAR CSS-->
 		<link href="<?php echo e(URL::asset('assets/plugins/scroll-bar/jquery.mCustomScrollbar.css')); ?>" rel="stylesheet" />
-
 		<!--- FONT-ICONS CSS -->
 		<link href="<?php echo e(URL::asset('assets/css/icons.css')); ?>" rel="stylesheet" />
-
 		<!--- CUSTOM CSS -->
 		<?php echo $__env->yieldContent('css'); ?>
 		<!-- FORN WIZARD CSS -->

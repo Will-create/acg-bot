@@ -6,15 +6,16 @@ use App\Models\Pay;
 use App\Models\Arme;
 use App\Models\Crime;
 use App\Models\Unite;
-use App\Models\User as U;
 use App\Models\Espece;
-use App\Models\AireProtegee;
-use App\Models\DecisionJustice;
-use App\Models\ModeReglement;
 use App\Models\TypeCrime;
+use App\Models\User as U;
 use App\Models\Commentaire;
+use App\Models\Restriction;
 use Illuminate\Support\Str;
+use App\Models\AireProtegee;
 use Illuminate\Http\Request;
+use App\Models\ModeReglement;
+use App\Models\DecisionJustice;
 use Illuminate\Support\Facades\Auth;
 
 class CrimeController extends Controller
@@ -181,28 +182,6 @@ class CrimeController extends Controller
                     break;
 
            }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 
     /**
@@ -213,7 +192,7 @@ class CrimeController extends Controller
      */
     public function show( $crimeUuid)
     {
-        $crime =Crime::where('uuid', $crimeUuid)->with('type','paysApprehension','armes','service_investigateur','localite')->first();
+        $crime =Crime::where('uuid', $crimeUuid)->with('type','paysApprehension','armes','service_investigateur')->first();
         function openstreetmap_url($lon, $lat, $zoom=13) {
             $url = 'https:⁄⁄www.openstreetmap.org/?mlat='.$lat.'&amp;mlon='.$lon.'#map='.$zoom.'/'.$lat.'/'.$lon;
             return $url;
@@ -239,18 +218,21 @@ class CrimeController extends Controller
      * @param  \App\Models\Crime  $crime
      * @return \Illuminate\Http\Response
      */
-    public function edit(Crime $crime)
+    public function edit($uuid)
     {
         $titrePage = "Mise a jour d'un crime environnemental";
-
-        return view('pages.backoffice.crimes.create'
+        $crime = Crime::with('paysOrigineProduit','paysDestination')->where('uuid',$uuid)->first();
+        // dd($crime);
+        return view('pages.backoffice.crimes.edit'
         ,[
             'pays'                           => Pay::all(),
             'unites'                         => Unite::all(),
             // 'especes'                        => Espece::all(),
             'typeCrimes'                     => TypeCrime::all(),
             'aires'                          => AireProtegee::all(),
-            'titrePage'                      =>$titrePage  
+            'titrePage'                      => $titrePage, 
+            'crime'                      => $crime  
+
         ]
     );
     }
@@ -263,9 +245,27 @@ class CrimeController extends Controller
      */
     public function update(Request $request, Crime $crime)
     {
-        //
+        $data =  $request->validate([
+            'date_apprehension'                     => ['date','required'],
+            'localite_apprehension'                 => ['required','string','max:255','min:3'],
+            'latitude'                              => ['nullable','string','max:255','min:8'],
+            'longitude'                             => ['nullable','string','max:255','min:8'],
+            'pays_origine_produit'                          => ['required','integer'],
+            'pays_destination'                              => ['required','integer'],
+             ]);
+        
+        $crime->type_crime_id                   = $request->type_id;
+        $crime->date_apprehension               = $request->date_apprehension;
+        $crime->latitude                        = $request->latitude;
+        $crime->localite_apprehension           = $request->localite_apprehension;
+        $crime->longitude                       = $request->longitude;
+        $crime->pays_origine_produit                    = $request->pays_origine_produit;
+        $crime->pays_destination                        = $request->pays_destination;
+        $crime->save();    
+        session()->flash('general', 'Informations générales modifiées avec succès');
+        session()->flash('section', 'general');
+        return redirect()->route('crimes.show', $crime->uuid);
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -274,6 +274,16 @@ class CrimeController extends Controller
      */
     public function destroy(Crime $crime)
     {
-        //
+        $restriction = new Restriction();
+        $restrictions = $restriction->check($crime->id,[
+            ['foreignkey'=>'localite_id','modelname'=>'unite'],            ]);
+           if ($restrictions){
+            return redirect()->back()->with('danger',$restrictions['message']);
+           }else{
+            $crime->delete();
+            session()->flash('crime', 'Informations générales modifiées avec succès');
+            session()->flash('section', 'crime');
+            return redirect()->route('localites.index')->with('status','Localité supprimée avec succès');
+           }
     }
 }

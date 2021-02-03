@@ -11,16 +11,12 @@
 
 		<!-- SIDE-MENU CSS -->
 		<link href="{{URL::asset('assets/css/sidemenu.css')}}" rel="stylesheet">
-
 		<!--PERFECT SCROLL CSS-->
 		<link href="{{URL::asset('assets/plugins/p-scroll/perfect-scrollbar.css')}}" rel="stylesheet" />
-
 		<!-- CUSTOM SCROLL BAR CSS-->
 		<link href="{{URL::asset('assets/plugins/scroll-bar/jquery.mCustomScrollbar.css')}}" rel="stylesheet" />
-
 		<!--- FONT-ICONS CSS -->
 		<link href="{{URL::asset('assets/css/icons.css')}}" rel="stylesheet" />
-
 		<!--- CUSTOM CSS -->
 		@yield('css')
 		<!-- FORN WIZARD CSS -->

@@ -15,15 +15,11 @@ class Veto extends Component
    
     public function toggler(){
         $crime=Crm::where('id',$this->crime->id)->first();
-
+        $crime->valide =$this->crime->valide == 0;
         $crime->veto =$this->crime->veto == 0 ? 1 : 0;
         $crime->save();
         $this->crime = $crime;
-        
     }
-    
-
-
     public function render()
     {
         return view('livewire.veto');

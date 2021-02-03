@@ -88,7 +88,6 @@ class EspeceController extends Controller
     public function show($uuid)
     {
         $titrePage = "Détails d'un type de règlement de crime";
-
         return view('pages.backoffice.especes.show',[
             'espece'   => Espece::where('uuid',$uuid)->first(),
             'crimes' => Crime::where('espece_id',Espece::where('uuid',$uuid)->first()->id )->get(),

@@ -7,7 +7,7 @@
                 <thead>
                     <tr>
                         <th>Ordre</th>
-                        <th>Nom  et prénom</th>
+                        <th>Nom  complet</th>
                         <th>Qualité</th>
                         <th>Date d'ajout</th>
                     </tr>
@@ -37,4 +37,5 @@
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </tbody>
             </table>
-        </div><?php /**PATH /home/louisbertson/Desktop/criminalite/resources/views/pages/backoffice/auteurs/crimeAuteu.blade.php ENDPATH**/ ?>
+        </div>
+<?php /**PATH /home/louisbertson/Desktop/criminalite/resources/views/pages/backoffice/auteurs/crimeAuteu.blade.php ENDPATH**/ ?>

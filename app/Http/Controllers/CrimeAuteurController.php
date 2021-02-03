@@ -22,7 +22,6 @@ class CrimeAuteurController extends Controller
     {
         $auteurs=CrimeAuteur::orderBy('nom','asc')->with('crimes')->get();
         $titrePage = "Liste de tous les auteurs de crime";
-
         return view('pages.backoffice.auteurs.index',compact('auteurs','titrePage'));
     }
     public function create($crime = null)
@@ -88,7 +87,6 @@ class CrimeAuteurController extends Controller
             'crimeUuid'         => null
         ]);
     }
-
     public function filter()
     {
         $p = 1;
@@ -100,7 +98,6 @@ class CrimeAuteurController extends Controller
             'crime'                          =>$crime
         ]);
     }
-
     public function filtreur($p)
     {
         $crime=Crime::where('id',$p )->first();
@@ -113,7 +110,6 @@ class CrimeAuteurController extends Controller
 
         ]);
     }
-
     public function edit(Commentaire $auteur)
     {
         return view('pages.backoffice.commentaires.createdit', [
@@ -124,8 +120,6 @@ class CrimeAuteurController extends Controller
             'btnAction' => "Mettre à jour"
         ]);
     }
-
-
     public function update(Request $request,  $auteurUuid)
     {
         // dd($request->all());
@@ -163,22 +157,7 @@ class CrimeAuteurController extends Controller
           $request->session()->flash('section', 'auteur');
           return redirect()->route('crimes.show',$auteur->crime->uuid);
     }
-    // public function update(Request $request, Commentaire $auteur)
-    // {
-    //     $data=request()->validate([
-    //         'commentaire'=> ['required','string','max:255','min:3'],
-    //         'pour'=> ['required','integer'],
-    //         'crime_id'=> ['required','integer']
-    //       ]);
-    //       $auteur->pour=$data['pour'];
-    //       $auteur->commentaire=$data['commentaire'];
-    //       $auteur->par=Auth()->user()->id;
-    //       $auteur->crime_id =$data['crime_id'];
-    //       $auteur->uuid=Str::uuid();
-    //       $auteur->save();
-    //      $request->session()->flash('status','Mise à jours du commentaire effectuée avec succès !');
-    //       return redirect()->route('commentaires.show', $auteur->uuid);
-    // }
+    
     public function destroy(Request $request,  $auteur)
     {
         $auteur =  CrimeAuteur::where('uuid', $auteur)->first();
@@ -191,11 +170,5 @@ class CrimeAuteurController extends Controller
         return redirect()->route('crimes.show', $auteur->crime->uuid)->with('status','Auteur supprimer avec succès');
 
     }
-    // public function destroy(Request $request, Commentaire $auteur)
-    // {
-    //     $auteur->delete();
-    //     return redirect()->route('commentaires.index')->with('status','Commentaire supprimé avec succès');
-
-    // }
-
+    
 }

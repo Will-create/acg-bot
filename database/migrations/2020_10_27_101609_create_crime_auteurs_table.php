@@ -31,9 +31,9 @@ class CreateCrimeAuteursTable extends Migration
             $table->enum('genre', ['masculin', 'feminin']);
             $table->enum('type', ['auteur', 'complice']);
             $table->date('date_naiss');
-            $table->boolean('voyageur_international');
-            $table->boolean('education');
-            $table->boolean('terrorisme');
+            $table->boolean('voyageur_international')->nullable();
+            $table->boolean('education')->nullable();
+            $table->boolean('terrorisme')->nullable();
             $table->timestamps();
             $table->foreign('pays_id')->references('id')->on('pays')->onDelete('restrict')->onUpdate('restrict');
             $table->foreign('localite_id')->references('id')->on('localites')->onDelete('restrict')->onUpdate('restrict');

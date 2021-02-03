@@ -22,7 +22,6 @@
                     <td>{{$i++}}</td>
                     <td>
                         @if ($crimeEspece->espece->photo)
-
                         <a  class="text-dark" href="{{route('especes.show', $crimeEspece->espece )}}">
                         <img src="{{asset('storage/' . $crimeEspece->espece->photo)}}" alt="{{$crimeEspece->espece->nom}}" class="brround  avatar-sm w-32 mr-2">
                         {{$crimeEspece->espece->nom}}
@@ -39,7 +38,6 @@
                     <td>{{formatDate($crimeEspece->created_at)}}</td>
                     </a>
    @if (Auth::user()->role->designation == "Chef d’Unité" || Auth::user()->role->designation == "Agent d’une Unité")
-
                     <td>
                         <button style="border: unset!important;" wire:click="delete({{$crimeEspece->id}})"> <i class="fa fa-trash text-danger"></i> </button>
                     </td>

@@ -341,3 +341,43 @@ $('body').on('click', '#submit3', function (event) {
 });
 });
 });
+
+
+// galery d'image et popup des images
+
+
+// popup = {
+//   init: function(){
+//     $('.crime-figure').click(function(){
+//       popup.open($(this));
+//     });
+    
+//     $(document).on('click', '.crime-image', function(){
+//       return false;
+//     }).on('click', '.popup', function(){
+//       popup.close();
+//     })
+//   },
+//   open: function($figure) {
+//     $('.crime-gallerie').addClass('pop');
+//     $popup = $('<div class="popup" />').appendTo($('body'));
+//     $fig = $figure.clone().appendTo($('.popup'));
+//     $bg = $('<div class="bg" />').appendTo($('.popup'));
+//     $close = $('<div class="close"><svg><use xlink:href="#close"></use></svg></div>').appendTo($fig);
+//     $shadow = $('<div class="shadow" />').appendTo($fig);
+//     src = $('.crime-image', $fig).attr('src');
+//     $shadow.css({backgroundImage: 'url(' + src + ')'});
+//     $bg.css({backgroundImage: 'url(' + src + ')'});
+//     setTimeout(function(){
+//       $('.popup').addClass('pop');
+//     }, 30);
+//   },
+//   close: function(){
+//     $('.crime-gallerie, .popup').removeClass('pop');
+//     setTimeout(function(){
+//       $('.popup').remove()
+//     }, 100);
+//   }
+// }
+
+// popup.init()

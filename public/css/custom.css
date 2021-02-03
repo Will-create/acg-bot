@@ -90,3 +90,159 @@ svg.iconify {
     /* padding-right: 71px; */
     margin-right: 5px;
 }
+
+// .crime-gallerie .crime-image {
+//   display: block;
+// }
+
+// .crime-gallerie {
+//   position: relative;
+//   z-index: 9999999999;
+//   padding: 10px;
+//   display: flex;
+//   flex-flow: row wrap;
+//   justify-content: space-between;
+//   transition: all .5s ease-in-out;
+//   transform: translateZ(0);
+//   &.pop {
+//     filter: blur(10px);
+//   }
+//   .crime-figure {
+//     flex-basis: 33.333%;
+//     padding: 10px;
+//     overflow: hidden;
+//     cursor: pointer;
+//       .crime-image {
+//       width: 100%;
+//       transition: all .3s ease-in-out;
+//     }
+//      .crime-figcaption {
+//       display: none;
+//     }
+
+//   }
+//   .crime-figure:hover .crime-figcaption {
+//     display: block;
+//   }
+// }
+// .crime-gallerie .popup {
+//   position: absolute;
+//   z-index: 9999999999999999999999999999;
+//   top: 0;
+//   left: 0;
+//   width: 100%;
+//   height: 100vh;
+//   background: #fff;
+//   opacity: 0;
+//   transition: opacity .5s ease-in-out .2s;
+//   &.pop {
+//     opacity: 1;
+//     transition: opacity .2s ease-in-out 0s;
+//     .crime-figure {
+//       margin-top: 0;
+//       opacity: 1;
+//     }
+//   }
+//  .crime-figure {
+//     position: absolute;
+//     top: 50%;
+//     left: 50%;
+//     transform: translate(-50%, -50%);
+//     transform-origin: 0 0;
+//     margin-top: 30px;
+//     opacity: 0;
+//     animation: poppy 500ms linear both;
+//      .crime-image {
+//       position: relative;
+//       z-index: 2;
+//       //box-shadow: 0 1px 5px rgba(0, 0, 0, .2), 0 6px 30px rgba(0, 0, 0, .4);
+//     }
+//        .crime-figcaption {
+//       position: absolute;
+//       bottom: 50px;
+//       background: linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.78));
+//       z-index: 9999999999999999999999999999;
+//       width: 100%;
+//       padding: 100px 20px 20px 20px;
+//       color: #fff;
+//       font-family: 'Open Sans', sans-serif;
+//       font-size: 32px;
+//         .crime-small {
+//         font-size: 11px;
+//         display: block;
+//         text-transform: uppercase;
+//         margin-top: 12px;
+//         text-indent: 3px;
+//         opacity: .7;
+//         letter-spacing: 1px;
+//       }
+//     }
+//      .shadow {
+//       position: relative;
+//       z-index: 1;
+//       top: -56px;
+//       margin: 0 auto;
+//       background-position: center bottom;
+//       background-repeat: no-repeat;
+//       width: 98%;
+//       height: 50px;
+//       opacity: .9;
+//       filter: blur(16px) contrast(1.5);
+//       transform: scale(0.95, -0.7);
+//       transform-origin: center bottom;
+//     }
+//   }
+//    .close {
+//     position: absolute;
+//     z-index: 3;
+//     top: 10px;
+//     right: 10px;
+//     width: 25px;
+//     height: 25px;
+//     cursor: pointer;
+//     background: url(.close);
+//     border-radius: 25px;
+//     background: rgba(0, 0, 0, .1);
+//     box-shadow: 0 0 3px rgba(0, 0, 0, .2);
+//       .crime-svg {
+//       width: 100%;
+//       height: 100%;
+//     }
+//   }
+// }
+ .crime-gallerie {
+   position: relative;
+   z-index: 9999999999;
+   display: flex;
+   flex-flow: column wrap;
+   justify-content: center;
+   align-items: center;
+   transition: all .5s ease-in-out;
+ }
+ .crime-rideau{
+  display: none;
+   width: 100%;
+   height: 100%;
+   padding-bottom: 2em;
+   position: absolute;
+   z-index: 9999999999;
+   top: 0;
+   left: 0;
+   background-color: rgba(0,0,0,0.2);
+   cursor: pointer;
+}
+
+// .crime-figure:hover .crime-rideau .crime-figcaption{
+//   display:flex;
+// }
+// .crime-figure:hover .crime-figcaption {
+//   width: 100%;
+//   height: 100%;
+//   padding-bottom: 2em;
+//   z-index: 99999999999999;
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   background-color: rgba(0,0,0,0.5);
+//   cursor: pointer;
+// }

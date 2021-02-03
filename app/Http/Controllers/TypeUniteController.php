@@ -17,9 +17,11 @@ class TypeUniteController extends Controller
     }
     public function index()
     {
-        $titrePage = "Liste de toutes les types  de crime";
         $types=TypeUnite::orderBy('nom','asc')->get();
-        return view('pages.backoffice.type_unites.index',compact('types','titrePage'));
+        return view('pages.backoffice.type_unites.index',[
+            'types' =>TypeUnite::orderBy('nom','asc')->get(),
+            'titrePage' => "Liste de toutes les types  de crime"
+            ]);
     }
 
     public function create()

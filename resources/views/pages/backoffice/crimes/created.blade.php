@@ -1,6 +1,5 @@
 @extends('layouts.master4')
 @section('css')
-        <!-- FORN WIZARD CSS -->
 		<link href="{{URL::asset('assets/plugins/select2/select2.min.css')}}" rel="stylesheet" />
 		<link href="{{URL::asset('assets/plugins/formwizard/smart_wizard.css')}}" rel="stylesheet">
 		<link href="{{URL::asset('assets/plugins/formwizard/smart_wizard_theme_arrows.css')}}" rel="stylesheet">
@@ -8,13 +7,11 @@
 		<link href="{{URL::asset('assets/plugins/formwizard/smart_wizard_theme_dots.css')}}" rel="stylesheet">
         <link href="{{URL::asset('assets/plugins/forn-wizard/css/demo.css')}}" rel="stylesheet">
 		<link rel="stylesheet" href="{{URL::asset('assets/plugins/multipleselect/multiple-select.css')}}">
-
 @endsection
 @push('livewire')
 @livewireStyles
 @endpush
 @section('page-header')
-			<!-- PAGE-HEADER -->
 			<div class="page-header">
                 <div>
                     <h1 class="page-title">Liste des crimes</h1>
@@ -29,7 +26,6 @@
                     </span>
                    Enregistrer un crime</a>
                 </button>
-
                 </div>
             </div>
 @endsection
@@ -45,7 +41,6 @@
                                 <div class="loader"></div>
                               </div>
 							  <div >
-                                {{-- <livewire:crime/> --}}
                                 <div>
                                     <div id="smartwizard">
                                         <ul>
@@ -73,9 +68,7 @@
                                                                 </select>
                                                             </div>
                                                         </div>
-
                                                         @livewire('crime')
-
                                                         {{-- <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label>   Pays d'appréhension  <span class="text-danger">*</span></label>

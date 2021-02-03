@@ -28,7 +28,6 @@ class UtilisateursController extends Controller
     public function index()
     {
         $titrePage = "Liste de tous les utilisateurs";
-
         switch (Auth::user()->role->designation) {
             case 'Chef d’Unité':
                 $utilisateurs  = User::where('role_id', Role::where('designation', 'Agent d’une Unité')->first()->id)->where('pay_id', Auth::user()->pays->id)->latest()->get();
@@ -49,7 +48,6 @@ class UtilisateursController extends Controller
 
                 break;
         }
-
         return view('pages.backoffice.administrateur.utilisateurs.index', compact('utilisateurs', 'titrePage'));
     }
     /**
@@ -63,7 +61,6 @@ class UtilisateursController extends Controller
         $localites = Localite::all();
         $pays = Pay::all();
         $utilisateur = new User();
-
         switch (Auth::user()->role->designation) {
             case 'Administrateur Général':
                 $roles = Role::whereIn('designation', ['Coordonnateur Régional', 'Coordonnateur National'])->get();
@@ -95,12 +92,7 @@ class UtilisateursController extends Controller
 
         return view('pages.backoffice.administrateur.utilisateurs.create', compact('roles', 'unites', 'localites', 'pays', 'utilisateur', 'titrePage'));
     }
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+   
     public function store(Request $request)
     {
         $data =   $request->validate([
@@ -241,12 +233,8 @@ class UtilisateursController extends Controller
         $request->session()->flash('status', 'Les informations ont été mises jour avec succès');
         return redirect()->route('utilisateurs.show', $utilisateur->uuid);
     }
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
+   
+     
     public function destroy(User $utilisateur, Request $request)
     {
         $restriction = new Restriction;
@@ -289,9 +277,8 @@ class UtilisateursController extends Controller
     }
     public function edit_password()
     {
-        $titrePage = "Modificationdes identifiants d'un utilisateur";
         return view('pages.backoffice.administrateur.utilisateurs.edit-password', [
-            'titrePage' => $titrePage
+            'titrePage' => "Modification des identifiants d'un utilisateur"
         ]);
     }
     public function change_password(Request $request)

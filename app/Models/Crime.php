@@ -17,13 +17,12 @@ class Crime extends Model
     public function type(){
         return $this->hasOne('App\Models\TypeCrime','id', 'type_crime_id');
     }
-    public function localite(){
-        return $this->belongsTo('App\Models\Localite','localite_apprehension','id');
-    }
+    // public function localite(){
+    //     return $this->belongsTo('App\Models\Localite','localite_apprehension','id');
+    // }
     public function auteurs(){
         return $this->hasMany(CrimeAuteur::class);
     }
-
     public function paysDestination(){
         return $this->belongsTo('App\Models\Pay','pays_destination','id');
     }
@@ -39,15 +38,12 @@ class Crime extends Model
     public function service_investigateur(){
         return $this->belongsTo('App\Models\Unite','services_investigateurs','id');
     }
-
-
     public function confiscations(){
         return $this->hasMany(crimeConfiscation::class);
     }
     public function armes(){
         return $this->hasMany('App\Models\Arme','crime_id','id');
     }
-
     public function commentaires(){
         return $this->hasMany('App\Models\Commentaire','crime_id','id');
     }
@@ -58,5 +54,7 @@ class Crime extends Model
     {
         return $this->hasMany(crimeTypeReglement::class);
     }
-
+    public function images (){
+        return $this->hasMany('App\Models\CrimeImage','crime_id','id');
+    }
 }

@@ -16,6 +16,8 @@ class Validate extends Component
         $crime=Crm::where('id',$this->crime->id)->first();
 
         $crime->valide =$this->crime->valide == 0 ? 1 : 0;
+        $crime->veto =$this->crime->veto == 0;
+
         $crime->save();
         $this->crime = $crime;
         
