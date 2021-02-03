@@ -44,7 +44,7 @@ class EspeceVegetalTableSeeder extends Seeder
                         'regne'                 => 'végétal',
                         'nom_scientifique'      => $espece->scientific_name,
                         'ordre_id'              => Ordre::inRandomOrder()->first()->id
-                    ]);
+                        ]);
                 } else {
                     Espece::create([
                         'nom'                   => $espece->phylum_name,

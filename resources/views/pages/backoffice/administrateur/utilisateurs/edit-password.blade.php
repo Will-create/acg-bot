@@ -46,7 +46,7 @@
                         <small class="col-md-12 help-block text-danger text-center">
                             {{ $errors->first('current_password') }}
                         </small>
-                    @endif
+                    @endif_à-'''--'
                 </div>
 
                 <div class="row form-group">

@@ -3,6 +3,7 @@
 
             </div>
                     <div class="card-body">
+                        
                         <div class="row">
                          <div class="col-md-6">
                              <div class="form-group">
@@ -52,8 +53,8 @@
                                              </span>
                                          @enderror
                                  </div>
-                                 
-                                 
+
+
                                  <div class="form-group">
                                      <label class="form-label" for="code_wdpa_aire">Code WDPA<strong class="text-danger">*</strong> </label>
                                      <input type="text" class="form-control" placeholder="Code WDPA" name="code_wdpa_aire"  id="code_wdpa_aire"  value="{{old('code_wdpa_aire') ?? $aire->code_wdpa_aire}}">
@@ -80,7 +81,7 @@
                              </div>
                              <div class="row">
                                 <div class="col-md-6">
-                                    
+
                                     <div class="form-group">
                                         <label class="form-label" for="libelle">Nom Responsable<strong class="text-danger">*</strong> </label>
                                         <input type="text" class="form-control" name="nom_responsable" placeholder="Nom du responsable" id="libelle"  value="{{old('nom_responsable') ?? ucfirst($aire->nom_responsable) }}">
@@ -105,9 +106,9 @@
                             </div>
                          </div>
                      </div>
-                     
+
         </div>
-       
+
        <div class="row">
            <div class="col-md-6">
             <div class="card shadow">

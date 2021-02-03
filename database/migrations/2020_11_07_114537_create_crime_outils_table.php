@@ -18,11 +18,11 @@ class CreateCrimeOutilsTable extends Migration
             $table->string('libelle', 120);
             $table->string('reference', 50);
             $table->text('remarques');
-            $table->unsignedBigInteger('crime_id');
+            $table->foreignId('crime_id');
             $table->timestamps();
 
-            $table->foreign('crime_id')->references('id')->on('crimes')->onDelete('restrict')
-            ->onUpdate('restrict');
+            // $table->foreign('crime_id')->references('id')->on('crimes')->onDelete('restrict')
+            // ->onUpdate('restrict');
         });
     }
 

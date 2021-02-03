@@ -28,12 +28,9 @@
 						</ol>
 					</div>
 					<div class="ml-auto pageheader-btn">
-                    <a class="btn btn-primary" href="{{route('confiscations.index')}}"  >  <span>
+                        <a class="btn btn-primary" href="{{ route('crimes.show', $confiscation->crime) }}"> <span>
                             <i class="fe fe-list"></i>
-                        </span>
-                        Toutes les confiscations</a>
-                    </button>
-
+                        </span> Revenir au crime</a>
 					</div>
 				</div>
 				<!-- PAGE-HEADER END -->

@@ -21,12 +21,12 @@ class CreateEspecesTable extends Migration
             $table->string('statut_uicn')->nullable();
             $table->string('statut_cites')->nullable();
             $table->enum('regne', ['animal', 'végétal']);
-            $table->unsignedBigInteger('ordre_id');
+            $table->foreignId('ordre_id');
             $table->string('nom_scientifique')->nullable();
             $table->mediumText('photo')->nullable();
             $table->timestamps();
-            $table->foreign('ordre_id')->references('id')->on('ordres')->onDelete('restrict')
-            ->onUpdate('restrict');
+            // $table->foreign('ordre_id')->references('id')->on('ordres')->onDelete('restrict')
+            // ->onUpdate('restrict');
         });
     }
 

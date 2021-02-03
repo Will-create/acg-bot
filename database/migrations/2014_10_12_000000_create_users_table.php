@@ -33,10 +33,10 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
 
-            $table->foreign('role_id')->references('id')->on('roles')->onDelete('restrict')
-            ->onUpdate('restrict');
-            $table->foreign('pay_id')->references('id')->on('pays')->onDelete('restrict')
-            ->onUpdate('restrict');
+            // $table->foreign('role_id')->references('id')->on('roles')->onDelete('restrict')
+            // ->onUpdate('restrict');
+            // $table->foreign('pay_id')->references('id')->on('pays')->onDelete('restrict')
+            // ->onUpdate('restrict');
         });
     }
 

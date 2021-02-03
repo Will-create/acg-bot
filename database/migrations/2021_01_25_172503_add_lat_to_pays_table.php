@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDecisionJusticesTable extends Migration
+class AddLatToPaysTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateDecisionJusticesTable extends Migration
      */
     public function up()
     {
-        Schema::create('decision_justices', function (Blueprint $table) {
-            $table->id();
-            $table->string('decision'); 
-            $table->text('description')->nullable();
-            $table->timestamps();
+        Schema::table('pays', function (Blueprint $table) {
+            $table->string('latitude')->nullable();
+
         });
     }
 
@@ -28,6 +26,8 @@ class CreateDecisionJusticesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('decision_justices');
+        Schema::table('pays', function (Blueprint $table) {
+            //
+        });
     }
 }

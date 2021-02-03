@@ -8,14 +8,15 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Auth::routes();
-// Route::prefix('74uAExW4d')->group(function () {
-    // Route::get('/',                                             'AdminNavigationController@accueil')->name('bienvenue');
-    Route::get('/',                                      'WelcomeController@index')->name('welcome');
-    Route::get('/criminalites/',                          'WelcomeController@crime')->name('welcome.crime');
-    Route::get('/criminalites/{nompays}/{uuidpays}',                          'WelcomeController@pays')->name('welcome.pays');
-    Route::get('/especes/especes_animales',                                  'WelcomeController@animale')->name('welcome.especes.animale');
-    Route::get('/especes/especes_vegetale',                                  'WelcomeController@vegetale')->name('welcome.especes.vegetale');   
-    Route::get('/admin',                                      'AdminNavigationController@accueil')->name('accueil');
+// Route::get('/',                                             'AdminNavigationController@accueil')->name('bienvenue');
+Route::get('/',                                      'WelcomeController@index')->name('welcome');
+Route::get('/criminalites',                          'WelcomeController@crime')->name('welcome.crime');
+Route::get('/criminalites/{nompays}/{uuidpays}',                          'WelcomeController@pays')->name('welcome.pays');
+Route::get('/especes/especes_animales',                                  'WelcomeController@animale')->name('welcome.especes.animale');
+Route::get('/especes/especes_vegetale',                                  'WelcomeController@vegetale')->name('welcome.especes.vegetale');
+
+Route::prefix('74uAExW4d')->group(function () {
+    Route::get('/',                                      'AdminNavigationController@accueil')->name('accueil');
     Route::resource('utilisateurs',                             'UtilisateursController');
     Route::resource('roles',                                    'RoleController');
     Route::get('utilisateurs/gerer/{utilisateur}',              'UtilisateursController@gerer')->name('gerer-utilisateur');
@@ -58,10 +59,9 @@ Auth::routes();
     Route::get('/pays/ville/{pay_id}', 'LocaliteController@ville_by_country')->name('ville_by_country');
     Route::resource('crime_reglements', 'CrimeTypeReglementController')->except('create');
     Route::get('crime_reglements/create/{crime?}', 'CrimeTypeReglementController@create')->name('crime_reglements.create');
-    Route::view('/{patch?}', 'layouts.masterreact');
+    // Route::view('/{patch?}', 'layouts.masterreact');
     Route::post('crimes/show/cibler/{nom}','Controller@cibleur');
-    // });
+    });
 
 
     //les routes du frontoffice
-    

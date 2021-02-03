@@ -17,13 +17,14 @@ class CreateCrimeEspecesTable extends Migration
         Schema::create('crime_especes', function (Blueprint $table) {
             $table->id();
             $table->uuid('uuid');
-            $table->unsignedBigInteger('crime_id');
-            $table->unsignedBigInteger('espece_id');
+            $table->foreignId('crime_id');
+            $table->foreignId('espece_id');
             $table->timestamps();
-            $table->foreign('crime_id')->references('id')->on('crimes')->onDelete('restrict')
-            ->onUpdate('restrict');
-            $table->foreign('espece_id')->references('id')->on('especes')->onDelete('restrict')
-            ->onUpdate('restrict');
+
+            // $table->foreign('crime_id')->references('id')->on('crimes')->onDelete('restrict')
+            // ->onUpdate('restrict');
+            // $table->foreign('espece_id')->references('id')->on('especes')->onDelete('restrict')
+            // ->onUpdate('restrict');
         });
     }
 

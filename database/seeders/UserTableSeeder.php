@@ -24,21 +24,35 @@ class UserTableSeeder extends Seeder
         ];
         //User::truncate();
         $roles = Role::all();
-        // User::create([
-        //     'nom'                   => $faker->firstName,
-        //     'titre'                 => $faker->title,
-        //     'actif'                 => true,
-        //     'role_id'               => 1,
-        //     'profile_photo_path'                 => 'profile_photo_path/'.$faker->file($sourceDir = 'D:\switch_maker\war_crimes\public\images\user', $targetDir = 'D:\switch_maker\war_crimes\storage\app\public\profile_photo_path', false),
+         User::create([
+           'nom'                   => $faker->firstName,
+            'titre'                 => $faker->title,
+            'actif'                 => true,
+            'role_id'               => 1,
+            'profile_photo_path'    => 'profile_photo_path/'.$faker->file('public/images/user', 'storage/app/public/profile_photo_path', false),
 
-        //     'prenom'                => $faker->lastName,
-        //     'email'                 => 'admin@uicn.com',
-        //     'tel'                   => $faker->phoneNumber,
-        //     'password'              => Hash::make('00000000'),
-        //     'localite_id'              => $faker->numberBetween($min = 1, $max = 5),
-        //     'uuid'                  => Str::uuid(),
-        //     'pay_id'                => rand(1,16)
-        // ]);
+            'prenom'                => $faker->lastName,
+            'email'                 => 'admin@uicn.com',
+            'tel'                   => $faker->phoneNumber,
+            'password'              => Hash::make('00000000'),
+            'localite_id'              => $faker->numberBetween($min = 1, $max = 5),
+            'uuid'                  => Str::uuid(),
+            'pay_id'                => rand(1,16)
+        ]);
+        User::create([
+            'nom'                   => $faker->firstName,
+            'titre'                 => $faker->title,
+            'actif'                 => true,
+            'role_id'               => 2,
+            'profile_photo_path'    => "/images/pngs/bg-l.png",
+            'prenom'                => $faker->lastName,
+            'email'                 => ' agent@uicn.com',
+            'tel'                   => $faker->phoneNumber,
+            'password'              => Hash::make('00000000'),
+            'localite_id'              => $faker->numberBetween($min = 1, $max = 5),
+            'uuid'                  => Str::uuid(),
+            'pay_id'                => rand(1,16)
+        ]);
         foreach ($roles as $key => $role) {
         for ($i=0; $i <100 ; $i++) {
             $user =   User::create([
@@ -50,13 +64,17 @@ class UserTableSeeder extends Seeder
                 // 'profile_photo_path'                 => 'profile_photo_path/'.$faker->file($sourceDir = 'D:\switch_maker\war_crimes\public\images\user', $targetDir = 'D:\switch_maker\war_crimes\public\storage\profile_photo_path', false),
                 'profile_photo_path'                 => 'profile_photo_path/'.$faker->file($sourceDir = '/home/louisbertson/Desktop/criminalite/public/images/user', $targetDir = '/home/louisbertson/Desktop/criminalite/public/storage/profile_photo_path', false),
                 'prenom'                => $faker->lastName,
-                'email'                 => $faker->freeEmail,
+                'email'                 => $faker->unique()->freeEmail,
                 'tel'                   => $faker->phoneNumber,
                 'password'              => Hash::make('00000000'),
-                'localite_id'              => $faker->numberBetween($min = 1, $max = 5),
+                'localite_id'              => $faker->numberBetween(1, 5),
                 'uuid'                  => Str::uuid(),
                 'pay_id'                => rand(1,16)
             ]);
+            // if ($user->role->designation == "Agent d’une Unité" || $user->role->designation == "Chef d’Unité") {
+            // $user->unite_id  = Unite::inrandomOrder()->first()->id;
+            // }
+
         }
 
             // if($user->role->designation == "Chef d’Unité" || $user->role->designation == "Agent d’une Unité")

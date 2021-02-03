@@ -39,7 +39,7 @@ class UtilisateursController extends Controller
             case 'Coordonnateur Régional':
                 $role_id = Role::whereIn('designation', ['Chef d’Unité', 'Agent d’une Unité', 'Coordonnateur National'])->pluck('id');
                 $utilisateurs  = User::where('pay_id', Auth::user()->pays->id)->whereIn('role_id', $role_id)->latest()->get();
-                $utilisateurs  = User::latest()->get();
+                // $utilisateurs  = User::latest()->get();
                 break;
             case 'Administrateur Général':
                 $utilisateurs  = User::latest()->get();
@@ -147,14 +147,12 @@ class UtilisateursController extends Controller
     public function edit(User $utilisateur)
     {
         $titrePage = "Modification des informations d'un utilisateur";
-
         switch (Auth::user()->role->designation) {
             case 'Administrateur Général':
                 $roles = Role::whereIn('designation', ['Coordonnateur Régional', 'Coordonnateur National'])->get();
                 break;
             case 'Coordonnateur Régional':
                 $roles = Role::where('designation', $utilisateur->role->designation)->first();
-
 
                 break;
             case 'Coordonnateur National':
@@ -205,7 +203,7 @@ class UtilisateursController extends Controller
                 'profile_photo_path'        => $path
             ]);
         } else {
-            $data =   $request->validate([
+             $data =   $request->validate([
                 'nom'                       => ['required', 'string', 'max:255'],
                 'prenom'                    => ['required', 'string', 'max:255'],
                 'tel'                       => 'required|string|min:8|max:20|unique:users,tel,' . $utilisateur->id,
@@ -215,16 +213,25 @@ class UtilisateursController extends Controller
                 'pay_id'                    => ['required'],
                 'profile_photo_path'        => ['nullable', 'mimes:jpeg,jpg,png,gif', 'max:10000'],
             ]);
-            $utilisateur->update([
-                'nom'                       => $request['nom'],
-                'prenom'                    => $request['prenom'],
-                'tel'                       => $request['tel'],
-                'email'                     => $request['email'],
-                'role_id'                   => $request['role_id'],
-                'unite_id'                  => $request['unite_id'],
-                'titre'                     => $request['titre'],
-                'profile_photo_path'        => $path
-            ]);
+            // $utilisateur->update([
+            //     'nom'                       => $request['nom'],
+            //     'prenom'                    => $request['prenom'],
+            //     'tel'                       => $request['tel'],
+            //     'email'                     => $request['email'],
+            //     'role_id'                   => $request['role_id'],
+            //     'unite_id'                  => $request['unite_id'],
+            //     'titre'                     => $request['titre'],
+            //     'profile_photo_path'        => $path
+            // ]);
+            $utilisateur->nom                   = $request->nom;
+            $utilisateur->prenom                = $request->prenom;
+            $utilisateur->tel                   = $request->tel;
+            $utilisateur->email                 = $request->email;
+            $utilisateur->role_id               = $request->role_id;
+            $utilisateur->titre                 = $request->titre;
+            $utilisateur->profile_photo_path    = $request->path;
+            $utilisateur->save();
+
         }
         if ($previousUrl ==  '/user/profile') {
             $request->session()->flash('status', 'Votre profil a été mis à jour');

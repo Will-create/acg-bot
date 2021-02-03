@@ -37,11 +37,13 @@
             <a class="btn btn-primary" href="{{ route('especes.index') }}"> <span>
                     <i class="fe fe-list"></i>
                 </span> Toutes les espèces</a>
+                
             </button>
 
         </div>
     </div>
     <!-- PAGE-HEADER END -->
+
 @endsection
 @section('content')
 

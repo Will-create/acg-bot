@@ -164,9 +164,7 @@
 
                                                 </tbody>
                                                 <tbody class="col-lg-6 col-xl-6 p-0">
-
-
-                                                    <tr>
+                                                     <tr>
                                                         <td><strong>Téléphone :</strong> {{ ($utilisateur->tel)}} </td>
                                                     </tr>
                                                     <tr>
