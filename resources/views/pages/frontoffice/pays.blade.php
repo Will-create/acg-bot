@@ -26,7 +26,6 @@
 				</div>
 			</div>
 			@endsection
-
 			<div class="row">
 				<div class="col-lg-4 col-md-12 col-sm-12 col-xl-3">
 					<div class="card">
@@ -76,7 +75,6 @@
 					   var current_month = 0;
 					   var current_year_months = ["Jan"];
 					   var data_current_year_months = [0];
-			   
 					   // function getRandomColor() {
 					   // 	var letters = '0123456789ABCDEF';
 					   // 	var color = '#';

@@ -13,6 +13,7 @@ class RegneEspece extends Component
 {
     public $regne;
     public $especes = [];
+    public $espece_id;
     public $espece;
     public $pays;
     public $unites;
@@ -26,36 +27,39 @@ class RegneEspece extends Component
     $this->espece = $this->espece;
     }
     protected $rules = [
-        'espece' => 'required',
+        'espece_id' => 'required',
         'crime_id' => 'required',
-    ];
+    ];  
     public function render()
     {
+        
         if(!empty($this->regne)) {
             $this->especes = Espece::where('regne', $this->regne)->get();
-            $this->dispatchBrowserEvent('contentChanged');
+            $this->dispatchBrowserEvent('refreshSelectize',['especes'=>$this->especes]);
         }
+        
         $crime = Crime::where('id', $this->crime_id)->get();
+        
+        // dd($this->espece);
+        
         return view('livewire.regne-espece',
         [
             'especes' => $this->especes,
-             'crimeEspeces' =>  CrimeEspece::latest()->where('crime_id', $this->crime_id)->get()
-
-        ]);
-    }
+            'crimeEspeces' =>  CrimeEspece::latest()->where('crime_id', $this->crime_id)->get()
+            
+            ]);
+            
+        }
     public function submit()
     {
         $this->validate();
-
-        // Execution doesn't reach here if validation fails.
-
         CrimeEspece::create([
             'uuid'       => Str::uuid(),
             'crime_id' => $this->crime_id,
-            'espece_id' => $this->espece,
+            'espece_id' => $this->espece_id,
         ]);
         $this->regne = "";
-        $this->espece = "";
+        $this->espece_id = "";
         session()->flash('status', 'Espèce ajoutée avec succès');
     }
 

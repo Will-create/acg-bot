@@ -1,7 +1,7 @@
 <div>
     {{-- @livewire('reglement', ['crime'  => $crime, 'modeReglements'  => $modeReglements, 'suites'  => $suites]) --}}
     @include('partials._notify',['nom'  => 'images'])
-    @livewire('crime-image',['crime'  => $crime,'photos'  => $photos ]) 
+    @livewire('crime-image',['crime'  => $crime]) 
     @if (count($images) < 1)
     <span class="text-danger">Aucune image disponible</span>
     @else

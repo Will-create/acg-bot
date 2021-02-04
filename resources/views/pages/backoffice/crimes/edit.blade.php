@@ -44,10 +44,7 @@
                             <div id="loader" class="d-none">
                                 <div class="loader"></div>
                               </div>
-                                <div >
                                 {{-- <livewire:crime/> --}}
-                                <div>
-                                    <div id="smartwizard" class="">
                                         <form  method="POST" action=" {{route('crimes.update',$crime->uuid)}}"   id="form_setp_1">
                                             @csrf
                                             @method('PUT')
@@ -129,9 +126,6 @@
                                             <button type="submit" class="btn btn-primary" id="submit1">Mettre a jour</button>
                                         </div>
                                         </form>
-                                    </div>
-                                </div>
-                            </div>
 						</div>
 					</div>
 				</div>

@@ -1,23 +1,14 @@
 <?php
-
 namespace Database\Seeders;
-
-use App\Models\TypeUnite;
 use App\Models\Pay;
 use App\Models\Localite;
 use Illuminate\Database\Seeder;
 use App\Models\AireProtegee;
 use Illuminate\Support\Str;
 use Faker\Factory;
-
-
 class AireTableSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
+  
     public function randomMap($length=17){
         $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $string = '';
@@ -35,7 +26,6 @@ class AireTableSeeder extends Seeder
         $pays=Pay::all();
         $aires = [
             '',
-            
         ];
         $localites=Localite::all();
         //Unite::truncate();

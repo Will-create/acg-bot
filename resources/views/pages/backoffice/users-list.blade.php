@@ -219,7 +219,6 @@
                                     <thead>
                                         <tr>
                                             <th class="text-center">
-
                                             </th>
                                             <th class="text-center">Photo</th>
                                             <th>Name</th>

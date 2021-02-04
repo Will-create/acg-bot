@@ -7,6 +7,8 @@
     <link href="{{ URL::asset('assets/plugins/formwizard/smart_wizard_theme_circles.css') }}" rel="stylesheet">
     <link href="{{ URL::asset('assets/plugins/formwizard/smart_wizard_theme_dots.css') }}" rel="stylesheet">
     <link href="{{ URL::asset('assets/plugins/forn-wizard/css/demo.css') }}" rel="stylesheet">
+    <link href="{{ URL::asset('css/selectize.default.css') }}" rel="stylesheet">
+
     <link rel="stylesheet" href="{{ URL::asset('assets/plugins/multipleselect/multiple-select.css') }}">
     <link href="{{ URL::asset('assets/plugins/accordion/accordion.css') }}" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
@@ -68,22 +70,17 @@
                         </div>
                         <div class="card-body">
                             @livewire('comment',['crime' => $crime,'commentaires' => $commentaires])
-
                             @livewire('commentaire',['crime' => $crime,'commentaires' => $commentaires])
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
-
-
         @php
             $crimeEspeces = \App\Models\CrimeEspece::latest()
                 ->where('crime_id', $crime->id)
                 ->get();
         @endphp
-
         <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8">
             <div class="card">
                 <div class="card-header">
@@ -106,6 +103,7 @@
 
                                             @livewire('regne-espece', ['crime' => $crime])
                                             <br>
+                                            <div class="log"></div>
                                         </div>
                                     </li>
                                     <li class="@if (Session::has('section') &&
@@ -114,15 +112,11 @@
                                             <h3>Auteurs et complices</h3>
                                             <span class="nom_item_par_collapse badge badge-danger">
                                                 {{ count($crime->auteurs) }} </span>
-
                                         </div>
-
                                         <div>
                                             @include('partials._notify',['nom' => 'auteur'])
-
                                             <div class="text-right">
                                                 @if (Auth::user()->role->designation == 'Chef d’Unité' || Auth::user()->role->designation == 'Agent d’une Unité')
-
                                                     <a href="{{ route('crime_auteurs.create', ['crime' => $crime->uuid]) }}"
                                                         class="btn btn-primary"> <i class="fa fa-plus"
                                                             aria-hidden="true"></i> Ajouter</a>
@@ -142,14 +136,11 @@
                                             <h3>Specimens confisqués</h3>
                                             <span class="nom_item_par_collapse badge badge-danger">
                                                 {{ count($crime->confiscations) }} </span>
-
                                         </div>
                                         <div>
                                             @include('partials._notify',['nom' => 'confiscation'])
-
                                             <div class="text-right">
                                                 @if (Auth::user()->role->designation == 'Chef d’Unité' || Auth::user()->role->designation == 'Agent d’une Unité')
-
                                                     <a href="{{ route('confiscations.create', ['crime' => $crime->uuid]) }}"
                                                         class="btn btn-primary"> <i class="fa fa-plus"
                                                             aria-hidden="true"></i> Ajouter</a>
@@ -169,16 +160,12 @@
                                             <h3>Armes / matériels</h3>
                                             <span class="nom_item_par_collapse badge badge-danger">
                                                 {{ count($crime->armes) }} </span>
-
                                         </div>
                                         <div>
-
                                             <div>
                                                 @include('partials._notify',['nom' => 'arme'])
-
                                                 <div class="text-right">
                                                     @if (Auth::user()->role->designation == 'Chef d’Unité' || Auth::user()->role->designation == 'Agent d’une Unité')
-
                                                         <a href="{{ route('crime.armes.create', ['crime' => $crime]) }}"
                                                             class="btn btn-primary"> <i class="fa fa-plus"
                                                                 aria-hidden="true"></i> Ajouter</a>
@@ -196,16 +183,13 @@
                                             <h3>Réglements</h3>
                                             <span class="nom_item_par_collapse badge badge-danger">
                                                 {{ count($crime->reglement) }} </span>
-
                                         </div>
                                         <div>
                                             {{-- @livewire('reglement', ['crime'  => $crime, 'modeReglements'  => $modeReglements, 'suites'  => $suites]) --}}
                                             @include('partials._notify',['nom' => 'reglement'])
-
                                             <div class="text-right">
                                                 @if (count($crime->auteurs) > 0)
                                                     @if (Auth::user()->role->designation == 'Chef d’Unité' || Auth::user()->role->designation == 'Agent d’une Unité')
-
                                                         <a href="{{ route('crime_reglements.create', ['crime' => $crime->uuid]) }}"
                                                             class="btn btn-primary"> <i class="fa fa-plus"
                                                                 aria-hidden="true"></i> Ajouter</a>
@@ -227,10 +211,8 @@
                                             <h3>Localisation</h3>
                                         </div>
                                         <div>
-
                                             <div class="text-right">
                                                 @if ($crime->longitude != '')
-
                                                     <div id="map"></div>
                                                 @else
                                                     <small class="text-danger">
@@ -238,7 +220,6 @@
                                                     </small>
                                                 @endif
                                             </div>
-
                                         </div>
                                     </li>
                                     <li class="@if (Session::has('section') &&
@@ -250,17 +231,13 @@
 
                                         </div>
                                         @livewire('image',['crime' => $crime ])
-
-
                                     </li>
-
                                 </ul>
                             </div>
                         </div><!-- COL-END -->
                     </div>
                 </div>
             </div>
-
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">Options de la publication</h3>
@@ -268,37 +245,30 @@
                 <div class="card-body">
                     <div class="row">
                         @if (Auth::user()->role->designation == 'Coordonnateur Régional' || Auth::user()->role->designation == 'Coordonnateur National')
-
                             <div class="col-md-6">
                                 @livewire('veto',['crime' => $crime])
                             </div>
                         @endif
-
                         @if (Auth::user()->role->designation == 'Chef d’Unité' || Auth::user()->role->designation == 'Agent d’une Unité')
-
                             <div class="col-md-6">
                                 @livewire('validate',['crime' => $crime])
-
                             </div>
                         @endif
-
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6"></div>
-        <div class="col-md-6 mb-4">
+        <div class="col-md-9"></div>
+        <div class="col-md-3 mb-4">
             <a href="{{ route('crimes.index') }}" class="btn btn-dark"> <span>
                     <i class="fe fe-close"></i>
                 </span><i class="fa fa-times"></i> Retour</a>
-
             <a href="{{ route('crimes.edit', $crime->uuid) }}" class="btn btn-primary">
                 <i class="fa fa-edit"></i> Modifier</a>
 
-            <button type="button" class="btn btn-danger  mb-1" data-toggle="modal"
+            <button type="button" class="btn btn-danger  mb-1 p-3" data-toggle="modal"
                 data-target="#exampleModalDelete{{ $crime->id }}"><i class="fa fa-trash"></i></button>
         </div>
     </div>
@@ -344,6 +314,7 @@
     <script src="{{ URL::asset('assets/plugins/accordion-Wizard-Form/jquery.accordion-wizard.min.js') }}"></script>
     <script src="{{ URL::asset('assets/js/advancedform.js') }}"></script>
     <script src="{{ URL::asset('assets/plugins/multipleselect/multiple-select.js') }}"></script>
+    
     <script src="{{ URL::asset('assets/plugins/multipleselect/multi-select.js') }}"></script>
 @endsection
 <input id="long" type="hidden" value="{{ $crime->longitude }}">
@@ -371,51 +342,48 @@
             // Fonction d'initialisation qui s'exécute lorsque le DOM est chargé
             initMap();
         };
-
     </script>
     {{-- <script src="{{asset('js/jquery19.js')}}"></script> --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="{{ asset('js/sweetalert.js') }}"></script>
+    <script src="{{ asset('js/selectize.js') }}"></script>
     <link href="{{ URL::asset('assets/plugins/select2/select2.min.css') }}" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
     <script src="{{ asset('js/ajax.js') }}"></script>
     <script>
-        //In your Javascript (external .js resource or <script> tag)
-        $(document).ready(function() {
-            $('#mySelect2').select2();
-            $('#mySelect2').find(':selected');
-            $('#mySelect2confiscation').select2('data');
-            $('#mySelect2confiscation').find(':selected');
-            document.addEventListener('livewire:load', function(event) {
-                window.livewire.hook('select.updating', () => {
-                    $('#mySelect2').select2();
-                });
-
-
-
-                function refreshSelect2(id) {
-                   
-                    $(id).select2({});
-                }
-
-                // Dynamic add 
-                $('button[data-id="add-item"]').on('click', function() {
-                    // Add element
-                    obj.addItem();
-                    // Add Select2 to element
-                    initSelect2($('element'));
-                });
-            });
-            //  window.addEventListener('refresh-accordeon', event => {
-            //       $('.js-example-basic-single').select2();
-            //       $('.demo-accordion').accordion();
-            //  });
-
-            
-        });
-
+                $('#mySelect2').selectize({
+                        sortField : 'text'
+                    });
+                    function refreshSelectize() {
+                   setTimeout(function (){
+                    $('#mySelect2').selectize({
+                        sortField : 'text'
+                    });
+                   },250)
+               }
+               window.addEventListener('refreshSelectize', event => {
+                   setTimeout(function (){
+                    $('#mySelect2').selectize()[0].selectize.destroy();
+                    $('#mySelect2').selectize({
+                        sortField : 'text',
+                        valueField: 'id',
+                        labelField: 'famille',
+                        searchField: 'famille',
+                        options : event.detail.especes,
+                        create : false,
+                        onChange :function(value){
+                            var select = document.getElementById('mySelect2');
+					 $(".log").append("Value:" + select.value+ "   "+ $('#mySelect2').val() + "<br />");
+                    $(".log").append("Text:" +$("#mySelect2 option:selected").text() + "<br />");
+					}
+                    })
+                    var selection = $('#mySelect2').selectize()[0].selectize;
+                    var items = selection.getValue();
+                    console.log(items);
+                   },250)
+                })
+        
     </script>
 @endpush
 @push('livewirescript')
-    @livewireScripts
+@livewireScripts
 @endpush

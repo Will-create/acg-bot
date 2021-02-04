@@ -44,10 +44,7 @@
                             <div id="loader" class="d-none">
                                 <div class="loader"></div>
                               </div>
-                                <div >
                                 {{-- <livewire:crime/> --}}
-                                <div>
-                                    <div id="smartwizard" class="">
                                         <form method="POST"   id="form_setp_1">
                                             @csrf
                                         <div class="row">
@@ -133,9 +130,6 @@
 
                                         </div>
                                         </form>
-                                    </div>
-                                </div>
-                            </div>
 						</div>
 					</div>
 				</div>

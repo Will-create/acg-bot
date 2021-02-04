@@ -36,6 +36,7 @@
         <link id="theme" rel="stylesheet" type="text/css" media="all" href="<?php echo e(URL::asset('assets/colors/color1.css')); ?>" />
 		<link href="<?php echo e(URL::asset('css/custom.css')); ?>" rel="stylesheet" />
 		<script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
-
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.13.0/js/selectize.min.js" integrity="sha512-SCkKEdq76Y59bezh6C5QR+MY43MHDK0B/8TSGYCltL5UFhKlW1ak0GtONnIz2oONZ7Vxd0S8DrGyksuqzFknhA==" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.13.0/css/selectize.bootstrap4.css" integrity="sha512-wu84CEhfBSCIcQdVMnRfgdxzAvmk8wWrtg3JXIV6kp+ktoQu3lDJuWXtoTnsAZioCvNXiZvrO/tWicnQX9xptA==" crossorigin="anonymous" />
         <?php echo $__env->yieldPushContent('livewire'); ?>
 <?php /**PATH /home/louisbertson/Desktop/criminalite/resources/views/layouts/head.blade.php ENDPATH**/ ?>

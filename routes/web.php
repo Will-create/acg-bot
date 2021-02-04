@@ -62,6 +62,4 @@ Route::prefix('74uAExW4d')->group(function () {
     // Route::view('/{patch?}', 'layouts.masterreact');
     Route::post('crimes/show/cibler/{nom}','Controller@cibleur');
     });
-
-
     //les routes du frontoffice

@@ -6,6 +6,8 @@
     <link href="<?php echo e(URL::asset('assets/plugins/formwizard/smart_wizard_theme_circles.css')); ?>" rel="stylesheet">
     <link href="<?php echo e(URL::asset('assets/plugins/formwizard/smart_wizard_theme_dots.css')); ?>" rel="stylesheet">
     <link href="<?php echo e(URL::asset('assets/plugins/forn-wizard/css/demo.css')); ?>" rel="stylesheet">
+    <link href="<?php echo e(URL::asset('css/selectize.default.css')); ?>" rel="stylesheet">
+
     <link rel="stylesheet" href="<?php echo e(URL::asset('assets/plugins/multipleselect/multiple-select.css')); ?>">
     <link href="<?php echo e(URL::asset('assets/plugins/accordion/accordion.css')); ?>" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
@@ -73,15 +75,15 @@
                             <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('comment',['crime' => $crime,'commentaires' => $commentaires])->html();
-} elseif ($_instance->childHasBeenRendered('flv8WVn')) {
-    $componentId = $_instance->getRenderedChildComponentId('flv8WVn');
-    $componentTag = $_instance->getRenderedChildComponentTagName('flv8WVn');
+} elseif ($_instance->childHasBeenRendered('TkSvQXJ')) {
+    $componentId = $_instance->getRenderedChildComponentId('TkSvQXJ');
+    $componentTag = $_instance->getRenderedChildComponentTagName('TkSvQXJ');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('flv8WVn');
+    $_instance->preserveRenderedChild('TkSvQXJ');
 } else {
     $response = \Livewire\Livewire::mount('comment',['crime' => $crime,'commentaires' => $commentaires]);
     $html = $response->html();
-    $_instance->logRenderedChild('flv8WVn', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('TkSvQXJ', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -89,15 +91,15 @@ echo $html;
                             <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('commentaire',['crime' => $crime,'commentaires' => $commentaires])->html();
-} elseif ($_instance->childHasBeenRendered('6WzoHUY')) {
-    $componentId = $_instance->getRenderedChildComponentId('6WzoHUY');
-    $componentTag = $_instance->getRenderedChildComponentTagName('6WzoHUY');
+} elseif ($_instance->childHasBeenRendered('4DSC2j3')) {
+    $componentId = $_instance->getRenderedChildComponentId('4DSC2j3');
+    $componentTag = $_instance->getRenderedChildComponentTagName('4DSC2j3');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('6WzoHUY');
+    $_instance->preserveRenderedChild('4DSC2j3');
 } else {
     $response = \Livewire\Livewire::mount('commentaire',['crime' => $crime,'commentaires' => $commentaires]);
     $html = $response->html();
-    $_instance->logRenderedChild('6WzoHUY', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('4DSC2j3', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -107,14 +109,11 @@ echo $html;
                 </div>
             </div>
         </div>
-
-
         <?php
             $crimeEspeces = \App\Models\CrimeEspece::latest()
                 ->where('crime_id', $crime->id)
                 ->get();
         ?>
-
         <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8">
             <div class="card">
                 <div class="card-header">
@@ -138,19 +137,20 @@ echo $html;
                                             <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('regne-espece', ['crime' => $crime])->html();
-} elseif ($_instance->childHasBeenRendered('aWoQJVW')) {
-    $componentId = $_instance->getRenderedChildComponentId('aWoQJVW');
-    $componentTag = $_instance->getRenderedChildComponentTagName('aWoQJVW');
+} elseif ($_instance->childHasBeenRendered('4dnSY9h')) {
+    $componentId = $_instance->getRenderedChildComponentId('4dnSY9h');
+    $componentTag = $_instance->getRenderedChildComponentTagName('4dnSY9h');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('aWoQJVW');
+    $_instance->preserveRenderedChild('4dnSY9h');
 } else {
     $response = \Livewire\Livewire::mount('regne-espece', ['crime' => $crime]);
     $html = $response->html();
-    $_instance->logRenderedChild('aWoQJVW', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('4dnSY9h', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
                                             <br>
+                                            <div class="log"></div>
                                         </div>
                                     </li>
                                     <li class="<?php if(Session::has('section') &&
@@ -159,15 +159,11 @@ echo $html;
                                             <h3>Auteurs et complices</h3>
                                             <span class="nom_item_par_collapse badge badge-danger">
                                                 <?php echo e(count($crime->auteurs)); ?> </span>
-
                                         </div>
-
                                         <div>
                                             <?php echo $__env->make('partials._notify',['nom' => 'auteur'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-
                                             <div class="text-right">
                                                 <?php if(Auth::user()->role->designation == 'Chef d’Unité' || Auth::user()->role->designation == 'Agent d’une Unité'): ?>
-
                                                     <a href="<?php echo e(route('crime_auteurs.create', ['crime' => $crime->uuid])); ?>"
                                                         class="btn btn-primary"> <i class="fa fa-plus"
                                                             aria-hidden="true"></i> Ajouter</a>
@@ -187,14 +183,11 @@ echo $html;
                                             <h3>Specimens confisqués</h3>
                                             <span class="nom_item_par_collapse badge badge-danger">
                                                 <?php echo e(count($crime->confiscations)); ?> </span>
-
                                         </div>
                                         <div>
                                             <?php echo $__env->make('partials._notify',['nom' => 'confiscation'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-
                                             <div class="text-right">
                                                 <?php if(Auth::user()->role->designation == 'Chef d’Unité' || Auth::user()->role->designation == 'Agent d’une Unité'): ?>
-
                                                     <a href="<?php echo e(route('confiscations.create', ['crime' => $crime->uuid])); ?>"
                                                         class="btn btn-primary"> <i class="fa fa-plus"
                                                             aria-hidden="true"></i> Ajouter</a>
@@ -214,16 +207,12 @@ echo $html;
                                             <h3>Armes / matériels</h3>
                                             <span class="nom_item_par_collapse badge badge-danger">
                                                 <?php echo e(count($crime->armes)); ?> </span>
-
                                         </div>
                                         <div>
-
                                             <div>
                                                 <?php echo $__env->make('partials._notify',['nom' => 'arme'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-
                                                 <div class="text-right">
                                                     <?php if(Auth::user()->role->designation == 'Chef d’Unité' || Auth::user()->role->designation == 'Agent d’une Unité'): ?>
-
                                                         <a href="<?php echo e(route('crime.armes.create', ['crime' => $crime])); ?>"
                                                             class="btn btn-primary"> <i class="fa fa-plus"
                                                                 aria-hidden="true"></i> Ajouter</a>
@@ -241,16 +230,13 @@ echo $html;
                                             <h3>Réglements</h3>
                                             <span class="nom_item_par_collapse badge badge-danger">
                                                 <?php echo e(count($crime->reglement)); ?> </span>
-
                                         </div>
                                         <div>
                                             
                                             <?php echo $__env->make('partials._notify',['nom' => 'reglement'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-
                                             <div class="text-right">
                                                 <?php if(count($crime->auteurs) > 0): ?>
                                                     <?php if(Auth::user()->role->designation == 'Chef d’Unité' || Auth::user()->role->designation == 'Agent d’une Unité'): ?>
-
                                                         <a href="<?php echo e(route('crime_reglements.create', ['crime' => $crime->uuid])); ?>"
                                                             class="btn btn-primary"> <i class="fa fa-plus"
                                                                 aria-hidden="true"></i> Ajouter</a>
@@ -272,10 +258,8 @@ echo $html;
                                             <h3>Localisation</h3>
                                         </div>
                                         <div>
-
                                             <div class="text-right">
                                                 <?php if($crime->longitude != ''): ?>
-
                                                     <div id="map"></div>
                                                 <?php else: ?>
                                                     <small class="text-danger">
@@ -294,15 +278,15 @@ echo $html;
                                             <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('count-image',['crime' => $crime ])->html();
-} elseif ($_instance->childHasBeenRendered('Isu7HPu')) {
-    $componentId = $_instance->getRenderedChildComponentId('Isu7HPu');
-    $componentTag = $_instance->getRenderedChildComponentTagName('Isu7HPu');
+} elseif ($_instance->childHasBeenRendered('EzCicW9')) {
+    $componentId = $_instance->getRenderedChildComponentId('EzCicW9');
+    $componentTag = $_instance->getRenderedChildComponentTagName('EzCicW9');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('Isu7HPu');
+    $_instance->preserveRenderedChild('EzCicW9');
 } else {
     $response = \Livewire\Livewire::mount('count-image',['crime' => $crime ]);
     $html = $response->html();
-    $_instance->logRenderedChild('Isu7HPu', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('EzCicW9', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -311,15 +295,15 @@ echo $html;
                                         <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('image',['crime' => $crime ])->html();
-} elseif ($_instance->childHasBeenRendered('5hSqFvD')) {
-    $componentId = $_instance->getRenderedChildComponentId('5hSqFvD');
-    $componentTag = $_instance->getRenderedChildComponentTagName('5hSqFvD');
+} elseif ($_instance->childHasBeenRendered('Efr4cgd')) {
+    $componentId = $_instance->getRenderedChildComponentId('Efr4cgd');
+    $componentTag = $_instance->getRenderedChildComponentTagName('Efr4cgd');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('5hSqFvD');
+    $_instance->preserveRenderedChild('Efr4cgd');
 } else {
     $response = \Livewire\Livewire::mount('image',['crime' => $crime ]);
     $html = $response->html();
-    $_instance->logRenderedChild('5hSqFvD', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('Efr4cgd', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -333,7 +317,6 @@ echo $html;
                     </div>
                 </div>
             </div>
-
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">Options de la publication</h3>
@@ -341,41 +324,39 @@ echo $html;
                 <div class="card-body">
                     <div class="row">
                         <?php if(Auth::user()->role->designation == 'Coordonnateur Régional' || Auth::user()->role->designation == 'Coordonnateur National'): ?>
-
                             <div class="col-md-6">
                                 <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('veto',['crime' => $crime])->html();
-} elseif ($_instance->childHasBeenRendered('GNor4gI')) {
-    $componentId = $_instance->getRenderedChildComponentId('GNor4gI');
-    $componentTag = $_instance->getRenderedChildComponentTagName('GNor4gI');
+} elseif ($_instance->childHasBeenRendered('fdVvN4x')) {
+    $componentId = $_instance->getRenderedChildComponentId('fdVvN4x');
+    $componentTag = $_instance->getRenderedChildComponentTagName('fdVvN4x');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('GNor4gI');
+    $_instance->preserveRenderedChild('fdVvN4x');
 } else {
     $response = \Livewire\Livewire::mount('veto',['crime' => $crime]);
     $html = $response->html();
-    $_instance->logRenderedChild('GNor4gI', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('fdVvN4x', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
                             </div>
                         <?php endif; ?>
-
                         <?php if(Auth::user()->role->designation == 'Chef d’Unité' || Auth::user()->role->designation == 'Agent d’une Unité'): ?>
 
                             <div class="col-md-6">
                                 <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('validate',['crime' => $crime])->html();
-} elseif ($_instance->childHasBeenRendered('7ctHn9r')) {
-    $componentId = $_instance->getRenderedChildComponentId('7ctHn9r');
-    $componentTag = $_instance->getRenderedChildComponentTagName('7ctHn9r');
+} elseif ($_instance->childHasBeenRendered('xKZZlo7')) {
+    $componentId = $_instance->getRenderedChildComponentId('xKZZlo7');
+    $componentTag = $_instance->getRenderedChildComponentTagName('xKZZlo7');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('7ctHn9r');
+    $_instance->preserveRenderedChild('xKZZlo7');
 } else {
     $response = \Livewire\Livewire::mount('validate',['crime' => $crime]);
     $html = $response->html();
-    $_instance->logRenderedChild('7ctHn9r', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('xKZZlo7', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -390,16 +371,15 @@ echo $html;
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6"></div>
-        <div class="col-md-6 mb-4">
+        <div class="col-md-9"></div>
+        <div class="col-md-3 mb-4">
             <a href="<?php echo e(route('crimes.index')); ?>" class="btn btn-dark"> <span>
                     <i class="fe fe-close"></i>
                 </span><i class="fa fa-times"></i> Retour</a>
-
             <a href="<?php echo e(route('crimes.edit', $crime->uuid)); ?>" class="btn btn-primary">
                 <i class="fa fa-edit"></i> Modifier</a>
 
-            <button type="button" class="btn btn-danger  mb-1" data-toggle="modal"
+            <button type="button" class="btn btn-danger  mb-1 p-3" data-toggle="modal"
                 data-target="#exampleModalDelete<?php echo e($crime->id); ?>"><i class="fa fa-trash"></i></button>
         </div>
     </div>
@@ -445,6 +425,7 @@ echo $html;
     <script src="<?php echo e(URL::asset('assets/plugins/accordion-Wizard-Form/jquery.accordion-wizard.min.js')); ?>"></script>
     <script src="<?php echo e(URL::asset('assets/js/advancedform.js')); ?>"></script>
     <script src="<?php echo e(URL::asset('assets/plugins/multipleselect/multiple-select.js')); ?>"></script>
+    
     <script src="<?php echo e(URL::asset('assets/plugins/multipleselect/multi-select.js')); ?>"></script>
 <?php $__env->stopSection(); ?>
 <input id="long" type="hidden" value="<?php echo e($crime->longitude); ?>">
@@ -472,49 +453,79 @@ echo $html;
             // Fonction d'initialisation qui s'exécute lorsque le DOM est chargé
             initMap();
         };
-
     </script>
     
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="<?php echo e(asset('js/sweetalert.js')); ?>"></script>
+    <script src="<?php echo e(asset('js/selectize.js')); ?>"></script>
     <link href="<?php echo e(URL::asset('assets/plugins/select2/select2.min.css')); ?>" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
     <script src="<?php echo e(asset('js/ajax.js')); ?>"></script>
     <script>
+                $('#mySelect2').selectize({
+                        sortField : 'text'
+                    });
+                    function refreshSelectize() {
+                   setTimeout(function (){
+                    $('#mySelect2').selectize({
+                        sortField : 'text'
+                    });
+                   },250)
+               }
+               window.addEventListener('refreshSelectize', event => {
+                   setTimeout(function (){
+                    $('#mySelect2').selectize()[0].selectize.destroy();
+                    $('#mySelect2').selectize({
+                        sortField : 'text',
+                        valueField: 'id',
+                        labelField: 'famille',
+                        searchField: 'famille',
+                        options : event.detail.especes,
+                        create : false,
+                        onChange :function(value){
+                            var select = document.getElementById('mySelect2');
+					 $(".log").append("Value:" + select.value+ "   "+ $('#mySelect2').val() + "<br />");
+      $(".log").append("Text:" +$("#mySelect2 option:selected").text() + "<br />");
+					}
+                    })
+                    var selection = $('#mySelect2').selectize()[0].selectize;
+                    var items = selection.getValue();
+                    console.log(items);
+                   },250)
+                })
         //In your Javascript (external .js resource or <script> tag)
-        $(document).ready(function() {
-            $('#mySelect2').select2();
-            $('#mySelect2').find(':selected');
-            $('#mySelect2confiscation').select2('data');
-            $('#mySelect2confiscation').find(':selected');
-            document.addEventListener('livewire:load', function(event) {
-                window.livewire.hook('select.updating', () => {
-                    $('#mySelect2').select2();
-                });
-
-
-
-                function refreshSelect2(id) {
-                   
-                    $(id).select2({});
-                }
-
-                // Dynamic add 
-                $('button[data-id="add-item"]').on('click', function() {
-                    // Add element
-                    obj.addItem();
-                    // Add Select2 to element
-                    initSelect2($('element'));
-                });
-            });
-            //  window.addEventListener('refresh-accordeon', event => {
-            //       $('.js-example-basic-single').select2();
-            //       $('.demo-accordion').accordion();
-            //  });
+        // $(document).ready(function() {
+        //     $('#mySelect2').selectize({
+        //         create: true,
+        //         sortField : 'text'
+        //     });
+        //     // $('#mySelect2').find(':selected');
+        //     // $('#mySelect2confiscation').select2('data');
+        //     // $('#mySelect2confiscation').find(':selected');
+        //     // document.addEventListener('livewire:load', function(event) {
+        //     //     window.livewire.hook('select.updating', () => {
+        //     //         $('#mySelect2').select2();
+        //     //     });
+        //     //     function refreshSelect2(id) {
+        //     //         $(id)..selectize({
+        //     //             create: true,
+        //     //             sortField : 'text'
+        //     //         });
+        //     //     }
+        //         // Dynamic add 
+        //         $('button[data-id="add-item"]').on('click', function() {
+        //             // Add element
+        //             obj.addItem();
+        //             // Add Select2 to element
+        //             initSelect2($('element'));
+        //         });
+        //     });
+        //     //  window.addEventListener('refresh-accordeon', event => {
+        //     //       $('.js-example-basic-single').select2();
+        //     //       $('.demo-accordion').accordion();
+        //     //  });
 
             
-        });
-
+        // });
     </script>
 <?php $__env->stopPush(); ?>
 <?php $__env->startPush('livewirescript'); ?>

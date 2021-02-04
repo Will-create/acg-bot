@@ -9,7 +9,6 @@ class Image extends Component
 {
     public $crime;
     public $images;
-    public $photos;
     protected $listeners = [
         'rafraichissement' => 'refresh',
     ];
@@ -31,7 +30,6 @@ class Image extends Component
       $img->delete();
       $this->emit('refresh', $this->crime->id);
       $this->images = CrimeImage::where('crime_id', $this->crime->id)->orderBy('created_at', 'desc')->get();
-      $this->reset('images');
       session()->flash('images', 'Image supprimée avec succès');
       session()->flash('section', 'images');
     }

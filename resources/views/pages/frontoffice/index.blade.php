@@ -1,5 +1,4 @@
 @extends('layouts.frontoffice')
-
 @section('content')
 					@section('page-header')
 					<!-- PAGE-HEADER -->
@@ -224,8 +223,6 @@
 			
 			<!-- ROW-5 END -->
 			<script>
-
-
 // if ($('#canvasDoughnut').length) {
 
 		var ctx = document.getElementById("canvasDoughnut").getContext("2d");
