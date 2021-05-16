@@ -1,5 +1,5 @@
 		<!-- FAVICON -->
-		<link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/logo.jpeg') }}" />
+		<link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/logo3.png') }}" />
 		<!-- TITLE -->
 		<title>Lutte contre la criminalité environnementale en Afrique de l'OUEST</title>
 		<!-- BOOTSTRAP CSS -->

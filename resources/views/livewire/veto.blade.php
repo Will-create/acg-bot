@@ -1,11 +1,11 @@
 <div>
 
 
-        @if ($crime->veto == 0)
+        @if ($sms->invalide == true)
         <div class="form-group">
-            <div class="form-label">Emettre un véto</div>
+            <div class="form-label">Revoquer</div>
             <label class="custom-switch">
-                <input type="checkbox" wire:click="toggler"  name="custom-switch-checkbox" class="custom-switch-input">
+                <input type="checkbox" checked wire:click="toggler"  name="custom-switch-checkbox" class="custom-switch-input">
                 <span class="custom-switch-indicator"></span>
                 <span class="custom-switch-description"></span>
             </label>
@@ -13,9 +13,9 @@
 
         @else
         <div class="form-group">
-            <div class="form-label">Emettre un véto</div>
+            <div class="form-label">Revoquer</div>
             <label class="custom-switch">
-                <input type="checkbox" checked wire:click="toggler"  name="custom-switch-checkbox" class="custom-switch-input">
+                <input type="checkbox" wire:click="toggler" name="custom-switch-checkbox" class="custom-switch-input">
                 <span class="custom-switch-indicator"></span>
                 <span class="custom-switch-description"></span>
             </label>
@@ -24,7 +24,7 @@
         @endif
         <div class="row">
             <div wire:loading wire:target="toggler">
-               <h4 class="text-success">Traitement en cours...</h4>
+               <h4 class="text-success">Traitement...</h4>
            </div>
          </div>
 </div>

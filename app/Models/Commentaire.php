@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Commentaire extends Model
 {
     use HasFactory;
-    protected $fillable = ['uuid', 'par', 'crime_id', 'par', 'pour', 'commentaire'];
+    protected $fillable = ['uuid', 'par', 'sms_id', 'par', 'commentaire'];
     public function getRouteKeyName(){
         return 'uuid';
     }
@@ -17,12 +17,10 @@ class Commentaire extends Model
         return $this->belongsTo('App\Models\User','par','id');
     }
     
-    public function destinataire(){
-        return $this->belongsTo('App\Models\User','pour','id');
-    }
 
-    public function crime(){
-        return $this->belongsTo('App\Models\Crime','crime_id','id');
+
+    public function sms(){
+        return $this->belongsTo('App\Models\Sms','sms_id','id');
     }
 
 }

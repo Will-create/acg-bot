@@ -23,53 +23,25 @@
                     @enderror
                 </div>
 
-                <div class="form-group">
-                    <label class="form-label" for="pays_id">Pays <strong class="text-danger">*</strong></label>
-                <select name="pay_id" id="pays_id" class="form-control custom-select select2" onchange="show_ville();">
-                    @if ($utilisateur->pay)
-                    <option value="{{$utilisateur->pay->id}}" selected> {{$utilisateur->pay->nom}}</option>
-                    @endif
-                        @if (Auth::user()->role->designation == 'Chef d’Unitpé' || Auth::user()->role->designation ==
-                        'Coordonnateur National')
-                        <option value="{{Auth::user()->pay->id}}" selected> {{Auth::user()->pay->nom}}</option>
-                        <input type="hidden" id="selected_pays" value="{{route('ville_by_country', Auth::user()->pay->id)}}">
-                        @else
-                        @if (!$utilisateur->pay)
-                        <option value="" selected disabled> Sélectionner</option>
-
-                        @endif
-                        @foreach ($pays as $pay)
-                        <option value="{{$pay->id}}">{{$pay->nom}}</option>
-                        @endforeach
-                        @endif
-                    </select>
-                    @error('organisation')
-                    <span class="helper-text red-text">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
-                </div>
-                @if (Auth::user()->role->designation == 'Coordonnateur National' ||  Auth::user()->role->designation == 'Chef d’Unité')
                     <div class="form-group">
                         <label class="form-label" for="organisation">Role <strong class="text-danger">*</strong></label>
                         <select name="role_id" id="" class="form-control custom-select select2">
-                            @if (Auth::user()->role->designation == 'Chef d’Unité' || Auth::user()->role->designation ==
-                            'Coordonnateur Régional' || Auth::user()->role->designation == 'Coordonnateur National')
-                            <option value="{{$roles->id}}" selected> {{$roles->designation}}</option>
-                            @else
-                            <option value="" selected disabled> Sélectionner</option>
+                            <option value="{{Route::currentRouteName() == 'utilisateurs.edit' ? $utilisateur->role->id : '' }}" {{Route::currentRouteName() == 'utilisateurs.edit' ? '' : 'disabled' }} selected >{{Route::currentRouteName() == 'utilisateurs.edit' ? ucfirst($utilisateur->role->designation) : 'Sélectionner' }}</option>
                             @foreach ($roles as $role)
+                            @if ($utilisateur->role && $role->id != $utilisateur->role->id)
                             <option value="{{$role->id}}">{{$role->designation}}</option>
-                            @endforeach
+                                @else
+                                <option value="{{$role->id}}">{{$role->designation}}</option>
                             @endif
+                            @endforeach
+                            
                         </select>
-                        @error('organisation')
+                        @error('role_id')
                         <span class="helper-text red-text">
                             <strong>{{ $message }}</strong>
                         </span>
                         @enderror
                 </div>
-                @endif
 
             </div>
             <div class="col-md-6">
@@ -93,96 +65,16 @@
                     </span>
                     @enderror
                 </div>
-                <div class="form-group">
-                    <label class="form-label" for="organisation">Localité <strong
-                            class="text-danger">*</strong></label>
-                    <select name="localite_id" id="ville_id" class="form-control custom-select select2">
-                        @if ($utilisateur->localite)
-                    <option value="{{$utilisateur->localite}}" selected > {{$utilisateur->localite->nom}}</option>
-                        @else
-                        <option value="" selected disabled> Sélectionner</option>
-
-                        @endif
-                    </select>
-                    @error('localite_id')
-                    <span class="helper-text red-text">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
-                </div>
-            @if (Auth::user()->role->designation != 'Administrateur Général' && Auth::user()->role->designation !=
-            'Coordonnateur Régional' )
-            <div class="form-group">
-                <label class="form-label" for="organisation">Unité <strong class="text-danger">*</strong></label>
-                <select name="unite_id" id="" class="form-control custom-select select2">
-                    <option value="" selected disabled> Sélectionner</option>
-
-                    @foreach ($unites as $unite)
-                    <option value="{{$unite->id}}" @if ($utilisateur->unite_id && $utilisateur->unite_id == $unite->id )
-selected
-                    @endif >
-                    {{$unite->designation}}</option>
-                    @endforeach
-                </select>
-                @error('organisation')
-                <span class="helper-text red-text">
-                    <strong>{{ $message }}</strong>
-                </span>
-                @enderror
-            </div>
-            @endif
+        
 
     </div>
      <div class="col-md-12">
-        @if (Auth::user()->role->designation != 'Coordonnateur National' && Auth::user()->role->designation != 'Chef d’Unité')
-        <div class="form-group">
-            <label class="form-label" for="organisation">Role <strong class="text-danger">*</strong></label>
-            <select name="role_id" id="" class="form-control custom-select select2">
-                @switch(Auth::user()->role->designation)
-                @case('Administrateur Général')
-                @if ($utilisateur->role && ($utilisateur->role->designation == "Agent d’une Unité" || $utilisateur->role->designation == "Chef d’Unité"))
-                 <option value="{{$utilisateur->role->id}}" selected> {{$utilisateur->role->designation}} </option>
-                 @else
-                 <option value="" selected disabled> Sélectionner</option>
-                @foreach ($roles as $role)
-                <option value="{{$role->id}}" @if($utilisateur->role && $utilisateur->role->id == $role->id) selected @endif>{{$role->designation}}</option>
-                @endforeach
-                @endif
-                    @break
-
-                @case('Coordonnateur Régional')
-                <option value="{{$roles->id}}"> {{$roles->designation}}</option>
-                @break
-                @case('Coordonnateur National')
-                <option value="{{$roles->id}}"> {{$roles->designation}}</option>
-                @break
-                @case('Chef d’Unité')
-                <option value="{{$roles->id}}"> {{$roles->designation}}</option>
-                @break
-
-                @default
-                    Default case...
-            @endswitch
+        
+                   
 
 
-{{--
-                @if (Auth::user()->role->designation != 'Administrateur Général')
-                <option value="{{$roles->id}}" selected> {{$roles->designation}}</option>
-                @else
-                @if (!$utilisateur->role)
-                @endif
-
-                @endif
-                @endif --}}
-            </select>
-
-            @error('organisation')
-            <span class="helper-text red-text">
-                <strong>{{ $message }}</strong>
-            </span>
-            @enderror
     </div>
-    @endif
+    
     </div>
 
         <div class="col-md-12 ">

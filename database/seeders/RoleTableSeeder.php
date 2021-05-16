@@ -14,8 +14,6 @@ class RoleTableSeeder extends Seeder
      */
     public function run()
     {
-        $roles = ['Agent d’une Unité', 'Chef d’Unité', 'Coordonnateur National', 'Coordonnateur Régional', 'Administrateur Général'];
-        //Role::truncate();
         Role::create([
             'uuid'          => Str::uuid(),
             'designation'   => 'Administrateur Général',
@@ -23,7 +21,15 @@ class RoleTableSeeder extends Seeder
         ]);
         Role::create([
             'uuid'          => Str::uuid(),
-            'designation'   => 'Agent d’une Unité',
+            'designation'   => 'Commercial',
+            'description'   => 'Le lorem ipsum est, en imprimerie, une suite de mots sans signification
+                                utilisée à titre provisoire pour calibrer
+                                une mise en page, le texte définitif venant
+                                '
+        ]);
+        Role::create([
+            'uuid'          => Str::uuid(),
+            'designation'   => 'Informaticien',
             'description'   => 'Le lorem ipsum est, en imprimerie, une suite de mots sans signification
                                 utilisée à titre provisoire pour calibrer
                                 une mise en page, le texte définitif venant
@@ -33,17 +39,7 @@ class RoleTableSeeder extends Seeder
         ]);
         Role::create([
             'uuid'          => Str::uuid(),
-            'designation'   => 'Coordonnateur Régional',
-            'description'   => 'Le lorem ipsum est, en imprimerie, une suite de mots sans signification
-                                utilisée à titre provisoire pour calibrer
-                                une mise en page, le texte définitif venant
-
-
-                                '
-        ]);
-        Role::create([
-            'uuid'          => Str::uuid(),
-            'designation'   => 'Coordonnateur National',
+            'designation'   => 'Sécrétaire',
             'description'   => 'Le lorem ipsum est, en imprimerie,  une suite de mots sans signification
                                 utilisée à titre provisoire pour calibrer
                                 une mise en page, le texte définitif venant
@@ -53,12 +49,10 @@ class RoleTableSeeder extends Seeder
         ]);
         Role::create([
             'uuid'          => Str::uuid(),
-            'designation'   => 'Chef d’Unité',
+            'designation'   => 'Comptable',
             'description'   => 'Le lorem ipsum est, en imprimerie, une suite de mots sans signification
                                 utilisée à titre provisoire pour calibrer
                                 une mise en page, le texte définitif venant
-
-
                                 '
         ]);
 

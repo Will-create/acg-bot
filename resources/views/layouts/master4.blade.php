@@ -9,7 +9,7 @@
         content="Plateforme de lutte contre la criminalité environnementale en Afrique de l'Ouest - UICN PACO">
     <meta name="keywords"
         content="criminalité, uicn, paco, afrique, ouest, burkina, nigeria, faso, senegal, mali, togo, environnement, crime, espace, animal, végétal, cote d'ivoie">
-    <title> {{ isset($titrePage) ? $titrePage : 'Administration' }} || Criminalité environnementale - UICN PACO </title>
+    <title> {{ isset($titrePage) ? $titrePage : 'Administration' }} || Afric Consulting Group- ACG Burkina </title>
     @include('layouts.head')
     <link rel="stylesheet" href="{{ asset('assets/css/fakeLoader.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
@@ -25,17 +25,8 @@
     </style>
     <div class="page">
         <div class="page-main">
-            @if (Auth::user()->role->designation == 'Administrateur Général')
                 @include('layouts.aside-menu-admin')
-            @elseif(Auth::user()->role->designation == 'Coordonnateur Régional')
-                @include('layouts.aside-menu-coodonnateur-regional')
-            @elseif(Auth::user()->role->designation == 'Coordonnateur National')
-                @include('layouts.aside-menu-coodonnateur-national')
-            @elseif(Auth::user()->role->designation == 'Chef d’Unité')
-                @include('layouts.aside-menu-chef-unite')
-            @elseif(Auth::user()->role->designation == 'Agent d’une Unité')
-                @include('layouts.aside-menu-agent-unite')
-            @endif
+            
             @include('layouts.header')
             <br>
             <div class="app-content">
@@ -48,15 +39,13 @@
         @include('layouts.aside-bar')
         @include('layouts.footer')
     </div>
-
     @include('layouts.footer-scripts')
     @stack('ajax_crud')
     @stack('livewirescript')
     @stack('scriptlive')
     <script>
         $.fakeLoader();
-
     </script>
 </body>
-
 </html>
+

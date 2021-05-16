@@ -9,21 +9,21 @@ use Illuminate\Support\Facades\Auth;
 
 class Commentaire extends Component
 {
-    public $crime;
+    public $message;
     public $commentaire;
     public $commentaires;
 
-    public $crime_id;
+    public $message_id;
     protected $rules = [
         'commentaire' => 'required|min:3',
-        'crime_id' => 'required'
+        'message_id' => 'required'
     ];
     public function vider(){
         $this->commentaire = "";
     }
     public function mount()
     {
-        $this->crime_id = $this->crime->id;
+        $this->message_id = $this->message->id;
 
     }
 
@@ -33,12 +33,12 @@ class Commentaire extends Component
         Com::create([
             'commentaire' => $this->commentaire,
             'uuid' => Str::uuid(),
-            'crime_id' => $this->crime_id,
+            'sms_id' => $this->message_id,
             'par' => Auth::user()->id,
         ]);
         $this->vider();
-        $this->emit('rafraichir',$this->crime->id);
-        $this->dispatchBrowserEvent('refresh-accordeon');
+        $this->dispatchBrowserEvent('contentChanged');
+        $this->emit('rafraichir'.$this->message->id,$this->message->id);
         
     }
 

@@ -8,7 +8,7 @@
                     </div>
                     <ul class="side-menu">
                         <li>
-                            <h3>{{Auth::user()->role->designation}}</h3>
+                            <span class="couleur-logo" >{{Auth::user()->role->designation}}</span>
                         </li>
                         <li class="slide">
                         <a class="side-menu__item"  href="">
@@ -55,7 +55,7 @@
                             </a>
                         </li>
                         <li>
-                            <h3>Configurations</h3>
+                            <span class="couleur-logo" >Configurations</span>
                         </li>
                         <li class="slide">
                             <a class="side-menu__item"  href="">

@@ -40,7 +40,7 @@
 @section('content')
 <form action="{{route('utilisateurs.store')}}" method="post" enctype="multipart/form-data">
     @csrf
-   @include('pages.backoffice.administrateur.utilisateurs.form')
+   @include('pages.backoffice.administrateur.utilisateurs.form',['roles'=> $roles])
     <div class="modal-footer">
         <button type="submit" class="btn btn-primary"> <span>
                 <i class="fe fe-save"></i>

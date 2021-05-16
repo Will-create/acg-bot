@@ -49,7 +49,7 @@
             <i class="fe fe-save"></i>
         </span> Mettre à jour</button>
 
-    <a href="{{ URL::previous() }}" class="btn btn-secondary"> <span>
+    <a href="{{ URL::previous() }}" class="btn btn-dark"> <span>
             <i class="fe fe-long-arrow-alt-left"></i>
         </span> Retour</a>
 

@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 use App\Models\Role;
-use App\Models\Unite;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -18,10 +17,6 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         $faker=Factory::create();
-
-        $ville = [
-            'Ouagadougou', 'Bobo Dioulasso', 'Banfora', 'Ouahigouya'
-        ];
         //User::truncate();
         $roles = Role::all();
          User::create([
@@ -29,16 +24,13 @@ class UserTableSeeder extends Seeder
             'titre'                 => $faker->title,
             'actif'                 => true,
             'role_id'               => 1,
-            // 'profile_photo_path'    => 'profile_photo_path/'.$faker->file('public/images/user', 'storage/app/public/profile_photo_path', false),
-            'profile_photo_path'                 => 'profile_photo_path/'.$faker->file($sourceDir = 'D:\switch_maker\war_crimes\public\images\user', $targetDir = 'D:\switch_maker\war_crimes\public\storage\profile_photo_path', false),
-
+            'profile_photo_path'    => 'profile_photo_path/'.$faker->file('/home/louisbertson/Desktop/actu/public/images/user', 'storage/app/public/profile_photo_path', false),
+            // 'profile_photo_path'                 => 'profile_photo_path/'.$faker->file($sourceDir = 'D:\switch_maker\war_crimes\public\images\user', $targetDir = 'D:\switch_maker\war_crimes\public\storage\profile_photo_path', false),
             'prenom'                => $faker->lastName,
             'email'                 => 'admin@uicn.com',
             'tel'                   => $faker->phoneNumber,
             'password'              => Hash::make('00000000'),
-            'localite_id'              => $faker->numberBetween($min = 1, $max = 5),
             'uuid'                  => Str::uuid(),
-            'pay_id'                => rand(1,16)
         ]);
         User::create([
             'nom'                   => $faker->firstName,
@@ -47,12 +39,10 @@ class UserTableSeeder extends Seeder
             'role_id'               => 2,
             'profile_photo_path'    => "/images/pngs/bg-l.png",
             'prenom'                => $faker->lastName,
-            'email'                 => ' agent@uicn.com',
+            'email'                 => 'agent@uicn.com',
             'tel'                   => $faker->phoneNumber,
             'password'              => Hash::make('00000000'),
-            'localite_id'              => $faker->numberBetween($min = 1, $max = 5),
             'uuid'                  => Str::uuid(),
-            'pay_id'                => rand(1,16)
         ]);
         foreach ($roles as $key => $role) {
         for ($i=0; $i <100 ; $i++) {
@@ -68,7 +58,6 @@ class UserTableSeeder extends Seeder
                 'email'                 => $faker->unique()->freeEmail,
                 'tel'                   => $faker->phoneNumber,
                 'password'              => Hash::make('00000000'),
-                'localite_id'              => $faker->numberBetween(1, 5),
                 'uuid'                  => Str::uuid(),
                 'pay_id'                => rand(1,16)
             ]);

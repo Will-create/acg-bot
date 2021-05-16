@@ -2,14 +2,11 @@
 @section('css')
         <!-- INTERNAL SELECT2 CSS -->
 		<link href="{{URL::asset('assets/plugins/fileuploads/css/fileupload.css')}}" rel="stylesheet" type="text/css" />
-
 		<link href="{{URL::asset('assets/plugins/select2/select2.min.css')}}" rel="stylesheet" />
-
 		<!-- INTERNAL  DATA TABLE CSS-->
 		<link href="{{URL::asset('assets/plugins/datatable/dataTables.bootstrap4.min.css')}}" rel="stylesheet" />
 		<link href="{{URL::asset('assets/plugins/datatable/responsivebootstrap4.min.css')}}" rel="stylesheet" />
         <link href="{{URL::asset('assets/plugins/datatable/fileexport/buttons.bootstrap4.min.css')}}" rel="stylesheet" />
-
           <!-- INTERNAL PRISM CSS -->
           <link href="{{URL::asset('assets/plugins/prism/prism.css')}}" rel="stylesheet">
           	<!-- INTERNAL TELEPHONE CSS-->
@@ -55,14 +52,12 @@
                                     <div class="user-wrap">
                                     <h4 class="mb-1">{{ucfirst($utilisateur->nom). ' ' . ucFirst($utilisateur->prenom)}}</h4>
                                         <h6 class="text-muted mb-4">Ajouté le : {{formatDate($utilisateur->created_at)}}</h6>
-@if ($utilisateur->actif == true)
-<a  @if($utilisateur->id != Auth::user()->id &&  Auth::user()->role->designation == "Administrateur Général")  data-toggle="tooltip" data-placement="top" title="Cliquer pour désactiver"  href="{{route('gerer-utilisateur', $utilisateur)}}" @endif  class="btn btn-success mt-1 mb-1 btn-sm"  > <i class="zmdi zmdi-rss text-white"></i> Compte  activé </a>
-
-@else
-
-<a  @if($utilisateur->id != Auth::user()->id &&  Auth::user()->role->designation == "Administrateur Général") data-toggle="tooltip" data-placement="top" title="Cliquer pour désactiver"  href="{{route('gerer-utilisateur', $utilisateur)}}" @endif   class="btn btn-danger mt-1 mb-1 btn-sm"   > <i class="zmdi zmdi-rss text-white"></i>  Compte désacivé </a>
-@endif
-                                    <a  href="{{route('utilisateurs.edit', $utilisateur)}}" class="btn btn-primary mt-1 mb-1 btn-sm"> <i class="zmdi zmdi-edit text-white"></i>  Editer le profil </a>
+                                    @if ($utilisateur->actif == true)
+                                    <a style="color:white!important;"  @if($utilisateur->id != Auth::user()->id &&  Auth::user()->role->designation == "Administrateur Général")  data-toggle="tooltip" data-placement="top" title="Cliquer pour désactiver" style="color:#fff!important;" href="{{route('gerer-utilisateur', $utilisateur)}}" @endif  class="btn btn-success mt-1 mb-1 btn-sm"  > <i class="zmdi zmdi-rss text-white"></i> Compte  activé </a>
+                                    @else
+                                    <a style="color:white!important;"  @if($utilisateur->id != Auth::user()->id &&  Auth::user()->role->designation == "Administrateur Général") data-toggle="tooltip" data-placement="top" title="Cliquer pour désactiver" style="color:#fff!important;" href="{{route('gerer-utilisateur', $utilisateur)}}" @endif   class="btn btn-danger mt-1 mb-1 btn-sm"   > <i class="zmdi zmdi-rss text-white"></i>  Compte désacivé </a>
+                                    @endif
+                                    <a style="color:white!important;"  href="{{route('utilisateurs.edit', $utilisateur)}}" class="btn btn-primary mt-1 mb-1 btn-sm"> <i class="zmdi zmdi-edit text-white"></i>  Editer le profil </a>
                                     </div>
                                 </div>
                             </div>
@@ -85,7 +80,6 @@
                                     <div class="text-muted fs-14">{{$utilisateur->email}}</div>
                                 </div>
                             </div>
-
                             <div class="media mb-0 mt-0">
                                 <div class="d-flex mr-3">
                                     <span class="user-contact-icon bg-warning"><i class="fa fa-phone text-white"></i></span>
@@ -97,8 +91,6 @@
                             </div>
                         </div>
                     </div>
-
-
                     @if ($utilisateur->id != Auth::user()->id)
                     <button type="button" class="btn btn-outline-danger btn-block  mb-1" data-toggle="modal" data-target="#exampleModalDelete{{$utilisateur->id}}"><i class="fa fa-trash"></i> Supprimer le compte</button>
                     @endif
@@ -132,10 +124,8 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <div class="col-lg-8">
-
                     <div class="tab-content">
                         <div class="tab-pane active show" id="tab-51">
                             <div class="card">
@@ -160,24 +150,14 @@
                                                     <tr>
                                                     <td><strong>Role :</strong> {{$utilisateur->role->designation}}</td>
                                                     </tr>
-
-
                                                 </tbody>
                                                 <tbody class="col-lg-6 col-xl-6 p-0">
                                                      <tr>
                                                         <td><strong>Téléphone :</strong> {{ ($utilisateur->tel)}} </td>
                                                     </tr>
-                                                    <tr>
-                                                        <td><strong>Pays :</strong> {{Ucfirst($utilisateur->pays->nom)}}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><strong>Localité :</strong> {{Ucfirst($utilisateur->localite->nom)}}</td>
-                                                    </tr>
-
-                                                      @if ($utilisateur->unite_id)
-                                                    <tr>
-                                                        <td>  <strong>Unité :</strong> <a href="{{route('unites.show', $utilisateur->uniteagent->uuid)}}" class="text-dark" data-toggle="tooltip" data-placement="top" title="Voir les détails de l'unité">     {{$utilisateur->uniteagent->designation}} </a></td>
-                                                        </tr>
+                                                    
+                                                    @if ($utilisateur->unite_id)
+                                                    
                                                     @else
                                                      <tr>
                                                     <td><strong>Unité :</strong> Auncune unité </td>
@@ -192,7 +172,6 @@
                             </div>
 
                         </div>
-
                     </div>
                     <div class="tab-content">
                         <div class="tab-pane active show" id="tab-51">

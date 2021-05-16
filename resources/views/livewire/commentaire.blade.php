@@ -12,8 +12,8 @@
                                                     </span>
                                                 @enderror
                                         </div>
-                                    <input type="hidden" wire:model="crime_id" name="crime_id" value="{{$crime->id}}">
-                                    <button class="btn btn-primary" type="submit"> <i class="fa fa-plus" aria-hidden="true"></i> Ajouter</button>
+                                    <input type="hidden" wire:model="message_id" name="message_id" value="{{$message->id}}">
+                                    <button class="btn btn-primary" type="submit"> <i class="fa fa-plus" aria-hidden="true"></i> OK</button>
                                 </form>
                         </div>
                             {{-- <div class="row m-5" >

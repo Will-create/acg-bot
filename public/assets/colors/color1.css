@@ -13,12 +13,44 @@ License        :   Licensed under ThemeForest License
 
 -------------------------------------------------------------------*/
 
+.btn-success {
+
+	color: #fff;
+	background-color: #38c172;
+	border-color: #38c172;
+  }
+  
+  .btn-success:hover {
+	color: #fff;
+	background-color: #2fa360;
+	border-color: #2d995b;
+  }
+  
+  .btn-success:focus,
+  .btn-success.focus {
+	color: #fff;
+	background-color: #94e228;
+	border-color: #94e228;
+	box-shadow: 0 0 0 0.2rem rgba(86, 202, 135, 0.5);
+  }
 a {
-	color: #525ce5;
+	color: #8CC53D!important;
+}
+.couleur-logo{
+	color : #707A7A!important;
 }
 a:hover {
-	color: #525ce5;
+	color: #94e228!important;
 }
+a.page-link {
+	color: #fff!important;
+	background-color: #8CC53D!important;
+	border-color: #fff!important;
+}
+body{
+	color: #707A7A!important;
+}
+
 .bg-primary {
 	background:#525ce5!important;
 }
@@ -33,13 +65,13 @@ a.bg-primary-gradient:hover, a.bg-primary-gradient:focus, button.bg-primary-grad
 	background-color: #525ce5 !important;
 }
 .border-primary {
-	border-color: #525ce5 !important;
+	border-color: #8CC53D !important;
 }
 .text-primary {
-	color: #525ce5 !important;
+	color: #8CC53D !important;
 }
 a.text-primary:hover, a.text-primary:focus {
-	color: #4076e3 !important;
+	color: #38c172 !important;
 }
 .table-primary, .table-primary>th, .table-primary>td {
 	background-color: #dadcff ;
@@ -59,16 +91,17 @@ a.text-primary:hover, a.text-primary:focus {
     background-color: #525ce5 !important;
     border: 1px solid #525ce5 !important;
 }
+
 .btn-primary {
 	color: #fff !important;
-	background: #525ce5 !important;
-	border-color: #525ce5!important;
+	background: #8CC53D !important;
+	border-color: #fff!important;
 	box-shadow: none;
 }
 .btn-primary:hover {
-	color: #fff;
-	background-color: #525ce5;
-	border-color: #525ce5;
+	color: #fff!important;
+	background-color: #38c172!important;
+	border-color: #fff!important;
 }
 .btn-primary:focus, .btn-primary.focus {
 	box-shadow: none;
@@ -231,6 +264,9 @@ timeline__item:after {
 .range.range-primary output {
 	background-color: #525ce5;
 }
+.active{
+	color:#8CC53D!important;
+}
 .range.range-primary input[type="range"] {
 	outline-color: #525ce5;
 }
@@ -390,7 +426,7 @@ a.chip:hover {
 	box-shadow: 0 0 0 2px rgba(82, 92, 229, 0.25);
 }
 .custom-switch-input:checked~.custom-switch-indicator {
-	background: #525ce5;
+	background: #8CC53D!important;
 }
 .ui-datepicker .ui-datepicker-title {
 	color: #525ce5;
@@ -399,11 +435,12 @@ a.chip:hover {
 	background: #525ce5!important;
 }
 #back-to-top {
-	background-image:linear-gradient(to right, #525ce5 0%, #525ce5 100%);
+	background-image:linear-gradient(to right, #8CC53D 0%, #8CC53D 100%)!important;
+	color:white!important;
 }
 #back-to-top:hover {
-	color: #525ce5 !important;
-	border: 2px solid #525ce5;
+	color: #8CC53D !important;
+	border: 2px solid #639122;
 }
 .tabs-menu ul li .active{
 	background:#525ce5;
@@ -503,12 +540,13 @@ div.conv-form-wrapper div#messages div.message.from {
 	 border: 6px solid #525ce5;
 }
 .accordionjs .acc_section.acc_active > .acc_head {
-    background: #525ce5;
+    background: #8CC53D;
 	color:#FFF !important
 }
 .tab_wrapper > ul li.active {
-    border-color: #525ce5;
-    background: #525ce5;
+	border-color: #8CC53D;
+	color:white!important;
+    background: #8CC53D;
 }
 .tab_wrapper.right_side > ul li.active:after {
 	background:#525ce5;
@@ -593,7 +631,7 @@ div.conv-form-wrapper div#messages div.message.from {
 	color: #525ce5;
 }
 .custom-switch-input:checked~.custom-switch-indicator {
-	background: #525ce5;
+	background: #8CC53D!important;
 }
 .label-primary{
 	background:#525ce5;

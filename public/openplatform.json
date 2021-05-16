@@ -1,0 +1,23 @@
+{
+	"name": "ACG officiel",
+	"description": "ACG",
+	"version": "1.0.0",
+	"icon": "globe",
+	"url": "http://127.0.0.1:8000",
+	"author": "Louis Bertson",
+	"email": "louisbertson@gmail.com",
+	"color": "#8CC53D",
+	"roles": [],
+	"width": 1024,
+	"height": 768,
+	"resize": true,
+	"mobilemenu": true,
+	"allownotifications": true,
+	"allowreadmeta": true,
+	"allowreadprofile": 1,
+	"allowreadusers": 1,
+	"allowreadapps": 1,
+	"serververify": true,
+	"responsive": true,
+	"origin": []
+}

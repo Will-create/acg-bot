@@ -4,8 +4,8 @@
 						<div class="d-flex">
 							<a class="animated-arrow hor-toggle horizontal-navtoggle"><span></span></a>
 							<a class="header-brand" href="/">
-								<img src="{{ asset('assets/logo.jpeg') }}" class="header-brand-img mobile-icon" alt="logo">
-								<img src="{{ asset('assets/logo.jpeg') }}" class="header-brand-img desktop-logo mobile-logo" alt="logo">
+								<img src="{{ asset('assets/logo3.png') }}" class="header-brand-img mobile-icon" alt="logo">
+								<img src="{{ asset('assets/logo3.png') }}" class="header-brand-img desktop-logo mobile-logo" alt="logo">
 							</a>
 							<div class="header-search d-none d-md-flex">
 								<form class="form-inline">

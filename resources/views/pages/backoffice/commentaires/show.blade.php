@@ -58,24 +58,14 @@
                                                 </a> <br>
                                             </div>
                                         </div>
+                                        <hr>
                                         <div class="wideget-user-desc">
                                             <div class="wideget-user-img">
-                                                <dt>Pour :</dt>
+                                                <dt>Sms concerné:</dt>
                                             </div>
                                             <div class="user-wrap">
-                                                <a class="text-dark" href="{{ route('utilisateurs.show', $commentaire->destinataire->uuid) }}" data-toggle="tooltip" data-placement="top" title="Cliquer pour voir les details">
-                                                    <h6 class="text-muted mb-4">{{$commentaire->destinataire->nom. ' ' . $commentaire->auteur->prenom}} ({{$commentaire->auteur->role->designation}})</h6>
-                                                </a> <br>
-                                            </div>
-                                        </div><hr>
-                                        <div class="wideget-user-desc">
-                                            <div class="wideget-user-img">
-                                                <dt>Crime concerné:</dt>
-                                            </div>
-                                            <div class="user-wrap">
-                                                <a class="text-dark" href="{{ route('crimes.show', $commentaire->crime->uuid) }}" data-toggle="tooltip" data-placement="top" title="Cliquer our voir les details">
-                                                    <h6 class="mb-1">{{$commentaire->crime->localite_apprehension}}</h6>
-                                                </a> <br>
+                                                    Contenu d'origine : <h6 class="mb-1">{{$commentaire->sms->contenu_entree}}</h6>
+                                                 <br>
                                             </div>
                                         </div>
                                         <dt>Commentaire:</dt>
@@ -118,11 +108,10 @@
             <div class="row">
                 <div class="col-md-6"></div>
                 <div class="col-md-6 mb-4">
-                    <a href="{{ route('crimes.show',$commentaire->crime->uuid) }}"   class="btn btn-dark"> <span>
+                    <a href="{{ route('commentaires.index') }}"   class="btn btn-dark"> <span>
                             <i class="fe fe-close"></i>
                         </span><i class="fa fa-times"></i> Retour</a>
-                    <a href="{{ route('commentaires.edit', $commentaire->uuid) }}" class="btn btn-primary">
-                        <i class="fa fa-edit"></i> Modifier</a>
+                    
                     <button type="button" class="btn btn-danger  mb-1" data-toggle="modal"
                         data-target="#exampleModalDelete{{ $commentaire->id }}"><i class="fa fa-trash"></i> Supprimer</button>
                 </div>

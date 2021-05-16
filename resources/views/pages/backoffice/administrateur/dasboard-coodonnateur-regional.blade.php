@@ -30,8 +30,7 @@
 						<div class="card-body">
 							<div class="row mb-1">
 								<div class="col">
-									<p class="mb-1">Aire{{$airesprotegers>0 ? 's' : ''}} protégée{{$airesprotegers>0 ? 's' : ''}}</p>
-									<h3 class="mb-0 number-font">{{$airesprotegers}}</h3>
+									
 								</div>
 								<div class="col-auto mb-0">
 									<div class="dash-icon text-secondary1">
@@ -48,8 +47,7 @@
 						<div class="card-body">
 							<div class="row mb-1">
 								<div class="col">
-									<p class="mb-1">Crime{{$airesprotegers>0 ? 's' : ''}}</p>
-									<h3 class="mb-0 number-font">{{$crimes}}</h3>
+									
 								</div>
 								<div class="col-auto mb-0">
 									<div class="dash-icon text-secondary">
@@ -66,8 +64,7 @@
 						<div class="card-body">
 							<div class="row mb-1">
 								<div class="col">
-									<p class="mb-1">Unite{{$unites > 0 ? 's' : ''}} de loi</p>
-									<h3 class="mb-0 number-font">{{$unites}}</h3>
+									
 								</div>
 								<div class="col-auto mb-0">
 									<div class="dash-icon text-warning">

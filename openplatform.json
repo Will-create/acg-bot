@@ -1,0 +1,21 @@
+{
+	"name": "Kiosques",
+	"description": "Application de mise à jours",
+	"version": "1.0.0",
+	"icon": "refresh",
+	"url": "http://127.0.0.1:8000",
+	"author": "ACG devs",
+	"email": "louis.nabaloum@africconsultinggroup.com",
+	"color": "#1873D3",
+	"roles": [],
+	"width": 1024,
+	"height": 768,
+	"resize": true,
+	"mobilemenu": true,
+	"allownotifications": true,
+	"allowreadmeta": true,
+	"allowreadprofile": 1,
+	"allowreadusers": 1,
+	"allowreadapps": 0,
+	"responsive": true
+}

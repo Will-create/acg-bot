@@ -14,27 +14,18 @@ class DatabaseSeeder extends Seeder
     public function run()
 
     {
-        $this->call(PaysTableSeeder::class);
-        $this->call(LocaliteTableSeeder::class);
-        $this->call(TypeUniteTableSeeder::class);
-        $this->call(TypeCrimeTableSeeder::class);
          // \App\Models\Pay::factory(16)->create();
         //  \App\Models\Role::factory(5)->create();
         //  \App\Models\User::factory(10)->create();
-        $this->call(RoleTableSeeder::class);
         $this->call(UserTableSeeder::class);
-        $this->call(UniteTableSeeder::class);
-        $this->call(OrdreTableSeeder::class);
-
-        //  $this->call(EspeceTableSeeder::class);
-        $this->call(EspeceVegetalTableSeeder::class);
-        $this->call(AireTableSeeder::class);
-         $this->call(ArmeTableSeeder::class);
-         $this->call(ModeReglementTableSeeder::class);
-         $this->call(DecisionJusticeTableSeeder::class);
-        $this->call(CrimeTableSeeder::class);
+        $this->call(RoleTableSeeder::class);
+        $this->call(TypeMenuTableSeeder::class);
+        $this->call(MenuTableSeeder::class);
+        $this->call(MaliTableSeeder::class);
+        $this->call(MoovTableSeeder::class);
+        // $this->call(ApiTableSeeder::class);
+        // $this->call(SmsTableSeeder::class);
         $this->call(CommentaireTableSeeder::class);
-        $this->call(CrimeParameter::class);
-
+        $this->call(OperateurTableSeeder::class);
     }
 }

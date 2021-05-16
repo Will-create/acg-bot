@@ -6624,19 +6624,22 @@ select.form-control-lg:not([size]):not([multiple]) {
 
 /*------ Tables -----*/
 .table {
-  color: #242e4c;
+  color: #707A7A;
   width: 100%;
   max-width: 100%;
   margin-bottom: 1rem; }
 
 .text-wrap table {
+  color: #707A7A;
   width: 100%;
   max-width: 100%;
   margin-bottom: 1rem; }
 
 .table th {
   padding: 0.75rem;
-  vertical-align: top; }
+  vertical-align: top;
+  color:#5e6262!important;
+}
 
 .text-wrap table th, .text-wrap table td {
   padding: 0.75rem;

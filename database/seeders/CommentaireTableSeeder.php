@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Sms;
 use App\Models\User;
-use App\Models\Crime;
 use App\Models\Commentaire;
 use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
@@ -52,23 +52,18 @@ class CommentaireTableSeeder extends Seeder
     {
 
          
-          $crimes = Crime::all();
-      $utilisateurs = User::all();
-        for ($i=0; $i <count($this->comments); $i++) { 
-            Commentaire::create([
-                'uuid'   => Str::uuid(),
-                'par' => rand(1,count($utilisateurs)),
-                'commentaire' => $this->comments[$i],
-                'crime_id' => rand(1,count($crimes)),
-            ]);       
-         }
-         for ($i=0; $i <count($this->comments); $i++) { 
-            Commentaire::create([
-                'uuid'   => Str::uuid(),
-                'par' => rand(1,count($utilisateurs)),
-                'commentaire' => $this->comments[$i],
-                'crime_id' => rand(1,count($crimes)),
-            ]);       
+        $messages = Sms::all();
+        $utilisateurs = User::all();
+        
+         for ($i=0; $i <count($messages); $i++) { 
+             for( $j=0; $j<count($this->comments);$j++){
+                 Commentaire::create([
+                     'uuid'   => Str::uuid(),
+                     'par' => rand(1,count($utilisateurs)),
+                     'commentaire' => $this->comments[$j],
+                     'sms_id' =>$messages[$i]->id,
+                 ]);       
+             }
          }
     }
 }

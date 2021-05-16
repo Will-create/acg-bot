@@ -18,21 +18,13 @@
 
 				<div class="page-header">
 					<div>
-						<h1 class="page-title">Les commentaires de crime</h1>
+						<h1 class="page-title">Les commentaires des sms</h1>
 						<ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{route('accueil')}}">Accueil</a></li>
 							<li class="breadcrumb-item active" aria-current="page">Commentaires</li>
 						</ol>
 					</div>
 					<div class="ml-auto pageheader-btn">
-                    <a class="btn btn-primary" href="{{route('commentaires.create')}}">  <span>
-                            <i class="fe fe-plus"></i>
-                        </span>
-                    Ajouter un commentaire</a>
-
-
-                    </button>
-
 					</div>
 				</div>
 				<!-- PAGE-HEADER END -->
@@ -44,7 +36,7 @@
 					<div class="col-md-12 col-lg-12">
 						<div class="card">
 							<div class="card-header">
-								<h3 class="card-title">Commentaires de crime</h3>
+								<h3 class="card-title">Commentaires de sms</h3>
 							</div>
 							<div class="card-body">
 								<div class="table-responsive">
@@ -53,7 +45,6 @@
 											<tr>
 												{{-- <th class="wd-15p">Photo</th> --}}
 												<th class="wd-15p">Par</th>
-												<th class="wd-15p">Pour</th>
 												<th class="wd-15p">A propos de</th>
 												<th>Commentaire</th>
 											</tr>
@@ -63,8 +54,7 @@
 											<tr>
 												{{-- <td> <a class="text-dark" href="{{route('commentaires.show',  $commentaire->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" > <div class="col-auto"><span class="avatar brround avatar-md d-block cover-image" data-image-src="{{asset('storage').'/'.$commentaire->photo}}"></span></div> </a></td> --}}
 												<td> <a class="text-dark" href="{{route('commentaires.show',  $commentaire->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" > {{$commentaire->auteur->nom}} {{$commentaire->auteur->prenom}}({{$commentaire->auteur->role->designation}}) </a></td>
-												<td> <a class="text-dark" href="{{route('commentaires.show',  $commentaire->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" > {{$commentaire->destinataire->nom}} {{$commentaire->destinataire->prenom}}({{$commentaire->destinataire->role->designation}}) </a></td>
-												 <td> <a class="text-dark" href="{{route('commentaires.show',  $commentaire->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" >{{$commentaire->crime->localite_apprehension}}</a></td>
+												 <td> <a class="text-dark" href="{{route('commentaires.show',  $commentaire->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" >{{$commentaire->sms->uuid}}</a></td>
 												<td> <a class="text-dark" href="{{route('commentaires.show',  $commentaire->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" > {{substr($commentaire->commentaire, 0, 60) }} </a></td>
                                             </tr>
                                             @endforeach

@@ -3,22 +3,20 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\Crime as Crm;
+use App\Models\Sms;
 
 
 class Veto extends Component
 {   
-    public $crime;
+    public $sms;
     public $toggle;
 
 
    
     public function toggler(){
-        $crime=Crm::where('id',$this->crime->id)->first();
-        $crime->valide =$this->crime->valide == 0;
-        $crime->veto =$this->crime->veto == 0 ? 1 : 0;
-        $crime->save();
-        $this->crime = $crime;
+        $sms=Sms::where('id',$this->sms->id)->first();
+        $sms->invalide =$this->sms->invalide== true ? false : true;
+        $sms->save();
     }
     public function render()
     {

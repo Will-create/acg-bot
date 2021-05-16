@@ -22,7 +22,6 @@ class CreateSessionsTable extends Migration
             $table->integer('last_activity')->index();
         });
     }
-
     /**
      * Reverse the migrations.
      *

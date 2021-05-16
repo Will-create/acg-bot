@@ -8,7 +8,7 @@
 		event.preventDefault();
 		$('.app').toggleClass('sidenav-toggled');
 	});
-	
+	$(".app-sidebar").css('overflow','scroll');
 	$(".app-sidebar").hover(function() {
 		if ($('body').hasClass('sidenav-toggled')) {
 			$('body').addClass('sidenav-toggled-open');
@@ -18,9 +18,7 @@
 			$('body').removeClass('sidenav-toggled-open');
 		}
 	});
-
-
-	// Activate sidebar slide toggle
+	// Activate sidebar slide toglgle
 	$("[data-toggle='slide']").on('click',function(event) {
 		event.preventDefault();
 		if(!$(this).parent().hasClass('is-expanded')) {
@@ -28,14 +26,10 @@
 		}
 		$(this).parent().toggleClass('is-expanded');
 	});
-
 	// Set initial active toggle
 	$("[data-toggle='slide.'].is-expanded").parent().toggleClass('is-expanded');
-
 	//Activate bootstrip tooltips
 	$("[data-toggle='tooltip']").tooltip();
-	
-	
 	// ______________Active Class
 	$(".app-sidebar li a").each(function() {
 	  var pageUrl = window.location.href.split(/[?#]/)[0];
