@@ -12,8 +12,8 @@ class CreateMenusTable extends Migration
      * @return void
      *
      */
-    public function up()
-    {
+    public function up() 
+    { 
         Schema::create('menus', function (Blueprint $table) {
             $table->id();
             $table->string('nom', 100);
@@ -22,6 +22,8 @@ class CreateMenusTable extends Migration
             $table->boolean('cache')->default(false);
             $table->text('description')->nullable();
             $table->uuid('uuid');
+            $table->string('get')->nullable();
+            $table->string('post')->nullable();
             $table->uuid('parent_uuid')->nullable();
             $table->foreignId('type_menu_id');
             $table->timestamps();

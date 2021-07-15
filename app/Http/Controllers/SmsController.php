@@ -18,9 +18,11 @@ class SmsController extends Controller
     }
     public function index()
     {
-        $sms = Sms::orderBy('created_at', 'desc')->get();
+        $sms = Sms::all()->orderBy('created_at', 'desc')->get();
         $titrePage = "Liste de tous les sms";
-        return view('pages.backoffice.sms.index', compact('sms', 'titrePage'));
+        $mot = 'contenu_entree';
+        $mots = strlen('le nombre de caractère', $mot);
+        return view('pages.backoffice.apis.index', compact('sms', 'titrePage'), $mots);
     }
     public function create($apiuuid)
     {

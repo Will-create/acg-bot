@@ -141,6 +141,15 @@
                                     
                             
                                     </div>
+
+                                </div>
+
+                                <div class="mt-2">
+                                    <form action="{{route('message.store')}}" method="post">
+                                        @csrf
+                                    <textarea name="modifier" id="" cols="60" rows="3"></textarea>
+                                    <button type="submit" class="btn btn-primary">Envoyer</button>
+                                    </form>
                                 </div>
             </div>
                            </tbody>
@@ -154,6 +163,9 @@
 <div class="row">
     <div class="col-md-6"></div>
     <div class="col-md-6 mb-4">
+    <a href="{{ route('apis.index') }}" class="btn btn-info "> <span>
+                <i class="fe fe-close"></i>
+            </span><i class="fa fa-check-lg"></i> valider</a>
         <a href="{{ route('apis.index') }}" class="btn btn-dark"> <span>
                 <i class="fe fe-close"></i>
             </span><i class="fa fa-times"></i> Retour</a>

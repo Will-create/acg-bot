@@ -129,7 +129,7 @@
                    </div>
                    <div class="row">
                     @foreach ($todays as $sms)
-                           @include('pages.backoffice.apis.element', ['sms' => $sms, 'api' => $api ])
+                           @include('pages.backoffice.apis.element', ['sms' => $sms, 'api' => $sms->api ])
                     @endforeach
                 </div>
                 

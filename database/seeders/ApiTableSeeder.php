@@ -26,7 +26,7 @@ class ApiTableSeeder extends Seeder
         ];
         $faker=Factory::create();
         foreach($sousmenus as $sm){
-        for ($i=0; $i < 4; $i++) { 
+        for ($i=0; $i < 2; $i++) { 
             $api = Api::create([
                 'nom'                  => 'Api'.$i,
                 'uuid'                 => Str::uuid(),

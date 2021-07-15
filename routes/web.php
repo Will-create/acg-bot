@@ -27,3 +27,16 @@ Route::get('api/menu/liste/{menu}', 'MenuController@api');
 Route::get('api/menu/liste/automate/{automateId}', 'MenuController@list_by_automate_id');
 
 Auth::routes();
+
+//les routes pour afficher les données (operateur menu sousmenu rubrique) en json
+Route::get('api/menu/liste', 'MenuController@listeMenu');
+
+// les routes du CRUD pour la validation des messages
+ROUTE::resource('validation', 'ValidationController');
+
+//les routes du CRUD pour faire un slug pour les messages
+ROUTE::resource('message', 'MessageController');
+// Route::post('message.store', 'MessageController@store')->except('store');
+
+//Les routes du CRUD pour servicefoot
+Route::resource('servicefoot', 'ServiceFootController');

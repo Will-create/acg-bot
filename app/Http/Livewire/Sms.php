@@ -12,15 +12,18 @@ class Sms extends Component
     public $sms;
     public $sms_id;
     public $contenu_sortie;
+    public $sortie_count;
 
 
     protected $rules = [
         'contenu_sortie' => 'required|min:3',
+        'contenu_entree' => 'nullable'
     ];
    
     public function mount(){
         $this->contenu_sortie = $this->sms->contenu_sortie;
         $this->sms_id = $this->sms->id;
+        $this->sortie_count = count(array($this->sms->contenu_entree));
     }
 
     public function submit()

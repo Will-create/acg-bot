@@ -27,7 +27,7 @@ class UtilisateursController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    { 
         $titrePage = "Liste de tous les utilisateurs";
         switch (Auth::user()->role->designation) {
 
@@ -90,9 +90,9 @@ class UtilisateursController extends Controller
             $user->save();
         try {
             $user->notify(new CreateUserNotification($user, $result));
-            $request->session()->flash('status', 'Utilisateur créé avec succès, un mail lui sera envoyé !');
+            $request->session()->flash('status', 'Utilisateur créé avec succès, le mot de passe est: '. $result);
         } catch (\Throwable $th) {
-            $request->session()->flash('status', 'Utilisateur créé avec succès,  nous n\'nous avons pu envoyer envoyer le mail');
+            $request->session()->flash('status', 'Utilisateur créé avec succès,  nous n\' avons pas pu envoyer envoyer le mail'. $result);
         }
 
         return redirect()->route('utilisateurs.show', $user->uuid);

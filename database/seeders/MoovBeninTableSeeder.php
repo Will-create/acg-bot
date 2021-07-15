@@ -1,13 +1,14 @@
 <?php
 
 namespace Database\Seeders;
-use App\Models\TypeMenu;
+
 use Illuminate\Database\Seeder;
+use App\Models\TypeMenu;
 use Faker\Factory;
 use App\Models\User;
 use App\Models\Menu;
 use Illuminate\Support\Str;
-class MaliTableSeeder extends Seeder
+class MoovBeninTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -505,7 +506,8 @@ $operateurs=operateurs();
             $uuid = Str::uuid();
             Menu::create([
                 'nom'                    =>$liste[$i]['nom'],
-                'operateur'              =>$operateurs[2]['nom'],
+                'operateur'              =>$operateurs[3]['nom'],
+
                 'type_menu_id'           =>1,
                 'uuid'                   =>$uuid,
                 'description'            =>'[description]'
@@ -513,11 +515,11 @@ $operateurs=operateurs();
             $id =  Menu::where('uuid',$uuid)->first()->id;
             $nom =  $liste[$i]['nom'];
             foreach($liste[$i]['liste'] as $list){
-                $pseudo = Str::slug($list.' '.$operateurs[2]['nom']);
+                $pseudo = Str::slug($list.' '.$operateurs[3]['nom']);
                 $sousmenu = Menu::create([
                     'nom'                         => $list,
                     'pseudo'                         =>$pseudo,
-                    'operateur'                    =>$operateurs[2]['nom'],
+                    'operateur'                    =>$operateurs[3]['nom'],
                     'cache'                         =>false,
                     'type_menu_id'                => 2,
                     'automate_id'                => $nom == 'PMU' || $nom == 'PMU PROFESSIONEL' ? 1 : null,

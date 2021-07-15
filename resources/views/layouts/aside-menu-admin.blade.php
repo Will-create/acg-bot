@@ -84,6 +84,17 @@
                         @endif
 
                             <h3 class="couleur-logo" >Opérateurs</h3>
+                        <li class="slide">
+                            <a style="color: #808080!important;" class="side-menu__item" data-toggle="slide" href="{{route('servicefoot.index')}}">
+				                <i class="bi bi-globe"></i>
+                                <span class="side-menu__label">Service Foot</span><i class="angle fa fa-angle-right"></i>
+                            </a>
+                            <ul class="slide-menu">
+                                <li><a style="color: #808080!important;" class="slide-item" href="{{route('servicefoot.index')}}"><span>Tous les
+                                    Matchs</span></a></li>
+                                <li><a style="color: #808080!important;" class="slide-item" href="#"><span>Les matchs du jour </span></a></li>
+                            </ul>
+                        </li>
                         </li>
                             @php
                                 $opera= operateurs();

@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Auth;
 
 class MenuController extends Controller
 {
-    public function index()
+    public function index() 
     {
         $menus=Menu::where('type_menu_id',1)->orderBy('type_menu_id','desc')->get();
         $titrePage = "Liste de toutes les rubriques";
@@ -104,7 +104,7 @@ class MenuController extends Controller
         if($menu->type_menu_id == 1){
             $sousmenus = Menu::where('parent_uuid',$menu->uuid)->orderBy('nom','desc')->get();
         }else{
-            $apis =Api::where('menu_id',$menu->id)->get();
+            $apis =Api::where('menu_id',$menu->id)->get(); 
             $todays = Sms::where('operateur',$menu->operateur)->whereDate('created_at', Carbon::today()->toDateString())->get();
             $textos = Sms::where('envoye',true)->get();
             $parent = Menu::parent($menu->uuid);
@@ -163,5 +163,16 @@ class MenuController extends Controller
         // }
         $menu->delete();
         return redirect()->route('menus.index')->with('status','Menu supprimé avec succès');
+    }
+
+    public function listeMenu(){
+        $operateurs = operateurs();
+        $liste = [];
+        foreach($operateurs as $operateur){
+            
+            $operateur['rubriques'] = fonctions($operateur['nom']);
+            $liste[] = $operateur;
+        }
+        return response()->json($liste);
     }
 }

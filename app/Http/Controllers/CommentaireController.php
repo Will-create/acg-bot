@@ -15,7 +15,7 @@ class CommentaireController extends Controller
     {
         
     }
-    public function index()
+    public function index() 
     {
         $commentaires=Commentaire::orderBy('commentaire','asc')->with('auteur','sms')->get();
         $titrePage = "Liste de tous les commentaires";

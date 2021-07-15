@@ -24,12 +24,12 @@ class UserTableSeeder extends Seeder
             'titre'                 => $faker->title,
             'actif'                 => true,
             'role_id'               => 1,
-            'profile_photo_path'    => 'profile_photo_path/'.$faker->file('/home/louisbertson/Desktop/actu/public/images/user', 'storage/app/public/profile_photo_path', false),
+            'profile_photo_path'    => 'profile_photo_path/'.$faker->file('/home/acg-dev/Bureau/projets/acg-bot/public/assets/images/users', 'storage/app/public/profile_photo_path', false),
             // 'profile_photo_path'                 => 'profile_photo_path/'.$faker->file($sourceDir = 'D:\switch_maker\war_crimes\public\images\user', $targetDir = 'D:\switch_maker\war_crimes\public\storage\profile_photo_path', false),
             'prenom'                => $faker->lastName,
-            'email'                 => 'admin@uicn.com',
+            'email'                 => 'admin@africconsultinggroup.com',
             'tel'                   => $faker->phoneNumber,
-            'password'              => Hash::make('00000000'),
+            'password'              => Hash::make('987654321'),
             'uuid'                  => Str::uuid(),
         ]);
         User::create([
@@ -39,9 +39,9 @@ class UserTableSeeder extends Seeder
             'role_id'               => 2,
             'profile_photo_path'    => "/images/pngs/bg-l.png",
             'prenom'                => $faker->lastName,
-            'email'                 => 'agent@uicn.com',
+            'email'                 => 'agent@africconsultinggroup.com',
             'tel'                   => $faker->phoneNumber,
-            'password'              => Hash::make('00000000'),
+            'password'              => Hash::make('987654321'),
             'uuid'                  => Str::uuid(),
         ]);
         foreach ($roles as $key => $role) {
@@ -52,12 +52,12 @@ class UserTableSeeder extends Seeder
                 'actif'                 => true,
                 'role_id'               => $role->id,
 
-                'profile_photo_path'                 => 'profile_photo_path/'.$faker->file($sourceDir = 'D:\switch_maker\war_crimes\public\images\user', $targetDir = 'D:\switch_maker\war_crimes\public\storage\profile_photo_path', false),
-                // 'profile_photo_path'                 => 'profile_photo_path/'.$faker->file($sourceDir = '/home/louisbertson/Desktop/criminalite/public/images/user', $targetDir = '/home/louisbertson/Desktop/criminalite/public/storage/profile_photo_path', false),
+                //'profile_photo_path'                 => 'profile_photo_path/'.$faker->file($sourceDir = 'D:\switch_maker\war_crimes\public\images\user', $targetDir = 'D:\switch_maker\war_crimes\public\storage\profile_photo_path', false),
+                'profile_photo_path'                 => 'profile_photo_path/'.$faker->file($sourceDir = '/home/louisbertson/Desktop/criminalite/public/assets/images/users', $targetDir = '/home/acg-dev/Bureau/projets/acg-bot/public/storage/profile_photo_path', false),
                 'prenom'                => $faker->lastName,
                 'email'                 => $faker->unique()->freeEmail,
                 'tel'                   => $faker->phoneNumber,
-                'password'              => Hash::make('00000000'),
+                'password'              => Hash::make('987654321'),
                 'uuid'                  => Str::uuid(),
                 'pay_id'                => rand(1,16)
             ]);

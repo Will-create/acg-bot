@@ -22,7 +22,7 @@ class SmsTableSeeder extends Seeder
         $apis = Api::all();
         $faker = Factory::create();
         foreach($apis as $api){
-            for ($i=0; $i < 3; $i++) { 
+            for ($i=0; $i < 2; $i++) { 
                 $sms = Sms::create([
                     'uuid'                   =>Str::uuid(),
                     'contenu_entree'         => $faker->text(600),
