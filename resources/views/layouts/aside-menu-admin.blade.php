@@ -90,9 +90,13 @@
                                 <span class="side-menu__label">Service Foot</span><i class="angle fa fa-angle-right"></i>
                             </a>
                             <ul class="slide-menu">
-                                <li><a style="color: #808080!important;" class="slide-item" href="{{route('servicefoot.index')}}"><span>Tous les
-                                    Matchs</span></a></li>
-                                <li><a style="color: #808080!important;" class="slide-item" href="#"><span>Les matchs du jour </span></a></li>
+                                <li><a style="color: #808080!important;" class="slide-item" href="{{route('servicefoot.index')}}"><span>Voir tous les messages</span></a></li>
+                                <li><a style="color: #808080!important;" class="slide-item" href="{{route('coupedumonde.index')}}"><span>Coupe du monde </span></a></li>
+                                <li><a style="color: #808080!important;" class="slide-item" href="{{route('liguechampion.index')}}"><span>Ligue des champignons</span></a></li>
+                                <li><a style="color: #808080!important;" class="slide-item" href="{{route('europaligue.index')}}"><span>Europa ligue</span></a></li>
+                                <li><a style="color: #808080!important;" class="slide-item" href="{{route('euro.index')}}"><span>Euro</span></a></li>
+                                <li><a style="color: #808080!important;" class="slide-item" href="{{route('copa.index')}}"><span>Copa </span></a></li>
+                                <li><a style="color: #808080!important;" class="slide-item" href="{{route('can.index')}}"><span>CAN</span></a></li>
                             </ul>
                         </li>
                         </li>

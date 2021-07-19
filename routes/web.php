@@ -40,3 +40,21 @@ ROUTE::resource('message', 'MessageController');
 
 //Les routes du CRUD pour servicefoot
 Route::resource('servicefoot', 'ServiceFootController');
+
+//les routes du CRUD pour la coupe du monde
+Route::resource('coupedumonde', 'CoupeDuMondeController');
+
+//les routes du CRUD pour la ligue des champions
+Route::resource('liguechampion', 'LigueDesChampionController');
+
+//les routes du CRUD pour l'europa ligue
+Route::resource('europaligue', 'EuropaLigueController');
+
+//les routes du CRUD pour l'euro
+Route::resource('euro', 'EuroController');
+
+//les routes du CRUD pour la copa
+Route::resource('copa', 'CopaController');
+
+//les routes du CRUD pour la can
+Route::resource('can', 'CanController');
