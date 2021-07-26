@@ -35,5 +35,7 @@
 					@include('layouts.footer-welcome')						
 					@include('layouts.footer-scripts')
 				</div>
+
+		<script src="{{asset('js/axios-test.js')}}"></script>
 	</body>
 </html>

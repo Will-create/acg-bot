@@ -56,6 +56,7 @@
     <!-- BACKGROUND-IMAGE CLOSED -->
 
     @include('layouts.footer-scripts')
+    <script src="{{asset('js/axios-test.js')}}"></script>
 
 </body>
 

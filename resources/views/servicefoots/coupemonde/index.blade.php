@@ -14,10 +14,11 @@
                     <div class="container">
                         <div class="page-header">
                             <div>
-                            <h1 class="page-title text-dark">Les message des matchs de la coupe du monde</h1>
+                            <h1 class="page-title text-dark">Details d 'application</h1>
                                 <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{route('accueil')}}">Accueil</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page"><span class="text-dark"></span>Tous les messages des matchs de la coupe du monde</li>
+                                <li class="breadcrumb-item"><a href="{{route('servicefoot.index')}}">ServiceFoot</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page"><span class="text-dark"></span> Coupe du Monde</li>
                                 </ol>
                             </div>
                         </div>
@@ -50,7 +51,7 @@
                         <div class=" p-2 bg-light "  >
                             <div class="scrollss">
                                 <div class="shadow-sm p-1 mb-2 bg-white rounded" id="scrollspyHeading">
-                                    <p id="scrollspyHeadin"></p>
+                                    <p id="afficher"></p>
                                 </div>
                             </div>
                         </div>
@@ -112,7 +113,7 @@
                         // writeToScreen("DISCONNECTED");
                     }
 
-                    function onMessage(evt)
+                    function onMessage(evt).then('respond => {
                     {
                         writeToScreen('<span style="color: black;">RESPONSE: ' + evt.data+'</span>');
                         websocket.close();
@@ -143,7 +144,7 @@
                                 screen.innerHTML += template;
                     }
                     var i = 0;
-                    function push(){
+                    function push(){.then('respond => {
                         i++;
                         message.id = i;
                         whiteToScreen(message);
@@ -161,6 +162,18 @@
                     };
                     function afficher(messages){
                         document.getElementById('scrollspyHeadin').innerHTML="Message: " + message.content;
+                    }
+
+
+                    const afficher = id => {
+                        axios
+                        .get()
+                            .then( response => {
+                                console.log(response);
+                            })
+                            .catch(err => {
+                                console.log(err);
+                            })
                     }
                     window.addEventListener("load", init, false);
                 </script>

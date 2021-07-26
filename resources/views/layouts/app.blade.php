@@ -65,5 +65,7 @@
             @yield('content')
         </main>
     </div>
+
+    <script src="{{asset('js/axios-test.js')}}"></script>
 </body>
 </html>

@@ -14,7 +14,7 @@
                     <div class="container">
                         <div class="page-header">
                             <div>
-                            <h1 class="page-title text-dark">Les messages des matchs du service foot</h1>
+                            <h1 class="page-title text-dark">Details d 'application</h1>
                                 <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{route('accueil')}}">Accueil</a></li>
                                     <li class="breadcrumb-item active" aria-current="page"><span class="text-dark"></span>Tous les messages des matchs</li>
