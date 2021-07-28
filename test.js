@@ -512,3 +512,8 @@ const elt = document.querySelector("#myId p.article > a");
 </div>
 const elts = document.getElementById('main'); */}
 
+
+const button = document.getElementById('lien');
+button.addEventListener('click', function(){
+    button.innerHTML = "c'est clické";
+});

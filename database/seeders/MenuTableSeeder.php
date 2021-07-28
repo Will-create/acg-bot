@@ -59,7 +59,19 @@ class MenuTableSeeder extends Seeder
                         ]
                     ],
 
-                    
+                    [
+                            'nom' => 'SERVICE FOOT',
+                            'liste' =>[
+                                'Can',
+                                'Copa',
+                                'Coupe du monde',
+                                'Euro',
+                                'Europa League',
+                                'League des Champions',
+                                'National',
+                                'Autres'
+                            ]
+                    ],
 
                     // [
                     //         'nom' => 'Actu SPORT',
@@ -980,9 +992,8 @@ class MenuTableSeeder extends Seeder
             $id =  Menu::where('uuid',$uuid)->first()->id;
             $nom =  $liste[$i]['nom'];
             foreach($liste[$i]['liste'] as $list){
-                $slug = Str::slug($operateurs[0]['nom'].' '.$list);
+                $slug = Str::slug($operateurs[0]['nom'].' '.$nom.' '.$list);
                 $sousmenu = Menu::create([
-                    
                     'nom'                         => $list,
                     'pseudo'                         =>$slug,
                     'operateur'                    =>$operateurs[0]['nom'],

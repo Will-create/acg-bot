@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Route; 
 // Route::get('/',                                             'AdminNavigationController@accueil')->name('bienvenue');
 Route::prefix('admin')->group(function () {
     Route::get('/',                                      'AdminNavigationController@accueil')->name('accueil');
@@ -17,6 +17,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/user/password/edit', 'UtilisateursController@edit_password')->name('edit_password');
     Route::patch('/user/password/edit', 'UtilisateursController@change_password')->name('change_password');
 });
+
 Route::get('/',function(){
     return redirect('/admin');
 });
@@ -36,25 +37,38 @@ ROUTE::resource('validation', 'ValidationController');
 
 //les routes du CRUD pour faire un slug pour les messages
 ROUTE::resource('message', 'MessageController');
+Route::get('/coupedumonde', 'MessageController@coupeDuMonde');
+Route::get('/liguechampion', 'MessageController@ligueDesChampion');
+Route::get('/europaligue', 'MessageController@europaLigue');
+Route::get('/euro', 'MessageController@euro');
+Route::get('/copa', 'MessageController@copa');
+Route::get('/can', 'MessageController@can');
+Route::get('/servicefoot', 'MessageController@serviceFoot');
 // Route::post('message.store', 'MessageController@store')->except('store');
 
 //Les routes du CRUD pour servicefoot
 Route::resource('servicefoot', 'ServiceFootController');
 
+//les route du crud de tous les messages
+Route::resource('les_messages', 'TousLesMessageController');
+
+
+
+
 //les routes du CRUD pour la coupe du monde
-Route::resource('coupedumonde', 'CoupeDuMondeController');
+// Route::resource('coupedumonde', 'CoupeDuMondeController');
 
 //les routes du CRUD pour la ligue des champions
-Route::resource('liguechampion', 'LigueDesChampionController');
+// Route::resource('liguechampion', 'LigueDesChampionController');
 
 //les routes du CRUD pour l'europa ligue
-Route::resource('europaligue', 'EuropaLigueController');
+// Route::resource('europaligue', 'EuropaLigueController');
 
 //les routes du CRUD pour l'euro
-Route::resource('euro', 'EuroController');
+// Route::resource('euro', 'EuroController');
 
 //les routes du CRUD pour la copa
-Route::resource('copa', 'CopaController');
+// Route::resource('copa', 'CopaController');
 
 //les routes du CRUD pour la can
-Route::resource('can', 'CanController');
+// Route::resource('can', 'CanController');

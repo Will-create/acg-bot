@@ -619,7 +619,7 @@ $operateurs=operateurs();
             $id =  Menu::where('uuid',$uuid)->first()->id;
             $nom =  $liste[$i]['nom'];
             foreach($liste[$i]['liste'] as $list){
-                $pseudo = Str::slug($list.' '.$operateurs[1]['nom']);
+                $pseudo = Str::slug($operateurs[1]['nom'].' '.$nom.' '.$list);
                 $sousmenu = Menu::create([
                     'nom'                         => $list,
                     'pseudo'                         =>$pseudo,

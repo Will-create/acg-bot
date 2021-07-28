@@ -23,7 +23,7 @@ class CreateMessagesTable extends Migration
             ->onUpdate('restrict');
             $table->string('modifier')->nullable();
             $table->timestamps();
-
+ 
         });
     }
 

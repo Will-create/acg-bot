@@ -21,24 +21,6 @@ class CreateServiceFeetTable extends Migration
             $table->foreignId('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('restrict')
             ->onUpdate('restrict');
-            $table->foreignId('coupe_du_monde_id')->nullable();
-            $table->foreign('coupe_du_monde_id')->references('id')->on('coupe_du_mondes')->onDelete('restrict')
-            ->onUpdate('restrict');
-            $table->foreignId('ligue_champion_id')->nullable();
-            $table->foreign('ligue_champion_id')->references('id')->on('ligue_des_champions')->onDelete('restrict')
-            ->onUpdate('restrict');
-            $table->foreignId('europa_id')->nullable();
-            $table->foreign('europa_id')->references('id')->on('europa_ligues')->onDelete('restrict')
-            ->onUpdate('restrict');
-            $table->foreignId('euro_id')->nullable();
-            $table->foreign('euro_id')->references('id')->on('euros')->onDelete('restrict')
-            ->onUpdate('restrict');
-            $table->foreignId('copa_id')->nullable();
-            $table->foreign('copa_id')->references('id')->on('copas')->onDelete('restrict')
-            ->onUpdate('restrict');
-            $table->foreignId('can_id')->nullable();
-            $table->foreign('can_id')->references('id')->on('cans')->onDelete('restrict')
-            ->onUpdate('restrict');
             $table->string('modifier')->nullable();
             $table->timestamps();
         });

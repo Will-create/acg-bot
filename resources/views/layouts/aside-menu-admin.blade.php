@@ -90,13 +90,13 @@
                                 <span class="side-menu__label">Service Foot</span><i class="angle fa fa-angle-right"></i>
                             </a>
                             <ul class="slide-menu">
-                                <li><a style="color: #808080!important;" class="slide-item" href="{{route('servicefoot.index')}}"><span>Voir tous les messages</span></a></li>
-                                <li><a style="color: #808080!important;" class="slide-item" href="{{route('coupedumonde.index')}}"><span>Coupe du monde </span></a></li>
-                                <li><a style="color: #808080!important;" class="slide-item" href="{{route('liguechampion.index')}}"><span>Ligue des champignons</span></a></li>
-                                <li><a style="color: #808080!important;" class="slide-item" href="{{route('europaligue.index')}}"><span>Europa ligue</span></a></li>
-                                <li><a style="color: #808080!important;" class="slide-item" href="{{route('euro.index')}}"><span>Euro</span></a></li>
-                                <li><a style="color: #808080!important;" class="slide-item" href="{{route('copa.index')}}"><span>Copa </span></a></li>
-                                <li><a style="color: #808080!important;" class="slide-item" href="{{route('can.index')}}"><span>CAN</span></a></li>
+                                <li><a style="color: #808080!important;" class="slide-item" href="{{url('/servicefoot')}}"><span>Voir tous les messages</span></a></li>
+                                <li><a style="color: #808080!important;" class="slide-item" href="{{url('/coupedumonde')}}"><span>Coupe du monde </span></a></li>
+                                <li><a style="color: #808080!important;" class="slide-item" href="{{url('/liguechampion')}}"><span>Ligue des champignons</span></a></li>
+                                <li><a style="color: #808080!important;" class="slide-item" href="{{url('/europaligue')}}"><span>Europa ligue</span></a></li>
+                                <li><a style="color: #808080!important;" class="slide-item" href="{{url('/euro')}}"><span>Euro</span></a></li>
+                                <li><a style="color: #808080!important;" class="slide-item" href="{{url('/copa')}}"><span>Copa </span></a></li>
+                                <li><a style="color: #808080!important;" class="slide-item" href="{{url('/can')}}"><span>CAN</span></a></li>
                             </ul>
                         </li>
                         </li>
@@ -123,7 +123,7 @@
                                               @if (count($menu->sousmenus)>0)
                                                   @foreach ($menu->sousmenus as $sm)
                                                   @if (!$sm->cache)
-                                                  <li><a style="color: #808080!important;" class="slide-item" href="{{route('menus.show',$sm->uuid)}}"><span>{{$sm->nom}}</span></a></li>
+                                                  <li><a style="color: #808080!important;" class="slide-item" href="{{route('menus.show',['menu' => $sm->uuid, 'slug' => $sm->pseudo])}}"><span>{{$sm->nom}}</span></a></li>
                                                   @endif
                                                   @endforeach
                                               @endif

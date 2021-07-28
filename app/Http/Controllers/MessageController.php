@@ -10,27 +10,35 @@ use Illuminate\Http\Request;
 
 class MessageController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
     public function index()
     {
-        $messages= Message::where('content')->with('auteur','content')->orderBy('id','desc')->get();
+        $messages= Message::where('content', '')->with('auteur','content')->orderBy('id','desc')->get();
         $titrePage = "Liste de tous les messages";
    
         return view('pages.backoffice.messages.index', compact('messages', 'titrePage'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('pages.backoffice.administrateur.utilisateurs.validation');
+    public function can(){
+        return view('/servicefoots.can.index');
+    }
+    public function copa(){
+        return view('/servicefoots.copa.index');
+    }
+    public function coupeDuMonde(){
+        return view('/servicefoots.coupemonde.index');
+    }
+    public function euro(){
+        return view('/servicefoots.euro.index');
+    }
+    public function europaLigue(){
+        return view('/servicefoots.europaligue.index');
+    }
+    public function ligueDesChampion(){
+        return view('/servicefoots.liguechampion.index');
+    }
+    public function serviceFoot(){
+        return view('/servicefoots.index');
     }
 
     /**
@@ -90,39 +98,6 @@ class MessageController extends Controller
         // return view('pages.backoffice.administrateur.utilisateurs.message', compact('messages', 'titrePage'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Message  $message
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Message $message)
-    {
-        //
-    }
+   
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Message  $message
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Message $message)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Message  $message
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request, Message $message)
-    {
-        $commentaire->delete();
-        return redirect()->route('messages.index')->with('status','message supprimé avec succès');
-        
-    }
 }

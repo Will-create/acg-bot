@@ -1,5 +1,6 @@
 @extends('layouts.master4')
 @section('css')
+<link rel="stylesheet" href="/css/servicefoot.css">
 <style>
     .scrollss{
         overflow: scroll; 
@@ -32,22 +33,22 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-body">
-                            <h3> Les messages entrants de la copa</h3> <hr>
-                            <div id="output" class="text-dark h-100 w-100"  >
-                                    
-                            </div>
-                            <h6>Vous pouvez modifier le message et envoyer </h6>
-                                    <button class="btn btn-primary" onclick="push()"> Push</button>
-                                    
-                                        <textarea name="modifier" class="form-control mb-1" id="exampleFormControlTextarea1" rows="3"></textarea>
-                                        <button  onclick="envoyer()" type="submit" class="btn btn-primary text-center">Valider</button>
+                    <div class="scrollss">
+                                <div id="output" class="text-dark h-100 w-100 "  >
+                                            
+                                    </div>
+                                    <h6>Vous pouvez modifier le message et envoyer </h6>
+                                    <button class="btn button1 " onclick="push()"> Push</button> 
+                                </div><hr>
+                                <textarea name="modifier" class="form-control mb-1" id="exampleFormControlTextarea1" rows="3" placeholder="Saisissez ou modifiez"></textarea>
+                                <button  onclick="envoyer()" type="submit" class="btn button text-center">Valider</button>
                         </div>
                     </div>
             </div>
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-body w-100 h-100">
-                        <h4>Les messages envoyés</h4><hr>
+                        <h4>Mssages envoyés</h4><hr>
                         <div class=" p-2 bg-light "  >
                             <div class="scrollss">
                                 <div class="shadow-sm p-1 mb-2 bg-white rounded" id="scrollspyHeading">
@@ -71,10 +72,13 @@
                     var message = {
                             id : 64565,
                             slug : 'telecel-faso-servicefoot',
-                            content : 'ceci est le contenu du message',
-                            dtcreated : '2021 07 15'
-                        };
-
+                            conte<div class="scrollss">
+                                    <div id="output" class="text-dark h-100 w-100 "  >
+                                            
+                                    </div>
+                                    <h6>Vous pouvez modifier le message et envoyer </h6>
+                                    <button class="btn button1 " onclick="push()"> Push</button> 
+                                </div><hr>
                     function initElement()
                     {
                         var message = document.getElementById("message");
@@ -133,13 +137,17 @@
                     function whiteToScreen (message){
                         var screen = document.getElementById('output');
                                 var template = `
-                                <div id="message${message.id}">
-                                <div class="" >
-                                    <small>${message.content} id${message.id}</small>
-                                </div> 
-                                <a href="javascript:send('${message.content}')"  class="btn btn-primary">Envoyer</a>
-                                <a href="javascript:edit('${message.content}')"  class="btn btn-primary">Edit</a>
-                                </div>
+                                <div class="">
+                                        <div id="message${message.id}" class="p-2 bg-light">
+                                            <div >
+                                                <div   >
+                                                    <small class="p-2 mb-2 bg-white w-75 chat">${message.content} id${message.id}</small>
+                                                </div> 
+                                                <a href="javascript:send('${message.content}')"  class="btn button1 ">Envoyer</a>
+                                                <a href="javascript:edit('${message.content}')"  class="btn button1">Edit</a>
+                                            </div>
+                                        </div>
+                                    </div>
                                 `
                                 screen.innerHTML += template;
                     }

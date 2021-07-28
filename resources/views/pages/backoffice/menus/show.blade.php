@@ -2,6 +2,19 @@
 @section('css')
 <link href="{{URL::asset('assets/plugins/tabs/tabs.css')}}" rel="stylesheet" />
 <link href="{{ URL::asset('assets/plugins/accordion/accordion.css') }}" rel="stylesheet" />
+<link rel="stylesheet" href="/css/servicefoot.css">
+<link rel="stylesheet" href="/css/servicefoot.css">
+<style>
+    .scrollss{
+        overflow: scroll; 
+        width: auto;
+        height: 430px;
+    }
+    .chats{
+        width: 70%;
+        height: auto;
+    }
+</style>
 @endsection
 @push('livewire')
 @livewireStyles
@@ -128,10 +141,21 @@
                        <div class="col-md-4"></div>
                    </div>
                    <div class="row">
-                    @foreach ($todays as $sms)
-                           @include('pages.backoffice.apis.element', ['sms' => $sms, 'api' => $sms->api ])
-                    @endforeach
-                </div>
+                        <div class="scrollss bg-light ">
+                            <div class="">
+                               <div class="">
+                                <div class="chats rounded m-3">
+                                    @foreach ($todays as $sms)
+                                        @include('pages.backoffice.apis.element', ['sms' => $sms, 'api' => $sms->api ])
+                                    @endforeach
+                                </div>
+                               </div>
+                            </div>
+                        </div>
+                        <div>
+                            @livewire('sms',['sms' => $sms])
+                        </div>
+                    </div>
                 
                 </div>
            @endif

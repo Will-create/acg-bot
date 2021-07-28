@@ -94,7 +94,7 @@ class MenuController extends Controller
           $request->session()->flash('status','Menu créé avec succès!!!');
           return redirect()->route('menus.show',$menu->uuid);
     }
-    public function show($uuid)
+    public function show(Request $req,$uuid)
     {
         $menu = Menu::where('uuid',$uuid)->with('type')->first();
         $titrePage = "Détails d'un menu";

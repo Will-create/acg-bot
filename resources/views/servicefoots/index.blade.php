@@ -1,5 +1,6 @@
 @extends('layouts.master4')
 @section('css')
+<link rel="stylesheet" href="/css/servicefoot.css">
 <style>
     .scrollss{
         overflow: scroll; 
