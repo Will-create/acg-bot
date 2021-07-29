@@ -18,7 +18,7 @@ class TousLesMessageController extends Controller
     }
 
     public function index()
-    {
+    { 
         $sms = TousLesMessage::all()->orderBy('created_at', 'desc')->get();
         $titrePage = "Liste de tous les messages";
         $mot = 'contenu_entree';
@@ -40,42 +40,21 @@ class TousLesMessageController extends Controller
         $data = request()->validate([
             'contenu_entree'                        => ['nullable', 'string', 'min:3'],
             'contenu_sortie'                           =>  ['nullable', 'string', 'min:3'],
-            'fournisseur'                       => ['nullable', 'string'],
-            'image'                       => ['nullable'],
             'valide_de'                       => ['nullable', 'date'],
             'valide_a'                         => ['nullable', 'date'],
             'verified_at'                        => ['nullable', 'string'],
             'verified_by'                        => ['nullable', 'integer'],
-            'commentaire'                           => ['nullable', 'integer'],
-            'api_id'                           => ['required', 'integer'],
-            'api_uuid'                       => ['required', 'string', 'min:3'],
         ]);
         $message = new TousLesMessage();
-        if (isset($request->image)) {
-            $message->sms_key = $data['sms_key'];
-            $message->gratuit = true;
-        } else {
-            $message->gratuit = false;
-        }
-        if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            $timestamp = str_replace([' ', ':'], '-', Carbon::now()->toDateTimeString());
-            $name = $timestamp . '-' . $file->getClientOriginalName();
-            $imagePath = request('image')->storeAs('image_uploads', $name, 'public');
-            $sms->image = $imagePath;
-        }
-        $message->nom = $data['nom'];
+        $message->contenu_entree = $data['contenu_entree'];
         $message->uuid = Str::uuid();
-        $message->menu_id = $data['menu_id'];
-        $message->menu_uuid = $data['menu_uuid'];
-        $message->fournisseur = $data['fournisseur'];
-        $message->methode = $data['methode'];
-        $message->description = $data['description'];
-        $message->url = $data['url'];
-        $message->url_envoie = $data['url_envoie'];
+        $message->contenu_sortie = $data['contenu_sortie'];
+        $message->valide_de = $data['valide_de'];
+        $message->valide_a = $data['valide_a'];
+        $message->verified_at = $data['verified_at'];
+        $message->verified_by = $data['verified_by'];
         $message->save();
-        $request->session()->flash('status', 'sms créé avec succès!!!');
-        return redirect()->route('smss.show', $message->uuid);
+        return response()->json(['success' => true]);
     }
 
     public function show($uuid)

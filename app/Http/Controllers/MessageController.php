@@ -15,7 +15,6 @@ class MessageController extends Controller
     {
         $messages= Message::where('content', '')->with('auteur','content')->orderBy('id','desc')->get();
         $titrePage = "Liste de tous les messages";
-   
         return view('pages.backoffice.messages.index', compact('messages', 'titrePage'));
     }
 

@@ -169,8 +169,7 @@
     <div class="col-md-6"></div>
     <div class="col-md-6 mb-4">
         <a href="{{ route('menus.index') }}" class="btn btn-dark"> <span>
-                <i class="fe fe-close"></i>
-            </span><i class="fa fa-times"></i> Retour</a>
+                <i class="fe fe-close"></i> </span><i class="fa fa-times"></i> Retour</a>
         <a href="{{ route('menus.edit', $menu->uuid) }}" class="btn btn-primary">
             <i class="fa fa-edit"></i> Modifier</a>
         <button type="button" class="btn btn-danger  mb-1" data-toggle="modal"
