@@ -24,7 +24,7 @@ class UserTableSeeder extends Seeder
             'titre'                 => $faker->title,
             'actif'                 => true,
             'role_id'               => 1,
-            'profile_photo_path'    => 'profile_photo_path/'.$faker->file('/home/acg-dev/Bureau/projets/acg-bot/public/assets/images/users', 'storage/app/public/profile_photo_path', false),
+            'profile_photo_path'    => "/images/pngs/bg-l.png",
             // 'profile_photo_path'                 => 'profile_photo_path/'.$faker->file($sourceDir = 'D:\switch_maker\war_crimes\public\images\user', $targetDir = 'D:\switch_maker\war_crimes\public\storage\profile_photo_path', false),
             'prenom'                => $faker->lastName,
             'email'                 => 'admin@africconsultinggroup.com',

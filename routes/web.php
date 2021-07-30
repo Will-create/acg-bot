@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route; 
+use Illuminate\Support\Facades\Route;
 // Route::get('/',                                             'AdminNavigationController@accueil')->name('bienvenue');
 Route::prefix('admin')->group(function () {
     Route::get('/',                                      'AdminNavigationController@accueil')->name('accueil');
@@ -50,7 +50,6 @@ Route::get('/servicefoot', 'MessageController@serviceFoot');
 Route::resource('servicefoot', 'ServiceFootController');
 
 //les route du crud de tous les messages
-Route::resource('les_messages', 'TousLesMessageController');
 
 
 

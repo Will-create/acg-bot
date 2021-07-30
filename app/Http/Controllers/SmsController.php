@@ -14,7 +14,7 @@ class SmsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+
     }
     public function index()
     {
@@ -35,45 +35,30 @@ class SmsController extends Controller
     }
     public function store(Request $request)
     {
-        $data = request()->validate([
+          $data = request()->validate([
             'contenu_entree'                        => ['nullable', 'string', 'min:3'],
-            'contenu_sortie'                           =>  ['nullable', 'string', 'min:3'],
-            'fournisseur'                       => ['nullable', 'string'],
-            'image'                       => ['nullable'],
+            'contenu_sortie'                           =>  ['nullable', 'string'],
+            'slug'                           =>  ['nullable', 'string'],
+			/**
             'valide_de'                       => ['nullable', 'date'],
             'valide_a'                         => ['nullable', 'date'],
             'verified_at'                        => ['nullable', 'string'],
             'verified_by'                        => ['nullable', 'integer'],
-            'commentaire'                           => ['nullable', 'integer'],
-            'api_id'                           => ['required', 'integer'],
-            'api_uuid'                       => ['required', 'string', 'min:3'],
+			**/
         ]);
-        $sms = new Sms();
-        if (isset($request->image)) {
-            $sms->sms_key = $data['sms_key'];
-            $sms->gratuit = true;
-        } else {
-            $sms->gratuit = false;
-        }
-        if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            $timestamp = str_replace([' ', ':'], '-', Carbon::now()->toDateTimeString());
-            $name = $timestamp . '-' . $file->getClientOriginalName();
-            $imagePath = request('image')->storeAs('image_uploads', $name, 'public');
-            $sms->image = $imagePath;
-        }
-        $sms->nom = $data['nom'];
-        $sms->uuid = Str::uuid();
-        $sms->menu_id = $data['menu_id'];
-        $sms->menu_uuid = $data['menu_uuid'];
-        $sms->fournisseur = $data['fournisseur'];
-        $sms->methode = $data['methode'];
-        $sms->description = $data['description'];
-        $sms->url = $data['url'];
-        $sms->url_envoie = $data['url_envoie'];
-        $sms->save();
-        $request->session()->flash('status', 'sms créé avec succès!!!');
-        return redirect()->route('smss.show', $sms->uuid);
+        $message = new Sms();
+        $message->contenu_entree = $data['contenu_entree'];
+        $message->uuid = Str::uuid();
+        $message->contenu_sortie = $data['contenu_sortie'];
+        $message->slug = $data['slug'];
+		/**
+        $message->valide_de = $data['valide_de'];
+        $message->valide_a = $data['valide_a'];
+        $message->verified_at = $data['verified_at'];
+        $message->verified_by = $data['verified_by'];
+		**/
+        $message->save();
+        return response()->json(['success' => true]);
     }
     public function show($uuid)
     {

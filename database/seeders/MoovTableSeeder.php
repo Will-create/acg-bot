@@ -173,7 +173,7 @@ class MoovTableSeeder extends Seeder
                 // ],
                 // [
                 //     'nom' => 'HOROSCOPE AMOUR',
-                //     'liste' =>[ 
+                //     'liste' =>[
                 //         'Poisson',
                 //         'Verseau',
                 //         'Capricorne',
@@ -185,7 +185,7 @@ class MoovTableSeeder extends Seeder
                 //         'Gemeaux',
                 //         'taureau',
                 //         'Bélier',
-                        
+
                 //     ]
                 // ],
                 // [
@@ -298,7 +298,7 @@ class MoovTableSeeder extends Seeder
                             'Aujoudh\'hui po',
                             'Prevision Gaoua',
                             'Prevision Dori',
-                            'Prevision FADA',
+                            'Prevision Fada N\'gourma',
                             'Prevision Manga',
                             'Prevision Ziniaré',
                             'Prevision Kaya',
@@ -309,7 +309,7 @@ class MoovTableSeeder extends Seeder
                             'Prevision Ouahigouya',
                             'Prevision Bobo Dioulasso',
                             'Prevision po',
-                            
+
                     ]
                 ],
                 // [
@@ -317,7 +317,7 @@ class MoovTableSeeder extends Seeder
                 //     'liste' =>[
                 //         'Sud Ouest Gaoua',
                 //         'Sahel Dori',
-                //         'Est FADA',
+                //         'Est Fada N\'gourma',
                 //         'Centre Sud Manga',
                 //         'Plateau Central Ziniaré',
                 //         'Centre Nord Kaya',
@@ -437,7 +437,7 @@ class MoovTableSeeder extends Seeder
                             'Hadith du jour',
                             'Sud Ouest Gaoua',
                             'Sahel Dori',
-                            'Est FADA',
+                            'Est Fada N\'gourma',
                             'Centre Sud Manga',
                             'Plateau Central Ziniaré',
                             'Centre Nord Kaya',
@@ -470,7 +470,7 @@ class MoovTableSeeder extends Seeder
                 //     'liste' =>[
                 //     ]
                 // ],
-               
+
                 // [
                 //     'nom' => 'PHARMACIE DE GARDE',
                 //     'liste' =>[
@@ -513,7 +513,7 @@ class MoovTableSeeder extends Seeder
                         ]
                     ],
                     // PMIB et PMUB PROFESSIONNEL à revoir une fois les commntaire enlever
-                // [ 
+                // [
                 //         'nom' => 'PMU',
                 //         'liste' =>[
                 //         'Coup de Coeur',

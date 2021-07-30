@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="/css/servicefoot.css">
 <style>
     .scrollss{
-        overflow: scroll; 
+        overflow: scroll;
         width: auto;
         height: 430px;
     }
@@ -81,7 +81,7 @@
                              <tr>
                                  <td><strong>DESCRIPTION : </strong> {{ucfirst($menu->description)}}</td>
                             </tr>
-                            
+
                         </tbody>
                     </table>
                 </div>
@@ -114,25 +114,25 @@
                        </table>
                    </div>
                </div>
-               @else 
+               @else
                <div id="profile-log-switch">
                    <div class="row">
                        <div class="col-md-4"></div>
                        <div class="col-md-4">
-                        
+
                             <div class="card">
-                                
+
                                 <div class="card-body wideget-user-contact">
                                     <img src="{{asset('images').'/'.operateur_logo($menu->operateur)}}"
                                         style="min-width:100%; object-fit:cover; object-position: 50% 50%;" alt="" srcset="">
                                     <div class="clearfix"></div>
-        
-        
+
+
                                 </div>
                                 <br>
-                                
 
-                                
+
+
                             </div>
                             <div class="media-heading text-dark">
                                 <h5><strong>Contenus disponibles aujourd'hui</strong></h5>
@@ -141,22 +141,66 @@
                        <div class="col-md-4"></div>
                    </div>
                    <div class="row">
+				@if(count($todays) > 0)
+
                         <div class="scrollss bg-light ">
                             <div class="">
                                <div class="">
                                 <div class="chats rounded m-3">
-                                    @foreach ($todays as $sms)
+									@foreach ($todays as $sms)
                                         @include('pages.backoffice.apis.element', ['sms' => $sms, 'api' => $sms->api ])
                                     @endforeach
+
                                 </div>
                                </div>
                             </div>
                         </div>
+					@endif
+
                         <div>
-                            @livewire('sms',['sms' => $sms])
+
+
+
+								<div class="row m-5 text-center">
+									<div class="col-md-1"></div>
+									<div class="col-md-10">
+											<div class="row">
+									            <div style="border: 1px solid red;width:100%;height:60px; border-radius:5px;" id="screen" ></div>
+
+												<div>
+													<div class="d-flex">
+														<div class="form-group" style="width: 100%">
+															<textarea  value="" rows="3" cols="60" type="text" class="form-control" name="contenu_sortie"
+																 id="exampleFormControlTextarea1" placeholder="Saisissez ou modifez"></textarea>
+														</div>
+
+															<button onclick="diffuser()" id="exampleFormControlTextarea1" class="btn button1" > <i class="fa fa-check" aria-hidden="true"></i> Diffuser</button>
+													</div>
+												</div>
+											</div>
+									</div>
+									<div class="col-md-1"></div>
+								</div>
+								<script type="text/javascript">
+									function desactiver() {
+									  var bouton = document.getElementById('exampleFormControlTextarea1');
+									  bouton.disabled = "disabled";
+									  bouton.value="Envoi...";
+									}
+
+									function edit(contenu){
+												var textarea = document.getElementById('exampleFormControlTextarea1');
+												textarea.value = contenu;
+											};
+									function diffuser(){
+												var content = document.getElementById('exampleFormControlTextarea1').value;
+												document.getElementById('screen').innerHTML = content;
+											};
+								 </script>
+
                         </div>
                     </div>
-                
+
                 </div>
            @endif
        </div>

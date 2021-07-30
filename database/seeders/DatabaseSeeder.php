@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
         $this->call(MaliTableSeeder::class);
         $this->call(MoovTableSeeder::class);
         $this->call(ApiTableSeeder::class);
-        $this->call(SmsTableSeeder::class);
+        //$this->call(SmsTableSeeder::class);
         $this->call(CommentaireTableSeeder::class);
         $this->call(OperateurTableSeeder::class);
     }
