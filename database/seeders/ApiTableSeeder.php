@@ -25,7 +25,6 @@ class ApiTableSeeder extends Seeder
             ],
         ];
         $faker=Factory::create();
-        foreach($sousmenus as $sm){
         for ($i=0; $i < 2; $i++) { 
             $api = Api::create([
                 'nom'                  => 'Api'.$i,
@@ -33,13 +32,10 @@ class ApiTableSeeder extends Seeder
                 'fournisseur'          => $faker->company,
                 'url'                  => $faker->url,
                 'url_envoie'           => $faker->url,
-                'menu_id'              => $sm->id,
-                'menu_uuid'            => $sm->uuid,
                 'description'          => 'Le lorem ipsum est, en imprimerie, une suite de mots sans signification
                                                 utilisée à titre provisoire pour calibrer
                                                 une mise en page, le texte définitif venant'
             ]);
-        }
         }
     }
 }

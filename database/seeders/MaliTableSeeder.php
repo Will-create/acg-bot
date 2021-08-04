@@ -513,10 +513,10 @@ $operateurs=operateurs();
             $id =  Menu::where('uuid',$uuid)->first()->id;
             $nom =  $liste[$i]['nom'];
             foreach($liste[$i]['liste'] as $list){
-                $pseudo = Str::slug($list.' '.$operateurs[2]['nom']);
+                $slug = Str::slug($operateurs[2]['nom'].' '.$nom.' '.$list);
                 $sousmenu = Menu::create([
                     'nom'                         => $list,
-                    'pseudo'                         =>$pseudo,
+                    'pseudo'                         =>$slug,
                     'operateur'                    =>$operateurs[2]['nom'],
                     'cache'                         =>false,
                     'type_menu_id'                => 2,
