@@ -631,7 +631,10 @@ div.conv-form-wrapper div#messages div.message.from {
 	color: #525ce5;
 }
 .custom-switch-input:checked~.custom-switch-indicator {
-	background: #8CC53D!important;
+	background: #8CC53D;
+}
+.custom-switch-input:checked~.indicator2 {
+	background: red!important;
 }
 .label-primary{
 	background:#525ce5;

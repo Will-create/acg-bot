@@ -1,6 +1,9 @@
 @extends('layouts.master4')
-
+@push('livewire')
+@livewireStyles
+@endpush
 @section('content')
+
 @include('partials._notification')
 			<h2 style="color: #808080!important;" class="mb-1 ">Aperçu général</h2> <br/>
             <div class="row">
@@ -148,18 +151,21 @@
 
             </div>
 				<h2 style="color: #808080!important;" class="mb-1">Options du Robot</h2>
-				<div class="row">
-									  <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">
-									<label>Mode automatique</label>
-										  @livewire('cache',['menu' => $menu])
-
-
-									   </div>
-										<div class="col-sm-12 col-md-12 col-lg-8 col-xl-8">
-										<label></label>
-											@livewire('cache',['menu' => $menu])
-										</div>
-				</div>
+									  <div class="card">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">
+                            <label></label>
+                            @livewire('robot-mode')
+                          </div>
+                          <div class="col-lg-4"></div>
+                          <div class="col-sm-12 col-md-12 col-lg-4 col-xl-8">
+                              <label></label>
+                              @livewire('robot-power')
+                          </div>
+                        </div>
+                      </div>
+				            </div>
 
 
 
@@ -262,4 +268,7 @@
   });
     })
 </script>
+@endpush
+@push('livewirescript')
+@livewireScripts
 @endpush
