@@ -149,16 +149,7 @@
             </div>
 				<h2 style="color: #808080!important;" class="mb-1">Options du Robot</h2>
 				<div class="row">
-									  <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">
-									<label>Mode automatique</label>
-										  @livewire('cache',['menu' => $menu])
 
-
-									   </div>
-										<div class="col-sm-12 col-md-12 col-lg-8 col-xl-8">
-										<label></label>
-											@livewire('cache',['menu' => $menu])
-										</div>
 				</div>
 
 
