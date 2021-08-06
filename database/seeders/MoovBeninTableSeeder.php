@@ -158,9 +158,9 @@ class MoovBeninTableSeeder extends Seeder
                             'Kayes',
                             'Mopti',
                             'Sikasso',
-                            'Bamako',                                  
+                            'Bamako',
                         ],
-                        
+
                 [
                     'nom' => 'PMU',
                     'liste' =>[
@@ -184,7 +184,7 @@ class MoovBeninTableSeeder extends Seeder
                     ],
                     // [
                     //     'nom' => 'HOPITAUX',
-                    //     'liste' =>[ 
+                    //     'liste' =>[
                     //         'Tombouctou',
                     //         'Gao',
                     //         'Kidal',
@@ -358,15 +358,15 @@ class MoovBeninTableSeeder extends Seeder
                     //         'Kayes',
                     //         'Mopti',
                     //         'Sikasso',
-                    //         'Bamako',                                
-                    //         'Commune de Kita',                                
-                    //         'Bamako commune 1',                                
-                    //         'Bamako commune 2',                                
-                    //         'Bamako commune 3',                                
-                    //         'Bamako commune 4',                                
-                    //         'Bamako commune 5',                                
-                    //         'Bamako commune 6',                                
-                                      
+                    //         'Bamako',
+                    //         'Commune de Kita',
+                    //         'Bamako commune 1',
+                    //         'Bamako commune 2',
+                    //         'Bamako commune 3',
+                    //         'Bamako commune 4',
+                    //         'Bamako commune 5',
+                    //         'Bamako commune 6',
+
                     //     ]
                     // ],
                     [
@@ -429,7 +429,7 @@ class MoovBeninTableSeeder extends Seeder
                     // [
                     //     'nom' => 'Test Applications',
                     //     'liste' =>[
-                            
+
                     //     ]
                     // ],
                     // [
@@ -446,7 +446,7 @@ class MoovBeninTableSeeder extends Seeder
                     //         'Air Burkina',
                     //         'Royal Air Maroc',
                     //         'Air Mali'
-                            
+
                     //     ]
                     // ],
                     // [
@@ -515,10 +515,10 @@ $operateurs=operateurs();
             $id =  Menu::where('uuid',$uuid)->first()->id;
             $nom =  $liste[$i]['nom'];
             foreach($liste[$i]['liste'] as $list){
-                $pseudo = Str::slug($list.' '.$operateurs[3]['nom']);
+                $slug = Str::slug($operateurs[3]['nom'].' '.$nom.' '.$list);
                 $sousmenu = Menu::create([
                     'nom'                         => $list,
-                    'pseudo'                         =>$pseudo,
+                    'pseudo'                         =>$slug,
                     'operateur'                    =>$operateurs[3]['nom'],
                     'cache'                         =>false,
                     'type_menu_id'                => 2,

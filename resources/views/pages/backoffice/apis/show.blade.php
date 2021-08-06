@@ -64,7 +64,7 @@
                                  <td><strong>DESCRIPTION : </strong> {{ucfirst($api->description)}}</td>
                             </tr>
                         </tbody>
-                        
+
                     </table>
                 </div>
             </div>
@@ -74,10 +74,10 @@
    <div class="col-md-8" >
    <div class="card">
        <div class="card-body">
-          
+
                <div id="profile-log-switch">
                    <div class="media-heading text-dark">
-                       <h5><strong>Les sms provenants de cette Api</strong></h5>
+                       <h5><strong>Les operateurs utilisants cette Api</strong></h5>
                    </div>
                    <div class="table-responsive ">
                        <table class="table row table-borderless table-sm">
@@ -85,7 +85,7 @@
                                @php
                                    $i=1;
                                @endphp
-                                <div class="row"> 
+                                <div class="row">
                                     <div class="panel panel-primary">
                                         <div class="tab_wrapper first_tab ">
                                             <ul class="tab_list">
@@ -94,63 +94,16 @@
                                                 <li>Malitel</li>
                                                 <li>Moov Bénin</li>
                                             </ul>
-                                            <div class="content_wrapper">
-                                                <div class="tab_content active">
-                                                    @foreach ($api->sms as $sms)
-                                                        @if ($sms->destination == 'moov')
-                                                        @include('pages.backoffice.apis.element', ['sms' => $sms, 'api' => $api ])
-                                                        @endif
 
-                                                   @endforeach
-                                                </div>
-        
-                                                <div class="tab_content">
-                                                    @foreach ($api->sms as $sms)
-                                                        @if ($sms->destination == 'telecel')
-                                                        
-                                                        @include('pages.backoffice.apis.element', ['sms' => $sms, 'api' => $api ])
-                                                        
-                                                        @endif
-
-                                                   @endforeach
-                                                </div>
-        
-                                                <div class="tab_content">
-                                                    @foreach ($api->sms as $sms)
-                                                        @if ($sms->destination == 'malitel')
-                                                        @include('pages.backoffice.apis.element', ['sms' => $sms, 'api' => $api ])
-                                                        
-                                                        @endif
-
-                                                   @endforeach
-                                                </div>
-        
-                                                <div class="tab_content">
-                                                    @foreach ($api->sms as $sms)
-                                                        @if ($sms->destination == 'benin')
-                                                        @include('pages.backoffice.apis.element', ['sms' => $sms, 'api' => $api ])
-                                                        
-                                                        
-                                                        @endif
-
-                                                   @endforeach
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
-                                    
-                            
+
+
                                     </div>
 
                                 </div>
 
-                                <div class="mt-2">
-                                    <form action="{{route('message.store')}}" method="post">
-                                        @csrf
-                                    <textarea name="modifier" id="" cols="60" rows="3"></textarea>
-                                    <button type="submit" class="btn btn-primary">Envoyer</button>
-                                    </form>
-                                </div>
+
             </div>
                            </tbody>
                        </table>

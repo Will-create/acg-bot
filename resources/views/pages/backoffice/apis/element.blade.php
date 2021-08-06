@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="/css/servicefoot.css">
 <style>
     .scrollss{
-        overflow: scroll; 
+        overflow: scroll;
         width: auto;
         height: 465px;
     }
@@ -15,7 +15,7 @@
     }
 </style>
 @endsection
-		   <div class="shadow-lg p-3 mb-5 bg-white rounded">
+		   <div class="shadow-sm p-3 mb-5 bg-white rounded">
             <div class="m-3  bor rounded">
                 <div class="row">
                     <div class="d-flex">
@@ -48,7 +48,7 @@
                     </div>
                 </div>
            </div>
-           
+
 
            <script language="javascript" type="text/javascript">
             var wsUri = "wss://echo.websocket.org/";
@@ -123,7 +123,7 @@
                                     <div >
                                         <div   >
                                             <small class="p-2 mb-2 bg-white w-75 chat">${message.content} id${message.id}</small>
-                                        </div> 
+                                        </div>
                                         <a href="javascript:send('${message.content}')"  class="btn button1 ">Envoyer</a>
                                         <a href="javascript:edit('${message.content}')"  class="btn button1">Edit</a>
                                     </div>
@@ -134,7 +134,7 @@
             }
             function send(content){
                 console.log(content);
-            } 
+            }
             function edit(contenu){
                 var textarea = document.getElementById('exampleFormControlTextarea1');
                 textarea.value = contenu;
@@ -147,4 +147,4 @@
                 document.getElementById('scrollspyHeadin').innerHTML="Message: " + message.content;
             }
             //window.addEventListener("load", init, false);
-        </script>  
+        </script>

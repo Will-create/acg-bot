@@ -13,28 +13,28 @@ use Illuminate\Support\Facades\Auth;
 
 class ApiController extends Controller
 {
-   
+
     public function index()
     {
         $apis = Api::orderBy('nom', 'asc')->get();
         $titrePage = "Liste de toutes les apis";
-            
+
 
                 switch (Auth::user()->role->designation) {
                     case 'Administrateur Général':
                         return view('pages.backoffice.apis.dash', compact('apis', 'titrePage'));
                     break;
-                    
+
                     default:
                         return view('pages.backoffice.apis.dash', compact('apis', 'titrePage'));
                         break;
                 }
     }
-    public function sms()
+  /*  public function sms()
     {
         $sms = Sms::orderBy('id', 'asc')->get();
         return response()->json($sms);
-    }
+    }*/
     public function create()
     {
         return view('pages.backoffice.apis.createdit', [
@@ -74,12 +74,8 @@ class ApiController extends Controller
     }
     public function show($uuid)
     {
-        $api = Api::where('uuid', $uuid)->with('menu', 'sms')->first();
-        foreach($api->sms as $s){
-            $s['commentaires'] = null;
-            $commentaires = Commentaire::where('sms_id',$s->id)->get();
-            $s->commentaires = $commentaires;
-        }
+        $api = Api::where('uuid', $uuid)->with('menu')->first();
+
         $titrePage = "Détails d'une api";
         return view('pages.backoffice.apis.show', compact('api', 'titrePage'));
     }

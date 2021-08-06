@@ -5,8 +5,8 @@
 @endsection
 @section('content')
 			<!-- CONTAINER OPEN -->
-			<div class="container-login100">
-				<div class="wrap-login100 p-3">
+			<div class="container-login100 pb-3">
+				<div class="wrap-login100 p-1 ">
 
 					<div class="row">
 						<div class="col-md-1"></div>
@@ -16,7 +16,7 @@
 								<img  src="{{asset('assets/LOGO ACG.png')}}" style="max-width: 45vh; object-fit:cover; object-position: 50% 50%;" alt="" srcset="">
 								<br><br>
 							</div>
-							<div class="d-flex justify-content-center">
+							<div class="d-flex justify-content-center mb-3">
 								<form class="login100-form validate-form" action="{{route('login')}}" method="POST">
 									@csrf
 										<span class="login100-form-title text-muted">
@@ -59,18 +59,18 @@
 										<div class="text-right pt-1">
 											<p class="mb-0"><a href="{{url('/' . $page='forgot-password')}}" class="text-muted text-dark ml-1">Mot de passe oublié?</a></p>
 										</div>
-										<div class="container-login100-form-btn">
+										<div class="container-login100-form-btn mb-5">
 											<button style="background-color: #8CC53D;" type="submit" class="login100-form-btn btn">
 												Connexion
 											</button>
 										</div>
-				
+
 									</form>
 							</div>
 						</div>
 						<div class="col-md-1"></div>
 					</div>
-						
+
 				</div>
 			</div>
 			<!-- CONTAINER CLOSED -->

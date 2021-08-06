@@ -16,13 +16,6 @@
                           <p class="mb-1">{{$api->nom}}</p>
                            <small class="mb-0 number-font"> <b>{{$api->fournisseur}}</b></small>
                           </div>
-                          <div class="col-auto mb-0">
-                          <div class="dash-icon text-secondary">
-                              <span class="nom_item_par_collapse badge badge-danger">
-                                  {{count($api->sms)}} </span>
-                              
-                            </div>
-                          </div>
                         </div>
                         {{-- <span class="fs-12 text-muted"> <strong>1.05%</strong><i class="mdi mdi-arrow-up"></i> <span class="text-muted fs-12 ml-0 mt-1">than last week</span></span> --}}
                       </div>
@@ -31,7 +24,7 @@
               </div>
               @endforeach
             </div>
-                 
+
 @endsection
 @section('js')
 		<!-- INTERNAL CHARTJS CHART JS -->

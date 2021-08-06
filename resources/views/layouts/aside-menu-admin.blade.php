@@ -48,7 +48,7 @@
                                 <li><a style="color: #808080!important;" class="slide-item" href="{{route('type_menus.index')}}"><span>Tous les
                                     Types de menus</span></a></li>
                                 <li><a style="color: #808080!important;" class="slide-item" href="{{route('type_menus.create')}}"><span>Ajouter un Type de menu </span></a></li>
-                                
+
                             </ul>
                         </li> --}}
                         <li class="slide">
@@ -71,15 +71,15 @@
                                 <li><a style="color: #808080!important;" class="slide-item" href="{{route('apis.create')}}"><span>Ajouter une API </span></a></li>
                             </ul>
                         </li>
-                        <li class="slide">
+                        <!--<li class="slide">
                             <a style="color: #808080!important;"  class="side-menu__item" data-toggle="slide" href="#">
                                 <span class="side-menu__label">Commentaires</span><i class="angle fa fa-angle-right"></i>
                             </a>
                             <ul class="slide-menu">
-                                <li><a style="color: #808080!important;" class="slide-item" href="{{route('commentaires.index')}}"><span>Tous les 
+                                <li><a style="color: #808080!important;" class="slide-item" href="{{route('commentaires.index')}}"><span>Tous les
                                 commentaires</span></a></li>
                             </ul>
-                        </li>
+                        </li>-->
                         <li>
                         @endif
 
@@ -134,8 +134,8 @@
                                     @endif
                                   </ul>
                               </li>
-                              
-                              @endforeach     
+
+                              @endforeach
                         {{-- <li class="slide">
                             <a class="side-menu__item" data-toggle="slide" href="#">
                                 <i class="mdi mdi-message aide-icon"  ></i>
@@ -147,7 +147,7 @@
                                 <li><a class="slide-item" href="{{route('commentaires.create')}}"><span>Nouveau commentaire</span></a></li>
                             </ul>
                         </li> --}}
-                        
+
                     </ul>
                     <br><br><br><br>
                 </aside>

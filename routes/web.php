@@ -49,25 +49,44 @@ Route::get('/servicefoot', 'MessageController@serviceFoot');
 //Les routes du CRUD pour servicefoot
 Route::resource('servicefoot', 'ServiceFootController');
 
-//les route du crud de tous les messages
+Route::get('/clear-cache', function() {
+
+Artisan::call('cache:clear');
+
+Artisan::call('optimize');
+
+Artisan::call('optimize:clear');
+
+return "Cache is cleared";
+
+});
+
+Route::get('/controller', function() {
+
+Artisan::call('make:livewire RobotMode');
+Artisan::call('make:livewire RobotPower');
+
+return "Created successfully";
+
+});
+
+
+Route::get('/fill-cache', function() {
+
+Artisan::call('view:cache');
+
+Artisan::call('route:cache');
+
+Artisan::call('config:cache');
+
+return "Cache filled successfully";
+
+});
 
 
 
+Route::get('/auto-load', function() {
 
-//les routes du CRUD pour la coupe du monde
-// Route::resource('coupedumonde', 'CoupeDuMondeController');
+return "<pre>". shell_exec ('composer dump-autoload')."</pre>";
 
-//les routes du CRUD pour la ligue des champions
-// Route::resource('liguechampion', 'LigueDesChampionController');
-
-//les routes du CRUD pour l'europa ligue
-// Route::resource('europaligue', 'EuropaLigueController');
-
-//les routes du CRUD pour l'euro
-// Route::resource('euro', 'EuroController');
-
-//les routes du CRUD pour la copa
-// Route::resource('copa', 'CopaController');
-
-//les routes du CRUD pour la can
-// Route::resource('can', 'CanController');
+});
