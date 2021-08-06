@@ -28,11 +28,14 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label class="form-label" for="automate_id">Automate<strong class="text-danger"></strong></label>
-                            <select name="automate_id" id="automate_id" class="form-control custom-select select2">
+                            @php
+                                $opera= operateurs();
+                            @endphp
+                            <label class="form-label" for="operateur">Operateur<strong class="text-danger"></strong></label>
+                            <select name="operateur" id="operateur" class="form-control custom-select select2">
                                 <option value="" selected disabled> Selectionner </option>
-                                @foreach ($automates as $automate)
-                                <option value="{{$automate['id']}}">{{$automate['nom']}}</option>
+                                @foreach ($opera as $op)
+                                <option value="{{$op['nom']}}">{{$op['nom']}}</option>
                                 @endforeach
                                 {{-- <option value="{{Route::currentRouteName() == 'menus.edit' ? $menu->localite->id : '' }}" {{Route::currentRouteName() == 'menus.edit' ? '' : 'disabled' }} selected >{{Route::currentRouteName() == 'menu.edit' ? $menu->localite->nom.', ('.$menu->localite->pay->nom.')'  : 'Sélectionner' }}</option> --}}
                             </select>

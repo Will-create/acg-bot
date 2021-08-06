@@ -28,14 +28,14 @@ class MenuController extends Controller
     {
         $sousmenu = [];
         $apis = Api::all();
-        
+
         $menus=Menu::where('type_menu_id',2)->orderBy('type_menu_id','asc')->get();
         foreach($menus as $menu){
 
             if($menu->type_menu_id==2){
                 if($menu->pseudo==$parent){
-                    
-                    $sousmenu[]=$menu; 
+
+                    $sousmenu[]=$menu;
                 }
                 foreach($apis as $api){
                     $nom = Str::slug($api->menu->nom);
@@ -43,17 +43,17 @@ class MenuController extends Controller
                         $menu['api']=$api;
                     }
                 }
-                
+
             }
         }
         return response()->json($sousmenu);
     }
     public function list_by_automate_id($automateId)
     {
-       
-       
+
+
         $menus=Menu::where('automate_id',$automateId)->get();
-        
+
         return response()->json($menus);
     }
     public function create()
@@ -94,24 +94,26 @@ class MenuController extends Controller
           $request->session()->flash('status','Menu créé avec succès!!!');
           return redirect()->route('menus.show',$menu->uuid);
     }
-    public function show($uuid)
+    public function show(Request $req,$uuid)
     {
         $menu = Menu::where('uuid',$uuid)->with('type')->first();
         $titrePage = "Détails d'un menu";
-        $sousmenus = []; 
-        $parent = []; 
+        $sousmenus = [];
+        $parent = [];
         $apis = [];
+		$slug = $req->query('slug');
         if($menu->type_menu_id == 1){
             $sousmenus = Menu::where('parent_uuid',$menu->uuid)->orderBy('nom','desc')->get();
         }else{
             $apis =Api::where('menu_id',$menu->id)->get();
-            $todays = Sms::where('operateur',$menu->operateur)->whereDate('created_at', Carbon::today()->toDateString())->get();
+            $todays = Sms::where('slug',$slug)->whereDate('created_at', Carbon::today()->toDateString())->get();
             $textos = Sms::where('envoye',true)->get();
             $parent = Menu::parent($menu->uuid);
         }
-        $todays = Sms::whereDate('created_at', Carbon::today()->toDateString())->get();
+        $todays = Sms::where('slug',$slug)->whereDate('created_at', Carbon::today()->toDateString())->get();
         $textos = Sms::where('envoye',true)->get();
         $automate = automate($menu->automate_id);
+
         return view('pages.backoffice.menus.show', compact('menu','sousmenus','automate','textos','todays','apis','parent','titrePage'));
     }
     public function edit(Menu $menu)
@@ -163,5 +165,16 @@ class MenuController extends Controller
         // }
         $menu->delete();
         return redirect()->route('menus.index')->with('status','Menu supprimé avec succès');
+    }
+
+    public function listeMenu(){
+        $operateurs = operateurs();
+        $liste = [];
+        foreach($operateurs as $operateur){
+
+            $operateur['rubriques'] = fonctions($operateur['nom']);
+            $liste[] = $operateur;
+        }
+        return response()->json($liste);
     }
 }

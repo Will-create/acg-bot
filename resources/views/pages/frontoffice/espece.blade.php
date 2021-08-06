@@ -22,7 +22,7 @@
 							<a href="#" class="dropdown-item"><i class="bx bxs-file-image mr-2"></i>Export as Image</a>
 							<a href="#" class="dropdown-item"><i class="bx bxs-file mr-2"></i>Export as Excel</a>
 						</div>
-					</div> 
+					</div>
 				</div>
 			</div>
 			@endsection
@@ -46,7 +46,7 @@
 					</div>
 				</div>
 				<div class="col-lg-8 col-md-12 col-sm-12 col-xl-9">
-					
+
 					<div class="card overflow-hidden">
                         <div class="card-header">
                             <h3 class="card-title">Multiple locations</h3>
@@ -76,7 +76,7 @@
 					   var current_month = 0;
 					   var current_year_months = ["Jan"];
 					   var data_current_year_months = [0];
-			   
+
 					   // function getRandomColor() {
 					   // 	var letters = '0123456789ABCDEF';
 					   // 	var color = '#';

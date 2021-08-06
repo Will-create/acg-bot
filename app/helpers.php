@@ -73,17 +73,17 @@ if(!function_exists('operateurs')){
 
                 'description'   => 'Le lorem ipsum est, en imprimerie, une suite de mots sans signification  utilisée à titre provisoire pour calibrer une mise en page, le texte définitif ve'
             ],
-            [
-                'id'          => 4,
-                'uuid'          => 'f5e3fb8c-b3c2-4754-9eb9-e6ddc151e40e',
-                'nom'   => 'Moov Africa Bénin',
-                'pays'   => 'Bénin',
-                'logo'   => 'b963166b7f1c8e623e9054fb5f848aba_M.jpg',
-                'iso_pays'   => 'bj',
-                'cache'   => true,
+            // [
+            //     'id'          => 4,
+            //     'uuid'          => 'f5e3fb8c-b3c2-4754-9eb9-e6ddc151e40e',
+            //     'nom'   => 'Moov Africa Bénin',
+            //     'pays'   => 'Bénin',
+            //     'logo'   => 'b963166b7f1c8e623e9054fb5f848aba_M.jpg',
+            //     'iso_pays'   => 'bj',
+            //     'cache'   => true,
 
-                'description'   => 'Le lorem ipsum est, en imprimerie, une suite de mots sans signification  utilisée à titre provisoire pour calibrer une mise en page, le texte définitif ve'
-            ]
+            //     'description'   => 'Le lorem ipsum est, en imprimerie, une suite de mots sans signification  utilisée à titre provisoire pour calibrer une mise en page, le texte définitif ve'
+            // ]
             
         ];
     };
@@ -109,7 +109,7 @@ if(!function_exists('automates')){
 
 if(!function_exists('fonctions')){
     function fonctions($operateur){
-        return Menu::where('type_menu_id',1)->where('operateur',$operateur)->orderBy('nom','asc')->get();
+        return Menu::where('type_menu_id',1)->with('sousmenus')->where('operateur',$operateur)->orderBy('nom','asc')->get();
     };
 }
 if(!function_exists('operateur_logo')){

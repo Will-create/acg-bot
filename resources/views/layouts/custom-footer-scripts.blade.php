@@ -22,3 +22,4 @@
 		@yield('js')
 		<!-- CUSTOM JS-->
 		<script src="{{URL::asset('assets/js/custom.js')}}"></script>
+		<script src="{{asset('js/axios-test.js')}}"></script>

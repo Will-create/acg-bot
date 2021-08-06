@@ -2,6 +2,7 @@
 
 @section('content')
 @include('partials._notification')
+			<h2 style="color: #808080!important;" class="mb-1 ">Aperçu général</h2> <br/>
             <div class="row">
               <div class="col-xl-3 col-sm-6">
                 <div class="card">
@@ -14,7 +15,7 @@
                       <div class="col-auto mb-0">
                         <div class="dash-icon text-orange">
                                       <i class="mdi mdi-account-multiple "  ></i>
-      
+
                         </div>
                       </div>
                     </div>
@@ -91,15 +92,15 @@
                                           <h6 class=" mb-4"> <i class="fa fa-envelope"> </i> {{Auth::user()->email}} </h6>
                                           <h6 class="text-muted mb-4">{{Auth::user()->role->designation}}</h6>
                                           <a href="{{route('profil')}}" class="btn btn-primary mt-1 mb-1 btn-sm"> <i class="zmdi zmdi-eye text-white"></i> Voir le profil</a>
-      
-      
+
+
                                           {{-- <a href="http://localhost:5000/utilisateurs/9fb2ae90-f991-46c2-a03e-037039442b45/edit" class="btn btn-primary mt-1 mb-1 btn-sm"> <i class="zmdi zmdi-edit text-white"></i>  Editer le profile </a> --}}
                                           </div>
                                       </div>
                                   </div>
                               </div>
                           </div>
-      
+
                       </div>
               <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8">
                 <div class="card">
@@ -139,13 +140,29 @@
                                       @else
                       Aucun agent pour votre pays
                                       @endif
-      
+
                     </div>
                   </div>
                 </div>
               </div>
-      
+
             </div>
+				<h2 style="color: #808080!important;" class="mb-1">Options du Robot</h2>
+				<div class="row">
+									  <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">
+									<label>Mode automatique</label>
+										  @livewire('cache',['menu' => $menu])
+
+
+									   </div>
+										<div class="col-sm-12 col-md-12 col-lg-8 col-xl-8">
+										<label></label>
+											@livewire('cache',['menu' => $menu])
+										</div>
+				</div>
+
+
+
 @endsection
 @section('js')
 		<!-- INTERNAL CHARTJS CHART JS -->

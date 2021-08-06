@@ -12,5 +12,6 @@ class VerifyCsrfToken extends Middleware
      * @var array
      */
     protected $except = [
+		'http://213.246.56.170:8064/api/les_messages/'
     ];
 }

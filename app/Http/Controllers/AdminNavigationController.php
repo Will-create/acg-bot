@@ -19,6 +19,12 @@ class AdminNavigationController extends Controller
                 $utilisateurs  = User::latest()->get();
                 return view('pages.backoffice.administrateur.dasboard-admin', compact('utilisateurs'));
             break;
+            default:
+                $utilisateurs  = User::latest()->get();
+                return view('pages.backoffice.administrateur.dasboard-admin', compact('utilisateurs'));
+            break;
         }
+        
+        
     }
 }

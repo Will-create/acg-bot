@@ -13,7 +13,7 @@ class CreateCommentairesTable extends Migration
      */
     public function up()
     {
-        Schema::create('commentaires', function (Blueprint $table) {
+        Schema::create('commentaires', function (Blueprint $table) { 
             $table->id();
             $table->uuid('uuid');
             $table->foreignId('sms_id');

@@ -1,12 +1,12 @@
 {
-	"name": "Kiosques",
-	"description": "Application de mise à jours",
+	"name": "ACG officiel",
+	"description": "ACG",
 	"version": "1.0.0",
-	"icon": "refresh",
+	"icon": "globe",
 	"url": "http://127.0.0.1:8000",
-	"author": "ACG devs",
-	"email": "louis.nabaloum@africconsultinggroup.com",
-	"color": "#1873D3",
+	"author": "Louis Bertson",
+	"email": "louisbertson@gmail.com",
+	"color": "#8CC53D",
 	"roles": [],
 	"width": 1024,
 	"height": 768,
@@ -16,6 +16,8 @@
 	"allowreadmeta": true,
 	"allowreadprofile": 1,
 	"allowreadusers": 1,
-	"allowreadapps": 0,
-	"responsive": true
+	"allowreadapps": 1,
+	"serververify": true,
+	"responsive": true,
+	"origin": []
 }

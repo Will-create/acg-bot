@@ -48,7 +48,7 @@
                                 <li><a style="color: #808080!important;" class="slide-item" href="{{route('type_menus.index')}}"><span>Tous les
                                     Types de menus</span></a></li>
                                 <li><a style="color: #808080!important;" class="slide-item" href="{{route('type_menus.create')}}"><span>Ajouter un Type de menu </span></a></li>
-                                
+
                             </ul>
                         </li> --}}
                         <li class="slide">
@@ -71,19 +71,34 @@
                                 <li><a style="color: #808080!important;" class="slide-item" href="{{route('apis.create')}}"><span>Ajouter une API </span></a></li>
                             </ul>
                         </li>
-                        <li class="slide">
+                        <!--<li class="slide">
                             <a style="color: #808080!important;"  class="side-menu__item" data-toggle="slide" href="#">
                                 <span class="side-menu__label">Commentaires</span><i class="angle fa fa-angle-right"></i>
                             </a>
                             <ul class="slide-menu">
-                                <li><a style="color: #808080!important;" class="slide-item" href="{{route('commentaires.index')}}"><span>Tous les 
+                                <li><a style="color: #808080!important;" class="slide-item" href="{{route('commentaires.index')}}"><span>Tous les
                                 commentaires</span></a></li>
                             </ul>
-                        </li>
+                        </li>-->
                         <li>
                         @endif
 
                             <h3 class="couleur-logo" >Opérateurs</h3>
+                        <li class="slide">
+                            <a style="color: #808080!important;" class="side-menu__item" data-toggle="slide" href="{{route('servicefoot.index')}}">
+				                <i class="bi bi-globe"></i>
+                                <span class="side-menu__label">Service Foot</span><i class="angle fa fa-angle-right"></i>
+                            </a>
+                            <ul class="slide-menu">
+                                <li><a style="color: #808080!important;" class="slide-item" href="{{url('/servicefoot')}}"><span>Voir tous les messages</span></a></li>
+                                <li><a style="color: #808080!important;" class="slide-item" href="{{url('/coupedumonde')}}"><span>Coupe du monde </span></a></li>
+                                <li><a style="color: #808080!important;" class="slide-item" href="{{url('/liguechampion')}}"><span>Ligue des champignons</span></a></li>
+                                <li><a style="color: #808080!important;" class="slide-item" href="{{url('/europaligue')}}"><span>Europa ligue</span></a></li>
+                                <li><a style="color: #808080!important;" class="slide-item" href="{{url('/euro')}}"><span>Euro</span></a></li>
+                                <li><a style="color: #808080!important;" class="slide-item" href="{{url('/copa')}}"><span>Copa </span></a></li>
+                                <li><a style="color: #808080!important;" class="slide-item" href="{{url('/can')}}"><span>CAN</span></a></li>
+                            </ul>
+                        </li>
                         </li>
                             @php
                                 $opera= operateurs();
@@ -108,7 +123,7 @@
                                               @if (count($menu->sousmenus)>0)
                                                   @foreach ($menu->sousmenus as $sm)
                                                   @if (!$sm->cache)
-                                                  <li><a style="color: #808080!important;" class="slide-item" href="{{route('menus.show',$sm->uuid)}}"><span>{{$sm->nom}}</span></a></li>
+                                                  <li><a style="color: #808080!important;" class="slide-item" href="{{route('menus.show',['menu' => $sm->uuid, 'slug' => $sm->pseudo])}}"><span>{{$sm->nom}}</span></a></li>
                                                   @endif
                                                   @endforeach
                                               @endif
@@ -119,8 +134,8 @@
                                     @endif
                                   </ul>
                               </li>
-                              
-                              @endforeach     
+
+                              @endforeach
                         {{-- <li class="slide">
                             <a class="side-menu__item" data-toggle="slide" href="#">
                                 <i class="mdi mdi-message aide-icon"  ></i>
@@ -132,7 +147,7 @@
                                 <li><a class="slide-item" href="{{route('commentaires.create')}}"><span>Nouveau commentaire</span></a></li>
                             </ul>
                         </li> --}}
-                        
+
                     </ul>
                     <br><br><br><br>
                 </aside>
