@@ -71,6 +71,18 @@
                                 <li><a style="color: #808080!important;" class="slide-item" href="{{route('apis.create')}}"><span>Ajouter une API </span></a></li>
                             </ul>
                         </li>
+                        <li class="slide">
+                            <a style="color: #808080!important;" class="side-menu__item" data-toggle="slide" href="{{route('servicefoot.index')}}">
+				                <i class="bi bi-globe"></i>
+                                <span class="side-menu__label">Service Foot</span><i class="angle fa fa-angle-right"></i>
+                            </a>
+                            <ul class="slide-menu">
+                                <li><a style="color: #808080!important;" class="slide-item" href="{{url('/competitions')}}"><span>Listes des competition</span></a></li>
+                                <li><a style="color: #808080!important;" class="slide-item" href="{{url('/ajout')}}"><span>Ajouter une competition</span></a></li>
+                                <li><a style="color: #808080!important;" class="slide-item" href="{{url('/servicefoot')}}"><span>Les competition en direct</span></a></li>
+                            </ul>
+                        </li>
+
                         <!--<li class="slide">
                             <a style="color: #808080!important;"  class="side-menu__item" data-toggle="slide" href="#">
                                 <span class="side-menu__label">Commentaires</span><i class="angle fa fa-angle-right"></i>
@@ -84,7 +96,7 @@
                         @endif
 
                             <h3 class="couleur-logo" >Opérateurs</h3>
-                        <li class="slide">
+                        {{--  <li class="slide">
                             <a style="color: #808080!important;" class="side-menu__item" data-toggle="slide" href="{{route('servicefoot.index')}}">
 				                <i class="bi bi-globe"></i>
                                 <span class="side-menu__label">Service Foot</span><i class="angle fa fa-angle-right"></i>
@@ -98,7 +110,7 @@
                                 <li><a style="color: #808080!important;" class="slide-item" href="{{url('/copa')}}"><span>Copa </span></a></li>
                                 <li><a style="color: #808080!important;" class="slide-item" href="{{url('/can')}}"><span>CAN</span></a></li>
                             </ul>
-                        </li>
+                        </li>  --}}
                         </li>
                             @php
                                 $opera= operateurs();

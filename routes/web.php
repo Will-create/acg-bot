@@ -19,7 +19,7 @@ Route::prefix('admin')->group(function () {
 });
 
 Route::get('/',function(){
-    return redirect('/admin');
+    return redirect('/admin'); 
 });
 //les routes du frontoffice
 Route::get('apis/sms', 'ApiController@sms');
@@ -28,6 +28,10 @@ Route::get('api/menu/liste/{menu}', 'MenuController@api');
 Route::get('api/menu/liste/automate/{automateId}', 'MenuController@list_by_automate_id');
 
 Auth::routes();
+
+//Les routes du CRUD pour les differentes competitions
+Route::resource('competitions', 'CompetitionController');
+Route::resource('ajout', 'CompetitionController@ajouter');
 
 //les routes pour afficher les données (operateur menu sousmenu rubrique) en json
 Route::get('api/menu/liste', 'MenuController@listeMenu');
