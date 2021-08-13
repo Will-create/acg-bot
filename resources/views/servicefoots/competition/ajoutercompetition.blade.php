@@ -20,12 +20,12 @@
             <h1 class="page-title"> {!! $titrePage !!} </h1>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('accueil') }}">Accueil</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('menus.index') }}">Compétiton</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('competitions.index') }}">Compétiton</a></li>
                 <li class="breadcrumb-item active" aria-current="page"> {{ $btnAction }}</li>
             </ol>
         </div>
         <div class="ml-auto pageheader-btn">
-            <a class="btn btn-primary" href="{{ route('menus.index') }}"> <span>
+            <a class="btn btn-primary" href="{{ route('competitions.index') }}"> <span>
                     <i class="fe fe-list"></i>
                 </span> Toutes les competition</a>
             </button>
@@ -34,15 +34,38 @@
     <!-- PAGE-HEADER END -->
 @endsection
 @section('content')
-    @if (Route::currentRouteName() == 'menus.create')
-        <form action="{{ route('menus.store') }}" method="post" enctype="multipart/form-data">
-        @else
-            <form action="{{ route('menus.update', $menu->uuid) }}" method="post" enctype="multipart/form-data">
-                @method('PUT')
-    @endif
-    @csrf
-    @include('servicefoots.competition.formulaireajout', ['btnAction' => $btnAction, 'menu' => $menu ])
-    </form>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ajouter un Compétition</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+          <div class="modal-body">
+            <form action="{{ route('competitions.store') }}" method="post" enctype="multipart/form-data">
+                  <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Compétition:</label>
+                    <input type="text" class="form-control" id="recipient-name">
+                  </div>
+                  <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Fédération:</label>
+                    <input type="text" class="form-control" id="recipient-name">
+                  </div>
+                  <div class="form-group">
+                    <label for="message-text" class="col-form-label">Description:</label>
+                    <textarea class="form-control" id="message-text"></textarea>
+                  </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Retour</button>
+          <button type="button" class="btn btn-primary">Envoyer</button>
+        </div>
+      </div>
+    </div>
+  </div>
 @stop
 {{-- CODE JS DE FILTRAGE --}}
 @section('js')

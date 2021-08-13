@@ -70,7 +70,7 @@
 											</tr>
 										</thead>
 										<tbody>
-                                            @foreach ($menus as $menu)
+                                            @foreach ($menus as $menu) 
 
 
 											<tr data-placement="top" title="Cliquer pour afficher les détails">

@@ -15,24 +15,59 @@
                     <div class="container">
                         <div class="page-header">
                             <div>
-                            <h1 class="page-title text-dark">Details d 'application</h1>
+                            <h1 class="page-title text-dark">Liste des compétitions</h1>
                                 <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{route('accueil')}}">Accueil</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page"><span class="text-dark"></span>Servicefoot</li>
                                     <li class="breadcrumb-item active" aria-current="page"><span class="text-dark"></span>Listes des competitions</li>
                                 </ol>
                             </div>
                             <div class="ml-auto pageheader-btn">
                                 @if (Auth::user()->role->id == 1 )
-                                <a class="btn btn-primary" href="{{route('menus.create')}}"  >  <span>
+                                {{-- <a class="btn btn-primary" href="{{route('competitions.create')}}"  >  <span>
                                     <i class="fe fe-plus"></i>
                                 </span>
-                                Ajouter une compétition</a>
+                                Ajouter une compétition</a> --}}
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap"> <i class="fe fe-plus"></i> Ajouter une competition</button>
                                     @else
                                     <a href="{{ route('menus.index') }}" class="btn btn-primary"> <span>
                                         <i class="fe fe-close"></i>
                                     </span><i class="fa fa-times"></i> Retour</a>
             
                                 @endif
+                            </div>
+                        </div>
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                    <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Ajouter un Compétition</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    </div>
+                                    <form action="{{ route('competitions.store') }}" method="post" enctype="multipart/form-data">
+                                        <div class="modal-body">
+                                            @csrf
+                                            <div class="form-group">
+                                                <label for="recipient-name" class="col-form-label">Compétition:</label>
+                                                <input type="text" name="competition" placeholder="Nom de la compétition" class="form-control" id="recipient-name">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="recipient-name" class="col-form-label">Fédération:</label>
+                                                <input type="text" name="federation" placeholder="Nom de la fédération" class="form-control" id="recipient-name">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="message-text" class="col-form-label">Description:</label>
+                                                <textarea class="form-control" name="description" placeholder="Saisir une description de la compétition" id="message-text"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                        <button type="button" class="btn btn-dark" data-dismiss="modal">Retour</button>
+                                        <button type="submit" class="btn btn-primary">Envoyer</button>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -56,18 +91,20 @@
 												{{-- <th class="wd-15p">Photo</th> --}}
 												{{--  <th class="wd-15p">Par</th>  --}}
 												<th class="wd-15p">Competition</th>
+                                                <th>Federation</th>
 												<th>Description</th>
-                                                <th>Cacher</th>
 											</tr>
 										</thead>
 										<tbody>
+                                            @foreach ($competitions as $competition)
 											<tr>
-												{{-- <td> <a class="text-dark" href="" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" > <div class="col-auto"><span class="avatar brround avatar-md d-block cover-image" data-image-src="{{asset('storage').'/'.$commentaire->photo}}"></span></div> </a></td> --}}
+                                                    {{-- <td> <a class="text-dark" href="" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" > <div class="col-auto"><span class="avatar brround avatar-md d-block cover-image" data-image-src="{{asset('storage').'/'.$commentaire->photo}}"></span></div> </a></td> --}}
 												{{--  <td> <a class="text-dark" href="" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" > Alain</a></td>  --}}
-												 <td> <a class="text-dark" href="" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" >Coupe du monde</a></td>
-												<td> <a class="text-dark" href="" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" >C'est une competition organisée toutes les quatres ans</a></td>
-												<td> <a class="text-dark" href="" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" ></a></td>
+												 <td> <a class="text-dark" href="" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" >{{$competition -> competition}}</a></td>
+                                                 <td> <a class="text-dark" href="" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" >{{$competition -> federation}}</a></td>
+                                                 <td> <a class="text-dark" href="" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" >{{$competition -> description}}</a></td>
                                             </tr>
+                                            @endforeach
 										</tbody>
 									</table>
 								</div>
@@ -81,6 +118,9 @@
 @endsection
 @section('js')
      <!-- INTERNAL  DATA TABLE JS-->
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
     <script src="{{URL::asset('assets/plugins/fileuploads/js/fileupload.js')}}"></script>
     <script src="{{URL::asset('assets/plugins/fileuploads/js/file-upload.js')}}"></script>
     <script src="{{URL::asset('assets/plugins/datatable/jquery.dataTables.min.js')}}"></script>

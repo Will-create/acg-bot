@@ -78,8 +78,8 @@
                             </a>
                             <ul class="slide-menu">
                                 <li><a style="color: #808080!important;" class="slide-item" href="{{url('/competitions')}}"><span>Listes des competition</span></a></li>
-                                <li><a style="color: #808080!important;" class="slide-item" href="{{url('/ajout')}}"><span>Ajouter une competition</span></a></li>
-                                <li><a style="color: #808080!important;" class="slide-item" href="{{url('/servicefoot')}}"><span>Les competition en direct</span></a></li>
+                                {{-- <li><a style="color: #808080!important;" class="slide-item" href="{{url('/ajout')}}"><span>Ajouter une competition</span></a></li> --}}
+                                <li><a style="color: #808080!important;" class="slide-item" href="{{url('/direct')}}"><span>Les competition en direct</span></a></li>
                             </ul>
                         </li>
 
