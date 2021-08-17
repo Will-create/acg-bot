@@ -8,6 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Competition extends Model
 {
     use HasFactory;
-    protected $fillable = ['competition','description','uuid'];
+    protected $fillable = ['competition','federation','description','uuid'];
 
 }

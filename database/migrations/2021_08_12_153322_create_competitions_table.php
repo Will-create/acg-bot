@@ -17,8 +17,12 @@ class CreateCompetitionsTable extends Migration
             $table->id();
             $table->string('competition');
             $table->string('federation');
-            $table->string('description');
+            $table->text('description');
             $table->uuid('uuid')->nullable();
+            $table->boolean('caches')->default(false);
+            // $table->foreignId('date_id')->nullable();
+            // $table->foreign('date_id')->references('id')->on('dates')->onDelete('restrict')
+            // ->onUpdate('restrict');
             $table->timestamps();
         });
     }

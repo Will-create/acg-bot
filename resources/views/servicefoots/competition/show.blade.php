@@ -3,10 +3,13 @@
 <link rel="stylesheet" href="/css/servicefoot.css">
 <style>
     .hauteur{
-        height: 265px;
+        height: auto;
     }
 </style>
 @endsection
+@push('livewire')
+@livewireStyles
+@endpush
 @section('page-header')
                 <!-- PAGE-HEADER -->
                 @include('partials._notification')
@@ -43,16 +46,22 @@
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                     </div>
-                                    <form action="{{ route('competitions.store') }}" method="post" enctype="multipart/form-data">
+                                    <form action="{{ route('date.store') }}" method="post" enctype="multipart/form-data">
                                         <div class="modal-body">
                                             @csrf
                                             <div class="form-group">
                                                 <label for="recipient-name" class="col-form-label">Date de début:</label>
-                                                <input type="date" name="date_debut" placeholder="Date du début de la competition" class="form-control" id="recipient-name">
+                                                <input type="date" name="date_debut" placeholder="Date du début d'une competition" class="form-control" id="recipient-name">
                                             </div>
                                             <div class="form-group">
                                                 <label for="recipient-name" class="col-form-label">Date de fin:</label>
-                                                <input type="date" name="date_fin" placeholder="Date du fin de la competition" class="form-control" id="recipient-name">
+                                                <input type="date" name="date_fin" placeholder="Date de la fin d'une competition" class="form-control" id="recipient-name">
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="hidden" name="competition_id" value="{{$competition->id}}">
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="hidden" name="competition_uuid" value="{{$competition->uuid}}">
                                             </div>
                                         </div>
                                         <div class="modal-footer">
@@ -68,20 +77,29 @@
 @endsection
 @section('content')
     <div class="row">
+    @if (Auth::user()->role->id == 1 )
         <div class="col-md-4">
             <div class="card hauteur">
                 <div class="card-body">
-                    <h4 class="text-dark">Compétition</h4>
-                    <p>Nom de la competition</p>
-                    <button>test</button>
+                    <h4 class="text-dark">{{$competition -> competition}}</h4>
+                    <p>Fédération: {{$competition -> federation}}</p>
+                    <p class="text-dark">Description de la compétition:</p>
+                    <small>{{$competition -> description}}</small>
+                    <div class="mt-5">
+                        @livewire('servicefoot',['competition' => $competition])
+                    </div>
                 </div>
             </div>
         </div>
+   @endif
         <div class="col-md-8">
             <div class="card hauteur">
                 <div class="card-body">
-                    <h4 class="text-dark">Description de la compétition</h4>
-                    <p>les compétitions peuvent être nationales ou internationnalles peu importe y'aura toujours un troffé</p>
+                    <h3 class="text-center text-dark">ServiceFoot</h3>
+                    <h3 class="text-center">Dates des prochaines Editions</h3>
+                   @foreach ($dates as $date)
+                   <h5 class="text-center">Du {{$date->date_debut}}------au------{{$date->date_fin}}</h5>
+                   @endforeach
                 </div>
             </div>
         </div>
@@ -90,18 +108,17 @@
 
     @if (Auth::user()->role->id == 1 )
     <div class="row">
-        <div class="col-md-3"></div>
-        <div class="col-md-8 mb-4">
+        <div class="col-md-6"></div>
+        <div class="col-md-6 mb-4">
             <div class="row">
                 <div class="d-flex">
-                    <div class="col-md-4">
-                        <a href="{{ route('menus.index') }}" class="btn btn-dark"> <span>
+                    <div class="col-md-4 mr-5">
+                        <a href="{{ route('competitions.index') }}" class="btn btn-dark"> <span>
                             <i class="fe fe-close"></i> </span><i class="fa fa-times"></i> Retour</a>
                     </div>
-                    <div class="col-md-4 mr-2">
-                        <a href="" class="btn btn-primary">
-                        <i class="fa fa-edit"></i> Modifier</a>
-                    </div>
+                    {{--  <div class="col-md-4 mr-5">
+                        <a href="" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap"> <i class="fe fe-plus"></i>  <i class="fa fa-edit"></i> Modifier</a>
+                    </div>  --}}
                     <div class="col-md-4">
                         <button type="button" class="btn btn-danger  mb-1" data-toggle="modal"
                         data-target="#exampleModalDelete"><i class="fa fa-trash"></i></button>
@@ -116,17 +133,17 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalDelete">Suppression de </h5>
+                    <h5 class="modal-title" id="exampleModalDelete">Suppression de {{ $competition-> competition }}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p> Etes-vous sûr de bien vouloir supprimer ce Menu ?
+                    <p> Etes-vous sûr de bien vouloir supprimer cette Compétition ?
                     </p>
                 </div>
                 <div class="modal-footer">
-                    <form action="" method="POST">
+                    <form action="{{ route('competitions.destroy', $competition->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger ">
@@ -177,3 +194,6 @@
         @endif
         </script>
 @endsection
+@push('livewirescript')
+@livewireScripts
+@endpush

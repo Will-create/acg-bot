@@ -100,9 +100,9 @@
 											<tr>
                                                     {{-- <td> <a class="text-dark" href="" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" > <div class="col-auto"><span class="avatar brround avatar-md d-block cover-image" data-image-src="{{asset('storage').'/'.$commentaire->photo}}"></span></div> </a></td> --}}
 												{{--  <td> <a class="text-dark" href="" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" > Alain</a></td>  --}}
-												 <td> <a class="text-dark" href="" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" >{{$competition -> competition}}</a></td>
-                                                 <td> <a class="text-dark" href="" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" >{{$competition -> federation}}</a></td>
-                                                 <td> <a class="text-dark" href="" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" >{{$competition -> description}}</a></td>
+												 <td> <a class="text-dark" href="{{route('competitions.show',$competition->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" >{{$competition -> competition}}</a></td>
+                                                 <td> <a class="text-dark" href="{{route('competitions.show',$competition->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" >{{$competition -> federation}}</a></td>
+                                                 <td> <a class="text-dark" href="{{route('competitions.show',$competition->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" >{{$competition -> description}}</a></td>
                                             </tr>
                                             @endforeach
 										</tbody>

@@ -34,6 +34,7 @@ Route::resource('competitions', 'CompetitionController');
 Route::get('ajout', 'CompetitionController@ajouter');
 Route::get('/direct', 'CompetitionController@competitionDirect');
 Route::get('/show', 'CompetitionController@testShow');
+Route::resource('date', 'DateController');
 
 //les routes pour afficher les données (operateur menu sousmenu rubrique) en json
 Route::get('api/menu/liste', 'MenuController@listeMenu');

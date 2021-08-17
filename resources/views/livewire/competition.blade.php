@@ -1,5 +1,5 @@
 <div>
-    @if ($menu->cache == true)
+    @if ($competition->cache == true)
         <div class="form-group">
             <div class="form-label"></div>
             <label class="custom-switch">
