@@ -105,7 +105,7 @@ class MenuController extends Controller
         if($menu->type_menu_id == 1){
             $sousmenus = Menu::where('parent_uuid',$menu->uuid)->orderBy('nom','desc')->get();
         }else{
-            $apis =Api::where('menu_id',$menu->id)->get();
+            //$apis =Api::where('menu_id',$menu->id)->get();
             $todays = Sms::where('slug',$slug)->whereDate('created_at', Carbon::today()->toDateString())->get();
             $textos = Sms::where('envoye',true)->get();
             $parent = Menu::parent($menu->uuid);

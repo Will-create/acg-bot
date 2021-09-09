@@ -1,12 +1,12 @@
 
 
-var message = {
-    id : 545,
-    slug : 'telecel-faso-servicefoot',
-    content : 'ceci est le contenu du message',
-    dtcreated : '2021 07 15',
+// var message = {
+//     id : 545,
+//     slug : 'telecel-faso-servicefoot',
+//     content : 'ceci est le contenu du message',
+//     dtcreated : '2021 07 15',
     
-};
+// };
 
 // function afficher(message){
 //     return message.content;
@@ -69,7 +69,7 @@ var message = {
     // }
     // next();
 
-    var n= 10;
+    // var n= 10;
 
     // console.log(Number.isInteger(n));
 
@@ -460,7 +460,7 @@ var message = {
 //  }
 
 // le dom
-{/* <p id="anchor">Mon contenu</p>
+/*{ <p id="anchor">Mon contenu</p>
 const myAnchor = document.getAnimations("anchor");
 console.log('myAnchor');
 
@@ -510,10 +510,31 @@ const elt = document.querySelector("#myId p.article > a");
     </div>
     <div id="next">Suivant</div>
 </div>
-const elts = document.getElementById('main'); */}
+const elts = document.getElementById('main'); }*/
 
 
-const button = document.getElementById('lien');
-button.addEventListener('click', function(){
-    button.innerHTML = "c'est clické";
-});
+// const button = document.getElementById('lien');
+// button.addEventListener('click', function(){
+//     button.innerHTML = "c'est clické"
+// 5x2 - 2X + 3
+// });
+
+
+//     function equation(a, b, c, i){
+//     var delta = (b*b)-(4*a*c);
+//          if(delta<0){
+//              var z1 = (-b/(2*a))+(i*((Math.sqrt(Math.abs(delta)))/(2*a)));
+//              var z2 = (-b/(2*a))-(i*((Math.sqrt(Math.abs(delta)))/(2*a)));
+//         return "l'équation n'admet pas de solution en R*R mais admet deux solution en C " + z1 + " et " + z2;
+//     }
+//     else if(delta === 0){
+//        var  x0 = ((-b/(2*a)) * (+b/(2*a)));
+//          return "l'équation admet une unique solution " + x0;  
+//     }
+//     else{
+//        var x1 = ((-b-Math.sqrt(delta))/(2*a));
+//        var x2 = ((-b+Math.sqrt(delta))/(2*a));
+//         return "léqution admet deux solution " + x1 + " et " + x2;
+//     }
+// }
+// console.log(equation(5 , 2, 15, -1));

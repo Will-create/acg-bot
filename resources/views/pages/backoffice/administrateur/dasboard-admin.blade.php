@@ -1,6 +1,9 @@
 @extends('layouts.master4')
-
+@push('livewire')
+@livewireStyles
+@endpush
 @section('content')
+
 @include('partials._notification')
 			<h2 style="color: #808080!important;" class="mb-1 ">Aperçu général</h2> <br/>
             <div class="row">
@@ -147,11 +150,21 @@
               </div>
 
             </div>
-				<h2 style="color: #808080!important;" class="mb-1">Options du Robot</h2>
-				<div class="row">
-
+			<h2 style="color: #808080!important;" class="mb-1">Options du Robot</h2>
+			<div class="card">
+				<div class="card-body">
+					<div class="row">
+						<div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
+							<label></label>
+							@livewire('robot-mode')
+						</div>
+						<div class="col-sm-12 col-md-4 col-lg-4 col-xl-8">
+							<label></label>
+							@livewire('robot-power')
+						</div>
+					</div>
 				</div>
-
+			</div>
 
 
 @endsection
@@ -253,4 +266,7 @@
   });
     })
 </script>
+@endpush
+@push('livewirescript')
+@livewireScripts
 @endpush

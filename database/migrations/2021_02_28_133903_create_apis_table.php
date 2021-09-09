@@ -25,11 +25,7 @@ class CreateApisTable extends Migration
             $table->dateTime('date_fin_licence')->nullable();
             $table->dateTime('valide_a')->nullable();
             $table->uuid('uuid')->nullable();
-            $table->uuid('menu_uuid')->nullable();
-            $table->foreignId('menu_id')->nullable();
             $table->timestamps();
-            $table->foreign('menu_id')->references('id')->on('menus')->onDelete('restrict')
-            ->onUpdate('restrict');
         });
     }
     /**
