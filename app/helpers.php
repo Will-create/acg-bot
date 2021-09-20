@@ -18,6 +18,19 @@ if (!function_exists('formatMontant')) {
         return $montant;
     }
 }
+if (!function_exists('get_apikey')) {
+    function get_apikey()
+    {
+        return 'piuIZbssamrwCGwT';
+    }
+}
+if (!function_exists('get_apisecret')) {
+    function get_apisecret()
+    {
+        return '9T4Zj1eebd0uLvhaNMTNXlf7HHEknaex';
+    }
+}
+
 if (!function_exists('promotion')) {
     function promotion($prix, $reduction)
     {

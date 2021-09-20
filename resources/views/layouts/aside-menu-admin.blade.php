@@ -77,9 +77,28 @@
                                 <span class="side-menu__label">Service Foot</span><i class="angle fa fa-angle-right"></i>
                             </a>
                             <ul class="slide-menu">
-                                <li><a style="color: #808080!important;" class="slide-item" href="{{url('/competitions')}}"><span>Listes des competition</span></a></li>
+                                <a style="color: #808080!important;" class="side-menu__item" data-toggle="slide" href="#">
+                                    <span class="side-mebu__label" >Paramètres</span></a>
+                                    </a>
+                               
+                                    <ul class="slide-menu">
+                                        <li>
+                                            <a style="color: #808080!important;" class="slide-item" href="{{url('/competitions')}}">
+                                            <span>Paramètres de Compétition</span>
+                                            </a>
+                                            
+                                        </li>
+                                        <li>
+                                            <a style="color: #808080!important;" class="slide-item" href="{{url('/liaisons')}}">
+                                            <span>Paramètres de liaison API</span>
+                                            </a>
+                                        </li>
+                                    </ul>
                                 {{-- <li><a style="color: #808080!important;" class="slide-item" href="{{url('/ajout')}}"><span>Ajouter une competition</span></a></li> --}}
-                                <li><a style="color: #808080!important;" class="slide-item" href="{{url('/direct')}}"><span>Les competition en direct</span></a></li>
+                                <a style="color: #808080!important;" class="side-menu__item"  href="{{url('/match_today')}}">
+                                    <i class="bi bi-globe"></i>
+                                    <span>Matchs aujourdh'ui</span>
+                                </a>
                             </ul>
                         </li>
 

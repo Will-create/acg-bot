@@ -20,6 +20,9 @@ class CompetitionController extends Controller
     public function competitionDirect(){
         return view('/servicefoots.competition.competiondirect');
     }
+    public function today(){
+        return view('/servicefoots.competition.matchtoday');
+    }
     public function testShow(){
         $competition = Competition::all();
         return view('/servicefoots.competition.show', compact('competition'));
@@ -28,17 +31,17 @@ class CompetitionController extends Controller
     {
         $data = request()->validate([
             'competition'                       => [ 'string'],
+            'competition_id'                       => [ 'integer'],
             'federation'                       => [ 'string'],
             'description'                           =>  [ 'string']
-			
         ]);
         $competition = new Competition();
         $competition->competition = mb_strtoupper($data['competition']);
+        $competition->competition_id = $data['competition_id'];
         $competition->federation = mb_strtoupper($data['federation']);
         $competition->description = mb_strtoupper($data['description']);
         // $competition->date_id = $data['date_id'];
         $competition->uuid = Str::uuid();
-		
         $competition->save();
         $request->session()->flash('status','Competition créé avec succès!!!');
           return redirect()->route('competitions.show',$competition->uuid);
@@ -46,7 +49,7 @@ class CompetitionController extends Controller
     public function show(Request $req,$uuid)
     {
         $competition = Competition::where('uuid',$uuid)->first();
-        $dates = Date::where('id',$competition->id)->get();
+        $dates = Date::where('competition_id',$competition->id)->get();
         return view('/servicefoots.competition.show', compact('competition', 'dates'));
     }
     public function destroy(Request $request, Competition $competition)

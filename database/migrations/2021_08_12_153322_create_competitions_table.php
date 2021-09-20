@@ -17,6 +17,7 @@ class CreateCompetitionsTable extends Migration
             $table->id();
             $table->string('competition');
             $table->string('federation');
+            $table->integer('competition_id')->nullable();
             $table->text('description');
             $table->uuid('uuid')->nullable();
             $table->boolean('caches')->default(false);

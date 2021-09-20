@@ -31,8 +31,10 @@ Auth::routes();
 
 //Les routes du CRUD pour les differentes competitions
 Route::resource('competitions', 'CompetitionController'); 
+Route::resource('liaisons', 'ConfigController'); 
 Route::get('ajout', 'CompetitionController@ajouter');
 Route::get('/direct', 'CompetitionController@competitionDirect');
+Route::get('/match_today', 'CompetitionController@today')->name('servicefoot.matchtoday');
 Route::get('/show', 'CompetitionController@testShow');
 Route::resource('date', 'DateController');
 

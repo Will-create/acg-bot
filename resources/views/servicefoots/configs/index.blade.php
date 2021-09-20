@@ -15,21 +15,27 @@
                     <div class="container">
                         <div class="page-header">
                             <div>
-                            <h1 class="page-title text-dark">Liste des compétitions</h1>
+                            <h1 class="page-title text-dark">Liste des liaisons</h1>
                                 <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{route('accueil')}}">Accueil</a></li>
                                     <li class="breadcrumb-item active" aria-current="page"><span class="text-dark"></span>Servicefoot</li>
-                                    <li class="breadcrumb-item active" aria-current="page"><span class="text-dark"></span>Listes des competitions</li>
+                                    <li class="breadcrumb-item active" aria-current="page"><span class="text-dark"></span>Paramètre</li>
+                                    <li class="breadcrumb-item active" aria-current="page"><span class="text-dark"></span>Liaisons</li>
                                 </ol>
                             </div>
                             <div class="ml-auto pageheader-btn">
                                 @if (Auth::user()->role->id == 1 )
-                                {{-- <a class="btn btn-primary" href="{{route('competitions.create')}}"  >  <span>
+                                {{-- <a class="btn btn-primary" href="{{route('liaisons.create')}}"  >  <span>
                                     <i class="fe fe-plus"></i>
                                 </span>
                                 Ajouter une compétition</a> --}}
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap"> <i class="fe fe-plus"></i> Ajouter une competition</button>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap"> <i class="fe fe-plus"></i> Ajouter une Liaison</button>
                                     @else
+                                    @error('onglet')
+                                               @php
+                                                   $modal = "false"
+                                               @endphp
+                                    @enderror
                                     <a href="{{ route('menus.index') }}" class="btn btn-primary"> <span>
                                         <i class="fe fe-close"></i>
                                     </span><i class="fa fa-times"></i> Retour</a>
@@ -37,30 +43,53 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="{{$modal}}">
                             <div class="modal-dialog" role="document">
                               <div class="modal-content">
                                     <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Ajouter une Compétition</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">Ajouter une liaison</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                     </div>
-                                    <form action="{{ route('competitions.store') }}" method="post" enctype="multipart/form-data">
+                                    <form action="{{ route('liaisons.store') }}" method="post" enctype="multipart/form-data">
                                         <div class="modal-body">
                                             @csrf
                                             <div class="form-group">
-                                                <input type="text" name="competition" placeholder="Nom de la compétition" class="form-control" id="recipient-name">
+                                                <select name="onglet" id="" class="form-control custom-select select2">
+                                                    <option disabled  selected >Choisir une source</option>
+                                                    @foreach ($sources as $source)
+                                                    
+                                                        <option value="{{$source['onglet']}}">{{$source['onglet']}}</option>
+                                                    @endforeach
+                                                    
+                                                </select>
+                                                @error('onglet')
+                                                <span class="helper-text red-text">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                                @enderror
                                             </div>
                                             <div class="form-group">
-                                                <input type="number" name="competition_id" placeholder="ID de la compétition" class="form-control" id="recipient-name">
+                                                <select name="edition_id" id="" class="form-control custom-select select2">
+                                                    <option disabled  selected >Choisir une Edition</option>
+                                                    @foreach ($editions as $edition)
+                                                    
+                                                        <option value="{{$edition->competition_id}}">{{$edition->designation}}</option>
+                                                    @endforeach
+                                                    
+                                                </select>
+                                                @error('edition_id')
+                                                <span class="helper-text red-text">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                                @enderror
                                             </div>
+                                           
                                             <div class="form-group">
-                                                <input type="text" name="federation" placeholder="Nom de la fédération" class="form-control" id="recipient-name">
+                                                <input type="text" name="heure_envoie" placeholder="Heure de declenchement quotidien" class="form-control" id="recipient-name">
                                             </div>
-                                            <div class="form-group">
-                                                <textarea class="form-control" name="description" placeholder="Saisir une description de la compétition" id="message-text"></textarea>
-                                            </div>
+                                           
                                         </div>
                                         <div class="modal-footer">
                                         <button type="button" class="btn btn-dark" data-dismiss="modal">Retour</button>
@@ -81,7 +110,7 @@
 					<div class="col-md-12 col-lg-12">
 						<div class="card">
 							<div class="card-header">
-								<h3 class="card-title">Listes des compétions</h3>
+								<h3 class="card-title">Listes des liaisons API</h3>
 							</div>
 							<div class="card-body">
 								<div class="table-responsive">
@@ -90,21 +119,21 @@
 											<tr>
 												{{-- <th class="wd-15p">Photo</th> --}}
 												{{--  <th class="wd-15p">Par</th>  --}}
-												<th class="wd-15p">ID Competition</th>
-												<th class="wd-15p">Nom Competition</th>
-                                                <th class="wd-15p" >Federation</th>
-												<th class="wd-30p" >Description</th>
+												<th class="wd-15p">ID Source</th>
+												<th class="wd-15p">ID Edition</th>
+                                                <th class="wd-15p" >Mode</th>
+												<th class="wd-30p" >Heure de déclenchement</th>
 											</tr>
 										</thead>
 										<tbody>
-                                            @foreach ($competitions as $competition)
+                                            @foreach ($configs as $config)
 											<tr>
                                                     {{-- <td> <a class="text-dark" href="" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" > <div class="col-auto"><span class="avatar brround avatar-md d-block cover-image" data-image-src="{{asset('storage').'/'.$commentaire->photo}}"></span></div> </a></td> --}}
 												{{--  <td> <a class="text-dark" href="" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" > Alain</a></td>  --}}
-												 <td> <a class="text-dark" href="{{route('competitions.show',$competition->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" >{{$competition -> competition_id}}</a></td>
-												 <td> <a class="text-dark" href="{{route('competitions.show',$competition->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" >{{$competition -> competition}}</a></td>
-                                                 <td> <a class="text-dark" href="{{route('competitions.show',$competition->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" >{{$competition -> federation}}</a></td>
-                                                 <td> <a class="text-dark" href="{{route('competitions.show',$competition->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" >{{$competition -> description}}</a></td>
+												 <td> <a class="text-dark" href="{{route('liaisons.show',$config->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" >{{$config -> onglet}}</a></td>
+												 <td> <a class="text-dark" href="{{route('liaisons.show',$config->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" >{{$config -> edition_id}}</a></td>
+                                                 <td> <a class="text-dark" href="{{route('liaisons.show',$config->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" >{{$config -> automatique ? "Automatique" : "Validation"}}</a></td>
+                                                 <td> <a class="text-dark" href="{{route('liaisons.show',$config->uuid)}}" data-toggle="tooltip" data-placement="top" title="Cliquer pour afficher les détails" >{{$config -> heure_envoi}}</a></td>
                                             </tr>
                                             @endforeach
 										</tbody>
@@ -151,31 +180,6 @@
             modal.classList.add("show");
         @endif
         </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <!-- <div class="container">
         <div class="row">
             <div class="col-md-8">

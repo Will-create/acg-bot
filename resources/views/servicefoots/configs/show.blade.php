@@ -16,32 +16,33 @@
                     <div class="container">
                         <div class="page-header">
                             <div>
-                            <h1 class="page-title text-dark">Paramètre de compétition</h1>
+                            <h1 class="page-title text-dark">Paramètre de Liaison</h1>
                                 <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{route('accueil')}}">Accueil</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page"><span class="text-dark"></span>Servicefoot</li>
-                                    <li class="breadcrumb-item active" aria-current="page"><span class="text-dark"></span>Competition</li>
+                                <li class="breadcrumb-item active" aria-current="page"><span class="text-dark"></span>Servicefoot</li>
+                                    <li class="breadcrumb-item active" aria-current="page"><span class="text-dark"></span>Paramètre</li>
+                                    <li class="breadcrumb-item active" aria-current="page"><span class="text-dark"></span>Liaisons</li>
                                 </ol>
                             </div>
-                            <div class="ml-auto pageheader-btn">
+                            {{-- <div class="ml-auto pageheader-btn">
                                 @if (Auth::user()->role->id == 1 )
-                                {{-- <a class="btn btn-primary" href="{{route('competitions.create')}}"  >  <span>
+                                <a class="btn btn-primary" href="{{route('liaisons.create')}}"  >  <span>
                                     <i class="fe fe-plus"></i>
                                 </span>
-                                Ajouter une compétition</a> --}}
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap"> <i class="fe fe-plus"></i> Ajouter une Edition</button>
+                                Ajouter une compétition</a> 
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap"> <i class="fe fe-plus"></i> Ajouter une date</button>
                                     @else
                                     <a href="{{ route('menus.index') }}" class="btn btn-primary"> <span>
                                         <i class="fe fe-close"></i>
                                     </span><i class="fa fa-times"></i> Retour</a>           
                                 @endif
-                            </div>
+                            </div> --}}
                         </div>
                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                               <div class="modal-content">
                                     <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Ajouter une Edition</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">Ajouter une </h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -62,10 +63,10 @@
                                                 <input type="date" name="date_fin" placeholder="Date de la fin d'une competition" class="form-control" id="recipient-name">
                                             </div>
                                             <div class="form-group">
-                                                <input type="hidden" name="competition_id" value="{{$competition->id}}">
+                                                <input type="hidden" name="competition_id" value="{{$config->id}}">
                                             </div>
                                             <div class="form-group">
-                                                <input type="hidden" name="competition_uuid" value="{{$competition->uuid}}">
+                                                <input type="hidden" name="competition_uuid" value="{{$config->uuid}}">
                                             </div>
                                         </div>
                                         <div class="modal-footer">
@@ -85,13 +86,13 @@
         <div class="col-md-4">
             <div class="card hauteur">
                 <div class="card-body">
-                    <h4 class="text-dark">{{$competition -> competition}}</h4>
-                    <p>Fédération: {{$competition -> federation}}</p>
-                    <p class="text-dark">Description de la compétition:</p>
-                    <small>{{$competition -> description}}</small>
-                    <div class="mt-5">
-                        @livewire('servicefoot',['competition' => $competition])
-                    </div>
+                    <h4 class="text-dark">SOURCE :  <small>{{$config -> onglet}}</small> </h4>
+                    <p>EDITION : {{$config -> edition -> designation}}</p>
+                    <p class="text-dark">Heure de déclenchement:<small>{{$config -> heure_envoie}}</small></p>
+                    
+                    {{-- <div class="mt-5">
+                        @livewire('servicefoot',['competition' => $config])
+                    </div> --}}
                 </div>
             </div>
         </div>
@@ -99,8 +100,8 @@
         <div class="col-md-8">
             <div class="card hauteur">
                 <div class="card-body">
-                    <h3 class="text-center">Editions</h3>
-                    <div class="row">
+                    <h3 class="text-center">Statistiques</h3>
+                    {{-- <div class="row">
                         @foreach ($dates as $date)
                         <div class="col-6">
                          <div class="card">
@@ -154,7 +155,7 @@
                            
                         </div>
                         @endforeach
-                    </div>
+                    </div> --}}
                    
                 </div>
             </div>
@@ -169,7 +170,7 @@
             <div class="row">
                 <div class="d-flex">
                     <div class="col-md-4 mr-5">
-                        <a href="{{ route('competitions.index') }}" class="btn btn-dark"> <span>
+                        <a href="{{ route('liaisons.index') }}" class="btn btn-dark"> <span>
                             <i class="fe fe-close"></i> </span><i class="fa fa-times"></i> Retour</a>
                     </div>
                     {{--  <div class="col-md-4 mr-5">
@@ -189,7 +190,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalDelete">Suppression de {{ $competition-> competition }}</h5>
+                    <h5 class="modal-title" id="exampleModalDelete">Suppression de {{ $config-> competition }}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -199,7 +200,7 @@
                     </p>
                 </div>
                 <div class="modal-footer">
-                    <form action="{{ route('competitions.destroy', $competition->id) }}" method="POST">
+                    <form action="{{ route('liaisons.destroy', $config->uuid) }}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger ">

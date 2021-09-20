@@ -15,7 +15,7 @@
                     <div class="container">
                         <div class="page-header">
                             <div>
-                            <h1 class="page-title text-dark">Details d 'application</h1>
+                            <h1 class="page-title text-dark">Competition en direct</h1>
                                 <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{route('accueil')}}">Accueil</a></li>
                                 <li class="breadcrumb-item"><a href="{{route('servicefoot.index')}}">ServiceFoot</a></li>
@@ -30,10 +30,21 @@
 @section('content')
     <div class="container">
         <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                            <h2> Matchs Aujourd'hui</h2> <hr>
+
+                            
+                        </div>
+                    </div>
+            </div>
+        </div>
+        <div class="row">
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-body">
-                            <h3> Messages entrants des compétitions</h3> <hr>
+                            <h3> Evènements de </h3> <hr>
                             <div class="scrollss">
                                     <div id="output" class="text-dark h-100 w-100 "  >
                                             

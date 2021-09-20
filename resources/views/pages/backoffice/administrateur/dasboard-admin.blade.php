@@ -156,12 +156,12 @@
                         <div class="row">
                           <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">
                             <label></label>
-                            @livewire('robot-mode')
+                            {{-- @livewire('robot-mode') --}}
                           </div>
                           <div class="col-lg-4"></div>
                           <div class="col-sm-12 col-md-12 col-lg-4 col-xl-8">
                               <label></label>
-                              @livewire('robot-power')
+                              {{-- @livewire('robot-power') --}}
                           </div>
                         </div>
                       </div>
